@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 //LLAMADA AL ARCHIVO PRINCIPAL DE ACCESO A BASE DE DATOS E INTEGRACION DE SMARTY
 ob_start();
 include("config.ini.php");
@@ -48,7 +49,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',$modulo);
-$smarty->assign("page",array(1,2,3,4,5,6,7));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8));
 
 
 $aprobaciones = array();
