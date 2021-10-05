@@ -1,0 +1,220 @@
+/////////////////////////////////////CODIGO PARA UTILIZAR DESPUES//////////////////////////////////////////////////////////
+/*
+//FUNCTION PARA LLAMAR EL GRAFICO
+(function(){
+	
+	$(document).on('click','#Generar_grafica',function(){
+		
+		let id_informe = $(this).attr("data-id");
+		
+		
+		$("#traer_informes_refrigeradores").hide();
+		$("#mostrar_grafica").show();
+		
+			//CONSULTA DEL PRIMER CHARTJS
+			$.ajax({
+			type:'POST',
+			data: {id_informe},
+			url:'templates/refrigeradores/datos1_grafica.php',
+			success:function(response){
+			
+				let traer = JSON.parse(response);
+				
+				var time = [];
+				var promedio = [];
+				var min = [];
+				var max = [];
+		
+			
+			 
+				traer.forEach((result)=>{
+					time.push(result.time);
+					promedio.push(result.promedio);
+					min.push(result.min);
+					max.push(result.max);
+
+				});
+				
+			
+	var data1 = {
+  label: 'Promedio',
+  data: promedio,
+  borderWidth: "0",
+	lineTension: 0,
+	fill: false,
+	borderColor: 'green',
+	backgroundColor: 'transparent',
+	borderDash: [5, 5],
+	pointBorderColor: 'green',
+	pointBackgroundColor: 'rgba(255,150,0,0.5)',
+	pointRadius: 5,
+	pointHoverRadius: 10,
+	pointHitRadius: 30,
+	pointBorderWidth: 2,
+	pointStyle: 'line'	
+};
+				
+var data2 = {
+  label: 'min',
+  data: min,
+  borderWidth: 0,
+		lineTension: 0,
+	fill: false,
+	borderColor: 'red',
+	backgroundColor: 'transparent',
+	borderDash: [5, 5],
+	pointBorderColor: 'red',
+	pointBackgroundColor: 'rgba(255,150,0,0.5)',
+	pointRadius: 5,
+	pointHoverRadius: 10,
+	pointHitRadius: 30,
+	pointBorderWidth: 2,
+	pointStyle: 'line'	
+};	
+				
+				
+var data3 = {
+  label: 'max',
+  data: max,
+  borderWidth: 0,
+	lineTension: 0,
+	fill: false,
+	borderColor: 'yellow',
+	backgroundColor: 'transparent',
+	borderDash: [5, 5],
+	pointBorderColor: 'yellow',
+	pointBackgroundColor: 'rgba(255,150,0,0.5)',
+	pointRadius: 5,
+	pointHoverRadius: 10,
+	pointHitRadius: 30,
+	pointBorderWidth: 2,
+	pointStyle: 'line'	
+};		
+				
+var grafica = {
+  labels: time,
+  datasets: [data1, data2, data3]
+};				
+				
+				
+		var ctx = document.getElementById('myChart');
+		var myChart = new Chart(ctx, {
+    type: 'line',
+    data: grafica,
+								options: {
+									boxWidth: 80,
+     							 fontColor: 'black',
+										scales: {
+												yAxes: [{
+														ticks: {
+																beginAtZero: true
+														}
+												}]
+										}
+								}
+						});
+		
+		
+			}
+			});
+		
+		
+		
+			//CONSULTA DEL SEGUNDO CHARTJS
+		
+			$.ajax({
+				type: 'POST',
+				data: {id_informe},
+				url : 'templates/refrigeradores/datos2_grafica.php',
+				success: function(data){
+					//let traer = JSON.parse(data);
+						
+					
+				
+				
+				
+				
+					
+					for(var i in  traer){
+						console.log(traer[i].nombre_sensor);
+						
+					}
+					
+					 var chartdata = {
+                        labels: name,
+                        datasets: [
+                            {
+                                label: 'Student Marks',
+                                backgroundColor: '#49e2ff',
+                                borderColor: '#46d5f1',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: marks
+                            }
+                        ]
+                    };
+
+					
+					
+
+					var ctx = document.getElementById('myChart_2');
+					var myChart = new Chart(ctx, {
+					type: 'line',
+					data: grafica_2,
+											options: {
+												boxWidth: 80,
+												 fontColor: 'black',
+													scales: {
+															yAxes: [{
+																	ticks: {
+																			beginAtZero: true
+																	}
+															}]
+													}
+											}
+									});
+					
+					
+				}			
+			});
+		
+		
+					
+		
+	});
+}());
+
+/////////////////////////////////FIN DEL CODIGO PARA GENERAR GRAFICA//////////////////////////////////////////////////////
+
+
+//FUNCION PARA CONTROLAR EVENTOS DEL LA CARD QUE MUESTRA LA INFORMACIÓN DE LA GRAFICA
+(function(){
+	$("#minimizar_graficos").click(function(){
+		$("#traer_informes_refrigeradores").show();
+		$("#mostrar_grafica").hide();
+	});
+	
+}());
+
+
+	//FUNCIÓN QUE GENERA LA DESCAGA DE IMAGEN PARA EL CHART
+(function(){
+	document.getElementById("download").addEventListener('click', function(){
+
+  var url_base64jp = document.getElementById("myChart").toDataURL("image/jpg");
+
+  var a =  document.getElementById("download");
+
+  a.href = url_base64jp;
+});
+
+	document.getElementById("download_2").addEventListener('click', function(){
+ 
+  var url_base64jp = document.getElementById("myChart_2").toDataURL("image/jpg");
+
+  var a =  document.getElementById("download_2");
+
+  a.href = url_base64jp;
+});
+}());
+*/
