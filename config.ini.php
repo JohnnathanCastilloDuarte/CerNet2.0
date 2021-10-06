@@ -5,6 +5,10 @@ include("smarty/libs/Smarty.class.php");
 
 $smarty = new smarty;
 
+$variable_url = $_SERVER['HTTP_HOST'];
+echo $variable_url;
+
+/*
 $db_server='localhost';
 //$db_username='root';
 //$db_pass='';
@@ -16,8 +20,9 @@ $connect = mysqli_connect($db_server,$db_username,$db_pass,$db_database);
 
 
 	if($connect === false)
-	{
+	{	
 		die("Error, no se puede establecer conexion a la base de datos ".mysqli_connect_error());
 	}
-mysqli_set_charset($connect,"utf8");
+mysqli_set_charset($connect,"utf8");*/
+
 ?>
