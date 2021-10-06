@@ -63,7 +63,19 @@ if(isset($_POST['empezar']))
       setcookie("name", $nombre_usuario_online, time()+3600);  
       setcookie("cargo", $cargo_usuario_online, time()+3600); 			
     }	
-    header("refresh:0; url=index.php");      
+    
+    $movimiento = "Inició sesión en";
+    $modulo = "CerNet 2.0";
+    
+    $insertando = mysqli_prepare($connect,"INSERT INTO backtrack (persona, movimiento, modulo) VALUES (?,?,?)");
+    mysqli_stmt_bind_param($insertando, 'iss', $id_usuario_online, $movimiento, $modulo);
+    mysqli_stmt_execute($insertando);
+    echo mysqli_stmt_error($insertando);
+    if($insertando){
+      header("refresh:0; url=index.php");  
+    }else{
+      echo "Error";
+    }   
   }
 }
 if(isset($_GET['action']))

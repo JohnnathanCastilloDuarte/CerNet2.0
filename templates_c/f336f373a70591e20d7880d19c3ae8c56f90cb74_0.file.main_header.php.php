@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-05 22:17:15
+/* Smarty version 3.1.34-dev-7, created on 2021-10-06 03:12:59
   from 'C:\xampp\htdocs\CerNet2.0\templates\main_header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cb2cba19e93_08432865',
+  'unifunc' => 'content_615cf81b4c4c70_03255589',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f336f373a70591e20d7880d19c3ae8c56f90cb74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\main_header.php',
-      1 => 1617463704,
+      1 => 1633482753,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cb2cba19e93_08432865 (Smarty_Internal_Template $_smarty_tpl) {
+function content_615cf81b4c4c70_03255589 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="es">
 <head>
@@ -44,6 +44,7 @@ function content_615cb2cba19e93_08432865 (Smarty_Internal_Template $_smarty_tpl)
   <?php echo '<script'; ?>
  type="text/javascript" src="design/js/pdf.worker.js"><?php echo '</script'; ?>
 >
+
 	
 </head>
 <body>

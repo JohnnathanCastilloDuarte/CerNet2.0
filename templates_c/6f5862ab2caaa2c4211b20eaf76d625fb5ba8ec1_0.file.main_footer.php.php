@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-05 22:17:15
+/* Smarty version 3.1.34-dev-7, created on 2021-10-06 03:12:59
   from 'C:\xampp\htdocs\CerNet2.0\templates\main_footer.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cb2cba4cee8_45944592',
+  'unifunc' => 'content_615cf81b7ea8d1_61641850',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6f5862ab2caaa2c4211b20eaf76d625fb5ba8ec1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\main_footer.php',
-      1 => 1610543072,
+      1 => 1633482763,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,43 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cb2cba4cee8_45944592 (Smarty_Internal_Template $_smarty_tpl) {
-echo '<script'; ?>
- type="text/javascript" src="privilegio.js"><?php echo '</script'; ?>
+function content_615cf81b7ea8d1_61641850 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Datatables/sweetalert2.all.min.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Datatables/bootstrap.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Datatables/jquery.dataTables.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Datatables/dataTables.bootstrap.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Datatables/sweetalert2.all.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/assets/wow/wow.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Chartjs/dist/Chart.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Chartjs/dist/Chart.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Chartjs/dist/Chart.bundle.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/Chartjs/dist/Chart.bundle.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
  type="text/javascript" src="design/assets/scripts/main.js"><?php echo '</script'; ?>
+>
+<!--<?php echo '<script'; ?>
+ type="text/javascript" src="privilegio.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="design/Datatables/eliminar.js"><?php echo '</script'; ?>
@@ -67,40 +98,20 @@ echo '<script'; ?>
  type="text/javascript" src="design/js/gestionar_ot.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- type="text/javascript" src="design/Datatables/sweetalert2.all.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="design/Datatables/bootstrap.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="design/Datatables/jquery.dataTables.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="design/Datatables/dataTables.bootstrap.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="design/Datatables/sweetalert2.all.min.js"><?php echo '</script'; ?>
->
-
-<?php echo '<script'; ?>
- type="text/javascript" src="design/assets/wow/wow.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
  type="text/javascript" src="design/js/update_bodega.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/update_refrigerador.js"><?php echo '</script'; ?>
 >
 
-
-<!--Ultrafreezer-->
+Ultrafreezer
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/update_ultrafreezer.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/control_mapeo_ultrafreezer.js"><?php echo '</script'; ?>
 >
-<!--FIn ultrafreezer-->
+FIn ultrafreezer
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/cantidad_informes.js"><?php echo '</script'; ?>
 >
@@ -111,23 +122,11 @@ echo '<script'; ?>
  type="text/javascript" src="design/js/activos.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- type="text/javascript" src="design/Chartjs/dist/Chart.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="design/Chartjs/dist/Chart.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="design/Chartjs/dist/Chart.bundle.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="design/Chartjs/dist/Chart.bundle.js"><?php echo '</script'; ?>
->
-
-
-
-<?php echo '<script'; ?>
  type="text/javascript" src="design/js/nombres_usuarios.js"><?php echo '</script'; ?>
 >
+-->
+
+
 </body>
 </html><?php }
 }

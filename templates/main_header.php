@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="design/Datatables/jquery.min.js"></script>
    <script type="text/javascript" src="design/js/pdf.js"></script>
   <script type="text/javascript" src="design/js/pdf.worker.js"></script>
+
 	
 </head>
 <body>

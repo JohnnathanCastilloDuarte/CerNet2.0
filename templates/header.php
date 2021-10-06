@@ -403,7 +403,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-right mr-2">
-                                                                <a href='validate_login.php?action=0' class="btn-pill btn-shadow btn-shine btn btn-focus">Salir
+                                                                <a href='#' class="btn-pill btn-shadow btn-shine btn btn-focus" id="btn_cerrar_sesion">Salir
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -460,6 +460,9 @@
         </div>
         </div>
 	</div>
+
+<script src="design/js/backtrack.js"></script>
+
 	<script>
 		$("#reload_aprobaciones").click(function(){
 			location.reload();

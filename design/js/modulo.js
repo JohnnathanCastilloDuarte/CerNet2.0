@@ -1,3 +1,4 @@
+
 listar_modulos();
 let cambio = false;
 $("#nombre_modulo").val('');
@@ -6,9 +7,10 @@ $("#area_modulo").val('');
 //listar modulos
 function listar_modulos(){
 	$.ajax({
-		type:"GET",
+		type:"POST",
 		url:'templates/modulo/listar_modulos.php',
 		success:function(e){
+			
 			let traer = JSON.parse(e);
 			let template = '';
 			
@@ -131,8 +133,6 @@ $(document).on('click','#eliminar_modulo',function(){
 		
 	});		
 			
-		}
-		
-	});
-	
+		}		
+	});	
 });

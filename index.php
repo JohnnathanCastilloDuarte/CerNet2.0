@@ -1,5 +1,4 @@
 <?php 
-error_reporting(0);
 //LLAMADA AL ARCHIVO PRINCIPAL DE ACCESO A BASE DE DATOS E INTEGRACION DE SMARTY
 ob_start();
 include("config.ini.php");
