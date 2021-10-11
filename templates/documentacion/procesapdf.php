@@ -1,5 +1,5 @@
 <?php 
-
+error_reporting(0);
 include("../../config.ini.php");
 
 $nombre_pdf_full = $_POST['nombre_pdf_full'].".pdf";
@@ -47,5 +47,6 @@ if(move_uploaded_file($archivotmp, 'pdf/'.$nombre_pdf_full)){
   echo "Error";
 }
 
+echo "Terminado";
 	
 ?>

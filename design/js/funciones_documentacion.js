@@ -5,6 +5,11 @@ $("#ocultar_3").hide();
 $("#informacion_de_mas").hide();
 $("#listar_subidas").hide();
 
+$(".subir1").hide();
+$(".subir").hide();
+
+
+
 ////VARIABLES CONSTANTES
 var id_valida_usuario = $("#id_valida").val();
 var id_documentacion = $("#id_documentacion").val();
@@ -90,7 +95,7 @@ $(document).on('click','#agregar_documentacion',function(){
         url:'templates/documentacion/asignar_servicio_documentacion.php',
         data:datos,
         success:function(response){
-          console.log(response);
+          
           
           if(response == "Si"){
             Swal.fire({
@@ -345,7 +350,7 @@ let seleccion = 2;
     url:'templates/documentacion/listar_participantes.php',
     data:{id_documentacion,seleccion},
     success:function(response){
-      console.log(response);
+     
       let traer = JSON.parse(response);
       let template = "";
       let rol = "";
@@ -367,7 +372,7 @@ let seleccion = 2;
               <td>${rol}</td>
               <td>${x.empresa}</td>
               <td><button class="btn btn-warning" id="modificar_participante_interno" data-id="${x.id_participante}" title="Modificar"><i class="pe-7s-check"></i></button></td>
-              <td><button class="btn btn-danger" id="eliminar_participante_interno" data-id="${x.id_participante}" title="Eliminar">X</button></td>
+              <td><button class="btn btn-danger" id="eliminar_participante_interno" data-id="${x.id_participante}" data-document = "${id_documentacion}" title="Eliminar">X</button></td>
               <td><button class="btn btn-primary" id="email_participante_interno" data-id="${x.id_participante}" title="Notificar via Email"><i class="pe-7s-mail"></i></button></td>
            </tr>
           `;
@@ -447,7 +452,7 @@ if(validar == 2){
     url:'templates/documentacion/crear_participante.php',
     data: datos,
     success:function(response){
-       console.log(response)  
+     
         Swal.fire({
           title:'Mensaje',
           text:'El participante ha sido creado con exito',
@@ -455,7 +460,7 @@ if(validar == 2){
           timer:1800
         });
       limpiando_creacion()
-      listar_empresa_participantes()
+      //listar_empresa_participantes()
       listar_cercal_participantes()
     }
   });
@@ -665,11 +670,12 @@ $(document).on('click','#modificar_participante_interno',function(){
 ///////ELIMINAR PARTICIPANTE EXTERNO
 $(document).on('click','#eliminar_participante_interno',function(){
   let id_participante = $(this).attr('data-id');
+  let id_documentacion = $(this).attr('data-document');
   $("#id_persona_documentacion_oculto").val(''); 
   
   Swal.fire({
     title:'Advertencia',
-    icon:'Question',
+    icon:'question',
     text:'¿Seguro, deseas eliminar el participante?',
     showCloseButton: true,
     showCancelButton: true,
@@ -680,8 +686,9 @@ $(document).on('click','#eliminar_participante_interno',function(){
       $.ajax({
         type:'POST',
         url:'templates/documentacion/eliminar_participante.php',
-        data:{id_participante},
+        data:{id_participante, id_documentacion},
         success:function(response){
+         
           Swal.fire({
             title:'Mensaje',
             text:'El participante se ha eliminado, correctamente',
@@ -689,7 +696,7 @@ $(document).on('click','#eliminar_participante_interno',function(){
             timer:1800
           });
       
-          listar_empresa_participantes();
+          //listar_empresa_participantes();
           listar_cercal_participantes();
         }
       })
@@ -705,7 +712,7 @@ $(document).on('click','#email_participante_interno',function(){
     url:'templates/documentacion/validar_correo.php',
     data:{id_participante},
     success:function(email){
-   
+      
       Swal.fire({
         title:'Mensaje',
         text:'Se enviara la invitación a colaborar al correo '+email,
@@ -725,7 +732,7 @@ $(document).on('click','#email_participante_interno',function(){
             url:'templates/documentacion/enviar_correo.php',
             data:datos,
             success:function(x){
-              console.log(x)
+              console.log(x);
             }
           });
         }
@@ -1404,10 +1411,6 @@ function listar_usuarios(){
   });
 }
 
-
-
-
-
 /////// LISTAR PERSONAS QUE YA FIRMARON 
 function listar_firmantes_ok(){
   $.ajax({
@@ -1415,7 +1418,7 @@ function listar_firmantes_ok(){
     data:{id_documentacion},
     url:'templates/documentacion/firmantes_ok.php',
     success:function(response){
-      console.log(response)
+      
       let traer = JSON.parse(response)
       let template = "";
       let contador = 1;
@@ -1523,8 +1526,8 @@ $("#formulario_pdf").on("submit", function(e){
     contentType: false,
     processData: false,
     success:function(respuesta){
-  
-      listar_pdf_grande();
+        $("#pdf_grande").show();
+        listar_pdf_grande();
     }
   });
 });
@@ -1539,7 +1542,7 @@ function listar_pdf_grande(){
     data:{id_documentacion_d},
     url:'templates/documentacion/traer_pdf_grande.php',
     success:function(respuesta){
-      console.log(respuesta);     
+           
       let template = "";
       if(respuesta != "No"){
         $("#primer_set").hide();
@@ -1584,6 +1587,7 @@ $("#eliminar_documento_cargado").click(function(){
               icon:'success',
               timer:1500
             });
+            $("#pdf_grande").hide();
             listar_pdf_grande();
           }
         }

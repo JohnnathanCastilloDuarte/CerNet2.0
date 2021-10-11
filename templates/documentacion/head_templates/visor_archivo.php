@@ -17,8 +17,7 @@ echo '<input type="hidden" value='.$nombre_archivo.' id="doc">';
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <iframe src="../pdf/<?php echo $nombre_archivo; ?>" width="100%" height="100%">
-       
-    </iframe> 
+  <embed  src="../pdf/<?php echo $nombre_archivo; ?>" width="100%" height="100%">
+  
  </body>
 </html>

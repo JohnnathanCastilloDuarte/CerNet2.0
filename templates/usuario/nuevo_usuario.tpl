@@ -187,7 +187,8 @@
 			</div>
 		</div><!--Cierre del card-body--> 
 	</div><!--Cierre del col-sm-7-->
-
+	<script type="text/javascript" src="design/js/nombres_usuarios.js"></script>
+<script type="text/javascript" src="design/js/usuario.js"></script>
 <script>
   /*
 	document.getElementById("file").onchange = function(e) {

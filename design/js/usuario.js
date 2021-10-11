@@ -196,7 +196,7 @@ $("#btn_nuevo_usuario").click(function(){
 //////////////////////// ACTUALIZAR USUARIO 
 $("#formulario_actualizacion_usuario").submit(function(e){
   e.preventDefault();
-  
+
     var formData = new FormData(document.getElementById("formulario_actualizacion_usuario"));
   
   
@@ -223,3 +223,6 @@ $("#formulario_actualizacion_usuario").submit(function(e){
 		});
 
 });
+
+
+

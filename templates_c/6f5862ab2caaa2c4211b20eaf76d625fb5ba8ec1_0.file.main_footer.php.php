@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-06 03:12:59
+/* Smarty version 3.1.34-dev-7, created on 2021-10-07 15:50:58
   from 'C:\xampp\htdocs\CerNet2.0\templates\main_footer.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cf81b7ea8d1_61641850',
+  'unifunc' => 'content_615efb42ae0d85_55319568',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6f5862ab2caaa2c4211b20eaf76d625fb5ba8ec1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\main_footer.php',
-      1 => 1633482763,
+      1 => 1633614653,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cf81b7ea8d1_61641850 (Smarty_Internal_Template $_smarty_tpl) {
+function content_615efb42ae0d85_55319568 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
   <?php echo '<script'; ?>
  type="text/javascript" src="design/Datatables/sweetalert2.all.min.js"><?php echo '</script'; ?>
@@ -55,9 +55,7 @@ function content_615cf81b7ea8d1_61641850 (Smarty_Internal_Template $_smarty_tpl)
   <?php echo '<script'; ?>
  type="text/javascript" src="design/assets/scripts/main.js"><?php echo '</script'; ?>
 >
-<!--<?php echo '<script'; ?>
- type="text/javascript" src="privilegio.js"><?php echo '</script'; ?>
->
+<!--
 <?php echo '<script'; ?>
  type="text/javascript" src="design/Datatables/eliminar.js"><?php echo '</script'; ?>
 >
@@ -70,9 +68,7 @@ function content_615cf81b7ea8d1_61641850 (Smarty_Internal_Template $_smarty_tpl)
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/modulo.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
- type="text/javascript" src="design/js/usuario.js"><?php echo '</script'; ?>
->
+
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/num_ot.js"><?php echo '</script'; ?>
 >
@@ -121,9 +117,7 @@ FIn ultrafreezer
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/activos.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
- type="text/javascript" src="design/js/nombres_usuarios.js"><?php echo '</script'; ?>
->
+
 -->
 
 

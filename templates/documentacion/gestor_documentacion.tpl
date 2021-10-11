@@ -368,7 +368,10 @@ p{
                 <input type="hidden" name="id_documentacion" id="id_documentacion_d" value="{$id_documentacion_d}">
                 <input type="file" id="pdf_subiendo" name="pdf_subiendo">
                 <br>
-                <input type="text" class="form_control" name="nombre_pdf_full"  placeholder="Ingresa el nombre del archivo con extensión .pdf" required>
+                <br>
+                <input type="text" class="form_control" name="nombre_pdf_full"  placeholder="Asigna un nombre al archivo"
+                  style="width: 310px;border-radius:7px;" required>
+                <br>
                 <br>
                 <button class="btn btn-success" id="subir_pdf_full">
                 Cargar

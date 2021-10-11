@@ -34,13 +34,13 @@
     <ul class="vertical-nav-menu">
     <li class="app-sidebar__heading">Menú</li>
     <li>
-    <a href="#">
+    <a href="index.php">
     <i class="metismenu-icon pe-7s-rocket"></i>Dashboard</a>			
     </li>
 
     <div id="modulo_1">
     <li>
-    <a href="index.php?module={$modulo[0].Modulo}&page={$page[0]}"><i class="metismenu-icon pe-7s-server"></i>Modulos</a>
+    <a href="index.php?module={$modulo[0]}&page={$page[0]}"><i class="metismenu-icon pe-7s-server"></i>Modulos</a>
     </li>                     
     </div>
 
@@ -91,16 +91,17 @@
     <li><a href="#" class="text-default"><i class="metismenu-icon pe-7s-user"></i>Usuarios<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>						
     <li>
-    <a href="index.php?module={$modulo[2].Usuario}&page={$page[0]}"><i class="metismenu-icon pe-7s-add-user"></i>Nuevo Usuario</a>
+    <a href="index.php?module={$modulo[1]}&page={$page[0]}"><i class="metismenu-icon pe-7s-add-user"></i>Nuevo Usuario</a>
     </li>
     <li>
-    <a href="index.php?module={$modulo[2].Usuario}&page={$page[1]}"><i class="metismenu-icon pe-7s-users "></i>Gestionar Usuarios</a>
+    <a href="index.php?module={$modulo[1]}&page={$page[1]}"><i class="metismenu-icon pe-7s-users "></i>Gestionar Usuarios</a>
     </li>
+    <!--
     <li>
-    <a href="index.php?module={$modulo[2].Usuario}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial usuario</a>
-    </li>
+    <a href="index.php?module={$modulo[1]}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial usuario</a>
+    </li>-->
     <li id="rolyprivilegiopage">
-    <a href="index.php?module={$modulo[2].Usuario}&page={$page[4]}"><i class="metismenu-icon pe-7s-look"></i>Rol y Privilegio</a>
+    <a href="index.php?module={$modulo[1]}&page={$page[4]}"><i class="metismenu-icon pe-7s-look"></i>Rol y Privilegio</a>
     </li>
     </ul>
     </li> 
@@ -245,8 +246,8 @@
     <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Documentación<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module={$modulo[8].Documentacion}&page={$page[0]}">Gestion documental</a>
-      <a href="index.php?module={$modulo[8].Documentacion}&page={$page[1]}">Revisión documental</a>
+    <a href="index.php?module={$modulo[2]}&page={$page[0]}">Gestion documental</a>
+      <a href="index.php?module={$modulo[2]}&page={$page[1]}">Revisión documental</a>
     </li>
     </ul>  
     </li> 

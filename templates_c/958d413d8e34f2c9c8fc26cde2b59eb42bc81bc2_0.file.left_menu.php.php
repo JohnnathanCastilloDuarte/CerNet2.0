@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-05 23:05:11
+/* Smarty version 3.1.34-dev-7, created on 2021-10-08 02:56:59
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cbe072849a1_79501748',
+  'unifunc' => 'content_615f975b2553f2_07286409',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1628800801,
+      1 => 1633654615,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cbe072849a1_79501748 (Smarty_Internal_Template $_smarty_tpl) {
+function content_615f975b2553f2_07286409 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -57,13 +57,13 @@ function content_615cbe072849a1_79501748 (Smarty_Internal_Template $_smarty_tpl)
     <ul class="vertical-nav-menu">
     <li class="app-sidebar__heading">Menú</li>
     <li>
-    <a href="#">
+    <a href="index.php">
     <i class="metismenu-icon pe-7s-rocket"></i>Dashboard</a>			
     </li>
 
     <div id="modulo_1">
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0]['Modulo'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-server"></i>Modulos</a>
     </li>                     
@@ -130,22 +130,23 @@ function content_615cbe072849a1_79501748 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#" class="text-default"><i class="metismenu-icon pe-7s-user"></i>Usuarios<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>						
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2]['Usuario'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-add-user"></i>Nuevo Usuario</a>
     </li>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2]['Usuario'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon pe-7s-users "></i>Gestionar Usuarios</a>
     </li>
+    <!--
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2]['Usuario'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial usuario</a>
-    </li>
+    </li>-->
     <li id="rolyprivilegiopage">
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2]['Usuario'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[4];?>
 "><i class="metismenu-icon pe-7s-look"></i>Rol y Privilegio</a>
     </li>
@@ -333,10 +334,10 @@ function content_615cbe072849a1_79501748 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Documentación<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[8]['Documentacion'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 ">Gestion documental</a>
-      <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[8]['Documentacion'];?>
+      <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 ">Revisión documental</a>
     </li>

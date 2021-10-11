@@ -49,10 +49,10 @@
 							<td>{$table_usuario.cargo}</td>
 							<td>{$table_usuario.estado}</td>
 							<td>
-								<div class="col-sm-12" style="text-align: center;">
-									<a id="btn_editar_usuario" href="index.php?module={$modulo[2].Usuario}&page={$page[2]}&user={$table_usuario.id_usuario}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info" ><i class="lnr-pencil btn-icon-wrapper"></i></a>
-									<a id="btn_restablecer_usuario"  data-id="{$table_usuario.id_usuario}" data-email="{$table_usuario.email}"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning"><i class="pe-7s-lock btn-icon-wrapper"></i></a>
-									<a data-id="{$table_usuario.id_usuario}" id="btn_eliminar_usuario"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger"><i class="lnr-cross btn-icon-wrapper"></i></a>
+								<div class="col-sm-12" style="text-align: center;padding: 0;">
+									<a id="btn_editar_usuario" href="index.php?module={$modulo[1]}&page={$page[2]}&user={$table_usuario.id_usuario}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info" ><i class="lnr-pencil btn-icon-wrapper"></i></a>
+									<!--<a id="btn_restablecer_usuario"  data-id="{$table_usuario.id_usuario}" data-email="{$table_usuario.email}"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning"><i class="pe-7s-lock btn-icon-wrapper"></i></a>
+									<a data-id="{$table_usuario.id_usuario}" id="btn_eliminar_usuario"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger"><i class="lnr-cross btn-icon-wrapper"></i></a>-->
 								</div>
 							</td>
 						</tr>

@@ -8,7 +8,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-              <li class="breadcrumb-item"><a href="index.php?module={$modulo[0].Usuario}&page={$page[1]}">Usuarios</a></li>
+              <li class="breadcrumb-item"><a href="index.php?module={$modulo[1]}&page={$page[1]}">Usuarios</a></li>
               <li class="breadcrumb-item active">Editar Usuario</li>			  
             </ol>
           </div>
@@ -46,11 +46,7 @@
 			</div>
 			<br>
 			{/foreach}
-			<div class="col-sm-12" >
-				<div style="text-align:center;">
-					<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" >Actualizar</button>
-				</div>
-			</div>
+			
 			</div>
 			<div class="col-sm-7">
 				<div class="card">
@@ -197,6 +193,15 @@
 			</div>
 		</div>
 	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-12" >
+			<div style="text-align:center;">
+				<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" >Actualizar</button>
+			</div>
+		</div>
+	</div>
+
 </form>	
 <script>
 document.getElementById("file").onchange = function(e) {
@@ -212,4 +217,5 @@ document.getElementById("file").onchange = function(e) {
     preview.append(image);
   };
 }
-</script>	
+</script>
+<script src="design/js/usuario.js"></script>	

@@ -1,4 +1,5 @@
-<?php   
+<?php 
+error_reporting(0);  
 include("../../config.ini.php");
 $seleccion = $_POST['seleccion'];
 

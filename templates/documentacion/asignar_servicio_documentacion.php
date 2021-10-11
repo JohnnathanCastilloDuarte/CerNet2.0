@@ -1,5 +1,5 @@
 <?php 
-
+error_reporting(0);
   include("../../config.ini.php");
 
   $id_numot = $_POST['id_numot'];

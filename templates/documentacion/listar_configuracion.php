@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 include('../../config.ini.php');
 
 $id_documentacion = $_POST['id_documentacion_d'];

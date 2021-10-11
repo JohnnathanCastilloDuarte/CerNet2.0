@@ -33,24 +33,19 @@
 						</div>
 					</div>
 					<br>
-					<div class="row">
+					<div class="row" id="capa_rol">
 						<div class="col-sm-9">
 							<label>Seleccione privilegio:</label>
 							<select class="form-control" id="selecte" style="width:30%">
-								<option>Seleccione...</option>
-								{foreach from=$encontrados item=privilegio}
-								<option value="{$privilegio.perfil}">{$privilegio.perfil}</option>
 								
-								{/foreach}
+								
 							</select>	
-							<br>
-							<input type="text" id="nombre_privilegio" class="form-control" style="width:30%">
+							
 						</div>	
 						<div class="col-sm-3">
 							<div id="btn_actualizar">
 								<br>
 								<br>
-								<button class="btn-shadow btn-outline-2x btn btn-outline-info" id="actualizar_privilegio">Actualizar</button>
 								<button class="btn-shadow btn-outline-2x btn btn-outline-danger" id="eliminar_privilegio">Eliminar</button>
 							</div>
 						</div>
@@ -72,13 +67,6 @@
 		</div>
 	</div>		
 </div>
-
-
-
-
-
-
-
 
 
 <div class="tab-pane tabs-animation fade show" id="rol" role="tabpanel">
@@ -143,4 +131,5 @@
 		</div>
 	</div>		
 </div>
-	</div>
+</div>
+<script type="text/javascript" src="design/js/privilegio.js"></script>

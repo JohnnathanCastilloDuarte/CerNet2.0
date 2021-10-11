@@ -1,5 +1,6 @@
 <?php 
 //LLAMADA AL ARCHIVO PRINCIPAL DE ACCESO A BASE DE DATOS E INTEGRACION DE SMARTY
+//error_reporting(0);
 ob_start();
 include("config.ini.php");
 session_start();
@@ -43,11 +44,12 @@ mysqli_stmt_bind_result($consultar_modulo, $id_modulo, $nombre);
 $modulo = array();
 
 	while($row = mysqli_stmt_fetch($consultar_modulo)){
+  
 		$modulo[] = array(
 		$nombre => $id_modulo
 		);
 	}
-$smarty->assign('modulo',$modulo);
+$smarty->assign('modulo',array(1,3,9));
 $smarty->assign("page",array(1,2,3,4,5,6,7,8));
 
 
@@ -127,16 +129,20 @@ else
         
 /////////////////////////// GESTION DE USUARIO ////////////////
         case 3:
-          if($tercer_modulo == 1 && $id_rol ==1 ){
+          if($tercer_modulo == 1){
             if($_GET["page"] == 1){
+             
               include("templates/usuario/nuevo_usuario.php");
             }else if($_GET["page"] == 2){
               include("templates/usuario/gestionar_usuario.php");
             }else if ($_GET["page"] == 3){
+              
               include("templates/usuario/editar_usuario.php");
             }else if($_GET["page"] == 4){
+             
               include("templates/usuario/historial_usuario.php");
             }else if($_GET["page"] == 5){
+              
               include("templates/usuario/privilegio_rol.php");
             }
          }else if($tercer_modulo == 0 && $id_rol == 5){
@@ -279,18 +285,8 @@ else
           }
         }   
       break;
+
      
-      
-
-///////////////// GESTION DEL DASHBOARD
-      default:
-        if($id_rol == 4){
-          include("dashboard_cliente.php");
-        }else if($id_rol == 1 or $id_rol == 5 or $id_rol == 3){
-          include("dashboard_cliente.php");
-        }
-
-      break;  
    }//FIN DEL SWITCH
 
 }else if(isset($_GET['clave'])){
@@ -306,14 +302,12 @@ else
   }
     
 }else{
-    
-  if($id_rol == 4){
+
     include("dashboard_cliente.php");
-  }
-  else if($id_rol == 1 or $id_rol == 5){
-    include("dashboard_cliente.php");
-  }
+  
 }
+
+
   
 echo "
 </div>

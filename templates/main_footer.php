@@ -10,12 +10,12 @@
   <script type="text/javascript" src="design/Chartjs/dist/Chart.bundle.min.js"></script>
   <script type="text/javascript" src="design/Chartjs/dist/Chart.bundle.js"></script>
   <script type="text/javascript" src="design/assets/scripts/main.js"></script>
-<!--<script type="text/javascript" src="privilegio.js"></script>
+<!--
 <script type="text/javascript" src="design/Datatables/eliminar.js"></script>
 <script type="text/javascript" src="design/Datatables/eliminar2.js"></script>
 <script type="text/javascript" src="design/js/control_cambios.js"></script>
 <script type="text/javascript" src="design/js/modulo.js"></script>
-<script type="text/javascript" src="design/js/usuario.js"></script>
+
 <script type="text/javascript" src="design/js/num_ot.js"></script>
 <script type="text/javascript" src="design/js/errores.js"></script>
 <script type="text/javascript" src="design/js/empresa_cliente.js"></script>
@@ -34,7 +34,7 @@ FIn ultrafreezer
 <script type="text/javascript" src="design/js/cantidad_informes.js"></script>
 <script type="text/javascript" src="design/js/control_mapeo.js"></script>
 <script type="text/javascript" src="design/js/activos.js"></script>
-<script type="text/javascript" src="design/js/nombres_usuarios.js"></script>
+
 -->
 
 
