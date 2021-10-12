@@ -7,14 +7,15 @@ $array_documentacion = array();
 $estado_ver = $_POST['estado_ver'];
 $id_valida = $_POST['id_valida'];
 
-$consultar_cargo = mysqli_prepare($connect,"SELECT a.cargo, b.id_departamento FROM persona as a, control_departamento as b WHERE a.id_usuario = ? AND a.id_usuario = b.id_usuario");
+$consultar_cargo = mysqli_prepare($connect,"SELECT a.id_rol, b.id_departamento FROM usuario as a, control_departamento as b WHERE a.id_usuario = ? AND a.id_usuario = b.id_usuario");
 mysqli_stmt_bind_param($consultar_cargo, 'i', $id_valida);
 mysqli_stmt_execute($consultar_cargo);
 mysqli_stmt_store_result($consultar_cargo);
-mysqli_stmt_bind_result($consultar_cargo, $cargo, $departamento);
+mysqli_stmt_bind_result($consultar_cargo, $rol, $departamento);
 mysqli_stmt_fetch($consultar_cargo);
 
-if($cargo == "TI" or $cargo == "CEO" or $cargo == "COO"){
+
+if($rol == 1){
   if($estado_ver == 0){
     $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
     documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa 
@@ -23,7 +24,9 @@ if($cargo == "TI" or $cargo == "CEO" or $cargo == "COO"){
     mysqli_stmt_store_result($consultando);
     mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo);
 
+    
     while($row = mysqli_stmt_fetch($consultando)){
+      
         $array_documentacion[] = array(
           'empresa'=>$empresa,
           'archivo'=>$archivo,
@@ -31,7 +34,8 @@ if($cargo == "TI" or $cargo == "CEO" or $cargo == "COO"){
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     }
 
@@ -52,7 +56,8 @@ if($cargo == "TI" or $cargo == "CEO" or $cargo == "COO"){
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     }
 }else if($estado_ver >= 4 && $estado_ver <= 6){
@@ -72,13 +77,14 @@ if($cargo == "TI" or $cargo == "CEO" or $cargo == "COO"){
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     }
   }
   
 }/////// CIERRE IF DE CARGO
-else if($cargo == "Head"){
+else if($rol == 2 || $rol == 5 || $rol == 6){
  
   if($estado_ver == 0){
     $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
@@ -87,7 +93,7 @@ else if($cargo == "Head"){
     mysqli_stmt_bind_param($consultando, 'i', $departamento);
     mysqli_stmt_execute($consultando);
     mysqli_stmt_store_result($consultando);
-    mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo);
+    mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo );
 
     while($row = mysqli_stmt_fetch($consultando)){
         $array_documentacion[] = array(
@@ -97,11 +103,12 @@ else if($cargo == "Head"){
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     } 
   }else if($estado_ver >= 1 && $estado_ver <= 3){
-    $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
+    $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo  FROM
     documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa 
     AND a.id_usuario = d.id_usuario AND a.estado between 1 AND 3 AND a.id_usuario = ? AND a.id = e.id_documentacion");
     mysqli_stmt_bind_param($consultando, 'i', $id_valida);
@@ -117,7 +124,8 @@ else if($cargo == "Head"){
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     }
 
@@ -128,7 +136,7 @@ else if($cargo == "Head"){
     mysqli_stmt_bind_param($consultando, 'i', $id_valida);
     mysqli_stmt_execute($consultando);
     mysqli_stmt_store_result($consultando);
-    mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo);
+    mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo );
 
     while($row = mysqli_stmt_fetch($consultando)){
         $array_documentacion[] = array(
@@ -138,7 +146,8 @@ else if($cargo == "Head"){
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     }
 
@@ -165,7 +174,8 @@ else{
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     } 
   }else{
@@ -185,7 +195,8 @@ else{
           'fecha_creacion'=>$fecha_creacion,
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
-          'nombre_archivo'=>$nombre_archivo
+          'nombre_archivo'=>$nombre_archivo,
+          'rol'=>$rol
         );
     }
 
@@ -193,8 +204,6 @@ else{
 }//////// CIERRE ELSE DE CARGO
 
 /*
-
-
 if($estado_ver == 0){
 $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
 documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa 

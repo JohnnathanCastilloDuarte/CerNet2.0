@@ -1,3 +1,4 @@
+
 ///////////VARIABLES GLOBALES
 var id_documentacion = $("#primer_campo").val();
 var id_persona = $("#segundo_campo").val();
@@ -29,13 +30,14 @@ function ya_firmo(){
          console.log(response);
         let traer = JSON.parse(response);
         
-        if(traer.length != 0){
-         
+        if(traer.qr != null){
           $("#firma_1").hide();
           $("#firma_2").hide(); 
           let msj = `<span class='text-success' style='text-align:center;'>${traer.nombre} ${traer.apellido} Ya ha firmado este documento el dia ${traer.fecha_registro}</span><br>
                      <img src="../documentacion/${traer.qr}" style="margin-left:150px" width="300px"/>`;
           $("#m").html(msj);  
+        }else{
+          $("#id_t_firmantes").val(traer.id_t_firmantes);
         }
           
         
@@ -94,6 +96,7 @@ $("#firmar_1_c").click(function(){
   var canvas = document.getElementById('algo');
 	var dataURL = canvas.toDataURL();
   var seleccion = 1;
+  let id_t_firmantes = $("#id_t_firmantes").val();
   
   Swal.fire({
     title:'Advertencia',
@@ -109,13 +112,16 @@ $("#firmar_1_c").click(function(){
        id_documentacion,
        id_persona,
        dataURL,
-       seleccion
+       seleccion,
+       id_t_firmantes
      }
      $.ajax({
        type:'POST',
        data:datos,
        url:'../documentacion/firmar_ya.php',
        success:function(response){
+         console.log(response);
+         
          if(response == "si"){
            ya_firmo();
            Swal.fire({
@@ -139,6 +145,7 @@ $("#firmar_2_c").click(function(){
   let identificacion = $("#identificacion_d").val();
   let token = $("#token_seguridad").val();
   let seleccion = 2;
+  let id_t_firmantes = $("#id_t_firmantes").val();
   if(identificacion.length <= 4){
     Swal.fire({
       title:'Advertencia',
@@ -164,13 +171,16 @@ $("#firmar_2_c").click(function(){
        id_persona,
        identificacion,
        token,
-       seleccion
+       seleccion,
+       id_t_firmantes
      }
      $.ajax({
        type:'POST',
        data:datos,
        url:'../documentacion/firmar_ya.php',
        success:function(response){
+         console.log(response);
+         
          if(response == "si"){                                                                                                                        
            
            Swal.fire({
@@ -197,6 +207,7 @@ $("#firmar_2_c").click(function(){
 ////FUNCTION PARA LISTAR LOS DOCUMENTOS A VER
 function listar_documentacion_arriba(){
   let id_documentacion = $("#primer_campo").val();
+
   
   $.ajax({
     type:'POST',
@@ -359,7 +370,14 @@ function listar_documentacion_arriba(){
 //// AQUI EMPIEZA LA FIRMAAQAAAAAAA
 $(document).on("click","#ver_c",function(){
   
-  window.open('https://cercal.net/CERNET/informe_firmantes_final.php?key='+id_documentacion_encript);
+  let lugar = $("#pdf_final").val();
+
+  if(lugar == "externo"){
+    window.open('https://cercal.net/CERNET/informe_firmantes_final.php?key='+id_documentacion_encript);
+  }else{
+    window.open('http://localhost/CerNet2.0/informe_firmantes_final.php?key='+id_documentacion_encript);
+  }
+ 
   /*
   $("#ocultar_1").hide();
   $("#ocultar_2").show();

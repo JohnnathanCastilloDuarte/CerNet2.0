@@ -1,5 +1,5 @@
 <?php 
-error_reporting(0);
+//error_reporting(0);
 include('../../../config.ini.php');
 
 $id = $_POST['id'];
@@ -17,14 +17,42 @@ $valor_insertar = "";
 6-Error documento cargo == TI, CEO, COO
 
 */
-$consultar_cargo = mysqli_prepare($connect,"SELECT cargo FROM persona WHERE id_usuario = ? ");
-mysqli_stmt_bind_param($consultar_cargo, 'i', $id_valida);
-mysqli_stmt_execute($consultar_cargo);
-mysqli_stmt_store_result($consultar_cargo);
-mysqli_stmt_bind_result($consultar_cargo, $cargo);
-mysqli_stmt_fetch($consultar_cargo);
+$consultar_rol = mysqli_prepare($connect,"SELECT id_rol FROM usuario WHERE id_usuario = ? ");
+mysqli_stmt_bind_param($consultar_rol, 'i', $id_valida);
+mysqli_stmt_execute($consultar_rol);
+mysqli_stmt_store_result($consultar_rol);
+mysqli_stmt_bind_result($consultar_rol, $rol);
+mysqli_stmt_fetch($consultar_rol);
 
 
+
+if($rol == 8){
+  if($valor == "Revisado"){
+    $valor_insertar = 1;
+  }else{
+    $valor_insertar = 5;
+  }
+}else if($rol == 2 || $rol == 4 || $rol == 6){
+  if($valor == "Revisado"){
+    $valor_insertar = 2;
+  }else{
+    $valor_insertar = 6;
+  }
+}else if($rol == 1){
+  if($valor == "Revisado"){
+    $valor_insertar = 4;
+  }else{
+    $valor_insertar = 8;
+  }
+}else if($rol == 9){
+  if($valor == "Revisado"){
+    $valor_insertar = 3;
+  }else{
+    $valor_insertar = 7;
+  }
+}
+
+/*
 if($valor == "Sin accion"){
   $valor_insertar = 0;
 }else if($valor == "Revisado"){
@@ -47,6 +75,26 @@ if($valor == "Sin accion"){
     $valor_insertar = 6;
   }
 }
+*/
+
+$actualizar_tipo = mysqli_prepare($connect,"SELECT id FROM firmantes_documentacion WHERE id_documento = ? AND id_usuario = ?");
+mysqli_stmt_bind_param($actualizar_tipo, 'ii', $id, $id_valida);
+mysqli_stmt_execute($actualizar_tipo);
+mysqli_stmt_store_result($actualizar_tipo);
+mysqli_stmt_bind_result($actualizar_tipo, $id_firmantes);
+mysqli_stmt_fetch($actualizar_tipo);
+
+if($valor == "Revisado"){
+  $actualizando = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo = ? WHERE id = ?");
+  mysqli_stmt_bind_param($actualizando, 'si', $valor, $id_firmantes);
+  mysqli_stmt_execute($actualizando);
+}else{
+  $DateAndTime = date('y-m-d h:i:s a', time()); 
+  $actualizando = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo = ?, fecha_firma = ? WHERE id = ?");
+  mysqli_stmt_bind_param($actualizando, 'ssi', $valor, $DateAndTime, $id_firmantes);
+  mysqli_stmt_execute($actualizando);
+}
+
 
 $query = mysqli_prepare($connect,'UPDATE documentacion SET estado = ? WHERE id = ?');
 mysqli_stmt_bind_param($query, 'ii', $valor_insertar, $id);
@@ -54,11 +102,20 @@ mysqli_stmt_execute($query);
 
 if($query){
   if($valor == "Revisado"){
-     echo "Si correo";
+    echo "Si correo";
+    $movimiento = "Ha aprobado el documento";
+    $creando = mysqli_prepare($connect,"INSERT INTO backtrack(persona, movimiento, modulo) VALUES (?,?,?)");
+    mysqli_stmt_bind_param($creando, 'iss', $id_valida, $movimiento, $id);
+    mysqli_stmt_execute($creando);
   }else{
-     echo "Si";
+    echo "Si";
+    $movimiento = "Ha rechazado el documento";
+    $creando = mysqli_prepare($connect,"INSERT INTO backtrack(persona, movimiento, modulo) VALUES (?,?,?)");
+    mysqli_stmt_bind_param($creando, 'iss', $id_valida, $movimiento, $id);
+    mysqli_stmt_execute($creando);
   }
  
+  
 }else{
   echo "No";
 }

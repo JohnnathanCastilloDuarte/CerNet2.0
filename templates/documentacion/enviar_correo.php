@@ -1,92 +1,107 @@
 <?php 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/SMTP.php';
+
+error_reporting(0);
 include('../../config.ini.php');
 
+
+$variable_url = $_SERVER['HTTP_HOST'];
+$url = "";
+
+
+$mail = new PHPMailer(true);
+$email_enviar = "";
+
 if(isset($_POST['id_valida'])){
-  
+ 
   $id_persona = $_POST['id_valida'];
   $id_documento = $_POST['id'];
-  
-  $consultar_email = mysqli_prepare($connect,"SELECT email FROM persona WHERE id_usuario = ?");
+  $id_usuario = "";
+
+  $consultar_email = mysqli_prepare($connect,"SELECT a.email FROM persona as a WHERE a.id_usuario = ?");
   mysqli_stmt_bind_param($consultar_email, 'i', $id_persona);
   mysqli_stmt_execute($consultar_email);
   mysqli_stmt_store_result($consultar_email);
   mysqli_stmt_bind_result($consultar_email, $email);
-  mysqli_stmt_fetch($consultar_email);
+  mysqli_stmt_fetch($consultar_email); 
+
+
+
+  /*
+  $conocer_proximo_envio = mysqli_prepare($connect,"SELECT estado, departamento FROM documentacion WHERE id = ?");
+  mysqli_stmt_bind_param($conocer_proximo_envio, 'i', $id_documento);
+  mysqli_stmt_execute($conocer_proximo_envio);
+  mysqli_stmt_store_result($conocer_proximo_envio);
+  mysqli_stmt_bind_result($conocer_proximo_envio, $estado, $departamento);
+  mysqli_stmt_fetch($conocer_proximo_envio);
+
+  if($estado == 1){
+
+    if($departamento == "GEP"){
+      $consultar_email = mysqli_prepare($connect,"SELECT a.email, d.id_usuario FROM persona as a, departamento as b, control_departamento as c, usuario as d WHERE a.id_usuario = c.id_usuario AND c.id_departamento = b.id AND b.departamento = ? AND a.id_usuario = d.id_usuario  AND d.id_rol = 4");
+      mysqli_stmt_bind_param($consultar_email, 's', $departamento);
+      mysqli_stmt_execute($consultar_email);
+      mysqli_stmt_store_result($consultar_email);
+      mysqli_stmt_bind_result($consultar_email, $email, $usuario);
+      mysqli_stmt_fetch($consultar_email); 
+      $email_enviar = $email;
+      $id_usuario = $usuario;
+    }
+    
+
+  }
+*/
+
 
   $key = base64_encode($id_persona);
+  $document = base64_encode($id_documento);
   $rest = substr($email, 0,-10);
-  ini_set('display_errors', 1);
-  error_reporting(E_ALL);
 
-  $from = "cernet_informa@cercal.net";
-  $to = $email;
+  if($variable_url == "cercal.net"){
+    $host = "mail.cercal.net";
+    $Username = "cernet_informa@cercal.net";
+    $password = "+AayJrvqUdJk";
+    $url = "https://cercal.net/CERNET/templates/documentacion/firmar_documentacion.php?key=".$key."&document=".$document;
+   
+  }else{
+    $host = "smtp.gmail.com";
+    $Username = "jcastillo@cercal.cl";
+    $password = "Panda0497";
+    $url = "http://localhost/CerNet2.0/templates/documentacion/firmar_documentacion.php?key=".$key."&document=".$document;
+  }
 
-  $subject = "Proceso documental";
-  $message = "En el siguiente link podras ingresar a CerNet y participar de  el proceso de documentacion
-              link: https://cercal.net/CERNET/templates/documentacion/firmar_documentacion.php?key=".$key."&key2=".$id_documento;
-  $header = "Enviado desde: ".$from;
+  try{
 
-  mail($to, $subject, $message, $header);
+    //Server Setting
+    $mail->SMTPDebug = 0;
+    //$mail->SMTPDebug = 0;
+    $mail->isSMTP();
+    $mail->Host =  $host;
+    $mail->SMTPAuth = true;
+    $mail->Username = $Username;
+    $mail->Password = $password;
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    echo $email_enviar;
+    // Recipients Enviar correos $mail->addAddress();
+    $mail->setFrom('cernet_informa@cercal.net','CerNet');
+    $mail->addAddress($email);
 
-}else{
-  /*
-  $email = $_POST['email'];
-  $id_participante = $_POST['id_participante'];
-  $rest = substr($email, 0,-10);
-  $key = base64_encode($id_participante);
-  ini_set('display_errors', 1);
-  error_reporting(E_ALL);
+    //Content
+    $mail->isHTML(true);
+    $mail->Subject=  utf8_decode('Proceso digital de aprobación');
+    $mail->Body =  utf8_decode('Aprobación del proceso de firmas '.$url);
 
-  $from = "cernet_informa@cercal.net";
-  $to = $email;
+    $mail->send();
+    echo 'envio';
 
-  $subject = "Proceso documental";
-  $message = "En el siguiente link podras ingresar a CerNet y participar de  el proceso de documentacion
-              link: https://cercal.net/CERNET/templates/documentacion/firmar_documentacion.php?key=".$key;
-  $header = "Enviado desde: ".$from;
-
-  mail($to, $subject, $message, $header);
-  */
-  $para  = 'jcastillo@cercal.cl';
-
-// título
-$título = 'Recordatorio de cumpleaños para Agosto';
-
-// mensaje
-$mensaje = '
-<html>
-<head>
-  <title>Recordatorio de cumpleaños para Agosto</title>
-</head>
-<body>
-  <p>¡Estos son los cumpleaños para Agosto!</p>
-  <table>
-    <tr>
-      <th>Quien</th><th>Día</th><th>Mes</th><th>Año</th>
-    </tr>
-    <tr>
-      <td>Joe</td><td>3</td><td>Agosto</td><td>1970</td>
-    </tr>
-    <tr>
-      <td>Sally</td><td>17</td><td>Agosto</td><td>1973</td>
-    </tr>
-  </table>
-</body>
-</html>
-';
-
-// Para enviar un correo HTML, debe establecerse la cabecera Content-type
-$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-// Cabeceras adicionales
-$cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-$cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
-$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
-$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
-
-// Enviarlo
-mail($para, $título, $mensaje, $cabeceras);
-}
-echo "Enviado";
+  }catch (Exception $e){
+      echo 'Hubo un error al enviar el mensaje:', $mail->ErrorInfo;
+  }
+} 
 ?>

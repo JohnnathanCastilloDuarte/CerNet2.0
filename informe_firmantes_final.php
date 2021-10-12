@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 include('config.ini.php');
 include("design/PDFMerger-master/PDFMerger.php");
 //require 'design/PDFMerger-master/tcpdf/tcpdf.php'
@@ -142,6 +142,7 @@ while($row = mysqli_stmt_fetch($participantes)){
   }else{
     $que_hace = "Aprobado por";
   }
+  
 
   $contador = 1;
   $firma_que = "";
@@ -189,7 +190,15 @@ while($row = mysqli_stmt_fetch($participantes)){
 }
 
 
-$pdf->Output($_SERVER['DOCUMENT_ROOT'].'CERNET/templates/documentacion/pdf_final/informe_final'.$key.'.pdf', 'F');
+$variable_url = $_SERVER['HTTP_HOST'];
+$donde = "";
+if($variable_url == "cercal.net"){
+  $donde = "CERNET";
+}else{
+  $donde = "CerNet2.0";
+}
+
+$pdf->Output($_SERVER['DOCUMENT_ROOT'].$donde.'/templates/documentacion/pdf_final/informe_final'.$key.'.pdf', 'F');
 
 
 /////////////////////////////CONTEO DE LAS PAGES

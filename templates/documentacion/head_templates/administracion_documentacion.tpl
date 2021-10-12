@@ -17,9 +17,12 @@
             <th>Empresa</th>
             <th>Nombre</th>
             <th>Creado por</th>
-            <th>Fecha creación</th>
-            <th>Estado</th> 
-            <th colspan="3">Acciones</th>
+          
+            <th>Ver</th>
+            <th>Comentarios</th>
+            <th>Cronograma</th>
+            <th>Estado</th>
+              <th>Estado actual</th> 
           </thead>
           <tbody id="traer_documentacion_head">
           

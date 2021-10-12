@@ -91,46 +91,113 @@ $("#selecte").change(function(){
       let modulos = ['Modulos','Usuarios', 'Clientes', 'Items', 'Ordenes trabajo (OT)', 'Servicios', 'Informes', 'Documentación', 'Cargos']
       let f = 0;
 
+      let modulo1 = "";
+      let modulo2 = "";
+      let modulo3 = "";
+      let modulo4 = "";
+      let modulo5 = "";
+      let modulo6 = "";
+      let modulo7 = "";
+      let modulo8 = "";
+      let modulo9 = "";
+
       traer.forEach(x=>{
 
-        
+        if(x.modulo == 1){
+          modulo1 = `<input type='checkbox' class='form-control' id='modulo1' checked>`;
+        }else{
+          modulo1 = `<input type='checkbox' class='form-control' id='modulo1'>`;
+        } 
+
+        if(x.usuario == 1){
+          modulo2 = `<input type='checkbox' class='form-control' id='modulo2' checked>`;
+        }else{
+          modulo2 = `<input type='checkbox' class='form-control' id='modulo2'>`;
+        }
+
+        if(x.cliente == 1){
+          modulo3 = `<input type='checkbox' class='form-control' id='modulo3' checked>`;
+        }else{
+          modulo3 = `<input type='checkbox' class='form-control' id='modulo3'>`;
+        }
+
+        if(x.item == 1){
+          modulo4 = `<input type='checkbox' class='form-control' id='modulo4' checked>`;
+        }else{
+          modulo4 = `<input type='checkbox' class='form-control' id='modulo4'>`;
+        }
+
+        if(x.orden_trabajo == 1){
+          modulo5 = `<input type='checkbox' class='form-control' id='modulo5' checked>`;
+        }else{
+          modulo5 = `<input type='checkbox' class='form-control' id='modulo5'>`;
+        }
+
+        if(x.servicio == 1){
+          modulo6 = `<input type='checkbox' class='form-control' id='modulo6' checked>`;
+        }else{
+          modulo6 = `<input type='checkbox' class='form-control' id='modulo6'>`;
+        }
+
+        if(x.informe == 1){
+          modulo7 = `<input type='checkbox' class='form-control' id='modulo7' checked>`;
+        }else{
+          modulo7 = `<input type='checkbox' class='form-control' id='modulo7'>`;
+        }
+
+        if(x.documentacion == 1){
+          modulo8 = `<input type='checkbox' class='form-control' id='modulo8' checked>`;
+        }else{
+          modulo8 = `<input type='checkbox' class='form-control' id='modulo8'>`;
+        }
+
+        if(x.cargo == 1){
+          modulo9 = `<input type='checkbox' class='form-control' id='modulo9' checked>`;
+        }else{
+          modulo9 = `<input type='checkbox' class='form-control' id='modulo9'>`;
+        }
+
+
+
+
+
         template += 
         `
           <tr>
             <td>${modulos[0]}</td>
-            <td>${x.modulo}</td>
+            <td>${modulo1}</td>
           </tr>
           <tr>
             <td>${modulos[1]}</td>
-            <td>${x.usuario}</td>
+            <td>${modulo2}</td>
           </tr>
           <tr>
             <td>${modulos[2]}</td>
-            <td>${x.cliente}</td>
+            <td>${modulo3}</td>
           </tr>
           <tr>
             <td>${modulos[3]}</td>
-            <td>${x.item}</td>
+            <td>${modulo4}</td>
           </tr>
           <tr>
             <td>${modulos[4]}</td>
-            <td>${x.orden_trabajo}</td>
+            <td>${modulo5}</td>
           </tr>
           <tr>
             <td>${modulos[5]}</td>
-            <td>${x.servicio}</td>
+            <td>${modulo6}</td>
           </tr>
           <tr>
             <td>${modulos[6]}</td>
-            <td>${x.informe}</td>
+            <td>${modulo7}</td>
           </tr>
           <tr>
             <td>${modulos[7]}</td>
-            <td>${x.documentacion}</td>
+            <td>${modulo8}</td>
           </tr>
           <tr>
             <td>${modulos[8]}</td>
-            <td>${x.cargo}</td>
+            <td>${modulo9}</td>
           </tr>
         
         

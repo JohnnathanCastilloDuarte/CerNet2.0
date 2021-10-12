@@ -73,11 +73,8 @@ $(document).on('click','#agregar_documentacion',function(){
   let id_numot = $(this).attr('data-id');
   let id_empresa = $(this).attr('data-f');
   
-  const datos = {
-    id_numot,
-    id_valida_usuario  
-  }
-  
+ 
+
   Swal.fire({
     title:'Advertencia',
     icon:'question',
@@ -89,30 +86,57 @@ $(document).on('click','#agregar_documentacion',function(){
   }).then((result)=>{
     
     if(result.value){
-      
-      $.ajax({
-        type:'POST',
-        url:'templates/documentacion/asignar_servicio_documentacion.php',
-        data:datos,
-        success:function(response){
-          
-          
-          if(response == "Si"){
-            Swal.fire({
-              title:'Mensaje',
-              text:'Se ha creado, correctamente el servicio',
-              timer:1700,
-              icon:'success'
+
+
+        Swal.fire({
+          title: 'SELECCIONE EL DEPARTAMENTO',
+          icon:'question',
+          input: 'select',
+          inputOptions: {
+              CSV: 'CSV',
+              SPOT: 'SPOT',
+              GEP: 'GEP'        
+          },
+          inputPlaceholder: 'Seleccione el departamento',
+          showCancelButton: true,
+        }).then((result)=>{
+        
+          if(result.value){
+            let departmento = result.value;
+
+            const datos = {
+              id_numot,
+              id_valida_usuario,
+              departmento 
+            } 
+
+            $.ajax({
+              type:'POST',
+              url:'templates/documentacion/asignar_servicio_documentacion.php',
+              data:datos,
+              success:function(response){
+                console.log(response);
+                
+                if(response == "Si"){
+                  Swal.fire({
+                    title:'Mensaje',
+                    text:'Se ha creado, correctamente el servicio',
+                    timer:1700,
+                    icon:'success'
+                  });
+                  
+                  listar_documentacion_activo(id_empresa); 
+                }
+              }
             });
-            
-           listar_documentacion_activo(id_empresa); 
+
           }
-        }
-      });
-    }
+
+        });
     
+    }
+
   });
-  
 });
 
 //////////LISTAR DOCUMENTACIÓN ACTIVOS

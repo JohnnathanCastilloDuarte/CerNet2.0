@@ -53,7 +53,7 @@
 					
 					<br>
         
-					<table  class="table table-striped table-bordered" >
+					<table  class="table table-striped table-bordered" style="text-align:center;">
 						<thead >
 							<th>Modulo</th>
 							<th>Acciones</th>
