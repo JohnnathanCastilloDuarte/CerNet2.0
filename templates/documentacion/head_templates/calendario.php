@@ -23,7 +23,7 @@ echo '<input type="hidden" value='.$doc.' id="doc">';
     <div class="col-sm-12">
         <div class="card">
             <div class="card-head">
-                Estado del documento <span></span>
+        
             </div>
             <div class="card-body">
                 

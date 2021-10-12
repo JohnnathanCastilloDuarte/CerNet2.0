@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-05 23:05:11
+/* Smarty version 3.1.34-dev-7, created on 2021-10-12 22:37:17
   from 'C:\xampp\htdocs\CerNet2.0\templates\right_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cbe07861347_26245758',
+  'unifunc' => 'content_6165f1fd7155c2_01185710',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '756b45ddd2c5ff372d1367fad7ccb303a75ac401' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\right_menu.php',
-      1 => 1610543072,
+      1 => 1634070833,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cbe07861347_26245758 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6165f1fd7155c2_01185710 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-drawer-wrapper">
     <div class="drawer-nav-btn">
         <button type="button" class="hamburger hamburger--elastic is-active">

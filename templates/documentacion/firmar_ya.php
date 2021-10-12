@@ -10,6 +10,8 @@ $id_t_firmantes = $_POST['id_t_firmantes'];
 $variable_url = $_SERVER['HTTP_HOST'];
 $contenido = "";
 
+$fecha_actual = date('y-m-d h:i:s a', time());
+
 //Declaramos una carpeta temporal para guardar la imagenes generadas
 $dir = 'temp/';
 
@@ -63,8 +65,8 @@ if($seleccion == 1){
   */
   
   /*INSERT INTO firmantes_documentacion (id_documento, id_usuario, tipo_firma, firma, qr) VALUES (?,?,?,?,?)*/
-  $insertar = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo_firma = ?, firma = ?, qr = ? WHERE id_documento = ? AND id = ? AND id_usuario = ?");
-  mysqli_stmt_bind_param($insertar, 'sisiii',  $dataURL, $pluma_f, $filename, $id_documentacion, $id_t_firmantes,  $id_persona);
+  $insertar = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo_firma = ?, firma = ?, qr = ?, fecha_firma = ? WHERE id_documento = ? AND id = ? AND id_usuario = ?");
+  mysqli_stmt_bind_param($insertar, 'sissiii',  $dataURL, $pluma_f, $filename, $fecha_actual, $id_documentacion, $id_t_firmantes,  $id_persona);
   mysqli_stmt_execute($insertar);
   if($insertar){
     echo "si";
@@ -94,14 +96,15 @@ if($seleccion == 1){
     echo "no";
   }
 }else{
+  
   $token_f = 1;
   $identificacion = $_POST['identificacion'];
   $token = $_POST['token'];
   $mix = $token.$identificacion;
   /*INSERT INTO firmantes_documentacion (id_documento, id_usuario, tipo_firma, firma, qr) VALUES (?,?,?,?,?) */
         
-  $insertar = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo_firma = ?, firma = ?, qr = ? WHERE id_documento = ? AND id = ? AND id_usuario = ?");
-  mysqli_stmt_bind_param($insertar, 'sisiii', $mix, $token_f, $filename, $id_documentacion, $id_t_firmantes,  $id_persona);
+  $insertar = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo_firma = ?, firma = ?, qr = ?, fecha_firma = ? WHERE id_documento = ? AND id = ? AND id_usuario = ?");
+  mysqli_stmt_bind_param($insertar, 'sissiii', $mix, $token_f, $filename, $fecha_actual, $id_documentacion, $id_t_firmantes,  $id_persona);
   mysqli_stmt_execute($insertar);
   echo mysqli_stmt_error($insertar);
   if($insertar){

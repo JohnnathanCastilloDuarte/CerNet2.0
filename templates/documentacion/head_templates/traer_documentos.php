@@ -7,15 +7,15 @@ $array_documentacion = array();
 $estado_ver = $_POST['estado_ver'];
 $id_valida = $_POST['id_valida'];
 
-$consultar_cargo = mysqli_prepare($connect,"SELECT a.id_rol, b.id_departamento FROM usuario as a, control_departamento as b WHERE a.id_usuario = ? AND a.id_usuario = b.id_usuario");
+$consultar_cargo = mysqli_prepare($connect,"SELECT a.cargo FROM persona as a  WHERE a.id_usuario = ?");
 mysqli_stmt_bind_param($consultar_cargo, 'i', $id_valida);
 mysqli_stmt_execute($consultar_cargo);
 mysqli_stmt_store_result($consultar_cargo);
-mysqli_stmt_bind_result($consultar_cargo, $rol, $departamento);
+mysqli_stmt_bind_result($consultar_cargo, $rol);
 mysqli_stmt_fetch($consultar_cargo);
 
 
-if($rol == 1){
+if($rol == 'CEO' || $rol == 'COO' || $rol == 'Calidad'){
   if($estado_ver == 0){
     $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
     documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa 
@@ -84,13 +84,12 @@ if($rol == 1){
   }
   
 }/////// CIERRE IF DE CARGO
-else if($rol == 2 || $rol == 5 || $rol == 6){
+else if($rol == 'Head'){
  
   if($estado_ver == 0){
     $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
-    documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e, control_departamento as f WHERE a.id_numot = 
-    b.id_numot AND b.id_empresa = c.id_empresa   AND a.id_usuario = d.id_usuario AND a.id_usuario = f.id_usuario AND f.id_departamento = ? AND a.id = e.id_documentacion");
-    mysqli_stmt_bind_param($consultando, 'i', $departamento);
+    documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e WHERE a.id_numot = 
+    b.id_numot AND b.id_empresa = c.id_empresa   AND a.id_usuario = d.id_usuario AND a.id = e.id_documentacion");
     mysqli_stmt_execute($consultando);
     mysqli_stmt_store_result($consultando);
     mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo );
@@ -155,7 +154,7 @@ else if($rol == 2 || $rol == 5 || $rol == 6){
   
   
 }//////////// CIERRE ELSE IF DE CARGO
-else{
+else if($rol == 'Analista documental'){
   
   if($estado_ver == 0){
     $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM

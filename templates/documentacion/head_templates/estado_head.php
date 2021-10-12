@@ -17,7 +17,7 @@ $valor_insertar = "";
 6-Error documento cargo == TI, CEO, COO
 
 */
-$consultar_rol = mysqli_prepare($connect,"SELECT id_rol FROM usuario WHERE id_usuario = ? ");
+$consultar_rol = mysqli_prepare($connect,"SELECT cargo FROM persona WHERE id_usuario = ? ");
 mysqli_stmt_bind_param($consultar_rol, 'i', $id_valida);
 mysqli_stmt_execute($consultar_rol);
 mysqli_stmt_store_result($consultar_rol);
@@ -26,25 +26,25 @@ mysqli_stmt_fetch($consultar_rol);
 
 
 
-if($rol == 8){
+if($rol == 'Analista documental'){
   if($valor == "Revisado"){
     $valor_insertar = 1;
   }else{
     $valor_insertar = 5;
   }
-}else if($rol == 2 || $rol == 4 || $rol == 6){
+}else if($rol == 'Head'){
   if($valor == "Revisado"){
     $valor_insertar = 2;
   }else{
     $valor_insertar = 6;
   }
-}else if($rol == 1){
+}else if($rol == 'CEO' || $rol == 'COO'){
   if($valor == "Revisado"){
     $valor_insertar = 4;
   }else{
     $valor_insertar = 8;
   }
-}else if($rol == 9){
+}else if($rol == 'Calidad'){
   if($valor == "Revisado"){
     $valor_insertar = 3;
   }else{

@@ -5,7 +5,7 @@ include('../../config.ini.php');
 $id_participante = $_POST['id_participante'];
 
 
-$validar = mysqli_prepare($connect,"SELECT b.email FROM participante_documentacion as a, persona as b WHERE a.id_persona = b.id_usuario AND a.id = ?");
+$validar = mysqli_prepare($connect,"SELECT b.email FROM  persona as b WHERE b.id_usuario = ?");
 mysqli_stmt_bind_param($validar, 'i', $id_participante);
 mysqli_stmt_execute($validar);
 mysqli_stmt_store_result($validar);

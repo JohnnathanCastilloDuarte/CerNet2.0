@@ -6,7 +6,7 @@ $id_documentacion = $_POST['id_documentacion'];
 
 $array_firmantes = array();
 
-$buscando_firmantes = mysqli_prepare($connect,"SELECT a.usuario, a.id_rol, b.fecha_registro, b.fecha_firma, b.tipo FROM usuario as a, firmantes_documentacion as b WHERE a.id_usuario = b.id_usuario AND b.id_documento = ?");
+$buscando_firmantes = mysqli_prepare($connect,"SELECT a.usuario, c.cargo, b.fecha_registro, b.fecha_firma, b.tipo FROM usuario as a, firmantes_documentacion as b, persona as c WHERE a.id_usuario = b.id_usuario AND b.id_documento = ? AND a.id_usuario = c.id_usuario");
 mysqli_stmt_bind_param($buscando_firmantes, 'i', $id_documentacion);
 mysqli_stmt_execute($buscando_firmantes);
 mysqli_stmt_store_result($buscando_firmantes);

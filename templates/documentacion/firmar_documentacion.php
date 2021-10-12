@@ -15,9 +15,9 @@ if($variable_url == "cercal.net"){
   echo "<input type='hidden' id='pdf_final' value='interno'>";
 }
 
-
+/*
 if(isset($_GET['key2'])){
-
+  
   $key = $_GET['key'];
   $key_limpio = base64_decode($key);
   $id_documentacion = $_GET['key2'];
@@ -31,14 +31,13 @@ if(isset($_GET['key2'])){
   mysqli_stmt_bind_result($query2, $nombre, $apellido);
   mysqli_stmt_fetch($query2);
   
-}else{
-  $key = $_GET['document'];
+}else{*/
+  $key = $_GET['key'];
   $document = $_GET['document'];
  
   $id_persona = base64_decode($key);
   $id_documentacion = base64_decode($document);
-
-
+ 
   $query2 = mysqli_prepare($connect,"SELECT nombre, apellido FROM persona WHERE  id_usuario = ?");
   mysqli_stmt_bind_param($query2, 'i', $id_persona);
   mysqli_stmt_execute($query2);
@@ -46,7 +45,7 @@ if(isset($_GET['key2'])){
   mysqli_stmt_bind_result($query2, $nombre, $apellido);
   mysqli_stmt_fetch($query2);
   
-}
+//}
 
 
 ?>
@@ -81,7 +80,7 @@ if(isset($_GET['key2'])){
  <!--Campos ocultos de la db-->
   <input type="hidden" value="<?php echo  $id_documentacion; ?>" id="primer_campo">
   <input type="hidden" value="<?php echo  $id_persona; ?>" id="segundo_campo">
-  <input type="text" value="<?php echo  $key; ?>" id="tercer_campo">
+  <input type="hidden" value="<?php echo  $document; ?>" id="tercer_campo">
   <input type="hidden" id="id_t_firmantes">
   <div class="row">
     <div class="col-sm-3">
