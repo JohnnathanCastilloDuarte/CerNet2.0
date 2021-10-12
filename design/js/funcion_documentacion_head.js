@@ -34,7 +34,7 @@ function listar_documentacion_head(estado_ver){
       
       traer.forEach((x)=>{
         
-        if(x.rol == 8){
+        if(x.rol == 'Analista documental'){
           if(x.estado == 0){
             option_estado = `
             <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
@@ -59,7 +59,7 @@ function listar_documentacion_head(estado_ver){
           }
         }
 
-        else if(x.rol == 2 || x.rol == 4 || x.rol == 6){
+        else if(x.rol == 'Head'){
           if(x.estado == 1){
             option_estado = `
             <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
@@ -80,7 +80,7 @@ function listar_documentacion_head(estado_ver){
           }
         }
 
-        else if(x.rol == 9){
+        else if(x.rol == 'Calidad'){
           if(x.estado == 2){
             option_estado = `
             <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
@@ -97,7 +97,7 @@ function listar_documentacion_head(estado_ver){
           }
         }
 
-        else if(x.rol == 1){
+        else if(x.rol == 'CEO' || x.rol == 'COO'){
           if(x.estado == 3){
             option_estado = `
             <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>

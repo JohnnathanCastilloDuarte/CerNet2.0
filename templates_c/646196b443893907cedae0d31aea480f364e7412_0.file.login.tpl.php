@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-05 22:17:16
+/* Smarty version 3.1.34-dev-7, created on 2021-10-12 22:52:37
   from 'C:\xampp\htdocs\CerNet2.0\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cb2cc693ce7_54063624',
+  'unifunc' => 'content_6165f595f3b755_90534517',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '646196b443893907cedae0d31aea480f364e7412' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\login.tpl',
-      1 => 1610543072,
+      1 => 1634070834,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cb2cc693ce7_54063624 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6165f595f3b755_90534517 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow">
   <div class="app-container">
     <div class="h-100">
