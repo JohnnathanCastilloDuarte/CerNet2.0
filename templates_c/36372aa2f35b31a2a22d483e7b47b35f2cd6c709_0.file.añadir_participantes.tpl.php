@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-08 03:59:36
+/* Smarty version 3.1.34-dev-7, created on 2021-10-12 23:15:37
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\añadir_participantes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615fa6088d3c36_28629113',
+  'unifunc' => 'content_6165faf9d796f0_86727674',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36372aa2f35b31a2a22d483e7b47b35f2cd6c709' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\añadir_participantes.tpl',
-      1 => 1630345768,
+      1 => 1634070939,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615fa6088d3c36_28629113 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6165faf9d796f0_86727674 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab1">

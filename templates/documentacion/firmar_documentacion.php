@@ -15,23 +15,6 @@ if($variable_url == "cercal.net"){
   echo "<input type='hidden' id='pdf_final' value='interno'>";
 }
 
-/*
-if(isset($_GET['key2'])){
-  
-  $key = $_GET['key'];
-  $key_limpio = base64_decode($key);
-  $id_documentacion = $_GET['key2'];
-
-  $id_persona = $key_limpio;
-
-  $query2 = mysqli_prepare($connect,"SELECT nombre, apellido FROM persona WHERE  id_usuario = ?");
-  mysqli_stmt_bind_param($query2, 'i', $key_limpio);
-  mysqli_stmt_execute($query2);
-  mysqli_stmt_store_result($query2);
-  mysqli_stmt_bind_result($query2, $nombre, $apellido);
-  mysqli_stmt_fetch($query2);
-  
-}else{*/
   $key = $_GET['key'];
   $document = $_GET['document'];
  

@@ -1,4 +1,7 @@
 
+$(document).ready(function(){
+  window.history.replaceState({},'','FirmasCerNet2.0.php');
+})
 ///////////VARIABLES GLOBALES
 var id_documentacion = $("#primer_campo").val();
 var id_persona = $("#segundo_campo").val();
@@ -373,9 +376,9 @@ $(document).on("click","#ver_c",function(){
   let lugar = $("#pdf_final").val();
 
   if(lugar == "externo"){
-    window.open('https://cercal.net/CERNET/informe_firmantes_final.php?key='+id_documentacion_encript);
+    window.open('https://cercal.net/CERNET/informe_firmantes_final2.php?key='+id_documentacion_encript);
   }else{
-    window.open('http://localhost/CerNet2.0/informe_firmantes_final.php?key='+id_documentacion_encript);
+    window.open('http://localhost/CerNet2.0/informe_firmantes_final2.php?key='+id_documentacion_encript);
   }
  
   /*

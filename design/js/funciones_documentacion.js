@@ -157,7 +157,7 @@ function listar_documentacion_activo(id_empresa){
       traer.forEach((x)=>{
         estado = "";
         
-        if(x.estado == 3){
+        if(x.estado == 4){
           estado += `
               <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
                   <option value="0">Seleccione...</option>
