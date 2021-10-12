@@ -257,7 +257,7 @@
       <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Cargos<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
         <ul>
           <li>
-            <a href="index.php?module={$modulo[9].Cargos}&page={$page[0]}">Gestionar cargo</a>
+            <a href="index.php?module={$modulo[3]}&page={$page[0]}">Gestionar cargo</a>
           </li>
         </ul>  
       </li> 
