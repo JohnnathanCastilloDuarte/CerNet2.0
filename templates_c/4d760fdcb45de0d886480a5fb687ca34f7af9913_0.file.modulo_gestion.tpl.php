@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-06 03:12:59
+/* Smarty version 3.1.34-dev-7, created on 2021-10-13 17:46:53
   from 'C:\xampp\htdocs\CerNet2.0\templates\modulo\modulo_gestion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cf81b6b56f5_77481020',
+  'unifunc' => 'content_6166ff6d29b2d1_18166976',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4d760fdcb45de0d886480a5fb687ca34f7af9913' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\modulo\\modulo_gestion.tpl',
-      1 => 1633482773,
+      1 => 1634070834,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cf81b6b56f5_77481020 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6166ff6d29b2d1_18166976 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_modulo">

@@ -79,7 +79,7 @@ $pdf->AddPage('A4');
 $html = <<<EOD
 <h2 style="text-align:center;">DOCUMENTO DE FIRMA ELECTRONICA</h2>
 <p style="text-align:justify">El siguiente documento contiene la relación de los participantes, quienes por medio  la misma aceptan y dan por entendido
-que lo demostrado en los adjuntos disponibles para <strong>$proyecto</strong>, son verecez y cumplen con el proposito por el cual han sido creados.
+que lo demostrado en los adjuntos disponibles para <strong>$proyecto</strong>,(<a href="http://localhost/CerNet2.0/pdf.php?key=$key_encritp">Revisa la documentación aquí</a>) son verecez y cumplen con el proposito por el cual han sido creados.
 <br>
 Por lo consiguiente se acepta que el siguiente proceso es de firma electronica, y cumple con lo estipulado en la <strong>CFR 21 (parte 11).</strong>
 Por ende se busca  promover la integridad de datos del uso de los registros y firmas electrónicas de manera que los datos no se distorsionen, eliminen
@@ -150,7 +150,7 @@ while($row = mysqli_stmt_fetch($consultar_2)){
     }
 
 
-    if($contador == 0){
+    if($contador == 4){
         $pdf->AddPage('A4');
     }
 
@@ -159,20 +159,6 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
 
 }/////// CIERRE DEL WHILE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 $pdf->Output('Algo.pdf', 'I');
