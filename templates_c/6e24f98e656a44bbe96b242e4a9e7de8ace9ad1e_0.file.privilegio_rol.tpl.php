@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-12 04:02:02
+/* Smarty version 3.1.34-dev-7, created on 2021-10-13 21:44:51
   from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\privilegio_rol.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6164ec9a2af2d6_94259590',
+  'unifunc' => 'content_61673733a76231_77577833',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6e24f98e656a44bbe96b242e4a9e7de8ace9ad1e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\privilegio_rol.tpl',
-      1 => 1634004119,
+      1 => 1634154257,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6164ec9a2af2d6_94259590 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61673733a76231_77577833 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#privilegio">
@@ -75,16 +75,25 @@ function content_6164ec9a2af2d6_94259590 (Smarty_Internal_Template $_smarty_tpl)
 					</div>	
 					
 					<br>
-        
-					<table  class="table table-striped table-bordered" style="text-align:center;">
-						<thead >
-							<th>Modulo</th>
-							<th>Acciones</th>
-						</thead>
-						<tbody id="container">
-											
-						</tbody>
-					</table>
+					<form id="formulario_privilegios" enctype="multipart/form-data" method="post">
+						<input type="hidden" id="id_privilegio" name="id_privilegio">
+						<table  class="table table-striped table-bordered" style="text-align:center;">
+							<thead >
+								<th>Modulo</th>
+								<th>Acciones</th>
+							</thead>
+							<tbody id="container">
+												
+							</tbody>
+						</table>
+						
+
+						<div class="row" style="text-align: center;">
+							<div class="col-sm-12">
+								<button class="btn-shadow btn-outline-2x btn btn-outline-info">Aceptar</button>
+							</div>
+						</div>
+					</form>	
 				</div>
 			</div>
 		</div>

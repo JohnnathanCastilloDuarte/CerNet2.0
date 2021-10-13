@@ -76,16 +76,13 @@ function traer_privilegios(){
 }
 
 
-$("#selecte").change(function(){
-
-  let id_privilegio = $(this).val();
-
+///////// FUNCION PARA TRAER LOS PRIVILEGIOS
+function leer_privilegios(id_privilegio){
   $.ajax({
     type:'POST',
     data:{id_privilegio},
     url:'templates/usuario/listar_privilegios.php',
     success:function(response){
-      console.log(response);
       let traer = JSON.parse(response);
       let template = "";
       let modulos = ['Modulos','Usuarios', 'Clientes', 'Items', 'Ordenes trabajo (OT)', 'Servicios', 'Informes', 'Documentación', 'Cargos']
@@ -104,57 +101,57 @@ $("#selecte").change(function(){
       traer.forEach(x=>{
 
         if(x.modulo == 1){
-          modulo1 = `<input type='checkbox' class='form-control' id='modulo1' checked>`;
+          modulo1 = `<input type='checkbox' class='form-control' id='modulo1' name="modulo1" checked>`;
         }else{
-          modulo1 = `<input type='checkbox' class='form-control' id='modulo1'>`;
+          modulo1 = `<input type='checkbox' class='form-control' id='modulo1' name="modulo1">`;
         } 
 
         if(x.usuario == 1){
-          modulo2 = `<input type='checkbox' class='form-control' id='modulo2' checked>`;
+          modulo2 = `<input type='checkbox' class='form-control' id='modulo2' name="modulo2" checked>`;
         }else{
-          modulo2 = `<input type='checkbox' class='form-control' id='modulo2'>`;
+          modulo2 = `<input type='checkbox' class='form-control' id='modulo2' name="modulo2">`;
         }
 
         if(x.cliente == 1){
-          modulo3 = `<input type='checkbox' class='form-control' id='modulo3' checked>`;
+          modulo3 = `<input type='checkbox' class='form-control' id='modulo3' name="modulo3" checked>`;
         }else{
-          modulo3 = `<input type='checkbox' class='form-control' id='modulo3'>`;
+          modulo3 = `<input type='checkbox' class='form-control' id='modulo3' name="modulo3">`;
         }
 
         if(x.item == 1){
-          modulo4 = `<input type='checkbox' class='form-control' id='modulo4' checked>`;
+          modulo4 = `<input type='checkbox' class='form-control' id='modulo4' name="modulo4" checked>`;
         }else{
-          modulo4 = `<input type='checkbox' class='form-control' id='modulo4'>`;
+          modulo4 = `<input type='checkbox' class='form-control' id='modulo4' name="modulo4">`;
         }
 
         if(x.orden_trabajo == 1){
-          modulo5 = `<input type='checkbox' class='form-control' id='modulo5' checked>`;
+          modulo5 = `<input type='checkbox' class='form-control' id='modulo5' name="modulo5" checked>`;
         }else{
-          modulo5 = `<input type='checkbox' class='form-control' id='modulo5'>`;
+          modulo5 = `<input type='checkbox' class='form-control' id='modulo5' name="modulo5">`;
         }
 
         if(x.servicio == 1){
-          modulo6 = `<input type='checkbox' class='form-control' id='modulo6' checked>`;
+          modulo6 = `<input type='checkbox' class='form-control' id='modulo6' name="modulo6" checked>`;
         }else{
-          modulo6 = `<input type='checkbox' class='form-control' id='modulo6'>`;
+          modulo6 = `<input type='checkbox' class='form-control' id='modulo6' name="modulo6">`;
         }
 
         if(x.informe == 1){
-          modulo7 = `<input type='checkbox' class='form-control' id='modulo7' checked>`;
+          modulo7 = `<input type='checkbox' class='form-control' id='modulo7' name="modulo7" checked>`;
         }else{
-          modulo7 = `<input type='checkbox' class='form-control' id='modulo7'>`;
+          modulo7 = `<input type='checkbox' class='form-control' id='modulo7' name="modulo7">`;
         }
 
         if(x.documentacion == 1){
-          modulo8 = `<input type='checkbox' class='form-control' id='modulo8' checked>`;
+          modulo8 = `<input type='checkbox' class='form-control' id='modulo8' name="modulo8" checked>`;
         }else{
-          modulo8 = `<input type='checkbox' class='form-control' id='modulo8'>`;
+          modulo8 = `<input type='checkbox' class='form-control' id='modulo8' name="modulo8">`;
         }
 
         if(x.cargo == 1){
-          modulo9 = `<input type='checkbox' class='form-control' id='modulo9' checked>`;
+          modulo9 = `<input type='checkbox' class='form-control' id='modulo9' name="modulo9" checked>`;
         }else{
-          modulo9 = `<input type='checkbox' class='form-control' id='modulo9'>`;
+          modulo9 = `<input type='checkbox' class='form-control' id='modulo9' name="modulo9">`;
         }
 
 
@@ -163,6 +160,7 @@ $("#selecte").change(function(){
 
         template += 
         `
+          
           <tr>
             <td>${modulos[0]}</td>
             <td>${modulo1}</td>
@@ -200,20 +198,64 @@ $("#selecte").change(function(){
             <td>${modulo9}</td>
           </tr>
         
-        
-        
         `;
 
         f = f+1;
 
       });
 
+
+
       $("#container").html(template);
     }
-  })
+  }) 
+
+}
+
+
+/////////// EVENTO PARA CAMBIAR DE ROLES
+$("#selecte").change(function(){
+
+  let id_privilegio = $(this).val();
+
+  $("#id_privilegio").val(id_privilegio);
+
+  leer_privilegios(id_privilegio);
+
 });
 
 
+///////////////// EVENTO PARA CAMBIAR LOS PRIVILEGIOS
+$("#formulario_privilegios").submit(function(e){
+    e.preventDefault();
+    let id_privilegio =  $("#id_privilegio").val();
+    
+    $.ajax({
+      url: 'templates/usuario/actualizar_privilegio.php',
+      type: 'POST',
+      dataType: 'html',
+      data: new FormData(this),
+      cache: false,
+      contentType: false,
+      processData: false,
+      success:function(response){		
+        
+        location.reload();
+        /*
+
+        if(response == 'Si'){
+          Swal.fire({
+            title:'Mensaje',
+            text:'Se ha modificado los privilegios, correctamente',
+            icon:'success'
+          });
+          
+        }*/
+  
+      }	
+    });
+
+})
 
 		
 				

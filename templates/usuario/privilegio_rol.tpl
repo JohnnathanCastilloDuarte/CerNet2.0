@@ -52,16 +52,25 @@
 					</div>	
 					
 					<br>
-        
-					<table  class="table table-striped table-bordered" style="text-align:center;">
-						<thead >
-							<th>Modulo</th>
-							<th>Acciones</th>
-						</thead>
-						<tbody id="container">
-											
-						</tbody>
-					</table>
+					<form id="formulario_privilegios" enctype="multipart/form-data" method="post">
+						<input type="hidden" id="id_privilegio" name="id_privilegio">
+						<table  class="table table-striped table-bordered" style="text-align:center;">
+							<thead >
+								<th>Modulo</th>
+								<th>Acciones</th>
+							</thead>
+							<tbody id="container">
+												
+							</tbody>
+						</table>
+						
+
+						<div class="row" style="text-align: center;">
+							<div class="col-sm-12">
+								<button class="btn-shadow btn-outline-2x btn btn-outline-info">Aceptar</button>
+							</div>
+						</div>
+					</form>	
 				</div>
 			</div>
 		</div>
