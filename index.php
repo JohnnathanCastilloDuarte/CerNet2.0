@@ -1,8 +1,9 @@
 <?php 
 //LLAMADA AL ARCHIVO PRINCIPAL DE ACCESO A BASE DE DATOS E INTEGRACION DE SMARTY
-//error_reporting(0);
+error_reporting(0);
 ob_start();
 include("config.ini.php");
+
 session_start();
 $mi_nombre=$_COOKIE['name'];
 $mi_usuario=$_COOKIE['user'];
@@ -49,7 +50,7 @@ $modulo = array();
 		$nombre => $id_modulo
 		);
 	}
-$smarty->assign('modulo',array(1,3,9,10));
+$smarty->assign('modulo',array(1,3,9,10,4,6));
 $smarty->assign("page",array(1,2,3,4,5,6,7,8));
 
 
@@ -154,7 +155,7 @@ else
 
 ///////////////////////// GESTION DE CLIENTE /////////////////
         case 4:
-          if($cuarto_modulo == 1 && $id_rol ==1){
+          if($cuarto_modulo == 1){
             if($_GET["page"] == 1){
               include("templates/cliente/nuevo_cliente.php");
             }else if($_GET["page"] == 2){
@@ -164,7 +165,7 @@ else
             }else if($_GET["page"] == 4){
               include("templates/cliente/historial_cliente.php");
             }
-          }else if($cuarto_modulo == 1 && $id_rol == 4){
+          }else if($cuarto_modulo == 1){
             if($_GET["page"] == 3){
               include("templates/cliente/editar_empresa_cliente.php");
             }else if($_GET["page"] == 4){

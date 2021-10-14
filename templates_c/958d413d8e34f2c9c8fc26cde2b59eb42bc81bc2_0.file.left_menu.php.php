@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-12 22:46:41
+/* Smarty version 3.1.34-dev-7, created on 2021-10-14 20:29:38
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6165f4311ea778_43653068',
+  'unifunc' => 'content_616877123f7d54_87495713',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1634071599,
+      1 => 1634236169,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6165f4311ea778_43653068 (Smarty_Internal_Template $_smarty_tpl) {
+function content_616877123f7d54_87495713 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -176,17 +176,17 @@ function content_6165f4311ea778_43653068 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#"><i class="metismenu-icon pe-7s-id"></i>Clientes<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[3]['Clientes'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon ion-android-contact"></i>Nuevo Cliente</a>
     </li>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[3]['Clientes'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon ion-android-contacts"></i>Gestionar Cliente</a>
     </li>	
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[3]['Clientes'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial Cliente</a>
     </li>
@@ -247,17 +247,17 @@ function content_6165f4311ea778_43653068 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#"><i class="metismenu-icon pe-7s-global"></i>Ordenes de trabajo<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5]['Ordenes_trabajo'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-paperclip"></i>Nueva OT</a>
     </li>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5]['Ordenes_trabajo'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon pe-7s-paperclip"></i>Gestion OT</a>
     </li>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5]['Ordenes_trabajo'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial OT</a>
     </li>

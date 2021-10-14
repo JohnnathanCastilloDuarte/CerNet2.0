@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 	$smarty->assign('paises', array('Afganistán','Albania','Alemania','Andorra','Angola','Antigua y Barbuda','Arabia Saudita','Argelia','Argentina','Armenia',
 	'Australia','Austria','Azerbaiyán','Bahamas','Bangladés','Barbados','Baréin','Bélgica','Belice','Benín','Bielorrusia','Birmania','Bolivia','Bosnia y Herzegovina',
 	'Botsuana','Brasil','Brunéi','Bulgaria','Burkina Faso','Burundi','Bután','Cabo Verde','Camboya','Camerún','Canadá','Catar','Chad','Chile','China','Chipre',
@@ -16,6 +17,8 @@
 	'Yemen','Yibuti','Zambia','Zimbabue'));
 
 
+
+/*
 if(isset($_POST['razon_social']) && isset($_POST['pais_empresa'])){
 
 	$registro_vtiger = $_POST['registro_vtiger'];
@@ -71,6 +74,6 @@ if(isset($_POST['razon_social']) && isset($_POST['pais_empresa'])){
 		$smarty->assign("giro_empresa",$giro_empresa);
 	}
 }//cierre del if isset principal	
-	
+*/	
 $smarty->display("cliente/nuevo_cliente.tpl");
 ?>

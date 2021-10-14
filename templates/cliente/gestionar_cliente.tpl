@@ -28,7 +28,6 @@
 								<td>{$empresa.tipo_sede}</td>
 								<td>
 									<div class="col-sm-12" style="text-align: center;">
-										<div class='alert alert-warning fade show' role='alert' id="info_gestion_cliente">No tienes permiso para realizar esta acción</div>
 									<a id="btn_editar_cliente" href="index.php?module={$modulo[3].Clientes}&page={$page[2]}&empresa={$empresa.id_empresa}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info">
 										<i class="lnr-pencil btn-icon-wrapper"></i>
 									<a id="btn_eliminar_cliente" data-nombre="{$empresa.nombre}" data-id="{$empresa.id_empresa}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger">

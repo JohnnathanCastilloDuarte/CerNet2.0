@@ -126,13 +126,13 @@
     <li><a href="#"><i class="metismenu-icon pe-7s-id"></i>Clientes<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module={$modulo[3].Clientes}&page={$page[0]}"><i class="metismenu-icon ion-android-contact"></i>Nuevo Cliente</a>
+    <a href="index.php?module={$modulo[4]}&page={$page[0]}"><i class="metismenu-icon ion-android-contact"></i>Nuevo Cliente</a>
     </li>
     <li>
-    <a href="index.php?module={$modulo[3].Clientes}&page={$page[1]}"><i class="metismenu-icon ion-android-contacts"></i>Gestionar Cliente</a>
+    <a href="index.php?module={$modulo[4]}&page={$page[1]}"><i class="metismenu-icon ion-android-contacts"></i>Gestionar Cliente</a>
     </li>	
     <li>
-    <a href="index.php?module={$modulo[3].Clientes}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Cliente</a>
+    <a href="index.php?module={$modulo[4]}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Cliente</a>
     </li>
     </ul>
     </li>
@@ -181,13 +181,13 @@
     <li><a href="#"><i class="metismenu-icon pe-7s-global"></i>Ordenes de trabajo<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module={$modulo[5].Ordenes_trabajo}&page={$page[0]}"><i class="metismenu-icon pe-7s-paperclip"></i>Nueva OT</a>
+    <a href="index.php?module={$modulo[5]}&page={$page[0]}"><i class="metismenu-icon pe-7s-paperclip"></i>Nueva OT</a>
     </li>
     <li>
-    <a href="index.php?module={$modulo[5].Ordenes_trabajo}&page={$page[1]}"><i class="metismenu-icon pe-7s-paperclip"></i>Gestion OT</a>
+    <a href="index.php?module={$modulo[5]}&page={$page[1]}"><i class="metismenu-icon pe-7s-paperclip"></i>Gestion OT</a>
     </li>
     <li>
-    <a href="index.php?module={$modulo[5].Ordenes_trabajo}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial OT</a>
+    <a href="index.php?module={$modulo[5]}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial OT</a>
     </li>
     </ul>
     </li>
