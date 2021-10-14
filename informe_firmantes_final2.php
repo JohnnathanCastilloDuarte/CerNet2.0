@@ -14,7 +14,7 @@ class MYPDF extends TCPDF
     public function Header() 
 	{
 +
-		$this->writeHTMLCell(35, 22, 17, 11, '<img src="design/assets/images/logo_big.png"><br><b>Copia</b>', 0, 0, 0, true, 'C', true);
+		$this->writeHTMLCell(35, 22, 17, 11, '<img src="design/assets/images/logo_big.png"><br><b>Original</b>', 0, 0, 0, true, 'C', true);
     
     }
 	
@@ -79,7 +79,7 @@ $pdf->AddPage('A4');
 $html = <<<EOD
 <h2 style="text-align:center;">DOCUMENTO DE FIRMA ELECTRONICA</h2>
 <p style="text-align:justify">El siguiente documento contiene la relación de los participantes, quienes por medio  la misma aceptan y dan por entendido
-que lo demostrado en los adjuntos disponibles para <strong>$proyecto</strong>,(<a href="http://localhost/CerNet2.0/pdf.php?key=$key_encritp">Revisa la documentación aquí</a>) son verecez y cumplen con el proposito por el cual han sido creados.
+que lo demostrado en los adjuntos disponibles para <strong>$proyecto</strong>, son veracez y cumplen con el proposito por el cual han sido creados.
 <br>
 Por lo consiguiente se acepta que el siguiente proceso es de firma electronica, y cumple con lo estipulado en la <strong>CFR 21 (parte 11).</strong>
 Por ende se busca  promover la integridad de datos del uso de los registros y firmas electrónicas de manera que los datos no se distorsionen, eliminen
@@ -99,13 +99,13 @@ $pdf->writeHTML($html, true, false, false, false, '');
 
 $que_hace = "";
 
-$consultar_2 = mysqli_prepare($connect,"SELECT  a.firma, a.fecha_registro, b.nombre, b.apellido, b.cargo, a.tipo_firma, c.rol FROM
+$consultar_2 = mysqli_prepare($connect,"SELECT  a.firma, a.fecha_firma, b.nombre, b.apellido, b.cargo, a.tipo_firma, c.rol, a.qr FROM
                                         firmantes_documentacion as a, persona as b, participante_documentacion as c WHERE a.id_documento = ?
-                                        AND a.id_usuario = b.id_usuario AND a.id_usuario = c.id_persona ORDER BY fecha_registro ASC");
+                                        AND a.id_usuario = b.id_usuario AND a.id_usuario = c.id_persona ORDER BY fecha_firma ASC");
 mysqli_stmt_bind_param($consultar_2, 'i', $key);
 mysqli_stmt_execute($consultar_2);
 mysqli_stmt_store_result($consultar_2);
-mysqli_stmt_bind_result($consultar_2,  $firma, $fecha_registro, $nombre, $apellido, $cargo, $tipo_firma, $tipo);
+mysqli_stmt_bind_result($consultar_2,  $firma, $fecha_registro, $nombre, $apellido, $cargo, $tipo_firma, $tipo, $qr);
 
 while($row = mysqli_stmt_fetch($consultar_2)){
 
@@ -137,7 +137,7 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
       $pdf->writeHTMLCell(70,30, 70, '',$fecha_registro, 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(60, 30, 140, '', '<br><img src="'.$contador.'.png" width="120" height="89"/>', 1, 1, 0, true, 'J', true);
+      $pdf->writeHTMLCell(60, 30, 140, '', '<br><br><img src="'.$contador.'.png" width="120" height="89"/>', 1, 1, 0, true, 'J', true);
 
 
     }else{
@@ -146,9 +146,9 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
       $pdf->writeHTMLCell(70,30, 70, '',$fecha_registro, 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(60, 30, 140, '', $tipo_firma, 1, 1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(60, 30, 140, '', '<img src="templates/documentacion/'.$qr.'" width="120" height="89"/>', 1, 1, 0, true, 'C', true);
     }
-
+  
 
     if($contador == 4){
         $pdf->AddPage('A4');

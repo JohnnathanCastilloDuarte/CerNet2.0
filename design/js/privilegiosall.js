@@ -1,8 +1,8 @@
 ///////////////////// OCULTANDO URL
-
+/*
 $(document).ready(function(){
     window.history.replaceState({},'','index.php');
-  })
+})*/
 
 
 ///////// script para validar con que privilegios cuenta el usuario actual

@@ -3,28 +3,64 @@ $("#departamento_cargo").attr('disabled','disabled');
 $("#asignar_cargo").hide();
 
 ////////// FUNCIONES A EJECUTAR
-traer_usuarios_cargos();
 traer_departamentos_cargo();
+traer_empresas();
 
 
 ////////////////////// LOGICA DE LAS FUNCIONES
 
-function traer_usuarios_cargos(){
+
+/////////////// BUSCAR EMPRESA
+function traer_empresas(){
+
+  $.ajax({
+    url:'templates/cargos/traer_empresa.php',
+    success:function(response){
+      console.log(response);
+      let traer = JSON.parse(response);
+      let template = '';
+
+      traer.forEach((x)=>{
+      
+        template +=`
+            <option value="${x.id_empresa}"">${x.nombre}</option>      
+          `;
+      });
+
+      $("#empresa_cargo").html("<option value='0'>Selecciona</option>"+template);
+    }
+  });
+}
+
+////// SELECCIONAR EMPRESA 
+$("#empresa_cargo").change(function(){
+  let id_empresa = $(this).val();
+  
+  traer_usuarios_cargos(id_empresa);
+  
+})
+
+
+function traer_usuarios_cargos(id_empresa){
   
   $.ajax({
     type:'POST',
+    data:{id_empresa},
     url:'templates/cargos/traer_cargos.php',
     success:function(response){
       let traer = JSON.parse(response);
       let template = "";
       
-      traer.forEach((x)=>{
-        template+=
-          `
-          <option value="${x.id_usuario}">${x.usuario}</option>
-          `;
-      });
-      
+      if(traer.length != 0){
+        traer.forEach((x)=>{
+          template+=
+            `
+            <option value="${x.id_usuario}">${x.usuario}</option>
+            `;
+        });
+      }else{
+        template = "<option value='0'>No existen usuarios</option>";
+      }
       $("#traer_empleados_cargos").html(template);
     }
   })
@@ -51,7 +87,7 @@ function info_usuario_cargos(id_usuario){
     url:'templates/cargos/informacion_usuario.php',
     data:{id_usuario},
     success:function(response){
-      console.log(response);
+      
       let traer = JSON.parse(response);
       let template = "";
       
@@ -59,8 +95,8 @@ function info_usuario_cargos(id_usuario){
         traer.forEach((x)=>{
         
         template += `
-         <span class="text-muted">Departamento</span><span class="text-primary">${x.departamento}</span><br>
-         <span class="text-muted">Cargo</span><span class="text-primary">${x.cargo}</span><br> 
+         <span class="text-muted">Departamento: </span><span class="text-primary">${x.departamento}</span><br>
+         <span class="text-muted">Cargo: </span><span class="text-primary">${x.cargo}</span><br> 
         `;
       })
       }else{
@@ -80,7 +116,7 @@ function traer_departamentos_cargo(){
     type:'POST',
     url:'templates/cargos/traer_departamentos.php',
     success:function(response){
-      console.log(response);
+   
       let traer = JSON.parse(response);
       let template = "";
       
@@ -102,11 +138,13 @@ $("#asignar_cargo").click(function(){
   let usuario = $("#id_usuario_cargos").val();
   let cargo = $("#cargo_cargo").val();
   let departamento = $("#departamento_cargo").val();
+  let rol_informe = $("#rol_informe").val();
   
   const datos = {
     usuario,
     cargo,
-    departamento
+    departamento,
+    rol_informe
   }
   
   $.ajax({
@@ -125,6 +163,8 @@ $("#asignar_cargo").click(function(){
      }
     }
   })
-})
+});
+
+
 
 

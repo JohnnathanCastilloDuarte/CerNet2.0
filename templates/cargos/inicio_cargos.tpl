@@ -5,10 +5,20 @@
         Asignación de cargos
       </div>
       <div class="card-body">
+        
         <div class="row">
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label>Seleccione compañia</label>
+                    <select id="empresa_cargo" class="form-control">
+        
+                    </select>
+                  </div>
+                </div>
+                <br>
                 <div class="row">
                   <div class="col-sm-12">
                     <label>Usuario:</label>
@@ -41,6 +51,8 @@
                     <label>Cargo:</label>
                     <select class="form-control" id="cargo_cargo">
                       <option value="0">Seleccione...</option>
+                      <option value="CEO">CEO</option>
+                      <option value="COO">COO</option>
                       <option value="Ingeniero validaciones">Ingeniero Validaciones</option>
                       <option value="Consultor GEP">Consultor GEP</option>
                       <option value="Consultor SPOT">Consultor SPOT</option>
@@ -48,6 +60,20 @@
                       <option value="TI">TI</option>
                       <option value="Calidad">Calidad</option>
                       <option value="Head">Head</option>
+                    </select>
+                  </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>Rol de informe</label>
+                    <select id="rol_informe" class="form-control">
+                      <option value="0">Seleccione</option>
+                      <option value="Elaborador">Elaborador</option>
+                      <option value="Aprobador">Aprobador</option>
+                      <option value="Revisor">Revisor</option>
                     </select>
                   </div>
                 </div>

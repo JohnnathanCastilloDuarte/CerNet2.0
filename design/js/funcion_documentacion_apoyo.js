@@ -1,7 +1,7 @@
 
-$(document).ready(function(){
+/*$(document).ready(function(){
   window.history.replaceState({},'','FirmasCerNet2.0.php');
-})
+})*/
 ///////////VARIABLES GLOBALES
 var id_documentacion = $("#primer_campo").val();
 var id_persona = $("#segundo_campo").val();

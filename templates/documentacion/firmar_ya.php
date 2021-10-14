@@ -29,9 +29,9 @@ $level = 'M'; //Precisión Baja
 $framSize = 2; //Tamaño en blanco
 
 if($variable_url == "cercal.net"){
-  $contenido = "https://cercal.net/CERNET/informe_firmantes_final.php?key=".$id_documentacion;
+  $contenido = "https://cercal.net/CERNET/informe_firmantes_final2.php?key=".$id_documentacion;
 }else{
-  $contenido = "http://localhost/CerNet2.0/informe_firmantes_final.php?key=".$id_documentacion;
+  $contenido = "http://localhost/CerNet2.0/informe_firmantes_final2.php?key=".$id_documentacion;
 }
  //Texto
 
@@ -41,7 +41,7 @@ QRcode::png($contenido, $filename, $level, $tama_o, $framSize);
 
 if($seleccion == 1){
   $pluma_f = 0;
-  $dataURL = $_POST['dataURL'];
+  $dataURL = $contenido;//$_POST['dataURL'];
   
   /*
   $consultar = mysqli_prepare($connect,"SELECT email FROM persona WHERE id_usuario = ?");
