@@ -47,7 +47,7 @@ if($variable_url == "cercal.net"){
   $host = "mail.cercal.net";
   $Username = "cernet_informa@cercal.net";
   $password = "+AayJrvqUdJk";
-  $url = "https://cercal.net/CERNET/templates/documentacion/firmar_documentacion.php?key=".$key."&document=".$document;
+  $url = "https://cercal.net/CerNet2.0/templates/documentacion/firmar_documentacion.php?key=".$key."&document=".$document;
  
 }else{
   $host = "smtp.gmail.com";
@@ -60,7 +60,7 @@ try{
   //Server Setting
   $mail->SMTPDebug = 0;
   //$mail->SMTPDebug = 0;
-  $mail->isSMTP();
+  //$mail->isSMTP();
   $mail->Host =  $host;
   $mail->SMTPAuth = true;
   $mail->Username = $Username;

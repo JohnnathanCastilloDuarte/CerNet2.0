@@ -7,10 +7,17 @@ $id_documentacion = $_POST['id_documentacion'];
 $id_persona = $_POST['id_persona'];
 $id_t_firmantes = $_POST['id_t_firmantes'];
 
+$consultar_link = mysqli_prepare($connect,"SELECT url FROM archivos_documentacion WHERE id_documentacion = ?");
+mysqli_stmt_bind_param($consultar_link, 'i', $id_documentacion);
+mysqli_stmt_execute($consultar_link);
+mysqli_stmt_store_result($consultar_link);
+mysqli_stmt_bind_result($consultar_link, $url);
+mysqli_stmt_fetch($consultar_link);
+
 $variable_url = $_SERVER['HTTP_HOST'];
 $contenido = "";
 
-$fecha_actual = date('y-m-d h:i:s a', time());
+$fecha_actual = date('y-m-d h:i:s', time());
 
 //Declaramos una carpeta temporal para guardar la imagenes generadas
 $dir = 'temp/';
@@ -29,9 +36,9 @@ $level = 'M'; //Precisión Baja
 $framSize = 2; //Tamaño en blanco
 
 if($variable_url == "cercal.net"){
-  $contenido = "https://cercal.net/CERNET/informe_firmantes_final2.php?key=".$id_documentacion;
+  $contenido = "https://cercal.net/CerNet2.0/".$url;
 }else{
-  $contenido = "http://localhost/CerNet2.0/informe_firmantes_final2.php?key=".$id_documentacion;
+  $contenido = "http://localhost/CerNet2.0/".$url;
 }
  //Texto
 
