@@ -162,13 +162,13 @@
     <li><a href="#"><i class="metismenu-icon pe-7s-keypad"></i>Item<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module={$modulo[4].Item}&page={$page[0]}"><i class="metismenu-icon fa-th-large"></i>Nuevo Item</a>
+    <a href="index.php?module={$modulo[7]}&page={$page[0]}"><i class="metismenu-icon fa-th-large"></i>Nuevo Item</a>
     </li>
     <li id="gestion_item">
-    <a href="index.php?module={$modulo[4].Item}&page={$page[1]}"><i class="metismenu-icon  pe-7s-plugin"></i>Gestionar Item</a>
+    <a href="index.php?module={$modulo[7]}&page={$page[1]}"><i class="metismenu-icon  pe-7s-plugin"></i>Gestionar Item</a>
     </li>
     <li>
-    <a href="index.php?module={$modulo[4].Item}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Item</a>
+    <a href="index.php?module={$modulo[7]}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Item</a>
     </li>	
     </ul>
     </li> 

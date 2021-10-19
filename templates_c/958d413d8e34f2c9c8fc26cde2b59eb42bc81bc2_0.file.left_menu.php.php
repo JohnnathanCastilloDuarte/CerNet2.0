@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:14:43
+/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:19:44
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616eeef3d1e459_43098231',
+  'unifunc' => 'content_616ef020aee535_28081102',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1634660074,
+      1 => 1634660377,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616eeef3d1e459_43098231 (Smarty_Internal_Template $_smarty_tpl) {
+function content_616ef020aee535_28081102 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -222,17 +222,17 @@ function content_616eeef3d1e459_43098231 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#"><i class="metismenu-icon pe-7s-keypad"></i>Item<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4]['Item'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon fa-th-large"></i>Nuevo Item</a>
     </li>
     <li id="gestion_item">
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4]['Item'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon  pe-7s-plugin"></i>Gestionar Item</a>
     </li>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4]['Item'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial Item</a>
     </li>	

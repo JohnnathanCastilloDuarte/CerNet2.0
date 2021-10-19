@@ -50,7 +50,7 @@ $modulo = array();
 		$nombre => $id_modulo
 		);
 	}
-$smarty->assign('modulo',array(1,3,9,10,4,6,8));
+$smarty->assign('modulo',array(1,3,9,10,4,6,8,5));
 $smarty->assign("page",array(1,2,3,4,5,6,7,8));
 
 
@@ -176,7 +176,7 @@ else
 
 ////////////////// GESTION PARA ACTUALIZAR EQUIPOS ///////////////////////        
         case 5:
-          if($quinto_modulo == 1 && $id_rol == 1 or $id_rol == 5 or $id_rol == 3){
+          if($quinto_modulo == 1){
             if($_GET["page"] == 1){
               include("templates/item/nuevo_item.php");
             }else if($_GET["page"] == 2){
@@ -200,6 +200,7 @@ else
             }else if($_GET["page"] == 4){
               include("templates/item/historial_item.php");
             }
+          /*
           }else if($quinto_modulo == 1 && $id_rol == 4 or $id_rol == 3){
             if($_GET["page"] == 1){
               include("templates/item/nuevo_item_cliente.php");
@@ -207,7 +208,7 @@ else
               if($_GET["type"] == 1){
                 include("templates/item/update_bodega_cliente.php");
               }
-            }
+            }*/
           }
         break;
 
