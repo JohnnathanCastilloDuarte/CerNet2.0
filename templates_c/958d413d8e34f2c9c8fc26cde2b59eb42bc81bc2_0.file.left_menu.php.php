@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:06:20
+/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:14:43
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616eecfce8e1e5_32516054',
+  'unifunc' => 'content_616eeef3d1e459_43098231',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1634659577,
+      1 => 1634660074,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616eecfce8e1e5_32516054 (Smarty_Internal_Template $_smarty_tpl) {
+function content_616eeef3d1e459_43098231 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -195,7 +195,7 @@ function content_616eecfce8e1e5_32516054 (Smarty_Internal_Template $_smarty_tpl)
     </div>
 
 
-
+<!--
     <div id="modulo_4_usuario_externo">
     <li><a href="#"><i class="metismenu-icon pe-7s-star"></i>Mi empresa<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
@@ -212,7 +212,7 @@ function content_616eecfce8e1e5_32516054 (Smarty_Internal_Template $_smarty_tpl)
     </ul>
     </li> 
     </div>
-
+-->
 
 
 

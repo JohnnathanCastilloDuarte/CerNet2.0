@@ -139,7 +139,7 @@
     </div>
 
 
-
+<!--
     <div id="modulo_4_usuario_externo">
     <li><a href="#"><i class="metismenu-icon pe-7s-star"></i>Mi empresa<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
@@ -152,7 +152,7 @@
     </ul>
     </li> 
     </div>
-
+-->
 
 
 
