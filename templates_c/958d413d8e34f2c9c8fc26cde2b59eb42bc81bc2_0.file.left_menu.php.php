@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:19:44
+/* Smarty version 3.1.34-dev-7, created on 2021-10-19 21:08:17
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616ef020aee535_28081102',
+  'unifunc' => 'content_616f17a18b8cf1_10808349',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1634660377,
+      1 => 1634670494,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616ef020aee535_28081102 (Smarty_Internal_Template $_smarty_tpl) {
+function content_616f17a18b8cf1_10808349 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -271,7 +271,7 @@ function content_616ef020aee535_28081102 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#"><i class="metismenu-icon pe-7s-config"></i>Servicios<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6]['Servicios'];?>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[8];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-portfolio"></i>Nuevo servicio</a>
     </li>

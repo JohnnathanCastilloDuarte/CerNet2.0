@@ -1,4 +1,27 @@
-<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2021-10-19 19:48:53
+  from 'C:\xampp\htdocs\CerNet2.0\templates\servicio\nuevo_servicio.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_616f05050ccf56_80424620',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '3a7444a0ab3b53f5f521fef8d8ae246442cc2b3f' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\servicio\\nuevo_servicio.tpl',
+      1 => 1634665727,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_616f05050ccf56_80424620 (Smarty_Internal_Template $_smarty_tpl) {
+?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_servicio_tipo">
 		<span>Nuevo servicio</span>
@@ -26,9 +49,19 @@
 								<label>Modulo</label>
 								<select class="form-control" id="modulo_tipo_servicio">
 									<option value="" id="ultimo_modulo">Seleccione...</option>
-									{foreach from=$array_modulo  item=modulo}
-									<option value="{$modulo.id_modulo}">{$modulo.nombre_modulo} - {$modulo.area}</option>
-									{/foreach}
+									<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_modulo']->value, 'modulo');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['modulo']->value) {
+?>
+									<option value="<?php echo $_smarty_tpl->tpl_vars['modulo']->value['id_modulo'];?>
+"><?php echo $_smarty_tpl->tpl_vars['modulo']->value['nombre_modulo'];?>
+ - <?php echo $_smarty_tpl->tpl_vars['modulo']->value['area'];?>
+</option>
+									<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 								</select>
 								<br>
 								<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_nuevo_tipo_servicio">Aceptar</button>
@@ -78,31 +111,44 @@
 						<i class="badge badge-dot badge-dot-xl badge-danger">.</i>Eliminar
 						 <div class="scroll-area-lg">
 								<div class="scrollbar-container">
-									{foreach from=$array_historial item=historial}
-									{if $historial.tipo_historial eq 1}
-									{$color="success"}
-									{elseif $historial.tipo_historial eq 2}
-									{$color="warning"}
-									{elseif $historial.tipo_historial eq 3}
-									{$color="danger"}
-									{/if}
+									<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_historial']->value, 'historial');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['historial']->value) {
+?>
+									<?php if ($_smarty_tpl->tpl_vars['historial']->value['tipo_historial'] == 1) {?>
+									<?php $_smarty_tpl->_assignInScope('color', "success");?>
+									<?php } elseif ($_smarty_tpl->tpl_vars['historial']->value['tipo_historial'] == 2) {?>
+									<?php $_smarty_tpl->_assignInScope('color', "warning");?>
+									<?php } elseif ($_smarty_tpl->tpl_vars['historial']->value['tipo_historial'] == 3) {?>
+									<?php $_smarty_tpl->_assignInScope('color', "danger");?>
+									<?php }?>
 			
 									<div class="vertical-time-icons vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
 										<div class="vertical-timeline-item vertical-timeline-element">
 											<div>
 												<span class="vertical-timeline-element-icon bounce-in">
-													<div class="timeline-icon border-{$color}">
-														<i class="badge badge-dot badge-dot-xl badge-{$color}"></i>
+													<div class="timeline-icon border-<?php echo $_smarty_tpl->tpl_vars['color']->value;?>
+">
+														<i class="badge badge-dot badge-dot-xl badge-<?php echo $_smarty_tpl->tpl_vars['color']->value;?>
+"></i>
 													</div>
 												</span>
 												<div class="vertical-timeline-element-content bounce-in">
-													<h4 class="timeline-title">{$historial.nombre} {$historial.apellido}<br><span class="badge badge-dark">Hora movimiento: {$historial.fecha_registro}</span></h4>
-														<p><h6>{$historial.mensaje}</h6></p>
+													<h4 class="timeline-title"><?php echo $_smarty_tpl->tpl_vars['historial']->value['nombre'];?>
+ <?php echo $_smarty_tpl->tpl_vars['historial']->value['apellido'];?>
+<br><span class="badge badge-dark">Hora movimiento: <?php echo $_smarty_tpl->tpl_vars['historial']->value['fecha_registro'];?>
+</span></h4>
+														<p><h6><?php echo $_smarty_tpl->tpl_vars['historial']->value['mensaje'];?>
+</h6></p>
 												</div>
 											</div>
 										</div>	
 									</div>
-									{/foreach}
+									<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 								</div>
 							</div>
 					</div>
@@ -111,4 +157,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="design/js/servicio.js"></script>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/servicio.js"><?php echo '</script'; ?>
+><?php }
+}

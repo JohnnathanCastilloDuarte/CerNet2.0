@@ -199,7 +199,7 @@
     <li><a href="#"><i class="metismenu-icon pe-7s-config"></i>Servicios<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module={$modulo[6].Servicios}&page={$page[0]}"><i class="metismenu-icon pe-7s-portfolio"></i>Nuevo servicio</a>
+    <a href="index.php?module={$modulo[8]}&page={$page[0]}"><i class="metismenu-icon pe-7s-portfolio"></i>Nuevo servicio</a>
     </li>
     </ul>
     </li>
