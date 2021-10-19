@@ -108,16 +108,18 @@
     </div>
 
 
+<!--
     <div id="modulo_3_externo">
     <li><a href="#" class="text-default"><i class="metismenu-icon pe-7s-user"></i>Mi perfil<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>						
 
     <li>
-    <a href="index.php?module={$modulo[2].Usuario}&page={$page[5]}&user={$mi_id}"><i class="metismenu-icon pe-7s-users "></i>Gestionar datos</a>
+    <a href="index.php?module={$modulo[2]}&page={$page[5]}&user={$mi_id}"><i class="metismenu-icon pe-7s-users "></i>Gestionar datos</a>
     </li>
     </ul>
     </li> 
     </div>	
+-->
 
 
 
