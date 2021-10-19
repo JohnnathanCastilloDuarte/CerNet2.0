@@ -226,15 +226,15 @@
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[6].Informes}&page={$page[5]}"><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[5]}"><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[7].Informes}&page={$page[6]}"><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[6]}"><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[7].Informes}&page={$page[7]}"><i class="metismenu-icon pe-7s-news-paper"></i>Filtros</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[7]}"><i class="metismenu-icon pe-7s-news-paper"></i>Filtros</a>
     </li>
 
 

@@ -263,6 +263,9 @@ else
             }else if($_GET["page"] == 7){
               include("templates/automovil/gestionar_informes.php");
             }
+            else if ($_GET["page"] == 8){
+              include("templates/filtros/gestionar_informes.php");
+            }
           }
        break;
 
