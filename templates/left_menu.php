@@ -211,22 +211,22 @@
     <li><a href="#"><i class="metismenu-icon pe-7s-copy-file"></i>Informes<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
-    <a href="index.php?module={$modulo[7].Informes}&page={$page[0]}"><i class="metismenu-icon pe-7s-news-paper"></i>Refrigeradores</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[0]}"><i class="metismenu-icon pe-7s-news-paper"></i>Refrigeradores</a>
     </li>
     <!--
     <li>
-    <a href="index.php?module={$modulo[7].Informes}&page={$page[2]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Refrigeradores</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[2]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Refrigeradores</a>
     </li>-->
     <li>
-    <a href="index.php?module={$modulo[7].Informes}&page={$page[3]}"><i class="metismenu-icon pe-7s-news-paper"></i>UltraFreezer</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[3]}"><i class="metismenu-icon pe-7s-news-paper"></i>UltraFreezer</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[7].Informes}&page={$page[4]}"><i class="metismenu-icon pe-7s-news-paper"></i>Freezer</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[4]}"><i class="metismenu-icon pe-7s-news-paper"></i>Freezer</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[7].Informes}&page={$page[5]}"><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
+    <a href="index.php?module={$modulo[6].Informes}&page={$page[5]}"><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
     </li>
 
     <li>
