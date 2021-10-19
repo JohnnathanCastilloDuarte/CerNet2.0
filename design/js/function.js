@@ -10,14 +10,14 @@ $('#usuario').keyup(function(){
 				{
 					$('#cambiar').hide();
 				}
-			console.log(usuario)
+		
 		$.ajax({
 			type:'POST',
 			data:{'usuario':usuario, 'id_protegido':id_protegido},
 			url:'valida_restablece.php',
 			success:function(resp){
 				
-				console.log(resp);
+			
 				if(resp != '')
 				{
 					$('#cambiar').show();
@@ -118,7 +118,7 @@ $('#usuario').keyup(function(){
 			data:{ email },
 			url:'templates/usuario/enviar_correo.php',
 			success:function(final){
-        console.log(final);
+        
 				if(final == "no existe"){
 					location.reload();
 					
@@ -161,7 +161,7 @@ $('#usuario').keyup(function(){
 				data:{ perfil },
 				url:'templates/usuario/valida_privilegios.php',
 				success:function(ev){
-          console.log(ev);
+         
 					if(ev != ""){
 					if(perfil === "Seleccione..."){
 					$("#btn_actualizar").hide();
@@ -478,7 +478,7 @@ $('#usuario').keyup(function(){
 			
 			$.post('templates/usuario/edit_privilegios.php', elementos, function(evt){
         
-          console.log(evt);
+          
 					if(evt == "si"){
 				Swal.fire({
 					toast:true,	

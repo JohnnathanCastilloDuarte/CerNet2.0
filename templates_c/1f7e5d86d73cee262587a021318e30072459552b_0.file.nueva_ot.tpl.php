@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 19:01:51
+/* Smarty version 3.1.34-dev-7, created on 2021-10-19 19:12:19
   from 'C:\xampp\htdocs\CerNet2.0\templates\OT\nueva_ot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616ef9ff6ba6f1_53127810',
+  'unifunc' => 'content_616efc7325dc08_63173096',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f7e5d86d73cee262587a021318e30072459552b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\OT\\nueva_ot.tpl',
-      1 => 1634662908,
+      1 => 1634663537,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616ef9ff6ba6f1_53127810 (Smarty_Internal_Template $_smarty_tpl) {
+function content_616efc7325dc08_63173096 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_ot">
@@ -153,6 +153,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 					</div>
 				</div>
 			</div>
+			<!--
 			<div class="col-sm-7">
 				<div class="card">
 					<div class="card-header">
@@ -195,7 +196,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 						</div>
 					</div>
 				</div>	
-			</div>
+			</div>-->
 		</div>
 
 	</div>

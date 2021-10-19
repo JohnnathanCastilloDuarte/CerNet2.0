@@ -1,4 +1,5 @@
 <?php 
+	error_reporting(0);
 	include("../../config.ini.php");
 
 	$id_asignado = $_POST['id_asignado'];
@@ -31,5 +32,5 @@
 		echo "error";
 	}
 
-	mysqli_stmt_close($connect);
+	mysqli_close($connect);
 ?>

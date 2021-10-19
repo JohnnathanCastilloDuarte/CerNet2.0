@@ -26,7 +26,7 @@ var id_gestionar = "";
 						data: { ot },
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
-							//console.log(r);
+							console.log(r);
 							let traer = JSON.parse(r);
 							
 							if(r=="null"){

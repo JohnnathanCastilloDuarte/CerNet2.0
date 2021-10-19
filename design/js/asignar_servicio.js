@@ -90,7 +90,7 @@ function mostrar_servicios(){
 		url: 'templates/OT/buscar_tipo_servicio.php',
 		data: {id_ot},
 		success:function(e){
-			
+			console.log(e);
 			let traer = JSON.parse(e);
 			let template = "";
 			
@@ -380,7 +380,7 @@ function listar_servicios(){
 		}
 
 	$.post('templates/OT/asignando_equipo.php',datos,function(e){
-	
+		console.log(e);
 		if(e=="Existe"){
 			Swal.fire({
 				position:'center',
@@ -444,6 +444,7 @@ function listar_servicios(){
 			data : {id_asignado, id_valida},
 			url : 'templates/OT/estado_des-asignado_item.php',
 			success: function(e){
+				console.log(e);
 				if(e == "asignado"){
 					Swal.fire({
 						position: 'center',
@@ -482,6 +483,7 @@ function listar_equipos(id_servicio){
 			let traer =  JSON.parse(e);
 			let template = "";
 			let boton = "";
+			
 
 					traer.forEach((result)=>{
 			

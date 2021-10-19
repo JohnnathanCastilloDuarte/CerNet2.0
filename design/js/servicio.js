@@ -80,7 +80,7 @@ $(document).on('click','#btn_editar_tipo_servicio',function(){
 		let elemento = $(this)[0].parentElement.parentElement.parentElement;
 		let id_servicio = $(elemento).attr('data-id');
 	
-		console.log(id_servicio);
+		
 		$("#btn_editar_servicio_tipo").show();
 		$("#reload").show();
 		$("#btn_nuevo_tipo_servicio").hide();
@@ -115,7 +115,7 @@ $(document).on('click','#btn_editar_tipo_servicio',function(){
 //EDICIÓN FINAL DEL TIPO SERVICIO
 (function(){
 	$("#btn_editar_servicio_tipo").click(function(){
-			console.log("click");
+		
 		const datos = {
 			
 			id_servicio : $("#id_tipo_servicio").val(),
@@ -125,7 +125,7 @@ $(document).on('click','#btn_editar_tipo_servicio',function(){
 		}
 		
 		$.post('templates/servicio/editar_tipo_servicio.php', datos , function(e){
-				console.log(e);
+				
 			if(e == "Si"){
 				
 				Swal.fire({
@@ -166,7 +166,7 @@ $(document).on('click','#btn_eliminar_tipo_servicio', function(){
 						data: {id_servicio, id_valida},
 						url: 'templates/servicio/eliminar_tipo_servicio.php',
 						success:function(e){
-							console.log(e);
+							
 							if(e=="Si"){
 								Swal.fire({
 									position: 'center',

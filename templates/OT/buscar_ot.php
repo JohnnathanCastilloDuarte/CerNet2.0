@@ -1,4 +1,5 @@
 <?php 
+	error_reporting(0);
 	include("../../config.ini.php");
 
 	$ot = 'OT-'.$_POST['ot'];
@@ -9,8 +10,8 @@
 		mysqli_stmt_execute($consultar);
 		mysqli_stmt_store_result($consultar);
 		mysqli_stmt_bind_result($consultar, $id_numot, $num_ot, $id_usuario_asignado, $nombre, $apellido, $departamento, $cargo,  $id_empresa, $fecha_creacion, $fecha_asignacion, $empresa, $cantidad_informes);
-
-	if($consultar){
+		
+	if($consultar != null){
 		$json = array();
 		while($row = mysqli_stmt_fetch($consultar)){
 			$json[] = array(
