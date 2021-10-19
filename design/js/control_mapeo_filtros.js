@@ -14,6 +14,7 @@ function consultando_ot(){
     url:'templates/filtros/datos_ot.php',
     data:{id_asignado_filtro},
     success:function(response){
+      console.log(response);
       
       let traer = JSON.parse(response);
       

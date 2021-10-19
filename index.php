@@ -254,6 +254,8 @@ else
                 include("templates/estufaeincubadora/datos_informe_mapeo.php");
               }else if($_GET["type"] == 14){
                 include("templates/automovil/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 10){
+                include("templates/filtros/datos_informe_mapeo.php");
               }
             }else if($_GET["page"] == 3){
               include("templates/refrigeradores/historial_refrigeradores.php");

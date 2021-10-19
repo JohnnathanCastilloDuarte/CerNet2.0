@@ -1,4 +1,5 @@
 <?php
+
 include('../../config.ini.php');
 $array_ot = array();
 $id_asignado_filtro = $_POST['id_asignado_filtro'];
@@ -46,5 +47,5 @@ $array_ot[] = array(
 $convert = json_encode($array_ot);
 
 echo $convert;
-mysqli_stmt_close($connect);
+mysqli_close($connect);
 ?>
