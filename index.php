@@ -196,6 +196,8 @@ else
                 include("templates/item/update_incubadora.php");
               }else if($_GET["type"] == 7){
                 include("templates/item/update_automovil.php");
+              }else if($_GET["type"] == 11){
+                include("templates/item/update_filtro.php");
               }
             }else if($_GET["page"] == 4){
               include("templates/item/historial_item.php");

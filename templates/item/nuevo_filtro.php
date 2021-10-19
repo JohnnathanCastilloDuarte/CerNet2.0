@@ -1,6 +1,7 @@
 <?php
     include('../../config.ini.php');
 
+    error_reporting(0);
 
     $nombre_filtro = $_POST['nombre_filtro'];
     $empresa_filtro = $_POST['empresa_filtro'];
@@ -55,5 +56,5 @@
   }
     
 
-    mysqli_stmt_close($connect);
+    mysqli_close($connect);
 ?>

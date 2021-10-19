@@ -2,9 +2,22 @@
 
 $(document).on('click','#btn_abrir_item',function(){
 
+  let url = '';
+  let urlactual = window.location;
   let id_tipo_item = $(this).attr('data-id');
-  let url = `https://cercal.net/CERNET/index.php?module=5&page=3&type=${id_tipo_item}`;
-  window.open(url)
+
+  if (urlactual == 'http://localhost/CerNet2.0/index.php?module=5&page=1') {
+
+  		url = `http://localhost/CerNet2.0/index.php?module=5&page=3&type=${id_tipo_item}`;
+
+
+  }else{
+
+  		url = `http://cercal.net/CerNet2.0/index.php?module=5&page=3&type=${id_tipo_item}`;
+  }
+
+   window.open(url)
+
     
 });
 

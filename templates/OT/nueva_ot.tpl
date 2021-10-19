@@ -130,9 +130,10 @@
 				</div>	
 			</div>
 		</div>
+
 	</div>
 		
-		<script type="text/javascript" src="design/js/gestionar_ot.js"></script>
+		<script type="text/javascript" src="design/js/num_ot.js"></script>
 		<!--<div class="tab-pane tabs-animation fade show" id="historial_ot" role="tabpanel">
 			<div class="row">
 			<div class="col-sm-12">

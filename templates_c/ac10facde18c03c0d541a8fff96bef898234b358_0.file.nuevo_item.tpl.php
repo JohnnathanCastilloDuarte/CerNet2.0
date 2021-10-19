@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:19:47
+/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:35:17
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\nuevo_item.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616ef02330e930_90536858',
+  'unifunc' => 'content_616ef3c5c7a645_08044582',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ac10facde18c03c0d541a8fff96bef898234b358' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\nuevo_item.tpl',
-      1 => 1634070834,
+      1 => 1634661293,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616ef02330e930_90536858 (Smarty_Internal_Template $_smarty_tpl) {
+function content_616ef3c5c7a645_08044582 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-main__inner">
 	<div class="container-fluid">
 		<div class="card">
@@ -57,5 +57,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 				</div>									
 			</div>
 		</div>	
-	</div>				<?php }
+	</div>		
+
+
+	<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/Item.js"><?php echo '</script'; ?>
+>		<?php }
 }
