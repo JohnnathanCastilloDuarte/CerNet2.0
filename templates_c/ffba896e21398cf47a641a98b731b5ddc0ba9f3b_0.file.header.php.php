@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-12 22:37:17
+/* Smarty version 3.1.34-dev-7, created on 2021-10-20 00:28:16
   from 'C:\xampp\htdocs\CerNet2.0\templates\header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6165f1fd19bf21_95847376',
+  'unifunc' => 'content_616f4680e27d32_79810400',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ffba896e21398cf47a641a98b731b5ddc0ba9f3b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\header.php',
-      1 => 1634070834,
+      1 => 1634682495,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6165f1fd19bf21_95847376 (Smarty_Internal_Template $_smarty_tpl) {
+function content_616f4680e27d32_79810400 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
@@ -414,8 +414,15 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <div class="widget-content-left">
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                     
+                                        <?php if (count($_smarty_tpl->tpl_vars['imagen']->value) == 0) {?>
+                                            
+                                            <img width="42" class="rounded-circle" src="design/assets/images/user.png" alt="">
+                                        <?php } else { ?>
+                                        
                                         <img width="42" class="rounded-circle" src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
-" alt="">
+" alt=""> 
+                                        <?php }?>
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
@@ -426,12 +433,14 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
-																															<a href="#" title="Mi Cuenta">
-                                                                <img width="42" class="rounded-circle"
-                                                                     src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
-"
-                                                                     alt="">
-																															</a>	
+																<a href="#" title="Mi Cuenta">
+                                                                <?php if (count($_smarty_tpl->tpl_vars['imagen']->value) == 0) {?>
+                                                                    <img width="42" class="rounded-circle" src="design/assets/images/user.png" alt="">
+                                                                <?php } else { ?>
+                                                                    <img width="42" class="rounded-circle" src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
+" alt=""> 
+                                                                <?php }?>
+																</a>	
                                                             </div>
                                                             <div class="widget-content-left">
                                                                 <div class="widget-heading"><?php echo $_smarty_tpl->tpl_vars['mi_nombre']->value;?>

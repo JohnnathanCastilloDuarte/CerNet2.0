@@ -379,7 +379,14 @@
                             <div class="widget-content-left">
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="{$imagen}" alt="">
+                                     
+                                        {if count($imagen) == 0}
+                                            
+                                            <img width="42" class="rounded-circle" src="design/assets/images/user.png" alt="">
+                                        {else}
+                                        
+                                        <img width="42" class="rounded-circle" src="{$imagen}" alt=""> 
+                                        {/if}
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
@@ -390,11 +397,13 @@
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
-																															<a href="#" title="Mi Cuenta">
-                                                                <img width="42" class="rounded-circle"
-                                                                     src="{$imagen}"
-                                                                     alt="">
-																															</a>	
+																<a href="#" title="Mi Cuenta">
+                                                                {if count($imagen) == 0}
+                                                                    <img width="42" class="rounded-circle" src="design/assets/images/user.png" alt="">
+                                                                {else}
+                                                                    <img width="42" class="rounded-circle" src="{$imagen}" alt=""> 
+                                                                {/if}
+																</a>	
                                                             </div>
                                                             <div class="widget-content-left">
                                                                 <div class="widget-heading">{$mi_nombre}
