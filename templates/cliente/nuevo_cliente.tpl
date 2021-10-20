@@ -71,10 +71,14 @@
 			<div class="row">
 				<div class="col-sm-5"></div>
 				<div class="col-sm-4"><button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_nuevo_cliente">Aceptar</button></div>
+
 			</div>
+				
 		</div>	
 	</div>
 </div>
 </form>
 <!--CARGA DE SCRIPT PARA CLIENTE--->
+
 <script type="text/javascript" src="design/js/empresa_cliente.js"></script>
+<script type="text/javascript" src="design/js/backtrack.js"></script>

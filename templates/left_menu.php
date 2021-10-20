@@ -133,9 +133,10 @@
     <li>
     <a href="index.php?module={$modulo[4]}&page={$page[1]}"><i class="metismenu-icon ion-android-contacts"></i>Gestionar Cliente</a>
     </li>	
-    <li>
+    <!--<li>
     <a href="index.php?module={$modulo[4]}&page={$page[3]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Cliente</a>
-    </li>
+    </li> 
+    -->
     </ul>
     </li>
     </div>

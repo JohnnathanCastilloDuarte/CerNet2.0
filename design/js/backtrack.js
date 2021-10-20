@@ -9,19 +9,19 @@ $("#btn_cerrar_sesion").click(function(){
     }  
 });
 
+$("#btn_nuevo_cliente").click(function(){
 
 
+   let quien = persona;
+   let movimiento = "Crea";
+   let modulo = "Cliente";
 
-
-
-function backtrack(quien, movimiento, modulo){
-  
    const datos = {
      quien,
      movimiento,
      modulo
    }
-   
+
    $.ajax({
      type:'POST',
      data:datos,
@@ -34,4 +34,7 @@ function backtrack(quien, movimiento, modulo){
      }
    });
    return "Si";
-}
+
+}); 
+
+
