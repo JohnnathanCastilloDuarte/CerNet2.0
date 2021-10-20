@@ -45,7 +45,7 @@ $("#btn_nuevo_cliente").click(function(){
 }); 
 
 
-/////////////regstra la creación del nuevo cliente/////////////////////
+/////////////registra la modificacion del una nueva/////////////////////
 $("#btn_editar_cliente").click(function(){
 
  let quien = persona;
@@ -71,9 +71,35 @@ $("#btn_editar_cliente").click(function(){
    });
    return "Si";
 
-
 }); 
 
+///// registra la creación de una bodega 
+$("#btn_nuevo_item_bodega").click(function(){
+
+ let quien = persona;
+ let movimiento = "Crea en el modulo";
+ let modulo = "Item y bodega";
+
+   const datos = {
+     quien,
+     movimiento,
+     modulo
+   }
+
+   $.ajax({
+     type:'POST',
+     data:datos,
+     url:'templates/controlador_backtrack/controlador_general.php',
+     success:function(response){
+       console.log(response);
+       if(response == "Listo"){
+
+       }
+     }
+   });
+   return "Si";
+
+}); 
 
 
 
