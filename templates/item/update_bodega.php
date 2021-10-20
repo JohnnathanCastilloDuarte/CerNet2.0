@@ -1,5 +1,8 @@
-<?php 
+ <?php 
   
+  $id_tipo = $_GET['type'];
+
+echo "<input value='".$id_tipo."' id='id_tipo' hidden>";
 
 //consultar empresas
 $empresas = mysqli_prepare($connect,"SELECT id_empresa, nombre FROM empresa");

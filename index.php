@@ -50,7 +50,7 @@ $modulo = array();
 		$nombre => $id_modulo
 		);
 	}
-$smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7));
+$smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
 $smarty->assign("page",array(1,2,3,4,5,6,7,8));
 
 
@@ -294,6 +294,15 @@ else
           }
         }   
       break;
+
+
+/////////PERFIL///////////////
+
+      case 11:
+       if (isset($_GET['id_user'])) {
+        include("templates/perfil/perfil_usuario.php");
+       }
+        break;
 
      
    }//FIN DEL SWITCH

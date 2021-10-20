@@ -36,8 +36,7 @@
     mysqli_stmt_fetch($recupera);
     echo mysqli_stmt_error($recupera);
     
-    $insert_filtro = mysqli_prepare($connect,"INSERT INTO item_filtro (id_item, marca, modelo, serie, cantidad_filtro, 
-                                              ubicacion, ubicado_en, filtro_dimension, tipo_filtro) VALUES (?,?,?,?,?,?,?,?,?)");
+    $insert_filtro = mysqli_prepare($connect,"INSERT INTO item_filtro (id_item, marca, modelo, serie, cantidad_filtro, ubicacion, ubicado_en, filtro_dimension, tipo_filtro) VALUES (?,?,?,?,?,?,?,?,?)");
     
     mysqli_stmt_bind_param($insert_filtro, 'isssissss', $id_item, $marca_filtro, $modelo_filtro, $serie_filtro, $cantidad_filtros_filtro, $ubicacion_filtro,
                                                        $ubicado_en_filtro, $tipo_filtro, $tipo);
