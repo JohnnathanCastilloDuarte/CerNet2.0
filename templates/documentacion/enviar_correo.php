@@ -52,7 +52,7 @@ if($variable_url == "cercal.net"){
 }else{
   $host = "smtp.gmail.com";
   $Username = "jcastillo@cercal.cl";
-  $password = "Panda0497";
+  $password = "Panda0497.";
   $url = "http://localhost/CerNet2.0/templates/documentacion/firmar_documentacion.php?key=".$key."&document=".$document;
 }
 try{
@@ -60,7 +60,7 @@ try{
   //Server Setting
   $mail->SMTPDebug = 0;
   //$mail->SMTPDebug = 0;
-  //$mail->isSMTP();
+  $mail->isSMTP();
   $mail->Host =  $host;
   $mail->SMTPAuth = true;
   $mail->Username = $Username;

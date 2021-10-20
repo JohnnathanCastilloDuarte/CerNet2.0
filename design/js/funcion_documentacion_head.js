@@ -209,6 +209,12 @@ $(document).on('submit','#form_head_comentarios',function(e){
   
 });
 
+////////////// OCULTANDO CAMPO DE ESTADO SI NO ES REVISADO EL DOCUMENTO
+$(document).ready(function(){
+  $("#aprobacion_head").hide();
+});
+
+
 
 ////////////////////////////////
 
@@ -280,6 +286,8 @@ $(document).on('click','#ver_comentarios',function(){
 });
 
 $(document).on('click','#ver_documentacion_aprobacion',function(){
+  
+    $("#aprobacion_head").show();
     let nombre_archivo = $(this).attr('data-name');
     window.open('templates/documentacion/head_templates/visor_archivo.php?nombre='+nombre_archivo, nombre_archivo); 
 });

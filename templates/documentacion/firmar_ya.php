@@ -108,68 +108,44 @@ if($seleccion == 1){
   $identificacion = $_POST['identificacion'];
   $token = $_POST['token'];
   $mix = $token.$identificacion;
+  $siguiente = "";
   /*INSERT INTO firmantes_documentacion (id_documento, id_usuario, tipo_firma, firma, qr) VALUES (?,?,?,?,?) */
-        
-  $insertar = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo_firma = ?, firma = ?, qr = ?, fecha_firma = ? WHERE id_documento = ? AND id = ? AND id_usuario = ?");
+  
+  $consulta = mysqli_prepare($connect,"SELECT cargo FROM persona WHERE id_usuario = ?");
+  mysqli_stmt_bind_param($consulta, 'i', $id_persona);
+  mysqli_stmt_execute($consulta);
+  mysqli_stmt_store_result($consulta);
+  mysqli_stmt_bind_result($consulta, $cargo);
+
+  if($cargo == "Analista documental"){
+    $siguiente = "Head";
+  }else if($cargo == "Head"){
+    $siguiente = "Calidad";
+  }else{
+    $siguiente="CEO";
+  }
+
+
+  $consulta1 = mysqli_prepare($connect,"SELECT a.email FROM persona as a, firmantes_documentacion as b WHERE b.id_usuario = a.id_usuario AND b.id_documento = ? AND a.cargo = ?");
+  mysqli_stmt_bind_param($consulta1, 'is', $id_documentacion, $siguiente);
+  mysqli_stmt_execute($consulta1);
+  mysqli_stmt_store_result($consulta1);
+  mysqli_stmt_bind_result($consulta1, $email);
+  mysqli_stmt_fetch($consulta1);
+
+  echo $email;
+
+
+  /*$insertar = mysqli_prepare($connect,"UPDATE firmantes_documentacion SET tipo_firma = ?, firma = ?, qr = ?, fecha_firma = ? WHERE id_documento = ? AND id = ? AND id_usuario = ?");
   mysqli_stmt_bind_param($insertar, 'sissiii', $mix, $token_f, $filename, $fecha_actual, $id_documentacion, $id_t_firmantes,  $id_persona);
   mysqli_stmt_execute($insertar);
   echo mysqli_stmt_error($insertar);
   if($insertar){
-    echo "si";
-   /* 
-    $rest = substr($email, 0,-10);
-    $consultar_rol = mysqli_prepare($connect,"SELECT a.rol, b.email FROM participante_documentacion as a, persona as b WHERE a.id_persona = ? AND a.id_persona = b.id_usuario");
-    mysqli_stmt_bind_param($consultar_rol, 'i', $id_persona);
-    mysqli_stmt_execute($consultar_rol);
-    mysqli_stmt_store_result($consultar_rol);
-    mysqli_stmt_bind_result($consultar_rol, $rol, $email_1);
-    mysqli_stmt_fetch($consultar_rol);
-
-
-    if($rol == 1){
-    $rol_verdadero = "Documentador";
-    }else if($rol == 2){
-    $rol_verdadero = "Auditor";
-    }else{
-    $rol_verdadero = "Aprobador";
-    }
-
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
-
-    $from = "CerNet_Informa@cercal.net";
-    $to = $email_1;
-
-    $subject = "Token de seguridad";
-    $message = "CerNet informa que has realizado la firma con el siguiente token ".$mix;
-    $header = "Enviado desde: ".$from;
-
-    mail($to, $subject, $message, $header);
-    
-        $enviar_masivo = mysqli_prepare($connect,"SELECT a.email, a.nombre, a.apellido FROM persona as a, participante_documentacion as b WHERE b.id_persona = a.id_usuario AND b.id_documentacion = ?  AND b.rol != 3");
-        mysqli_stmt_bind_param($enviar_masivo, 'i', $id_documentacion);
-        mysqli_stmt_execute($enviar_masivo);
-        mysqli_stmt_store_result($enviar_masivo);
-        mysqli_stmt_bind_result($enviar_masivo, $email, $nombre, $apellido);
-        while($row = mysqli_stmt_fetch($enviar_masivo)){
-          
-          ini_set('display_errors', 1);
-          error_reporting(E_ALL);
-
-          $from = "cernet_informa@cercal.net";
-          $to = $email;
-
-          $subject = "Token de seguridad";
-          $message = "CerNet informa que ".$nombre." ".$apellido."realizado la firma del documento con el siguiente token ".$mix;
-          $header = "Enviado desde: ".$from;
-
-          mail($to, $subject, $message, $header);
-          
-        } */   
+    echo "si";  
         
   }else{
     echo "no";
-  }
+  }*/
   
 }
 ?>

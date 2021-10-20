@@ -128,11 +128,12 @@ if($variable_url == "cercal.net"){
         </div>
         <div class="card-body" id="m">
           <div class="row">
+            <!--
             <div class="col-sm-6" style="text-align:center;">
               <button class="btn btn-primary" id="firma_1">Firma pluma</button>
-            </div>
-            <div class="col-sm-6" style="text-align:center;">
-              <button class="btn btn-warning" id="firma_2">Firma automatica</button>
+            </div>-->
+            <div class="col-sm-12" style="text-align:center;">
+              <button class="btn btn-warning" id="firma_2">Firmar documento</button>
             </div>
           </div>
         </div>
