@@ -35,3 +35,5 @@
 		</div>
 	</div>
 </div>	
+
+<script type="text/javascript" src="design/js/Item.js"></script>

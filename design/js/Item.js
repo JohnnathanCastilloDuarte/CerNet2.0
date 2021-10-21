@@ -2,23 +2,23 @@
 
 $(document).on('click','#btn_abrir_item',function(){
 
-  let url = '';
-  let urlactual = window.location;
-  let id_tipo_item = $(this).attr('data-id');
+	let url = '';
+	let urlactual = window.location;
+	let id_tipo_item = $(this).attr('data-id');
 
-  if (urlactual == 'http://localhost/CerNet2.0/index.php?module=5&page=1') {
+	if (urlactual == 'http://localhost/CerNet2.0/index.php?module=5&page=1') {
 
-  		url = `http://localhost/CerNet2.0/index.php?module=5&page=3&type=${id_tipo_item}`;
+		url = `http://localhost/CerNet2.0/index.php?module=5&page=3&type=${id_tipo_item}`;
 
 
-  }else{
+	}else{
 
-  		url = `http://cercal.net/CerNet2.0/index.php?module=5&page=3&type=${id_tipo_item}`;
-  }
+		url = `http://cercal.net/CerNet2.0/index.php?module=5&page=3&type=${id_tipo_item}`;
+	}
 
-   window.open(url)
+	window.open(url)
 
-    
+
 });
 
 
@@ -30,40 +30,40 @@ $(document).on('click','#btn_abrir_item',function(){
 		let nombre_item = $("#nombre_item").val();
 
 		const item = {
-		 empresa : $("#empresa_item").val(),
-		 tipo_item : $("#tipo_item").val(),
-		 nombre_item : $("#nombre_item").val(),
-		 desc_item : $("#desc_item").val(),
-		 estado : $("input:radio[name=estado]:checked").val(),
-		 id_valida :$("#id_valida").val()	
+			empresa : $("#empresa_item").val(),
+			tipo_item : $("#tipo_item").val(),
+			nombre_item : $("#nombre_item").val(),
+			desc_item : $("#desc_item").val(),
+			estado : $("input:radio[name=estado]:checked").val(),
+			id_valida :$("#id_valida").val()	
 		}
-			
+
 		$.post('templates/item/new_item.php',item, function(respt){
-    
-				if(respt == "si"){
-					Swal.fire({
-				position: 'center',
-				icon: 'success',
-				title:'El Item '+ nombre_item +' ha sido creado',
-				showConfirmButton: true,
-				ConfirmButtonText:'Ok'		
-					}).then((result)=>{
+
+			if(respt == "si"){
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title:'El Item '+ nombre_item +' ha sido creado',
+					showConfirmButton: true,
+					ConfirmButtonText:'Ok'		
+				}).then((result)=>{
 					if(result.value){
 						
 						lista_item_cliente();
 					}
-					});		
+				});		
 				}//cierre del if
 				else{
 					Swal.fire({
-				position: 'center',
-				icon: 'error',
-				title: 'El Item '+ nombre_item +' No ha sido creado',
-				showConfirmButton: true,
-				ConfirmButtonText:'Ok'
+						position: 'center',
+						icon: 'error',
+						title: 'El Item '+ nombre_item +' No ha sido creado',
+						showConfirmButton: true,
+						ConfirmButtonText:'Ok'
 					});
 				}
-		});
+			});
 	});
 }());
 
@@ -73,40 +73,64 @@ $(document).on('click','#btn_abrir_item',function(){
 	$("div #btn_eliminar_item").click(function(){
 		
 		
-		let nombre_item = $(this).attr("data-nombre");
-		
+		let nombre_item  = $(this).attr("data-nombre");
+		let id_principal = $(this).attr("data-id");
+		let id_valida    = $("#id_valida").val();
+
+//estas variables son para enviar el registro de la accion
+		let movimiento = "Elimina en el modulo";
+		let modulo 	   = "Items";
+		let quien 	   = $("#id_valida").val();
+
 		const datos = {
-			 id_principal : $(this).attr("data-id"),
-				id_valida :$("#id_valida").val()
+			quien,
+			movimiento,
+			modulo, 
 		}
-		
 		Swal.fire({
-			position: 'center',
-			icon: 'error',
-			title:'Seguro desea eliminar '+ nombre_item +'',
-			showConfirmButton: true,
-			confirmButtonText:'Si',
+			toast:true,
+			title: 'Eliminar',
+			text: 'Deseas eliminar el item ?!'+nombre_item,
+			icon: 'warning',
 			showCancelButton: true,
-			cancelButtonText: 'No'
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, Eliminar!',
+			cancelButtonText: 'No, Eliminar!'
 		}).then((result)=>{
-			$.post('templates/item/delete_item.php', datos ,function(rep){
-			
-						if(rep == "si"){
-							Swal.fire({
-								position: 'center',
-								toast:true,
-								title: 'Registro Eliminado',
-								icon : 'success',
-								showConfirmButton: true,
-								confirmButtonText:'Ok'
-							}).then((result)=>{
-									if(result.value){
-										location.reload();
-									}
-							});
+
+			if (result.value) {
+				$.ajax({
+					type: 'POST',
+					data: {'id_principal':id_principal, 'id_valida':id_valida},	
+					url: 'templates/item/delete_item.php',
+					success: function(){	
+						Swal.fire({
+							icon :'success',			
+							text: 'Registro eliminado correctamente',
+							confirmButtonText: 'Ok!'
+						}).then((result) => {
+							if(result.value){
+								location.reload();
+							}else{
+								console.log("error");
+							}
+						});
+					}
+				});
+				$.ajax({
+					type:'POST',
+					data:datos,
+					url:'templates/controlador_backtrack/controlador_general.php',
+					success:function(response){
+						console.log(response);
+						if(response == "Listo"){
+
 						}
-					
-				});			
+					}
+				});
+			}
+
 		});
 	})
 }());
@@ -115,35 +139,35 @@ $(document).on('click','#btn_abrir_item',function(){
 function lista_item_cliente(){
 	let id_empresa = $("#empresa_item").val();
 	
-		$.ajax({
-			type:'POST',
-			data: {id_empresa},
-			url:'templates/item/lista_item_cliente.php',
-			success:function(e){
-				let traer = JSON.parse(e);
-				let template = "";
-				
-				traer.forEach(result =>{
-					template +=
-						`
-						<tr>
-								<td>${result.item}</td>
-								<td>${result.tipo}</td>
-								<td>${result.descripcion}</td>
-								<td>${result.fecha_registro}</td>
-								<td>
-									<div class="col-sm-12" style="text-align: center;">
-										<a id="btn_editar_item" href="index.php?module=4&page=3&type=${result.id_tipo}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info">
-										<i class="lnr-pencil btn-icon-wrapper"></i></a>
-									</div>	
-								</td>
-						</tr>
-						`;
-				});
-				
-				$("#items_cliente").html(template);
-			}
-		});
+	$.ajax({
+		type:'POST',
+		data: {id_empresa},
+		url:'templates/item/lista_item_cliente.php',
+		success:function(e){
+			let traer = JSON.parse(e);
+			let template = "";
+
+			traer.forEach(result =>{
+				template +=
+				`
+				<tr>
+				<td>${result.item}</td>
+				<td>${result.tipo}</td>
+				<td>${result.descripcion}</td>
+				<td>${result.fecha_registro}</td>
+				<td>
+				<div class="col-sm-12" style="text-align: center;">
+				<a id="btn_editar_item" href="index.php?module=4&page=3&type=${result.id_tipo}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info">
+				<i class="lnr-pencil btn-icon-wrapper"></i></a>
+				</div>	
+				</td>
+				</tr>
+				`;
+			});
+
+			$("#items_cliente").html(template);
+		}
+	});
 }
 
 
