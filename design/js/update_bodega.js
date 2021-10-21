@@ -176,7 +176,7 @@ function planos(){
 		let analisis_riesgo = $("input:radio[name=analisis_riesgo]:checked").val();
 		let fichas_estabilidad = $("input:radio[name=fichas_estabilidad]:checked").val();
 		
-		let id_item = $("#id_item").val();
+		let id_item = $("#id_item_bodega").val();
 		let id_valida = $("#id_valida").val();
 		
 		const datos = {
@@ -207,13 +207,12 @@ function planos(){
 		}
 		
 		$.post('templates/item/editar_bodega.php', datos, function(e){
-			console.log(e);
 			if(e == "Si"){
 				Swal.fire({
 					position:'center',
 					icon:'success',
-					title:'El registro ha sido actualizado',
-					timer:1500
+					title:'La bodega ha sido actualizada',
+					timer:2000
 				});
 			}
 		});

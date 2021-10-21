@@ -101,6 +101,34 @@ $("#btn_nuevo_item_bodega").click(function(){
 
 }); 
 
+///// registra la edicion de una bodega 
+$("#btn_editar_item_bodega").click(function(){
+
+ let quien = persona;
+ let movimiento = "Edita en el modulo";
+ let modulo = "Item y bodega";
+
+   const datos = {
+     quien,
+     movimiento,
+     modulo
+   }
+
+   $.ajax({
+     type:'POST',
+     data:datos,
+     url:'templates/controlador_backtrack/controlador_general.php',
+     success:function(response){
+       console.log(response);
+       if(response == "Listo"){
+
+       }
+     }
+   });
+   return "Si";
+
+}); 
+
 
 
 
