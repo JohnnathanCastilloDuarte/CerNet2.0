@@ -212,7 +212,8 @@ function planos(){
 					position:'center',
 					icon:'success',
 					title:'La bodega ha sido actualizada',
-					timer:2000
+					showConfirmButton: false,
+					timer:1000
 				});
 			}
 		});
@@ -220,7 +221,6 @@ function planos(){
 	});
 	
 }());
-
 
 
 /////// FUNCTION PARA CREAR BODEGA 
