@@ -21,6 +21,8 @@ $smarty->assign('paises', array('Afganistán','Albania','Alemania','Andorra','An
 //recibo al ID de la empresa
 $empresa = $_GET['empresa'];
 
+echo "<input value='".$empresa."' id='id_empresa' hidden>";
+
 
 if(isset($_POST['update'])){
 

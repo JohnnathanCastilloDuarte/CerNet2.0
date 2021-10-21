@@ -46,11 +46,11 @@ $("#btn_nuevo_cliente").click(function(){
 
 
 /////////////registra la modificacion del una nueva/////////////////////
-$("#btn_editar_cliente").click(function(){
+$("#btn_editar_cliente_empresa").click(function(){
 
  let quien = persona;
  let movimiento = "Actualiza el modulo";
- let modulo = "Cliente";
+ let modulo = "Cliente - Empresa";
 
    const datos = {
      quien,
