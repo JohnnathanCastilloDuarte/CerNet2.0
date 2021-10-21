@@ -25,23 +25,23 @@ $valor_seteado_tem = $_POST['valor_seteado_tem'];
 $temperatura_minima = $_POST['temperatura_minima'];
 $temperatura_maxima = $_POST['temperatura_maxima'];
 $id_valida  = $_POST['id_valida'];
-$tipo_item = 2;
+$tipo_item = 3;
 $estado = 1;
 
 
 $insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES
-                                            (?,?,?,?,?,?)');
+  (?,?,?,?,?,?)');
 mysqli_stmt_bind_param($insertando_item, 'iissii', $empresa_freezer, $tipo_item, $nombre_freezer, $desc_freezer, $estado, $id_valida);
 mysqli_stmt_execute($insertando_item);
 $id_item_insertado  =  mysqli_stmt_insert_id($insertando_item);
 
 if($insertando_item){
-  
+
   $insertando_freezer = mysqli_prepare($connect,"INSERT INTO item_freezer (id_item, fabricante, modelo, n_serie, c_interno, fecha_fabricacion, direccion, valor_seteado_hum, hum_min, hum_max, valor_seteado_tem, tem_min, tem_max, ubicacion, voltaje, potencia, capacidad, peso, alto, largo, ancho, id_usuario) VALUES
-                                                (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
   
   mysqli_stmt_bind_param($insertando_freezer, 'issssssssssssssssssssi', $id_item_insertado, $fabricante_freezer, $modelo_freezer, $n_serie_freezer, $codigo_interno_freezer, $fecha_fabricacion_freezer, $direccion_freezer, $valor_seteado_hum, $humedad_minima, $humedad_maxima, $valor_seteado_tem,
-                                                                         $humedad_minima, $humedad_maxima, $ubicacion_interna_freezer, $voltaje_freezer, $potencia_freezer, $capacidad_freezer, $peso_freezer, $alto_freezer, $largo_freezer, $ancho_freezer, $id_valida);
+   $humedad_minima, $humedad_maxima, $ubicacion_interna_freezer, $voltaje_freezer, $potencia_freezer, $capacidad_freezer, $peso_freezer, $alto_freezer, $largo_freezer, $ancho_freezer, $id_valida);
   
   mysqli_stmt_execute($insertando_freezer);
   
@@ -55,6 +55,6 @@ if($insertando_item){
   
 }
 
-mysqli_stmt_cloe($connect);
+//mysqli_stmt_cloe($connect);
 
 ?>

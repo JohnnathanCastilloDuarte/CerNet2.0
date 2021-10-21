@@ -72,9 +72,6 @@ function valida_botones_refrigerador(){
 				});
 			}
 		});
-		
-		
-		
 	});
 	
 }())
