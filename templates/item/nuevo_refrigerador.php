@@ -32,7 +32,7 @@ $estado = 1;
 
 
 $insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES
-                                            (?,?,?,?,?,?)');
+  (?,?,?,?,?,?)');
 mysqli_stmt_bind_param($insertando_item, 'iissii', $empresa_refrigerador, $tipo_item, $nombre_refrigerador, $desc_refrigerador, $estado, $id_valida);
 mysqli_stmt_execute($insertando_item);
 
@@ -40,11 +40,11 @@ mysqli_stmt_execute($insertando_item);
 $id_item_insertado  =  mysqli_stmt_insert_id($insertando_item);
 
 if($insertando_item){
-  
+
   $insertando_refrigerador = mysqli_prepare($connect,"INSERT INTO item_refrigerador (id_item, fabricante, modelo, n_serie, c_interno, fecha_fabricacion, direccion, valor_seteado_hum, hum_min, hum_max, valor_seteado_tem, tem_min, tem_max, ubicacion, voltaje, potencia, capacidad, peso, alto, largo, ancho, id_usuario) VALUES 
-                                                       (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+   (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
   mysqli_stmt_bind_param($insertando_refrigerador, 'issssssssssssssssssssi', $id_item_insertado, $fabricante_refrigerador, $modelo_refrigerador, $n_serie_refrigerador, $codigo_interno_refrigerador, $fecha_fabricacion_refrigerador, $direccion_refrigerador, $valor_seteado_hum, $humedad_minima, $humedad_maxima, $valor_seteado_tem, $temperatura_minima,
-                                                                    $temperatura_maxima, $ubicacion_interna_refrigerador, $voltaje_refrigerador, $potencia_refrigerador, $capacidad_refrigerador, $peso_refrigerador, $alto_refrigerador, $largo_refrigerador, $ancho_refrigerador, $id_valida);
+    $temperatura_maxima, $ubicacion_interna_refrigerador, $voltaje_refrigerador, $potencia_refrigerador, $capacidad_refrigerador, $peso_refrigerador, $alto_refrigerador, $largo_refrigerador, $ancho_refrigerador, $id_valida);
   
   mysqli_stmt_execute($insertando_refrigerador);
   
@@ -57,6 +57,6 @@ if($insertando_item){
   echo "No";
 }
 
-mysqli_stmt_close($connect);
+//mysqli_stmt_close($connect);
 
 ?>

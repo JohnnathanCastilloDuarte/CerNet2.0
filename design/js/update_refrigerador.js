@@ -17,7 +17,7 @@ function valida_botones_refrigerador(){
     $("#btn_nuevo_item_refrigerador").show();
     $("#btn_editar_item_refrigerador").hide();
   }else{
-    $("#btn_nuevo_item_refrigerador").hide();
+    $("#btn_nuevo_item_refrigerador").hide(); 
     $("#btn_editar_item_refrigerador").show();
   }
   
@@ -32,7 +32,7 @@ function valida_botones_refrigerador(){
 		
 		const datos = {
 		 	id_item_refrigerador : $("#id_item_refrigerador").val(),
-		 	id_item_2,
+		 	id_item,
 		 	nombre_refrigerador : $("#nombre_refrigerador").val(),
 		 	empresa_refrigerador : $("#empresa_refrigerador").val(),
 		  fabricante_refrigerador : $("#fabricante_refrigerador").val(),
@@ -59,15 +59,16 @@ function valida_botones_refrigerador(){
 			id_valida
 		}
 		
-		$.post('templates/item/editar_refrigerador.php', datos, function(e){
+		$.post('templates/item/editar_refrigerador.php', datos, function(responsive){
 			
-    
-			if(e == "Modificado"){
+      console.log(responsive);
+			if(responsive == "Si"){
 				Swal.fire({
 					position:'center',
 					icon:'success',
 					title:'El item ha sido modificado con exito',
-					timer:1500
+          showConfirmButton: false,
+					timer:1000
 				});
 			}
 		});
@@ -78,6 +79,7 @@ function valida_botones_refrigerador(){
 	
 }())
 
+// crea el item del refrigerador
 $("#btn_nuevo_item_refrigerador").click(function(){
    
   const datos = {
@@ -120,7 +122,7 @@ $("#btn_nuevo_item_refrigerador").click(function(){
           title:'Mensaje',
           text:'No se ha podido crear, Contacta con el administrador',
           icon:'error',
-          timer:2000
+          
         });
       }
   })

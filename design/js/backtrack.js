@@ -127,6 +127,62 @@ $("#btn_editar_item_bodega").click(function(){
    });
    return "Si";
 
+});
+
+ ///// registra la creacion de un refrigerador 
+$("#btn_nuevo_item_refrigerador").click(function(){
+
+ let quien = persona;
+ let movimiento = "Crea en el modulo";
+ let modulo = "Item y refrigerador";
+
+   const datos = {
+     quien,
+     movimiento,
+     modulo
+   }
+
+   $.ajax({
+     type:'POST',
+     data:datos,
+     url:'templates/controlador_backtrack/controlador_general.php',
+     success:function(response){
+       console.log(response);
+       if(response == "Listo"){
+
+       }
+     }
+   });
+   return "Si";
+
+}); 
+
+///// edita la creacion de un refrigerador 
+$("#btn_editar_item_refrigerador").click(function(){
+
+ let quien = persona;
+ let movimiento = "Edita en el modulo";
+ let modulo = "Item y refrigerador";
+
+   const datos = {
+     quien,
+     movimiento,
+     modulo
+   }
+
+   $.ajax({
+     type:'POST',
+     data:datos,
+     url:'templates/controlador_backtrack/controlador_general.php',
+     success:function(response){
+       console.log(response);
+       if(response == "Listo"){
+
+       }
+     }
+   });
+   return "Si";
+
 }); 
 
 
