@@ -38,18 +38,25 @@ $(document).ready(function(){
       valor_seteado_tem_ultrafreezer : $("#valor_seteado_tem_ultrafreezer").val(),
       temperatura_minima_ultrafreezer : $("#temperatura_minima_ultrafreezer").val(),
       temperatura_maxima_ultrafreezer : $("#temperatura_maxima_ultrafreezer").val(),
+      valor_seteado_hum_ultrafreezer : $("#valor_seteado_hum_ultrafreezer").val(),
+      humedad_minima_ultrafreezer : $("#humedad_minima_ultrafreezer").val(),
+      humedad_maxima_ultrafreezer : $("#humedad_maxima_ultrafreezer").val(),
       id_valida :$("#id_valida").val()
     }
 
-    $.post('templates/item/editar_ultrafreezer.php', datos, function(e){
+    $.post('templates/item/editar_ultrafreezer.php', datos, function(response){
 
-     if(e == "Modificado"){
+      console.log(response);
+     if(response == "Si"){
       Swal.fire({
        position:'center',
        icon:'success',
        title:'El item ha sido modificado con exito',
-       timer:1500
+       showConfirmButton: false,
+       timer:1000
      });
+    }else{
+      console.log("error")
     }
   });
 

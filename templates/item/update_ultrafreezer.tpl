@@ -37,8 +37,8 @@
             <div id="step-12">
               <div class="form-row">
                 <div class="col-sm-6">
-                <input type="hidden" id="id_item_ultrafreezer" value="{$ultrafreezer.id_ultrafreezer}">
-                  <input type="hidden" id="id_item_2_ultrafreezer" value="{$ultrafreezer.id_item}">
+                <input type="text" id="id_item_ultrafreezer" value="{$ultrafreezer.id_ultrafreezer}">
+                  <input type="text" id="id_item_2_ultrafreezer" value="{$ultrafreezer.id_item}">
                   <label>Nombre del Ultrafreezer</label>
                   <input type="text" id="nombre_ultrafreezer" class="form-control" value="{$ultrafreezer.nombre_ultrafreezer}">
                 </div>

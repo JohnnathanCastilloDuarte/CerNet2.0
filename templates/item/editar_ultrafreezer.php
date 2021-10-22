@@ -22,6 +22,9 @@ $ancho_ultrafreezer = $_POST['ancho_ultrafreezer'];
 $valor_seteado_tem_ultrafreezer = $_POST['valor_seteado_tem_ultrafreezer'];
 $temperatura_minima_ultrafreezer = $_POST['temperatura_minima_ultrafreezer'];
 $temperatura_maxima_ultrafreezer = $_POST['temperatura_maxima_ultrafreezer'];
+$valor_seteado_hum      = $_POST['valor_seteado_hum_ultrafreezer'];
+$humedad_maxima         = $_POST['humedad_minima_ultrafreezer'];
+$humedad_minima         = $_POST['humedad_maxima_ultrafreezer'];
 
 $id_valida = $_POST['id_valida'];
 
@@ -36,25 +39,25 @@ if($update_ultrafreezer){
 
 
 	$update_ultrafreezer_2  = mysqli_prepare($connect,"UPDATE item_ultrafreezer SET fabricante = ?, modelo = ?, n_serie = ?, c_interno = ?, fecha_fabricacion = ?, direccion = ? ,
-		ubicacion = ?, voltaje = ?, potencia = ?, capacidad = ?, peso = ?, alto = ?, largo = ?, ancho = ?, valor_seteado_tem = ?, tem_min = ?, tem_max = ?, id_usuario = ?
+		ubicacion = ?, voltaje = ?, potencia = ?, capacidad = ?, peso = ?, alto = ?, largo = ?, ancho = ?, valor_seteado_tem = ?, tem_min = ?, tem_max = ?, id_usuario = ?, valor_seteado_hum = ?, hum_min = ?, hum_max = ?
 		WHERE id_ultrafreezer = $id_item_ultrafreezer");
-	mysqli_stmt_bind_param($update_ultrafreezer_2, 'sssssssssssssssssi', $fabricante_ultrafreezer, $modelo_ultrafreezer, $n_serie_ultrafreezer, $codigo_interno_ultrafreezer, $fecha_fabricacion_ultrafreezer,
+	mysqli_stmt_bind_param($update_ultrafreezer_2, 'sssssssssssssssssisss', $fabricante_ultrafreezer, $modelo_ultrafreezer, $n_serie_ultrafreezer, $codigo_interno_ultrafreezer, $fecha_fabricacion_ultrafreezer,
 		$direccion_ultrafreezer, $ubicacion_interna_ultrafreezer, $voltaje_ultrafreezer, $potencia_ultrafreezer, $capacidad_ultrafreezer, $peso_ultrafreezer, 
 		$alto_ultrafreezer, $largo_ultrafreezer, $ancho_ultrafreezer, $valor_seteado_tem_ultrafreezer,
-		$temperatura_minima_ultrafreezer, $temperatura_maxima_ultrafreezer, $id_valida);
+		$temperatura_minima_ultrafreezer, $temperatura_maxima_ultrafreezer, $id_valida,$valor_seteado_hum, $humedad_minima, $humedad_maxima);
 
 	mysqli_stmt_execute($update_ultrafreezer_2);
 
 
-	if($update_ultrafreezer_2 > 0)
+	if($update_ultrafreezer_2)
 	{
-		echo "Modificado";
+		echo "Si";
 	}else{
-		echo "error";
+		echo "No";
 	}
 
 }
 
 
-mysqli_stmt_close($connect);
+//mysqli_stmt_close($connect);
 ?>

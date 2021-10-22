@@ -9,12 +9,12 @@ if(isset($_GET['item'])){
     //CONSULTO LA INFORMACIÓN DEL EQUIPO
     $ultrafreezer = mysqli_prepare($connect,"SELECT a.id_ultrafreezer,  a.fabricante, a.modelo, a.n_serie, a.c_interno, a.fecha_fabricacion, a.direccion, a.ubicacion, a.voltaje, 
         a.potencia, a.capacidad, a.peso, a.alto, a.largo, a.ancho, b.nombre, b.descripcion, c.id_empresa, c.nombre,
-        a.valor_seteado_tem, a.tem_min, a.tem_max FROM item_ultrafreezer as a, item as b, empresa as c 
+        a.valor_seteado_tem, a.tem_min, a.tem_max, a.valor_seteado_hum, a.hum_min, a.hum_max FROM item_ultrafreezer as a, item as b, empresa as c 
         WHERE b.id_empresa = c.id_empresa AND a.id_item = b.id_item AND a.id_item = $id_equipo");
     mysqli_stmt_execute($ultrafreezer);
     mysqli_stmt_store_result($ultrafreezer);
     mysqli_stmt_bind_result($ultrafreezer, $id_ultrafreezer, $fabricante, $modelo, $n_serie, $c_interno, $fecha_fabricacion, $direccion, $ubicacion, $voltaje, $potencia, $capacidad,
-     $peso, $alto, $largo, $ancho, $nombre_item, $descripcion_item, $id_empresa, $nombre_empresa, $seteado_tem, $tem_min, $tem_max);
+     $peso, $alto, $largo, $ancho, $nombre_item, $descripcion_item, $id_empresa, $nombre_empresa, $seteado_tem, $tem_min, $tem_max, $seteado_hum, $hum_min, $hum_max);
 
     $array_ultrafreezer = array();
 
@@ -42,7 +42,10 @@ if(isset($_GET['item'])){
         'nombre_empresa'=>$nombre_empresa,
         'seteado_tem'=>$seteado_tem,
         'tem_min'=>$tem_min,
-        'tem_max'=>$tem_max
+        'tem_max'=>$tem_max,
+        'seteado_hum'=>$seteado_hum,
+        'hum_min'=>$hum_min,
+        'hum_max'=>$hum_max,
     );	
   }
 
@@ -76,7 +79,10 @@ else{
     'nombre_empresa'=>'',
     'seteado_tem'=>'',
     'tem_min'=>'',
-    'tem_max'=>''
+    'tem_max'=>'',
+    'seteado_hum'=>'',
+    'hum_min'=>'',
+    'hum_max'=>'',
 );
   $smarty->assign("array_ultrafreezer",$array_ultrafreezer);
 }//////// CIERRE DEL ELSE
