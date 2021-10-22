@@ -127,7 +127,9 @@ try{
 
   //Server Setting
   $mail->SMTPDebug = 0;
-  //$mail->SMTPDebug = 0;
+  if($variable_url != "cercal.net"){
+    $mail->SMTPDebug = 0;
+  }
   $mail->isSMTP();
   $mail->Host =  $host;
   $mail->SMTPAuth = true;
