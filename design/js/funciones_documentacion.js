@@ -1566,7 +1566,7 @@ $("#formulario_pdf").on("submit", function(e){
 //////// TREAR PDF GRANDE
 
 function listar_pdf_grande(){
-  
+  $("#pdf_grande").show();
   $.ajax({
     type:'POST',
     data:{id_documentacion_d},
