@@ -121,8 +121,8 @@ $pdf->writeHTML($html, true, false, false, false, '');
 $que_hace = "";
 
 $consultar_2 = mysqli_prepare($connect,"SELECT  a.firma, a.fecha_firma, b.nombre, b.apellido, b.cargo, a.tipo_firma, c.rol, a.qr FROM
-                                        firmantes_documentacion as a, persona as b, participante_documentacion as c WHERE a.id_documento = ?
-                                        AND a.id_usuario = b.id_usuario AND a.id_usuario = c.id_persona ORDER BY fecha_firma ASC");
+firmantes_documentacion as a, persona as b, participante_documentacion as c WHERE a.id_documento = ?
+AND a.id_usuario = b.id_usuario AND a.id_usuario = c.id_persona AND a.tipo_firma != '' ORDER BY fecha_firma ASC;");
 mysqli_stmt_bind_param($consultar_2, 'i', $key);
 mysqli_stmt_execute($consultar_2);
 mysqli_stmt_store_result($consultar_2);
@@ -158,7 +158,7 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
       $pdf->writeHTMLCell(70,30, 70, '',$fecha_registro, 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(60, 30, 140, '', '<br><br><img src="'.$contador.'.png" width="120" height="89"/>', 1, 1, 0, true, 'J', true);
+      $pdf->writeHTMLCell(60, 30, 140, '', '<br><br><img src="'.$contador.'.png" width="120" height="89"/>', 1, 1, 0, true, 'M', true);
 
 
     }else{
@@ -167,7 +167,7 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
       $pdf->writeHTMLCell(70,30, 70, '',$fecha_registro, 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(60, 30, 140, '', '<img src="templates/documentacion/'.$qr.'" width="120" height="89"/>', 1, 1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(60, 30, 140, '', '<p><img src="templates/documentacion/'.$qr.'" border="0" height="80" width="80" align="middle" /></p>', 1, 1, 0, true, 'C', true);
     }
   
 

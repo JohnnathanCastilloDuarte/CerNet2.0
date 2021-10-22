@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-20 16:39:11
+/* Smarty version 3.1.34-dev-7, created on 2021-10-22 08:38:34
   from 'C:\xampp\htdocs\CerNet2.0\templates\main_footer.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61702a0faa1c07_36016940',
+  'unifunc' => 'content_61725c6a7de460_09661524',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6f5862ab2caaa2c4211b20eaf76d625fb5ba8ec1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\main_footer.php',
-      1 => 1634740723,
+      1 => 1634884685,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61702a0faa1c07_36016940 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61725c6a7de460_09661524 (Smarty_Internal_Template $_smarty_tpl) {
 ?>  <?php echo '<script'; ?>
  type="text/javascript" src="design/js/privilegiosall.js"><?php echo '</script'; ?>
 >
@@ -58,9 +58,9 @@ function content_61702a0faa1c07_36016940 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript" src="design/assets/scripts/main.js"><?php echo '</script'; ?>
 >
 
-  <?php echo '<script'; ?>
+<!--  <?php echo '<script'; ?>
  type="text/javascript" src="design/js/backtrack.js"><?php echo '</script'; ?>
->
+>-->
 
 <!--
 

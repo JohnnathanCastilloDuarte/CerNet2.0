@@ -13,7 +13,14 @@ $seleccion = $_POST['seleccion'];
 $id_documentacion = $_POST['id_documentacion'];
 $id_persona = $_POST['id_persona'];
 $id_t_firmantes = $_POST['id_t_firmantes'];
-$URLactual = $_POST['URLactual'];
+$variable_url = $_SERVER['HTTP_HOST'];
+$contenido = "";
+
+$key1 = base64_encode($id_persona);
+$key2 = base64_encode($id_documentacion);
+
+$url_qr = "http://".$variable_url."/CerNet2.0/templates/documentacion/firmar_documentacion.php?key=".$key1."&document=".$key2;
+
 
 $consultar_link = mysqli_prepare($connect,"SELECT a.url, b.nombre FROM archivos_documentacion as a, documentacion as b WHERE a.id_documentacion = ? AND a.id_documentacion = b.id");
 mysqli_stmt_bind_param($consultar_link, 'i', $id_documentacion);
@@ -22,8 +29,7 @@ mysqli_stmt_store_result($consultar_link);
 mysqli_stmt_bind_result($consultar_link, $url, $nombre_proceso);
 mysqli_stmt_fetch($consultar_link);
 
-$variable_url = $_SERVER['HTTP_HOST'];
-$contenido = "";
+
 
 $fecha_actual = date('y-m-d h:i:s', time());
 
@@ -52,7 +58,7 @@ if($variable_url == "cercal.net"){
 
 //Enviamos los parametros a la Función para generar código QR
 
-QRcode::png($URLactual, $filename, $level, $tama_o, $framSize); 
+QRcode::png($url_qr, $filename, $level, $tama_o, $framSize); 
 
 if($seleccion == 1){
   $pluma_f = 0;
@@ -143,7 +149,6 @@ if($seleccion == 1){
   mysqli_stmt_fetch($consulta1);
 
 
-$variable_url = $_SERVER['HTTP_HOST'];
 $url = "";
 $mail = new PHPMailer(true);
 
@@ -228,7 +233,7 @@ try{
   //Server Setting
   $mail->SMTPDebug = 0;
   //$mail->SMTPDebug = 0;
-  //$mail->isSMTP();
+  $mail->isSMTP();
   $mail->Host =  $host;
   $mail->SMTPAuth = true;
   $mail->Username = $Username;

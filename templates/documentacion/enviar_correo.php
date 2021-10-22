@@ -71,7 +71,7 @@ if($variable_url == "cercal.net"){
 $cuerpo = 
 "<table style='background: #ececec;border-radius: 9px;width: 100%;' >
   <tr>
-      <td style='width: 103px;'><img src='".$url_cernet."/design/assets/images/logo_big.png' style='width: 100%;'></td>
+      <td style='width: 103px;'><img src='https://cercal.net/CerNet2.0/design/assets/images/logo_big.png' style='width: 100%;'></td>
       <td colspan='2'  style='color: #4545fb;font-family: Quincy;text-align: center;font-size: 22px;'>Invitación a proceso documental CerNet2.0</td>
     
   </tr>
@@ -128,7 +128,7 @@ try{
   //Server Setting
   $mail->SMTPDebug = 0;
   //$mail->SMTPDebug = 0;
-  //$mail->isSMTP();
+  $mail->isSMTP();
   $mail->Host =  $host;
   $mail->SMTPAuth = true;
   $mail->Username = $Username;

@@ -8,6 +8,8 @@ var id_documentacion_encript = $("#tercer_campo").val();
 var URLactual = window.location;
 
 
+
+
 ////FUNCIONES   A UTILIZAR
 listar_documentacion_arriba();
 ya_firmo();

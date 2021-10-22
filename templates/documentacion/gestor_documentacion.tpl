@@ -393,8 +393,8 @@ p{
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header" style="text-align:center;">
-            <h5>Archivos en el sistema</h5>
+          <div class="card-body" id="gif_loading" style="text-align: center;">
+            <img src="design/images/cargando.gif">
           </div>
           <div class="card-body" id="pdf_grande">
             
@@ -403,16 +403,17 @@ p{
       </div>
     </div>
     <br>
+    <!--
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" id="pdf_grande">
             <div id="aqui_iframe" >
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
   
   
