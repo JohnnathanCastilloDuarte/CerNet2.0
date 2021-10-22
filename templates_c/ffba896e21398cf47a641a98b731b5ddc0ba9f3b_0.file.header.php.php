@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-22 23:37:34
+/* Smarty version 3.1.34-dev-7, created on 2021-10-22 23:59:30
   from 'C:\xampp\htdocs\CerNet2.0\templates\header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61732f1e7a4823_95365721',
+  'unifunc' => 'content_61733442245151_43748006',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ffba896e21398cf47a641a98b731b5ddc0ba9f3b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\header.php',
-      1 => 1634938652,
+      1 => 1634939967,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61732f1e7a4823_95365721 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61733442245151_43748006 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
@@ -515,9 +515,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
  </div>
 </div>
 
-<?php echo '<script'; ?>
- src="design/js/backtrack.js"><?php echo '</script'; ?>
->
 
 <?php echo '<script'; ?>
 >

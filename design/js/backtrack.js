@@ -4,9 +4,30 @@ var verifica = 0;
 
 $("#btn_cerrar_sesion").click(function(){   
 
-  if (backtrack(persona, 'Cerró Sesión en', 'CerNet 2.0') == "Si"){
-    window.location = "validate_login.php?action=0";
-  }  
+  let quien = persona;
+  let movimiento = "Cerro sesión en";
+  let modulo = "CerNet 2.0";
+
+  const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
+
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
+
+      window.location = "validate_login.php?action=0";
+     }
+   }
+ });
+
+
 });
 
 
@@ -41,7 +62,7 @@ $("#btn_nuevo_cliente").click(function(){
 
  }else{
   console.log("error");
- }
+}
 }); 
 
 
@@ -52,24 +73,24 @@ $("#btn_editar_cliente_empresa").click(function(){
  let movimiento = "Actualiza el modulo";
  let modulo = "Cliente - Empresa";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 }); 
 
@@ -80,24 +101,24 @@ $("#btn_nuevo_item_bodega").click(function(){
  let movimiento = "Crea en el modulo";
  let modulo = "Item y bodega";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 }); 
 
@@ -108,33 +129,33 @@ $("#btn_editar_item_bodega").click(function(){
  let movimiento = "Edita en el modulo";
  let modulo = "Item y bodega";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 });
 
  ///// registra la creacion de un refrigerador 
-$("#btn_nuevo_item_refrigerador").click(function(){
+ $("#btn_nuevo_item_refrigerador").click(function(){
 
- let quien = persona;
- let movimiento = "Crea en el modulo";
- let modulo = "Item y refrigerador";
+   let quien = persona;
+   let movimiento = "Crea en el modulo";
+   let modulo = "Item y refrigerador";
 
    const datos = {
      quien,
@@ -155,7 +176,7 @@ $("#btn_nuevo_item_refrigerador").click(function(){
    });
    return "Si";
 
-}); 
+ }); 
 
 ///// edita la creacion de un refrigerador 
 $("#btn_editar_item_refrigerador").click(function(){
@@ -164,24 +185,24 @@ $("#btn_editar_item_refrigerador").click(function(){
  let movimiento = "Edita en el modulo";
  let modulo = "Item y refrigerador";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 }); 
 
@@ -192,24 +213,24 @@ $("#btn_nuevo_item_freezer").click(function(){
  let movimiento = "Crea en el modulo";
  let modulo = "Item y freezer";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 }); 
 
@@ -220,24 +241,24 @@ $("#btn_editar_item_freezer").click(function(){
  let movimiento = "Edita en el modulo";
  let modulo = "Item y freezer";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 }); 
 
@@ -249,24 +270,24 @@ $("#btn_crear_item_ultrafreezer").click(function(){
  let movimiento = "Crea en el modulo";
  let modulo = "Item y ultrafreezer";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 }); 
 
@@ -277,24 +298,24 @@ $("#btn_editar_item_ultrafreezer").click(function(){
  let movimiento = "Edita en el modulo";
  let modulo = "Item y ultrafreezer";
 
-   const datos = {
-     quien,
-     movimiento,
-     modulo
-   }
+ const datos = {
+   quien,
+   movimiento,
+   modulo
+ }
 
-   $.ajax({
-     type:'POST',
-     data:datos,
-     url:'templates/controlador_backtrack/controlador_general.php',
-     success:function(response){
-       console.log(response);
-       if(response == "Listo"){
+ $.ajax({
+   type:'POST',
+   data:datos,
+   url:'templates/controlador_backtrack/controlador_general.php',
+   success:function(response){
+     console.log(response);
+     if(response == "Listo"){
 
-       }
      }
-   });
-   return "Si";
+   }
+ });
+ return "Si";
 
 }); 
 

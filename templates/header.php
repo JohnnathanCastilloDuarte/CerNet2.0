@@ -471,7 +471,6 @@
  </div>
 </div>
 
-<script src="design/js/backtrack.js"></script>
 
 <script>
   $("#reload_aprobaciones").click(function(){
