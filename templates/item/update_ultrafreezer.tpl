@@ -158,21 +158,19 @@
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Valor seteado Humedad:</label>
-                  <input type="text" id="valor_seteado_hum_ultrafreezer" class="form-control" placeholder="Valor seteado temperatura" value="{$ultrafreezer.seteado_hum}" required>
+                  <input type="text" id="valor_seteado_hum_ultrafreezer" class="form-control" placeholder="Valor seteado humedad" value="{$ultrafreezer.seteado_hum}" required>
                 </div>
 
                 <div class="col-sm-4">
                   <label>Humedad minima:</label>
-                  <input type="text" id="humedad_minima_ultrafreezer" class="form-control" placeholder="Temperatura minima" value="{$ultrafreezer.hum_min}" required>
+                  <input type="text" id="humedad_minima_ultrafreezer" class="form-control" placeholder="humedad minima" value="{$ultrafreezer.hum_min}" required>
                 </div>
 
                 <div class="col-sm-4">
                   <label>Humedad maxima:</label>
-                  <input type="text" id="humedad_maxima_ultrafreezer" class="form-control" placeholder="Temperatura maxima" value="{$ultrafreezer.hum_max}" required>
+                  <input type="text" id="humedad_maxima_ultrafreezer" class="form-control" placeholder="humedad maxima" value="{$ultrafreezer.hum_max}" required>
                 </div>
               </div>
-
-
 
               <br>
               <div class="form-row" id="btns_ultrafreezer">

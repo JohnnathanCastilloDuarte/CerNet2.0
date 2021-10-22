@@ -242,6 +242,63 @@ $("#btn_editar_item_freezer").click(function(){
 }); 
 
 
+///// registra la creacion de un ultrafreezer 
+$("#btn_crear_item_ultrafreezer").click(function(){
+
+ let quien = persona;
+ let movimiento = "Crea en el modulo";
+ let modulo = "Item y ultrafreezer";
+
+   const datos = {
+     quien,
+     movimiento,
+     modulo
+   }
+
+   $.ajax({
+     type:'POST',
+     data:datos,
+     url:'templates/controlador_backtrack/controlador_general.php',
+     success:function(response){
+       console.log(response);
+       if(response == "Listo"){
+
+       }
+     }
+   });
+   return "Si";
+
+}); 
+
+///// registra la edicion de un ultrafreezer 
+$("#btn_editar_item_ultrafreezer").click(function(){
+
+ let quien = persona;
+ let movimiento = "Edita en el modulo";
+ let modulo = "Item y ultrafreezer";
+
+   const datos = {
+     quien,
+     movimiento,
+     modulo
+   }
+
+   $.ajax({
+     type:'POST',
+     data:datos,
+     url:'templates/controlador_backtrack/controlador_general.php',
+     success:function(response){
+       console.log(response);
+       if(response == "Listo"){
+
+       }
+     }
+   });
+   return "Si";
+
+}); 
+
+
 
 
 

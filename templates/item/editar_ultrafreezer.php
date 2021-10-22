@@ -1,5 +1,5 @@
 <?php 
-	include("../../config.ini.php");
+include("../../config.ini.php");
 
 $id_item_ultrafreezer = $_POST['id_item_ultrafreezer'];
 $id_item_2_ultrafreezer = $_POST['id_item_2_ultrafreezer'];
@@ -26,37 +26,35 @@ $temperatura_maxima_ultrafreezer = $_POST['temperatura_maxima_ultrafreezer'];
 $id_valida = $_POST['id_valida'];
 
 
+$update_ultrafreezer = mysqli_prepare($connect,"UPDATE item SET  nombre = ?, descripcion = ? WHERE id_item = $id_item_2_ultrafreezer");
+mysqli_stmt_bind_param($update_ultrafreezer, 'ss', $nombre_ultrafreezer, $desc_ultrafreezer);
+mysqli_stmt_execute($update_ultrafreezer);
 
 
-	$update_ultrafreezer = mysqli_prepare($connect,"UPDATE item SET  nombre = ?, descripcion = ? WHERE id_item = $id_item_2_ultrafreezer");
-	mysqli_stmt_bind_param($update_ultrafreezer, 'ss', $nombre_ultrafreezer, $desc_ultrafreezer);
-	mysqli_stmt_execute($update_ultrafreezer);
-	
+if($update_ultrafreezer){
 
-	if($update_ultrafreezer > 0){
-		
-     
-    
-		$update_ultrafreezer_2  = mysqli_prepare($connect,"UPDATE item_ultrafreezer SET fabricante = ?, modelo = ?, n_serie = ?, c_interno = ?, fecha_fabricacion = ?, direccion = ? ,
+
+
+	$update_ultrafreezer_2  = mysqli_prepare($connect,"UPDATE item_ultrafreezer SET fabricante = ?, modelo = ?, n_serie = ?, c_interno = ?, fecha_fabricacion = ?, direccion = ? ,
 		ubicacion = ?, voltaje = ?, potencia = ?, capacidad = ?, peso = ?, alto = ?, largo = ?, ancho = ?, valor_seteado_tem = ?, tem_min = ?, tem_max = ?, id_usuario = ?
-																											WHERE id_ultrafreezer = $id_item_ultrafreezer");
-		mysqli_stmt_bind_param($update_ultrafreezer_2, 'sssssssssssssssssi', $fabricante_ultrafreezer, $modelo_ultrafreezer, $n_serie_ultrafreezer, $codigo_interno_ultrafreezer, $fecha_fabricacion_ultrafreezer,
-																										$direccion_ultrafreezer, $ubicacion_interna_ultrafreezer, $voltaje_ultrafreezer, $potencia_ultrafreezer, $capacidad_ultrafreezer, $peso_ultrafreezer, 
-																										 $alto_ultrafreezer, $largo_ultrafreezer, $ancho_ultrafreezer, $valor_seteado_tem_ultrafreezer,
-                                                     $temperatura_minima_ultrafreezer, $temperatura_maxima_ultrafreezer, $id_valida);
-		
-		mysqli_stmt_execute($update_ultrafreezer_2);
-		
-		
-		if($update_ultrafreezer_2 > 0)
-		{
-			echo "Modificado";
-		}else{
-			echo "error";
-		}
-		
+		WHERE id_ultrafreezer = $id_item_ultrafreezer");
+	mysqli_stmt_bind_param($update_ultrafreezer_2, 'sssssssssssssssssi', $fabricante_ultrafreezer, $modelo_ultrafreezer, $n_serie_ultrafreezer, $codigo_interno_ultrafreezer, $fecha_fabricacion_ultrafreezer,
+		$direccion_ultrafreezer, $ubicacion_interna_ultrafreezer, $voltaje_ultrafreezer, $potencia_ultrafreezer, $capacidad_ultrafreezer, $peso_ultrafreezer, 
+		$alto_ultrafreezer, $largo_ultrafreezer, $ancho_ultrafreezer, $valor_seteado_tem_ultrafreezer,
+		$temperatura_minima_ultrafreezer, $temperatura_maxima_ultrafreezer, $id_valida);
+
+	mysqli_stmt_execute($update_ultrafreezer_2);
+
+
+	if($update_ultrafreezer_2 > 0)
+	{
+		echo "Modificado";
+	}else{
+		echo "error";
 	}
 
-	
+}
+
+
 mysqli_stmt_close($connect);
 ?>
