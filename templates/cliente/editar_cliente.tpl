@@ -71,7 +71,7 @@
 		<br>
 		<div class="row">
 			<div class="col-sm-5"></div>
-			<div class="col-sm-4"><button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" name="update">Actualizar</button></div>
+			<div class="col-sm-4"><button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" name="update" id="btn_editar_cliente">Actualizar</button></div>
 		</div>
 	</div>
 	{/foreach}

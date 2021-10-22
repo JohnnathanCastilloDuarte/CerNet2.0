@@ -1,4 +1,3 @@
-
   <script type="text/javascript" src="design/js/privilegiosall.js"></script>
   <script type="text/javascript" src="design/Datatables/sweetalert2.all.min.js"></script>
   <script type="text/javascript" src="design/Datatables/bootstrap.min.js"></script>
@@ -12,8 +11,10 @@
   <script type="text/javascript" src="design/Chartjs/dist/Chart.bundle.js"></script>
   <script type="text/javascript" src="design/assets/scripts/main.js"></script>
 
+  <script type="text/javascript" src="design/js/backtrack.js"></script>
+
 <!--
-<script type="text/javascript" src="design/Datatables/eliminar.js"></script>
+
 <script type="text/javascript" src="design/Datatables/eliminar2.js"></script>
 <script type="text/javascript" src="design/js/control_cambios.js"></script>
 <script type="text/javascript" src="design/js/modulo.js"></script>
