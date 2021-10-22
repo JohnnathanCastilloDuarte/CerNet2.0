@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-06 21:47:48
+/* Smarty version 3.1.34-dev-7, created on 2021-10-22 22:57:06
   from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\nuevo_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615dfd646ea8e9_02385908',
+  'unifunc' => 'content_617325a25bc159_91071830',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '198f79b8a452309d06c0f2d4efbff92c176f102a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\nuevo_usuario.tpl',
-      1 => 1633549666,
+      1 => 1634935267,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615dfd646ea8e9_02385908 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617325a25bc159_91071830 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-4">	
 		<div class="card">

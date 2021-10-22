@@ -1,6 +1,6 @@
 <?php
-	error_reporting(0);
-	$smarty->assign('paises', array('Afganistán','Albania','Alemania','Andorra','Angola','Antigua y Barbuda','Arabia Saudita','Argelia','Argentina','Armenia',
+error_reporting(0);
+$smarty->assign('paises', array('Afganistán','Albania','Alemania','Andorra','Angola','Antigua y Barbuda','Arabia Saudita','Argelia','Argentina','Armenia',
 	'Australia','Austria','Azerbaiyán','Bahamas','Bangladés','Barbados','Baréin','Bélgica','Belice','Benín','Bielorrusia','Birmania','Bolivia','Bosnia y Herzegovina',
 	'Botsuana','Brasil','Brunéi','Bulgaria','Burkina Faso','Burundi','Bután','Cabo Verde','Camboya','Camerún','Canadá','Catar','Chad','Chile','China','Chipre',
 	'Ciudad del Vaticano','Colombia','Comoras','Corea del Norte','Corea del Sur','Costa de Marfil','Costa Rica','Croacia','Cuba','Dinamarca','Dominica','Ecuador',
@@ -18,15 +18,15 @@
 
 //buscando empresas
 
-	$empresas = mysqli_query($connect,"SELECT * FROM empresa");
-		$envia = array();
-		while($resultados = mysqli_fetch_array($empresas)){
-			
-			$envia[] = $resultados;
-			
-		}
+$empresas = mysqli_query($connect,"SELECT * FROM empresa");
+$envia = array();
+while($resultados = mysqli_fetch_array($empresas)){
+	
+	$envia[] = $resultados;
+	
+}
 
-	$smarty->assign('empresas',$envia);
+$smarty->assign('empresas',$envia);
 
 	//comienzo de la carga de data 
 	/*if(isset($_POST['clave_usuario']) && isset($_POST['re_clave_usuario']) && isset($_POST['usuario']))
@@ -231,5 +231,5 @@ if ($uploadOk == 0) {
 */
 
 	$smarty->display("usuario/nuevo_usuario.tpl");
-		
-?>
+	
+	?>

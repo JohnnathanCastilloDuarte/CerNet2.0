@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-22 22:49:08
-  from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\editar_usuario.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2021-10-22 21:20:24
+  from 'C:\xampp\htdocs\CerNet2.0\templates\perfil\perfil_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617323c4ed2245_15242744',
+  'unifunc' => 'content_61730ef8b80156_76409920',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '652b8ed9cf71c8b8e7bd33e3ac2c617cd5dacdbe' => 
+    '9cd50df6d4361bb0b87dd222e21e32995a37c17e' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\editar_usuario.tpl',
-      1 => 1634935747,
+      0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\perfil\\perfil_usuario.tpl',
+      1 => 1634930316,
       2 => 'file',
     ),
   ),
@@ -20,79 +20,75 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617323c4ed2245_15242744 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61730ef8b80156_76409920 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form method="post" id="formulario_actualizacion_usuario" enctype="multipart/form-data">
-	<input type="hidden" name="id_usuario" value="<?php echo $_smarty_tpl->tpl_vars['id_usuario']->value;?>
+  <input type="hidden" name="id_usuario" value="<?php echo $_smarty_tpl->tpl_vars['id_usuario']->value;?>
 ">
-	<div class="app-main__inner">
-		<div class="container-fluid">
-			<div class="row mb-2">
-				<div class="col-sm-6">
-				</div>
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-						<li class="breadcrumb-item"><a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
+<div class="app-main__inner">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 ">Usuarios</a></li>
-						<li class="breadcrumb-item active">Editar Usuario</li>			  
-					</ol>
-				</div>
-			</div>
-		</div><!-- /.container-fluid -->
+              <li class="breadcrumb-item active">Editar Usuario</li>			  
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
 
-		<div class="card">
-			<div class="card-header">
-				<?php
+	<div class="card">
+		<div class="card-header">
+			<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_persona']->value, 'persona_array');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['persona_array']->value) {
 ?>
-				<h5>Editar usuario <?php echo $_smarty_tpl->tpl_vars['persona_array']->value['nombre'];?>
+			<h5>Editar usuario <?php echo $_smarty_tpl->tpl_vars['persona_array']->value['nombre'];?>
  <?php echo $_smarty_tpl->tpl_vars['persona_array']->value['apellido'];?>
 </h5>
-				<?php
+			<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-			</div>
 		</div>
-		<br>
-		<div class="row">
-			<div class="col-sm-5">
-				<div class="card">
-					<div class="card-header">
-						Imagen Usuario
-					</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-5">
+			<div class="card">
+				<div class="card-header">
+					Imagen Usuario
+				</div>
 					<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_persona']->value, 'persona_array');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['persona_array']->value) {
 ?>
-					<?php if (isset($_smarty_tpl->tpl_vars['persona_array']->value['imagen_usuario'])) {?>
-					<?php $_smarty_tpl->_assignInScope('imagen_encontrada', "templates/usuario/".((string)$_smarty_tpl->tpl_vars['persona_array']->value['imagen_usuario']));?>
+					<?php if (file_exists($_smarty_tpl->tpl_vars['persona_array']->value['imagen_usuario'])) {?>
+					<?php $_smarty_tpl->_assignInScope('imagen_encontrada', $_smarty_tpl->tpl_vars['persona_array']->value['imagen_usuario']);?>
 					<?php } else { ?>
-					<?php $_smarty_tpl->_assignInScope('imagen_encontrada', "templates/usuario/images/images_profile/default.png");?>
+					<?php $_smarty_tpl->_assignInScope('imagen_encontrada', "design/assets/images/user.png");?>
 					<?php }?>
 					<div class="card-body">
-						<br>
-
 						<div class="row mx-auto">
 							<div id="preview" class="mx-auto">
-								<img style="width: 100%; height:150px; text-aling:center;" src="<?php echo $_smarty_tpl->tpl_vars['imagen_encontrada']->value;?>
-" alt="" class="d-block ui-w-30 rounded-circle"  value="<?php echo $_smarty_tpl->tpl_vars['imagen_encontrada']->value;?>
-">
+								<img style="width: 100%; height:150px; text-aling:center;" src="design/assets/images/user.png" alt="" class="d-block ui-w-30 rounded-circle">
 							</div>
 							<input type="file" name="profile_image" id="file" class="form-control" >
 						</div>
 					</div>
-				</div>
-				<br>
-				<?php
+			</div>
+			<br>
+			<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-
+			
 			</div>
 			<div class="col-sm-7">
 				<div class="card">
@@ -109,32 +105,31 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 								<label>Usuario:</label>
 								<input type="text" name="usuario" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['usuario'];?>
 " readonly>
-
 							</div>
 							<div class="col-sm-6">
 								<label>Empresa:</label>
-								<select class="form-control" name="empresa_usuario">
-									<?php
+									<select class="form-control" name="empresa_usuario">
+										<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['nombre_empresa']->value, 'extraer');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['extraer']->value) {
 ?> 	
-									<option value="<?php echo $_smarty_tpl->tpl_vars['extraer']->value['id_empresa'];?>
+										<option value="<?php echo $_smarty_tpl->tpl_vars['extraer']->value['id_empresa'];?>
 "><?php echo $_smarty_tpl->tpl_vars['extraer']->value['nombre'];?>
 </option>
-									<?php
+										<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-									<?php
+										<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa']->value, 'empresas');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['empresas']->value) {
 ?>
-									<option value="<?php echo $_smarty_tpl->tpl_vars['empresas']->value['id_empresa'];?>
+											<option value="<?php echo $_smarty_tpl->tpl_vars['empresas']->value['id_empresa'];?>
 "><?php echo $_smarty_tpl->tpl_vars['empresas']->value['nombre'];?>
 </option>
-									<?php
+										<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -162,7 +157,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 							<div class="col-sm-6">
 								<label>Pais:</label>
 								<select class="form-control" name="pais_usuario">
-									<option value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['pais'];?>
+								<option value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['pais'];?>
 "><?php echo $_smarty_tpl->tpl_vars['persona_array']->value['pais'];?>
 </option>
 									<?php
@@ -170,7 +165,7 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['pais_actual']->value) {
 ?>
-									<option value="<?php echo $_smarty_tpl->tpl_vars['pais_actual']->value;?>
+										<option value="<?php echo $_smarty_tpl->tpl_vars['pais_actual']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['pais_actual']->value;?>
 </option>
 									<?php
@@ -211,45 +206,45 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 							<div class="col-sm-6">
 								<label>Cargo:</label>
 								<select class="form-control" name="cargo_usuario">
-									<option value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['cargo'];?>
+								<option value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['cargo'];?>
 "><?php echo $_smarty_tpl->tpl_vars['persona_array']->value['cargo'];?>
 </option>
-									<option value="Administrativo">Administrativo</option>
-									<option value="Comercial">Comercial</option>
-									<option value="Documentador">Documentador</option>
-									<option value="Gerente general">Gerente general</option>
-									<option value="Ingeniero">Ingeniero</option>
-									<option value="T.I.">T.I.</option>
+								<option value="Administrativo">Administrativo</option>
+								<option value="Comercial">Comercial</option>
+								<option value="Documentador">Documentador</option>
+								<option value="Gerente general">Gerente general</option>
+								<option value="Ingeniero">Ingeniero</option>
+								<option value="T.I.">T.I.</option>
 								</select>
 							</div>
 						</div>
 
 						<?php if ($_smarty_tpl->tpl_vars['persona_array']->value['estado'] == "Activo") {?>
 						<?php $_smarty_tpl->_assignInScope('checked1', "checked");?>
-
+				
 						<?php } elseif ($_smarty_tpl->tpl_vars['persona_array']->value['estado'] == "Desvinculado") {?>
 						<?php $_smarty_tpl->_assignInScope('checked2', "checked");?>
-
+					
 						<?php } elseif ($_smarty_tpl->tpl_vars['persona_array']->value['estado'] == "Con licencia") {?>
 						<?php $_smarty_tpl->_assignInScope('checked3', "checked");?>
 
 						<?php } else { ?>
 						<?php $_smarty_tpl->_assignInScope('checked4', "checked");?>
 						<?php }?>
-						<br>
+            <br>
 
 						<div class="row">
 							<div class="col-sm-6">
-								<div class="position-relative form-group"><label>Estado:</label></div>
-								<select class="form-control" name="estado_usuario">
-									<option value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['estado'];?>
+                <div class="position-relative form-group"><label>Estado:</label></div>
+                <select class="form-control" name="estado_usuario">
+                  <option value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['estado'];?>
 "><?php echo $_smarty_tpl->tpl_vars['persona_array']->value['estado'];?>
 </option>
-									<option value="Activo">Activo</option>
-									<option value="Desvinculado">Desvinculado</option>
-									<option value="Con licencia">Con licencia</option>
-									<option value="Vacaciones">Vacaciones</option>
-								</select>
+                  <option value="Activo">Activo</option>
+                  <option value="Desvinculado">Desvinculado</option>
+                  <option value="Con licencia">Con licencia</option>
+                  <option value="Vacaciones">Vacaciones</option>
+                </select>
                 <!--
 								<div class="position-relative form-group"><label>Estado:</label></div>
 							</div>
@@ -276,8 +271,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 									<input type="radio" id="exampleCustomRadio4" name="estado_usuario" class="custom-control-input" value="Vacaciones" >
 									<label class="custom-control-label" for="exampleCustomRadio4">Vacaciones</label>	
 								</div>
-							</div>-->
-						</div>
+						</div>-->
+					</div>
 					</div>
 				</div>
 			</div>
@@ -295,19 +290,19 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </form>	
 <?php echo '<script'; ?>
 >
-	document.getElementById("file").onchange = function(e) {
-		let reader = new FileReader();
-		reader.readAsDataURL(e.target.files[0]);
-		reader.onload = function(){
-			let preview = document.getElementById('preview'),
-			image = document.createElement('img');
+document.getElementById("file").onchange = function(e) {
+  let reader = new FileReader();
+  reader.readAsDataURL(e.target.files[0]);
+  reader.onload = function(){
+    let preview = document.getElementById('preview'),
+            image = document.createElement('img');
 
-			image.src = reader.result;
+    image.src = reader.result;
 
-			preview.innerHTML = '';
-			preview.append(image);
-		};
-	}
+    preview.innerHTML = '';
+    preview.append(image);
+  };
+}
 <?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>

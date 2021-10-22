@@ -18,6 +18,7 @@ error_reporting(0);
 	  
 $user = $_GET['user'];
 
+
 //consultar usuario
 $id_empresa = "";
 $persona = mysqli_query($connect,"SELECT * FROM persona as a , usuario as b  WHERE a.id_usuario = b.id_usuario AND a.id_usuario = $user");

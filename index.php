@@ -27,6 +27,19 @@ mysqli_stmt_fetch($execute_query);
 
 $smarty->assign("imagen",$imagen);
 
+//mostrar imagen 
+$img = "SELECT imagen_usuario FROM persona WHERE id_usuario = ?";
+$execute_query2 = mysqli_prepare($connect,$img);
+mysqli_stmt_bind_param($execute_query2, 'i', $mi_id);
+mysqli_stmt_execute($execute_query2);
+mysqli_stmt_store_result($execute_query2);
+mysqli_stmt_bind_result($execute_query2, $imagen_usuario);
+mysqli_stmt_fetch($execute_query2);
+
+$smarty->assign("imagen_usuario",$imagen_usuario);
+
+echo "<script> console.log('".$imagen_usuario."')</script>";
+
 $query2 ="SELECT Modulos, Control_cambios, Usuarios, Clientes, Items, Ordenes_trabajo, Servicios, Informes, Documentacion, Cargos FROM privilegio WHERE id_privilegio = ?";
 $execute_query_2 = mysqli_prepare($connect,$query2);
 mysqli_stmt_bind_param($execute_query_2, 'i', $id_privilegio);

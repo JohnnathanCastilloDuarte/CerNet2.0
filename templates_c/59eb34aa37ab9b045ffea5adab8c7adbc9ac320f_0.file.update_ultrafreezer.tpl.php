@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-21 19:58:05
+/* Smarty version 3.1.34-dev-7, created on 2021-10-22 19:14:39
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_ultrafreezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6171aa2d7ccca0_39349078',
+  'unifunc' => 'content_6172f17f2b85b8_06826293',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '59eb34aa37ab9b045ffea5adab8c7adbc9ac320f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_ultrafreezer.tpl',
-      1 => 1634655980,
+      1 => 1634922873,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6171aa2d7ccca0_39349078 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6172f17f2b85b8_06826293 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -65,7 +65,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
             <div id="step-12">
               <div class="form-row">
                 <div class="col-sm-6">
-                  <input type="hidden" id="id_item_ultrafreezer" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['id_ultrafreezer'];?>
+                <input type="hidden" id="id_item_ultrafreezer" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['id_ultrafreezer'];?>
 ">
                   <input type="hidden" id="id_item_2_ultrafreezer" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['id_item'];?>
 ">
@@ -211,7 +211,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
               </div>
 
+              <br>
 
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Valor seteado Humedad:</label>
+                  <input type="text" id="valor_seteado_hum_ultrafreezer" class="form-control" placeholder="Valor seteado humedad" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['seteado_hum'];?>
+" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Humedad minima:</label>
+                  <input type="text" id="humedad_minima_ultrafreezer" class="form-control" placeholder="humedad minima" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['hum_min'];?>
+" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Humedad maxima:</label>
+                  <input type="text" id="humedad_maxima_ultrafreezer" class="form-control" placeholder="humedad maxima" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['hum_max'];?>
+" required>
+                </div>
+              </div>
 
               <br>
               <div class="form-row" id="btns_ultrafreezer">
@@ -240,5 +260,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   </div>
-</div><?php }
+</div>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/update_ultrafreezer.js"><?php echo '</script'; ?>
+><?php }
 }

@@ -1,3 +1,19 @@
+    
+    $("#edit_user").click(function() {
+
+        let id_valida = $("#id_valida").val();
+        console.log(id_valida);
+
+        $.ajax({
+            type:'POST',
+            data:{id_valida},
+            url:'buscar_usuario.php',
+            success:function(response){
+                
+            }
+        })
+    });
+
 ///////////////////// OCULTANDO URL
 /*
 $(document).ready(function(){
@@ -79,3 +95,7 @@ $(document).ready(function(){
     })
 
 });
+
+
+
+

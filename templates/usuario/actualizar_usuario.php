@@ -15,7 +15,6 @@ $usuario = $_POST['usuario'];
 $id_empresa = $_POST['empresa_usuario'];
 $id_usuario = $_POST['id_usuario'];
 
-
 ////////////////// UPDATE IMAGE 
 $personalizado = "";
 //proceso de carga de imagen
