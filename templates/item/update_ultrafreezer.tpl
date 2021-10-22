@@ -37,7 +37,7 @@
             <div id="step-12">
               <div class="form-row">
                 <div class="col-sm-6">
-                  <input type="hidden" id="id_item_ultrafreezer" value="{$ultrafreezer.id_ultrafreezer}">
+                <input type="hidden" id="id_item_ultrafreezer" value="{$ultrafreezer.id_ultrafreezer}">
                   <input type="hidden" id="id_item_2_ultrafreezer" value="{$ultrafreezer.id_item}">
                   <label>Nombre del Ultrafreezer</label>
                   <input type="text" id="nombre_ultrafreezer" class="form-control" value="{$ultrafreezer.nombre_ultrafreezer}">
@@ -153,6 +153,25 @@
                 </div>
               </div>
 
+              <br>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Valor seteado Humedad:</label>
+                  <input type="text" id="valor_seteado_hum_ultrafreezer" class="form-control" placeholder="Valor seteado temperatura" value="{$ultrafreezer.seteado_hum}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Humedad minima:</label>
+                  <input type="text" id="humedad_minima_ultrafreezer" class="form-control" placeholder="Temperatura minima" value="{$ultrafreezer.hum_min}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Humedad maxima:</label>
+                  <input type="text" id="humedad_maxima_ultrafreezer" class="form-control" placeholder="Temperatura maxima" value="{$ultrafreezer.hum_max}" required>
+                </div>
+              </div>
+
 
 
               <br>
@@ -180,3 +199,4 @@
     {/foreach}
   </div>
 </div>
+<script type="text/javascript" src="design/js/update_ultrafreezer.js"></script>
