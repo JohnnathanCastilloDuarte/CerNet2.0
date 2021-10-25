@@ -1,6 +1,6 @@
 <?php 
 	include("../../config.ini.php");
-
+	error_reporting(0);
 	$id_asignda = $_POST['id_asignado'];
 
 

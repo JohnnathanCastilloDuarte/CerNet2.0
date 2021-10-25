@@ -1,4 +1,6 @@
 <?php 
+
+	error_reporting(0);
 	include("../../config.ini.php");
 
 	$nombre_mapeo = $_POST['nombre_mapeo'];

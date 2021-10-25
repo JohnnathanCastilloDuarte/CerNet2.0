@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-25 19:00:57
+/* Smarty version 3.1.34-dev-7, created on 2021-10-25 22:56:11
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\informes\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6176e2c928d469_83111885',
+  'unifunc' => 'content_617719ebd33ac5_64945479',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e54a9c1ee94ed5d7ed26426a279410873bef1e12' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\informes\\datos_informe_mapeo.tpl',
-      1 => 1635181255,
+      1 => 1635195369,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6176e2c928d469_83111885 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617719ebd33ac5_64945479 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -98,12 +98,12 @@ function content_6176e2c928d469_83111885 (Smarty_Internal_Template $_smarty_tpl)
 				<div class="card">
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
-							<li class="nav-item" id="mapp">
+							<li class="nav-item" id="mapeo">
 								<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_mapeo_refrigerador">
 									<span>Mapeo</span>
 								</a>
 							</li>
-							<li class="nav-item" id="map2">
+							<li class="nav-item" id="mapeo2">
 								<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#ver_mapeo_refrigerador">
 									<span>Ver mapeo</span>
 								</a>
@@ -466,6 +466,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 							<thead>
 								<th>Nombre</th>
 								<th>Asociar</th>
+
 							</thead>
 							<tbody id="listar_bandejas_creadas">
 

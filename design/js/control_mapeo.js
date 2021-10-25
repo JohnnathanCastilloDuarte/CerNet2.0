@@ -132,7 +132,7 @@ function listar_bandejas(){
 				template += 
 				`
 				<tr>
-					<td>${result.nombre}</td>
+					<td>${result.nombre}aaa</td>
 					<td>
 						<div style='text-align:center;'>
 								<button class="btn btn-success" data-id="${result.id_bandeja}" id="modificar_bandeja_creada" data-nombre = "${result.nombre}"><i class="pe-7s-check">	</i></button>

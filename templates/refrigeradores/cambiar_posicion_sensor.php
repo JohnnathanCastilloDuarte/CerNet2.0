@@ -1,4 +1,5 @@
 <?php
+  error_reporting(0);
   include('../../config.ini.php');
 
   $id_refrigerador_sensor = $_POST['id_refrigerador_sensor'];

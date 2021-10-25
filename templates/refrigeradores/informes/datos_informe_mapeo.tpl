@@ -74,12 +74,12 @@
 				<div class="card">
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
-							<li class="nav-item" id="mapp">
+							<li class="nav-item" id="mapeo">
 								<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_mapeo_refrigerador">
 									<span>Mapeo</span>
 								</a>
 							</li>
-							<li class="nav-item" id="map2">
+							<li class="nav-item" id="mapeo2">
 								<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#ver_mapeo_refrigerador">
 									<span>Ver mapeo</span>
 								</a>
@@ -382,6 +382,7 @@
 							<thead>
 								<th>Nombre</th>
 								<th>Asociar</th>
+
 							</thead>
 							<tbody id="listar_bandejas_creadas">
 

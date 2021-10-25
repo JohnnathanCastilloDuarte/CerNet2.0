@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
  require('../../config.ini.php');
 
   $id_asignado = $_POST['id_asignado'];
