@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-22 23:59:30
+/* Smarty version 3.1.34-dev-7, created on 2021-10-25 15:08:34
   from 'C:\xampp\htdocs\CerNet2.0\templates\header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61733442245151_43748006',
+  'unifunc' => 'content_6176ac529f64d8_09134775',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ffba896e21398cf47a641a98b731b5ddc0ba9f3b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\header.php',
-      1 => 1634939967,
+      1 => 1635167310,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61733442245151_43748006 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6176ac529f64d8_09134775 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
