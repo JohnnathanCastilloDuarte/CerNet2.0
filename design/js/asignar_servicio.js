@@ -130,7 +130,6 @@ function mostrar_servicios(){
 function servicios_asignados(){
 	let id_ot = $("#id_ot_asignar_oculto").val();
 	
-	console.log(id_ot);
 	
 	$.ajax({
 		type:'POST',
@@ -360,7 +359,7 @@ function listar_servicios(){
 		let id_servicio = $(this).attr('data-id');
 		$("#anuncio_click_gestionar").hide();
 		$("#equipos_asignados").show();
-		listar_equipos(id_servicio);
+		listar_equipos(id_servicio, id_servicio);
 		equipos_asignados(id_servicio);	
 		
 	});
@@ -467,13 +466,14 @@ function listar_servicios(){
 
 
 //FUNCION PARA LISTAR EQUIPOS
-function listar_equipos(id_servicio){
+function listar_equipos(id_servicio, id_servicio){
 	let ot = $("#id_ot_asignar_oculto").val();
 	let id_empresa = $("#id_empresa_numot").val();
 	let e2 = "";
 	const data = {
 		ot,
-		id_empresa
+		id_empresa,
+		id_servicio
 	}
 	
 	
