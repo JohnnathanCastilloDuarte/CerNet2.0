@@ -6,6 +6,8 @@ var id_bandeja = "";
 var id_asignado = $("#id_asignado").val();
 var id_valida = $("#id_valida").val();
 
+console.log("estoy en js");
+
 
 //LLAMDAS DE FUNCIONES
 listar_bandejas();
@@ -45,12 +47,12 @@ $("#formulario").submit(function(e){
 		$("#temperatura_maxima").val("");
 		$("#valor_seteado_humedad").val("");
 		$("#valor_seteado_temperatura").val("");
-    $("#tipo_de_mapeo").val("");
-    $("#incluir_informe_base").val("");
-    $("#nombres_personal").val(""); 
-    $("#apellidos_personal").val("");
-    $("#cargo_personal").val("");
-    $("#incluir_informe_base").val("");
+        $("#tipo_de_mapeo").val("");
+        $("#incluir_informe_base").val("");
+        $("#nombres_personal").val(""); 
+        $("#apellidos_personal").val("");
+        $("#cargo_personal").val("");
+        $("#incluir_informe_base").val("");
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
 
@@ -307,6 +309,7 @@ $(function(){
 		
 	
 		var bandeja = $("#bandeja").val();
+		//console.log(bandeja);
 		
 		const datos = {
 			id_asignado,
@@ -2733,6 +2736,9 @@ function traer_consecutivo(){
       if(respuesta.length == 0){
         $("#cuerpo_crear_mapeo_refrigerador").hide();
         $("#cuerpo_ver_mapeo_refrigerador").hide();
+        $("#map").hide();
+        $("#map2").hide();
+
       }else{
          $("#cuerpo_crear_mapeo_refrigerador").show();
          $("#cuerpo_ver_mapeo_refrigerador").show();
@@ -2752,6 +2758,7 @@ $("#btn_refrigeradores_consecutivo").click(function(){
     consecutivo,
     seleccion
    }
+   console.log(id_asignado);
   
   $.ajax({
     type:'POST',
@@ -2763,7 +2770,7 @@ $("#btn_refrigeradores_consecutivo").click(function(){
           title:'Mensaje',
           text:'Consecutivo creado correctamente',
           icon:'success',
-          timer:1500
+          timer:1000
         });
         traer_consecutivo();
         //window.reload();

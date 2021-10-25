@@ -1,4 +1,27 @@
-<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2021-10-25 16:46:08
+  from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\informes\datos_informe_mapeo.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_6176c330a60ee5_77626632',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'e54a9c1ee94ed5d7ed26426a279410873bef1e12' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\informes\\datos_informe_mapeo.tpl',
+      1 => 1635173160,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6176c330a60ee5_77626632 (Smarty_Internal_Template $_smarty_tpl) {
+?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
 			<span>Creación</span>
@@ -34,7 +57,8 @@
 						</h6>
 					</div>
 					<div class="card-body">
-						<input type="hidden" value="{$id_asignado}" id="id_asignado">
+						<input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado']->value;?>
+" id="id_asignado">
 						<input type="hidden"  id="cuantas_bandeja">
 						<div class="form-row">
 							<div class="col-sm-10">
@@ -122,37 +146,67 @@
 															<div class="col-sm-2">
 																<label>H:</label>
 																<select  class="form-control" id="hora_inicio_mapeo" >
-																	{for $hora=0 to 24}
-																		{if $hora lt 10}
-																		<option value="0{$hora}">0{$hora}</option>
-																		{else}
-																		<option value="{$hora}">{$hora}</option>
-																		{/if}									
-																	{/for}
+																	<?php
+$_smarty_tpl->tpl_vars['hora'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['hora']->step = 1;$_smarty_tpl->tpl_vars['hora']->total = (int) ceil(($_smarty_tpl->tpl_vars['hora']->step > 0 ? 24+1 - (0) : 0-(24)+1)/abs($_smarty_tpl->tpl_vars['hora']->step));
+if ($_smarty_tpl->tpl_vars['hora']->total > 0) {
+for ($_smarty_tpl->tpl_vars['hora']->value = 0, $_smarty_tpl->tpl_vars['hora']->iteration = 1;$_smarty_tpl->tpl_vars['hora']->iteration <= $_smarty_tpl->tpl_vars['hora']->total;$_smarty_tpl->tpl_vars['hora']->value += $_smarty_tpl->tpl_vars['hora']->step, $_smarty_tpl->tpl_vars['hora']->iteration++) {
+$_smarty_tpl->tpl_vars['hora']->first = $_smarty_tpl->tpl_vars['hora']->iteration === 1;$_smarty_tpl->tpl_vars['hora']->last = $_smarty_tpl->tpl_vars['hora']->iteration === $_smarty_tpl->tpl_vars['hora']->total;?>
+																		<?php if ($_smarty_tpl->tpl_vars['hora']->value < 10) {?>
+																		<option value="0<?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+">0<?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+</option>
+																		<?php } else { ?>
+																		<option value="<?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+</option>
+																		<?php }?>									
+																	<?php }
+}
+?>
 																</select>
 															</div>
 															<div class="col-sm-2">
 																<label>M:</label>
 																<select  class="form-control" id="minuto_inicio_mapeo" >
-																{for $minuto=0 to 60}
-																	{if $minuto lt 10}
-																	<option value="0{$minuto}">0{$minuto}</option>
-																	{else}
-																	<option value="{$minuto}">{$minuto}</option>
-																	{/if}									
-																{/for}
+																<?php
+$_smarty_tpl->tpl_vars['minuto'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['minuto']->step = 1;$_smarty_tpl->tpl_vars['minuto']->total = (int) ceil(($_smarty_tpl->tpl_vars['minuto']->step > 0 ? 60+1 - (0) : 0-(60)+1)/abs($_smarty_tpl->tpl_vars['minuto']->step));
+if ($_smarty_tpl->tpl_vars['minuto']->total > 0) {
+for ($_smarty_tpl->tpl_vars['minuto']->value = 0, $_smarty_tpl->tpl_vars['minuto']->iteration = 1;$_smarty_tpl->tpl_vars['minuto']->iteration <= $_smarty_tpl->tpl_vars['minuto']->total;$_smarty_tpl->tpl_vars['minuto']->value += $_smarty_tpl->tpl_vars['minuto']->step, $_smarty_tpl->tpl_vars['minuto']->iteration++) {
+$_smarty_tpl->tpl_vars['minuto']->first = $_smarty_tpl->tpl_vars['minuto']->iteration === 1;$_smarty_tpl->tpl_vars['minuto']->last = $_smarty_tpl->tpl_vars['minuto']->iteration === $_smarty_tpl->tpl_vars['minuto']->total;?>
+																	<?php if ($_smarty_tpl->tpl_vars['minuto']->value < 10) {?>
+																	<option value="0<?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+">0<?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+</option>
+																	<?php } else { ?>
+																	<option value="<?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+</option>
+																	<?php }?>									
+																<?php }
+}
+?>
 																</select>
 															</div>
 															<div class="col-sm-2">
 																<label>S:</label>
 																<select  class="form-control" id="segundo_inicio_mapeo" >
-																{for $segundo=0 to 60}
-																	{if $segundo lt 10}
-																	<option value="0{$segundo}">0{$segundo}</option>
-																	{else}
-																	<option value="{$segundo}">{$segundo}</option>
-																	{/if}									
-																{/for}
+																<?php
+$_smarty_tpl->tpl_vars['segundo'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['segundo']->step = 1;$_smarty_tpl->tpl_vars['segundo']->total = (int) ceil(($_smarty_tpl->tpl_vars['segundo']->step > 0 ? 60+1 - (0) : 0-(60)+1)/abs($_smarty_tpl->tpl_vars['segundo']->step));
+if ($_smarty_tpl->tpl_vars['segundo']->total > 0) {
+for ($_smarty_tpl->tpl_vars['segundo']->value = 0, $_smarty_tpl->tpl_vars['segundo']->iteration = 1;$_smarty_tpl->tpl_vars['segundo']->iteration <= $_smarty_tpl->tpl_vars['segundo']->total;$_smarty_tpl->tpl_vars['segundo']->value += $_smarty_tpl->tpl_vars['segundo']->step, $_smarty_tpl->tpl_vars['segundo']->iteration++) {
+$_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->iteration === 1;$_smarty_tpl->tpl_vars['segundo']->last = $_smarty_tpl->tpl_vars['segundo']->iteration === $_smarty_tpl->tpl_vars['segundo']->total;?>
+																	<?php if ($_smarty_tpl->tpl_vars['segundo']->value < 10) {?>
+																	<option value="0<?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+">0<?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+</option>
+																	<?php } else { ?>
+																	<option value="<?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+</option>
+																	<?php }?>									
+																<?php }
+}
+?>
 																</select>
 															</div>
 														</div>
@@ -173,37 +227,67 @@
 															<div class="col-sm-2">
 															<label>H:</label>
 															<select  class="form-control" id="hora_fin_mapeo" >
-															{for $hora=0 to 24}
-																{if $hora lt 10}
-																<option value="0{$hora}">0{$hora}</option>
-																{else}
-																<option value="{$hora}">{$hora}</option>
-																{/if}									
-															{/for}
+															<?php
+$_smarty_tpl->tpl_vars['hora'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['hora']->step = 1;$_smarty_tpl->tpl_vars['hora']->total = (int) ceil(($_smarty_tpl->tpl_vars['hora']->step > 0 ? 24+1 - (0) : 0-(24)+1)/abs($_smarty_tpl->tpl_vars['hora']->step));
+if ($_smarty_tpl->tpl_vars['hora']->total > 0) {
+for ($_smarty_tpl->tpl_vars['hora']->value = 0, $_smarty_tpl->tpl_vars['hora']->iteration = 1;$_smarty_tpl->tpl_vars['hora']->iteration <= $_smarty_tpl->tpl_vars['hora']->total;$_smarty_tpl->tpl_vars['hora']->value += $_smarty_tpl->tpl_vars['hora']->step, $_smarty_tpl->tpl_vars['hora']->iteration++) {
+$_smarty_tpl->tpl_vars['hora']->first = $_smarty_tpl->tpl_vars['hora']->iteration === 1;$_smarty_tpl->tpl_vars['hora']->last = $_smarty_tpl->tpl_vars['hora']->iteration === $_smarty_tpl->tpl_vars['hora']->total;?>
+																<?php if ($_smarty_tpl->tpl_vars['hora']->value < 10) {?>
+																<option value="0<?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+">0<?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+</option>
+																<?php } else { ?>
+																<option value="<?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['hora']->value;?>
+</option>
+																<?php }?>									
+															<?php }
+}
+?>
 															</select>
 															</div>
 															<div class="col-sm-2">
 																<label>M:</label>
 																<select  class="form-control" id="minuto_fin_mapeo" >
-																	{for $minuto=0 to 60}
-																		{if $minuto lt 10}
-																		<option value="0{$minuto}">0{$minuto}</option>
-																		{else}
-																		<option value="{$minuto}">{$minuto}</option>
-																		{/if}									
-																	{/for}
+																	<?php
+$_smarty_tpl->tpl_vars['minuto'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['minuto']->step = 1;$_smarty_tpl->tpl_vars['minuto']->total = (int) ceil(($_smarty_tpl->tpl_vars['minuto']->step > 0 ? 60+1 - (0) : 0-(60)+1)/abs($_smarty_tpl->tpl_vars['minuto']->step));
+if ($_smarty_tpl->tpl_vars['minuto']->total > 0) {
+for ($_smarty_tpl->tpl_vars['minuto']->value = 0, $_smarty_tpl->tpl_vars['minuto']->iteration = 1;$_smarty_tpl->tpl_vars['minuto']->iteration <= $_smarty_tpl->tpl_vars['minuto']->total;$_smarty_tpl->tpl_vars['minuto']->value += $_smarty_tpl->tpl_vars['minuto']->step, $_smarty_tpl->tpl_vars['minuto']->iteration++) {
+$_smarty_tpl->tpl_vars['minuto']->first = $_smarty_tpl->tpl_vars['minuto']->iteration === 1;$_smarty_tpl->tpl_vars['minuto']->last = $_smarty_tpl->tpl_vars['minuto']->iteration === $_smarty_tpl->tpl_vars['minuto']->total;?>
+																		<?php if ($_smarty_tpl->tpl_vars['minuto']->value < 10) {?>
+																		<option value="0<?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+">0<?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+</option>
+																		<?php } else { ?>
+																		<option value="<?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['minuto']->value;?>
+</option>
+																		<?php }?>									
+																	<?php }
+}
+?>
 																</select>
 															</div>
 															<div class="col-sm-2">
 																<label>S:</label>
 																<select  class="form-control" id="segundo_fin_mapeo" >
-																	{for $segundo=0 to 60}
-																		{if $segundo lt 10}
-																		<option value="0{$segundo}">0{$segundo}</option>
-																		{else}
-																		<option value="{$segundo}">{$segundo}</option>
-																		{/if}									
-																	{/for}
+																	<?php
+$_smarty_tpl->tpl_vars['segundo'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['segundo']->step = 1;$_smarty_tpl->tpl_vars['segundo']->total = (int) ceil(($_smarty_tpl->tpl_vars['segundo']->step > 0 ? 60+1 - (0) : 0-(60)+1)/abs($_smarty_tpl->tpl_vars['segundo']->step));
+if ($_smarty_tpl->tpl_vars['segundo']->total > 0) {
+for ($_smarty_tpl->tpl_vars['segundo']->value = 0, $_smarty_tpl->tpl_vars['segundo']->iteration = 1;$_smarty_tpl->tpl_vars['segundo']->iteration <= $_smarty_tpl->tpl_vars['segundo']->total;$_smarty_tpl->tpl_vars['segundo']->value += $_smarty_tpl->tpl_vars['segundo']->step, $_smarty_tpl->tpl_vars['segundo']->iteration++) {
+$_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->iteration === 1;$_smarty_tpl->tpl_vars['segundo']->last = $_smarty_tpl->tpl_vars['segundo']->iteration === $_smarty_tpl->tpl_vars['segundo']->total;?>
+																		<?php if ($_smarty_tpl->tpl_vars['segundo']->value < 10) {?>
+																		<option value="0<?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+">0<?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+</option>
+																		<?php } else { ?>
+																		<option value="<?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['segundo']->value;?>
+</option>
+																		<?php }?>									
+																	<?php }
+}
+?>
 																</select>
 															</div>
 														</div>
@@ -798,4 +882,7 @@
 	</div><!--Cierre del tab informes_1-->
 </div>
 </div>
-<script type="text/javascript" src="design/js/control_mapeo_refrigerador.js"></script>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/control_mapeo_refrigerador.js"><?php echo '</script'; ?>
+><?php }
+}

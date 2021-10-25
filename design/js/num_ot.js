@@ -139,7 +139,8 @@ var id_gestionar = "";
 		}
 		
 		$.post('templates/OT/nuevo_ot.php',recojo, function(e){
-			let ultimo_id = JSON.parse(e);
+			//let ultimo_id = JSON.parse(e);
+			console.log(e);
 			let  final = ultimo_id.id_ultimo;	
 			$("#id_ot_oculto").val(final);
 				

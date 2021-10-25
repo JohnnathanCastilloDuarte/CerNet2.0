@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 21:02:39
+/* Smarty version 3.1.34-dev-7, created on 2021-10-25 15:48:06
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\gestionar_informes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616f164f12a1b4_82600578',
+  'unifunc' => 'content_6176b5965d8df8_82043189',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '86f39aad41ee688f7a05de95f239b03fb8cf57cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\gestionar_informes.tpl',
-      1 => 1634655980,
+      1 => 1635169681,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616f164f12a1b4_82600578 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6176b5965d8df8_82043189 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-12">
 		<div class="card">
@@ -80,7 +80,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['mapeo']->value) {
  <?php echo $_smarty_tpl->tpl_vars['mapeo']->value['apellido_usuario'];?>
 </td>
 											<td>
-												<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7]['Informes'];?>
+												<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 &asignado=<?php echo $_smarty_tpl->tpl_vars['mapeo']->value['id_asignado'];?>
 &type=<?php echo $_smarty_tpl->tpl_vars['id_servicio_mapeo']->value;?>
