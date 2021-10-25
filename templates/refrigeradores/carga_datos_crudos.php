@@ -1,6 +1,6 @@
   <?php 
 	include("../../config.ini.php");
-	
+	   error_reporting(0);
 		$id_refrigerador_sensor = $_POST['id_sensor_refrigerados_dc'];
 		$id_asignado = $_POST['id_asignado_form'];
 		$id_mapeo = $_POST['id_mapeo'];
@@ -189,5 +189,5 @@
 
             } //////////// CIERRE DEL ELSE
 echo "Listo";
-	mysqli_stms_close($connect);
+	mysqli_close($connect);
 ?>

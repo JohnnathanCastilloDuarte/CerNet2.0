@@ -1288,9 +1288,8 @@ $(document).on('submit', '#form',function(e){
     contentType: false,
     processData: false,
     success:function(response) {
-      
-      if(response == "Listo")
-      {
+  
+    
           Swal.fire({
             title:'mensaje',
             text:'Se han cargado los datos correctamente',
@@ -1298,7 +1297,7 @@ $(document).on('submit', '#form',function(e){
             timer:2000
           });
           existe_dc_refrigerador(id_mapeo);
-      }     
+
       /*
 			let traer = JSON.parse(response);
 			let template = "";
@@ -2874,15 +2873,17 @@ function existe_dc_refrigerador(id_mapeo){
     url:'templates/refrigeradores/validar_dc.php',
     data:{id_mapeo},
     success:function(response){
+    	console.log(response)
       if(response == 0){
    
         let etiqueta = `<span class='text-success'>Se ha cargado el archivo</span><br>
                           <button class='btn btn-danger' id='borrar_dc_refrigerador' data-id='${id_mapeo}'>Eliminar datos</button>`;
         $("#btn_carga_dc_refrigerador").hide();
         $("#file").hide();
+        $("#btn_cargar_datos_crudos").hide();
         $(".dc_refrigerador_archivo").html(etiqueta)
       }else{
-        $("#btn_carga_dc_refrigerador").show();
+        $("#btn_carga_dc_refrigerador").hide();
         $("#file").show();
         $("#dc_refrigerador_archivo").hide();
       }

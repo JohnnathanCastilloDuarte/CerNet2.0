@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-25 22:56:11
+/* Smarty version 3.1.34-dev-7, created on 2021-10-26 00:37:30
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\informes\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617719ebd33ac5_64945479',
+  'unifunc' => 'content_617731aa45bb42_46933678',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e54a9c1ee94ed5d7ed26426a279410873bef1e12' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\informes\\datos_informe_mapeo.tpl',
-      1 => 1635195369,
+      1 => 1635201444,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617719ebd33ac5_64945479 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617731aa45bb42_46933678 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -457,30 +457,52 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 			<div class="col-sm-6">
 				<div class="card">
 					<div class="card-header">
-						Bandejas disponibles  para 
-						<span id="mapeo_actual">
-						</span>
+						Sensores disponibles
 					</div>
 					<div class="card-body">
-						<table class="table" style="text-align:center;">
-							<thead>
-								<th>Nombre</th>
-								<th>Asociar</th>
+						<div class="scroll-area-sm">
+							<div class="scrollbar-container">
+								<div class="buscador_de_sensores_acme">
+									<div class="row">
+									</div>
 
-							</thead>
-							<tbody id="listar_bandejas_creadas">
+								</div>
+								<div class="scroll-area-sm">
+									<div class="scrollbar-container">
+										<div class="mostrar_sensores_contenedor_buscados_refrigerador">
+											<table class="table" width="100%">
+												<thead>
+													<th >Nombre</th>
+													<th >Asociar</th>
+												</thead>
+												<tbody id="listar_bandejas_creadas">
 
-							</tbody>
-						</table>
+												</tbody>	
+											</table>
+										</div>
+
+										<div class="mostrar_sensores_contenedor_refrigerador">
+											<table class="table" width="100%">
+												<thead>
+													<th >Nombre</th>
+													<th >Acciones</th>
+												</thead>
+												<tbody id="listar_bandejas_creadas">
+
+												</tbody>	
+											</table>
+										</div>
+
+									</div>
+								</div>	
+							</div>
+						</div>	
 					</div>
 				</div>
 			</div>
-
-
+			<br>
 		</div>
-
 		<br>
-
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="card">
@@ -607,9 +629,11 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 										<div class="form-group">
 											<div class="dc_refrigerador_archivo">  </div>
-											<button class="btn btn-success" id="btn_carga_dc_refrigerador">
+										 <button class="btn btn-success" id="btn_cargar_datos_crudos">
 												Cargar
 											</button>
+
+										 <img src="design/images/cargando.gif" id="cargando">
 
 										</div>
 									</form>
@@ -623,9 +647,6 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 		</div>
 
 	</div><!--Cierre del tab asignacion-->
-
-
-
 	<div class="tab-pane tabs-animation fade show" id="participantes" role="tabpanel">
 		<div class="row">
 			<div class="col-sm-6">

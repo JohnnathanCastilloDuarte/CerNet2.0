@@ -373,30 +373,52 @@
 			<div class="col-sm-6">
 				<div class="card">
 					<div class="card-header">
-						Bandejas disponibles  para 
-						<span id="mapeo_actual">
-						</span>
+						Sensores disponibles
 					</div>
 					<div class="card-body">
-						<table class="table" style="text-align:center;">
-							<thead>
-								<th>Nombre</th>
-								<th>Asociar</th>
+						<div class="scroll-area-sm">
+							<div class="scrollbar-container">
+								<div class="buscador_de_sensores_acme">
+									<div class="row">
+									</div>
 
-							</thead>
-							<tbody id="listar_bandejas_creadas">
+								</div>
+								<div class="scroll-area-sm">
+									<div class="scrollbar-container">
+										<div class="mostrar_sensores_contenedor_buscados_refrigerador">
+											<table class="table" width="100%">
+												<thead>
+													<th >Nombre</th>
+													<th >Asociar</th>
+												</thead>
+												<tbody id="listar_bandejas_creadas">
 
-							</tbody>
-						</table>
+												</tbody>	
+											</table>
+										</div>
+
+										<div class="mostrar_sensores_contenedor_refrigerador">
+											<table class="table" width="100%">
+												<thead>
+													<th >Nombre</th>
+													<th >Acciones</th>
+												</thead>
+												<tbody id="listar_bandejas_creadas">
+
+												</tbody>	
+											</table>
+										</div>
+
+									</div>
+								</div>	
+							</div>
+						</div>	
 					</div>
 				</div>
 			</div>
-
-
+			<br>
 		</div>
-
 		<br>
-
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="card">
@@ -523,9 +545,11 @@
 
 										<div class="form-group">
 											<div class="dc_refrigerador_archivo">  </div>
-											<button class="btn btn-success" id="btn_carga_dc_refrigerador">
+										 <button class="btn btn-success" id="btn_cargar_datos_crudos">
 												Cargar
 											</button>
+
+										 <img src="design/images/cargando.gif" id="cargando">
 
 										</div>
 									</form>
@@ -539,9 +563,6 @@
 		</div>
 
 	</div><!--Cierre del tab asignacion-->
-
-
-
 	<div class="tab-pane tabs-animation fade show" id="participantes" role="tabpanel">
 		<div class="row">
 			<div class="col-sm-6">
