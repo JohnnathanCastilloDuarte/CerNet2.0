@@ -38,7 +38,7 @@ mysqli_stmt_fetch($execute_query2);
 
 $smarty->assign("imagen_usuario",$imagen_usuario);
 
-echo "<script> console.log('".$imagen_usuario."')</script>";
+
 
 $query2 ="SELECT Modulos, Control_cambios, Usuarios, Clientes, Items, Ordenes_trabajo, Servicios, Informes, Documentacion, Cargos FROM privilegio WHERE id_privilegio = ?";
 $execute_query_2 = mysqli_prepare($connect,$query2);
