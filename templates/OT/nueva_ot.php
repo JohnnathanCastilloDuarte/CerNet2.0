@@ -1,5 +1,5 @@
 <?php 
-	
+	error_reporting(0);
 //CONSULTAR HISTORIAL DEL MODULO
 	$consultar_historial = mysqli_prepare($connect,"SELECT b.nombre, b.apellido, a.mensaje_historial, a.tipo_historial, a.fecha_registro FROM 
 																									persona as b, historial_numot as a WHERE a.id_usuario = b.id_usuario ORDER BY fecha_registro DESC");

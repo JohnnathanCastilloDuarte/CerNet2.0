@@ -26,7 +26,7 @@ var id_gestionar = "";
 						data: { ot },
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
-							console.log(r);
+					
 							let traer = JSON.parse(r);
 							
 							if(r=="null"){
@@ -90,7 +90,7 @@ var id_gestionar = "";
 		}
 		
 		$.post('templates/OT/editar_ot.php',recojo, function(e){
-				console.log(e);
+				
 			if(e == "modificado"){
 				Swal.fire({
 					position :'center',
@@ -139,8 +139,9 @@ var id_gestionar = "";
 		}
 		
 		$.post('templates/OT/nuevo_ot.php',recojo, function(e){
-			//let ultimo_id = JSON.parse(e);
-			console.log(e);
+			
+			let ultimo_id = JSON.parse(e);
+			
 			let  final = ultimo_id.id_ultimo;	
 			$("#id_ot_oculto").val(final);
 				
@@ -175,7 +176,7 @@ function validar(){
 
 (function(){	
 	$("#btn_gestionar_ot_1").click(function(){
-		console.log("click_1");
+	
 		 id_gestionar = $("#id_ot_oculto").val();
 		validar()
 
@@ -183,7 +184,7 @@ function validar(){
 	});	
 	
 	$("#btn_gestionar_ot_2").click(function(){
-		console.log("click_2");
+		
 		 id_gestionar = $("#id_ot_oculto").val();
 				validar()
 		
