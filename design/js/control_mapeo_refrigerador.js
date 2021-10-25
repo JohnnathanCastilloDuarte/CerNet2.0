@@ -2736,8 +2736,8 @@ function traer_consecutivo(){
       if(respuesta.length == 0){
         $("#cuerpo_crear_mapeo_refrigerador").hide();
         $("#cuerpo_ver_mapeo_refrigerador").hide();
-        $("#map").hide();
-        $("#map2").hide();
+        $("#mapp").hide();
+        $("#mapp2").hide();
 
       }else{
          $("#cuerpo_crear_mapeo_refrigerador").show();
