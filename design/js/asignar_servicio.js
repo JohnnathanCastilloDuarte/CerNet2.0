@@ -186,7 +186,7 @@ function servicios_asignados(){
 	}
 	
 		$.post('templates/OT/asignar_servicio.php', datos, function(e){
-			
+			console.log(e);
 			if(e == "Asignado"){
 				Swal.fire({
 					position:'center',
@@ -479,26 +479,32 @@ function listar_equipos(id_servicio){
 	
 	
 		$.post('templates/OT/listar_equipos.php', data ,function(e){
-			
+			console.log(e);
 			let traer =  JSON.parse(e);
 			let template = "";
 			let boton = "";
 			
-
-					traer.forEach((result)=>{
-			
-					template += `
-					<tr id-servicio = "${id_servicio}">
-						<td>${result.id_item}</td>
-						<td>${result.nombre_item}</td>
-						<td>${result.desc_item}</td>
-						<td><button class='btn btn-success' id='asignar_equipo_item_asignados' data-id = '${result.id_item}'>Agregar</button></td>
-					</tr>
-
-				`;
+					if(traer.length == 0){
+						Swal.fire({
+							title:'Mensaje',
+							text:'No se ha creado ningun equipo',
+							timer:2000,
+							icon:'warning'
+						});
+					}else{
+						traer.forEach((result)=>{
 				
+							template += `
+								<tr id-servicio = "${id_servicio}">
+									<td>${result.id_item}</td>
+									<td>${result.nombre_item}</td>
+									<td>${result.desc_item}</td>
+									<td><button class='btn btn-success' id='asignar_equipo_item_asignados' data-id = '${result.id_item}'>Agregar</button></td>
+								</tr>
 
-				});
+							`;
+						});
+					}
 				
 				
 			

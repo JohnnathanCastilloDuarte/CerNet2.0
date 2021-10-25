@@ -1,7 +1,7 @@
 <?php
 
 	include("../../config.ini.php");
-	
+	error_reporting(0);
 	$id_tipo_servicio= $_POST['id_tipo_servicio'];
 	$id_ot= $_POST['id_ot'];
 	$id_valida= $_POST['id_valida'];
