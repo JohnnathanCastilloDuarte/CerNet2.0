@@ -4,6 +4,7 @@ var verifica = 0;
 
 $("#btn_cerrar_sesion").click(function(){   
 
+
   let quien = persona;
   let movimiento = "Cerro sesión en";
   let modulo = "CerNet 2.0";
@@ -30,6 +31,26 @@ $("#btn_cerrar_sesion").click(function(){
 
 });
 
+
+function backtrack(quien, movimiento){
+  datos = {
+    quien,
+    movimiento,
+    modulo
+  }
+  $.ajax({
+    type:'POST',
+    data:datos,
+    url:'templates/controlador_backtrack/controlador_general.php',
+    success:function(response){
+      console.log(response);
+      if(response == "Listo"){
+
+      }
+    }
+  });
+  return "Si";
+}
 
 /////////////regstra la creación del nuevo cliente/////////////////////
 $("#btn_nuevo_cliente").click(function(){

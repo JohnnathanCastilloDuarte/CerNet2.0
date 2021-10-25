@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-08 03:26:49
+/* Smarty version 3.1.34-dev-7, created on 2021-10-22 08:07:36
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\gestor_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615f9e590bb504_55749948',
+  'unifunc' => 'content_6172552812ec75_43237062',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0340fc563f7887f68f8befb02125b5ae27d13864' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\gestor_documentacion.tpl',
-      1 => 1633656407,
+      1 => 1634882853,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615f9e590bb504_55749948 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6172552812ec75_43237062 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <style>
    
@@ -421,8 +421,8 @@ p{
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header" style="text-align:center;">
-            <h5>Archivos en el sistema</h5>
+          <div class="card-body" id="gif_loading" style="text-align: center;">
+            <img src="design/images/cargando.gif">
           </div>
           <div class="card-body" id="pdf_grande">
             
@@ -431,16 +431,17 @@ p{
       </div>
     </div>
     <br>
+    <!--
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" id="pdf_grande">
             <div id="aqui_iframe" >
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
   
   

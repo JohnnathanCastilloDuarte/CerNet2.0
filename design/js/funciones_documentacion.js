@@ -7,6 +7,8 @@ $("#listar_subidas").hide();
 
 $(".subir1").hide();
 $(".subir").hide();
+$("#pdf_grande").hide();
+$("#gif_loading").hide();
 
 
 
@@ -1538,6 +1540,7 @@ $("#guardar_config_documentacion").click(function(){
 //////////FORMULARIO DE PDF
 $("#formulario_pdf").on("submit", function(e){
   e.preventDefault();
+  $("#gif_loading").show();
   var f = $(this);
   var formData = new FormData(document.getElementById("formulario_pdf"));
   
@@ -1550,8 +1553,11 @@ $("#formulario_pdf").on("submit", function(e){
     contentType: false,
     processData: false,
     success:function(respuesta){
+        
+
         $("#pdf_grande").show();
         listar_pdf_grande();
+        $("#gif_loading").hide();
     }
   });
 });
@@ -1560,7 +1566,7 @@ $("#formulario_pdf").on("submit", function(e){
 //////// TREAR PDF GRANDE
 
 function listar_pdf_grande(){
-  
+  $("#pdf_grande").show();
   $.ajax({
     type:'POST',
     data:{id_documentacion_d},

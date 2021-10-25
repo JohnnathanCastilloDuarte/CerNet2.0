@@ -5,6 +5,10 @@
 var id_documentacion = $("#primer_campo").val();
 var id_persona = $("#segundo_campo").val();
 var id_documentacion_encript = $("#tercer_campo").val();
+var URLactual = window.location;
+
+
+
 
 ////FUNCIONES   A UTILIZAR
 listar_documentacion_arriba();
@@ -35,7 +39,11 @@ function ya_firmo() {
       if (traer.qr != null) {
         $("#firma_1").hide();
         $("#firma_2").hide();
-        let msj = `<span class='text-success' style='text-align:center;'>${traer.nombre} ${traer.apellido} Ya ha firmado este documento el dia ${traer.fecha_registro}</span><br>
+        let msj = `<span class='text-muted' style='text-align:center;'>${traer.nombre} ${traer.apellido} Ya ha firmado:<br>
+        Nombre proceso documental: ${traer.nombre_documento}.<br>
+        OT: ${traer.ot}.<br>
+        Empresas: Cercal Group - ${traer.empresa}.<br>
+        El dia ${traer.fecha_registro}</span><br>
                      <img src="../documentacion/${traer.qr}" style="margin-left:150px" width="300px"/>`;
         $("#m").html(msj);
       } else {
@@ -115,7 +123,8 @@ $("#firmar_1_c").click(function() {
         id_persona,
         dataURL,
         seleccion,
-        id_t_firmantes
+        id_t_firmantes,
+        URLactual
       }
       $.ajax({
         type: 'POST',
