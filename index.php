@@ -64,7 +64,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9));
 
 
 $aprobaciones = array();
@@ -283,6 +283,9 @@ else
             }
             else if ($_GET["page"] == 8){
               include("templates/filtros/gestionar_informes.php");
+            }
+            else if ($_GET["page"] == 9){
+              include("templates/campana_extraccion/gestionar_informes.php");
             }
           }
        break;
