@@ -18,8 +18,8 @@ while($fila = mysqli_stmt_fetch($validar)){
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
   mysqli_stmt_bind_result($consultar, $id_dato);
-  
-  if(mysqli_stmt_num_rows($consultar) == 0){
+  mysqli_stmt_fetch($consultar);
+  if( $id_dato == 0){
     $no_hay = 0;
   }else{
   	$no_hay = 1;

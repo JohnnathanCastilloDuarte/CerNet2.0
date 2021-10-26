@@ -155,9 +155,10 @@ function API_GRAFICOS($id_mapeo){
         
         $.ajax({
           type:'POST',
-          url:'templates/refrigeradores/guardar_grafico_auto1.php',
+          url:'guardar_grafico_auto1.php',
           data:datos,
           success:function(response){
+            alert(response);
             alert("Se ha configurado la imagen correctamente");
             window.close();
           }
