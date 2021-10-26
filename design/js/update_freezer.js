@@ -27,7 +27,7 @@ function validar_botones_freezer(){
 	
 	$("#btn_editar_item_freezer").click(function(){
 
-		let quien = persona;
+		let quien = id_valida;
 		let movimiento = "Edita en el modulo";
 		let modulo = "Item y freezer";
 

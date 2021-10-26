@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-05 23:13:50
+/* Smarty version 3.1.34-dev-7, created on 2021-10-26 16:20:19
   from 'C:\xampp\htdocs\CerNet2.0\templates\ultrafreezer\gestionar_informes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615cc00e2189a9_21454382',
+  'unifunc' => 'content_61780ea3bb1ac8_64576567',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c4f4fb21665d36f5e0d10a21c3bd4fffb68218e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\ultrafreezer\\gestionar_informes.tpl',
-      1 => 1611692315,
+      1 => 1635257601,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615cc00e2189a9_21454382 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61780ea3bb1ac8_64576567 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-12">
 		<div class="card">
@@ -80,7 +80,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['mapeo']->value) {
  <?php echo $_smarty_tpl->tpl_vars['mapeo']->value['apellido_usuario'];?>
 </td>
 											<td>
-												<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7]['Informes'];?>
+												<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 &asignado=<?php echo $_smarty_tpl->tpl_vars['mapeo']->value['id_asignado'];?>
 &type=<?php echo $_smarty_tpl->tpl_vars['id_servicio_mapeo']->value;?>
@@ -138,10 +138,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['calificacion']->value) {
  <?php echo $_smarty_tpl->tpl_vars['calificacion']->value['apellido_usuario'];?>
 </td>
 											<td>
-												<!--<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[9]['Informes'];?>
+												<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[9]['Informes'];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 &type=<?php echo $_smarty_tpl->tpl_vars['id_servicio_mapeo']->value;?>
-" class="btn btn-outline-success" >Informe</a>-->
+" class="btn btn-outline-success" >Informe</a>
 											</td>
 										</tr>
 										
@@ -159,5 +159,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 			</div>
 		</div>
 	</div>
-</div><?php }
+</div>
+
+<?php }
 }

@@ -90,7 +90,6 @@ function mostrar_servicios(){
 		url: 'templates/OT/buscar_tipo_servicio.php',
 		data: {id_ot},
 		success:function(e){
-			console.log(e);
 			let traer = JSON.parse(e);
 			let template = "";
 			
@@ -319,6 +318,7 @@ function listar_servicios(){
 			let template = "";
 			
 			traer.forEach((result)=>{
+				console.log(result.id_servicio);
 				template += 
 					`<div class="col-sm-6 mb-2" style="text-align:center;">
 						<div class="card">
