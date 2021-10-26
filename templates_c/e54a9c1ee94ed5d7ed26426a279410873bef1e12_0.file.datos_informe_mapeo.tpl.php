@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-26 00:37:30
+/* Smarty version 3.1.34-dev-7, created on 2021-10-26 15:19:49
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\informes\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617731aa45bb42_46933678',
+  'unifunc' => 'content_617800755d0998_96329181',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e54a9c1ee94ed5d7ed26426a279410873bef1e12' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\informes\\datos_informe_mapeo.tpl',
-      1 => 1635201444,
+      1 => 1635254377,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617731aa45bb42_46933678 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617800755d0998_96329181 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -633,7 +633,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 												Cargar
 											</button>
 
-										 <img src="design/images/cargando.gif" id="cargando">
+										 <img src="design/images/cargando.gif" id="imgcargando">
 
 										</div>
 									</form>

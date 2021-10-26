@@ -549,7 +549,7 @@
 												Cargar
 											</button>
 
-										 <img src="design/images/cargando.gif" id="cargando">
+										 <img src="design/images/cargando.gif" id="imgcargando">
 
 										</div>
 									</form>

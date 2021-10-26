@@ -1103,6 +1103,8 @@ function listar_refrigeradores_sensores(id_bandeja, id_mapeo){
 			$("#nombre_sensor").text(sensor);
 			
 			$("#id_refrigerador_sensor").val(id_refrigerador_sensor);
+			$("#btn_cargar_datos_crudos").hide();
+			$("#imgcargando").show();
 			
 		
 		
@@ -2873,19 +2875,21 @@ function existe_dc_refrigerador(id_mapeo){
     url:'templates/refrigeradores/validar_dc.php',
     data:{id_mapeo},
     success:function(response){
-    	console.log(response)
-      if(response == 0){
+    	
+      if(response == 1){
    
         let etiqueta = `<span class='text-success'>Se ha cargado el archivo</span><br>
                           <button class='btn btn-danger' id='borrar_dc_refrigerador' data-id='${id_mapeo}'>Eliminar datos</button>`;
         $("#btn_carga_dc_refrigerador").hide();
         $("#file").hide();
-        $("#btn_cargar_datos_crudos").hide();
+        $("#btn_cargar_datos_crudos").hide(); 
+        $("#imgcargando").hide();
         $(".dc_refrigerador_archivo").html(etiqueta)
       }else{
         $("#btn_carga_dc_refrigerador").hide();
         $("#file").show();
         $("#dc_refrigerador_archivo").hide();
+        $("#imgcargando").hide();
       }
     }
   });
@@ -2911,6 +2915,7 @@ $(document).on('click','#borrar_dc_refrigerador',function(){
          url:'templates/refrigeradores/eliminar_datos_crudos.php',
          data:{id_mapeo},
          success:function(response){
+         	console.log(response);
            if(response == "Listo"){
              Swal.fire({
                title:'mensaje',

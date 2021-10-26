@@ -13,14 +13,16 @@ mysqli_stmt_bind_result($validar, $id_refrigerador_sensor);
 
 while($fila = mysqli_stmt_fetch($validar)){
   
-  $consultar = mysqli_prepare($connect,"SELECT DISTINCT(id_refrigerador_sensor) FROM refrigerador_datos_crudos WHERE id_refrigerador_sensor = ?");
+  $consultar = mysqli_prepare($connect,"SELECT COUNT(id_refrigerador_sensor) FROM refrigerador_datos_crudos WHERE id_refrigerador_sensor = ?");
   mysqli_stmt_bind_param($consultar, "i", $id_refrigerador_sensor);
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
   mysqli_stmt_bind_result($consultar, $id_dato);
   
   if(mysqli_stmt_num_rows($consultar) == 0){
-    $no_hay++;
+    $no_hay = 0;
+  }else{
+  	$no_hay = 1;
   }
 }
 
