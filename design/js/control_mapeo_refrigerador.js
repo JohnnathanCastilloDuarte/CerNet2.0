@@ -112,6 +112,7 @@ $("#traer_informes_refrigeradores").hide();
 $("#mostrar_grafica").hide();
 $("#personal_2").hide();
 $("#editar_personal").hide();
+$("#imgcargando").hide();
 
 
 //LISTAR BANDEJAS
@@ -2875,7 +2876,7 @@ function existe_dc_refrigerador(id_mapeo){
     url:'templates/refrigeradores/validar_dc.php',
     data:{id_mapeo},
     success:function(response){
-    	
+    	console.log(response+"-"+id_mapeo);
       if(response == 1){
    
         let etiqueta = `<span class='text-success'>Se ha cargado el archivo</span><br>
@@ -2915,7 +2916,7 @@ $(document).on('click','#borrar_dc_refrigerador',function(){
          url:'templates/refrigeradores/eliminar_datos_crudos.php',
          data:{id_mapeo},
          success:function(response){
-         	console.log(response);
+         	console.log("la respuesta es"+response);
            if(response == "Listo"){
              Swal.fire({
                title:'mensaje',
