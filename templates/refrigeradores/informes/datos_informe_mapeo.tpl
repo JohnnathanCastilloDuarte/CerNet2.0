@@ -820,4 +820,5 @@
 </div><!--Cierre del tab informes_1-->
 </div>
 </div>
+
 <script type="text/javascript" src="design/js/control_mapeo_refrigerador.js"></script>

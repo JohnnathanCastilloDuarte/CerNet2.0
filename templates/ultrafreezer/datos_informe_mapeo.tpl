@@ -936,4 +936,5 @@
  
 </div>
 <!--Fin del contenido de las tabs-->
+<script type="text/javascript" src="design/js/control_mapeo_ultrafreezer.js"></script>
 <script type="text/javascript" src="design/js/ultrafreezer_funciones_apoyo.js"></script>
