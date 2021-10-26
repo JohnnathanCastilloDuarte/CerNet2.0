@@ -352,7 +352,7 @@ function contar_registros(){
 			$("#cuantas_bandeja").val(x);
 			if(e > 0){
 				$("#cuerpo_crear_mapeo_refrigerador").show();
-        $("#cuerpo_ver_mapeo_refrigerador").show();
+        		$("#cuerpo_ver_mapeo_refrigerador").show();
       
 			}else{
 				//$("#anuncio_mapeo_1").show();
@@ -474,7 +474,7 @@ function contar_registro_informes(){
 				});
 				listar_mapeos();
 				setear_campos();
-				//contar_registros();
+				contar_registros();
 				crear_informes_refrigeradores(2);
         listar_inf_base();
         listar_mapeos();
@@ -1347,7 +1347,7 @@ $(document).on('submit', '#form',function(e){
 				
 		
 			listar_refrigeradores_sensores(id_bandeja, id_mapeo);*/
-								}
+				}
 		 });
 	 	
 	 	
