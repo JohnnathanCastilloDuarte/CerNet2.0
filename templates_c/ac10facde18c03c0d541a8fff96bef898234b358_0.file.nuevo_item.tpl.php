@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 18:35:17
+/* Smarty version 3.1.34-dev-7, created on 2021-10-26 23:39:36
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\nuevo_item.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616ef3c5c7a645_08044582',
+  'unifunc' => 'content_6178759875cd24_27359143',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ac10facde18c03c0d541a8fff96bef898234b358' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\nuevo_item.tpl',
-      1 => 1634661293,
+      1 => 1635284373,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616ef3c5c7a645_08044582 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6178759875cd24_27359143 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-main__inner">
 	<div class="container-fluid">
 		<div class="card">
