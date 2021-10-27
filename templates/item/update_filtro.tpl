@@ -98,11 +98,11 @@
           <br>
           
           <div class="form-row">
-            <div class="col-sm-6">
-              <label>Ubicación: </label>
+            <div class="col-sm-4">
+              <label>Dirección: </label>
               <input type="text" class="form-control" id="ubicacion_filtro" value="{$filtro.ubicacion}">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label>Ubicado en: </label>
               <select class="form-control" id="ubicado_en_filtro">
                 <option value="{$filtro.ubicado_en}">{$filtro.ubicado_en}</option>
@@ -113,6 +113,10 @@
                 <option value="COP">COP</option>
               </select> 
              </div>
+             <div class="col-sm-4">
+              <label>Lugar: </label>
+               <input type="text" class="form-control" id="lugar_filtro" value="{$filtro.ubicacion}">
+             </div>
           </div>
           
           <br>
@@ -121,6 +125,10 @@
             <div class="col-sm-6">
               <label>Dimensiones: </label>
               <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo}">
+            </div>
+            <div class="col-sm-6">
+              <label>Limite de penetración: </label>
+              <input type="text" class="form-control" id="penetracion_filtro" value="{$filtro.tipo}">
             </div>
           </div>
           {/foreach}
