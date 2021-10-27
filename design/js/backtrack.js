@@ -4,7 +4,6 @@ var verifica = 0;
 
 $("#btn_cerrar_sesion").click(function(){   
 
-  console.log("holaaa");
   let quien = persona;
   let movimiento = "Cerro sesión en";
   let modulo = "CerNet 2.0";

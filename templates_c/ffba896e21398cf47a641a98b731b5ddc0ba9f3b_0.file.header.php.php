@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-25 15:08:34
+/* Smarty version 3.1.34-dev-7, created on 2021-10-27 15:47:32
   from 'C:\xampp\htdocs\CerNet2.0\templates\header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6176ac529f64d8_09134775',
+  'unifunc' => 'content_617958744f4b12_81629191',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ffba896e21398cf47a641a98b731b5ddc0ba9f3b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\header.php',
-      1 => 1635167310,
+      1 => 1635342451,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6176ac529f64d8_09134775 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617958744f4b12_81629191 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
@@ -455,8 +455,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                                             </div>
                                                         </div>
                                                         <div class="widget-content-right mr-2">
-                                                            <a href='#' class="btn-pill btn-shadow btn-shine btn btn-focus" id="btn_cerrar_sesion">Salir
-                                                            </a>
+                                                            <button class="btn-pill btn-shadow btn-shine btn btn-focus" id="btn_cerrar_sesion">Salir
+                                                            </a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -515,7 +515,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
  </div>
 </div>
 
-
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/backtrack.js"><?php echo '</script'; ?>
+>
 <?php echo '<script'; ?>
 >
   $("#reload_aprobaciones").click(function(){
