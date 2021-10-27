@@ -1,5 +1,5 @@
 <?php
-require_once('../../../../pdf/tcpdf.php');
+require_once('../../../pdf/tcpdf.php');
 $a = "";
 $nombre_informe = "";
 $numot = "";

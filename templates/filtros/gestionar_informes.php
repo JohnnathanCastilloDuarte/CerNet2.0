@@ -14,7 +14,6 @@
 	mysqli_stmt_bind_result($tipo_informe_1, $id_servicio_mapeo);
 	mysqli_stmt_fetch($tipo_informe_1);
 
-  echo $id_servicio_mapeo;
 
 	$smarty->assign("id_servicio_mapeo",$id_servicio_mapeo);
 

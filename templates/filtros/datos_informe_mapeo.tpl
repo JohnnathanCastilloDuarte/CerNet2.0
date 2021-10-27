@@ -111,7 +111,7 @@
             Inspeccion Visual
           </a>
         </div>
-         <div class="card-body" id="collapseOne44" >
+         <div class="card-body collapse" id="collapseOne44" >
             <div class="row">
               <div class="col-sm-6">
                 <h5>
@@ -221,7 +221,10 @@
 
               </div>
               <div class="col-sm-2">
-                <input type="number" class="form-control" id="cantidad_filtros_input" readonly>
+                <input type="text" class="form-control" id="cantidad_filtros_input" readonly>
+              </div>
+              <div class="col-sm-5">
+                <button class="btn btn-success" id="generar_posicion_filtros">Generar</button>
               </div>
    
             </div>
@@ -256,11 +259,11 @@
             <div class="col-sm-6">  
                <div class="card">
                 <div class="card-header">
-                  <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77">
+                  <a data-toggle="collapse" data-target="#collapseOne66"  aria-controls="collapseOne66">
                     Especificación de Inyección de partículas de 0,3 a 5 micrones en forma de aerosol
                   </a>  
                 </div>
-                <div class="card-body" id="collapseOne77">
+                <div class="card-body collapse" id="collapseOne66">
                   <div class="row" >
                     <div class="col-sm-6" style="text-align:center;">  
                       <label>Concentración de partículas en aerosol (mg/litro):</label>
@@ -274,28 +277,37 @@
                 </div>
               </div>
             </div>
-            
-            <div class="col-sm-6">  
-               <div class="card">
-                <div class="card-header">
-                  <a data-toggle="collapse" data-target="#collapseOne11"  aria-controls="collapseOne11">
-                    Equipos Utilizados en la Medición
-                  </a>  
-                </div>
-                <div class="card-body" id="collapseOne11">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <label>Seleccione equipo</label>
-                      <select id="listar_equipos_filtros" class="form-control">
-                          
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-     
+
+          <br>
+          <div class="row">
+            <div class="col-sm-12">  
+              <div class="card">
+               <div class="card-header">
+                 <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77">
+                   Equipos Utilizados en la Medición
+                 </a>  
+               </div>
+               <div class="card-body collapse" id="collapseOne77">
+                 <div class="row">
+                   <div class="col-sm-6" style="text-align:center;">
+                     <label>Seleccione equipo</label>
+                     <select id="listar_equipos_filtros" class="form-control">
+                         
+                     </select>
+                     <button class="btn btn-info" id="recargar">Recargar</button>
+                   </div>
+                   <div class="col-sm-6" style="text-align:center">
+                     <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
+                    <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+          </div>
+          
+          <button class="btn btn-success" id="ir_informe_filtros">Informe</button>
    
        </div><!--CIERRE DEL DIV ACORDION-->
            
@@ -303,6 +315,6 @@
 </div> 
 
 
-
 <script type="text/javascript" src="design/js/control_mapeo_filtros.js"></script>
+<script type="text/javascript" src="design/js/nuevo_equipo_cercal.js"></script>
 

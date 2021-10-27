@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 21:37:57
+/* Smarty version 3.1.34-dev-7, created on 2021-10-27 23:47:52
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616f1e9582d157_27703982',
+  'unifunc' => 'content_6179c9088ef474_69133640',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1625774121,
+      1 => 1635371268,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616f1e9582d157_27703982 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6179c9088ef474_69133640 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -135,7 +135,7 @@ function content_616f1e9582d157_27703982 (Smarty_Internal_Template $_smarty_tpl)
             Inspeccion Visual
           </a>
         </div>
-         <div class="card-body" id="collapseOne44" >
+         <div class="card-body collapse" id="collapseOne44" >
             <div class="row">
               <div class="col-sm-6">
                 <h5>
@@ -245,7 +245,10 @@ function content_616f1e9582d157_27703982 (Smarty_Internal_Template $_smarty_tpl)
 
               </div>
               <div class="col-sm-2">
-                <input type="number" class="form-control" id="cantidad_filtros_input" readonly>
+                <input type="text" class="form-control" id="cantidad_filtros_input" readonly>
+              </div>
+              <div class="col-sm-5">
+                <button class="btn btn-success" id="generar_posicion_filtros">Generar</button>
               </div>
    
             </div>
@@ -280,11 +283,11 @@ function content_616f1e9582d157_27703982 (Smarty_Internal_Template $_smarty_tpl)
             <div class="col-sm-6">  
                <div class="card">
                 <div class="card-header">
-                  <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77">
+                  <a data-toggle="collapse" data-target="#collapseOne66"  aria-controls="collapseOne66">
                     Especificación de Inyección de partículas de 0,3 a 5 micrones en forma de aerosol
                   </a>  
                 </div>
-                <div class="card-body" id="collapseOne77">
+                <div class="card-body collapse" id="collapseOne66">
                   <div class="row" >
                     <div class="col-sm-6" style="text-align:center;">  
                       <label>Concentración de partículas en aerosol (mg/litro):</label>
@@ -298,28 +301,37 @@ function content_616f1e9582d157_27703982 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
               </div>
             </div>
-            
-            <div class="col-sm-6">  
-               <div class="card">
-                <div class="card-header">
-                  <a data-toggle="collapse" data-target="#collapseOne11"  aria-controls="collapseOne11">
-                    Equipos Utilizados en la Medición
-                  </a>  
-                </div>
-                <div class="card-body" id="collapseOne11">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <label>Seleccione equipo</label>
-                      <select id="listar_equipos_filtros" class="form-control">
-                          
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-     
+
+          <br>
+          <div class="row">
+            <div class="col-sm-12">  
+              <div class="card">
+               <div class="card-header">
+                 <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77">
+                   Equipos Utilizados en la Medición
+                 </a>  
+               </div>
+               <div class="card-body collapse" id="collapseOne77">
+                 <div class="row">
+                   <div class="col-sm-6" style="text-align:center;">
+                     <label>Seleccione equipo</label>
+                     <select id="listar_equipos_filtros" class="form-control">
+                         
+                     </select>
+                     <button class="btn btn-info" id="recargar">Recargar</button>
+                   </div>
+                   <div class="col-sm-6" style="text-align:center">
+                     <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
+                    <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+          </div>
+          
+          <button class="btn btn-success" id="ir_informe_filtros">Informe</button>
    
        </div><!--CIERRE DEL DIV ACORDION-->
            
@@ -327,9 +339,11 @@ function content_616f1e9582d157_27703982 (Smarty_Internal_Template $_smarty_tpl)
 </div> 
 
 
-
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/control_mapeo_filtros.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/nuevo_equipo_cercal.js"><?php echo '</script'; ?>
 >
 
 <?php }
