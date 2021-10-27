@@ -51,7 +51,7 @@
 					<div class="form-row">
            <div class="col-sm-6">
               <div class="position-relative form-group">               
-                <label>Descripción: </label>
+                <label>Nombre: </label>
                 <select class="form-control" id="nombre_filtro">
                    <option value="{$nombre_item}">{$nombre_item}</option>
                    <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
@@ -74,11 +74,11 @@
           <div class="form-row">
             <div class="col-sm-6">
               <label>Marca: </label>
-              <input type="text" class="form-control" id="marca_filtro" value="{$filtro.marca}">
+              <input type="text" class="form-control" id="marca_filtro" value="{$filtro.marca}" required="">
             </div>
             <div class="col-sm-6">
               <label>Modelo: </label>
-              <input type="text" class="form-control" id="modelo_filtro" value="{$filtro.modelo}">
+              <input type="text" class="form-control" id="modelo_filtro" value="{$filtro.modelo}" required="">
             </div>
           </div>
           
@@ -87,11 +87,11 @@
           <div class="form-row">
             <div class="col-sm-6">
               <label>Serie: </label>
-              <input type="text" class="form-control" id="serie_filtro" value="{$filtro.serie}">
+              <input type="text" class="form-control" id="serie_filtro" value="{$filtro.serie}" required="">
             </div>
             <div class="col-sm-6">
               <label>Cantidad Filtros HEPA: </label>
-              <input type="number" class="form-control" id="cantidad_filtros_filtro" value="{$filtro.cantidad_filtros}">
+              <input type="number" class="form-control" id="cantidad_filtros_filtro" value="{$filtro.cantidad_filtros}" required="">
             </div>
           </div>
           
@@ -100,7 +100,7 @@
           <div class="form-row">
             <div class="col-sm-4">
               <label>Dirección: </label>
-              <input type="text" class="form-control" id="ubicacion_filtro" value="{$filtro.ubicacion}">
+              <input type="text" class="form-control" id="ubicacion_filtro" value="{$filtro.ubicacion}" required="">
             </div>
             <div class="col-sm-4">
               <label>Ubicado en: </label>
@@ -115,7 +115,7 @@
              </div>
              <div class="col-sm-4">
               <label>Lugar: </label>
-               <input type="text" class="form-control" id="lugar_filtro" value="{$filtro.ubicacion}">
+               <input type="text" class="form-control" id="lugar_filtro" value="{$filtro.lugar_filtro}" required="">
              </div>
           </div>
           
@@ -124,11 +124,11 @@
           <div class="form-row">
             <div class="col-sm-6">
               <label>Dimensiones: </label>
-              <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo}">
+              <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo}" required="">
             </div>
             <div class="col-sm-6">
               <label>Limite de penetración: </label>
-              <input type="text" class="form-control" id="penetracion_filtro" value="{$filtro.tipo}">
+              <input type="text" class="form-control" id="penetracion_filtro" value="{$filtro.penetracion_filtro}" required="">
             </div>
           </div>
           {/foreach}
