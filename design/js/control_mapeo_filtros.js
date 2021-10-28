@@ -40,10 +40,13 @@ function consultando_ot(){
 }
 
 ////////////// FUNCION PARA CONTROLAR EVENTOS DE CREACIÓN DE FILTROS
-$(document).ready(function(){
-  
+$("#generar_posicion_filtros").click(function(){
+
+  $("#agregando_filtros").empty();
+
   let cantidad = $("#cantidad_filtros_input").val();
-  let a = 1
+
+  let a = 1;
   
   if(cantidad.length == 0){
     Swal.fire({
@@ -59,51 +62,59 @@ $(document).ready(function(){
     `<tr>
       <td>Filtro N° ${a}</td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_a[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_a[]" id="select_filtro">
+          <option value="0">Select</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_aa[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_aa[]" id="select_filtro">
+          <option value="0">Select</option>  
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_b[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_b[]" id="select_filtro">
+          <option value="0">Select</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_bb[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_bb[]" id="select_filtro">
+          <option value="0">Select</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_c[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_c[]" id="select_filtro">
+          <option value="0">Select</option>  
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_cc[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_cc[]" id="select_filtro">
+          <option value="0">Select</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_d[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_d[]" id="select_filtro">
+          <option value="0">Select</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_dd[]">
-          <option>Si</option>
-          <option>No</option>
+        <select class="form-control" name="cumplimiento_filtro_dd[]" id="select_filtro">
+          <option value="0">Select</option> 
+          <option value="si">Si</option>
+          <option value="no">No</option>
         </select>
       </td>
     </tr>
@@ -112,4 +123,32 @@ $(document).ready(function(){
   }
    
 });
+
+
+$(document).on('change','#select_filtro', function(){
+
+  let quien = $(this).val();
+  if(quien == "si"){
+    $(this).removeClass('text-danger');
+    $(this).addClass('text-success');
+  }else if(quien == "no"){
+    $(this).removeClass('text-success');
+    $(this).addClass('text-danger');
+  }else{
+    $(this).removeClass('text-success');
+    $(this).removeClass('text-danger');
+  }
+  
+});
+
+
+
+
+
+///////////// btn de informes:
+
+$("#ir_informe_filtros").click(function(){
+
+  window.open("templates/filtros/informes/inspeccion_de_filtros.php");
+})
 
