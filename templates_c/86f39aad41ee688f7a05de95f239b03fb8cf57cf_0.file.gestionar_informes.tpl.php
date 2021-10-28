@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-25 15:48:06
+/* Smarty version 3.1.34-dev-7, created on 2021-10-27 22:16:55
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\gestionar_informes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6176b5965d8df8_82043189',
+  'unifunc' => 'content_6179b3b71f2ab5_94463025',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '86f39aad41ee688f7a05de95f239b03fb8cf57cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\gestionar_informes.tpl',
-      1 => 1635169681,
+      1 => 1635364711,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6176b5965d8df8_82043189 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6179b3b71f2ab5_94463025 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-12">
 		<div class="card">

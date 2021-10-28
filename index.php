@@ -271,6 +271,8 @@ else
                 include("templates/automovil/datos_informe_mapeo.php");
               }else if($_GET["type"] == 10){
                 include("templates/filtros/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 11){
+                include("templates/campana_extraccion/datos_informe_mapeo.php");
               }
             }else if($_GET["page"] == 3){
               include("templates/refrigeradores/historial_refrigeradores.php");
