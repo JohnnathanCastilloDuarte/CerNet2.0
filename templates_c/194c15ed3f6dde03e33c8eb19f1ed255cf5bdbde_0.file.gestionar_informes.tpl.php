@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-29 23:44:38
+/* Smarty version 3.1.34-dev-7, created on 2021-10-29 23:52:08
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\gestionar_informes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617c6b4614fcb6_10316831',
+  'unifunc' => 'content_617c6d0839e474_46652268',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '194c15ed3f6dde03e33c8eb19f1ed255cf5bdbde' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\gestionar_informes.tpl',
-      1 => 1635543846,
+      1 => 1635543938,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617c6b4614fcb6_10316831 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617c6d0839e474_46652268 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -98,7 +98,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </div>
                     </div>
                     
-                     <button class="btn btn-success" id="ir_informe_filtros">Informe</button>
+                     
                 </div>
             
             </div>

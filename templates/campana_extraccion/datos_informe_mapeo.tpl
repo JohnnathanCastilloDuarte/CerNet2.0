@@ -10,7 +10,7 @@
         <br>
         <div class="row">
           <div class="col-sm-12" style="text-align:left;">
-            <h5>Numero de OT:</h5><h6 class="text-muted" id="ot_filtro_label"></h6>
+            <h5>Numero de OT:</h5><h6 class="text-muted" id="ot_campana_label"></h6>
           </div>
         </div>
         
@@ -18,7 +18,7 @@
         
         <div class="row">
           <div class="col-sm-12" style="text-align:left;">
-            <h5>Cliente:</h5><h6 class="text-muted" id="cliente_filtro_label"></h6>
+            <h5>Cliente:</h5><h6 class="text-muted" id="cliente_campana_label"></h6>
           </div>
         </div>
         
@@ -155,13 +155,7 @@
                 </div>
                 <div class="card-body collapse" id="collapseOne55">
                   <div class="row">
-                    <div class="col-sm-2">
-                      <label>Cantidad de filtros: </label>
 
-                    </div>
-                    <div class="col-sm-2">
-                      <input type="number" class="form-control" id="cantidad_filtros_input" readonly>
-                    </div>
 
                   </div>
                   <br>
@@ -169,17 +163,12 @@
                     <div class="col-sm-12">
                       <table class="table" style="text-align:center">
                         <thead>
-                          <th>N° Filtro</th>
-                          <th>Zona A</th>
-                          <th>Zona A</th>
-                          <th>Zona B</th>
-                          <th>Zona B</th>
-                          <th>Zona C</th>
-                          <th>Zona C</th>
-                          <th>Zona D</th>
-                          <th>Zona D</th>
+                          <th>Medición</th>
+                          <th>Requisito</th>
+                          <th>Valor Obtenidos</th>
+                          <th>Veredicto</th>
                         </thead>
-                        <tbody id="agregando_filtros">
+                        <tbody id="resultados">
 
                         </tbody>
                       </table>
@@ -203,30 +192,30 @@
                       <label>Cantidad de filtros: </label>
                     </div>
                     <div class="col-sm-12">
-                      <textarea class="form-control" id="conclusion"></textarea>
+                      <textarea class="form-control" id="conclusion" required=""></textarea>
                     </div>
 
                     <div class="col-sm-6">
                       <label>Duración de Certificado: </label>
-                      <input type="text" class="form-control" id="duracio_certificado">
+                      <input type="text" class="form-control" id="duracio_certificado" required="">
                     </div>
                     <div class="col-sm-6">
                      <label>Fecha de medición: </label>
-                     <input type="date" class="form-control" id="fecha_medicion">
+                     <input type="date" class="form-control" id="fecha_medicion" required="">
                    </div>
 
                    <div class="col-sm-6">
                     <label>Responsable: </label>
-                    <input type="text" class="form-control" id="resposable">
+                    <input type="text" class="form-control" id="resposable" required="">
                   </div>
                   <div class="col-sm-6">
                     <label>Firma: </label>
-                    <input type="text" class="form-control" id="firma">
+                    <input type="text" class="form-control" id="firma" required="">
                   </div>
 
                   <div class="col-sm-12">
                     <label>Código QR de Verificación: </label>
-                    <input type="text" class="form-control" id="codigo_qr">
+                    <input type="text" class="form-control" id="codigo_qr" required="">
                   </div>
                 </div>
                 <br>
@@ -490,7 +479,7 @@
 <br>
 
 
-<button class="btn btn-success" id="ir_informe_filtros">Informe</button>
+<button class="btn btn-success" id="ir_informe_campanas">Informe</button>
 
 
 </div><!--CIERRE DEL DIV ACORDION-->
@@ -504,5 +493,5 @@
 
 
 
-<script type="text/javascript" src="design/js/control_mapeo_filtros.js"></script>
+<script type="text/javascript" src="design/js/control_mapeo_campanas.js"></script>
 

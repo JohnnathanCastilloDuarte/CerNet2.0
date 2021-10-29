@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-29 23:45:04
+/* Smarty version 3.1.34-dev-7, created on 2021-10-30 00:15:10
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617c6b606f6fd0_75448066',
+  'unifunc' => 'content_617c726ea5f221_32430321',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1635543901,
+      1 => 1635545705,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -34,7 +34,7 @@ function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl)
         <br>
         <div class="row">
           <div class="col-sm-12" style="text-align:left;">
-            <h5>Numero de OT:</h5><h6 class="text-muted" id="ot_filtro_label"></h6>
+            <h5>Numero de OT:</h5><h6 class="text-muted" id="ot_campana_label"></h6>
           </div>
         </div>
         
@@ -42,7 +42,7 @@ function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl)
         
         <div class="row">
           <div class="col-sm-12" style="text-align:left;">
-            <h5>Cliente:</h5><h6 class="text-muted" id="cliente_filtro_label"></h6>
+            <h5>Cliente:</h5><h6 class="text-muted" id="cliente_campana_label"></h6>
           </div>
         </div>
         
@@ -179,13 +179,7 @@ function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
                 <div class="card-body collapse" id="collapseOne55">
                   <div class="row">
-                    <div class="col-sm-2">
-                      <label>Cantidad de filtros: </label>
 
-                    </div>
-                    <div class="col-sm-2">
-                      <input type="number" class="form-control" id="cantidad_filtros_input" readonly>
-                    </div>
 
                   </div>
                   <br>
@@ -193,17 +187,12 @@ function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="col-sm-12">
                       <table class="table" style="text-align:center">
                         <thead>
-                          <th>N° Filtro</th>
-                          <th>Zona A</th>
-                          <th>Zona A</th>
-                          <th>Zona B</th>
-                          <th>Zona B</th>
-                          <th>Zona C</th>
-                          <th>Zona C</th>
-                          <th>Zona D</th>
-                          <th>Zona D</th>
+                          <th>Medición</th>
+                          <th>Requisito</th>
+                          <th>Valor Obtenidos</th>
+                          <th>Veredicto</th>
                         </thead>
-                        <tbody id="agregando_filtros">
+                        <tbody id="resultados">
 
                         </tbody>
                       </table>
@@ -227,30 +216,30 @@ function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl)
                       <label>Cantidad de filtros: </label>
                     </div>
                     <div class="col-sm-12">
-                      <textarea class="form-control" id="conclusion"></textarea>
+                      <textarea class="form-control" id="conclusion" required=""></textarea>
                     </div>
 
                     <div class="col-sm-6">
                       <label>Duración de Certificado: </label>
-                      <input type="text" class="form-control" id="duracio_certificado">
+                      <input type="text" class="form-control" id="duracio_certificado" required="">
                     </div>
                     <div class="col-sm-6">
                      <label>Fecha de medición: </label>
-                     <input type="date" class="form-control" id="fecha_medicion">
+                     <input type="date" class="form-control" id="fecha_medicion" required="">
                    </div>
 
                    <div class="col-sm-6">
                     <label>Responsable: </label>
-                    <input type="text" class="form-control" id="resposable">
+                    <input type="text" class="form-control" id="resposable" required="">
                   </div>
                   <div class="col-sm-6">
                     <label>Firma: </label>
-                    <input type="text" class="form-control" id="firma">
+                    <input type="text" class="form-control" id="firma" required="">
                   </div>
 
                   <div class="col-sm-12">
                     <label>Código QR de Verificación: </label>
-                    <input type="text" class="form-control" id="codigo_qr">
+                    <input type="text" class="form-control" id="codigo_qr" required="">
                   </div>
                 </div>
                 <br>
@@ -514,7 +503,7 @@ function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl)
 <br>
 
 
-<button class="btn btn-success" id="ir_informe_filtros">Informe</button>
+<button class="btn btn-success" id="ir_informe_campanas">Informe</button>
 
 
 </div><!--CIERRE DEL DIV ACORDION-->
@@ -529,7 +518,7 @@ function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl)
 
 
 <?php echo '<script'; ?>
- type="text/javascript" src="design/js/control_mapeo_filtros.js"><?php echo '</script'; ?>
+ type="text/javascript" src="design/js/control_mapeo_campanas.js"><?php echo '</script'; ?>
 >
 
 <?php }
