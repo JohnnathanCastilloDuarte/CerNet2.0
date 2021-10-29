@@ -1,6 +1,6 @@
 <?php 
 
-	$tipo_1 = "Inspección de integridad de filtros";
+	$tipo_1 = "Inspeccion integridad de filtros";
 
 	//$tipo_2 = "Calificación ultrafreezer";
 
@@ -40,6 +40,8 @@ empresa as d, persona as e, item as f  WHERE c.id_numot = b.id_numot AND a.id_se
 	$smarty->assign("conteo_mapeo_filtro",$conteo_informes_mapeo_filtro);
 
 	$smarty->assign("array_mapeo_filtro",$array_mapeo_filtro);
+
+
 
 /*
 //CONSULTAR INFORMES DE CALIFICACIÓN
