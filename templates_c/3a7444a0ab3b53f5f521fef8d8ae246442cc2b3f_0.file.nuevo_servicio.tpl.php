@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 19:48:53
+/* Smarty version 3.1.34-dev-7, created on 2021-10-29 17:22:22
   from 'C:\xampp\htdocs\CerNet2.0\templates\servicio\nuevo_servicio.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616f05050ccf56_80424620',
+  'unifunc' => 'content_617c11ae6e18a6_34607657',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3a7444a0ab3b53f5f521fef8d8ae246442cc2b3f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\servicio\\nuevo_servicio.tpl',
-      1 => 1634665727,
+      1 => 1635520522,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616f05050ccf56_80424620 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617c11ae6e18a6_34607657 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_servicio_tipo">

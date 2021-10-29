@@ -1,8 +1,6 @@
 <?php 
 
-	$tipo_1 = "Inspeccion integridad de filtros";
-
-	$tipo_2 = "Calificación refrigeradores";
+	$tipo_1 = "Inspección en campana de ectracción";
 
 	$array_mapeo=array();
 
@@ -16,10 +14,8 @@
 	$smarty->assign("id_servicio_mapeo",$id_servicio_mapeo);
 
 
-	$mapeo = mysqli_prepare($connect,"SELECT a.id_asignado, b.numot, f.nombre,  d.nombre, 
-											 e.nombre, e.apellido  
-									  FROM item_asignado as a, numot as b, servicio as c, empresa as d,persona as e, item as f 
-									  WHERE c.id_servicio_tipo =  $id_servicio_mapeo AND  c.id_numot = b.id_numot AND  a.id_item = f.id_item  AND b.id_empresa = d.id_empresa AND a.id_usuario = e.id_usuario AND f.id_tipo = 11");
+	$mapeo = mysqli_prepare($connect,"SELECT DISTINCT a.id_asignado, b.numot, f.nombre,  d.nombre,  e.nombre, e.apellido FROM item_asignado as a, numot as b, servicio as c, 
+empresa as d, persona as e, item as f  WHERE c.id_numot = b.id_numot AND a.id_servicio = c.id_servicio AND c.id_servicio_tipo = $id_servicio_mapeo AND f.id_tipo = 12 AND a.id_item = f.id_item AND b.id_empresa = d.id_empresa AND a.id_usuario = e.id_usuario");
 	mysqli_stmt_execute($mapeo);
 	mysqli_stmt_store_result($mapeo);
 	mysqli_stmt_bind_result($mapeo, $id_asignado, $numot, $item, $empresa, $usuario_nombre, $usuario_apellido);

@@ -271,7 +271,7 @@ else
                 include("templates/automovil/datos_informe_mapeo.php");
               }else if($_GET["type"] == 11){
                 include("templates/filtros/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 11){
+              }else if($_GET["type"] == 12){
                 include("templates/campana_extraccion/datos_informe_mapeo.php");
               }
             }else if($_GET["page"] == 3){
