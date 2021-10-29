@@ -307,7 +307,7 @@
            </div>
           </div>
           
-          <button class="btn btn-success" id="ir_informe_filtros">Informe</button>
+         
    
        </div><!--CIERRE DEL DIV ACORDION-->
            

@@ -4,7 +4,7 @@
   <div class="col-sm-3" style="text-align:center;">
     <div class="card">
       <div class="card-header">
-        Inspección de Integridad de Filtro
+        Inspección en campana de ectracción
       </div>
       <div class="card-body">
         <br>
@@ -24,77 +24,6 @@
         
         <hr style="color: #0056b2;" />
         
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Marca:</h5><h6 class="text-muted" id="marca_filtro_label"></h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Modelo:</h5><h6 class="text-muted" id="modelo_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Serie:</h5><h6 class="text-muted" id="serie_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Ubicación:</h5><h6 class="text-muted" id="ubicacion_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Ubicado en:</h5><h6 class="text-muted" id="ubicadoen_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Filtro y dimensiones:</h5><h5 class="text-muted" id="dimensiones_filtro_label">datos</h5>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Descripción de filtros:</h5><h6 class="text-muted" id="descripcion_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Limite de penetración:</h5><h6 class="text-muted" id="penetracion_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Eficiencia:</h5><h6 class="text-muted" id="eficiencia_filtro_label">datos</h6>
-          </div>
-        </div>
         
       </div>
     </div>
@@ -103,10 +32,6 @@
 
   <div class="col-sm-9">
     <div id="accordion">
-
-
-
-
 
 
       <div class="card">
@@ -311,9 +236,6 @@
             </div><!--CARD 3-->
 
             <br>
-
-
-
 
       </div>
     </div>
@@ -568,7 +490,7 @@
 <br>
 
 
-
+<button class="btn btn-success" id="ir_informe_filtros">Informe</button>
 
 
 </div><!--CIERRE DEL DIV ACORDION-->

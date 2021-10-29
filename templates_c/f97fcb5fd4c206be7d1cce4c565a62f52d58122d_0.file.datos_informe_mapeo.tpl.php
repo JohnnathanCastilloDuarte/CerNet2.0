@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-29 21:49:27
+/* Smarty version 3.1.34-dev-7, created on 2021-10-29 23:45:04
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617c50473af091_48240992',
+  'unifunc' => 'content_617c6b606f6fd0_75448066',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1635536966,
+      1 => 1635543901,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617c50473af091_48240992 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617c6b606f6fd0_75448066 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -28,7 +28,7 @@ function content_617c50473af091_48240992 (Smarty_Internal_Template $_smarty_tpl)
   <div class="col-sm-3" style="text-align:center;">
     <div class="card">
       <div class="card-header">
-        Inspección de Integridad de Filtro
+        Inspección en campana de ectracción
       </div>
       <div class="card-body">
         <br>
@@ -48,77 +48,6 @@ function content_617c50473af091_48240992 (Smarty_Internal_Template $_smarty_tpl)
         
         <hr style="color: #0056b2;" />
         
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Marca:</h5><h6 class="text-muted" id="marca_filtro_label"></h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Modelo:</h5><h6 class="text-muted" id="modelo_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Serie:</h5><h6 class="text-muted" id="serie_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Ubicación:</h5><h6 class="text-muted" id="ubicacion_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Ubicado en:</h5><h6 class="text-muted" id="ubicadoen_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Filtro y dimensiones:</h5><h5 class="text-muted" id="dimensiones_filtro_label">datos</h5>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Descripción de filtros:</h5><h6 class="text-muted" id="descripcion_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Limite de penetración:</h5><h6 class="text-muted" id="penetracion_filtro_label">datos</h6>
-          </div>
-        </div>
-        
-        <hr style="color: #0056b2;" />
-        
-        <div class="row">
-          <div class="col-sm-12" style="text-align:left;">
-            <h5>Eficiencia:</h5><h6 class="text-muted" id="eficiencia_filtro_label">datos</h6>
-          </div>
-        </div>
         
       </div>
     </div>
@@ -127,10 +56,6 @@ function content_617c50473af091_48240992 (Smarty_Internal_Template $_smarty_tpl)
 
   <div class="col-sm-9">
     <div id="accordion">
-
-
-
-
 
 
       <div class="card">
@@ -335,9 +260,6 @@ function content_617c50473af091_48240992 (Smarty_Internal_Template $_smarty_tpl)
             </div><!--CARD 3-->
 
             <br>
-
-
-
 
       </div>
     </div>
@@ -592,7 +514,7 @@ function content_617c50473af091_48240992 (Smarty_Internal_Template $_smarty_tpl)
 <br>
 
 
-
+<button class="btn btn-success" id="ir_informe_filtros">Informe</button>
 
 
 </div><!--CIERRE DEL DIV ACORDION-->
