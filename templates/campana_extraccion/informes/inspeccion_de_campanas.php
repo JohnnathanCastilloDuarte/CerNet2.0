@@ -99,14 +99,14 @@ $pdf->writeHTMLCell(30, 5, 105, '', 'valor', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 135, '', 'valor', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 165, '', 'valor', 1, 1, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Requisitos Velocidad de aire', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', '', 1, 0, 0, false, 'C', true);
+$pdf->writeHTMLCell(30, 10, 15, '', 'Requisitos Velocidad de aire', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 10, 45, '', '', 1, 0, 0, true, 'C', true);
 
 $linea = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -143,25 +143,25 @@ p{
 </style>
 <table border="0">
    <tr >
-        <td class="1" border="1"><p>Equipo en buenas condiciones de operación:</p></td>
+        <td class="1" border="1"><p>&nbsp;&nbsp;Equipo en buenas condiciones de operación:</p></td>
         <td class="2" align="center" border="1" >Val</td>
 
         <td class="espacio"></td>
 
-        <td class="1" border="1" >EquipoLímpio y sin elementos externos:</td>
+        <td class="1" border="1"><p>&nbsp;&nbsp;Equipo Límpio y sin elementos externos:</p></td>
         <td class="2" align="center" border="1" >Val</td>
    </tr>
    <tr>
-        <td class="1" border="1">Conexión eléctrica en buenas condiciones:</td>
+        <td class="1" border="1"><p>&nbsp;&nbsp;Conexión eléctrica en buenas condiciones:</p></td>
         <td class="2" align="center" border="1">Val</td>
 
         <td class="espacio"></td>
 
-        <td class="1" border="1">Posee identificación:</td>
+        <td class="1" border="1"><p>&nbsp;&nbsp;Posee identificación:</p></td>
         <td class="2" align="center" border="1">Val</td>
    </tr>
    <tr>
-        <td class="1" border="1">Presenta todas sus partes y accesorios:</td>
+        <td class="1" border="1"><p>&nbsp;&nbsp;Presenta todas sus partes y accesorios:</p></td>
         <td class="2" align="center" border="1">Val</td>
    </tr>
 
@@ -174,7 +174,7 @@ $linea2 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -212,12 +212,12 @@ $linea3 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
 </style>
-<br>
+<br><br>
 <table border="1">
    <tr >
         <td class="linea" align="center"><b> CONCLUSIÓN</b></td>
@@ -248,7 +248,7 @@ $linea4 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -274,7 +274,7 @@ $linea5 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -304,7 +304,7 @@ $linea6 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 10px;
    color:#fff;
    background-color: #ababab;
 }
@@ -385,7 +385,7 @@ $linea7 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -421,7 +421,7 @@ $linea8 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -461,7 +461,7 @@ $imagen2 = <<<EOD
 </style>
 
 <br><br>
-<table border="1">
+<table border="0">
    <tr >
         <td class="linea" align="center">Imagen</td>  
    </tr>
@@ -475,7 +475,7 @@ $linea7 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -491,7 +491,7 @@ $pdf->writeHTML($linea7, true, false, false, false, '');
 
 $array_titulos4 = array('Equipo (dB-A Lento)', 'Sala (dB-A Lento)');
 
-$pdf->writeHTMLCell(36, 5, 15, '', 'punto de muestreo', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 15, '', 'Punto de muestreo', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 51, '', '1', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 87, '', '2', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 123, '', '3', 1, 0, 0, true, 'C', true);
@@ -530,7 +530,7 @@ $linea8 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -569,7 +569,7 @@ $linea8 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -577,7 +577,7 @@ $linea8 = <<<EOD
 <br>
 <table border="0">
    <tr >
-        <td class="linea" align="center"><b> de Humo - ANSI/ASHRAE 110-1995 Method of Testing Performance of Laboratory Fume Hoods</b></td>  
+        <td class="linea" align="center"><b>Prueba de Humo - ANSI/ASHRAE 110-1995 Method of Testing Performance of Laboratory Fume Hoods</b></td>  
    </tr>
 </table>
 EOD;
@@ -588,7 +588,7 @@ $linea9 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -611,16 +611,23 @@ $pdf->writeHTMLCell(60, 5, 135, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
 for ($i=0; $i < 5; $i++) { 
 
+
+if ($i <4) {
+  
 $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos5[$i], 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 5, 75, '', '-', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 5, 135, '', '-', 1, 1, 0, true, 'C', true);
+}elseif ($i > 1) {
+  $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos5[$i], 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(120, 5, 75, '', '-', 1, 1, 0, true, 'C', true);
+}
 }
 
 $linea10 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -639,18 +646,19 @@ $pdf->writeHTMLCell(60, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 5, 75, '', 'Modelo', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 5, 135, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
+$array_titulos6 = array('Ubicación de Prueba', 'Visualización de Flujo Reverso','Visualización de Puntos Muertos','Cumple Especificaciones','Cumple Prueba de Humo');
 for ($i=0; $i < 5; $i++) { 
 
 
 if ($i < 3) {
 
-    $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos5[$i], 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos6[$i], 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(60, 5, 75, '', '-', 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(60, 5, 135, '', '-', 1, 1, 0, true, 'C', true);
     
     
 }elseif($i > 2){
-    $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos5[$i], 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos6[$i], 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(120, 5, 75, '', '-', 1, 1, 0, true, 'C', true);
 
     }
@@ -660,7 +668,7 @@ $linea11 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -720,7 +728,7 @@ $linea12 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14px;
    color:#fff;
    background-color: #ababab;
 }
@@ -762,7 +770,7 @@ $linea13 = <<<EOD
 
 <style>
 .linea{
-   height: 20px;
+   height: 14 px;
    color:#fff;
    background-color: #ababab;
 }
