@@ -210,11 +210,11 @@
         <div class="card">
           <div class="card-header">
             <a data-toggle="collapse" data-target="#collapseOne55"  aria-controls="collapseOne55">
-                Prueba de Integridad de Filtros - UNE-EN ISO 14.644-3
+                Detalle de mediciones
               </a>
           </div>
           <div class="card-body collapse" id="collapseOne55">
-
+            
             <div class="row">
               <div class="col-sm-2">
                 <label>Cantidad de filtros: </label>
@@ -223,9 +223,9 @@
               <div class="col-sm-2">
                 <input type="text" class="form-control" id="cantidad_filtros_input" readonly>
               </div>
-              <div class="col-sm-5">
+            <!--  <div class="col-sm-5">
                 <button class="btn btn-success" id="generar_posicion_filtros">Generar</button>
-              </div>
+              </div>-->
    
             </div>
             <br>
@@ -252,6 +252,28 @@
 
           </div>
         </div><!--CARD 2-->
+
+        <br>
+
+        <div class="card">
+          <div class="card-header">
+            <a data-toggle="collapse" data-target="#collapseOne88"  aria-controls="collapseOne88">
+              Resultado de mediciones: Norma UNE-EN-ISO 14.644-3:2005
+            </a>
+          </div>
+          <div class="card-body collapse" id="collapseOne88">
+            <table class="table">
+              <thead>
+                <th>Medicion</th>
+                <th>Valor obtenido</th>
+                <th>Veredicto</th>
+              </thead>
+              <tbody id="medicion_del_norma_une_en_iso">
+
+              </tbody>
+            </table>  
+          </div>
+        </div>
         
         <br>
         
@@ -290,14 +312,24 @@
                </div>
                <div class="card-body collapse" id="collapseOne77">
                  <div class="row">
-                   <div class="col-sm-6" style="text-align:center;">
+                   <div class="col-sm-8" style="text-align:center;">
                      <label>Seleccione equipo</label>
-                     <select id="listar_equipos_filtros" class="form-control">
-                         
-                     </select>
-                     <button class="btn btn-info" id="recargar">Recargar</button>
+                     <table class="table">
+                        <thead>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Certificado</th>
+                          <th>Fecha emisión</th>
+                          <th>Fecha vencimiento</th>
+                          <th>Agregar</th>
+                        </thead>
+                        <tbody id="listar_equipos_filtros">
+                        </tbody>
+
+                     </table>
+                     <button class="btn btn-info" id="recargar_equipos">Recargar</button>
                    </div>
-                   <div class="col-sm-6" style="text-align:center">
+                   <div class="col-sm-4" style="text-align:center">
                      <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
                     <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
                    </div>

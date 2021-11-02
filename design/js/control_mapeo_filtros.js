@@ -39,12 +39,24 @@ function consultando_ot(){
   });
 }
 
-////////////// FUNCION PARA CONTROLAR EVENTOS DE CREACIÓN DE FILTROS
-$("#generar_posicion_filtros").click(function(){
 
-  $("#agregando_filtros").empty();
-
+///////// FUNCIÓN PARA TRAER LA CANTIDAD DE FILTROS
+$(document).ready(function(){
   let cantidad = $("#cantidad_filtros_input").val();
+  cargar_posiciones_vacias(cantidad);
+  
+});
+
+
+
+////////////// FUNCION PARA CONTROLAR EVENTOS DE CREACIÓN DE FILTROS
+function cargar_posiciones_vacias(cantidad){
+  
+  $("#agregando_filtros").empty();
+/*$("#generar_posicion_filtros").click(function(){
+
+
+  let cantidad = $("#cantidad_filtros_input").val();*/
 
   let a = 1;
   
@@ -119,10 +131,20 @@ $("#generar_posicion_filtros").click(function(){
       </td>
     </tr>
         `;
-    $("#agregando_filtros").append(agrego)
+
+    let agrego2 = 
+      `
+        <tr>
+          <td>Prueba de integridad de filtro #${a}</td>
+          <td><input type="text" class="form-control" name="valor_obtenido_filtros" id="valor_obtenido_filtros"></td>
+          <td><span>Veredicto</span></td>
+        </tr>
+      `;
+    $("#medicion_del_norma_une_en_iso").append(agrego2);
+    $("#agregando_filtros").append(agrego);
   }
    
-});
+}
 
 
 $(document).on('change','#select_filtro', function(){
