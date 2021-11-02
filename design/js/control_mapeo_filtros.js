@@ -45,14 +45,15 @@ $(document).ready(function(){
 
   let cantidad = $("#cantidad_filtros_input").val();
 
-
-  if(controlador_filtros('buscar_si_existe') == "No"){
-    cargar_posiciones_vacias(cantidad);
-  }else{
-    controlador_filtros('buscando_inf_parte_1');
-    controlador_filtros('buscando_inf_parte_2');
-    controlador_filtros('buscando_inf_parte_3');   
-  }
+  controlador_filtros('buscar_si_existe');
+  
+   
+    
+  //}else{
+    //controlador_filtros('buscando_inf_parte_1');
+    //controlador_filtros('buscando_inf_parte_2');
+    //controlador_filtros('buscando_inf_parte_3');   
+  //}
 
   
   
@@ -63,28 +64,52 @@ $(document).ready(function(){
   ////////////////// FUNCION QUE DETERMINA SI EXISTE INFORMACIÓN DE LA INSPECCIÓN DE FILTROS
 
   function controlador_filtros(tipo){
-
+    alert(tipo)
     const datos = {
       tipo,
       id_asignado_filtro
     }
 
     if(tipo == 'buscar_si_existe'){
+      let variable = "";
       $.ajax({
         type:'POST',
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-          return response;
+
+          if(response == "No"){
+            let tipo = 'contar_filtros';
+
+            const datos = {
+              id_asignado_filtro,
+              tipo
+            } 
+            $.ajax({
+              type:'POST',
+              url:'templates/filtros/buscar_inpeccion.php',
+              data:datos,
+              success:function(response){
+                cargar_posiciones_vacias(response);
+              }
+            });
+          }else{
+            controlador_filtros('buscando_inf_parte_1');
+            controlador_filtros('buscando_inf_parte_2');
+            controlador_filtros('buscando_inf_parte_3'); 
+          }
+          
         }
       });
+
     }else if(tipo == 'buscando_inf_parte_1'){
       $.ajax({
         type:'POST',
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-          alert(response);
+          alert("buscando_inf_parte_1");
+          //alert(response);
         }
       });
     }else if(tipo == 'buscando_inf_parte_2'){
@@ -93,7 +118,18 @@ $(document).ready(function(){
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-          alert(response);
+          alert("buscando_inf_parte_2");
+          //alert(response);
+        }
+      });
+    }else if(tipo == 'buscando_inf_parte_3'){
+      $.ajax({
+        type:'POST',
+        data:datos,
+        url:'templates/filtros/buscar_inpeccion.php',
+        success:function(response){
+          alert("buscando_inf_parte_3");
+          //alert(response);
         }
       });
     }

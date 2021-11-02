@@ -223,7 +223,7 @@
               <div class="col-sm-2">
                 <input type="text" class="form-control" id="cantidad_filtros_input" readonly>
               </div>
-            <!--  <div class="col-sm-5">
+              <!--<div class="col-sm-5">
                 <button class="btn btn-success" id="generar_posicion_filtros">Generar</button>
               </div>-->
    
