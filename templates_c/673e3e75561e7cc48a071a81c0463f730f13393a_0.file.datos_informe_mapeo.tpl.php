@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-29 23:44:33
+/* Smarty version 3.1.34-dev-7, created on 2021-11-02 20:33:31
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617c6b416ab535_70756164',
+  'unifunc' => 'content_6181928b2cce01_97315769',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1635543838,
+      1 => 1635881610,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617c6b416ab535_70756164 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6181928b2cce01_97315769 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -234,11 +234,11 @@ function content_617c6b416ab535_70756164 (Smarty_Internal_Template $_smarty_tpl)
         <div class="card">
           <div class="card-header">
             <a data-toggle="collapse" data-target="#collapseOne55"  aria-controls="collapseOne55">
-                Prueba de Integridad de Filtros - UNE-EN ISO 14.644-3
+                Detalle de mediciones
               </a>
           </div>
           <div class="card-body collapse" id="collapseOne55">
-
+            
             <div class="row">
               <div class="col-sm-2">
                 <label>Cantidad de filtros: </label>
@@ -247,9 +247,9 @@ function content_617c6b416ab535_70756164 (Smarty_Internal_Template $_smarty_tpl)
               <div class="col-sm-2">
                 <input type="text" class="form-control" id="cantidad_filtros_input" readonly>
               </div>
-              <div class="col-sm-5">
+            <!--  <div class="col-sm-5">
                 <button class="btn btn-success" id="generar_posicion_filtros">Generar</button>
-              </div>
+              </div>-->
    
             </div>
             <br>
@@ -276,6 +276,28 @@ function content_617c6b416ab535_70756164 (Smarty_Internal_Template $_smarty_tpl)
 
           </div>
         </div><!--CARD 2-->
+
+        <br>
+
+        <div class="card">
+          <div class="card-header">
+            <a data-toggle="collapse" data-target="#collapseOne88"  aria-controls="collapseOne88">
+              Resultado de mediciones: Norma UNE-EN-ISO 14.644-3:2005
+            </a>
+          </div>
+          <div class="card-body collapse" id="collapseOne88">
+            <table class="table">
+              <thead>
+                <th>Medicion</th>
+                <th>Valor obtenido</th>
+                <th>Veredicto</th>
+              </thead>
+              <tbody id="medicion_del_norma_une_en_iso">
+
+              </tbody>
+            </table>  
+          </div>
+        </div>
         
         <br>
         
@@ -314,14 +336,24 @@ function content_617c6b416ab535_70756164 (Smarty_Internal_Template $_smarty_tpl)
                </div>
                <div class="card-body collapse" id="collapseOne77">
                  <div class="row">
-                   <div class="col-sm-6" style="text-align:center;">
+                   <div class="col-sm-8" style="text-align:center;">
                      <label>Seleccione equipo</label>
-                     <select id="listar_equipos_filtros" class="form-control">
-                         
-                     </select>
-                     <button class="btn btn-info" id="recargar">Recargar</button>
+                     <table class="table">
+                        <thead>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Certificado</th>
+                          <th>Fecha emisión</th>
+                          <th>Fecha vencimiento</th>
+                          <th>Agregar</th>
+                        </thead>
+                        <tbody id="listar_equipos_filtros">
+                        </tbody>
+
+                     </table>
+                     <button class="btn btn-info" id="recargar_equipos">Recargar</button>
                    </div>
-                   <div class="col-sm-6" style="text-align:center">
+                   <div class="col-sm-4" style="text-align:center">
                      <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
                     <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
                    </div>
@@ -331,12 +363,18 @@ function content_617c6b416ab535_70756164 (Smarty_Internal_Template $_smarty_tpl)
            </div>
           </div>
           
-         
+         <button class="btn btn-success" id="ir_informe_filtros">Informe</button>
    
        </div><!--CIERRE DEL DIV ACORDION-->
            
   </div><!--cierre del div col sm 9-->
 </div> 
+
+
+
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/control_mapeo_campanas.js"><?php echo '</script'; ?>
+>
 
 
 <?php echo '<script'; ?>

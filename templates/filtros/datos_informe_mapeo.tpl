@@ -339,12 +339,16 @@
            </div>
           </div>
           
-         
+         <button class="btn btn-success" id="ir_informe_filtros">Informe</button>
    
        </div><!--CIERRE DEL DIV ACORDION-->
            
   </div><!--cierre del div col sm 9-->
 </div> 
+
+
+
+<script type="text/javascript" src="design/js/control_mapeo_campanas.js"></script>
 
 
 <script type="text/javascript" src="design/js/control_mapeo_filtros.js"></script>

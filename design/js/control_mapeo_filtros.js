@@ -1,4 +1,8 @@
 
+$("#ir_informe_filtros").click(function(){
+
+  window.open("templates/filtros/informes/inspeccion_de_filtros.php");
+})
 /// VARIABLES GLOBALES
 var id_asignado_filtro = $("#id_asignado_filtro").val();
 
