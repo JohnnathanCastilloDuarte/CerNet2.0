@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-30 00:15:10
+/* Smarty version 3.1.34-dev-7, created on 2021-11-02 16:08:45
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617c726ea5f221_32430321',
+  'unifunc' => 'content_6181547d86cef3_26151265',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1635545705,
+      1 => 1635865724,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6181547d86cef3_26151265 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -193,7 +193,66 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                           <th>Veredicto</th>
                         </thead>
                         <tbody id="resultados">
-
+                          <tr>
+                            <td>Velocidad de Aire, 25% Apertura (m/s</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Velocidad de Aire, 50% Apertura (m/s)</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Velocidad de Aire, 75% Apertura (m/s)</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Velocidad de Aire, 100% Apertura (m/s)</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Medición de Temperatura</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Medición de Humedad Relativa</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Presión Sonora Equipo</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Presión Sonora Sala</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Nivel de Iluminación</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td>Prueba de Humo</td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -281,6 +340,42 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                         <th>Medición 6 (m/s)</th>
                       </thead>
                       <tbody id="pb_mediciones_aire">
+                        <tr>
+                          <td>25%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>50%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>75%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>100%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
 
                       </tbody>
                     </table>
@@ -298,9 +393,38 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                         <th>Mínima velocidad aceptada</th>
                       </thead>
                       <tbody id="pb_resumen">
+                         <tr>
+                          <td>25%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>50%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>75%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>100%</td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control" placeholder="-"></td>
+                        </tr>
 
                       </tbody>
                     </table>
+                    imagen <input type="file" name="" class="form-control">
                   </div>
                 </div>
 
@@ -310,6 +434,9 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                     <br>
                     <table class="table"><tr><td></td></tr></table>
                     <label><b>Equipo Utilizado en la Medición</b></label>
+                    <select class="form-control col-sm-4" id="idequipo">
+                      <option>Seleccione...</option>
+                    </select>
                     <table class="table" style="text-align:center">
                       <thead>
                         <th>Marca</th>
@@ -320,7 +447,14 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                         <th>Trazabilidad</th>
                       </thead>
                       <tbody id="pb_resumen">
-
+                          <tr>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          </tr>
                       </tbody>
                     </table>
                   </div>
@@ -352,9 +486,24 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                         <th>Promedio</th>
                       </thead>
                       <tbody id="pb_Punto_Muestreo">
+                        <tr>
+                          <td>Temperatura,°C</td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>Humedad Relativa, %</td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                        </tr>
 
                       </tbody>
                     </table>
+                    imagen <input type="file" name="" class="form-control" id="imagen">
                   </div>
                 </div>
 
@@ -370,9 +519,23 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                         <th>Promedio</th>
                       </thead>
                       <tbody id="pb_resumen_presion_sonora">
-
+                          <tr>
+                          <td>Equipo <br>(dB-A Lento)</td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                        </tr>
+                        <tr>
+                          <td>Sala <br>(dB-A Lento)</td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                        </tr>
                       </tbody>
                     </table>
+                     imagen <input type="file" name="" class="form-control" id="imagen">
                   </div>
                 </div>
 
@@ -380,6 +543,9 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="row">
                   <div class="col-sm-12">
                       <label><b>Equipos Utilizados en la Medición</b></label>
+                       <select class="form-control col-sm-4" id="idequipo">
+                      <option>Seleccione...</option>
+                    </select>
                     <table class="table" style="text-align:center">
                       <thead>
                         <th>Marca</th>
@@ -390,7 +556,22 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                         <th>Trazabilidad</th>
                       </thead>
                       <tbody id="pb_equipos_temp_hum">
-
+                        <tr>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          </tr>
+                          <tr>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                          </tr>
                       </tbody>
                     </table>
                   </div>
@@ -417,13 +598,51 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                     <label><b>Prueba N°1: Contención de Aire Externo</b></label>
                     <table class="table" style="text-align:center">
                       <thead>
-                        <th>Punto de Muestreo</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>Promedio</th>
+                        <th>Condiciones</th>
+                        <th>resultado</th>
+                        <th>Cumple</th>
                       </thead>
                       <tbody id="pb_Punto_Muestreo">
+                         <tr>
+                            <td>Ubicación de Prueba</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Dirección del Flujo Especificado</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Visualización de Flujo Reverso</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Visualización de Vórtices</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Cumple Especificaciones</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
 
                       </tbody>
                     </table>
@@ -435,15 +654,53 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                    <label><b>Prueba N°2: Unidireccionalidad</b></label>
                    <table class="table" style="text-align:center">
                     <thead>
-                     <th>Punto de Muestreo</th>
-                     <th>1</th>
-                     <th>2</th>
-                     <th>3</th>
-                     <th>Promedio</th>
+                        <th>Condiciones</th>
+                        <th>resultado</th>
+                        <th>Cumple</th>
                    </thead>
-                   <tbody id="pb_resumen_presion_sonora">
+                   <tbody id="Pb_unidireccional">
+                         <tr>
+                            <td>Ubicación de Prueba</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Visualización de Flujo Reverso</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Visualización de Puntos Muertos</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Cumple Especificaciones</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
+                          <tr>
+                            <td>Cumple Prueba de Humo</td>
+                            <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                            <td><select name="" class="form-control ">
+                              <option>NA</option>
+                              <option>CUMPLE</option>
+                            </select></td>
+                          </tr>
 
-                   </tbody>
+                      </tbody>
                  </table>
                </div>
              </div>
@@ -459,8 +716,14 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
                      <th>3</th>
                      <th>Promedio</th>
                    </thead>
-                   <tbody id="pb_resumen_presion_sonora">
-
+                   <tbody id="pb_dsn594">
+                    <tr>
+                    <td>Lux</td>
+                    <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                    <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                    <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                    <td><input type="text" name="" class="form-control " placeholder="-"></td>
+                    </tr>
                    </tbody>
                  </table>
                </div>
@@ -469,6 +732,9 @@ function content_617c726ea5f221_32430321 (Smarty_Internal_Template $_smarty_tpl)
              <div class="row">
               <div class="col-sm-12">
                 <label><b>Equipos Utilizados en la Medición</b></label>
+                <select class="form-control col-sm-6">
+                  <option>Seleccione...</option>
+                </select>
                 <table class="table" style="text-align:center">
                   <thead>
                     <th>Marca</th>

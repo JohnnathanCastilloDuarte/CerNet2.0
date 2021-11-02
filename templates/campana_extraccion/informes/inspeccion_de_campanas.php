@@ -347,16 +347,16 @@ EOD;
 $pdf->writeHTML($linea7, true, false, false, false, '');
 
 $pdf->writeHTMLCell(30, 9, 15, '', 'Resumen', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(38, 9, 45, '', 'Medida de los Promedios de Velocidad de aire', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(38, 9, 83, '', 'Máxima velocidad medida', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(39, 9, 45, '', 'Medida de los Promedios de Velocidad de aire', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(37, 9, 84, '', 'Máxima velocidad medida', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(37, 9, 121, '', 'Mínima velocidad medida', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(37, 9, 158, '', 'Mínima velocidad aceptada', 1, 1, 0, true, 'C', true);
 
 for ($i=0; $i < 4; $i++) { 
 
 $pdf->writeHTMLCell(30, 5, 15, '', $array_titulos2[$i], 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(38, 5, 45, '', '-', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(38, 5, 83, '', '-', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(39, 5, 45, '', '-', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(37, 5, 84, '', '-', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(37, 5, 121, '', '-', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(37, 5, 158, '', '-', 1, 1, 0, true, 'C', true);
 
@@ -605,9 +605,9 @@ $pdf->writeHTML($linea9, true, false, false, false, '');
 
 $array_titulos5 = array('Ubicación de Prueba', 'Dirección del Flujo Especificado','Visualización de Flujo Reverso','Visualización de Vórtices','Cumple Especificaciones');
 
-$pdf->writeHTMLCell(60, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(60, 5, 75, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(60, 5, 135, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 15, '', 'condiciones', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 75, '', 'Resultado', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 135, '', 'Cumple', 1, 1, 0, true, 'C', true);
 
 for ($i=0; $i < 5; $i++) { 
 
@@ -642,9 +642,9 @@ EOD;
 
 $pdf->writeHTML($linea10, true, false, false, false, '');
 
-$pdf->writeHTMLCell(60, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(60, 5, 75, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(60, 5, 135, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 15, '', 'Condiciones', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 75, '', 'Resultado', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 135, '', 'Cumple', 1, 1, 0, true, 'C', true);
 
 $array_titulos6 = array('Ubicación de Prueba', 'Visualización de Flujo Reverso','Visualización de Puntos Muertos','Cumple Especificaciones','Cumple Prueba de Humo');
 for ($i=0; $i < 5; $i++) { 
