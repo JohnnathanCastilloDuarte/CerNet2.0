@@ -42,10 +42,63 @@ function consultando_ot(){
 
 ///////// FUNCIÓN PARA TRAER LA CANTIDAD DE FILTROS
 $(document).ready(function(){
+
   let cantidad = $("#cantidad_filtros_input").val();
-  cargar_posiciones_vacias(cantidad);
+
+
+  if(controlador_filtros('buscar_si_existe') == "No"){
+    cargar_posiciones_vacias(cantidad);
+  }else{
+    controlador_filtros('buscando_inf_parte_1');
+    controlador_filtros('buscando_inf_parte_2');
+    controlador_filtros('buscando_inf_parte_3');   
+  }
+
+  
   
 });
+
+
+
+  ////////////////// FUNCION QUE DETERMINA SI EXISTE INFORMACIÓN DE LA INSPECCIÓN DE FILTROS
+
+  function controlador_filtros(tipo){
+
+    const datos = {
+      tipo,
+      id_asignado_filtro
+    }
+
+    if(tipo == 'buscar_si_existe'){
+      $.ajax({
+        type:'POST',
+        data:datos,
+        url:'templates/filtros/buscar_inpeccion.php',
+        success:function(response){
+          return response;
+        }
+      });
+    }else if(tipo == 'buscando_inf_parte_1'){
+      $.ajax({
+        type:'POST',
+        data:datos,
+        url:'templates/filtros/buscar_inpeccion.php',
+        success:function(response){
+          alert(response);
+        }
+      });
+    }else if(tipo == 'buscando_inf_parte_2'){
+      $.ajax({
+        type:'POST',
+        data:datos,
+        url:'templates/filtros/buscar_inpeccion.php',
+        success:function(response){
+          alert(response);
+        }
+      });
+    }
+    
+  }
 
 
 
