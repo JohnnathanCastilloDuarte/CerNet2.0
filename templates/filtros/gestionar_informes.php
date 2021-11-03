@@ -1,6 +1,6 @@
 <?php 
 
-	$tipo_1 = "Inspeccion integridad de filtros";
+	$tipo_1 = "Inspección de integridad de filtros";
 
 	//$tipo_2 = "Calificación ultrafreezer";
 
