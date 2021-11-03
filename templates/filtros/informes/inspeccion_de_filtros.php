@@ -150,31 +150,6 @@ $pdf->writeHTMLCell(40, 5, 155, '', '-', 1, 1 , 0, true, 'C', true);
 
 
 
-$linea2 = <<<EOD
-
-<style>
-.linea{
-   height: 14px;
-   color:#fff;
-   background-color: #ababab;
-}
-</style>
-<br><br>
-<table border="1">
-   <tr >
-        <td class="linea" align="center"><b> Conclusión</b></td>
-   </tr>
-</table>
-    <br>
-  <table>
-        <tr>
-            <td>-</td>
-        </tr>
-  </table>
-
-EOD;
-$pdf->writeHTML($linea2, true, false, false, false, '');
-
 
 ///
 
