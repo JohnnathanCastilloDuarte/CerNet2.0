@@ -6,7 +6,7 @@
 	</li>
 </ul>
 
-<form action="index.php?module={$modulo[5]}&page={$page[2]}" method="POST">
+<form action="index.php?module={$modulo[5]}&page={$page[2]}" method="POST" id="formulario">
 <div class="tab-content">
 	<div class="tab-pane tabs-animation fade show active" id="crear_ot" role="tabpanel">
 		<div class="row">
@@ -134,7 +134,7 @@
 
 	</div>
 		
-		<script type="text/javascript" src="design/js/num_ot.js"></script>
+<script type="text/javascript" src="design/js/num_ot.js"></script>
 		<!--<div class="tab-pane tabs-animation fade show" id="historial_ot" role="tabpanel">
 			<div class="row">
 			<div class="col-sm-12">

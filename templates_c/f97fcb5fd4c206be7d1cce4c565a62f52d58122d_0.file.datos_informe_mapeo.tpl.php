@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-02 16:08:45
+/* Smarty version 3.1.34-dev-7, created on 2021-11-03 16:44:26
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6181547d86cef3_26151265',
+  'unifunc' => 'content_6182ae5a950d76_31926909',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1635865724,
+      1 => 1635881466,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6181547d86cef3_26151265 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6182ae5a950d76_31926909 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 

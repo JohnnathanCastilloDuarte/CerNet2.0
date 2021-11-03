@@ -1,3 +1,10 @@
+
+window.addEventListener("keypress", function(event){
+        if (event.keyCode == 13){
+            event.preventDefault();
+        }
+}, false);
+
 $( document ).ready(function() {
 	//$("#alert_ot_s").hide();
 	//$("#alert_ot_n").hide();
@@ -28,7 +35,6 @@ var id_gestionar = "";
 						success:function(r){
 							console.log(r);
 							let traer = JSON.parse(r);
-							
 							if(r=="null"){
 									//$("#alert_ot_s").hide();
 									//$("#alert_ot_n").show();
@@ -44,7 +50,7 @@ var id_gestionar = "";
 								$("#btn_nueva_ot").show();
 								$("#btn_gestionar_ot_2").hide();
 									
-								}else if(r!="null"){
+								}else if(r !="null"){
 									//$("#alert_ot_s").show();
 									$("#sin_ot").hide();
 									//$("#alert_ot_n").hide();
@@ -67,6 +73,8 @@ var id_gestionar = "";
 										timer:2000
 									});
 								
+								}else if (r){
+									console.log(r);
 								}
 						}
 						
@@ -99,7 +107,6 @@ var id_gestionar = "";
 					timer: 1500,
 				});
 
-				
 			}
 			else{
 				Swal.fire({
@@ -112,8 +119,7 @@ var id_gestionar = "";
 			
 		});
 		
-	
-		
+
 	});
 	
 }());

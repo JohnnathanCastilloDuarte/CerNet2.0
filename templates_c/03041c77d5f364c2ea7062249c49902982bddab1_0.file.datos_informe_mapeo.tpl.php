@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-26 17:40:38
+/* Smarty version 3.1.34-dev-7, created on 2021-11-03 16:43:58
   from 'C:\xampp\htdocs\CerNet2.0\templates\freezer\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61782176b2ace1_72082965',
+  'unifunc' => 'content_6182ae3e530a64_94954352',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '03041c77d5f364c2ea7062249c49902982bddab1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\freezer\\datos_informe_mapeo.tpl',
-      1 => 1634655980,
+      1 => 1635537899,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61782176b2ace1_72082965 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6182ae3e530a64_94954352 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
