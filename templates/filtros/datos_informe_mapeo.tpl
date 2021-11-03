@@ -104,7 +104,7 @@
   
   <div class="col-sm-9">
       <div id="accordion">
- 
+     <!-- <form id="form_filtro_1" enctype="multipart/form-data" method="post">--> 
        <div class="card">
         <div class="card-header">
           <a data-toggle="collapse" data-target="#collapseOne44"  aria-controls="collapseOne44">
@@ -119,7 +119,7 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_1">
+                <select class="form-control" id="inspeccion_visual_1" name="inspeccion_visual[]">
                   <option>Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -134,7 +134,7 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_2">
+                <select class="form-control" id="inspeccion_visual_2" name="inspeccion_visual[]">
                   <option>Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -149,7 +149,7 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_3">
+                <select class="form-control" id="inspeccion_visual_3" name="inspeccion_visual[]">
                   <option>Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -164,7 +164,7 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_4">
+                <select class="form-control" id="inspeccion_visual_4" name="inspeccion_visual[]">
                   <option>Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -179,7 +179,7 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_5">
+                <select class="form-control" id="inspeccion_visual_5" name="inspeccion_visual[]">
                   <option>Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -194,7 +194,7 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_6">
+                <select class="form-control" id="inspeccion_visual_6" name="inspeccion_visual[]">
                   <option>Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -292,7 +292,7 @@
                     </div>
                     <div class="col-sm-6" style="text-align:center;">
                       <div class="col-sm-6">
-                        <input type="number" value="22.9" class="form-control" id="concentracion_particulas_filtro">
+                        <input type="number" value="22.9" class="form-control" id="concentracion_particulas_filtro" name="concentracion_particulas_filtro">
                       </div>
                     </div>
                   </div>
@@ -302,7 +302,7 @@
           </div>
 
           <br>
-          <div class="row">
+          <div class="row" id="tarjeta_equipos_medicion_filtros">
             <div class="col-sm-12">  
               <div class="card">
                <div class="card-header">
@@ -338,11 +338,19 @@
              </div>
            </div>
           </div>
+          <br>
+
+          <div class="row">
+            <div class="col-sm-12" style="text-align:center;">
+              <button class="btn-shadow btn-outline-2x btn btn-outline-success"  id="btn_nuevo_filtro_mapeo">Aceptar</button>
+							<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_filtro_mapeo">Actualizar</button>
+            </div>
+          </div>
           
          
    
        </div><!--CIERRE DEL DIV ACORDION-->
-           
+    <!--  </form> -->    
   </div><!--cierre del div col sm 9-->
 </div> 
 
