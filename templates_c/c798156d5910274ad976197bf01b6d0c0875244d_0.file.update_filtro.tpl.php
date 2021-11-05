@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-27 18:26:40
+/* Smarty version 3.1.34-dev-7, created on 2021-11-04 18:54:57
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61797dc0a3ffd7_67555256',
+  'unifunc' => 'content_61841e7159ed20_63279339',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c798156d5910274ad976197bf01b6d0c0875244d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_filtro.tpl',
-      1 => 1635351999,
+      1 => 1636048496,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61797dc0a3ffd7_67555256 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61841e7159ed20_63279339 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
