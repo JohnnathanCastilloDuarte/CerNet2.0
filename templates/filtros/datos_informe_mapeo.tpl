@@ -227,6 +227,7 @@
                 <button class="btn btn-success" id="generar_posicion_filtros">Generar</button>
               </div>-->
    
+
             </div>
             <br>
             <div class="row">
@@ -262,11 +263,10 @@
             </a>
           </div>
           <div class="card-body collapse" id="collapseOne88">
-            <table class="table">
+            <table class="table" style="text-align:center;">
               <thead>
                 <th>Medicion</th>
                 <th>Valor obtenido</th>
-                <th>Veredicto</th>
               </thead>
               <tbody id="medicion_del_norma_une_en_iso">
 
@@ -346,9 +346,7 @@
 							<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_filtro_mapeo">Actualizar</button>
             </div>
           </div>
-          
-         <button class="btn btn-success" id="ir_informe_filtros">Informe</button>
-   
+             
        </div><!--CIERRE DEL DIV ACORDION-->
     <!--  </form> -->    
   </div><!--cierre del div col sm 9-->
