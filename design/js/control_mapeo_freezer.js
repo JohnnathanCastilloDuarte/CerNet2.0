@@ -18,20 +18,6 @@ $("#mostrar_grafica_freezer").hide();
 $("#cargar_informes_freezer").hide();
 
 
-//LLAMAR FUNCIONES
-contar_registros_freezer();
-listar_bandejas_freezer();
-listar_mapeos_freezer();
-mostrar_correlativo(id_asignado_freezer);
-leer_correlativo_freezer(id_asignado_freezer);
-contar_registro_informes_freezer();
-listar_informes_freezer();
-listar_participantes_freezer();
-listar_inf_base_freezer();
-listar_mapeos_inf_base_freezer();
-imagenes_equipo_base_freezer();
-imagenes_equipo_base_sensores_freezer();
-validar_generar_informes_freezer();
 
 
 
@@ -298,12 +284,18 @@ $("#cambiando_correlativo_freezer").click(function() {
         timer: 1700
       });
       $("#aqui_consecutivo_freezer").text(correlativo);
+      setTimeout(recargar_pagina,1700);
     }
 
     leer_correlativo_freezer(id_asignado_freezer);
 
   });
 });
+
+
+function recargar_pagina(){
+   location.reload();
+}
 
 /////////////////////////////////////////////////////////////////////////////////CREACIÓN DEL MAPEO
 $(function() {
@@ -368,12 +360,27 @@ $(function() {
         setear_campos_freezer();
         crear_informes_freezer();
         contar_registro_informes_freezer();
-
       }
     });
 
   });
 }());
+
+
+//LLAMAR FUNCIONES
+contar_registros_freezer();
+listar_bandejas_freezer();
+listar_mapeos_freezer();
+mostrar_correlativo(id_asignado_freezer);
+leer_correlativo_freezer(id_asignado_freezer);
+contar_registro_informes_freezer();
+listar_informes_freezer();
+listar_participantes_freezer();
+listar_inf_base_freezer();
+listar_mapeos_inf_base_freezer();
+imagenes_equipo_base_freezer();
+imagenes_equipo_base_sensores_freezer();
+validar_generar_informes_freezer();
 
 
 /////////////////////LISTAR MAPEO

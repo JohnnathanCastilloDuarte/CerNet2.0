@@ -105,7 +105,7 @@
 								<h6 class="text-warning" style="text-align:center;" id="anuncio_mapeo_1_freezer">Debes completar la información de bandejas</h6>
 								<div id="cuerpo_mapeo_freezer">
 									<input type="hidden" id="id_mapeo_creado_freezer">
-									<form id="formulario">
+									
 										<div class="form-row">
 											<div class="col-sm-5">
 
@@ -134,13 +134,7 @@
 													<option value="SENSORES DE MONITOREO CARGA MÁXIMA">SENSORES DE MONITOREO CARGA MÁXIMA</option>
 												</select>
 											</div>
-											<div class="col-sm-4"></div>
-											<div class="col-sm-3" style="text-align:center;">
-												<br>
-												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_freezer">Aceptar</button>
-												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_freezer">Actualizar</button>
-												<button class="btn btn-danger" id="change_mapeo"><span class="text-white">X</span></button>
-											</div>
+											
 										</div>
 										<br>
 
@@ -259,9 +253,9 @@
 
 										<div class="form-row">
 											<div class="col-sm-3">
-												<h4>
+												<h6>
 													Temperatura
-												</h4>
+												</h6>
 											</div>
 											<div class="col-sm-3">
 												<label>	Valor seteado:</label>
@@ -283,9 +277,9 @@
 
 										<div class="form-row">
 											<div class="col-sm-3">
-												<h4>
+												<h6>
 													Humedad
-												</h4>
+												</h6>
 											</div>
 											<div class="col-sm-3">
 												<label>	Valor seteado:</label>
@@ -312,12 +306,20 @@
 											<div class="col-sm-6">
 												<label></label>
 											</div>
+											<div class="col-sm-4"></div>
+											<div class="col-sm-4" style="text-align:center;">
+												<br>
+												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_freezer">Aceptar</button>
+												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_freezer">Actualizar</button>
+											</div>
 										</div>
+
+
 
 
 										<br>
 
-									</form>
+									
 								</div>
 							</div>
 						</div>

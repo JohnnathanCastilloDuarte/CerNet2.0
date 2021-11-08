@@ -30,6 +30,7 @@ $("#btn_actualizar_bandeja_ultrafreezer").hide();
 $("#cuerpo_mapeo_ultrafreezer").hide();
 $("#btn_actualizar_mapeo_ultrafreezer").hide();
 $("#trayendo_resultados").hide();
+$("#card_resultaodos_datos_crudos").hide();
 $("#personal_2_ultrafreezer").hide();
 $("#editar_personal_ultrafreezer").hide();
 $("#asignacion_informe_ultrafreezer").hide();
@@ -1640,20 +1641,23 @@ $("#cambiando_correlativo_ultrafreezer").click(function(){
           position:'center',
           icon:'success',
           title:'Correlativo Creado',
-          timer:1700
+          showConfirmButton: false,
+          timer:1500
         });
         
         
         $("#aqui_consecutivo_ultrafreezer").text(correlativo);
+		setTimeout(recargar_pagina,1500);
       }
      
-      leer_correlativo(id_asignado);
+      leer_correlativo(id_asignado); 
     });  
    
 });
-
-
-
+//funcion recargar
+function recargar_pagina(){
+	location.reload();
+}
 
 function listar_informes_ultrafreezer(){
 

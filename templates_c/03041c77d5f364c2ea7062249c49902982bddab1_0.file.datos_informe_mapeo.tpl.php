@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-05 23:01:23
+/* Smarty version 3.1.34-dev-7, created on 2021-11-08 19:38:08
   from 'C:\xampp\htdocs\CerNet2.0\templates\freezer\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6185a9b34c99a4_18832275',
+  'unifunc' => 'content_61896e90cf1e83_26221868',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '03041c77d5f364c2ea7062249c49902982bddab1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\freezer\\datos_informe_mapeo.tpl',
-      1 => 1636149670,
+      1 => 1636396687,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6185a9b34c99a4_18832275 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61896e90cf1e83_26221868 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -129,7 +129,7 @@ function content_6185a9b34c99a4_18832275 (Smarty_Internal_Template $_smarty_tpl)
 								<h6 class="text-warning" style="text-align:center;" id="anuncio_mapeo_1_freezer">Debes completar la información de bandejas</h6>
 								<div id="cuerpo_mapeo_freezer">
 									<input type="hidden" id="id_mapeo_creado_freezer">
-									<form id="formulario">
+									
 										<div class="form-row">
 											<div class="col-sm-5">
 
@@ -158,13 +158,7 @@ function content_6185a9b34c99a4_18832275 (Smarty_Internal_Template $_smarty_tpl)
 													<option value="SENSORES DE MONITOREO CARGA MÁXIMA">SENSORES DE MONITOREO CARGA MÁXIMA</option>
 												</select>
 											</div>
-											<div class="col-sm-4"></div>
-											<div class="col-sm-3" style="text-align:center;">
-												<br>
-												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_freezer">Aceptar</button>
-												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_freezer">Actualizar</button>
-												<button class="btn btn-danger" id="change_mapeo"><span class="text-white">X</span></button>
-											</div>
+											
 										</div>
 										<br>
 
@@ -343,9 +337,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 										<div class="form-row">
 											<div class="col-sm-3">
-												<h4>
+												<h6>
 													Temperatura
-												</h4>
+												</h6>
 											</div>
 											<div class="col-sm-3">
 												<label>	Valor seteado:</label>
@@ -367,9 +361,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 										<div class="form-row">
 											<div class="col-sm-3">
-												<h4>
+												<h6>
 													Humedad
-												</h4>
+												</h6>
 											</div>
 											<div class="col-sm-3">
 												<label>	Valor seteado:</label>
@@ -396,12 +390,20 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 											<div class="col-sm-6">
 												<label></label>
 											</div>
+											<div class="col-sm-4"></div>
+											<div class="col-sm-4" style="text-align:center;">
+												<br>
+												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_freezer">Aceptar</button>
+												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_freezer">Actualizar</button>
+											</div>
 										</div>
+
+
 
 
 										<br>
 
-									</form>
+									
 								</div>
 							</div>
 						</div>
