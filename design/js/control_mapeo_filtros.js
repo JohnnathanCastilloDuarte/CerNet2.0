@@ -234,7 +234,6 @@ function cargar_posiciones_vacias(cantidad){
         <tr>
           <td>Prueba de integridad de filtro #${a}</td>
           <td><input type="text" class="form-control" name="valor_obtenido_filtros[]" id="valor_obtenido_filtros"></td>
-          <td><span>Veredicto</span></td>
         </tr>
       `;
     $("#medicion_del_norma_une_en_iso").append(agrego2);
@@ -293,6 +292,7 @@ $("#form_filtro_1").submit(function(e){
   });
 
 });*/
+
 
 $("#btn_nuevo_filtro_mapeo").click(function(){
 
