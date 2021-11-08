@@ -112,6 +112,8 @@
           </a>
         </div>
          <div class="card-body collapse" id="collapseOne44" >
+            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
+
             <div class="row">
               <div class="col-sm-6">
                 <h5>
@@ -120,7 +122,7 @@
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_1" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option id="insp1_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -135,7 +137,7 @@
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_2" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp2_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -150,7 +152,7 @@
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_3" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp3_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -165,7 +167,7 @@
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_4" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp4_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -180,7 +182,7 @@
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_5" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp5_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -195,7 +197,7 @@
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_6" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp6_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-03 20:27:54
+/* Smarty version 3.1.34-dev-7, created on 2021-11-08 20:43:33
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6182e2bab4bd87_59113863',
+  'unifunc' => 'content_61897de5b3ba55_11686720',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1635967672,
+      1 => 1636400611,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61897de5b3ba55_11686720 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -136,6 +136,8 @@ function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl)
           </a>
         </div>
          <div class="card-body collapse" id="collapseOne44" >
+            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
+
             <div class="row">
               <div class="col-sm-6">
                 <h5>
@@ -144,7 +146,7 @@ function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl)
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_1" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option id="insp1_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -159,7 +161,7 @@ function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl)
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_2" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp2_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -174,7 +176,7 @@ function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl)
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_3" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp3_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -189,7 +191,7 @@ function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl)
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_4" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp4_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -204,7 +206,7 @@ function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl)
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_5" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp5_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -219,7 +221,7 @@ function content_6182e2bab4bd87_59113863 (Smarty_Internal_Template $_smarty_tpl)
               </div>
               <div class="col-sm-6">
                 <select class="form-control" id="inspeccion_visual_6" name="inspeccion_visual[]">
-                  <option>Seleccione</option>
+                  <option  id="insp6_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>

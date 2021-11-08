@@ -49,7 +49,9 @@ $(document).ready(function(){
 
   let cantidad = $("#cantidad_filtros_input").val();
 
-  controlador_filtros('buscar_si_existe');
+
+
+    controlador_filtros('buscar_si_existe');
   
    
     
@@ -118,7 +120,25 @@ $(document).ready(function(){
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-        
+          let traer = JSON.parse(response);
+          
+         
+
+          traer.forEach((x)=>{
+            $("#id_informe_filtro").val(x.id_informe);
+            $("#insp1_traido_db").text(x.insp1);
+            $("#insp1_traido_db").val(x.insp1);
+            $("#insp2_traido_db").text(x.insp2);
+            $("#insp2_traido_db").val(x.insp2);
+            $("#insp3_traido_db").text(x.insp3);
+            $("#insp3_traido_db").val(x.insp3);
+            $("#insp4_traido_db").text(x.insp4);
+            $("#insp4_traido_db").val(x.insp4);
+            $("#insp5_traido_db").text(x.insp5);
+            $("#insp5_traido_db").val(x.insp5);
+            $("#insp6_traido_db").text(x.insp6);
+            $("#insp6_traido_db").val(x.insp6);
+          })
         }
       });
     }else if(tipo == 'buscando_inf_parte_2'){
@@ -127,8 +147,29 @@ $(document).ready(function(){
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-         
+          let traer = JSON.parse(response);
+          let template = "";
+          let numero = 1;
+          
+          traer.forEach((x)=>{
+            template += 
+              `
+              <tr>
+                <td>
+                  <input type="hidden" name="id_medicion_2[]" value="${x.id_medicion_1}">
+                  Prueba de integridad de filtro #${numero}
+                </td>
+                <td>
+                  <input type="text" class="form-control" name="valor_obtenido_filtros[]" id="valor_obtenido_filtros" value="${x.valor_obtenido}">
+                </td>
+              </tr>
+              `;
+            numero++;
+          });
+        
+          $("#medicion_del_norma_une_en_iso").append(template);
         }
+
       });
     }else if(tipo == 'buscando_inf_parte_3'){
       $.ajax({
@@ -136,8 +177,84 @@ $(document).ready(function(){
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-          
-         
+          let traer = JSON.parse(response);
+          let template = "";
+          let numero = 1;
+
+          traer.forEach((f)=>{
+            
+        
+            template += 
+            `
+            
+            <tr>
+              <td>
+                <input type="hidden" name="id_medicion_2[]" value="${f.id_medicion_2}">
+                Filtro N° ${numero}
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_a[]" id="select_filtro">
+                  <option value="${f.zonaA}">${f.zonaA}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_aa[]" id="select_filtro">
+                  <option value="${f.zonaAA}">${f.zonaAA}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_b[]" id="select_filtro">
+                  <option value="${f.zonaB}">${f.zonaB}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_bb[]" id="select_filtro">
+                  <option value="${f.zonaBB}">${f.zonaBB}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_c[]" id="select_filtro">
+                  <option value="${f.zonaC}">${f.zonaC}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_cc[]" id="select_filtro">
+                  <option value="${f.zonaCC}">${f.zonaCC}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_d[]" id="select_filtro">
+                  <option value="${f.zonaD}">${f.zonaD}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-control" name="cumplimiento_filtro_dd[]" id="select_filtro">
+                  <option value="${f.zonaDD}">${f.zonaDD}</option>
+                  <option value="si">Si</option>
+                  <option value="no">No</option>
+                </select>
+              </td>
+            </tr>
+            
+            `;
+            numero++;
+          });
+
+          $("#agregando_filtros").append(template);
         }
       });
     }
@@ -297,7 +414,7 @@ $("#form_filtro_1").submit(function(e){
 $("#btn_nuevo_filtro_mapeo").click(function(){
 
 
-  var inpeccion_visual_array = [];
+  var inspeccion_visual_array = [];
   var detalles_mediciones_array_a = [];
   var detalles_mediciones_array_aa = [];
   var detalles_mediciones_array_b = [];
@@ -311,8 +428,9 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
 
 
   var inspeccion_visual_campos = document.getElementsByName("inspeccion_visual[]").length;
+
   for(i=0;i<inspeccion_visual_campos;i++){
-    inpeccion_visual_array[i] = document.getElementsByName("inspeccion_visual[]")[i].value;
+    inspeccion_visual_array[i] = document.getElementsByName("inspeccion_visual[]")[i].value;
   }
   
   
@@ -364,7 +482,7 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
   let tipo = "Guardar";
 
 const datos ={
-  inpeccion_visual_array,
+  inspeccion_visual_array,
   detalles_mediciones_array_a,
   detalles_mediciones_array_aa,
   detalles_mediciones_array_b,
@@ -384,10 +502,129 @@ $.ajax({
   data:datos,
   url:'templates/filtros/controlador_filtro.php',
   success:function(response){
-    console.log(response);  
+    
+    if(response == "Listo"){
+      Swal.fire({
+        title:'Mensaje',
+        text:'Se ha creado la información con exito',
+        icon:'success',
+        timer:2000
+      });
+    }
   }
 });
   
+
+});
+
+
+$("#btn_actualizar_filtro_mapeo").click(function(){
+
+  var inspeccion_visual_array = [];
+  var detalles_mediciones_array_a = [];
+  var detalles_mediciones_array_aa = [];
+  var detalles_mediciones_array_b = [];
+  var detalles_mediciones_array_bb = [];
+  var detalles_mediciones_array_c = [];
+  var detalles_mediciones_array_cc = [];
+  var detalles_mediciones_array_d = [];
+  var detalles_mediciones_array_dd = [];
+  var valor_obtenido_filtros = [];
+
+
+
+  var inspeccion_visual_campos = document.getElementsByName("inspeccion_visual[]").length;
+
+  for(i=0;i<inspeccion_visual_campos;i++){
+    inspeccion_visual_array[i] = document.getElementsByName("inspeccion_visual[]")[i].value;
+  }
+  
+  
+  var detalles_medicion_campos_a = document.getElementsByName("cumplimiento_filtro_a[]").length;
+  for(i=0;i<detalles_medicion_campos_a;i++){
+    detalles_mediciones_array_a[i] = document.getElementsByName("cumplimiento_filtro_a[]")[i].value;
+  }
+
+  var detalles_medicion_campos_aa = document.getElementsByName("cumplimiento_filtro_aa[]").length;
+  for(i=0;i<detalles_medicion_campos_aa;i++){
+    detalles_mediciones_array_aa[i] = document.getElementsByName("cumplimiento_filtro_aa[]")[i].value;
+  }
+
+  var detalles_medicion_campos_b = document.getElementsByName("cumplimiento_filtro_b[]").length;
+  for(i=0;i<detalles_medicion_campos_b;i++){
+    detalles_mediciones_array_b[i] = document.getElementsByName("cumplimiento_filtro_b[]")[i].value;
+  }
+
+  var detalles_medicion_campos_bb = document.getElementsByName("cumplimiento_filtro_bb[]").length;
+  for(i=0;i<detalles_medicion_campos_bb;i++){
+    detalles_mediciones_array_bb[i] = document.getElementsByName("cumplimiento_filtro_bb[]")[i].value;
+  }
+
+  var detalles_medicion_campos_c = document.getElementsByName("cumplimiento_filtro_c[]").length;
+  for(i=0;i<detalles_medicion_campos_c;i++){
+    detalles_mediciones_array_c[i] = document.getElementsByName("cumplimiento_filtro_c[]")[i].value;
+  }
+
+  var detalles_medicion_campos_cc = document.getElementsByName("cumplimiento_filtro_cc[]").length;
+  for(i=0;i<detalles_medicion_campos_cc;i++){
+    detalles_mediciones_array_cc[i] = document.getElementsByName("cumplimiento_filtro_cc[]")[i].value;
+  }
+
+  var detalles_medicion_campos_d = document.getElementsByName("cumplimiento_filtro_d[]").length;
+  for(i=0;i<detalles_medicion_campos_d;i++){
+    detalles_mediciones_array_d[i] = document.getElementsByName("cumplimiento_filtro_d[]")[i].value;
+  }
+
+  var detalles_medicion_campos_dd = document.getElementsByName("cumplimiento_filtro_dd[]").length;
+  for(i=0;i<detalles_medicion_campos_dd;i++){
+    detalles_mediciones_array_dd[i] = document.getElementsByName("cumplimiento_filtro_dd[]")[i].value;
+  }
+
+  var valor_obtenido_filtros_campos = document.getElementsByName("valor_obtenido_filtros[]").length;
+  for(i=0;i<valor_obtenido_filtros_campos;i++){
+    valor_obtenido_filtros[i] = document.getElementsByName("valor_obtenido_filtros[]")[i].value;
+  }
+
+
+  let id_informe  = $("#id_informe_filtro").val();
+
+  let tipo = "actualizar";
+
+  const datos ={
+    inspeccion_visual_array,
+    detalles_mediciones_array_a,
+    detalles_mediciones_array_aa,
+    detalles_mediciones_array_b,
+    detalles_mediciones_array_bb,
+    detalles_mediciones_array_c,
+    detalles_mediciones_array_cc,
+    detalles_mediciones_array_d,
+    detalles_mediciones_array_dd,
+    valor_obtenido_filtros,
+    tipo,
+    id_asignado_filtro,
+    id_informe
+  }
+
+  $.ajax({
+    type:'POST',
+    data:datos,
+    url:'templates/filtros/controlador_filtro.php',
+    success:function(response){
+      console.log(response);
+      if(response == "Listo"){
+        Swal.fire({
+          title:'Mensaje',
+          text:'Se ha creado la información con exito',
+          icon:'success',
+          timer:2000
+        });
+      }
+    }
+  });
+  
+
+
 
 });
 
