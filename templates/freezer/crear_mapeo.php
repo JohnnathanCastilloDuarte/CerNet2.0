@@ -73,12 +73,12 @@ $nombre_construido = "MAPEO A ".$c_hora." HORA(s) ".$nombre_mapeo;
 	mysqli_stmt_execute($crear);
 	mysqli_stmt_fetch($crear);
 
-echo $crear->connect_error
+
 	if($crear){
 		
 		echo "Creado";
 	}else{
-		echo "error".$crear;
+		echo "error";
 	}
 
 	mysqli_stmt_close($connect);
