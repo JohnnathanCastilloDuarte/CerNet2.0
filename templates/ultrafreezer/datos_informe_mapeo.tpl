@@ -83,7 +83,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#ver_mapeo">
+								<a role="tab" class="nav-link" id="tab_ver_mapeo_ultrafreezer" data-toggle="tab" href="#ver_mapeo">
 									<span>Ver mapeo</span>
 								</a>
 							</li>
@@ -106,7 +106,7 @@
 								<h6 class="text-warning" style="text-align:center;" id="anuncio_mapeo_1_ultrafreezer">Debes completar la información de bandejas</h6>
 									<div id="cuerpo_mapeo_ultrafreezer">
                     <input type="hidden" id="id_mapeo_creado_ultrafreezer">
-										<form id="formulario">
+				
 											<div class="form-row">
 												<div class="col-sm-12">
 													
@@ -282,7 +282,7 @@
 													<br>
 													<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_ultrafreezer">Aceptar</button>
 													<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_ultrafreezer">Actualizar</button>
-													<button class="btn btn-danger" id="change_mapeo"><span class="text-white">X</span></button>
+													<button class="btn btn-danger" id="change_mapeo_ultrafreezer"><span class="text-white">X</span></button>
 												</div>
                         </div>
                        <!-- <div class="form-row" style="text-align:center;"> 
@@ -302,7 +302,7 @@
                             <input type="checkbox" id="incluir_informe_base" value="1">
                           </div>
                         </div>-->
-									</form>
+								
 						</div>
 						</div>
 						</div>
@@ -937,4 +937,4 @@
 </div>
 <!--Fin del contenido de las tabs-->
 <script type="text/javascript" src="design/js/control_mapeo_ultrafreezer.js"></script>
-<script type="text/javascript" src="design/js/ultrafreezer_funciones_apoyo.js"></script>
+<!--<script type="text/javascript" src="design/js/ultrafreezer_funciones_apoyo.js"></script>-->

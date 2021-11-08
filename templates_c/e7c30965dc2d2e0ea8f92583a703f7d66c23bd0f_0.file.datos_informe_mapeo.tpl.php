@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-03 16:43:09
+/* Smarty version 3.1.34-dev-7, created on 2021-11-08 15:10:12
   from 'C:\xampp\htdocs\CerNet2.0\templates\ultrafreezer\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6182ae0d9429e1_98691476',
+  'unifunc' => 'content_61892fc4ce30e3_95580079',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e7c30965dc2d2e0ea8f92583a703f7d66c23bd0f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\ultrafreezer\\datos_informe_mapeo.tpl',
-      1 => 1635283338,
+      1 => 1636380610,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6182ae0d9429e1_98691476 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61892fc4ce30e3_95580079 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -107,7 +107,7 @@ function content_6182ae0d9429e1_98691476 (Smarty_Internal_Template $_smarty_tpl)
 								</a>
 							</li>
 							<li class="nav-item">
-								<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#ver_mapeo">
+								<a role="tab" class="nav-link" id="tab_ver_mapeo_ultrafreezer" data-toggle="tab" href="#ver_mapeo">
 									<span>Ver mapeo</span>
 								</a>
 							</li>
@@ -130,7 +130,7 @@ function content_6182ae0d9429e1_98691476 (Smarty_Internal_Template $_smarty_tpl)
 								<h6 class="text-warning" style="text-align:center;" id="anuncio_mapeo_1_ultrafreezer">Debes completar la información de bandejas</h6>
 									<div id="cuerpo_mapeo_ultrafreezer">
                     <input type="hidden" id="id_mapeo_creado_ultrafreezer">
-										<form id="formulario">
+				
 											<div class="form-row">
 												<div class="col-sm-12">
 													
@@ -366,7 +366,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 													<br>
 													<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_ultrafreezer">Aceptar</button>
 													<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_ultrafreezer">Actualizar</button>
-													<button class="btn btn-danger" id="change_mapeo"><span class="text-white">X</span></button>
+													<button class="btn btn-danger" id="change_mapeo_ultrafreezer"><span class="text-white">X</span></button>
 												</div>
                         </div>
                        <!-- <div class="form-row" style="text-align:center;"> 
@@ -386,7 +386,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                             <input type="checkbox" id="incluir_informe_base" value="1">
                           </div>
                         </div>-->
-									</form>
+								
 						</div>
 						</div>
 						</div>
@@ -1023,7 +1023,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/control_mapeo_ultrafreezer.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+<!--<?php echo '<script'; ?>
  type="text/javascript" src="design/js/ultrafreezer_funciones_apoyo.js"><?php echo '</script'; ?>
-><?php }
+>--><?php }
 }
