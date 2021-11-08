@@ -26,12 +26,13 @@ switch ($tipo) {
     case 'buscando_inf_parte_1':
     
         $array_datos1 = array();
-
-        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5 FROM informe_filtro as a WHERE  a.id_asignado = ?");
+        //echo "SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5 FROM informe_filtro as a WHERE  a.id_asignado =".$id_asignado_filtro;
+        
+        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5, a.insp6 FROM informe_filtro as a WHERE  a.id_asignado = ?");
         mysqli_stmt_bind_param($consultar, 'i', $id_asignado_filtro);
         mysqli_stmt_execute($consultar);
         mysqli_stmt_store_result($consultar);
-        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5);
+        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5, $insp6);
         
         while($row = mysqli_stmt_fetch($consultar)){
 
@@ -43,11 +44,13 @@ switch ($tipo) {
                 'insp2'=>$insp2,
                 'insp3'=>$insp3,
                 'insp4'=>$insp4,
-                'insp5'=>$insp5
+                'insp5'=>$insp5,
+                'insp6'=>$insp6
+
             );
         }
 
-        $convert = json_enconde($array_datos1);
+        $convert = json_encode($array_datos1);
         echo $convert;
     
         break;
