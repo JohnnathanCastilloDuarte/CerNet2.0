@@ -106,9 +106,12 @@ include('../../config.ini.php');
     $valor_obtenido_filtros = $_POST['valor_obtenido_filtros'];
     $veredicto = "";
     $id_informe_filtro = $_POST['id_informe'];
+    $id_medicion_1_array = $_POST['id_medicion_1_array'];
+    $id_medicion_2_array = $_POST['id_medicion_2_array'];
 
 
 
+    
     $update_primera_parte = mysqli_prepare($connect,"UPDATE  informe_filtro  SET  insp1 = ?, insp2 = ?, insp3 = ?, insp4 = ?, insp5 = ?, insp6 = ? WHERE id_informe = ?");
     mysqli_stmt_bind_param($update_primera_parte, 'ssssssi', $inspeccion_visual_array[0], $inspeccion_visual_array[1], $inspeccion_visual_array[2],
                                                                 $inspeccion_visual_array[3], $inspeccion_visual_array[4], $inspeccion_visual_array[5], $id_informe_filtro);
@@ -146,13 +149,19 @@ include('../../config.ini.php');
          
 
       $nombre_filtro = "Filtro #".($i+1);
+      /*
 
-      $update_segunda_parte = mysqli_prepare($connect,"UPDATE filtro_mediciones_1 SET valor_obtenido = ? ,  veredicto = ? ,  nombre_filtro = ? WHERE ");
-      mysqli_stmt_bind_param($update_segunda_parte, 'sssi', $recibe_inserta, $veredicto, $nombre_filtro, $id_informe);
+      $update_segunda_parte = mysqli_prepare($connect,"UPDATE filtro_mediciones_1 SET valor_obtenido = ?,  veredicto = ?,  nombre_filtro = ? WHERE id_medicion_2 = ?");
+      mysqli_stmt_bind_param($update_segunda_parte, 'sssi', $recibe_inserta, $veredicto, $nombre_filtro, $id_medicion_2_array[$i]);
       mysqli_stmt_execute($update_segunda_parte);
       echo mysqli_stmt_error($update_segunda_parte);
+
+      */
+
+     echo $veredicto;
      
     }
+    
   
   
   

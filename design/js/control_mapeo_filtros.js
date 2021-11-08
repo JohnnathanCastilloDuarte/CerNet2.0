@@ -189,7 +189,7 @@ $(document).ready(function(){
             
             <tr>
               <td>
-                <input type="hidden" name="id_medicion_2[]" value="${f.id_medicion_2}">
+                <input type="hidden" name="id_medicion_1[]" value="${f.id_medicion_2}">
                 Filtro N° ${numero}
               </td>
               <td>
@@ -530,6 +530,24 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
   var detalles_mediciones_array_d = [];
   var detalles_mediciones_array_dd = [];
   var valor_obtenido_filtros = [];
+  var id_medicion_1_array = [];
+  var id_medicion_2_array = [];
+
+
+  var detalles_id_medicion_1_campos = document.getElementsByName("id_medicion_1[]").length;
+
+  for(i=0;i<detalles_id_medicion_1_campos;i++){
+    id_medicion_1_array[i] = document.getElementsByName("id_medicion_1[]")[i].value;
+  }
+
+
+  var detalles_id_medicion_2_campos = document.getElementsByName("id_medicion_2[]").length;
+
+  for(i=0;i<detalles_id_medicion_2_campos;i++){
+    id_medicion_2_array[i] = document.getElementsByName("id_medicion_2[]")[i].value;
+  }
+  
+
 
 
 
@@ -603,7 +621,9 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     valor_obtenido_filtros,
     tipo,
     id_asignado_filtro,
-    id_informe
+    id_informe,
+    id_medicion_1_array,
+    id_medicion_2_array
   }
 
   $.ajax({
