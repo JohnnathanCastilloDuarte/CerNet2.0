@@ -4,7 +4,6 @@ var id_asignado_freezer = $("#id_asignado_freezer").val();
 var id_mapeo_freezer = "";
 var id_bandeja = "";
 var variable = "asignado";
-
 //ELEMENTOS OCULTOS
 $("#btn_actualizar_bandeja_freezer").hide();
 $("#cuerpo_mapeo_freezer").hide();
@@ -57,7 +56,7 @@ function setear_campos_freezer() {
 
 
 //////////////////////////////////////////////////////////////////////////////CREACIÓN DE BANDEJAS
-$(function() {
+
   $("#btn_nueva_bandeja_freezer").click(function() {
     var bandeja = $("#bandeja_freezer").val();
     const datos = {
@@ -66,10 +65,9 @@ $(function() {
       id_valida
     }
 
-
-
     $.post('templates/freezer/crear_bandeja.php', datos, function(e) {
-      if (e == "creado") {
+      console.log(e)
+      if (e == "Si") {
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -83,7 +81,7 @@ $(function() {
     });
 
   });
-}());
+
 
 //////////////////////////////////////////////////////////////////////////////CONTAR BANDEJAS
 function contar_registros_freezer() {
@@ -291,7 +289,7 @@ $("#cambiando_correlativo_freezer").click(function() {
   }
 
   $.post('templates/freezer/ingresa_correlativo_ultrafreezer.php', data_2, function(e) {
-
+    console.log(e);
     if (e == "Si") {
       Swal.fire({
         position: 'center',
