@@ -110,8 +110,6 @@ include('../../config.ini.php');
     $id_medicion_2_array = $_POST['id_medicion_2_array'];
 
 
-
-    
     $update_primera_parte = mysqli_prepare($connect,"UPDATE  informe_filtro  SET  insp1 = ?, insp2 = ?, insp3 = ?, insp4 = ?, insp5 = ?, insp6 = ? WHERE id_informe = ?");
     mysqli_stmt_bind_param($update_primera_parte, 'ssssssi', $inspeccion_visual_array[0], $inspeccion_visual_array[1], $inspeccion_visual_array[2],
                                                                 $inspeccion_visual_array[3], $inspeccion_visual_array[4], $inspeccion_visual_array[5], $id_informe_filtro);
@@ -149,22 +147,35 @@ include('../../config.ini.php');
          
 
       $nombre_filtro = "Filtro #".($i+1);
-      /*
+     
 
-      $update_segunda_parte = mysqli_prepare($connect,"UPDATE filtro_mediciones_1 SET valor_obtenido = ?,  veredicto = ?,  nombre_filtro = ? WHERE id_medicion_2 = ?");
+      $update_segunda_parte = mysqli_prepare($connect,"UPDATE filtro_mediciones_1 SET valor_obtenido = ?,  veredicto = ?,  nombre_filtro = ? WHERE id_medicion_1 = ?");
       mysqli_stmt_bind_param($update_segunda_parte, 'sssi', $recibe_inserta, $veredicto, $nombre_filtro, $id_medicion_2_array[$i]);
       mysqli_stmt_execute($update_segunda_parte);
       echo mysqli_stmt_error($update_segunda_parte);
+    }
 
-      */
+  
 
-     echo $veredicto;
-     
+
+    for($b = 0; $b < count($detalles_mediciones_array_aa); $b++){
+      
+
+      $nombre_filtro  = "Filtro #".($b+1); 
+
+      
+      $updater_tercera_parte = mysqli_prepare($connect, "UPDATE filtro_mediciones_2 SET nombre_filtro = ?, zonaA = ?, zonaAA = ?, zonaB = ?, zonaBB = ?, zonaC = ?, zonaCC = ?, zonaD = ?, zonaDD = ?
+      WHERE id_medicion_2 = ?");
+      mysqli_stmt_bind_param($updater_tercera_parte, 'sssssssssi', $nombre_filtro, $detalles_mediciones_array_a[$b], $detalles_mediciones_array_aa[$b], $detalles_mediciones_array_b[$b],
+                                                                   $detalles_mediciones_array_bb[$b], $detalles_mediciones_array_c[$b], $detalles_mediciones_array_cc[$b], $detalles_mediciones_array_d[$b],
+                                                                   $detalles_mediciones_array_dd[$b], $id_medicion_1_array[$b]);
+      mysqli_stmt_execute($updater_tercera_parte);
+      
     }
     
   
-  
-  
-  }
+    
+  echo "Listo";
+  } 
 
 ?>
