@@ -3,12 +3,13 @@ $("#asignacion_mapeo_estufaeincubadora").hide();
 $("#asignacion_participantes_estufaeincubadora").hide();
 $("#asignacion_informe_estufaeincubadora").hide();
 $("#cuerpo_mapeo_estufaeincubadora").hide();
-$("#cuerpo_bandeja_estufaeincubadora").hide();
+$("#cuerpo_bandeja_estufaeincubadora").show();
 $("#btn_actualizar_bandeja_estufaeincubadora").hide();
 $("#btn_actualizar_mapeo_estufaeincubadora").hide();
 $("#change_mapeo_estufaeincubadora").hide();
-$("#btn_nueva_bandeja_estufaeincubadora").hide();
+$("#btn_nueva_bandeja_estufaeincubadora").show();
 $("#nombre_mapeo_eleccion").hide();
+$("#cargue_datos_crudos").hide();
 
 //window.history.replaceState({},'','user.html');
 //////////// CREACIÓN DE VARIABLES GLOBAL
@@ -38,9 +39,14 @@ function leer_correlativo_estufaeincubadora(x){
   if(response.length != 0){
     $("#cuerpo_bandeja_estufaeincubadora").show();
     $("#aqui_consecutivo_estufaeincubadora").text(response);
+
+  }else{
+  	$("#ver_mapeo_estufaeincubadora").css("display", "none");
+  	$("#crear_mapeo_estufaeincubadora").css("display", "none");
   }
  });
 }
+
 
 ////////// EVENTO QUE CREA O CAMBIA EL CONSECUTIVO ASIGNADO AL INFORME
 $("#cambiando_correlativo_estufaeincubadora").click(function(){
@@ -63,11 +69,18 @@ $("#cambiando_correlativo_estufaeincubadora").click(function(){
     timer:1700
     });
     $("#aqui_consecutivo_estufaeincubadora").text(correlativo);
+     setTimeout(recargar_pagina,1700);
+
   }
 
   leer_correlativo(id_asignado_estufaeincubadora);
   });  
 });
+
+
+function recargar_pagina(){
+   location.reload();
+}
 
 ////////// EVENTO QUE CREARA LAS BANDEJAS
 $(function(){
@@ -142,12 +155,12 @@ function contar_registros_estufaeincubadora(){
 			$("#cuantas_bandeja_estufaeincubadora").val(x);
 			if(e > 0){
 				$("#anuncio_mapeo_1_estufaeincubadora").hide();
-        $("#crear_mapeo_estufaeincubadora").show();
+     
         $("#cuerpo_mapeo_estufaeincubadora").show();
 			}else{
 				$("#anuncio_mapeo_1_estufaeincubadora").show();
 				$("#cuerpo_mapeo_estufaeincubadora").hide();
-        $("#crear_mapeo_estufaeincubadora").hide();
+        
 			}
 		}
 		
@@ -371,7 +384,8 @@ function listar_mapeos_estufaeincubadora(){
 			
 			$("#listando_mapeos_creados_estufaeincubadora").html(template2);
 			$("#listando_mapeos_estufaeincubadora").html(template);
-
+			$("#asignacion_participantes_estufaeincubadora").show();
+			$("#asignacion_informe_estufaeincubadora").show();
 		}
 	});
 }
@@ -631,7 +645,7 @@ function contar_registro_informes_estufaeincubadora(){
 				if(e == "Abrete"){
 					$("#asignacion_informe_estufaeincubadora").show();
 				}else{
-					$("#asignacion_informe_estufaeincubadora").hide();
+					//$("#asignacion_informe_estufaeincubadora").hide();
 				}
 				
 			}

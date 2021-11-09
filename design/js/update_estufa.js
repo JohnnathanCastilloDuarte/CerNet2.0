@@ -68,7 +68,9 @@ function valida_botones_estufa(){
 
 /////////// CREACIÓN DEL ITEM ESTUFA
 $("#btn_nuevo_item_estufa").click(function(){
+
   
+  let empresa_estufas = $("#empresa_estufa").val();
   const datos = {
     nombre_estufa : $("#nombre_estufa").val(),
     empresa_estufa : $("#empresa_estufa").val(),
@@ -93,7 +95,6 @@ $("#btn_nuevo_item_estufa").click(function(){
     id_valida
   }
   
-  
   $.post('templates/item/nueva_estufa.php',datos,function(response){
       
     if(response == "Si"){
@@ -101,7 +102,8 @@ $("#btn_nuevo_item_estufa").click(function(){
         title:'Mensaje',
         text:'Se ha creado la estufa correctamente',
         icon:'success',
-        timer:2000
+        showConfirmButton: false,
+        timer:1000
       });
     }
     

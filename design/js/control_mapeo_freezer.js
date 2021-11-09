@@ -440,18 +440,17 @@ $(document).on('click','#eliminar_mapeo_creada_freezer',function(){
     }).then((result)=>{
       if(result.value){
         
-        
          let id_valida = $("#id_valida").val();
-         id_mapeo = $(this).attr('data-id');
+         let id_mapeo = $(this).attr('data-id');
+
         
         const data = {
-          id_mapeo_freezer,
+          id_mapeo,
           id_asignado_freezer,
           id_valida
         }
         
         $.post('templates/freezer/eliminar_mapeo.php',data, function(e){
-        
             if(e == "No"){
               Swal.fire({
                 position:'center',
