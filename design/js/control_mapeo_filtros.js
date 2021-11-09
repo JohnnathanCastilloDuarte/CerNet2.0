@@ -547,10 +547,6 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     id_medicion_2_array[i] = document.getElementsByName("id_medicion_2[]")[i].value;
   }
   
-
-
-
-
   var inspeccion_visual_campos = document.getElementsByName("inspeccion_visual[]").length;
 
   for(i=0;i<inspeccion_visual_campos;i++){
@@ -631,7 +627,6 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     data:datos,
     url:'templates/filtros/controlador_filtro.php',
     success:function(response){
-      console.log(response);
       if(response == "Listo"){
         Swal.fire({
           title:'Mensaje',
