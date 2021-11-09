@@ -512,8 +512,7 @@ $(function() {
         } else {
           $("#informe_base_freezer").attr('checked', false);
         }
-
-
+        
         $("#nombre_mapeo_freezer").val(traer.nombre);
         $("#fecha_inicio_mapeo_freezer").val(traer.fecha_inicio);
         $("#hora_inicio_mapeo_freezer").val(traer.hora_inicio);

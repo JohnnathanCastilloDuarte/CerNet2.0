@@ -254,7 +254,7 @@ else
         break;
 
 /////////////////////// GESTIÓN DE INFORMES ////////////////////// 
-        case 8:
+        case 8: 
           if($octavo_modulo == 1){
             if($_GET["page"] == 1){
               include("templates/refrigeradores/gestionar_informes.php");
@@ -265,9 +265,9 @@ else
                 include("templates/ultrafreezer/datos_informe_mapeo.php");
               }else if($_GET["type"] == 8){
                 include("templates/freezer/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 13){
-                include("templates/estufaeincubadora/datos_informe_mapeo.php");
               }else if($_GET["type"] == 14){
+                include("templates/estufaeincubadora/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 13){
                 include("templates/automovil/datos_informe_mapeo.php");
               }else if($_GET["type"] == 11){
                 include("templates/filtros/datos_informe_mapeo.php");

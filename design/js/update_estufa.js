@@ -21,7 +21,6 @@ function valida_botones_estufa(){
 }
 
 
-
 (function(){
 
   
