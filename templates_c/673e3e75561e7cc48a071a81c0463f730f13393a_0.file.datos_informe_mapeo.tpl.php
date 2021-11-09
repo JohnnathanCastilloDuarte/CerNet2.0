@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-08 20:43:33
+/* Smarty version 3.1.34-dev-7, created on 2021-11-09 21:31:56
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61897de5b3ba55_11686720',
+  'unifunc' => 'content_618adabc6044f3_79666886',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1636400611,
+      1 => 1636489825,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61897de5b3ba55_11686720 (Smarty_Internal_Template $_smarty_tpl) {
+function content_618adabc6044f3_79666886 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -332,7 +332,7 @@ function content_61897de5b3ba55_11686720 (Smarty_Internal_Template $_smarty_tpl)
             <div class="col-sm-12">  
               <div class="card">
                <div class="card-header">
-                 <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77">
+                 <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77" id="mostrar_equipos_mediciones_filtros">
                    Equipos Utilizados en la Medición
                  </a>  
                </div>
@@ -360,12 +360,53 @@ function content_61897de5b3ba55_11686720 (Smarty_Internal_Template $_smarty_tpl)
                     <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
                    </div>
                  </div>
+                 <br>
+
+                 <div class="row">
+                   <div class="col-sm-12">
+                     <table class="table" style="text-align:center;">
+                        <thead>
+                          <th>Nombre equipo</th>
+                          <th>Eliminar</th>
+                        </thead>
+                        <tbody id="equipos_agregados_medicion_filtros"></tbody>
+                     </table>
+                   </div>
+                 </div>
                </div>
              </div>
            </div>
           </div>
           <br>
 
+          <div class="row">
+
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  <a data-toggle="collapse" data-target="#collapseOne99"  aria-controls="collapseOne99" id="img_filtros">
+                    Evidencia grafica
+                  </a>
+                </div>
+                <div class="card-body collapse" id="collapseOne99">
+                  <div class="row" style="text-align:center;">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                      <form  id="formulario_envia_img" enctype="multipart/form-data" method="POST">
+                        <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
+                        <br>
+                        <input type="file" name="img_a_subir" class="form-control">
+                        <br>
+                        <button class="btn btn-success">Cargar</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br>
           <div class="row">
             <div class="col-sm-12" style="text-align:center;">
               <button class="btn-shadow btn-outline-2x btn btn-outline-success"  id="btn_nuevo_filtro_mapeo">Aceptar</button>
@@ -378,18 +419,14 @@ function content_61897de5b3ba55_11686720 (Smarty_Internal_Template $_smarty_tpl)
   </div><!--cierre del div col sm 9-->
 </div> 
 
-
-
-<?php echo '<script'; ?>
- type="text/javascript" src="design/js/control_mapeo_campanas.js"><?php echo '</script'; ?>
->
-
-
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/control_mapeo_filtros.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/nuevo_equipo_cercal.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/controla_imagenes.js"><?php echo '</script'; ?>
 >
 
 <?php }

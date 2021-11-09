@@ -81,7 +81,7 @@ function trayendo_equipo(){
                         <td>${x.certificado}</td>
                         <td>${x.fecha_emision}</td>
                         <td>${x.fecha_vencimiento}</td>
-                        <td><button class="btn btn-success" class="form-control" data-id="${x.id_equipo}">+</button></td>
+                        <td><button class="btn btn-success" class="form-control" data-id="${x.id_equipo}" id="btn_agregar_equipo">+</button></td>
                     </tr>
                 `;
 
@@ -92,3 +92,135 @@ function trayendo_equipo(){
     })
 }
 
+
+/////////// button para agregar equipos 
+
+$(document).on('click','#btn_agregar_equipo',function(){
+
+    let id_equipo = $(this).attr('data-id');
+    let id_informe  = $("#id_informe_filtro").val();
+    let proceso = 3;
+
+
+    const datos = {
+        id_equipo,
+        id_informe,
+        proceso
+    }
+
+    $.ajax({
+        type:'POST',
+        data:datos,
+        url:'templates/equipos_cercal/controlador_equipos.php',
+        success:function(response){
+          
+            if(response == "Existe"){
+                Swal.fire({
+                    title:'Mensaje',
+                    text:'El equipo ya es utilizado para medir esta prueba',
+                    icon:'warning',
+                    timer:1700
+                });
+            }else{
+                Swal.fire({
+                    title:'Mensaje',
+                    text:'Se ha asignado correctamente el equipo de medición',
+                    icon:'success',
+                    timer:1700
+                });
+            }
+            listar_equipos_asignados();
+        }
+    })
+    
+});
+
+
+$("#mostrar_equipos_mediciones_filtros").click(function(){
+    listar_equipos_asignados();
+});
+
+
+//// FUNCION PARA ENLISTAR LOS EQUIPOS ASIGNADOS
+function listar_equipos_asignados(){
+
+    let id_informe  = $("#id_informe_filtro").val();
+    let proceso = 4;
+
+    datos = {   
+        id_informe,
+        proceso
+    }
+
+    $.ajax({
+        type:'POST',
+        data:datos,
+        url:'templates/equipos_cercal/controlador_equipos.php',
+        success:function(response){
+
+            let traer = JSON.parse(response);
+            let template = "";
+
+            traer.forEach((x)=>{
+
+                template += 
+                    `
+                        <tr>
+                            <td>${x.nombre_equipo}</td>
+                            <td><button class="btn btn-danger" id="retirar_equipo_medicion_filtro" data-id="${x.id_medicion}">X</button></td>
+                        </tr>
+                    
+                    `;
+
+            });
+
+            $("#equipos_agregados_medicion_filtros").html(template);
+
+        }
+    });
+}
+
+
+/////// des asignar equipo 
+$(document).on('click','#retirar_equipo_medicion_filtro', function(){
+
+    let id_medicion = $(this).attr('data-id');
+    let proceso = 5;
+
+    datos = {
+        id_medicion,
+        proceso
+    }
+
+    Swal.fire({
+		position:'center',
+		icon:'error',
+		title:'Deseas eliminar este equipo?',
+		showConfirmButton:true,
+		showCancelButton:true,
+		confirmButtonText:'Si!',
+		cancelButtonText:'No!',
+	}).then((result)=>{
+		if(result.value){
+            $.ajax({
+                type:'POST',
+                data:datos,
+                url:'templates/equipos_cercal/controlador_equipos.php',
+                success:function(response){
+                   
+                    Swal.fire({
+                        title:'Mensaje',
+                        text:'Se ha eliminado con exito el equipo de medición',
+                        icon:'success',
+                        timer:1700
+                    });
+                }
+                
+            });
+        }
+
+        listar_equipos_asignados();
+    });
+
+
+});
