@@ -56,6 +56,66 @@ if($proceso == 1){
     $convert = json_encode($array_equipos);
 
     echo $convert;
+}else if($proceso == 3){
+
+    $id_equipo = $_POST['id_equipo'];
+    $id_informe = $_POST['id_informe'];
+
+
+    $validacion1 = mysqli_prepare($connect,"SELECT id_equipo_medicion  FROM equipos_mediciones WHERE id_informe = ? AND id_equipo = ?");
+    mysqli_stmt_bind_param($validacion1, 'ii', $id_informe, $id_equipo);
+    mysqli_stmt_execute($validacion1);
+    mysqli_stmt_store_result($validacion1);
+    mysqli_stmt_bind_result($validacion1, $id_equipo_medicion);
+    mysqli_stmt_fetch($validacion1);
+   
+    if (mysqli_stmt_num_rows($validacion1) > 0){
+        echo "Existe";
+    }else{
+        $insertar = mysqli_prepare($connect,"INSERT INTO  equipos_mediciones (id_equipo ,  id_informe ) VALUES (?,?)");
+        mysqli_stmt_bind_param($insertar, 'ii', $id_equipo, $id_informe);
+        mysqli_stmt_execute($insertar);
+
+        if($insertar){
+            echo "Listo";
+        }
+    }
+}else if($proceso == 4){
+
+    $id_informe = $_POST['id_informe'];
+    $array_equipos_medicion = array();
+
+     
+    $consultar_equipos = mysqli_prepare($connect,"SELECT b.id_equipo_medicion, a.nombre_equipo FROM equipos_cercal as a, equipos_mediciones as b WHERE a.id_equipo_cercal = b.id_equipo AND b.id_informe = ?");
+    mysqli_stmt_bind_param($consultar_equipos, 'i', $id_informe);
+    mysqli_stmt_execute($consultar_equipos);
+    mysqli_stmt_store_result($consultar_equipos);
+    mysqli_stmt_bind_result($consultar_equipos, $id_equipo_medicion, $nombre_equipo);
+    
+
+    while($row = mysqli_stmt_fetch($consultar_equipos)){
+
+        $array_equipos_medicion[] = array(
+            'id_medicion'=>$id_equipo_medicion,
+            'nombre_equipo'=>$nombre_equipo
+        );
+    }
+
+    $convert = json_encode($array_equipos_medicion);
+    echo $convert;
+    
+}else if($proceso == 5){
+
+    $id_medicion = $_POST['id_medicion'];
+    
+    $eliminar = mysqli_prepare($connect,"DELETE FROM equipos_mediciones WHERE id_equipo_medicion = ?");
+    mysqli_stmt_bind_param($eliminar, 'i', $id_medicion);
+    mysqli_stmt_execute($eliminar);
+
+    if($eliminar){
+        echo "Listo";
+    }
+    
 }
 
 mysqli_close($connect);
