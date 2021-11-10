@@ -17,6 +17,10 @@ $("#si_existe_dc_autmovil").hide();
 $("#personal_1_automovil").hide();
 $("#cerrar_crear_personal_automovil").hide();
 
+$("#asignacion_mapeo_automovil").hide();
+$("#asignacion_participantes_automovil").hide();
+$("#asignacion_informe_automovil").hide();
+
 ///////////// FUNCIONES QUE SE EJECUTARAN
 listar_alturas();
 contar_alturas_automovil();
@@ -41,7 +45,7 @@ function listar_alturas(){
       let template2 = ""
       
       if (traer.length == 0){
-          template += '<tr><td colspan = "3"><h4>No hay alturas actualmente</h4></td></tr>';
+          template += '<tr><td colspan = "3"><h5>No hay alturas actualmente</h5></td></tr>';
       }else{
           traer.forEach((x)=>{
             
@@ -223,10 +227,16 @@ function contar_alturas_automovil(){
     url:'templates/automovil/contar_alturas.php',
     data:{id_asignado_automovil},
     success:function(response){
+
+
     
       if(response == 0){
         $("#cuerpo_mapeo_automovil").hide();
         $("#cuerpo_ver_mapeo_automovil").hide();
+
+          
+        
+
       }else{
           $("#cuerpo_mapeo_automovil").show();
           $("#cuerpo_ver_mapeo_automovil").show(); 
@@ -268,7 +278,7 @@ function listar_pruebas_automovil(parametro){
       let template = "";
       let template2 = "";
       
-
+      if (response != "[]") {
         traer.forEach((x)=>{
           template +=
             `
@@ -300,9 +310,21 @@ function listar_pruebas_automovil(parametro){
             
             `;
         });
-       
+      
+      // alert(response)
       $("#listando_mapeos_creados_automovil").html(template2);  
       $("#listando_mapeos_automovil").html(template);
+
+      $("#asignacion_mapeo_automovil").show();
+      $("#asignacion_participantes_automovil").show();
+      $("#asignacion_informe_automovil").show();
+      
+     }else{
+
+    
+
+     }
+
     }
   });
   
@@ -1239,11 +1261,11 @@ function listar_correlativo_automovil(){
      
       if(response != ""){
         $("#aqui_consecutivo_automovil").html(response);
-        $("#primer_card_automovil").show();
+       
         $("#cuerpo_mapeo_automovil").show();
         $("#cuerpo_ver_mapeo_automovil").show();
       }else{
-        $("#primer_card_automovil").hide();
+       
         $("#cuerpo_mapeo_automovil").hide();
         $("#cuerpo_ver_mapeo_automovil").hide();
         $("#aqui_consecutivo_automovil").html("<span class='text-danger'>Sin correlativo</span>");
@@ -1405,7 +1427,6 @@ function contar_informes(){
     url:'templates/automovil/contar_informes.php',
     data:{id_asignado_automovil},
     success:function(response){
-   
        if(response == 1){
          $("#cargar_informes_automovil").show();
        }else{
@@ -1449,7 +1470,7 @@ function listar_informes_automovil(){
 		url: 'templates/automovil/listar_informes.php',
 		success:function(e){
 				
-			$("#carga").hide();
+			$("#carga").show();
 			let traer = JSON.parse(e);
 			let template = "";
 			let estado = "";
@@ -1683,6 +1704,51 @@ function listar_informes_automovil(){
 }
 
 
+
+
+
+$(document).on("click","#eliminar_informe_automovil",function(){  
+   
+
+   let id = $(this).attr('data-id');
+  
+  Swal.fire({
+    title:'Mensaje',
+    text:'Seguro ¿deseas eliminar este informe?',
+    icon:'question',
+    showCancelButton: true,
+    confirmButtonText: `Eliminar!`
+  }).then((x)=>{
+    if(x.value){
+     $.ajax({
+       type:'POST',
+       url:'templates/automovil/eliminar_informe.php',
+       data:{id},
+       success:function(response){
+         if(response == "Si"){
+           
+           Swal.fire({
+             title:'Mensaje',
+             text:'El infome ha sido eliminado correctamente',
+             icon:'success',
+             timer:1500
+           });
+           listar_pruebas_automovil("L");
+         }else if(response == "NO"){
+           Swal.fire({
+             title:'Mensaje',
+             text:'El informe NO ha sido eliminado.',
+             icon:'error',
+             timer:2000
+           });
+         }
+       }
+     }) 
+    }
+  });
+
+
+});
 
 
 $(document).on("click","#grafico_1_automovil",function(){  

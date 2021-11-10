@@ -32,17 +32,17 @@ $nombre_construido = "MAPEO A ".$c_hora." HORA(s) ".$nombre_prueba;
 
 
 $insertar = mysqli_prepare($connect,"INSERT INTO automovil_mapeo (id_asignado, nombre, fecha_inicio, hora_inicio, fecha_final, hora_final, intervalo, temperatura_minima,
-                                                                  temperatura_maxima, valor_seteado_temperatura, id_usuario)
-                                                           VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+	temperatura_maxima, valor_seteado_temperatura, id_usuario)
+	VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 mysqli_stmt_bind_param($insertar, 'isssssissii', $id_asignado_automovil, $nombre_construido, $fecha_inicio_mapeo_automovil, $hora_inicio,  $fecha_fin_mapeo_automovil, $hora_fin,
-                                                 $intervalo_automovil, $temperatura_minima_automovil, $temperatura_maxima_automovil, $valor_seteado_temperatura_automovil,
-                                                 $id_valida_automovil);
+	$intervalo_automovil, $temperatura_minima_automovil, $temperatura_maxima_automovil, $valor_seteado_temperatura_automovil,
+	$id_valida_automovil);
 mysqli_stmt_execute($insertar);
 //echo mysqli_stmt_error ($insertar);
 if($insertar){
-  echo 1;
+	echo 1;
 }else{
-  echo 0;
+	echo 0;
 }
 
 mysqli_close($connect);
