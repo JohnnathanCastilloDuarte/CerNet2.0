@@ -30,7 +30,7 @@ $("#btn_actualizar_bandeja_ultrafreezer").hide();
 $("#cuerpo_mapeo_ultrafreezer").hide();
 $("#btn_actualizar_mapeo_ultrafreezer").hide();
 $("#trayendo_resultados").hide();
-$("#card_resultaodos_datos_crudos").hide();
+//$("#card_resultaodos_datos_crudos").hide();
 $("#personal_2_ultrafreezer").hide();
 $("#editar_personal_ultrafreezer").hide();
 $("#asignacion_informe_ultrafreezer").hide();
@@ -711,7 +711,7 @@ function listar_bandejas_c_ultrafreezer(a){
 				  id_bandeja = $(this).attr('data-id');
 					listar_sensores_ultrafreezer();
 					listar_ultrafreezer_sensores(id_bandeja, id_mapeo);
-          mostrar_datos_crudos(id_asignado, id_bandeja, id_mapeo, id_valida);
+          //mostrar_datos_crudos(id_asignado, id_bandeja, id_mapeo, id_valida);
 
 			});
 }());
@@ -1027,19 +1027,18 @@ function botton_datos_crudos(parameter){
     data: {parameter},
     url:'templates/ultrafreezer/consultar_boton_datos_crudos.php',
     success:function(response){
-      
-      let traer = JSON.parse(response);
-      
+      let botton
       if(response == "No"){
         
-        let botton = "<button class='btn btn-danger' id='cargar_dc_ultrafreezer'>Falta archivo</button>";
+         botton = "<button class='btn btn-danger' id='cargar_dc_ultrafreezer'>Falta archivo</button>";
         
-        $("#botton_datos_crudos_ultrafreezer").html(botton);
+        
       }else{
-       
-        let botton =`<button class='btn btn-success' id='cargar_dc_ultrafreezer' data-url='${response}'>Archivo cargado</button>`; 
+              
+         botton =`<button class='btn btn-success' id='cargar_dc_ultrafreezer' data-url='${response}'>Archivo cargado</button>`; 
         
       }
+      $("#botton_datos_crudos_ultrafreezer").html(botton);
     }
   });
   
@@ -1063,7 +1062,8 @@ function botton_datos_crudos(parameter){
     contentType: false,
     processData: false,
     success:function(response) {
-
+        console.log(response);
+      /*
         if(response == 0){
          	Swal.fire({
 					position:'center',
@@ -1082,7 +1082,7 @@ function botton_datos_crudos(parameter){
 					timer:1700
 				});
       }
-      
+    */    
     } 
   
   });
@@ -1094,8 +1094,7 @@ function botton_datos_crudos(parameter){
 
 function mostrar_datos_crudos(parametro_a, parametro_b, parametro_c, parametro_d){
   
-
-     
+      
     const datos = {
       parametro_a,
       parametro_b,
@@ -1114,7 +1113,7 @@ function mostrar_datos_crudos(parametro_a, parametro_b, parametro_c, parametro_d
     url: 'templates/ultrafreezer/cargar_datos_crudos_db_ultrafreezer.php',
     data: datos,
     success:function(response){
-      
+      console.log(response);
       $("#trayendo_resultados").show();
       $("#resultados_dc").hide();
       let traer = JSON.parse(response);
