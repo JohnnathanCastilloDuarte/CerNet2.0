@@ -403,12 +403,11 @@
                     imagen <input type="file" name="" class="form-control">
                   </div>
                 </div>
-
+                <br>
+                <hr>
 
                 <div class="row">
-                  <div class="col-sm-12">
-                    <br>
-                    <table class="table"><tr><td></td></tr></table>
+                  <div class="col-sm-12">                   
                     <label><b>Equipo Utilizado en la Medición</b></label>
                     <select class="form-control col-sm-4" id="idequipo">
                       <option>Seleccione...</option>

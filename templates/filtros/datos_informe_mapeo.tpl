@@ -378,6 +378,12 @@
                       </form>
                     </div>
                   </div>
+                  <br>
+                  <div class="row" id="aqui_imagenes">
+    
+                  </div>
+                    
+                  
                 </div>
               </div>
             </div>
