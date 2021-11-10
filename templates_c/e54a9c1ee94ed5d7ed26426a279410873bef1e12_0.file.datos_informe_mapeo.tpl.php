@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-26 17:27:44
+/* Smarty version 3.1.34-dev-7, created on 2021-10-26 19:17:57
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\informes\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61781e708cb311_00070898',
+  'unifunc' => 'content_617838455ab2c8_41226297',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e54a9c1ee94ed5d7ed26426a279410873bef1e12' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\informes\\datos_informe_mapeo.tpl',
-      1 => 1635255800,
+      1 => 1635267414,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61781e708cb311_00070898 (Smarty_Internal_Template $_smarty_tpl) {
+function content_617838455ab2c8_41226297 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -904,6 +904,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 </div><!--Cierre del tab informes_1-->
 </div>
 </div>
+
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/control_mapeo_refrigerador.js"><?php echo '</script'; ?>
 ><?php }

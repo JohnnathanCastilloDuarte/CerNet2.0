@@ -38,7 +38,7 @@
                 <div class="col-sm-6">
                   <input type="hidden" id="id_item_estufa" value="{$estufa.id_estufa}">
                   <input type="hidden" id="id_item_2_estufa" value="{$estufa.id_item}">
-                  <input type="hidden" id="empresa_estufa" value="{$estufa.id_empresa}">
+                  <input type="hidden" id="id_empresa_estufa" value="{$estufa.id_empresa}">
                   <label>Nombre del Estufa</label>
                   <input type="text" id="nombre_estufa" class="form-control" value="{$estufa.nombre_estufa}" placeholder = "Nombre estufa">
                 </div>

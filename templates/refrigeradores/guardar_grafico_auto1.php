@@ -8,7 +8,7 @@ $seleccion = $_POST['seleccion'];
 if($seleccion == 0){
   
  
-  $consultar_informe = mysqli_prepare($connect, "SELECT id_informe_refrigerador FROM informes_refrigerador WHERE id_mapeo = ?");
+  $consultar_informe = mysqli_prepare($connect, "SELECT id_informe_refrigerador FROM informe_refrigerador WHERE id_mapeo = ? AND tipo = 0");
   mysqli_stmt_bind_param($consultar_informe, 'i', $id_mapeo);
   mysqli_stmt_execute($consultar_informe);
   mysqli_stmt_store_result($consultar_informe);
@@ -50,7 +50,7 @@ if($seleccion == 0){
   
 }else{
   
-  $consultar_informe = mysqli_prepare($connect, "SELECT id_informe_refrigerador FROM informes_refrigerador WHERE id_mapeo = ?");
+  $consultar_informe = mysqli_prepare($connect, "SELECT id_informe_refrigerador FROM informe_refrigerador WHERE id_mapeo = ? AND tipo = 1");
   mysqli_stmt_bind_param($consultar_informe, 'i', $id_mapeo);
   mysqli_stmt_execute($consultar_informe);
   mysqli_stmt_store_result($consultar_informe);

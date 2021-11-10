@@ -64,7 +64,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9));
 
 
 $aprobaciones = array();
@@ -211,6 +211,8 @@ else
                 include("templates/item/update_automovil.php");
               }else if($_GET["type"] == 11){
                 include("templates/item/update_filtro.php");
+              }else if($_GET["type"] == 12){
+                include("templates/item/update_campana_extraccion.php");
               }
             }else if($_GET["page"] == 4){
               include("templates/item/historial_item.php");
@@ -252,7 +254,7 @@ else
         break;
 
 /////////////////////// GESTIÓN DE INFORMES ////////////////////// 
-        case 8:
+        case 8: 
           if($octavo_modulo == 1){
             if($_GET["page"] == 1){
               include("templates/refrigeradores/gestionar_informes.php");
@@ -263,12 +265,14 @@ else
                 include("templates/ultrafreezer/datos_informe_mapeo.php");
               }else if($_GET["type"] == 8){
                 include("templates/freezer/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 13){
-                include("templates/estufaeincubadora/datos_informe_mapeo.php");
               }else if($_GET["type"] == 14){
+                include("templates/estufaeincubadora/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 13){
                 include("templates/automovil/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 10){
+              }else if($_GET["type"] == 11){
                 include("templates/filtros/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 12){
+                include("templates/campana_extraccion/datos_informe_mapeo.php");
               }
             }else if($_GET["page"] == 3){
               include("templates/refrigeradores/historial_refrigeradores.php");
@@ -283,6 +287,9 @@ else
             }
             else if ($_GET["page"] == 8){
               include("templates/filtros/gestionar_informes.php");
+            }
+            else if ($_GET["page"] == 9){
+              include("templates/campana_extraccion/gestionar_informes.php");
             }
           }
        break;

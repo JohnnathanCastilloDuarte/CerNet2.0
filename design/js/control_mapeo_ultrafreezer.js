@@ -30,12 +30,14 @@ $("#btn_actualizar_bandeja_ultrafreezer").hide();
 $("#cuerpo_mapeo_ultrafreezer").hide();
 $("#btn_actualizar_mapeo_ultrafreezer").hide();
 $("#trayendo_resultados").hide();
+$("#card_resultaodos_datos_crudos").hide();
 $("#personal_2_ultrafreezer").hide();
 $("#editar_personal_ultrafreezer").hide();
 $("#asignacion_informe_ultrafreezer").hide();
 $("#cargar_informes").hide();
 $("#nombre_opcional_mapeo").hide();
 $("#nombre_opcional_div").hide();
+$("#change_mapeo_ultrafreezer").hide();
 //////////////////////////////////////////////////////////LOGICA DE FUNCIONES
 
 
@@ -195,6 +197,7 @@ $(document).on('click','#modificar_bandeja_creada_ultrafreezer', function(){
 			$("#bandeja_ultrafreezer").val("");
 			$("#bandeja_ultrafreezer").text("");
 			$("#btn_actualizar_bandeja_ultrafreezer").hide();
+      $("#btn_nueva_bandeja_ultrafreezer").show();
 			listar_bandejas_ultrafreezer();
 			contar_registros_ultrafreezer();			
 		}
@@ -277,48 +280,62 @@ function listar_mapeos_ultrafreezer(){
 		data : {id_asignado},
 		url:'templates/ultrafreezer/listar_mapeos.php',
 		success:function(e){	
-			let traer = JSON.parse(e);
-			let template = "";
-			let template2 = "";
-			
-			traer.forEach((result)=>{
-				
-				template +=
-				`
-				<tr>
-					<td>${result.nombre}</td>
-					<td>${result.fecha_inicio} ${result.hora_inicio}</td>
-					<td>${result.fecha_final} ${result.hora_final}</td>
-					<td>${result.intervalo}</td>
-					<td>${result.temperatura_minima}</td>
-					<td>${result.temperatura_maxima}</td>
-					<td>
-						<div style="text-align:center;">
-							<button class="btn btn-success" data-id="${result.id_mapeo}" id="modificar_mapeo_creada_ultrafreezer"><i class="pe-7s-check"></i></button>
-							<button class="btn btn-danger" data-id="${result.id_mapeo}" id="eliminar_mapeo_creada_ultrafreezer">X</button>
-						</div>
-					</td>
+     
 
-				</tr>
+      if(e.length == 2){
+        $("#tab_ver_mapeo_ultrafreezer").css("display", "none");
+        $("#asignacion_mapeo_ultrafreezer").css("display", "none");
+        $("#asignacion_participantes_ultrafreezer").css("display", "none");
+        $("#asignacion_informe_ultrafreezer").css("display", "none");
 
-				`
-			});
-			
-			traer.forEach((result)=>{
-				template2+= 	
-				`
-				<tr>
-					<td>${result.nombre}</td>
-					<td><button class="btn btn-success" id="buscar_bandeja_asignada_ultrafreezer" data-id="${result.id_mapeo}"  data-id-2="${id_asignado}" nombre="${result.nombre}" ><i class="lnr-checkmark-circle"></i></button></td>
-				</tr>
+      }else{
 
-				`;
-			});
-			
-			$("#listando_mapeos_creados_ultrafreezer").html(template2);
-			$("#listando_mapeos_ultrafreezer").html(template);
+        $("#tab_ver_mapeo_ultrafreezer").css("display", "block");
+        $("#asignacion_mapeo_ultrafreezer").css("display", "block");
+        $("#asignacion_participantes_ultrafreezer").css("display", "block");
+        $("#asignacion_informe_ultrafreezer").css("display", "block");
 
-		
+        let traer = JSON.parse(e);
+        let template = "";
+        let template2 = "";
+        
+        traer.forEach((result)=>{
+          
+          template +=
+          `
+          <tr>
+            <td>${result.nombre}</td>
+            <td>${result.fecha_inicio} ${result.hora_inicio}</td>
+            <td>${result.fecha_final} ${result.hora_final}</td>
+            <td>${result.intervalo}</td>
+            <td>${result.temperatura_minima}</td>
+            <td>${result.temperatura_maxima}</td>
+            <td>
+              <div style="text-align:center;">
+                <button class="btn btn-success" data-id="${result.id_mapeo}" id="modificar_mapeo_creada_ultrafreezer"><i class="pe-7s-check"></i></button>
+                <button class="btn btn-danger" data-id="${result.id_mapeo}" id="eliminar_mapeo_creada_ultrafreezer">X</button>
+              </div>
+            </td>
+
+          </tr>
+
+          `
+        });
+        
+        traer.forEach((result)=>{
+          template2+= 	
+          `
+          <tr>
+            <td>${result.nombre}</td>
+            <td><button class="btn btn-success" id="buscar_bandeja_asignada_ultrafreezer" data-id="${result.id_mapeo}"  data-id-2="${id_asignado}" nombre="${result.nombre}" ><i class="lnr-checkmark-circle"></i></button></td>
+          </tr>
+
+          `;
+        });
+        
+        $("#listando_mapeos_creados_ultrafreezer").html(template2);
+        $("#listando_mapeos_ultrafreezer").html(template);
+      }		
 		}
 	});
 }
@@ -621,6 +638,7 @@ function listar_mapeos_ultrafreezer(){
 					title:'El registro ha sido editado correctamente',
 					timer:1500
 				});
+        $("#change_mapeo_ultrafreezer").hide();
 				listar_mapeos_ultrafreezer();
 				setear_campos_ultrafreezer();
 				$("#btn_actualizar_mapeo_ultrafreezer").hide();
@@ -1623,20 +1641,23 @@ $("#cambiando_correlativo_ultrafreezer").click(function(){
           position:'center',
           icon:'success',
           title:'Correlativo Creado',
-          timer:1700
+          showConfirmButton: false,
+          timer:1500
         });
         
         
         $("#aqui_consecutivo_ultrafreezer").text(correlativo);
+		setTimeout(recargar_pagina,1500);
       }
      
-      leer_correlativo(id_asignado);
+      leer_correlativo(id_asignado); 
     });  
    
 });
-
-
-
+//funcion recargar
+function recargar_pagina(){
+	location.reload();
+}
 
 function listar_informes_ultrafreezer(){
 

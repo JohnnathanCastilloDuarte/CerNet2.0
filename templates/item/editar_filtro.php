@@ -1,5 +1,6 @@
-x<?php
+<?php
 
+error_reporting(0);
 include('../../config.ini.php');
 
 $nombre_filtro = $_POST['nombre_filtro'];
@@ -10,10 +11,12 @@ $serie_filtro = $_POST['serie_filtro'];
 $cantidad_filtros_filtro = $_POST['cantidad_filtros_filtro'];
 $ubicacion_filtro = $_POST['ubicacion_filtro'];
 $ubicado_en_filtro = $_POST['ubicado_en_filtro'];
+$lugar_filtro = $_POST['lugar_filtro'];
 $tipo_filtro = $_POST['tipo_filtro'];
+$penetracion_filtro = $_POST['penetracion_filtro'];
 $id_tipo_filtro = $_POST['id_tipo_filtro'];
-$id_item_filtro = $_POST['id_item_filtro'];
-$id_filtro = $_POST['id_filtro'];
+$id_usuario = $_POST['id_valida_filtro'];
+$id_item = $_POST['id_item_filtro'];
 
 
 $tipo  = substr($nombre_filtro, -3);
@@ -26,20 +29,41 @@ mysqli_stmt_bind_param($actualizar_item, 'iss', $empresa_filtro, $nombre_filtro,
 mysqli_stmt_execute($actualizar_item);
 
 /////// ACTUALIZAR FILTRO 
-$actualiza_filtro = mysqli_prepare($connect,"UPDATE item_filtro SET marca = ?, modelo = ?, serie = ?, cantidad_filtro = ?,
-                                              ubicacion = ?, ubicado_en = ?, filtro_dimension = ?, tipo_filtro = ? WHERE id_filtro = ?");
+$actualiza_filtro = mysqli_prepare($connect,"UPDATE item_filtro SET 
+	marca = ?, 
+	modelo = ?, 
+	serie = ?, 
+	cantidad_filtro = ?, 
+	ubicacion = ?, 
+	ubicado_en = ?, 
+	filtro_dimension = ?, 
+	tipo_filtro = ?, 
+	lugar_filtro = ?, 
+	limite_penetracion = ? 
+	WHERE id_filtro = ?");
 
-mysqli_stmt_bind_param($actualiza_filtro, 'sssisssssi',  $marca_filtro, $modelo_filtro, $serie_filtro, $cantidad_filtros_filtro, $ubicacion_filtro,
-                                                         $ubicado_en_filtro, $tipo_filtro, $tipo, $id_filtro);
+mysqli_stmt_bind_param($actualiza_filtro, 'sssisssssii', 
+	$marca_filtro, 
+	$modelo_filtro, 
+	$serie_filtro, 
+	$cantidad_filtros_filtro, 
+	$ubicacion_filtro,
+	$ubicado_en_filtro, 
+	$tipo_filtro, 
+	$tipo, 
+	$lugar_filtro, 
+	$penetracion_filtro,
+	$id_item,);
+
 
 mysqli_stmt_execute($actualiza_filtro);
 
 if($actualiza_filtro){
-  echo "Si";
+	echo "Si";
 }else{
-  echo "No";
+	echo "No";
 }
-  
+
 mysqli_stmt_close($connect);
 
 ?>

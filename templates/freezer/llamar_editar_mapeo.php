@@ -20,7 +20,6 @@
 		
 		$json[]=array(
       
-      
 		'id_mapeo'=>$id_mapeo,	
 		'nombre'=>$nombre,
 		'fecha_inicio'=>$fecha_inicio,

@@ -4,7 +4,6 @@ var id_asignado_freezer = $("#id_asignado_freezer").val();
 var id_mapeo_freezer = "";
 var id_bandeja = "";
 var variable = "asignado";
-
 //ELEMENTOS OCULTOS
 $("#btn_actualizar_bandeja_freezer").hide();
 $("#cuerpo_mapeo_freezer").hide();
@@ -19,20 +18,6 @@ $("#mostrar_grafica_freezer").hide();
 $("#cargar_informes_freezer").hide();
 
 
-//LLAMAR FUNCIONES
-contar_registros_freezer();
-listar_bandejas_freezer();
-listar_mapeos_freezer();
-mostrar_correlativo(id_asignado_freezer);
-leer_correlativo_freezer(id_asignado_freezer);
-contar_registro_informes_freezer();
-listar_informes_freezer();
-listar_participantes_freezer();
-listar_inf_base_freezer();
-listar_mapeos_inf_base_freezer();
-imagenes_equipo_base_freezer();
-imagenes_equipo_base_sensores_freezer();
-validar_generar_informes_freezer();
 
 
 
@@ -57,7 +42,7 @@ function setear_campos_freezer() {
 
 
 //////////////////////////////////////////////////////////////////////////////CREACIÓN DE BANDEJAS
-$(function() {
+
   $("#btn_nueva_bandeja_freezer").click(function() {
     var bandeja = $("#bandeja_freezer").val();
     const datos = {
@@ -66,10 +51,9 @@ $(function() {
       id_valida
     }
 
-
-
     $.post('templates/freezer/crear_bandeja.php', datos, function(e) {
-      if (e == "creado") {
+      console.log(e)
+      if (e == "Si") {
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -83,7 +67,7 @@ $(function() {
     });
 
   });
-}());
+
 
 //////////////////////////////////////////////////////////////////////////////CONTAR BANDEJAS
 function contar_registros_freezer() {
@@ -291,7 +275,7 @@ $("#cambiando_correlativo_freezer").click(function() {
   }
 
   $.post('templates/freezer/ingresa_correlativo_ultrafreezer.php', data_2, function(e) {
-
+    console.log(e);
     if (e == "Si") {
       Swal.fire({
         position: 'center',
@@ -300,12 +284,18 @@ $("#cambiando_correlativo_freezer").click(function() {
         timer: 1700
       });
       $("#aqui_consecutivo_freezer").text(correlativo);
+      setTimeout(recargar_pagina,1700);
     }
 
     leer_correlativo_freezer(id_asignado_freezer);
 
   });
 });
+
+
+function recargar_pagina(){
+   location.reload();
+}
 
 /////////////////////////////////////////////////////////////////////////////////CREACIÓN DEL MAPEO
 $(function() {
@@ -370,12 +360,12 @@ $(function() {
         setear_campos_freezer();
         crear_informes_freezer();
         contar_registro_informes_freezer();
-
       }
     });
 
   });
 }());
+
 
 
 /////////////////////LISTAR MAPEO
@@ -395,36 +385,36 @@ function listar_mapeos_freezer(){
 
         template +=
           `
-				<tr>
-					<td>${result.nombre}</td>
-					<td>${result.fecha_inicio} ${result.hora_inicio}</td>
-					<td>${result.fecha_final} ${result.hora_final}</td>
-					<td>${result.intervalo}</td>
-					<td>${result.humedad_minima}</td>
-					<td>${result.humedad_maxima}</td>
-					<td>${result.temperatura_minima}</td>
-					<td>${result.temperatura_maxima}</td>
-					<td>
-						<div style="text-align:center;">
-							<button class="btn btn-success" data-id="${result.id_mapeo}" id="modificar_mapeo_creada_freezer"><i class="pe-7s-check"></i></button>
-							<button class="btn btn-danger" data-id="${result.id_mapeo}" id="eliminar_mapeo_creada_freezer">X</button>
-						</div>
-					</td>
+        <tr>
+          <td>${result.nombre}</td>
+          <td>${result.fecha_inicio} ${result.hora_inicio}</td>
+          <td>${result.fecha_final} ${result.hora_final}</td>
+          <td>${result.intervalo}</td>
+          <td>${result.humedad_minima}</td>
+          <td>${result.humedad_maxima}</td>
+          <td>${result.temperatura_minima}</td>
+          <td>${result.temperatura_maxima}</td>
+          <td>
+            <div style="text-align:center;">
+              <button class="btn btn-success" data-id="${result.id_mapeo}" id="modificar_mapeo_creada_freezer"><i class="pe-7s-check"></i></button>
+              <button class="btn btn-danger" data-id="${result.id_mapeo}" id="eliminar_mapeo_creada_freezer">X</button>
+            </div>
+          </td>
 
-				</tr>
+        </tr>
 
-				`
+        `
       });
 
       traer.forEach((result) => {
         template2 +=
           `
-				<tr>
-					<td>${result.nombre}</td>
-					<td><button class="btn btn-success" id="buscar_bandeja_asignada_freezer" data-id="${result.id_mapeo}"  data-id-2="${result.id_asignado}"="${result.nombre}" ><i class="lnr-checkmark-circle"></i></button></td>
-				</tr>
+        <tr>
+          <td>${result.nombre}</td>
+          <td><button class="btn btn-success" id="buscar_bandeja_asignada_freezer" data-id="${result.id_mapeo}"  data-id-2="${result.id_asignado}"="${result.nombre}" ><i class="lnr-checkmark-circle"></i></button></td>
+        </tr>
 
-				`;
+        `;
       });
 
       $("#listando_mapeos_creados_freezer").html(template2);
@@ -438,53 +428,54 @@ function listar_mapeos_freezer(){
 ///////////////////EDITAR MAPEO
 $(function(){
 $(document).on('click','#eliminar_mapeo_creada_freezer',function(){
-		
-		Swal.fire({
-			position:'center',
-			icon:'question',
-			title:'Seguro ¿deseas eliminar el mapeo?',
-			showConfirmButton:true,
-			confirmButtonText:'Si',
-			showCancelButton: true,
-			cancelButtonText:'No',		
-		}).then((result)=>{
-			if(result.value){
-				
-				
-				 let id_valida = $("#id_valida").val();
-				 id_mapeo = $(this).attr('data-id');
-				
-				const data = {
-					id_mapeo_freezer,
-					id_asignado_freezer,
+    
+    Swal.fire({
+      position:'center',
+      icon:'question',
+      title:'Seguro ¿deseas eliminar el mapeo?',
+      showConfirmButton:true,
+      confirmButtonText:'Si',
+      showCancelButton: true,
+      cancelButtonText:'No',    
+    }).then((result)=>{
+      if(result.value){
+        
+         let id_valida = $("#id_valida").val();
+         let id_mapeo = $(this).attr('data-id');
+
+        
+        const data = {
+          id_mapeo,
+          id_asignado_freezer,
           id_valida
-				}
-				
-				$.post('templates/freezer/eliminar_mapeo.php',data, function(e){
-				
-						if(e == "No"){
-							Swal.fire({
-								position:'center',
-								icon:'error',
-								title:'El mapeo no puede ser eliminado debedio a que contiene información',
-								timer:1500
-							});
-						}
-						else if( e == "Eliminado"){
-								Swal.fire({
-								position:'center',
-								icon:'success',
-								title:'El mapeo ha sido eliminado correctamente',
-								timer:1500
-							});
-							listar_mapeos_freezer();
-						}
-				});
-			}
-		});	
+        }
+        
+        $.post('templates/freezer/eliminar_mapeo.php',data, function(e){
+            if(e == "No"){
+              Swal.fire({
+                position:'center',
+                icon:'error',
+                title:'El mapeo no puede ser eliminado debedio a que contiene información',
+                timer:1500
+              });
+            }
+            else if( e == "Eliminado"){
+                Swal.fire({
+                position:'center',
+                icon:'success',
+                title:'El mapeo ha sido eliminado correctamente',
+                timer:1500
+              });
+              listar_mapeos_freezer();
+            }
+        });
+      }
+    }); 
 });
 
 }());
+
+
 //EVENTOS BOTONS  MODIFICAR MAPEOS
 $(function() {
   $(document).on('click', '#modificar_mapeo_creada_freezer', function() {
@@ -520,8 +511,7 @@ $(function() {
         } else {
           $("#informe_base_freezer").attr('checked', false);
         }
-
-
+        
         $("#nombre_mapeo_freezer").val(traer.nombre);
         $("#fecha_inicio_mapeo_freezer").val(traer.fecha_inicio);
         $("#hora_inicio_mapeo_freezer").val(traer.hora_inicio);
@@ -562,6 +552,13 @@ $(function() {
   });
 
 }());
+
+
+
+
+
+
+
 
 //EDITAR MAPEO
 
@@ -2289,5 +2286,22 @@ $("#cargar_informes_freezer").click(function(){
 	});
 	
 }());
+
+
+
+//LLAMAR FUNCIONES
+contar_registros_freezer();
+listar_bandejas_freezer();
+listar_mapeos_freezer();
+mostrar_correlativo(id_asignado_freezer);
+leer_correlativo_freezer(id_asignado_freezer);
+contar_registro_informes_freezer();
+listar_informes_freezer();
+listar_participantes_freezer();
+listar_inf_base_freezer();
+listar_mapeos_inf_base_freezer();
+imagenes_equipo_base_freezer();
+imagenes_equipo_base_sensores_freezer();
+validar_generar_informes_freezer();
 
 						 

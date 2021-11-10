@@ -413,8 +413,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="widget-content-right mr-2">
-                                                            <a href='#' class="btn-pill btn-shadow btn-shine btn btn-focus" id="btn_cerrar_sesion">Salir
-                                                            </a>
+                                                            <button class="btn-pill btn-shadow btn-shine btn btn-focus" id="btn_cerrar_sesion">Salir
+                                                            </a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -471,7 +471,7 @@
  </div>
 </div>
 
-
+<script type="text/javascript" src="design/js/backtrack.js"></script>
 <script>
   $("#reload_aprobaciones").click(function(){
      location.reload();

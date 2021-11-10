@@ -27,8 +27,8 @@ $tipo_item = 5;
 $estado = 1;
 
 
-$insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES
-                                            (?,?,?,?,?,?)');
+$insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES (?,?,?,?,?,?)');
+
 mysqli_stmt_bind_param($insertando_item, 'iissii', $empresa_estufa, $tipo_item, $nombre_estufa, $desc_estufa, $estado, $id_valida);
 mysqli_stmt_execute($insertando_item);
 
@@ -37,13 +37,13 @@ $id_item_insertado  =  mysqli_stmt_insert_id($insertando_item);
 echo mysqli_stmt_error($insertando_item);
 
 if($insertando_item){
-  
+
   $insertando_estufa = mysqli_prepare($connect,"INSERT INTO item_estufa (id_item, fabricante, modelo, n_serie, c_interno, fecha_fabricacion, direccion, 
-                                                valor_seteado_tem, tem_min, tem_max, ubicacion, voltaje, potencia, capacidad, peso, alto, largo, ancho, id_usuario) VALUES 
-                                                (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    valor_seteado_tem, tem_min, tem_max, ubicacion, voltaje, potencia, capacidad, peso, alto, largo, ancho, id_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  
   mysqli_stmt_bind_param($insertando_estufa, 'isssssssssssssssssi', $id_item_insertado, $fabricante_estufa, $modelo_estufa, $n_serie_estufa, $codigo_interno_estufa, $fecha_fabricacion_estufa,
-                                                                       $direccion_estufa, $valor_seteado_tem, $temperatura_maxima, $temperatura_minima, $ubicacion_interna_estufa,
-                                                                       $voltaje_estufa, $potencia_estufa, $capacidad_estufa, $peso_estufa, $alto_estufa, $largo_estufa, $ancho_estufa, $id_valida);
+   $direccion_estufa, $valor_seteado_tem, $temperatura_maxima, $temperatura_minima, $ubicacion_interna_estufa,
+   $voltaje_estufa, $potencia_estufa, $capacidad_estufa, $peso_estufa, $alto_estufa, $largo_estufa, $ancho_estufa, $id_valida);
   
   mysqli_stmt_execute($insertando_estufa);
   

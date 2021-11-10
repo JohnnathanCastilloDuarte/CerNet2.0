@@ -184,7 +184,7 @@ function content_5fce5df2dd9b79_12809598 (Smarty_Internal_Template $_smarty_tpl)
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                                    <img width="40" class="rounded-circle" src="4.jpg" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
@@ -212,7 +212,7 @@ function content_5fce5df2dd9b79_12809598 (Smarty_Internal_Template $_smarty_tpl)
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
+                                                                    <img width="40" class="rounded-circle" src="3.jpg" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
@@ -240,7 +240,7 @@ function content_5fce5df2dd9b79_12809598 (Smarty_Internal_Template $_smarty_tpl)
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
+                                                                    <img width="40" class="rounded-circle" src="" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
@@ -268,7 +268,7 @@ function content_5fce5df2dd9b79_12809598 (Smarty_Internal_Template $_smarty_tpl)
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/1.jpg" alt=""></div>
+                                                                    <img width="40" class="rounded-circle" src="" alt=""></div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
                                                                 <div class="widget-heading">Vinnie Wagstaff</div>
@@ -315,7 +315,7 @@ function content_5fce5df2dd9b79_12809598 (Smarty_Internal_Template $_smarty_tpl)
                                             <div class="menu-header-image opacity-2" style="background-image: url('assets/images/dropdown-header/abstract2.jpg');"></div>
                                             <div class="menu-header-content btn-pane-right">
                                                 <div class="avatar-icon-wrapper mr-3 avatar-icon-xl btn-hover-shine">
-                                                    <div class="avatar-icon rounded"><img src="assets/images/avatars/3.jpg" alt="Avatar 5"></div>
+                                                    <div class="avatar-icon rounded"><img src="3.jpg" alt="Avatar 5"></div>
                                                 </div>
                                                 <div>
                                                     <h5 class="menu-header-title">Jeff Walberg</h5>
@@ -371,7 +371,7 @@ function content_5fce5df2dd9b79_12809598 (Smarty_Internal_Template $_smarty_tpl)
                                             <div class="menu-header-content btn-pane-right">
                                                 <div class="avatar-icon-wrapper mr-3 avatar-icon-xl btn-hover-shine">
                                                     <div class="avatar-icon rounded">
-                                                        <img src="assets/images/avatars/8.jpg" alt="Avatar 5">
+                                                        <img src="" alt="Avatar 5">
                                                     </div>
                                                 </div>
                                                 <div>
@@ -425,7 +425,7 @@ function content_5fce5df2dd9b79_12809598 (Smarty_Internal_Template $_smarty_tpl)
                                             <div class="menu-header-content btn-pane-right">
                                                 <div class="avatar-icon-wrapper mr-3 avatar-icon-xl btn-hover-shine">
                                                     <div class="avatar-icon rounded">
-                                                        <img src="assets/images/avatars/1.jpg" alt="Avatar 5"></div>
+                                                        <img src="" alt="Avatar 5"></div>
                                                 </div>
                                                 <div>
                                                     <h5 class="menu-header-title">Ruben Tillman</h5>

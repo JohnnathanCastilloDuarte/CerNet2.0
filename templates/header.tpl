@@ -381,8 +381,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-right mr-2">
-                                                                <a href='validate_login.php?action=0' class="btn-pill btn-shadow btn-shine btn btn-focus">Salir
-                                                                </a>
+                                                                <button id="btn_cerrar_sesion" class="btn-pill btn-shadow btn-shine btn btn-focus">Salir
+                                                                </button> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -454,5 +454,7 @@
          </div>
      </div>
  </div> 
+
+ <script type="text/javascript" src="design/js/backtrack.js"></script>
 
  

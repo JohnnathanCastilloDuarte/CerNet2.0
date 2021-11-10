@@ -28,7 +28,7 @@
 		
 
 	if($crear_bandeja){
-		echo "creado";
+		echo "Si";
 		
 	}else{
 		echo "error";

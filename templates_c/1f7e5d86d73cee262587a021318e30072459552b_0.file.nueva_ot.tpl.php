@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 19:12:19
+/* Smarty version 3.1.34-dev-7, created on 2021-11-03 16:02:38
   from 'C:\xampp\htdocs\CerNet2.0\templates\OT\nueva_ot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616efc7325dc08_63173096',
+  'unifunc' => 'content_6182a48ea35ae3_81526049',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f7e5d86d73cee262587a021318e30072459552b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\OT\\nueva_ot.tpl',
-      1 => 1634663537,
+      1 => 1635951668,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616efc7325dc08_63173096 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6182a48ea35ae3_81526049 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_ot">
@@ -31,7 +31,7 @@ function content_616efc7325dc08_63173096 (Smarty_Internal_Template $_smarty_tpl)
 
 <form action="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[2];?>
-" method="POST">
+" method="POST" id="formulario">
 <div class="tab-content">
 	<div class="tab-pane tabs-animation fade show active" id="crear_ot" role="tabpanel">
 		<div class="row">
@@ -201,7 +201,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 	</div>
 		
-		<?php echo '<script'; ?>
+<?php echo '<script'; ?>
  type="text/javascript" src="design/js/num_ot.js"><?php echo '</script'; ?>
 >
 		<!--<div class="tab-pane tabs-animation fade show" id="historial_ot" role="tabpanel">

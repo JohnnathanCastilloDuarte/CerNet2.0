@@ -104,14 +104,16 @@
   
   <div class="col-sm-9">
       <div id="accordion">
- 
+     <!-- <form id="form_filtro_1" enctype="multipart/form-data" method="post">--> 
        <div class="card">
         <div class="card-header">
           <a data-toggle="collapse" data-target="#collapseOne44"  aria-controls="collapseOne44">
             Inspeccion Visual
           </a>
         </div>
-         <div class="card-body" id="collapseOne44" >
+         <div class="card-body collapse" id="collapseOne44" >
+            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
+
             <div class="row">
               <div class="col-sm-6">
                 <h5>
@@ -119,8 +121,8 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_1">
-                  <option>Seleccione</option>
+                <select class="form-control" id="inspeccion_visual_1" name="inspeccion_visual[]">
+                  <option id="insp1_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -134,8 +136,8 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_2">
-                  <option>Seleccione</option>
+                <select class="form-control" id="inspeccion_visual_2" name="inspeccion_visual[]">
+                  <option  id="insp2_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -149,8 +151,8 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_3">
-                  <option>Seleccione</option>
+                <select class="form-control" id="inspeccion_visual_3" name="inspeccion_visual[]">
+                  <option  id="insp3_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -164,8 +166,8 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_4">
-                  <option>Seleccione</option>
+                <select class="form-control" id="inspeccion_visual_4" name="inspeccion_visual[]">
+                  <option  id="insp4_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -179,8 +181,8 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_5">
-                  <option>Seleccione</option>
+                <select class="form-control" id="inspeccion_visual_5" name="inspeccion_visual[]">
+                  <option  id="insp5_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -194,8 +196,8 @@
                 </h5>
               </div>
               <div class="col-sm-6">
-                <select class="form-control" id="inspeccion_visual_6">
-                  <option>Seleccione</option>
+                <select class="form-control" id="inspeccion_visual_6" name="inspeccion_visual[]">
+                  <option  id="insp6_traido_db">Seleccione</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -210,20 +212,24 @@
         <div class="card">
           <div class="card-header">
             <a data-toggle="collapse" data-target="#collapseOne55"  aria-controls="collapseOne55">
-                Prueba de Integridad de Filtros - UNE-EN ISO 14.644-3
+                Detalle de mediciones
               </a>
           </div>
           <div class="card-body collapse" id="collapseOne55">
-
+            
             <div class="row">
               <div class="col-sm-2">
                 <label>Cantidad de filtros: </label>
 
               </div>
               <div class="col-sm-2">
-                <input type="number" class="form-control" id="cantidad_filtros_input" readonly>
+                <input type="text" class="form-control" id="cantidad_filtros_input" readonly>
               </div>
+              <!--<div class="col-sm-5">
+                <button class="btn btn-success" id="generar_posicion_filtros">Generar</button>
+              </div>-->
    
+
             </div>
             <br>
             <div class="row">
@@ -249,6 +255,27 @@
 
           </div>
         </div><!--CARD 2-->
+
+        <br>
+
+        <div class="card">
+          <div class="card-header">
+            <a data-toggle="collapse" data-target="#collapseOne88"  aria-controls="collapseOne88">
+              Resultado de mediciones: Norma UNE-EN-ISO 14.644-3:2005
+            </a>
+          </div>
+          <div class="card-body collapse" id="collapseOne88">
+            <table class="table" style="text-align:center;">
+              <thead>
+                <th>Medicion</th>
+                <th>Valor obtenido</th>
+              </thead>
+              <tbody id="medicion_del_norma_une_en_iso">
+
+              </tbody>
+            </table>  
+          </div>
+        </div>
         
         <br>
         
@@ -256,53 +283,126 @@
             <div class="col-sm-6">  
                <div class="card">
                 <div class="card-header">
-                  <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77">
+                  <a data-toggle="collapse" data-target="#collapseOne66"  aria-controls="collapseOne66">
                     Especificación de Inyección de partículas de 0,3 a 5 micrones en forma de aerosol
                   </a>  
                 </div>
-                <div class="card-body" id="collapseOne77">
+                <div class="card-body collapse" id="collapseOne66">
                   <div class="row" >
                     <div class="col-sm-6" style="text-align:center;">  
                       <label>Concentración de partículas en aerosol (mg/litro):</label>
                     </div>
                     <div class="col-sm-6" style="text-align:center;">
                       <div class="col-sm-6">
-                        <input type="number" value="22.9" class="form-control" id="concentracion_particulas_filtro">
+                        <input type="number" value="22.9" class="form-control" id="concentracion_particulas_filtro" name="concentracion_particulas_filtro">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <div class="col-sm-6">  
-               <div class="card">
+          </div>
+
+          <br>
+          <div class="row" id="tarjeta_equipos_medicion_filtros">
+            <div class="col-sm-12">  
+              <div class="card">
+               <div class="card-header">
+                 <a data-toggle="collapse" data-target="#collapseOne77"  aria-controls="collapseOne77" id="mostrar_equipos_mediciones_filtros">
+                   Equipos Utilizados en la Medición
+                 </a>  
+               </div>
+               <div class="card-body collapse" id="collapseOne77">
+                 <div class="row">
+                   <div class="col-sm-8" style="text-align:center;">
+                     <label>Seleccione equipo</label>
+                     <table class="table">
+                        <thead>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Certificado</th>
+                          <th>Fecha emisión</th>
+                          <th>Fecha vencimiento</th>
+                          <th>Agregar</th>
+                        </thead>
+                        <tbody id="listar_equipos_filtros">
+                        </tbody>
+
+                     </table>
+                     <button class="btn btn-info" id="recargar_equipos">Recargar</button>
+                   </div>
+                   <div class="col-sm-4" style="text-align:center">
+                     <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
+                    <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
+                   </div>
+                 </div>
+                 <br>
+
+                 <div class="row">
+                   <div class="col-sm-12">
+                     <table class="table" style="text-align:center;">
+                        <thead>
+                          <th>Nombre equipo</th>
+                          <th>Eliminar</th>
+                        </thead>
+                        <tbody id="equipos_agregados_medicion_filtros"></tbody>
+                     </table>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+          </div>
+          <br>
+
+          <div class="row">
+
+            <div class="col-sm-12">
+              <div class="card">
                 <div class="card-header">
-                  <a data-toggle="collapse" data-target="#collapseOne11"  aria-controls="collapseOne11">
-                    Equipos Utilizados en la Medición
-                  </a>  
+                  <a data-toggle="collapse" data-target="#collapseOne99"  aria-controls="collapseOne99" id="img_filtros">
+                    Evidencia grafica
+                  </a>
                 </div>
-                <div class="card-body" id="collapseOne11">
-                  <div class="row">
+                <div class="card-body collapse" id="collapseOne99">
+                  <div class="row" style="text-align:center;">
+                    <div class="col-sm-3"></div>
                     <div class="col-sm-6">
-                      <label>Seleccione equipo</label>
-                      <select id="listar_equipos_filtros" class="form-control">
-                          
-                      </select>
+                      <form  id="formulario_envia_img" enctype="multipart/form-data" method="POST">
+                        <input type="hidden" value="{$id_asignado_filtro}" name="id_asignado_filtro">
+                        <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
+                        <br>
+                        <input type="file" name="img_a_subir" class="form-control">
+                        <br>
+                        <button class="btn btn-success">Cargar</button>
+                      </form>
                     </div>
                   </div>
+                  <br>
+                  <div class="row" id="aqui_imagenes">
+    
+                  </div>
+                    
+                  
                 </div>
               </div>
             </div>
           </div>
-     
-   
+
+          <br>
+          <div class="row">
+            <div class="col-sm-12" style="text-align:center;">
+              <button class="btn-shadow btn-outline-2x btn btn-outline-success"  id="btn_nuevo_filtro_mapeo">Aceptar</button>
+							<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_filtro_mapeo">Actualizar</button>
+            </div>
+          </div>
+             
        </div><!--CIERRE DEL DIV ACORDION-->
-           
+    <!--  </form> -->    
   </div><!--cierre del div col sm 9-->
 </div> 
 
-
-
 <script type="text/javascript" src="design/js/control_mapeo_filtros.js"></script>
+<script type="text/javascript" src="design/js/nuevo_equipo_cercal.js"></script>
+<script type="text/javascript" src="design/js/controla_imagenes.js"></script>
 

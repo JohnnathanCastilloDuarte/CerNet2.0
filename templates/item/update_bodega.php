@@ -1,6 +1,6 @@
  <?php 
   
-  $id_tipo = $_GET['type'];
+$id_tipo = $_GET['type'];
 
 echo "<input value='".$id_tipo."' id='id_tipo' hidden>";
 

@@ -14,7 +14,6 @@
 	mysqli_stmt_bind_result($tipo_informe_1, $id_servicio_mapeo);
 	mysqli_stmt_fetch($tipo_informe_1);
 
-  echo $id_servicio_mapeo;
 
 	$smarty->assign("id_servicio_mapeo",$id_servicio_mapeo);
 
@@ -41,6 +40,8 @@ empresa as d, persona as e, item as f  WHERE c.id_numot = b.id_numot AND a.id_se
 	$smarty->assign("conteo_mapeo_filtro",$conteo_informes_mapeo_filtro);
 
 	$smarty->assign("array_mapeo_filtro",$array_mapeo_filtro);
+
+
 
 /*
 //CONSULTAR INFORMES DE CALIFICACIÓN

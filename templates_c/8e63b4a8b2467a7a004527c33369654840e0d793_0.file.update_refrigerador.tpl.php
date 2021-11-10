@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-21 20:02:06
+/* Smarty version 3.1.34-dev-7, created on 2021-11-08 14:45:37
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_refrigerador.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6171ab1e67d6c8_41694979',
+  'unifunc' => 'content_61892a0191ac71_61227800',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8e63b4a8b2467a7a004527c33369654840e0d793' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_refrigerador.tpl',
-      1 => 1634655980,
+      1 => 1635977820,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6171ab1e67d6c8_41694979 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61892a0191ac71_61227800 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
 	<div class="col-sm-12">
 		<?php

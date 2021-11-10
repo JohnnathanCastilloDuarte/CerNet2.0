@@ -3,7 +3,8 @@
 	include("../../config.ini.php");
 
 	$id_refrigerador_sensor = $_POST['id_refrigerador_sensor'];
-			
+	echo $id_refrigerador_sensor;
+	/*			
 		//CONSULTAR SI EXISTE UN ARCHIVO DE DATOS CRUDOS
 		
 			$consultar = mysqli_prepare($connect,"SELECT  datos_crudos, id_mapeo FROM refrigerador_sensor WHERE id_refrigerador_sensor = ?");
@@ -112,7 +113,7 @@
 						}
 						
 			
-		
+		*/
 
 	mysqli_stmt_close($connect);
 

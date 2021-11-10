@@ -25,12 +25,11 @@ function valida_botones_refrigerador(){
 
 
 ////////////// BOTON CREACIÓN DE REFRIGERADOR
-(function(){
+
 	
 	$("#btn_editar_item_refrigerador").click(function(){
 		
-		
-		const datos = {
+	  	const datos = {
 		 	id_item_refrigerador : $("#id_item_refrigerador").val(),
 		 	id_item,
 		 	nombre_refrigerador : $("#nombre_refrigerador").val(),
@@ -74,7 +73,6 @@ function valida_botones_refrigerador(){
 		});
 	});
 	
-}())
 
 // crea el item del refrigerador
 $("#btn_nuevo_item_refrigerador").click(function(){
@@ -119,7 +117,7 @@ $("#btn_nuevo_item_refrigerador").click(function(){
           title:'Mensaje',
           text:'No se ha podido crear, Contacta con el administrador',
           icon:'error',
-          
+          timer:1000
         });
       }
   })
