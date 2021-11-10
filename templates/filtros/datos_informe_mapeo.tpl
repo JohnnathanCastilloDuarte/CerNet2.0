@@ -369,6 +369,7 @@
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6">
                       <form  id="formulario_envia_img" enctype="multipart/form-data" method="POST">
+                        <input type="hidden" value="{$id_asignado_filtro}" name="id_asignado_filtro">
                         <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
                         <br>
                         <input type="file" name="img_a_subir" class="form-control">

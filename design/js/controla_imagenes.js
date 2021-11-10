@@ -16,7 +16,7 @@ $("#formulario_envia_img").submit(function(e){
     e.preventDefault();
 
     $.ajax({
-        url: 'templates/ultrafreezer/actualizar_informe_parte_1.php',
+        url: 'templates/filtros/controlador_imagenes.php',
         type: 'POST',
         dataType: 'html',
         data: new FormData(this),
@@ -27,4 +27,6 @@ $("#formulario_envia_img").submit(function(e){
             console.log(response);
         }
 
-})
+    });
+
+});

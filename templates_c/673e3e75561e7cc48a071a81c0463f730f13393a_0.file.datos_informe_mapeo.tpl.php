@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-09 21:31:56
+/* Smarty version 3.1.34-dev-7, created on 2021-11-10 14:13:12
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_618adabc6044f3_79666886',
+  'unifunc' => 'content_618bc5689906b1_45432961',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1636489825,
+      1 => 1636499637,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_618adabc6044f3_79666886 (Smarty_Internal_Template $_smarty_tpl) {
+function content_618bc5689906b1_45432961 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -393,6 +393,8 @@ function content_618adabc6044f3_79666886 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6">
                       <form  id="formulario_envia_img" enctype="multipart/form-data" method="POST">
+                        <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
+" name="id_asignado_filtro">
                         <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
                         <br>
                         <input type="file" name="img_a_subir" class="form-control">
