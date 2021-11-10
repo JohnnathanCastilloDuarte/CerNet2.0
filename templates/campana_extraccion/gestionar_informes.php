@@ -1,6 +1,6 @@
 <?php 
 
-	$tipo_1 = "Inspección en campana de ectracción";
+	$tipo_1 = "Inspección en campana de extracción";
 
 	$array_mapeo=array();
 
