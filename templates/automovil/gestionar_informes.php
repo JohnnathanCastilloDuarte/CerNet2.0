@@ -18,8 +18,7 @@
 
 	$smarty->assign("id_servicio_mapeo",$id_servicio_mapeo);
 
-	$mapeo_automovil = mysqli_prepare($connect,"SELECT DISTINCT a.id_asignado, b.numot, f.nombre,  d.nombre,  e.nombre, e.apellido FROM item_asignado as a, numot as b, servicio as c, 
-empresa as d, persona as e, item as f  WHERE c.id_numot = b.id_numot AND a.id_servicio = c.id_servicio AND c.id_servicio_tipo = $id_servicio_mapeo AND f.id_tipo = 7 AND a.id_item = f.id_item AND b.id_empresa = d.id_empresa AND a.id_usuario = e.id_usuario");
+	$mapeo_automovil = mysqli_prepare($connect,"SELECT DISTINCT a.id_asignado, b.numot, f.nombre,  d.nombre,  e.nombre, e.apellido FROM item_asignado as a, numot as b, servicio as c, empresa as d, persona as e, item as f  WHERE c.id_numot = b.id_numot AND a.id_servicio = c.id_servicio AND c.id_servicio_tipo = $id_servicio_mapeo AND f.id_tipo = 7 AND a.id_item = f.id_item AND b.id_empresa = d.id_empresa AND a.id_usuario = e.id_usuario");
 	mysqli_stmt_execute($mapeo_automovil);
 	mysqli_stmt_store_result($mapeo_automovil);
 	mysqli_stmt_bind_result($mapeo_automovil, $id_asignado, $numot, $item, $empresa, $usuario_nombre, $usuario_apellido);
