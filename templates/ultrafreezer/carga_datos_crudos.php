@@ -218,19 +218,17 @@ else
                          fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),
                          fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'),fopen($personalizado,'r'));
     
-    
-
+  
 for($f = 0; $f<$cuantos; $f++){
     
     mysqli_stmt_fetch($query_master);
       while(($column=fgetcsv($array_abrir[$i],10000,";","\t"))!==false){
        $columna = $array_valor[$f] - 1;
-       $fecha_hora_sql = date("Y-m-d H:i:s",strtotime($column[0]." ".$column[1]));    
+       $fecha_archivo = $column[0]." ".$column[1];
+       $fecha_hora_sql = date("Y-m-d H:i:s",strtotime($fecha_archivo));    
       //$hora_sql = date("H:i:s",strtotime($column[1]));  
-        
-    
-  
-    
+
+
       //VALIDACION PARA SUMARLE  LOS SEGUNDOS DE INTERVALO A LA FECHA-HORA INICIAL Y ASI CARGAR ESTA SUMATORIA EN LUGAR DE LA FECHA-HORA DEL ARCHIVO
       if($z_1==1)
         {
@@ -244,10 +242,10 @@ for($f = 0; $f<$cuantos; $f++){
     
         
   
-      if($fecha_hora_sql>=$start && $fecha_hora_sql<=$end){
+      if(($fecha_suma>=$start) && ($fecha_suma<=$end)){
           
-        echo $fecha_suma."-----------".$end; 
-
+        
+          echo $fecha_suma;
           //PROCESO PARA RETIRAR COMAS Y DEJAR VALORES CON PUNTO DECIMAL
           if(strpos($column[$array_valor[$f]],","))
           {
@@ -259,14 +257,14 @@ for($f = 0; $f<$cuantos; $f++){
           }    
           if($algoritmo_1 == 0){
           
-           
+          
             /*
               $inserta_columna_1 = mysqli_prepare($connect,"INSERT INTO ultrafreezer_datos_crudos(id_ultrafreezer_sensor, columna, time, temperatura, id_usuario) VALUES ( ?, ?, ?, ?, ?)");
               mysqli_stmt_bind_param($inserta_columna_1, 'iissi',$id_contar,$columna,$fecha_suma, $temperatura_1, $id_valida);
               mysqli_stmt_execute($inserta_columna_1);*/      
           }
      
-      $fecha_suma=date('Y-m-d H:i:s',strtotime("+ $intervalo seconds",strtotime($fecha_suma)));  
+      $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));  
       $z_1=2; 
       }//cierre del if
     }/////////////FIN DEL WHILE
