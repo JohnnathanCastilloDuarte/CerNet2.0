@@ -102,11 +102,19 @@ mysqli_stmt_execute($query);
 
 if($query){
   if($valor == "Revisado"){
-    echo "Si correo";
+    if($valor_insertar == 4){
+      echo "Si documentador";
+    }else{
+      echo "Si correo";
+      
+    }
+
     $movimiento = "Ha aprobado el documento";
     $creando = mysqli_prepare($connect,"INSERT INTO backtrack(persona, movimiento, modulo) VALUES (?,?,?)");
     mysqli_stmt_bind_param($creando, 'iss', $id_valida, $movimiento, $id);
     mysqli_stmt_execute($creando);
+
+    
   }else{
     echo "Si";
     $movimiento = "Ha rechazado el documento";

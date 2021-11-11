@@ -1,7 +1,7 @@
 
 
 (function(){
-
+	window.history.replaceState({},'','restablecer.php');
 	$('#cambiar').hide();
 	var id_protegido = $('#id_protegido').val();
 $('#usuario').keyup(function(){
@@ -53,7 +53,13 @@ $('#usuario').keyup(function(){
 															ConfirmButtonText:'Ok'
 														}).then((result)=>{
 															if(result.value){
-																location.href = "https://cercal.net/CERNET/";
+																var URLactual = window.location;
+																if(URLactual == "https://localhost/CerNet2.0/restablecer.php"){
+																	location.href = "https://localhost/CerNet2.0/";
+																}else{
+																	location.href = "https://cercal.net/CerNet2.0/";
+																}
+															
 															}
 														});
 												
@@ -100,51 +106,54 @@ $('#usuario').keyup(function(){
 	
 })();
 
-(function(){
-	$("#rest").click(function(){
-		var email = $("#email").val();
-			if(email == ""){
-				Swal.fire({
-					position: 'center',
-					icon: 'error',
-					title: 'Debes ingresar un correo',
-					showConfirmButton: false,
-					timer: 1500
-				});
-			}//cierre del if que valida si es vacio
-		else{
-		$.ajax({
-			type:'POST',
-			data:{ email },
-			url:'templates/usuario/enviar_correo.php',
-			success:function(final){
-        
-				if(final == "no existe"){
-					location.reload();
-					
-				}else{
-           
-					Swal.fire({
-					toast:true,	
-					position: 'center',
-					icon: 'success',
-					title: 'Revisa la bandeja de entrada de tu correo',
-					showConfirmButton: true,
-					confirmButtonText: 'Ok!'
-				}).then((result)=>{
-						if(result.value){
-							location.reload();
-						}
-					})
-			
-				}
-				
-			}
-		});//cierre del ajax que envia el correo
-			}
+
+$("#rest").click(function(){
+	
+	var email = $("#email").val();
+		if(email == ""){
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: 'Debes ingresar un correo',
+				showConfirmButton: false,
+				timer: 1500
+			});
+		}//cierre del if que valida si es vacio
+	else{
+	$.ajax({
+		type:'POST',
+		data:{ email },
+		url:'templates/usuario/enviar_correo.php',
+		success:function(final){
 		
-	})
-}());
+			if(final == "no existe"){
+				Swal.fire({
+					title:'Mensaje',
+					text:'Los datos ingresados no existen',
+					icon:'warning',
+					timer:1700
+				});
+				
+			}else{
+				Swal.fire({	
+				icon: 'success',
+				title: 'Revisa la bandeja de entrada de tu correo',
+				showConfirmButton: true,
+				confirmButtonText: 'Ok!'
+			}).then((result)=>{
+					if(result.value){
+						location.reload();
+					}
+				})
+		
+			}
+			
+		}
+	});//cierre del ajax que envia el correo
+		}
+	
+});
+
 
 
 //funcion para el archivo privilegio_rol.php
