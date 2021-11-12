@@ -7,6 +7,7 @@ $nombre_ultrafreezer = $_POST['nombre_ultrafreezer'];
 $fabricante_ultrafreezer = $_POST['fabricante_ultrafreezer'];
 $modelo_ultrafreezer = $_POST['modelo_ultrafreezer'];
 $desc_ultrafreezer = $_POST['desc_ultrafreezer'];
+$empresa_ultrafreezer = $_POST['empresa_ultrafreezer'];
 $n_serie_ultrafreezer = $_POST['n_serie_ultrafreezer'];
 $codigo_interno_ultrafreezer = $_POST['codigo_interno_ultrafreezer'];
 $fecha_fabricacion_ultrafreezer = $_POST['fecha_fabricacion_ultrafreezer'];
@@ -29,8 +30,8 @@ $humedad_minima         = $_POST['humedad_maxima_ultrafreezer'];
 $id_valida = $_POST['id_valida'];
 
 
-$update_ultrafreezer = mysqli_prepare($connect,"UPDATE item SET  nombre = ?, descripcion = ? WHERE id_item = $id_item_2_ultrafreezer");
-mysqli_stmt_bind_param($update_ultrafreezer, 'ss', $nombre_ultrafreezer, $desc_ultrafreezer);
+$update_ultrafreezer = mysqli_prepare($connect,"UPDATE item SET  nombre = ?, descripcion = ?, id_empresa = ? WHERE id_item = $id_item_2_ultrafreezer");
+mysqli_stmt_bind_param($update_ultrafreezer, 'ssi', $nombre_ultrafreezer,$desc_ultrafreezer,$empresa_ultrafreezer);
 mysqli_stmt_execute($update_ultrafreezer);
 
 

@@ -53,7 +53,8 @@
               <div class="position-relative form-group">               
                 <label>Nombre: </label>
                 <select class="form-control" id="nombre_filtro">
-                   <option value="{$nombre_item}">{$nombre_item}</option>
+                   <option value="{$nombre_item}" selected="">{$nombre_item}</option>
+                   <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
                    <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
                 </select>
               </div>
