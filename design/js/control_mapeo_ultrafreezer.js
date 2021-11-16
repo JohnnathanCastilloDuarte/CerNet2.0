@@ -391,7 +391,7 @@ function listar_mapeos_ultrafreezer(){
 								title:'El mapeo ha sido eliminado correctamente',
 								timer:1500
 							});
-							listar_mapeos_ultrafreezer();
+							console.log(listar_mapeos_ultrafreezer());
 						}
 				});
 			}
@@ -650,6 +650,19 @@ function listar_mapeos_ultrafreezer(){
 	});
 	}());
 
+//setear campos para registrar
+
+ $("#change_mapeo_ultrafreezer").click(function(){
+
+
+	 $("#change_mapeo_ultrafreezer").hide();
+		listar_mapeos_ultrafreezer();
+		setear_campos_ultrafreezer();
+	 $("#btn_actualizar_mapeo_ultrafreezer").hide();
+     $("#btn_nuevo_mapeo_ultrafreezer").show();
+			
+
+ });
 
 
 
