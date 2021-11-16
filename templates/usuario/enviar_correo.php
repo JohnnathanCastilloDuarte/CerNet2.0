@@ -39,8 +39,8 @@ if(mysqli_stmt_num_rows($consultar)> 0){
       
     }else{
       $host = "smtp.gmail.com";
-      $Username = "jcastillo@cercal.cl";
-      $password = "Panda0497.";
+      $Username = "soportecernet@gmail.com";
+      $password = "Cercal2021.";
       $url = "http://localhost/CerNet2.0/restablecer_pass.php?key=".$id_protegido;
       $url_cernet = "https://localhost/CerNet2.0";
     }
@@ -85,11 +85,11 @@ if(mysqli_stmt_num_rows($consultar)> 0){
                   If you have received this message in error, please immediately notify the sender by email, delete the message from your files and remove any copy you have made of it.
               </p>
               <br><br>
-                <a href='https://web.facebook.com/cercalingenieria'><img src='".$url_cernet."/templates/design/images/facebook.png'></a>&nbsp;&nbsp;
-                <a href='https://api.whatsapp.com/send?phone=56939180548'><img src='".$url_cernet."/templates/design/images/whatsapp.png'></a>&nbsp;&nbsp;
-                <a href='https://www.linkedin.com/company/cercal-group'><img src='".$url_cernet."/templates/design/images/linkedin.png'></a>&nbsp;&nbsp;
-                <a href='https://www.instagram.com/cercal.group/'><img src='".$url_cernet."/templates/design/images/instagram.png'></a>&nbsp;&nbsp;
-                <a href='https://www.youtube.com/channel/UCQhUcOl55_pFVtNeOJwNuXQ'><img src='".$url_cernet."/templates/design/images/youtube.png'></a>
+                <a href='https://web.facebook.com/cercalingenieria'><img src='".$url_cernet."/design/images/facebook.png'></a>&nbsp;&nbsp;
+                <a href='https://api.whatsapp.com/send?phone=56939180548'><img src='".$url_cernet."/design/images/whatsapp.png'></a>&nbsp;&nbsp;
+                <a href='https://www.linkedin.com/company/cercal-group'><img src='".$url_cernet."/design/images/linkedin.png'></a>&nbsp;&nbsp;
+                <a href='https://www.instagram.com/cercal.group/'><img src='".$url_cernet."/design/images/instagram.png'></a>&nbsp;&nbsp;
+                <a href='https://www.youtube.com/channel/UCQhUcOl55_pFVtNeOJwNuXQ'><img src='".$url_cernet."/design/images/youtube.png'></a>
               
           </td>
           <td style='width: 50px;'></td>

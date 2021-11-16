@@ -1,7 +1,8 @@
 
 
 (function(){
-	window.history.replaceState({},'','restablecer.php');
+
+	
 	$('#cambiar').hide();
 	var id_protegido = $('#id_protegido').val();
 $('#usuario').keyup(function(){
@@ -38,6 +39,7 @@ $('#usuario').keyup(function(){
 								$('#actualizar').show();
 								
 								$('#actualizar').click(function(){
+									window.history.replaceState({},'','restablecer.php');
 										$.ajax({
 											type:'POST',
 											data:{'password':pas1,'id':resp},
@@ -55,9 +57,9 @@ $('#usuario').keyup(function(){
 															if(result.value){
 																var URLactual = window.location;
 																if(URLactual == "https://localhost/CerNet2.0/restablecer.php"){
-																	location.href = "https://localhost/CerNet2.0/";
+																	location.href = "https://localhost/CerNet2.0/index.php";
 																}else{
-																	location.href = "https://cercal.net/CerNet2.0/";
+																	location.href = "https://cercal.net/CerNet2.0/index.php";
 																}
 															
 															}

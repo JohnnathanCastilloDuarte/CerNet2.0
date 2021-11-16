@@ -62,8 +62,8 @@ if($variable_url == "cercal.net"){
  
 }else{
   $host = "smtp.gmail.com";
-  $Username = "jcastillo@cercal.cl";
-  $password = "Panda0497.";
+  $Username = "soportecernet@gmail.com";
+  $password = "Cercal2021.";
   $url = "http://localhost/CerNet2.0/templates/documentacion/firmar_documentacion.php?key=".$key."&document=".$document;
   $url_cernet = "https://localhost/CerNet2.0";
 }
