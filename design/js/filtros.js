@@ -10,7 +10,6 @@ var id_item_filtro = $("#id_item_filtro").val();
 var id_valida_filtro = $("#id_valida").val();
 var id_filtro  = $("#id_filtro").val();
 
-
 //////////// VALIDADOR DE LOS BOTONES DE CREACIÓN // ACTUALIZACIÓN
 $(document).ready(function(){
   
@@ -71,6 +70,7 @@ $("#btn_crear_item_filtro").click(function(){
     penetracion_filtro,
     id_tipo_filtro,
     id_valida_filtro
+    
   }
   
   $.ajax({
@@ -130,21 +130,25 @@ $("#btn_editar_item_filtro").click(function(){
     penetracion_filtro,
     id_tipo_filtro,
     id_valida_filtro,
-    id_item_filtro
+    id_item_filtro,
+    id_filtro
   }
+  
   
   $.ajax({
     type:'POST',
     url:'templates/item/editar_filtro.php',
     data:datos,
     success:function(response){
+      console.log(response)
 
       if(response == "Si"){   
         Swal.fire({
           title:'Mensaje',
-          text:'Se ha Actualizado el filtro, correctamente!',
+          text:'¡Se ha Actualizado el filtro, correctamente!',
           icon:'success',
-          timer:2000,
+          showConfirmButton: false,
+          timer:1000,
           
         });
       }else{

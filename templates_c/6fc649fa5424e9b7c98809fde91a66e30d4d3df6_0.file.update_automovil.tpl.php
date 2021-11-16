@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-05 16:47:52
+/* Smarty version 3.1.34-dev-7, created on 2021-11-12 20:40:37
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_automovil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61855228e81bd5_12729546',
+  'unifunc' => 'content_618ec3351f9be3_73708772',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fc649fa5424e9b7c98809fde91a66e30d4d3df6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_automovil.tpl',
-      1 => 1636127200,
+      1 => 1636746027,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61855228e81bd5_12729546 (Smarty_Internal_Template $_smarty_tpl) {
+function content_618ec3351f9be3_73708772 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
-
-
-
-
 <div class="row">
   <div class="col-sm-12">
     <?php

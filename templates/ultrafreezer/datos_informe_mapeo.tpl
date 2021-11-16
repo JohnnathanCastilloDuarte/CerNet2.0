@@ -280,7 +280,7 @@
 											<br>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_ultrafreezer">Aceptar</button>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_ultrafreezer">Actualizar</button>
-											<button class="btn btn-danger" id="change_mapeo_ultrafreezer"><span class="text-white">X</span></button>
+											<button class="btn-shadow btn-outline-2x btn btn-outline-danger" id="change_mapeo_ultrafreezer">X</button>
 										</div>
 									</div>
                        <!-- <div class="form-row" style="text-align:center;"> 
