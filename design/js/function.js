@@ -1796,3 +1796,19 @@ $("#rest").click(function(){
 		});
 		
 	}());
+
+
+	var es_local = "No";
+
+$(document).ready(function(){
+
+	let URLactual = document.location.origin
+
+	if(URLactual == "https://localhost"){
+		es_local="Si";
+	}else{
+		es_local = "No";
+	}
+
+	$("#es_local").val(es_local);
+});

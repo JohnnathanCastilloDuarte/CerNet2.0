@@ -1057,6 +1057,30 @@ function botton_datos_crudos(parameter){
   
 }
 
+///////////////////////////// EVENTO QUE LLAMA LA CARGA DE DATOS CRUDOS
+
+$(document).on('click','#cargar_dc_ultrafreezer',function(){
+
+  id_valida 
+  id_asignado 
+  let id_mapeo = $("#id_mapeo_ultrafreezer").val();
+
+
+
+
+  var URLactual = $("#es_local").val();
+ 
+  if(URLactual == "Si"){
+    window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px")
+
+
+  }else{
+    window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
+  }
+
+});
+
+
 
 /////////////////////////////////////////FUNCIÓN SUBIR DATOS CRUDOS AL SISTEMA/////
 

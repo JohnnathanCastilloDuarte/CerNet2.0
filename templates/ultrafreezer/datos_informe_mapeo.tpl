@@ -486,16 +486,15 @@
 
 					<div class="form-row"> 
 						<div class="col-sm-12" id="botton_datos_crudos_ultrafreezer">
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<input type="hidden" id="id_mapeo_ultrafreezer" name="id_mapeo_ultrafreezer">
 	<br>
-
+	<!--
 	<div class="cargar_datos_crudos">
 		<div class="form-row" style="text-align:center;">
 			<div class="col-sm-3"></div>
@@ -794,7 +793,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 </div>
 <!--FIN DE LA TABS ASIGNACIÓN-->
