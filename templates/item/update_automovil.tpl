@@ -1,8 +1,4 @@
 
-
-
-
-
 <div class="row">
   <div class="col-sm-12">
     {foreach from=$array_automovil item=automovil}
