@@ -177,11 +177,20 @@ $("#btn_actualizar_altura_automovil").click(function(){
             timer:1500
           });
           listar_alturas();
+          $("#btn_actualizar_altura_automovil").hide();
+          $("#btn_nueva_altura_automovil").show();  
+          setearaltura();
+
         }
       }
     })
   }
 });
+
+function setearaltura(){
+  $("#altura_automovil").val('');
+  $("#tipo_altura_automovil").val('sin altura')
+}
 
 //// BOTON QUE ELIMINARA LA ALTURA:
 $(document).on('click','#eliminar_bandeja_creada_automovil',function(){

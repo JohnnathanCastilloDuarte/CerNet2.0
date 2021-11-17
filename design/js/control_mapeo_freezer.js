@@ -16,6 +16,8 @@ $(".mostrar_sensores_contenedor_buscados_freezer").hide();
 $(".mostrar_sensores_contenedor_freezer").show();
 $("#mostrar_grafica_freezer").hide();
 $("#cargar_informes_freezer").hide();
+$("#cargar_dc_").hide();
+$("#change_mapeo_freezer").hide();
 
 
 
@@ -958,6 +960,7 @@ function listar_bandejas_freezer_c(a){
 				  id_bandeja = $(this).attr('data-id');
 					listar_sensores_freezer();
 					listar_freezer_sensores(id_bandeja, id_mapeo_freezer);
+          $("#cargar_dc_").show();
 
 			});
 }());
@@ -1003,7 +1006,7 @@ function listar_freezer_sensores(id_bandeja, id_mapeo_freezer){
 						</td>
 					</tr>
 				`;
-				
+
 			});
 			
 			$("#mapeos_listos_freezer").html(template);
@@ -2286,6 +2289,16 @@ $("#cargar_informes_freezer").click(function(){
 	});
 	
 }());
+
+$("#change_mapeo_freezer").click(function(){
+
+  $("#change_mapeo_freezer").hide();
+    listar_mapeos_freezer();
+    setear_campos_freezer();
+   $("#btn_actualizar_mapeo_freezer").hide();
+   $("#btn_nuevo_mapeo_freezer").show();
+
+})
 
 
 

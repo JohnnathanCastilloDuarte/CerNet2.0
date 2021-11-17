@@ -638,7 +638,7 @@ function listar_mapeos_ultrafreezer(){
 					title:'El registro ha sido editado correctamente',
 					timer:1500
 				});
-        $("#change_mapeo_ultrafreezer").hide();
+        		$("#change_mapeo_ultrafreezer").hide();
 				listar_mapeos_ultrafreezer();
 				setear_campos_ultrafreezer();
 				$("#btn_actualizar_mapeo_ultrafreezer").hide();
@@ -653,7 +653,6 @@ function listar_mapeos_ultrafreezer(){
 //setear campos para registrar
 
  $("#change_mapeo_ultrafreezer").click(function(){
-
 
 	 $("#change_mapeo_ultrafreezer").hide();
 		listar_mapeos_ultrafreezer();
@@ -830,8 +829,8 @@ function listar_ultrafreezer_sensores(id_bandeja, id_mapeo){
 			let template = "";
 			let a = 1;
 			let button = "";
-      let template_2 = "";
-      let posicion = "";
+     	    let template_2 = "";
+            let posicion = "";
 			
 			traer.forEach((result)=>{
 				
@@ -1064,9 +1063,6 @@ $(document).on('click','#cargar_dc_ultrafreezer',function(){
   id_valida 
   id_asignado 
   let id_mapeo = $("#id_mapeo_ultrafreezer").val();
-
-
-
 
   var URLactual = $("#es_local").val();
  

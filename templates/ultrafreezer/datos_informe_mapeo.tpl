@@ -494,7 +494,7 @@
 	</div>
 	<input type="hidden" id="id_mapeo_ultrafreezer" name="id_mapeo_ultrafreezer">
 	<br>
-	<!--
+	
 	<div class="cargar_datos_crudos">
 		<div class="form-row" style="text-align:center;">
 			<div class="col-sm-3"></div>
@@ -526,7 +526,7 @@
 											</table>
 										</div>
 									</div>
-
+									<!--
 									<div class="form-group">
 										<label for="file">File</label>
 										<input type="file" class="form-control" id="file_ultrafreezer" name="file_ultrafreezer"  required />
@@ -537,6 +537,7 @@
 											Cargar
 										</button>
 									</div>
+								-->
 								</form>
 							</div>
 
@@ -793,7 +794,7 @@
 				</div>
 			</div>
 		</div>
-	</div>-->
+	</div>
 
 </div>
 <!--FIN DE LA TABS ASIGNACIÓN-->

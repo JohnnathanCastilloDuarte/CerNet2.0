@@ -1804,7 +1804,7 @@ $(document).ready(function(){
 
 	let URLactual = document.location.origin
 
-	if(URLactual == "https://localhost"){
+	if(URLactual == "https://localhost" || URLactual =="http://localhost"){
 		es_local="Si";
 	}else{
 		es_local = "No";
