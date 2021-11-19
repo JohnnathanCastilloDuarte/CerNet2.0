@@ -1771,9 +1771,10 @@ function listar_informes_ultrafreezer(){
                     `
                     <div id="accordion">
                     <div class="card">
-                      <div class="card-header">
+                      <div class="card-header" style="height: 5.5rem;" >
                           <br>
                           <a  data-toggle="collapse" data-target="#collapseOne${contador_acordeon}"  aria-controls="collapseOne">
+                       
                                <h5><strong>Nombre Informe:</strong> ${result.nombre}
                                    <select  id="cambio_tem" data-id="${result.id_informe}">
                                       <option value="${mas_nombre}">${mas_nombre}</option>
@@ -1808,7 +1809,7 @@ function listar_informes_ultrafreezer(){
                                        <option value="29">29</option>
                                       <option value="30">30</option>  
                                     </select></h5>
-                                  <h5><strong> &nbsp;&nbsp;Mapeo:</strong> ${result.nombre_mapeo} </h5>
+                                  <h5><strong>Mapeo:</strong> ${result.nombre_mapeo} </h5>
                              </a>    
                                  
                       <div class="btn-actions-pane-right">
@@ -1843,7 +1844,7 @@ function listar_informes_ultrafreezer(){
                         </div>
                         </form>
                         <br>
-
+                        <hr>
                         <div class="row">
                           <div class="col-sm-12" style="text-align:center;">
                             <h4>Evidencia Grafica</h4>
@@ -1868,7 +1869,7 @@ function listar_informes_ultrafreezer(){
                           <input type="hidden" name="id_informe" value="${result.id_informe}">
                           <div class="row">
                             <div class="col-sm-4" style="text-align:center;">
-                              <label>Posición Sensores</label>
+                                <label style="margin-bottom: 1.8rem;">Posición Sensores</label>
                               <input type="file" name="imagen_1" id="image_1" class="form-control">
                             </div>
 
@@ -1877,7 +1878,7 @@ function listar_informes_ultrafreezer(){
                               <input type="file" name="imagen_2" class="form-control">
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" >
                                 <label>Datos de todos los sensores en periodo representativo </label>
                                 <input type="file" name="imagen_3" class="form-control">
                             </div>

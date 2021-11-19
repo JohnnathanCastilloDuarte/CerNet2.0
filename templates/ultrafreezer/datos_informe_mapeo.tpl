@@ -526,6 +526,7 @@
 											</table>
 										</div>
 									</div>
+									<button class="btn btn-success">Cargar mapeo</button>
 									<!--
 									<div class="form-group">
 										<label for="file">File</label>

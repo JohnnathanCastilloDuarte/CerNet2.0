@@ -20,9 +20,6 @@ $("#cargar_dc_").hide();
 $("#change_mapeo_freezer").hide();
 
 
-
-
-
 //////////////////////////////////////////////////////////LOGICA DE FUNCIONES
 function setear_campos_freezer() {
   $("#fecha_inicio_mapeo_freezer").val("");

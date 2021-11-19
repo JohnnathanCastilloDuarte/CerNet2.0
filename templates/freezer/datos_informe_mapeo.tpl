@@ -555,6 +555,9 @@
 							</div>
 
 						</div>
+						<div class="row">
+					     <button class="btn btn-success btn-aling-center">cargar datos crudos</button>
+					   </div>
 					</div>
 				</div>
 			</div>

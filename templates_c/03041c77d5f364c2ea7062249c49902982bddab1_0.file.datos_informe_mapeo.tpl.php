@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-16 22:45:32
+/* Smarty version 3.1.34-dev-7, created on 2021-11-17 18:11:28
   from 'C:\xampp\htdocs\CerNet2.0\templates\freezer\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6194267cc1bfb2_26538451',
+  'unifunc' => 'content_619537c0209814_89336927',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '03041c77d5f364c2ea7062249c49902982bddab1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\freezer\\datos_informe_mapeo.tpl',
-      1 => 1637098913,
+      1 => 1637169086,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6194267cc1bfb2_26538451 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619537c0209814_89336927 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -639,6 +639,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 							</div>
 
 						</div>
+						<div class="row">
+					     <button class="btn btn-success btn-aling-center">cargar datos crudos</button>
+					   </div>
 					</div>
 				</div>
 			</div>
