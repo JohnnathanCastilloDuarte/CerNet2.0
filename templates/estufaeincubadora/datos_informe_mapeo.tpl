@@ -10,11 +10,11 @@
 		</a>
 	</li>
 
-	<li class="nav-item" id="asignacion_participantes_estufaeincubadora">
+	<!--<li class="nav-item" id="asignacion_participantes_estufaeincubadora">
 		<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#participantes">
 			<span>Complemento</span>
 		</a>
-	</li>
+	</li>-->
 
 	<li class="nav-item" id="asignacion_informe_estufaeincubadora">
 		<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#informes_1">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-10 15:03:04
+/* Smarty version 3.1.34-dev-7, created on 2021-11-16 23:49:53
   from 'C:\xampp\htdocs\CerNet2.0\templates\automovil\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_618bd118bab335_11406893',
+  'unifunc' => 'content_6194359163acd0_92367073',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2c3317aa7dbdba6f3f1555b7e1ff1b760525485b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\automovil\\datos_informe_mapeo.tpl',
-      1 => 1636552970,
+      1 => 1637102992,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_618bd118bab335_11406893 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6194359163acd0_92367073 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -386,11 +386,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 										<br>
 										<div class="col-sm-12" style="text-align:center;">
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_automovil">Actualizar</button>
+											<button class="btn-shadow btn-outline-2x btn btn-outline-danger" id="change_mapeo_automovil">X</button>
 										</div>
-										<br>
-										<div class="col-sm-12" style="text-align:center;">
-											<button class="btn btn-danger" id="change_mapeo_automovil"><span class="text-white">X</span></button>
-										</div>
+										
 									</div>  
 
 									<br>
@@ -645,11 +643,12 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 											</table>
 										</div>
 									</div>
-
+									<!--
 									<div class="form-group" id="file_automovil_dc">
 										<label for="file">File</label>
 										<input type="file" class="form-control" id="file_automovil" name="file_automovil"  required />
 									</div>
+								-->
 									
 									<div class="form-group" id="botoncito_automovil_dc">
 										<button class="btn btn-success">

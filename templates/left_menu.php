@@ -34,10 +34,11 @@
     <ul class="vertical-nav-menu">
     <li class="app-sidebar__heading">Menú</li>
     <li>
+    <input type="hidden" id="es_local">
     <a href="index.php">
     <i class="metismenu-icon pe-7s-rocket"></i>Dashboard</a>			
     </li>
-
+    
     <div id="modulo_1">
     <li>
     <a href="index.php?module={$modulo[0]}&page={$page[0]}"><i class="metismenu-icon pe-7s-server"></i>Modulos</a>
@@ -276,5 +277,7 @@
     </div>
   </div> 
  
+
+  
    
 <!-------------------------------------------------- FIN DE MENU IZQUIERDO ------------------------------------------------------->    

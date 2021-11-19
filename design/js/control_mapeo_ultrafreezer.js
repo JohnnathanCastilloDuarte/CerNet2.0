@@ -30,7 +30,7 @@ $("#btn_actualizar_bandeja_ultrafreezer").hide();
 $("#cuerpo_mapeo_ultrafreezer").hide();
 $("#btn_actualizar_mapeo_ultrafreezer").hide();
 $("#trayendo_resultados").hide();
-$("#card_resultaodos_datos_crudos").hide();
+//$("#card_resultaodos_datos_crudos").hide();
 $("#personal_2_ultrafreezer").hide();
 $("#editar_personal_ultrafreezer").hide();
 $("#asignacion_informe_ultrafreezer").hide();
@@ -391,7 +391,7 @@ function listar_mapeos_ultrafreezer(){
 								title:'El mapeo ha sido eliminado correctamente',
 								timer:1500
 							});
-							listar_mapeos_ultrafreezer();
+							console.log(listar_mapeos_ultrafreezer());
 						}
 				});
 			}
@@ -638,7 +638,7 @@ function listar_mapeos_ultrafreezer(){
 					title:'El registro ha sido editado correctamente',
 					timer:1500
 				});
-        $("#change_mapeo_ultrafreezer").hide();
+        		$("#change_mapeo_ultrafreezer").hide();
 				listar_mapeos_ultrafreezer();
 				setear_campos_ultrafreezer();
 				$("#btn_actualizar_mapeo_ultrafreezer").hide();
@@ -650,6 +650,18 @@ function listar_mapeos_ultrafreezer(){
 	});
 	}());
 
+//setear campos para registrar
+
+ $("#change_mapeo_ultrafreezer").click(function(){
+
+	 $("#change_mapeo_ultrafreezer").hide();
+		listar_mapeos_ultrafreezer();
+		setear_campos_ultrafreezer();
+	 $("#btn_actualizar_mapeo_ultrafreezer").hide();
+     $("#btn_nuevo_mapeo_ultrafreezer").show();
+			
+
+ });
 
 
 
@@ -711,7 +723,7 @@ function listar_bandejas_c_ultrafreezer(a){
 				  id_bandeja = $(this).attr('data-id');
 					listar_sensores_ultrafreezer();
 					listar_ultrafreezer_sensores(id_bandeja, id_mapeo);
-          mostrar_datos_crudos(id_asignado, id_bandeja, id_mapeo, id_valida);
+          //mostrar_datos_crudos(id_asignado, id_bandeja, id_mapeo, id_valida);
 
 			});
 }());
@@ -817,8 +829,8 @@ function listar_ultrafreezer_sensores(id_bandeja, id_mapeo){
 			let template = "";
 			let a = 1;
 			let button = "";
-      let template_2 = "";
-      let posicion = "";
+     	    let template_2 = "";
+            let posicion = "";
 			
 			traer.forEach((result)=>{
 				
@@ -1027,23 +1039,43 @@ function botton_datos_crudos(parameter){
     data: {parameter},
     url:'templates/ultrafreezer/consultar_boton_datos_crudos.php',
     success:function(response){
-      
-      let traer = JSON.parse(response);
-      
+      let botton
       if(response == "No"){
         
-        let botton = "<button class='btn btn-danger' id='cargar_dc_ultrafreezer'>Falta archivo</button>";
+         botton = "<button class='btn btn-danger' id='cargar_dc_ultrafreezer'>Falta archivo</button>";
         
-        $("#botton_datos_crudos_ultrafreezer").html(botton);
+        
       }else{
-       
-        let botton =`<button class='btn btn-success' id='cargar_dc_ultrafreezer' data-url='${response}'>Archivo cargado</button>`; 
+              
+         botton =`<button class='btn btn-success' id='cargar_dc_ultrafreezer' data-url='${response}'>Archivo cargado</button>`; 
         
       }
+      $("#botton_datos_crudos_ultrafreezer").html(botton);
     }
   });
   
 }
+
+///////////////////////////// EVENTO QUE LLAMA LA CARGA DE DATOS CRUDOS
+
+$(document).on('click','#cargar_dc_ultrafreezer',function(){
+
+  id_valida 
+  id_asignado 
+  let id_mapeo = $("#id_mapeo_ultrafreezer").val();
+
+  var URLactual = $("#es_local").val();
+ 
+  if(URLactual == "Si"){
+    window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px")
+
+
+  }else{
+    window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
+  }
+
+});
+
 
 
 /////////////////////////////////////////FUNCIÓN SUBIR DATOS CRUDOS AL SISTEMA/////
@@ -1063,7 +1095,8 @@ function botton_datos_crudos(parameter){
     contentType: false,
     processData: false,
     success:function(response) {
-
+        console.log(response);
+      /*
         if(response == 0){
          	Swal.fire({
 					position:'center',
@@ -1082,7 +1115,7 @@ function botton_datos_crudos(parameter){
 					timer:1700
 				});
       }
-      
+    */    
     } 
   
   });
@@ -1094,8 +1127,7 @@ function botton_datos_crudos(parameter){
 
 function mostrar_datos_crudos(parametro_a, parametro_b, parametro_c, parametro_d){
   
-
-     
+      
     const datos = {
       parametro_a,
       parametro_b,
@@ -1114,7 +1146,7 @@ function mostrar_datos_crudos(parametro_a, parametro_b, parametro_c, parametro_d
     url: 'templates/ultrafreezer/cargar_datos_crudos_db_ultrafreezer.php',
     data: datos,
     success:function(response){
-      
+      console.log(response);
       $("#trayendo_resultados").show();
       $("#resultados_dc").hide();
       let traer = JSON.parse(response);
@@ -1739,9 +1771,10 @@ function listar_informes_ultrafreezer(){
                     `
                     <div id="accordion">
                     <div class="card">
-                      <div class="card-header">
+                      <div class="card-header" style="height: 5.5rem;" >
                           <br>
                           <a  data-toggle="collapse" data-target="#collapseOne${contador_acordeon}"  aria-controls="collapseOne">
+                       
                                <h5><strong>Nombre Informe:</strong> ${result.nombre}
                                    <select  id="cambio_tem" data-id="${result.id_informe}">
                                       <option value="${mas_nombre}">${mas_nombre}</option>
@@ -1776,7 +1809,7 @@ function listar_informes_ultrafreezer(){
                                        <option value="29">29</option>
                                       <option value="30">30</option>  
                                     </select></h5>
-                                  <h5><strong> &nbsp;&nbsp;Mapeo:</strong> ${result.nombre_mapeo} </h5>
+                                  <h5><strong>Mapeo:</strong> ${result.nombre_mapeo} </h5>
                              </a>    
                                  
                       <div class="btn-actions-pane-right">
@@ -1811,7 +1844,7 @@ function listar_informes_ultrafreezer(){
                         </div>
                         </form>
                         <br>
-
+                        <hr>
                         <div class="row">
                           <div class="col-sm-12" style="text-align:center;">
                             <h4>Evidencia Grafica</h4>
@@ -1836,7 +1869,7 @@ function listar_informes_ultrafreezer(){
                           <input type="hidden" name="id_informe" value="${result.id_informe}">
                           <div class="row">
                             <div class="col-sm-4" style="text-align:center;">
-                              <label>Posición Sensores</label>
+                                <label style="margin-bottom: 1.8rem;">Posición Sensores</label>
                               <input type="file" name="imagen_1" id="image_1" class="form-control">
                             </div>
 
@@ -1845,7 +1878,7 @@ function listar_informes_ultrafreezer(){
                               <input type="file" name="imagen_2" class="form-control">
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" >
                                 <label>Datos de todos los sensores en periodo representativo </label>
                                 <input type="file" name="imagen_3" class="form-control">
                             </div>

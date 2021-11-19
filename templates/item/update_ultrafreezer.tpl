@@ -45,7 +45,7 @@
                 <div class="col-sm-6">
                   <label>Empresa</label>
                   <select class="form-control" id="empresa_ultrafreezer">
-                    <option value="0">Seleccione</option>
+                    <option value="{$ultrafreezer.id_empresa}">{$ultrafreezer.nombre_empresa}</option>
                      {foreach from=$array_empresas item=empresa}
                       <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
                      {/foreach}

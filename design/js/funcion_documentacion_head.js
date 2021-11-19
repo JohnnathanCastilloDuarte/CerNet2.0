@@ -269,7 +269,23 @@ $(document).on('change','#aprobacion_head',function(){
                  console.log(response);
                }
              });
-           }
+           }else if(response == "Si documentador"){
+            let tipo = "documentador";
+            const datos = {
+              id,
+              valor,
+              id_valida,
+              tipo
+            }
+            $.ajax({
+              type:'POST',
+              url:'templates/documentacion/enviar_correo.php',
+              data:datos,
+              success:function(response){
+                console.log(response);
+              }
+            });
+          }
            listar_documentacion_head(0);
          }
        })

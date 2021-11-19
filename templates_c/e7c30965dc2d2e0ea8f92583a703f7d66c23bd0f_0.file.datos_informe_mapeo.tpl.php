@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-08 15:59:35
+/* Smarty version 3.1.34-dev-7, created on 2021-11-19 14:41:54
   from 'C:\xampp\htdocs\CerNet2.0\templates\ultrafreezer\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61893b572d1ca0_51371308',
+  'unifunc' => 'content_6197a9a25c0f83_13714435',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e7c30965dc2d2e0ea8f92583a703f7d66c23bd0f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\ultrafreezer\\datos_informe_mapeo.tpl',
-      1 => 1636383560,
+      1 => 1637329274,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61893b572d1ca0_51371308 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6197a9a25c0f83_13714435 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -364,7 +364,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 											<br>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_ultrafreezer">Aceptar</button>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_ultrafreezer">Actualizar</button>
-											<button class="btn btn-danger" id="change_mapeo_ultrafreezer"><span class="text-white">X</span></button>
+											<button class="btn-shadow btn-outline-2x btn btn-outline-danger" id="change_mapeo_ultrafreezer">X</button>
 										</div>
 									</div>
                        <!-- <div class="form-row" style="text-align:center;"> 
@@ -570,16 +570,15 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 					<div class="form-row"> 
 						<div class="col-sm-12" id="botton_datos_crudos_ultrafreezer">
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<input type="hidden" id="id_mapeo_ultrafreezer" name="id_mapeo_ultrafreezer">
 	<br>
-
+	
 	<div class="cargar_datos_crudos">
 		<div class="form-row" style="text-align:center;">
 			<div class="col-sm-3"></div>
@@ -611,7 +610,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 											</table>
 										</div>
 									</div>
-
+									<button class="btn btn-success">Cargar mapeo</button>
+									<!--
 									<div class="form-group">
 										<label for="file">File</label>
 										<input type="file" class="form-control" id="file_ultrafreezer" name="file_ultrafreezer"  required />
@@ -622,6 +622,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 											Cargar
 										</button>
 									</div>
+								-->
 								</form>
 							</div>
 

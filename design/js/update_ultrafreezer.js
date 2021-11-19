@@ -19,6 +19,7 @@ $(document).ready(function(){
 		const datos = {
       id_item_ultrafreezer : $("#id_item_ultrafreezer").val(),
       id_item_2_ultrafreezer : $("#id_item_2_ultrafreezer").val(),
+      empresa_ultrafreezer : $("#empresa_ultrafreezer").val(),
       nombre_ultrafreezer : $("#nombre_ultrafreezer").val(),
       fabricante_ultrafreezer : $("#fabricante_ultrafreezer").val(),
       modelo_ultrafreezer : $("#modelo_ultrafreezer").val(),

@@ -302,11 +302,9 @@
 										<br>
 										<div class="col-sm-12" style="text-align:center;">
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_automovil">Actualizar</button>
+											<button class="btn-shadow btn-outline-2x btn btn-outline-danger" id="change_mapeo_automovil">X</button>
 										</div>
-										<br>
-										<div class="col-sm-12" style="text-align:center;">
-											<button class="btn btn-danger" id="change_mapeo_automovil"><span class="text-white">X</span></button>
-										</div>
+										
 									</div>  
 
 									<br>
@@ -561,11 +559,12 @@
 											</table>
 										</div>
 									</div>
-
+									<!--
 									<div class="form-group" id="file_automovil_dc">
 										<label for="file">File</label>
 										<input type="file" class="form-control" id="file_automovil" name="file_automovil"  required />
 									</div>
+								-->
 									
 									<div class="form-group" id="botoncito_automovil_dc">
 										<button class="btn btn-success">

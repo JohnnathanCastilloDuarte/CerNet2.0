@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-09 19:41:10
+/* Smarty version 3.1.34-dev-7, created on 2021-11-19 16:56:53
   from 'C:\xampp\htdocs\CerNet2.0\templates\estufaeincubadora\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_618ac0c6565a19_39977442',
+  'unifunc' => 'content_6197c945480118_15794377',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5b2f98718287a18ced7e6ccacbcf4c3b048a1aea' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\estufaeincubadora\\datos_informe_mapeo.tpl',
-      1 => 1636483268,
+      1 => 1637337411,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_618ac0c6565a19_39977442 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6197c945480118_15794377 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -33,11 +33,11 @@ function content_618ac0c6565a19_39977442 (Smarty_Internal_Template $_smarty_tpl)
 		</a>
 	</li>
 
-	<li class="nav-item" id="asignacion_participantes_estufaeincubadora">
+	<!--<li class="nav-item" id="asignacion_participantes_estufaeincubadora">
 		<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#participantes">
 			<span>Complemento</span>
 		</a>
-	</li>
+	</li>-->
 
 	<li class="nav-item" id="asignacion_informe_estufaeincubadora">
 		<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#informes_1">

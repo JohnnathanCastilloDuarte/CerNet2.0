@@ -280,7 +280,7 @@
 											<br>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_ultrafreezer">Aceptar</button>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_ultrafreezer">Actualizar</button>
-											<button class="btn btn-danger" id="change_mapeo_ultrafreezer"><span class="text-white">X</span></button>
+											<button class="btn-shadow btn-outline-2x btn btn-outline-danger" id="change_mapeo_ultrafreezer">X</button>
 										</div>
 									</div>
                        <!-- <div class="form-row" style="text-align:center;"> 
@@ -486,16 +486,15 @@
 
 					<div class="form-row"> 
 						<div class="col-sm-12" id="botton_datos_crudos_ultrafreezer">
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<input type="hidden" id="id_mapeo_ultrafreezer" name="id_mapeo_ultrafreezer">
 	<br>
-
+	
 	<div class="cargar_datos_crudos">
 		<div class="form-row" style="text-align:center;">
 			<div class="col-sm-3"></div>
@@ -527,7 +526,8 @@
 											</table>
 										</div>
 									</div>
-
+									<button class="btn btn-success">Cargar mapeo</button>
+									<!--
 									<div class="form-group">
 										<label for="file">File</label>
 										<input type="file" class="form-control" id="file_ultrafreezer" name="file_ultrafreezer"  required />
@@ -538,6 +538,7 @@
 											Cargar
 										</button>
 									</div>
+								-->
 								</form>
 							</div>
 

@@ -1,8 +1,4 @@
 
-
-
-
-
 <div class="row">
   <div class="col-sm-12">
     {foreach from=$array_automovil item=automovil}
@@ -36,15 +32,13 @@
 									</a>
 							</li>-->
           </ul>
-
           <input type="hidden"  id="id_item_automovil" value="{$automovil.id_item}">
           <input type="hidden" id="id_automovil" value="{$automovil.id_automovil}">
 
           <div class="form-wizard-content">
             <div id="step-12">
               <div class="form-row">
-                <div class="col-sm-6">
-                  
+                <div class="col-sm-6">  
                   <label>Nombre del Automovil</label>
                   <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_automovil}">
                 </div>

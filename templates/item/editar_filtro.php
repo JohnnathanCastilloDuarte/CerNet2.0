@@ -17,15 +17,16 @@ $penetracion_filtro = $_POST['penetracion_filtro'];
 $id_tipo_filtro = $_POST['id_tipo_filtro'];
 $id_usuario = $_POST['id_valida_filtro'];
 $id_item = $_POST['id_item_filtro'];
+$id_filtro = $_POST['id_filtro'];
 
 
 $tipo  = substr($nombre_filtro, -3);
-$nombre_filtro = substr($nombre_filtro, 0, -3);
+//$nombre_filtro = substr($nombre_filtro, 0, -3);
 
 
 ////// ACTUALIZAR ITEM
-$actualizar_item = mysqli_prepare($connect,'UPDATE item SET id_empresa = ?, nombre = ?, descripcion = ? WHERE id ');
-mysqli_stmt_bind_param($actualizar_item, 'iss', $empresa_filtro, $nombre_filtro, $nombre_filtro, $id_item_filtro);
+$actualizar_item = mysqli_prepare($connect,'UPDATE item SET id_empresa = ?, nombre = ? WHERE id_item = ?');
+mysqli_stmt_bind_param($actualizar_item, 'isi', $empresa_filtro, $nombre_filtro, $id_item);
 mysqli_stmt_execute($actualizar_item);
 
 /////// ACTUALIZAR FILTRO 
@@ -53,7 +54,7 @@ mysqli_stmt_bind_param($actualiza_filtro, 'sssisssssii',
 	$tipo, 
 	$lugar_filtro, 
 	$penetracion_filtro,
-	$id_item,);
+	$id_filtro);
 
 
 mysqli_stmt_execute($actualiza_filtro);

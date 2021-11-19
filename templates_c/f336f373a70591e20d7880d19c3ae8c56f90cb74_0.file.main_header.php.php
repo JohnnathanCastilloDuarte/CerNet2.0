@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-07 15:41:58
+/* Smarty version 3.1.34-dev-7, created on 2021-11-11 18:53:58
   from 'C:\xampp\htdocs\CerNet2.0\templates\main_header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615ef92656b8e1_45592686',
+  'unifunc' => 'content_618d58b6d36356_83922059',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f336f373a70591e20d7880d19c3ae8c56f90cb74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\main_header.php',
-      1 => 1633614116,
+      1 => 1636653237,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,16 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615ef92656b8e1_45592686 (Smarty_Internal_Template $_smarty_tpl) {
+function content_618d58b6d36356_83922059 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <link rel="shortcut icon" href="design/assets/images/logo_pestana.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="Content-Language" content="es">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Portal de informes de Cercal - CerNet</title>
+  <title>CerNet 2.0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
   <meta name="description" content="This is an example dashboard created using build-in elements and components.">
   <!-- Disable tap highlight on IE -->

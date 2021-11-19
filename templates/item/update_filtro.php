@@ -11,7 +11,7 @@ if(isset($_GET['item'])){
   $id_item = $_GET['item'];
   $smarty->assign("id_item_filtro",$id_item);
 
-  $consultar = mysqli_prepare($connect,"SELECT a.descripcion, b.id_filtro, b.marca, b.modelo, b.serie, b.cantidad_filtro, b.ubicacion, b.ubicado_en, b.filtro_dimension, c.nombre, c.id_empresa, b.lugar_filtro, b.limite_penetracion FROM item as a, item_filtro as b, empresa as c WHERE a.id_item = ? AND a.id_item = b.id_item AND a.id_empresa = c.id_empresa");
+  $consultar = mysqli_prepare($connect,"SELECT a.nombre, b.id_filtro, b.marca, b.modelo, b.serie, b.cantidad_filtro, b.ubicacion, b.ubicado_en, b.filtro_dimension, c.nombre, c.id_empresa, b.lugar_filtro, b.limite_penetracion FROM item as a, item_filtro as b, empresa as c WHERE a.id_item = ? AND a.id_item = b.id_item AND a.id_empresa = c.id_empresa");
   
   mysqli_stmt_bind_param($consultar, 'i', $id_item);
   mysqli_stmt_execute($consultar);
