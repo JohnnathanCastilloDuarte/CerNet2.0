@@ -198,7 +198,6 @@ else
     }   
     
 
-    echo $errores;
    
     if($errores == "si"){
       
@@ -248,13 +247,11 @@ else
     }else{
         
         $personalizado_FINAL = $directorio_carga."ORIGINAL_".$nombre_archivo_n;
-
-        
         rename("$personalizado","$personalizado_FINAL"); 
     }
     
-    //$convert = json_encode($array_datos_crudos);
-    //echo $convert;
+    $convert = json_encode($array_datos_crudos);
+    echo $convert;
 
     
 }

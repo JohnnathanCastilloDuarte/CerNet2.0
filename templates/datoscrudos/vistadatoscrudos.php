@@ -54,8 +54,8 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 				</div>
 			</div>
 			<br>
-			<div class="card" id="tipo_sensor">
-				<div class="card-header">Tipo Sensor</div>
+			<div class="card" id="tipo_termocupla">
+				<div class="card-header">Tipo Termocupla</div>
 				<div class="card-body">
 				
 					<div class="row">
@@ -97,18 +97,18 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 			</div>
 
 
-			<div class="card" id="tipo_termocupla">
-				<div class="card-header">Tipo Termocupla</div>
+			<div class="card" id="tipo_sensor">
+				<div class="card-header">Tipo sensor</div>
 				<div class="card-body"></div>
 			</div>
 			
 		</div>
 	</div>
-
+	<br><br>
 
 	<div class="row">
 		<div class="col-sm-6">
-		<div class="card">
+		<div class="card" id="resultados_tipo_termocupla">
 			<div class="card-header">Resultados datos crudos</div>
 			<div class="card-body">
 				<table class="table">
@@ -117,6 +117,14 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 						<th>Fecha / Hora</th>
 						<th>Colm1</th>
 						<th>Colm2</th>
+						<th>Colm3</th>
+						<th>Colm4</th>
+						<th>Colm5</th>
+						<th>Colm6</th>
+						<th>Colm7</th>
+						<th>Colm8</th>
+						<th>Colm9</th>
+						<th>Colm10</th>
 					</thead>
 					<tbody id="mostrar_dc_1"></tbody>
 				</table>
