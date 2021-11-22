@@ -31,6 +31,7 @@ if(mysqli_stmt_num_rows($consultar)> 0){
     
     $id_protegido = md5($id_usuario);
     if($variable_url == "cercal.net"){
+  
       $host = "mail.cercal.net";
       $Username = "cernet_informa@cercal.net";
       $password = "+AayJrvqUdJk";
@@ -38,8 +39,9 @@ if(mysqli_stmt_num_rows($consultar)> 0){
       $url_cernet = "https://cercal.net/CerNet2.0";
       
     }else{
+  
       $host = "smtp.gmail.com";
-      $Username = "soportecernet@gmail.com";
+      $Username = "pruebascernet@gmail.com";
       $password = "Cercal2021.";
       $url = "http://localhost/CerNet2.0/restablecer_pass.php?key=".$id_protegido;
       $url_cernet = "https://localhost/CerNet2.0";
@@ -102,11 +104,11 @@ if(mysqli_stmt_num_rows($consultar)> 0){
     try{
 
       //Server Setting
-      //$mail->SMTPDebug = 0;
+      $mail->SMTPDebug = 0;
       if($variable_url != "cercal.net"){
         $mail->isSMTP(); 
       }
-      
+    
       $mail->Host =  $host;
       $mail->SMTPAuth = true;
       $mail->Username = $Username;

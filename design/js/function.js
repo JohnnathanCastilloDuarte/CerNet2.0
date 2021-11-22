@@ -127,7 +127,7 @@ $("#rest").click(function(){
 		data:{ email },
 		url:'templates/usuario/enviar_correo.php',
 		success:function(final){
-		
+	
 			if(final == "no existe"){
 				Swal.fire({
 					title:'Mensaje',
