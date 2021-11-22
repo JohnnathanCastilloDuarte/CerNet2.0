@@ -403,11 +403,6 @@ function listar_mapeos_ultrafreezer(){
 (function(){
 	$("#btn_nuevo_mapeo_ultrafreezer").click(function(){
 	    
-  
-        
-   
-    
-    
 		let nombre_mapeo = $("#nombre_mapeo_ultrafreezer").val();
 		let fecha_inicio_mapeo = $("#fecha_inicio_mapeo_ultrafreezer").val();
 		let hora_inicio_mapeo = $("#hora_inicio_mapeo_ultrafreezer").val();
@@ -421,8 +416,8 @@ function listar_mapeos_ultrafreezer(){
 		let temperatura_minima = $("#temperatura_minima_ultrafreezer").val();
 		let temperatura_maxima = $("#temperatura_maxima_ultrafreezer").val();
 		let valor_seteado_temperatura = $("#valor_seteado_temperatura_ultrafreezer").val();
-    let nombre_opciona = $("#nombre_opcional_mapeo").val();
-    let nombre_final = ""
+        let nombre_opciona = $("#nombre_opcional_mapeo").val();
+        let nombre_final = "";
     
     if(nombre_mapeo == "FFFFF"){
       nombre_final = nombre_opciona;
@@ -430,7 +425,6 @@ function listar_mapeos_ultrafreezer(){
       nombre_final = nombre_mapeo;
     }
                             
-		
 		const datos = {
 		  nombre_final,
 			fecha_inicio_mapeo,
@@ -461,10 +455,10 @@ function listar_mapeos_ultrafreezer(){
 					timer:1500
 				});
 				listar_mapeos_ultrafreezer();
-        listar_informes_ultrafreezer()
+     		    listar_informes_ultrafreezer()
 				setear_campos_ultrafreezer();
 				crear_informes_ultrafreezer();
-        contar_registro_informes_ultrafreezer();
+      			contar_registro_informes_ultrafreezer();
 				  
 			}
 		});

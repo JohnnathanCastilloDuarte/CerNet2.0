@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-21 19:58:01
+/* Smarty version 3.1.34-dev-7, created on 2021-11-22 17:41:56
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\gestionar_item.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6171aa2965a6c6_13423849',
+  'unifunc' => 'content_619bc854893f93_32873575',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '21b539e74cb37b666475e7a0a278285a815a105a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\gestionar_item.tpl',
-      1 => 1634829710,
+      1 => 1637598698,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6171aa2965a6c6_13423849 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619bc854893f93_32873575 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-main__inner">
 	<div class="container-fluid">
 		<div class="card">
@@ -61,7 +61,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['gestionar']->value) {
 &type=<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_tipo'];?>
 " class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info"><i class="lnr-pencil btn-icon-wrapper"></i></a>
 									<a data-id="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_item'];?>
-" id="btn_eliminar_item"  data-nombre="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['nombre_item'];?>
+" data-tipoitem="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_tipo'];?>
+" id="btn_eliminar_item" data-nombre="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['nombre_item'];?>
 "  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger"><i class="lnr-cross btn-icon-wrapper"></i></a>
 								</div>
 							</td>

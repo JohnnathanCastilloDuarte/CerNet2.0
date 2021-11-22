@@ -25,7 +25,7 @@
 						<td>
 								<div class="col-sm-12" style="text-align: center;">
 									<a id="btn_editar_item" href="index.php?module={$modulo[7]}&page={$page[2]}&item={$gestionar.id_item}&type={$gestionar.id_tipo}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info"><i class="lnr-pencil btn-icon-wrapper"></i></a>
-									<a data-id="{$gestionar.id_item}" id="btn_eliminar_item"  data-nombre="{$gestionar.nombre_item}"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger"><i class="lnr-cross btn-icon-wrapper"></i></a>
+									<a data-id="{$gestionar.id_item}" data-tipoitem="{$gestionar.id_tipo}" id="btn_eliminar_item" data-nombre="{$gestionar.nombre_item}"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger"><i class="lnr-cross btn-icon-wrapper"></i></a>
 								</div>
 							</td>
 					</tr>	
