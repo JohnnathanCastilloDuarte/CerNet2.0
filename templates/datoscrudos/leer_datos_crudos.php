@@ -1,59 +1,35 @@
 <?php 
 
+include("../../config.ini.php");
 
-$personalizado = $_POST['response'];
-$tipo_lectura = $_POST['tipo_lectura'];
-$id_valida = $_POST['id_valida'];
 $id_asignado = $_POST['id_asignado'];
 $id_mapeo = $_POST['id_mapeo'];
+$array_historial = array();
 
 
+$consultando = mysqli_prepare($connect,"SELECT a.id_registro, a.url_archivo, a.url_error, a.estado, b.nombre, b.apellido, a.fecha_registro FROM registro_dc as a, persona as b WHERE a.id_usuario = b.id_usuario AND a.id_mapeo = ?  AND a.id_asignado =  ? ORDER BY a.fecha_registro ASC");
 
+mysqli_stmt_bind_param($consultando, 'ii' , $id_mapeo, $id_asignado);
+mysqli_stmt_execute($consultando);
+mysqli_stmt_store_result($consultando);
+mysqli_stmt_bind_result($consultando, $id_registro, $url_archivo, $url_error, $estado, $nombres, $apellidos, $fecha_registro);
 
-////////////// VARIABLES 
-$start = "";
-$end = "";
+while($row = mysqli_stmt_fetch($consultando)){
 
-
-if($tipo_lectura == "general"){
-
-    $variable_contador = 0;
-    $array_datos_crudos = array();
-
-    $abrir_archivo = fopen($personalizado,'r');
-
-    while(($column=fgetcsv($abrir_archivo,10000,";","\t"))!==false){
-
-        if($variable_contador > 6){
-
-            $fecha_archivo = $column[0]." ".$column[1];
-            $fecha_hora_sql = date("Y-m-d H:i:s",strtotime($fecha_archivo));
-            
-            
-            $array_datos_crudos[] = array(
-                'fecha'=>$column[0],
-                'hora'=>$column[1],
-                'v1'=>str_replace(",",".",$column[2]),
-                'v2'=>str_replace(",",".",$column[3]),
-                'v3'=>str_replace(",",".",$column[4]),
-                'v4'=>str_replace(",",".",$column[5]),
-                'v5'=>str_replace(",",".",$column[6]),
-                'v6'=>str_replace(",",".",$column[7]),
-                'v7'=>str_replace(",",".",$column[8]),
-                'v8'=>str_replace(",",".",$column[9]),
-                'v9'=>str_replace(",",".",$column[10]),
-                'v10'=>str_replace(",",".",$column[11])
-            );
-        }
-
-        $variable_contador++;
-    }   
-
-    $convert = json_encode($array_datos_crudos);
-    echo $convert;
+    $array_historial[]= array(
+        'id_registro'=>$id_registro,
+        'url_archivo'=>$url_archivo,
+        'url_error'=>$url_error,
+        'estado'=>$estado,
+        'nombres'=>$nombres,
+        'apellidos'=>$apellidos,
+        'fecha_registro'=>$fecha_registro
+    );
 }
 
+$convert = json_encode($array_historial);
 
+echo $convert;
 
-
+mysqli_close($connect);
 ?>

@@ -18,6 +18,8 @@ mysqli_stmt_store_result($query1);
 mysqli_stmt_bind_result($query1, $nombre);
 mysqli_stmt_fetch($query1);
 
+$url_archivo = "";
+
 
 switch ($nombre){
     case 'UltraFreezer':
@@ -37,7 +39,7 @@ switch ($nombre){
 		$end = date("Y-m-d H:i:s",strtotime($pre_end));
 
 
-        break;
+    break;
 }
 
 
@@ -113,10 +115,10 @@ else
             
             if($incrementador <= 9){
                 $nombre_archivo_n = "datos_crudos0".$incrementador.".csv";
-                $nombre_archivo_txt = "error_datos_crudos0".$incrementador.".txt";
+                $nombre_archivo_txt = "error_datos_crudos0".$incrementador.".csv";
             }else{
                 $nombre_archivo_n = "datos_crudos".$incrementador.".csv";
-                $nombre_archivo_txt = "error_datos_crudos0".$incrementador.".txt";
+                $nombre_archivo_txt = "error_datos_crudos0".$incrementador.".csv";
             }
 
             
@@ -124,8 +126,10 @@ else
            
             $validador++;
         }
+        
         $personalizado = $directorio_carga.$nombre_archivo_n;
         $personalida_txt = $directorio_carga.$nombre_archivo_txt;
+        $url_archivo =  $personalizado;
 
     }while($validador == 0);  
 
@@ -197,10 +201,12 @@ else
         $variable_contador++;
     }   
     
-
+    $estado = "";
    
     if($errores == "si"){
-      
+        
+        $estado = 0;
+
         $variable_contador = 0;
         $abrir_archivo1 = fopen($personalizado,'r');
         unlink($personalida_txt);
@@ -208,7 +214,7 @@ else
         $fecha_suma = "";
         $z_1 = 1;
 
-     
+        fwrite($archivo_txt, "fecha hora;v1;v2;v3;v4;v5;v6;v7;v8;v9;v10;\r\n");
         while(($column=fgetcsv($abrir_archivo1,10000,";","\t"))!==false){
            
             if($variable_contador > 6){
@@ -225,13 +231,17 @@ else
                     $fecha_suma=$fecha_suma;
                 } 
 
-              
+                
                 
                 if(($fecha_suma>=$start) && ($fecha_suma<=$end)){
                    
-                    fwrite($archivo_txt, "fecha_hora : ".$fecha_suma." V1:".$column[2]." V2:".$column[3]." V3:".$column[4]
-                    ." V4:".$column[5]." V5:".$column[6]." V6:".$column[7]." V7:".$column[8]." V8:".$column[9]." V9:".$column[10]
-                    ." V10:".$column[11].PHP_EOL);
+                   /* fwrite($archivo_txt, "| fecha hora : ".$fecha_suma." | V1:".$column[2]." | V2:".$column[3]." | V3:".$column[4]
+                    ." | V4:".$column[5]." | V5:".$column[6]." | V6:".$column[7]." | V7:".$column[8]." | V8:".$column[9]." | V9:".$column[10]
+                    ." | V10:".$column[11]." |".PHP_EOL);]*/
+
+                    fwrite($archivo_txt, $fecha_suma.";".$column[2].";".$column[3].";".$column[4]
+                    .";".$column[5].";".$column[6].";".$column[7].";".$column[8].";".$column[9].";".$column[10]
+                    .";".$column[11].";\r\n");
         
 
                     $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));  
@@ -245,13 +255,25 @@ else
         }  
         fclose($archivo_txt); 
     }else{
-        
+        $estado = 1;
         $personalizado_FINAL = $directorio_carga."ORIGINAL_".$nombre_archivo_n;
         rename("$personalizado","$personalizado_FINAL"); 
+        $url_archivo =  $personalizado_FINAL;
     }
     
+    //////////////////// INSERTAMOS LA INFORMACIÓN DE DATOS CRUDOS
+
+    $insertar = mysqli_prepare($connect,"INSERT INTO registro_dc (id_mapeo, id_asignado, url_archivo, url_error, estado, id_usuario) VALUES (?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($insertar, 'iissii', $id_mapeo, $id_asignado, $url_archivo, $personalida_txt, $estado, $id_valida);
+    mysqli_stmt_execute($insertar);
+
     $convert = json_encode($array_datos_crudos);
     echo $convert;
+
+
+  
+
+    
 
     
 }

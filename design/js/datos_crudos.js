@@ -5,6 +5,8 @@ $("#tipo_sensor").hide();
 
 
 
+
+
 ////////// CREACIÓN DE VARIABLES
 
 var id_valida = $("#id_valida").val();
@@ -31,8 +33,7 @@ $("#form_datos_crudos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-            
-            console.log(response);
+          
             
             let traer = JSON.parse(response);
             let template = "";
@@ -139,9 +140,28 @@ $("#form_datos_crudos").submit(function(e){
             });
 
             $("#mostrar_dc_1").html(template);
-
-            alert(contador_errores);
-        }
+            cargar_backtrack_dc();
+          
+            if(contador_errores > 0){
+                Swal.fire({
+                    title:'Mensaje',
+                    text:'Revisa tu archivo de DC, estos presentan errores',
+                    icon:'warning',
+                    timer:1500
+                });
+                $("#btn_carga_dc").show(); 
+                
+            }else{
+                Swal.fire({
+                    title:'Mensaje',
+                    text:'Los datos crudos, no presentan ningun error',
+                    icon:'success',
+                    timer:1500
+                });
+                $("#btn_carga_dc").hide();
+            }
+            
+        }   
     });
         
   
@@ -171,8 +191,130 @@ $("#tipo_archivo_dc").change(function(){
 });
 
 
+cargar_backtrack_dc();
+
 ///////////////// función que muestra el  backtrack de los datos crudos.
 function cargar_backtrack_dc(){
-    
+
+
+    const datos = {
+        id_asignado,
+        id_mapeo
+    }
+   
+
+
+    $.ajax({
+        type:'POST',
+        data:datos,
+        url:'leer_datos_crudos.php',
+        success:function(response){
+            let traer = JSON.parse(response);
+            let template = "";
+            let contador_bad = "";
+
+            traer.forEach((resultado)=>{
+                if(resultado.estado == 0){
+                    contador_bad = 1;
+
+                    template +=
+                    `
+                        <div class="col-sm-4" style="text-align: center;">
+                            <div class="card">
+                                <div class="card-header">${resultado.nombres}  ${resultado.apellidos} <br> ${resultado.fecha_registro}</div>
+                            </div>
+                            <a href="${resultado.url_archivo}"><img src="../../design/images/excel.png" style="width: 25%;"></img></a>
+                            <a href="${resultado.url_error}"><img src="../../design/images/log.png" style="width: 25%;"></img></a>
+                        </div>
+                    
+                    `;
+                }else if(resultado.estado == 3){
+                    contador_bad = 0;
+                   
+                    template +=
+                    `
+                        <div class="col-sm-4" style="text-align: center;">
+                            <div class="card">
+                                <div class="card-header">${resultado.nombres}  ${resultado.apellidos} <br> ${resultado.fecha_registro}</div>
+                            </div>
+                           
+                            <a href="${resultado.url_archivo}"><img src="../../design/images/excel.png" style="width: 25%;"></img></a><br>
+                            <span class="text-danger">Eliminado</span>
+                           
+
+                            
+                        </div>
+                    
+                    `;
+                }else{
+                    contador_bad = 0;
+                    
+                    template +=
+                    `
+                        <div class="col-sm-4" style="text-align: center;">
+                            <div class="card">
+                                <div class="card-header">${resultado.nombres}  ${resultado.apellidos} <br> ${resultado.fecha_registro}</div>
+                            </div>
+                           
+                            <a href="${resultado.url_archivo}"><img src="../../design/images/excel.png" style="width: 25%;"></img></a><br>
+                            <button class="btn btn-danger" data-id="${resultado.id_registro}" id="elimar_registro_dc">Eliminar</button>
+
+                            
+                        </div>
+                    
+                    `;
+                }
+               
+
+
+
+            });
+
+          
+
+            $("#resultados_historial_dc").html(template);
+        }
+    })
 }
 
+
+
+
+$(document).on('click','#elimar_registro_dc',function(){
+
+    let id_registro = $(this).attr('data-id');
+
+
+    Swal.fire({
+		position:'center',
+		icon:'error',
+		title:'Deseas eliminar el archivo ?',
+		showConfirmButton:true,
+		showCancelButton:true,
+		confirmButtonText:'Si!',
+		cancelButtonText:'No!',
+	}).then((result)=>{
+		if(result.value){
+
+            $.ajax({
+                type:'POST',
+                data:{id_registro},
+                url:'eliminar_dc.php',
+                success:function(response){
+                   
+                    if(response == "Si"){
+                        Swal.fire({
+                            title:'Mensaje',
+                            text:'Se ha eliminado correctamente, el archivo',
+                            icon:'success',
+                            timer:1500
+                        });
+                        cargar_backtrack_dc();
+                    }
+
+
+                }
+            });
+        }
+    });        
+});

@@ -30,9 +30,8 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 <body>
 	<br><br>
 	<div class="row">
-		<div class="col-sm-3"></div>
 
-		<div class="col-sm-6">
+		<div class="col-sm-6" id="card_principal">
 			<div class="card">
 				<div class="card-header">Datos crudos</div>
 				<div class="card-body">
@@ -43,7 +42,7 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 					
 							<select name="" id="tipo_archivo_dc" class="form-control">
 								<option value="0">Seleccione</option>
-								<option value="1">Sensor</option>
+								<!--<option value="1">Sensor</option>-->
 								<option value="2">Termocupla</option>			
 							</select>
 						</div>	
@@ -53,8 +52,25 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 					
 				</div>
 			</div>
-			<br>
-			<div class="card" id="tipo_termocupla">
+				
+		</div>
+
+		<div class="col-sm-6">
+			<div class="card">
+				<div class="card-header">Historial</div>
+				<div class="card-body">
+					<div class="row" id="resultados_historial_dc">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br><br>
+
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+		<div class="card" id="tipo_termocupla">
 				<div class="card-header">Tipo Termocupla</div>
 				<div class="card-body">
 				
@@ -83,7 +99,7 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 								<input type="text" name="rango_menor_igual" id="rango_menor_igual" class="form-control">
 
 								<br>
-								<button class="btn btn-success">Cargar</button>
+								<button class="btn btn-success" id="btn_carga_dc">Cargar</button>
 							</form>	
 
 						</div>
@@ -101,39 +117,39 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 				<div class="card-header">Tipo sensor</div>
 				<div class="card-body"></div>
 			</div>
-			
 		</div>
 	</div>
 	<br><br>
-
 	<div class="row">
-		<div class="col-sm-6">
-		<div class="card" id="resultados_tipo_termocupla">
-			<div class="card-header">Resultados datos crudos</div>
-			<div class="card-body">
-				<table class="table">
-					<thead>
-						<th>#</th>
-						<th>Fecha / Hora</th>
-						<th>Colm1</th>
-						<th>Colm2</th>
-						<th>Colm3</th>
-						<th>Colm4</th>
-						<th>Colm5</th>
-						<th>Colm6</th>
-						<th>Colm7</th>
-						<th>Colm8</th>
-						<th>Colm9</th>
-						<th>Colm10</th>
-					</thead>
-					<tbody id="mostrar_dc_1"></tbody>
-				</table>
-			</div>
+		<div class="col-sm-12">
+			<div class="card" id="resultados_tipo_termocupla">
+				<div class="card-header">Resultados datos crudos</div>
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<th>#</th>
+							<th>Fecha / Hora</th>
+							<th>Colm1</th>
+							<th>Colm2</th>
+							<th>Colm3</th>
+							<th>Colm4</th>
+							<th>Colm5</th>
+							<th>Colm6</th>
+							<th>Colm7</th>
+							<th>Colm8</th>
+							<th>Colm9</th>
+							<th>Colm10</th>
+						</thead>
+						<tbody id="mostrar_dc_1"></tbody>
+					</table>
+				</div>
 			</div>
 		</div>
+
+		
 	</div>
 
-
+	<script type="text/javascript" src="../../design/Datatables/sweetalert2.all.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="../../design/js/datos_crudos.js"></script>
 </body>
