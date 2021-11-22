@@ -77,6 +77,7 @@ $(document).on('click','#btn_abrir_item',function(){
 		let nombre_item  = $(this).attr("data-nombre");
 		let id_principal = $(this).attr("data-id");
 		let id_valida    = $("#id_valida").val();
+		let tipo_item    = $(this).attr("data-tipoitem");
 
 //estas variables son para enviar el registro de la accion
 		let movimiento = "Elimina en el modulo";
@@ -91,7 +92,7 @@ $(document).on('click','#btn_abrir_item',function(){
 		Swal.fire({
 			toast:true,
 			title: 'Eliminar',
-			text: 'Deseas eliminar el item ?!'+nombre_item,
+			text: 'Deseas eliminar el item '+nombre_item+' ?!',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -103,9 +104,10 @@ $(document).on('click','#btn_abrir_item',function(){
 			if (result.value) {
 				$.ajax({
 					type: 'POST',
-					data: {'id_principal':id_principal, 'id_valida':id_valida},	
+					data: {'id_principal':id_principal, 'id_valida':id_valida, 'tipo_item':tipo_item},	
 					url: 'templates/item/delete_item.php',
-					success: function(){	
+					success: function(e){
+						console.log(e);	
 						Swal.fire({
 							icon :'success',			
 							text: 'Registro eliminado correctamente',
@@ -124,14 +126,13 @@ $(document).on('click','#btn_abrir_item',function(){
 					data:datos,
 					url:'templates/controlador_backtrack/controlador_general.php',
 					success:function(response){
-						console.log(response);
 						if(response == "Listo"){
 
 						}
 					}
 				});
 			}
-
+			
 		});
 	})
 }());
