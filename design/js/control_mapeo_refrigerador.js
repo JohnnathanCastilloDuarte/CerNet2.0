@@ -5,20 +5,24 @@ var id_mapeo = "";
 var id_bandeja = "";
 var id_asignado = $("#id_asignado").val();
 var id_valida = $("#id_valida").val();
+$("#id_valida_dc").val(id_valida);
 
 
 //LLAMDAS DE FUNCIONES
-listar_bandejas();
-contar_registros();
-setear_campos();
-listar_mapeos();
-contar_registro_informes();
-listar_inf_base();
-listar_mapeos_inf_base();
-imagenes_equipo_base();
-imagenes_equipo_base_sensores();
-listar_participantes();
-traer_consecutivo();
+$(document).ready(function(){
+	listar_bandejas();
+	contar_registros();
+	setear_campos();
+	listar_mapeos();
+	contar_registro_informes();
+	listar_inf_base();
+	listar_mapeos_inf_base();
+	imagenes_equipo_base();
+	imagenes_equipo_base_sensores();
+	listar_participantes();
+	traer_consecutivo();
+});
+
 
 
 
@@ -388,7 +392,9 @@ function contar_registro_informes(){
 			data:datos,
 			url: 'templates/refrigeradores/contar_registro_informes.php',
 			success:function(e){
+			
 				if(e == "Abrete"){
+					
 						$("#asignacion_informe").show();
 				}else{
 					$("#asignacion_informe").hide();
@@ -754,6 +760,7 @@ function listar_mapeos(){
 
 //LISTAR SOLO SENSORES NO REGISTRADOS EN LA TABLA REFRIGERADORES _ SENSORES
 function listar_sensores(a){
+
 		
 	$.ajax({
 		type:'POST',
@@ -836,19 +843,20 @@ function listar_bandejas_c(a){
 }());
 
 
-(function(){
-	$(document).on("click","#buscar_sensores_asignada", function(){
-			
-		    
-				  id_bandeja = $(this).attr('data-id');
-					nombre_bandeja  = $(this).attr('data-nombre');
-          listar_sensores();
-					listar_refrigeradores_sensores(id_bandeja, id_mapeo);
-          $("#nombre_bandeja").html(nombre_bandeja);
-          existe_dc_refrigerador(id_mapeo);
-          contar_registro_informes();
-			});
-}());
+
+$(document).on("click","#buscar_sensores_asignada", function(){
+		
+		
+	id_bandeja = $(this).attr('data-id');
+	nombre_bandeja  = $(this).attr('data-nombre');
+	listar_sensores();
+	listar_refrigeradores_sensores(id_bandeja, id_mapeo);
+	$("#nombre_bandeja").html(nombre_bandeja);
+	existe_dc_refrigerador(id_mapeo);
+	contar_registro_informes();
+	validar_btn_dc();
+});
+
 
 //AGREGAR SENSOR 
 (function(){
@@ -1005,7 +1013,17 @@ function listar_refrigeradores_sensores(id_bandeja, id_mapeo){
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
-                  <option value="10">10</option>             
+                  <option value="10">10</option>
+				  <option value="11">11</option> 
+				  <option value="12">12</option> 
+				  <option value="13">13</option> 
+				  <option value="14">14</option>
+				  <option value="15">15</option>
+				  <option value="16">16</option>
+				  <option value="17">17</option> 
+				  <option value="18">18</option>
+				  <option value="19">19</option>
+				  <option value="20">20</option>                  
                </select>
 						</td>
 					</tr>
@@ -1083,7 +1101,7 @@ function listar_refrigeradores_sensores(id_bandeja, id_mapeo){
 
 //BOTON PARA CARGAR DATOS EN LA CARD/////////////////////////////7
 (function(){
-	
+	/*
 	$(document).on('click','#btn_cargar_datos_crudos',function(){
 		
 			$('#fechas').hide();
@@ -1155,7 +1173,7 @@ function listar_refrigeradores_sensores(id_bandeja, id_mapeo){
 					$("#fechas").html(template);
 				}
 			});
-	});
+	});*/
 	
 }());
 
@@ -1272,6 +1290,7 @@ function listar_refrigeradores_sensores(id_bandeja, id_mapeo){
 $(document).on('submit', '#form',function(e){
 		e.preventDefault();
 		//$('#fechas').show();
+	
 	 var formData = new FormData(document.getElementById("form"));
 
 
@@ -1285,15 +1304,15 @@ $(document).on('submit', '#form',function(e){
     processData: false,
     success:function(response) {
   
-			alert(response);
-    
+			console.log(response);
+		/*
           Swal.fire({
             title:'mensaje',
             text:'Se han cargado los datos correctamente',
             icon:'success',
             timer:2000
           });
-          existe_dc_refrigerador(id_mapeo);
+          existe_dc_refrigerador(id_mapeo);*/
 
       /*
 			let traer = JSON.parse(response);
@@ -1537,7 +1556,7 @@ function listar_inf_base(){
             <div class="col-sm-2">
               <div class="btn-actions-pane-right">
                 <div role="group" class="btn-group-sm nav btn-group">
-                ${aprobacion_leyenda} &nbsp;&nbsp;  ${aprobacion_estado} 
+               
                 </div>
               </div>
             </div>
@@ -1894,7 +1913,7 @@ function listar_informes(){
                                  
                                   <div class="btn-actions-pane-right">
                                     <div role="group" class="btn-group-sm nav btn-group">
-                                    ${aprobacion_leyenda} &nbsp;&nbsp;  ${aprobacion_estado} 
+                                   
                                     </div>
                                   </div>	
                        
@@ -2724,7 +2743,7 @@ function traer_consecutivo(){
     data:datos,
     url:'templates/refrigeradores/consecutivo.php',
     success:function(respuesta){
-				
+		
       if(respuesta.length == 0){
 		
         $("#cuerpo_crear_mapeo_refrigerador").hide();
@@ -2790,20 +2809,20 @@ $("#selector_mapeo_refrigerador").change(function(){
 ////////////// buscador de sensores
 (function(){
     
- $("#buscar_sensores_refrigerador").keydown(function(){
+ $("#buscar_sensores_refrigerador").keyup(function(){
    
    let tecleado = $("#buscar_sensores_refrigerador").val();
    
    if(tecleado.length > 1){
-     $(".mostrar_sensores_contenedor_buscados_refrigerador").show();
-     $(".mostrar_sensores_contenedor_refrigerador").hide();
+     $(".mostrar_sensores_contenedor_buscados_refrigerador").hide();
+     $(".mostrar_sensores_contenedor_refrigerador").show();
      
      $.ajax({
        type:'POST',
        url:'templates/refrigeradores/buscador_sensores_acme.php',
        data: {tecleado},
        success:function(e){
-
+	
          let traer = JSON.parse(e);
 			   let template = "";
 			
@@ -2814,7 +2833,7 @@ $("#selector_mapeo_refrigerador").change(function(){
 						<td>${result.nombre}</td>
 						<td>${result.tipo}</td>
 						<td>
-								<button class="btn btn-success" id="agregar_sensor_refrigerador"  data-id="${result.id_sensor}" data-atributo = "+">+</button>
+							<button class="btn btn-success" id="agregar_sensor_refrigerador"  data-id="${result.id_sensor}" data-atributo = "+">+</button>
 						</td>				
 					</tr>
 					`;
@@ -2822,14 +2841,17 @@ $("#selector_mapeo_refrigerador").change(function(){
 					
 					
 				});
-			$("#sensores_encontrados_refrigerador").html(template);
+			$("#sensores_resultado_refrigerador").html(template);
          
        }
        
      });
-   }else{
-     $(".mostrar_sensores_contenedor_buscados_refrigerador").hide();
-     $(".mostrar_sensores_contenedor_refrigerador").show();
+   }else if(tecleado.length == 0){
+	 
+	 
+     $(".mostrar_sensores_contenedor_buscados_refrigerador").show();
+     $(".mostrar_sensores_contenedor_refrigerador").hide();
+	 listar_sensores();
    }
  })
 }());
@@ -2950,4 +2972,49 @@ $(document).on('click','#ver_grafico_promedio_refrigerador',function(){
   
 });
 
+
+
+
+/////////////////////// VALIDAR BOTON DATOS CRUDOS
+
+function validar_btn_dc(){
+
+	const datos = {
+		id_mapeo,
+		id_asignado
+	}
+
+	$.ajax({
+		type:'POST',
+		data:datos,
+		url:'templates/refrigeradores/validar_btn_dc.php',
+		success:function(response){
+			let button = "";
+			let template = "";
+			if(response == "Existe"){
+				template = "<button class='btn btn-success' id='refrigerador_btn_dc'>Archivo cargado</button>";
+			}else{
+				template = "<button class='btn btn-danger' id='refrigerador_btn_dc'>No se ha cargado el archivo</button>";
+			}
+
+			$("#aqui_boton_dc").html(template);
+
+		}
+	})
+}
+
+
+$(document).on('click','#refrigerador_btn_dc',function(){
+
+	var URLactual = $("#es_local").val();
+ 
+	if(URLactual == "Si"){
+	  window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px")
+  
+  
+	}else{
+	  window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
+	}
+
+});
 

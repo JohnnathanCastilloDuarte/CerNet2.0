@@ -1,16 +1,16 @@
 
 
-(function(){
+var id_protegido = $('#id_protegido').val();
 
-	
-	$('#cambiar').hide();
-	var id_protegido = $('#id_protegido').val();
 $('#usuario').keyup(function(){
+
 		var usuario = $('#usuario').val();		
 				if(usuario == '')
 				{
 					$('#cambiar').hide();
-				}
+				}else{
+          $('#cambiar').show();
+        }
 		
 		$.ajax({
 			type:'POST',
@@ -18,7 +18,7 @@ $('#usuario').keyup(function(){
 			url:'valida_restablece.php',
 			success:function(resp){
 				
-			
+			console.log(resp);
 				if(resp != '')
 				{
 					$('#cambiar').show();
@@ -104,9 +104,6 @@ $('#usuario').keyup(function(){
 		});
 	
 });	
-
-	
-})();
 
 
 $("#rest").click(function(){

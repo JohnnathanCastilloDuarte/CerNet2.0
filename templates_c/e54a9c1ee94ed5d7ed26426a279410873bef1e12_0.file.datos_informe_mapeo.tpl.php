@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-26 19:17:57
+/* Smarty version 3.1.34-dev-7, created on 2021-11-23 16:01:46
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\informes\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617838455ab2c8_41226297',
+  'unifunc' => 'content_619d025acbc555_98192778',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e54a9c1ee94ed5d7ed26426a279410873bef1e12' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\informes\\datos_informe_mapeo.tpl',
-      1 => 1635267414,
+      1 => 1637679527,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617838455ab2c8_41226297 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619d025acbc555_98192778 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -118,7 +118,7 @@ function content_617838455ab2c8_41226297 (Smarty_Internal_Template $_smarty_tpl)
 					</div>
 
 					<div class="tab-content">
-						<div class="tab-pane tabs-animation"  id="crear_mapeo_refrigerador" role="tabpanel">
+						<div class="tab-pane tabs-animation active"  id="crear_mapeo_refrigerador" role="tabpanel">
 							<div class="card-body" id="cuerpo_crear_mapeo_refrigerador">
 								<!--<h6 class="text-warning" style="text-align:center;" id="anuncio_mapeo_1">Debes completar la información de bandejas</h6>-->
 								
@@ -469,8 +469,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 								</div>
 								<div class="scroll-area-sm">
 									<div class="scrollbar-container">
-										<div class="mostrar_sensores_contenedor_buscados_refrigerador">
-											<table class="table" width="100%">
+										<div class="">
+											<table class="table" width="100%" style="text-align:center;">
 												<thead>
 													<th >Nombre</th>
 													<th >Asociar</th>
@@ -480,19 +480,6 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 												</tbody>	
 											</table>
 										</div>
-
-										<div class="mostrar_sensores_contenedor_refrigerador">
-											<table class="table" width="100%">
-												<thead>
-													<th >Nombre</th>
-													<th >Acciones</th>
-												</thead>
-												<tbody id="listar_bandejas_creadas">
-
-												</tbody>	
-											</table>
-										</div>
-
 									</div>
 								</div>	
 							</div>
@@ -508,6 +495,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 				<div class="card">
 					<div class="card-header">
 						Sensores disponibles
+						<br>
+						<input type="text" id="buscar_sensores_refrigerador" class="form-control" placeholder="Ingresa el sensor a buscar">
 					</div>
 					<div class="card-body">
 						<div class="scroll-area-sm">
@@ -515,7 +504,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 								<div class="buscador_de_sensores_acme">
 									<div class="row">
 										<div class="col-sm-6">
-											<input type="text" id="buscar_sensores_refrigerador" class="form-control" placeholder="Ingresa el sensor a buscar">
+											
 
 										</div>
 									</div>
@@ -582,6 +571,11 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 								</div>	
 							</div>	
 						</div>
+						<br>
+						<br>
+						<div id="aqui_boton_dc" style="text-align: center;">
+						
+						</div>
 					</div>
 				</div>
 			</div>
@@ -606,6 +600,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 										</div>
 										<input type="hidden" id="id_mapeo" name="id_mapeo">
 										<input type="hidden" id="id_asignado_form" name="id_asignado_form">
+										<input type="hidden" id="id_valida_dc" name="id_usuario">
 										<div class="row">
 											<div class="col-sm-4">
 												Sensor
@@ -623,8 +618,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 										</div>
 										<div class="form-group">
-											<label for="file">File</label>
-											<input type="file" class="form-control" id="file" name="file"  required />
+											<!--<label for="file">File</label>
+											<input type="file" class="form-control" id="file" name="file"  required />-->
 										</div>
 
 										<div class="form-group">
