@@ -94,7 +94,7 @@
 					</div>
 
 					<div class="tab-content">
-						<div class="tab-pane tabs-animation"  id="crear_mapeo_refrigerador" role="tabpanel">
+						<div class="tab-pane tabs-animation active"  id="crear_mapeo_refrigerador" role="tabpanel">
 							<div class="card-body" id="cuerpo_crear_mapeo_refrigerador">
 								<!--<h6 class="text-warning" style="text-align:center;" id="anuncio_mapeo_1">Debes completar la información de bandejas</h6>-->
 								
@@ -385,8 +385,8 @@
 								</div>
 								<div class="scroll-area-sm">
 									<div class="scrollbar-container">
-										<div class="mostrar_sensores_contenedor_buscados_refrigerador">
-											<table class="table" width="100%">
+										<div class="">
+											<table class="table" width="100%" style="text-align:center;">
 												<thead>
 													<th >Nombre</th>
 													<th >Asociar</th>
@@ -396,19 +396,6 @@
 												</tbody>	
 											</table>
 										</div>
-
-										<div class="mostrar_sensores_contenedor_refrigerador">
-											<table class="table" width="100%">
-												<thead>
-													<th >Nombre</th>
-													<th >Acciones</th>
-												</thead>
-												<tbody id="listar_bandejas_creadas">
-
-												</tbody>	
-											</table>
-										</div>
-
 									</div>
 								</div>	
 							</div>
@@ -424,6 +411,8 @@
 				<div class="card">
 					<div class="card-header">
 						Sensores disponibles
+						<br>
+						<input type="text" id="buscar_sensores_refrigerador" class="form-control" placeholder="Ingresa el sensor a buscar">
 					</div>
 					<div class="card-body">
 						<div class="scroll-area-sm">
@@ -431,7 +420,7 @@
 								<div class="buscador_de_sensores_acme">
 									<div class="row">
 										<div class="col-sm-6">
-											<input type="text" id="buscar_sensores_refrigerador" class="form-control" placeholder="Ingresa el sensor a buscar">
+											
 
 										</div>
 									</div>
@@ -498,6 +487,11 @@
 								</div>	
 							</div>	
 						</div>
+						<br>
+						<br>
+						<div id="aqui_boton_dc" style="text-align: center;">
+						
+						</div>
 					</div>
 				</div>
 			</div>
@@ -522,6 +516,7 @@
 										</div>
 										<input type="hidden" id="id_mapeo" name="id_mapeo">
 										<input type="hidden" id="id_asignado_form" name="id_asignado_form">
+										<input type="hidden" id="id_valida_dc" name="id_usuario">
 										<div class="row">
 											<div class="col-sm-4">
 												Sensor
@@ -539,8 +534,8 @@
 
 										</div>
 										<div class="form-group">
-											<label for="file">File</label>
-											<input type="file" class="form-control" id="file" name="file"  required />
+											<!--<label for="file">File</label>
+											<input type="file" class="form-control" id="file" name="file"  required />-->
 										</div>
 
 										<div class="form-group">

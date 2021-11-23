@@ -33,6 +33,8 @@ $("#form_datos_crudos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
+
+            console.log(response);
           
             
             let traer = JSON.parse(response);
@@ -165,7 +167,8 @@ $("#form_datos_crudos").submit(function(e){
     });
         
   
-})
+});
+
 
 
 ///// EVENTO QUE CONTROLA QUE CARD MOSTRARA 

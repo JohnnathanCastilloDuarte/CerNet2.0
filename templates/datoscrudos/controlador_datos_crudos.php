@@ -21,10 +21,30 @@ mysqli_stmt_fetch($query1);
 $url_archivo = "";
 
 
+
 switch ($nombre){
     case 'UltraFreezer':
         
         $fechas = mysqli_prepare($connect,"SELECT fecha_inicio, hora_inicio, fecha_final, hora_final, intervalo FROM ultrafreezer_mapeo WHERE id_mapeo = ?");
+		mysqli_stmt_bind_param($fechas, 'i', $id_mapeo);
+		mysqli_stmt_execute($fechas);
+		mysqli_stmt_store_result($fechas);
+		mysqli_stmt_bind_result($fechas, $fecha_inicio, $hora_inicio, $fecha_final, $hora_final, $intervalo);
+		mysqli_stmt_fetch($fechas);
+
+
+		$pre_start = $fecha_inicio." ".$hora_inicio;
+		$pre_end = $fecha_final." ".$hora_final;
+
+		$start = date("Y-m-d H:i:s",strtotime($pre_start));
+		$end = date("Y-m-d H:i:s",strtotime($pre_end));
+
+
+    break;
+
+    case 'Refrigerador':
+        
+        $fechas = mysqli_prepare($connect,"SELECT fecha_inicio, hora_inicio, fecha_final, hora_final, intervalo FROM refrigerador_mapeo WHERE id_mapeo = ?");
 		mysqli_stmt_bind_param($fechas, 'i', $id_mapeo);
 		mysqli_stmt_execute($fechas);
 		mysqli_stmt_store_result($fechas);
@@ -72,7 +92,7 @@ $nombre_final_sin_errores = $directorio_carga."datos_crudos_version_sin_errores.
 if(is_dir($directorio_carga)===false)
 {
   mkdir($directorio_carga,0777,true);
-  echo "directorio creado";
+  //echo "directorio creado";
 }
 
 $archivo=$directorio_carga.basename($_FILES["file"]["name"]);
@@ -235,10 +255,7 @@ else
                 
                 if(($fecha_suma>=$start) && ($fecha_suma<=$end)){
                    
-                   /* fwrite($archivo_txt, "| fecha hora : ".$fecha_suma." | V1:".$column[2]." | V2:".$column[3]." | V3:".$column[4]
-                    ." | V4:".$column[5]." | V5:".$column[6]." | V6:".$column[7]." | V7:".$column[8]." | V8:".$column[9]." | V9:".$column[10]
-                    ." | V10:".$column[11]." |".PHP_EOL);]*/
-
+              
                     fwrite($archivo_txt, $fecha_suma.";".$column[2].";".$column[3].";".$column[4]
                     .";".$column[5].";".$column[6].";".$column[7].";".$column[8].";".$column[9].";".$column[10]
                     .";".$column[11].";\r\n");
@@ -271,17 +288,10 @@ else
     echo $convert;
 
 
-  
-
-    
-
-    
-}
+    }
 
 
-
-
-  
 }  
     
+mysqli_close($connect);
 ?>
