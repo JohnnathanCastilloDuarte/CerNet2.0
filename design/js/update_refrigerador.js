@@ -7,11 +7,11 @@ var id_item =  $("#id_item_2").val();
 
 ///////// FUNCIONES A EJECUTAR
 
-valida_botones_refrigerador(id_item)
+valida_botones_refrigerador()
 
 
 ////////// FUNCION DE INTERCAMBIO DE BOTONES
-function valida_botones_refrigerador(id_item){
+function valida_botones_refrigerador(){
   
   if(id_item.length == 0){
     $("#btn_nuevo_item_refrigerador").show();
