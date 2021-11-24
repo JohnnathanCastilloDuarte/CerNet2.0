@@ -34,7 +34,7 @@ var id_gestionar = "";
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
 							console.log(r);
-							let traer = JSON.parse(r);
+							
 							if(r=="null"){
 									//$("#alert_ot_s").hide();
 									//$("#alert_ot_n").show();
@@ -51,6 +51,8 @@ var id_gestionar = "";
 								$("#btn_gestionar_ot_2").hide();
 									
 								}else if(r !="null"){
+									
+									let traer = JSON.parse(r);
 									//$("#alert_ot_s").show();
 									$("#sin_ot").hide();
 									//$("#alert_ot_n").hide();
