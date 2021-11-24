@@ -2,7 +2,7 @@
 	error_reporting(0);
 //CONSULTAR HISTORIAL DEL MODULO
 	$consultar_historial = mysqli_prepare($connect,"SELECT b.nombre, b.apellido, a.mensaje_historial, a.tipo_historial, a.fecha_registro FROM 
-																									persona as b, historial_numot as a WHERE a.id_usuario = b.id_usuario ORDER BY fecha_registro DESC");
+	persona as b, historial_numot as a WHERE a.id_usuario = b.id_usuario ORDER BY fecha_registro DESC");
 
 	mysqli_stmt_execute($consultar_historial);
 	mysqli_stmt_store_result($consultar_historial);
@@ -45,7 +45,7 @@
 	$smarty->assign("array_empresa",$array_empresa);
 
 
-	$personas = mysqli_prepare($connect,"SELECT id_persona, nombre, apellido, departamento, cargo FROM persona");
+	$personas = mysqli_prepare($connect,"SELECT a.id_persona, a.nombre, a.apellido,  c.departamento, b.nombre  FROM persona as a, departamento as c, cargo as b WHERE a.id_cargo = b.id_cargo AND b.id_departamento = c.id");
 	mysqli_stmt_execute($personas);
 	mysqli_stmt_store_result($personas);
 	mysqli_stmt_bind_result($personas, $id_persona, $nombre, $apellido, $departamento, $cargo);
