@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-24 14:57:37
+/* Smarty version 3.1.34-dev-7, created on 2021-11-24 15:55:17
   from 'C:\xampp\htdocs\CerNet2.0\templates\cargos\inicio_cargos.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_619e44d1185f51_97133133',
+  'unifunc' => 'content_619e525596a7f5_68118496',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9bb560782ef907f992f0cf015826c528a5036cf9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\cargos\\inicio_cargos.tpl',
-      1 => 1637762097,
+      1 => 1637765716,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619e44d1185f51_97133133 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619e525596a7f5_68118496 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -79,7 +79,7 @@ function content_619e44d1185f51_97133133 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
 
                 <br>
-
+                <!--
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Rol de informe</label>
@@ -90,7 +90,7 @@ function content_619e44d1185f51_97133133 (Smarty_Internal_Template $_smarty_tpl)
                       <option value="Revisor">Revisor</option>
                     </select>
                   </div>
-                </div>
+                </div>-->
                 <br>
                 <div class="row" style="text-align:center;">
                   <div class="col-sm-12">

@@ -16,7 +16,7 @@ function traer_empresas(){
   $.ajax({
     url:'templates/cargos/traer_empresa.php',
     success:function(response){
-      console.log(response);
+     
       let traer = JSON.parse(response);
       let template = '';
 
@@ -87,7 +87,7 @@ function info_usuario_cargos(id_usuario){
     url:'templates/cargos/informacion_usuario.php',
     data:{id_usuario},
     success:function(response){
-      
+    
       let traer = JSON.parse(response);
       let template = "";
       
@@ -116,13 +116,11 @@ $("#asignar_cargo").click(function(){
   let usuario = $("#id_usuario_cargos").val();
   let cargo = $("#cargo_cargo").val();
   let departamento = $("#departamento_cargo").val();
-  let rol_informe = $("#rol_informe").val();
   
   const datos = {
     usuario,
     cargo,
     departamento,
-    rol_informe
   }
   
   $.ajax({
@@ -177,6 +175,7 @@ function traer_departamentos(){
 $("#departamento_cargo").change(function(){
 
   let id_departamento = $(this).val();
+  traer_cargos(id_departamento);
 
 });
 
@@ -188,7 +187,19 @@ function traer_cargos(id_departamento){
       data:{id_departamento},
       url:'templates/cargos/traer_cargos_depto.php',
       success:function(response){
-        console.log(response);
+        let traer = JSON.parse(response);
+        let template = "";
+
+        traer.forEach((valor)=>{
+
+          template +=
+          `
+            <option value="${valor.id_cargo}">${valor.nombre}</option>
+          `;
+        });
+
+        $("#cargo_cargo").html('<option value="0">Selecione</option>'+template);
+      
       }
     })
 }

@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+
 include("config.ini.php");
 if(isset($_POST['empezar']))
 {
@@ -32,12 +32,12 @@ if(isset($_POST['empezar']))
   }
   
   
-  $existe_usuario="SELECT A.id_usuario, A.usuario, B.nombre FROM usuario AS A, persona AS B WHERE A.usuario=? AND password=? AND A.id_usuario=B.id_usuario";
+  $existe_usuario="SELECT A.id_usuario, A.usuario, B.nombre, C.departamento, D.nombre FROM usuario AS A, persona AS B, departamento as C, cargo AS D WHERE D.id_departamento = C.id AND A.usuario=? AND password=? AND A.id_usuario=B.id_usuario AND B.id_cargo = D.id_cargo";
   $conecto=mysqli_prepare($connect,$existe_usuario);
   mysqli_stmt_bind_param($conecto, 'ss', $user,$enc_pass);
   mysqli_stmt_execute($conecto);
   mysqli_stmt_store_result($conecto);
-  mysqli_stmt_bind_result($conecto,$id_usuario_online,$usuario_online,$nombre_usuario_online);
+  mysqli_stmt_bind_result($conecto,$id_usuario_online,$usuario_online,$nombre_usuario_online, $departamento, $cargo_usuario_online);
   mysqli_stmt_fetch($conecto);
   if($online=="on"){$online=1;}else{$online=0;}
 
@@ -53,7 +53,7 @@ if(isset($_POST['empezar']))
       setcookie("user", $usuario_online, time()+3600*24*30);
       setcookie("pass", $enc_pass, time()+3600*24*30);
       setcookie("name", $nombre_usuario_online, time()+3600*24*30);	
-      //setcookie("cargo", $cargo_usuario_online, time()+3600*24*30);			
+      setcookie("cargo", $cargo_usuario_online, time()+3600*24*30);			
     }
     else
     {
@@ -61,7 +61,7 @@ if(isset($_POST['empezar']))
       setcookie("user", $usuario_online, time()+3600);
       setcookie("pass", $enc_pass, time()+3600);
       setcookie("name", $nombre_usuario_online, time()+3600);  
-      //setcookie("cargo", $cargo_usuario_online, time()+3600); 			
+      setcookie("cargo", $cargo_usuario_online, time()+3600); 			
     }	
     
     $movimiento = "Inició sesión en";
@@ -86,7 +86,7 @@ if(isset($_GET['action']))
       setcookie("user", $usuario_online, time()-360);
       setcookie("pass", $enc_pass, time()-360);
       setcookie("name", $nombre_usuario_online, time()-360);  
-      //setcookie("cargo", $cargo_usuario_online, time()-360); 
+      setcookie("cargo", $cargo_usuario_online, time()-360); 
 			session_destroy();
 	  	header("refresh:0; url=mi_acceso.php?error=error_0003");		
 	}

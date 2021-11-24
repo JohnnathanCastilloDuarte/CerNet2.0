@@ -56,7 +56,7 @@
                 </div>
 
                 <br>
-
+                <!--
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Rol de informe</label>
@@ -67,7 +67,7 @@
                       <option value="Revisor">Revisor</option>
                     </select>
                   </div>
-                </div>
+                </div>-->
                 <br>
                 <div class="row" style="text-align:center;">
                   <div class="col-sm-12">
