@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-24 16:25:57
+/* Smarty version 3.1.34-dev-7, created on 2021-11-24 17:02:10
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_estufa.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_619e5985c994d6_80292546',
+  'unifunc' => 'content_619e62024c4044_06977242',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8cfa87615307b0cf3a96451ce1aa8dc349ce1246' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_estufa.tpl',
-      1 => 1637767556,
+      1 => 1637767578,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619e5985c994d6_80292546 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619e62024c4044_06977242 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -90,7 +90,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 ?>
 										<option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
 "><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
-</option>										
+</option>	
 										<?php
 }
 }

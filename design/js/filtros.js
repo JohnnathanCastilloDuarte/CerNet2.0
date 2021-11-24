@@ -1,8 +1,6 @@
 /////////// CAMPOS A OCULTAR
-
 $("#btn_editar_item_filtro").hide()
 $("#btn_crear_item_filtro").hide()
-
 
 
 //////////////// VARIABLES GLOBALES
@@ -35,11 +33,8 @@ function limpiar_campos_filtro(){
   $("#ubicado_en_filtro").val('');
   $("#tipo_filtro").val('');
   $("#lugar_filtro").val('');
-  $("#penetracion_filtro").val('');  
-  
+  $("#penetracion_filtro").val('');   
 }
-
-
 
 $("#btn_crear_item_filtro").click(function(){
   
@@ -70,7 +65,6 @@ $("#btn_crear_item_filtro").click(function(){
     penetracion_filtro,
     id_tipo_filtro,
     id_valida_filtro
-    
   }
   
   $.ajax({
@@ -78,19 +72,25 @@ $("#btn_crear_item_filtro").click(function(){
     url:'templates/item/nuevo_filtro.php',
     data:datos,
     success:function(response){
-            console.log(response);
       if(response == "Si"){
         
         Swal.fire({
           title:'Mensaje',
           text:'Se ha creado el filtro, correctamente!',
           icon:'success',
-          timer:2000
+          showConfirmButton: false,
+          timer:1500
         });
         
         limpiar_campos_filtro();
       }else{
-        console.log(response);
+        Swal.fire({
+          title:'Mensaje',
+          text:'Ha ocurrido un error, contacta con el administrador ',
+          icon:'danger',
+          showConfirmButton: false,
+          timer:1500
+        });
       }
     }
   })
@@ -115,7 +115,6 @@ $("#btn_editar_item_filtro").click(function(){
   let penetracion_filtro = $("#penetracion_filtro").val();
   let id_tipo_filtro = $("#id_tipo_filtro").val();
 
-  
   const datos = {
     nombre_filtro,
     empresa_filtro,
@@ -140,8 +139,6 @@ $("#btn_editar_item_filtro").click(function(){
     url:'templates/item/editar_filtro.php',
     data:datos,
     success:function(response){
-      console.log(response)
-
       if(response == "Si"){   
         Swal.fire({
           title:'Mensaje',
@@ -152,7 +149,13 @@ $("#btn_editar_item_filtro").click(function(){
           
         });
       }else{
-        console.log("error");
+        Swal.fire({
+          title:'Mensaje',
+          text:'Ha ocurrido un error, contacta con el administrador ',
+          icon:'danger',
+          showConfirmButton: false,
+          timer:1500
+        });
       }
     }
   })
