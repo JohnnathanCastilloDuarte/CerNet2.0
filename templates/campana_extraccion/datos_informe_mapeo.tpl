@@ -4,7 +4,7 @@
   <div class="col-sm-3" style="text-align:center;">
     <div class="card">
       <div class="card-header">
-        Inspección en campana de ectracción
+        Inspección en campana de extracción
       </div>
       <div class="card-body">
         <br>
