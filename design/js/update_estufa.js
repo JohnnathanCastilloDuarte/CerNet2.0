@@ -80,7 +80,6 @@ function setear_campos(){
 		}
 		
 		$.post('templates/item/editar_estufa.php', datos, function(e){
-      console.log(e);
 			if(e == "Modificado"){
 				Swal.fire({
 					position:'center',

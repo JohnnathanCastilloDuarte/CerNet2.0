@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-12 13:54:46
+/* Smarty version 3.1.34-dev-7, created on 2021-11-24 18:30:03
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_ultrafreezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_618e6416845c23_62802084',
+  'unifunc' => 'content_619e769ba09fb1_34163160',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '59eb34aa37ab9b045ffea5adab8c7adbc9ac320f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_ultrafreezer.tpl',
-      1 => 1636721685,
+      1 => 1637774997,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_618e6416845c23_62802084 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619e769ba09fb1_34163160 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -71,11 +71,26 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
 ">
                   <label>Nombre del Ultrafreezer</label>
                   <input type="text" id="nombre_ultrafreezer" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['nombre_ultrafreezer'];?>
-">
+" required="">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
                   <select class="form-control" id="empresa_ultrafreezer">
+                    <?php if ($_smarty_tpl->tpl_vars['ultrafreezer']->value['id_empresa'] == '') {?>
+                    <option value="0">Seleccione....</option>
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
+?>
+                      <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
+"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
+</option>
+                     <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                     <?php } else { ?>
                     <option value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['id_empresa'];?>
 "><?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['nombre_empresa'];?>
 </option>
@@ -91,6 +106,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                     <?php }?>
+                    }
                   </select>
                 </div>
 
@@ -100,12 +117,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="col-sm-6">
                   <label>Fabricante/Marca:</label>
                   <input type="text" id="fabricante_ultrafreezer" class="form-control" placeholder="Fabricante ultrafreezer" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['fabricante'];?>
-">
+" required="">
                 </div>
                 <div class="col-sm-6">
                   <label>Modelo:</label>
                   <input type="text" id="modelo_ultrafreezer" class="form-control" placeholder="Modelo ultrafreezer" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['modelo'];?>
-">
+" required="">
                 </div>
               </div>
               <br>

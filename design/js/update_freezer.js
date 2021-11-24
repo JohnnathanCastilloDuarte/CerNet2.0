@@ -70,14 +70,13 @@ function validar_botones_freezer(){
 		
 		$.post('templates/item/editar_freezer.php', datos, function(response){
 			
-			console.log(response);
 			if(response == "Si"){
 				Swal.fire({
 					position:'center',
 					icon:'success',
 					title:'El freezer ha sido modificado con exito',
 					showConfirmButton: false,
-					timer:1000
+					timer:1500
 				});
 			}
 
@@ -86,7 +85,6 @@ function validar_botones_freezer(){
 				data:datos,
 				url:'templates/controlador_backtrack/controlador_general.php',
 				success:function(response){
-					console.log(response);
 					if(response == "Listo"){
 
 					}
@@ -135,14 +133,15 @@ $("#btn_nuevo_item_freezer").click(function(){
 				text:'Se ha creado el freezer correctamente',
 				icon:'success',
 				showConfirmButton: false,
-				timer:1000
+				timer:1500
 			});
 		}else{
 			Swal.fire({
 				title:'Mensaje',
 				text:'No ha se podido crear el registro, contacta al administrador',
 				icon:'success',
-				timer:2000
+				showConfirmButton: false,
+				timer:1500
 			});
 		}
 
