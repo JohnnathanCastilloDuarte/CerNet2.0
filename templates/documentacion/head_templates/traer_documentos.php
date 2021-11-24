@@ -7,7 +7,9 @@ $array_documentacion = array();
 $estado_ver = $_POST['estado_ver'];
 $id_valida = $_POST['id_valida'];
 
-$consultar_cargo = mysqli_prepare($connect,"SELECT a.cargo FROM persona as a  WHERE a.id_usuario = ?");
+
+
+$consultar_cargo = mysqli_prepare($connect,"SELECT a.nombre FROM cargo as a, persona as b WHERE b.id_usuario = ? AND b.id_cargo = a.id_cargo");
 mysqli_stmt_bind_param($consultar_cargo, 'i', $id_valida);
 mysqli_stmt_execute($consultar_cargo);
 mysqli_stmt_store_result($consultar_cargo);
@@ -15,7 +17,8 @@ mysqli_stmt_bind_result($consultar_cargo, $rol);
 mysqli_stmt_fetch($consultar_cargo);
 
 
-if($rol == 'CEO' || $rol == 'COO' || $rol == 'Calidad'){
+
+if($rol == 'CEO' || $rol == 'COO' || $rol == 'Quality Control' || $rol == 'IT Strategic Coordinator'){
   if($estado_ver == 0){
     $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
     documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa 
@@ -154,7 +157,7 @@ else if($rol == 'Head'){
   
   
 }//////////// CIERRE ELSE IF DE CARGO
-else if($rol == 'Analista documental'){
+else if($rol == 'Junior Documentary Analyst' || $rol == 'Leading Senior Documentary Analyst' || $rol == 'Senior Documentary Analyst' || $rol == 'Documentary Analyst'){
   
   if($estado_ver == 0){
     $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM

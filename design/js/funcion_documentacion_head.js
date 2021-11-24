@@ -1,10 +1,10 @@
 var id_valida = $("#id_valida").val();
 
 //////////////////////// FUNCIONES CREADAS PARA APROBACIONES HEAD/////////////////////////
-listar_documentacion_head(0);
+listar_documentacion_head();
 
 $("#TodasHead").click(function(){
-  listar_documentacion_head(0);
+  listar_documentacion_head();
 });
 $("#RevisadasHead").click(function(){
   listar_documentacion_head(1);
@@ -34,12 +34,12 @@ function listar_documentacion_head(estado_ver){
       
       traer.forEach((x)=>{
         
-        if(x.rol == 'Analista documental'){
-          if(x.estado == 0){
+        if(x.rol == 'Junior Documentary Analyst' || x.rol == 'Leading Senior Documentary Analyst' || x.rol == 'Senior Documentary Analyst' || x.rol == 'Documentary Analyst'){
+          if(x.estado == 1){
             option_estado = `
             <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
               <option value="Seleccione">Seleccione...</option>
-              <option value="Revisado">Revisado</option>
+              <option value="Revisado">Aprobado</option>
               <option value="error">Rechazado</option>
             </select>`;
           }else if(x.estado == 1){
@@ -131,31 +131,41 @@ function listar_documentacion_head(estado_ver){
           escritura_estado = "Sin accion";
     
         }else if(x.estado == 1){
-          estado = '<span class="badge badge-success">Aprobado Documental</span>';
-          escritura_estado = "Aprobado documental";
+          estado = '<span class="badge badge-success">Documentos cargados Inspector</span>';
+          escritura_estado = "Documentos cargados Inspector";
         }else if(x.estado == 2){
+          estado = '<span class="badge badge-success">Aprobado Documental</span>';
+          escritura_estado = "Aprobado Documental";
+        }else if(x.estado == 3){
+          estado = '<span class="badge badge-success">Aprobado Inspector</span>';
+          escritura_estado = "Aprobado Inspector";
+        }else if(x.estado == 4){
           estado = '<span class="badge badge-success">Aprobado Head</span>';
           escritura_estado = "Aprobado Head";
-        }else if(x.estado == 3){
+        }else if(x.estado == 5){
           estado = '<span class="badge badge-success">Aprobado Calidad</span>';
-          escritura_estado = "Aprobado Gerente";
-        }else if(x.estado == 4){
-          estado = '<span class="badge badge-success">Aprobado por Gerencia</span>';
-          escritura_estado = "Aprobado por Calidad";
+          escritura_estado = "Aprobado Calidad";
+        }else if(x.estado == 6){
+          estado = '<span class="badge badge-success">Aprobado Cliente</span>';
+          escritura_estado = "Aprobado Cliente";
         }else if(x.estado == 5){
           estado = '<span class="badge badge-success">Rechazado por Documental</span>';
           escritura_estado = "Rechazado por documental";
         }else if(x.estado == 6){
-          estado = '<span class="badge badge-danger">Rechazado por HEAD</span>';
-          escritura_estado = "Rechazado por HEAD";
+          estado = '<span class="badge badge-danger">Rechazado por Inspector</span>';
+          escritura_estado = "Rechazado por inspector";
         }
         else if(x.estado == 7){
+          estado = '<span class="badge badge-danger">Rechazado por Head</span>';
+          escritura_estado = "Rechazado por Head";
+        }
+        else if(x.estado == 8){
           estado = '<span class="badge badge-danger">Rechazado por Calidad</span>';
           escritura_estado = "Rechazado por Calidad";
         }
-        else if(x.estado == 8){
-          estado = '<span class="badge badge-danger">Rechazado por Gerencia</span>';
-          escritura_estado = "Rechazado por Gerencia";
+        else if(x.estado == 9){
+          estado = '<span class="badge badge-danger">Rechazado por Calidad</span>';
+          escritura_estado = "Rechazado por Calidad";
         }
 
               
