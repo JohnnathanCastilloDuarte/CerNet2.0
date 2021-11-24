@@ -50,16 +50,7 @@
                   <div class="col-sm-6">
                     <label>Cargo:</label>
                     <select class="form-control" id="cargo_cargo">
-                      <option value="0">Seleccione...</option>
-                      <option value="CEO">CEO</option>
-                      <option value="COO">COO</option>
-                      <option value="Ingeniero validaciones">Ingeniero Validaciones</option>
-                      <option value="Consultor GEP">Consultor GEP</option>
-                      <option value="Consultor SPOT">Consultor SPOT</option>
-                      <option value="Analista documental">Analista Documental</option>
-                      <option value="TI">TI</option>
-                      <option value="Calidad">Calidad</option>
-                      <option value="Head">Head</option>
+             
                     </select>
                   </div>
                 </div>

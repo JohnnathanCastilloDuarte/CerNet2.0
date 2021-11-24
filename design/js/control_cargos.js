@@ -3,7 +3,7 @@ $("#departamento_cargo").attr('disabled','disabled');
 $("#asignar_cargo").hide();
 
 ////////// FUNCIONES A EJECUTAR
-traer_departamentos_cargo();
+
 traer_empresas();
 
 
@@ -109,28 +109,6 @@ function info_usuario_cargos(id_usuario){
   })
 }
 
-//////////////// FUNCION PARA TRAER DEPARTAMENTOS
-function traer_departamentos_cargo(){
-  
-  $.ajax({
-    type:'POST',
-    url:'templates/cargos/traer_departamentos.php',
-    success:function(response){
-   
-      let traer = JSON.parse(response);
-      let template = "";
-      
-      traer.forEach((x)=>{
-        template += `
-          <option value="${x.id_departamento}">${x.departamento}</option>
-          `;
-      });
-      
-      $("#departamento_cargo").html(template);
-      
-    }
-  })
-}
 
 
 $("#asignar_cargo").click(function(){
@@ -164,6 +142,56 @@ $("#asignar_cargo").click(function(){
     }
   })
 });
+
+
+///// FUNCION PARA TRAER DEPARTAMENTOS 
+traer_departamentos();
+
+function traer_departamentos(){
+
+  $.ajax({
+    type:'POST',
+    url:'templates/cargos/traer_departamentos.php',
+    success:function(response){
+
+      let traer = JSON.parse(response);
+      let template = "";
+
+      traer.forEach((valor)=>{
+
+        template +=
+        `
+          <option value="${valor.id_departamento}">${valor.departamento}</option>
+        `;
+      });
+
+      $("#departamento_cargo").html('<option value="0">Selecione</option>'+template);
+
+    }
+  });
+}
+
+
+/////// BUSCAR CARGOS
+
+$("#departamento_cargo").change(function(){
+
+  let id_departamento = $(this).val();
+
+});
+
+
+function traer_cargos(id_departamento){
+
+    $.ajax({
+      type:'POST',
+      data:{id_departamento},
+      url:'templates/cargos/traer_cargos_depto.php',
+      success:function(response){
+        console.log(response);
+      }
+    })
+}
 
 
 
