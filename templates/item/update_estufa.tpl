@@ -46,9 +46,11 @@
                 <div class="col-sm-6">
                   <label>Empresa:</label>
                   <select class="form-control" id="empresa_estufa">
-                    <option value="{$estufa.id_empresa}">{$estufa.nombre_estufa}</option>
+                    {if $estufa.id_empresa !== ''}
+                    <option value="{$estufa.id_empresa}">{$estufa.nombre_empresa}</option>
+                    {/if}
                     {foreach from=$array_empresas item=empresa}
-										<option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>										
+										<option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>	
 										{/foreach}
                   </select>
                   

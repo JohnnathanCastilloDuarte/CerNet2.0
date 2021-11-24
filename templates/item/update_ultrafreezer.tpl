@@ -40,15 +40,23 @@
                 <input type="hidden" id="id_item_ultrafreezer" value="{$ultrafreezer.id_ultrafreezer}">
                   <input type="hidden" id="id_item_2_ultrafreezer" value="{$ultrafreezer.id_item}">
                   <label>Nombre del Ultrafreezer</label>
-                  <input type="text" id="nombre_ultrafreezer" class="form-control" value="{$ultrafreezer.nombre_ultrafreezer}">
+                  <input type="text" id="nombre_ultrafreezer" class="form-control" value="{$ultrafreezer.nombre_ultrafreezer}" required="">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
                   <select class="form-control" id="empresa_ultrafreezer">
+                    {if $ultrafreezer.id_empresa == ""}
+                    <option value="0">Seleccione....</option>
+                    {foreach from=$array_empresas item=empresa}
+                      <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
+                     {/foreach}
+                     {else}
                     <option value="{$ultrafreezer.id_empresa}">{$ultrafreezer.nombre_empresa}</option>
                      {foreach from=$array_empresas item=empresa}
                       <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
                      {/foreach}
+                     {/if}
+                    }
                   </select>
                 </div>
 
@@ -57,11 +65,11 @@
               <div class="form-row">
                 <div class="col-sm-6">
                   <label>Fabricante/Marca:</label>
-                  <input type="text" id="fabricante_ultrafreezer" class="form-control" placeholder="Fabricante ultrafreezer" value="{$ultrafreezer.fabricante}">
+                  <input type="text" id="fabricante_ultrafreezer" class="form-control" placeholder="Fabricante ultrafreezer" value="{$ultrafreezer.fabricante}" required="">
                 </div>
                 <div class="col-sm-6">
                   <label>Modelo:</label>
-                  <input type="text" id="modelo_ultrafreezer" class="form-control" placeholder="Modelo ultrafreezer" value="{$ultrafreezer.modelo}">
+                  <input type="text" id="modelo_ultrafreezer" class="form-control" placeholder="Modelo ultrafreezer" value="{$ultrafreezer.modelo}" required="">
                 </div>
               </div>
               <br>

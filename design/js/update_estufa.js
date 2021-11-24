@@ -20,6 +20,33 @@ function valida_botones_estufa(){
   }
 }
 
+function setear_campos(){
+      $("#id_item_estufa").val('');
+      $("#id_item_2_estufa").val('');
+      $("#nombre_estufa").val('');
+      $("#empresa_estufa").val('');
+      $("#fabricante_estufa").val('');
+      $("#modelo_estufa").val('');
+      $("#desc_estufa").val('');
+      $("#n_serie_estufa").val('');
+      $("#codigo_interno_estufa").val('');
+      $("#fecha_fabricacion_estufa").val('');
+      $("#direccion_estufa").val('');
+      $("#ubicacion_interna_estufa").val('');
+      $("#voltaje_estufa").val('');
+      $("#potencia_estufa").val('');
+      $("#capacidad_estufa").val('');
+      $("#alto_estufa").val('');
+      $("#peso_estufa").val('');
+      $("#largo_estufa").val('');
+      $("#ancho_estufa").val('');
+      $("#valor_seteado_tem_estufa").val('');
+      $("#temperatura_minima_estufa").val('');
+      $("#temperatura_maxima_estufa").val('');
+      
+
+}
+
 
 (function(){
 
@@ -53,7 +80,6 @@ function valida_botones_estufa(){
 		}
 		
 		$.post('templates/item/editar_estufa.php', datos, function(e){
-      console.log(e);
 			if(e == "Modificado"){
 				Swal.fire({
 					position:'center',
@@ -105,7 +131,9 @@ $("#btn_nuevo_item_estufa").click(function(){
         showConfirmButton: false,
         timer:1000
       });
+      
     }
+  setear_campos()
     
   });
   

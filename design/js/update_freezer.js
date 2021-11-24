@@ -19,12 +19,38 @@ function validar_botones_freezer(){
 		$("#btn_editar_item_freezer").show();
 	}
 }
+/////SETEAR CAMPOS////////
+function setear_campos(){
+			$("#id_item_freezer").val('');
+			$("#id_item_2").val('');
+			$("#nombre_freezer").val('');
+			$("#empresa_freezer").val('');
+			$("#fabricante_freezer").val('');
+			$("#modelo_freezer").val('');
+		    $("#desc_freezer").val('');
+			$("#n_serie_freezer").val('');
+		    $("#codigo_interno_freezer").val('');
+			$("#fecha_fabricacion_freezer").val('');
+			$("#direccion_freezer").val('');
+			$("#ubicacion_interna_freezer").val('');
+			$("#voltaje_freezer").val('');
+			$("#potencia_freezer").val('');
+			$("#capacidad_freezer").val('');
+		    $("#alto_freezer").val('');
+		    $("#peso_freezer").val('');
+			$("#largo_freezer").val('');
+			$("#ancho_freezer").val('');
+			$("#valor_seteado_hum_freezer").val('');
+			$("#humedad_minima_freezer").val('');
+			$("#humedad_maxima_freezer").val('');
+			$("#valor_seteado_tem_freezer").val('');
+			$("#temperatura_minima_freezer").val('');
+			$("#temperatura_maxima_freezer").val('');
+}
 
 //// FUNCION PARA EDITAR EL FREEZER
 (function(){
 
-
-	
 	$("#btn_editar_item_freezer").click(function(){
 
 		let quien = id_valida;
@@ -36,8 +62,6 @@ function validar_botones_freezer(){
 			movimiento,
 			modulo
 		}
-
-
 
 		const datos = {
 			id_item_freezer : $("#id_item_freezer").val(),
@@ -70,14 +94,13 @@ function validar_botones_freezer(){
 		
 		$.post('templates/item/editar_freezer.php', datos, function(response){
 			
-			console.log(response);
 			if(response == "Si"){
 				Swal.fire({
 					position:'center',
 					icon:'success',
 					title:'El freezer ha sido modificado con exito',
 					showConfirmButton: false,
-					timer:1000
+					timer:1500
 				});
 			}
 
@@ -86,7 +109,6 @@ function validar_botones_freezer(){
 				data:datos,
 				url:'templates/controlador_backtrack/controlador_general.php',
 				success:function(response){
-					console.log(response);
 					if(response == "Listo"){
 
 					}
@@ -99,6 +121,16 @@ function validar_botones_freezer(){
 
 /////////Funcion apra crear freezer
 $("#btn_nuevo_item_freezer").click(function(){
+
+	let id_empresa_freezer = $("#empresa_freezer").val();
+
+	if (id_empresa_freezer == 0) {
+		   Swal.fire({
+             title:'Mensaje',
+             text:'No se pudo crear el item, revisa que los datos esten correctamente ingresados',
+             icon:'error',
+           });
+	}else{
 
 	const datos = {
 		nombre_freezer : $("#nombre_freezer").val(),
@@ -135,17 +167,20 @@ $("#btn_nuevo_item_freezer").click(function(){
 				text:'Se ha creado el freezer correctamente',
 				icon:'success',
 				showConfirmButton: false,
-				timer:1000
+				timer:1500
 			});
+			setear_campos();
 		}else{
 			Swal.fire({
 				title:'Mensaje',
 				text:'No ha se podido crear el registro, contacta al administrador',
 				icon:'success',
-				timer:2000
+				showConfirmButton: false,
+				timer:1500
 			});
 		}
 
 	});
+ }
 
 })
