@@ -12,7 +12,7 @@ valida_botones_refrigerador()
 
 ////////// FUNCION DE INTERCAMBIO DE BOTONES
 function valida_botones_refrigerador(){
-  
+    
   if(id_item.length == 0){
     $("#btn_nuevo_item_refrigerador").show();
     $("#btn_editar_item_refrigerador").hide();
