@@ -118,7 +118,7 @@ $(document).on('click','#agregar_documentacion',function(){
               data:datos,
               success:function(response){
                 console.log(response);
-                
+               
                 if(response == "Si"){
                   Swal.fire({
                     title:'Mensaje',
@@ -129,6 +129,8 @@ $(document).on('click','#agregar_documentacion',function(){
                   
                   listar_documentacion_activo(id_empresa); 
                 }
+
+
               }
             });
 
@@ -158,23 +160,28 @@ function listar_documentacion_activo(id_empresa){
       
       traer.forEach((x)=>{
         estado = "";
-        
+       
         if(x.estado == 4){
           estado += `
               <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
                   <option value="0">Seleccione...</option>
-                  <option value="1">Participantes</option>
-                  <option value="2">Documentación</option>
+                  <option value="2">Participantes</option>
+                  <option value="3">Documentación</option>
                 </select>
           `;
-        }else{
+        }else if(x.estado == 2){
          estado += `
               <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
                   <option value="0">Seleccione...</option>
-                  <option value="2">Documentación</option>
+                  <option value="3">Documentación</option>
                 </select>
           `;
-        }
+        }else{
+          estado += `
+                 <input type="text" class="form-control" placeholder="Ingresa aqui la URL de Drive" id="url_inspector"><br>
+                 <button id="guarda_link_inspector" data-id="${x.id_documentacion}" class="btn btn-success">Guardar link</button>
+           `;
+         }
         
         template +=
           `
@@ -192,6 +199,38 @@ function listar_documentacion_activo(id_empresa){
   });
 }
 
+
+//////////////////// GUARDA EL LINK DEL INSPECTOR
+$(document).on('click','#guarda_link_inspector',function(){
+
+    let url = $('#url_inspector').val();
+    let id_documentacion = $(this).attr('data-id');
+
+    const datos = {
+      url,
+      id_documentacion
+    }
+
+    $.ajax({
+      type:'POST',
+      data:datos,
+      url:'templates/documentacion/guarda_link.php',
+      success:function(response){
+        if(response == "Listo"){
+          Swal.fire({
+            title:'Mensaje',
+            text:'Se ha configurado la URL correctamente',
+            icon:'success',
+            timer:1700
+          });
+          listar_documentacion_activo(id_empresa);
+        }
+        
+      }
+    })
+});
+
+
 ///////// CONTROLA EL SELECT DE PASOS DE DOCUMENTACION
 $(document).on('change','#pasos_documentacion',function(){
   let eleccion = $(this).val();
@@ -208,11 +247,11 @@ $(document).on('change','#pasos_documentacion',function(){
     });
   }else{
     
-  if(eleccion == 1){
+  if(eleccion == 2){
     option = "para añadir participantes";
     link = 'index.php?clave='+clave_valor+'&parameter='+eleccion;
   }
-  else if(eleccion == 2){
+  else if(eleccion == 3){
     option = "para subir documentación";
     link = 'index.php?clave='+clave_valor+'&parameter='+eleccion;
   }  
