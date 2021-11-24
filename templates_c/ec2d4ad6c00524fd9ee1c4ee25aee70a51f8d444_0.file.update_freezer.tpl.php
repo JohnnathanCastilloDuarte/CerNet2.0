@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-21 23:42:07
+/* Smarty version 3.1.34-dev-7, created on 2021-11-24 18:43:45
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_freezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6171deafd28255_55604053',
+  'unifunc' => 'content_619e79d1d3d969_86821097',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ec2d4ad6c00524fd9ee1c4ee25aee70a51f8d444' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_freezer.tpl',
-      1 => 1634852525,
+      1 => 1637775823,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6171deafd28255_55604053 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619e79d1d3d969_86821097 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
  	<div class="col-sm-12">
  		<?php
@@ -70,11 +70,26 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 ">
 											<label>Nombre del freezer</label>
 											<input type="text" id="nombre_freezer" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['nombre_freezer'];?>
-"> 
+" placeholder="Nombre freezer"> 
 										</div>
 										<div class="col-sm-6">
 											<label>Empresa:</label>
 											<select id="empresa_freezer" class="form-control">
+												<?php if ($_smarty_tpl->tpl_vars['freezer']->value['nombre_empresa'] == '') {?>
+												<option value="0">Seleccione....</option>
+												<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
+?>
+												<option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
+"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
+</option>										
+												<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+												<?php } else { ?>
 												<option value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['id_empresa'];?>
 "><?php echo $_smarty_tpl->tpl_vars['freezer']->value['nombre_empresa'];?>
 </option>
@@ -90,6 +105,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+												<?php }?>
 											</select>
 										</div>
 									</div>

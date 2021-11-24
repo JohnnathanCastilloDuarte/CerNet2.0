@@ -63,10 +63,16 @@
               <div class="position-relative form-group">
                 <label>Empresa:</label>
                 <select id="empresa_filtro" class="form-control">
+                  {if $filtro.id_empresa !== '' }
                   <option value="{$filtro.id_empresa}">{$filtro.nombre_empresa}</option>
                   {foreach from=$array_empresa item=empresa}
                   <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
                   {/foreach}
+                  {else}
+                  {foreach from=$array_empresa item=empresa}
+                  <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
+                  {/foreach}
+                  {/if}
                 </select>
               </div>
             </div>

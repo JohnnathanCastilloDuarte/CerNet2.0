@@ -39,15 +39,22 @@
 											<input type="hidden" id="id_item_freezer" value="{$freezer.id_freezer}">
 											<input type="hidden" id="id_item_2" value="{$freezer.id_item}">
 											<label>Nombre del freezer</label>
-											<input type="text" id="nombre_freezer" class="form-control" value="{$freezer.nombre_freezer}"> 
+											<input type="text" id="nombre_freezer" class="form-control" value="{$freezer.nombre_freezer}" placeholder="Nombre freezer"> 
 										</div>
 										<div class="col-sm-6">
 											<label>Empresa:</label>
 											<select id="empresa_freezer" class="form-control">
+												{if $freezer.nombre_empresa == ""}
+												<option value="0">Seleccione....</option>
+												{foreach from=$array_empresas item=empresa}
+												<option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>										
+												{/foreach}
+												{else}
 												<option value="{$freezer.id_empresa}">{$freezer.nombre_empresa}</option>
 												{foreach from=$array_empresas item=empresa}
 												<option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>										
 												{/foreach}
+												{/if}
 											</select>
 										</div>
 									</div>
