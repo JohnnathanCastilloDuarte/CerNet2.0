@@ -31,6 +31,7 @@ function listar_documentacion_head(estado_ver){
       let estado = ""
       let escritura_estado = "";
       let option_estado = "";
+      let boton_ver = "";
       
       traer.forEach((x)=>{
         
@@ -124,15 +125,26 @@ function listar_documentacion_head(estado_ver){
           }
         }
 
+        
+
+        if(x.estado == 1){
+          alert(x.url);
+          boton_ver = `<a class="btn btn-info" onclick="window.open('https://${x.url}')"><i class="fa fa-eye" aria-hidden="true"></i</a>`;
+        }else{
+          boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
+        }
+
 
 
         if(x.estado == 0){
           estado = '<span class="badge badge-primary">Creado</span>';
           escritura_estado = "Sin accion";
+          
     
         }else if(x.estado == 1){
           estado = '<span class="badge badge-success">Documentos cargados Inspector</span>';
           escritura_estado = "Documentos cargados Inspector";
+          
         }else if(x.estado == 2){
           estado = '<span class="badge badge-success">Aprobado Documental</span>';
           escritura_estado = "Aprobado Documental";
@@ -176,7 +188,7 @@ function listar_documentacion_head(estado_ver){
             <td>${x.empresa}</td>
             <td>${x.archivo}</td>
             <td>${x.usuario}</td>  
-            <td><button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}"><i class="fa fa-eye" aria-hidden="true"></i</button></td>
+            <td>${boton_ver}</td>
             <td><button class="btn btn-muted" id="ver_comentarios" data-id="${x.id_documentacion}"><i class="fa fa-book" aria-hidden="true"></i</button></td>
             <td><button class="btn btn-muted" id="ver_cronograma" data-id="${x.id_documentacion}"><i class="fa fa-calendar" aria-hidden="true"></i</button></td>
             <td>

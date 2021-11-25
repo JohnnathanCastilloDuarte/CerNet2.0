@@ -160,13 +160,13 @@ else if($rol == 'Head'){
 else if($rol == 'Junior Documentary Analyst' || $rol == 'Leading Senior Documentary Analyst' || $rol == 'Senior Documentary Analyst' || $rol == 'Documentary Analyst'){
   
   if($estado_ver == 0){
-    $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo FROM
+    $consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo, a.url FROM
     documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa 
     AND a.id_usuario = d.id_usuario AND a.id_usuario = ? AND a.id = e.id_documentacion");
     mysqli_stmt_bind_param($consultando, 'i', $id_valida);
     mysqli_stmt_execute($consultando);
     mysqli_stmt_store_result($consultando);
-    mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo);
+    mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo, $url);
 
     while($row = mysqli_stmt_fetch($consultando)){
         $array_documentacion[] = array(
@@ -177,7 +177,8 @@ else if($rol == 'Junior Documentary Analyst' || $rol == 'Leading Senior Document
           'estado'=>$estado,
           'id_documentacion'=>$id_documentacion,
           'nombre_archivo'=>$nombre_archivo,
-          'rol'=>$rol
+          'rol'=>$rol,
+          'url'=>$url
         );
     } 
   }else{
