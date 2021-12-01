@@ -486,8 +486,8 @@ function listar_informes_estufaeincubadora(){
 
 				template +=
 				`
-				<div id="accordion">
-				<div class="card">
+				<div id="accordion" >
+				<div class="card" >
 				<div class="card-header">
 				<a  data-toggle="collapse" data-target="#collapseOne${contador_acordeon}"  aria-controls="collapseOne">
 				<h5><strong>Nombre Informe:</strong> ${result.nombre}${mas_nombre}</h5>
@@ -525,8 +525,8 @@ function listar_informes_estufaeincubadora(){
 				</div>
 				</div>
 				</form>
+				<hr>
 				<br>
-
 				<div class="row">
 				<div class="col-sm-12" style="text-align:center;">
 				<h4>Evidencia Grafica</h4>
@@ -551,7 +551,7 @@ function listar_informes_estufaeincubadora(){
 				<input type="hidden" name="id_informe" value="${result.id_informe}">
 				<div class="row">
 				<div class="col-sm-4" style="text-align:center;">
-				<label>Posición Sensores</label>
+				<label style="padding: 0px 0px 54px 0px;">Posición Sensores</label>
 				<input type="file" name="imagen_1" id="image_1" class="form-control">
 				</div>
 

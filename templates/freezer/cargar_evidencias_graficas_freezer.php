@@ -8,10 +8,10 @@
 	$tipo_image_2 = $_POST['tipo_image_2_freezer'];
 
 
-	$change = 0;
-	$posicion_1 = 1;
-	$posicion_2 = 2;
-	$posicion_3 = 3;
+		$change = 0;
+		$posicion_1 = 1;
+		$posicion_2 = 2;
+		$posicion_3 = 3;
 
 
 		if($tipo_image_2 == "TEM"){

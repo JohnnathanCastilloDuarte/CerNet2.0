@@ -675,7 +675,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header" style="height: 4.5rem;">
 
 					Informes Generados
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -822,7 +822,7 @@ function listar_informes_freezer(){
                           <input type="hidden" name="id_informe_freezer" value="${result.id_informe}">
                           <div class="row">
                             <div class="col-sm-4" style="text-align:center;">
-                              <label>Posición Sensores</label>
+                              <label style="padding: 0px 0px 21px 0px;">Posición Sensores</label>
                               <input type="file" name="imagen_1_freezer" id="image_1_freezer" class="form-control">
                             </div>
 
@@ -893,6 +893,37 @@ function listar_informes_freezer(){
 		
 	});
 }
+//CARGAR IMAGENES
+
+(function(){
+  
+  $(document).on('submit','#form_1_freezer',function(e){
+    e.preventDefault();
+
+    $.ajax({
+      url: 'templates/freezer/cargar_evidencias_graficas_freezer.php',
+      type: 'POST',
+      dataType: 'html',
+      data: new FormData(this),
+      cache: false,
+      contentType: false,
+      processData: false,
+      success:function(response){    
+           Swal.fire({
+                position:'center',
+                title:'Se cargaron las imagenes correctamente',
+                icon:'success',
+                showConfirmButton: false,
+                timer:1000              
+              }); 
+        listar_informes_freezer();
+      } 
+
+    });
+
+  });   
+  
+}());
 
 
 

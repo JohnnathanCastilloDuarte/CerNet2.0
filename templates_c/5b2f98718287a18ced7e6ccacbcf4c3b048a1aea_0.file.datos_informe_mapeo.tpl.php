@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-01 15:26:58
+/* Smarty version 3.1.34-dev-7, created on 2021-12-01 20:42:20
   from 'C:\xampp\htdocs\CerNet2.0\templates\estufaeincubadora\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a78632411139_41995987',
+  'unifunc' => 'content_61a7d01c993106_75253304',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5b2f98718287a18ced7e6ccacbcf4c3b048a1aea' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\estufaeincubadora\\datos_informe_mapeo.tpl',
-      1 => 1638368815,
+      1 => 1638387739,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a78632411139_41995987 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a7d01c993106_75253304 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -627,246 +627,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 			</div>
 		</div>
 		<br>
-		<div class="form-row">
-			<div class="col-sm-12">
-				<div class="card">
-					<div class="card-header"> Resultados Datos Crudos</div>
-					<div class="card-body" id="cargue_datos_crudos">
-						<div class="form-row">
-							<div class="col-sm-12" style="text-align:center;">
-								<div id="resultados_dc">
-
-								</div>
-							</div>
-						</div>
-
-						<div id="trayendo_resultados">
-							<div class="form-row" style="text-align:center;">
-								<div class="col-sm-1">
-									<h6>
-										Columna 1
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_1">
-												</tbody>
-											</table>
-										</div>
-									</div>   
-
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 2
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_2">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 3
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_3">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 4
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_4">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 5
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_5">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 6
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_6">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 7
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_7">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div> 
-								<div class="col-sm-1">
-									<h6>
-										Columna 8
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_8">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 9
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_9">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 10
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_10">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 11
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_11">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 12
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_12">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>  
-							</div>
-							<br>
-							<div class="form-row" style="text-align:center;">
-								<div class="col-sm-6">
-									<button class="btn btn-success" id="aprobar_dc_estufaeincubadora">
-										Aprobar carga de DC
-									</button>
-								</div>
-
-								<div class="col-sm-6">
-									<button class="btn btn-danger" id="eliminar_dc_estufaeincubadora">
-										Eliminar DC
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 
 </div>
@@ -877,7 +638,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header" style="height: 4.5rem;">
 
 					Informes Generados
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

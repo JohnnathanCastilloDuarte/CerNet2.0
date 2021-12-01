@@ -2311,8 +2311,14 @@ $("#traer_informes_refrigeradores").html(template);
 			cache: false,
 			contentType: false,
 			processData: false,
-			success:function(response){			
-				
+			success:function(response){	
+				Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Imagenes cargardas correctamente',
+		          showConfirmButton: false,
+		          timer: 1000
+		        });	
 				listar_informes();
 			}	
 

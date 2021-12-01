@@ -2097,11 +2097,15 @@ $(document).on('change','#cambio_tem', function(){
 			contentType: false,
 			processData: false,
 			success:function(response){	
-        
-       
+       			Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Imagenes cargardas correctamente',
+		          showConfirmButton: false,
+		          timer: 1000
+		        });	
 				listar_informes_ultrafreezer();
 			}	
-
 		});
 
 		});		
