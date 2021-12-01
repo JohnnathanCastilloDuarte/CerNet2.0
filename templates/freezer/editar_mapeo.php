@@ -35,7 +35,7 @@
   $c_dias = number_format(((strtotime($fecha_fin)-strtotime($fecha_incial))/3600)/24,2);
   $c_hora = $c_dias * 24;
 
-  $nombre_construido = "MAPEO A ".$c_hora." HORA(s) ".$nombre_mapeo;
+  $nombre_construido = $nombre_mapeo;
 
 	/////////////////////////////CONSULTA DE INFORMACIÓN PARA EL BACKTRAKING//////////////////////////////////////////////////////////////////
 /*

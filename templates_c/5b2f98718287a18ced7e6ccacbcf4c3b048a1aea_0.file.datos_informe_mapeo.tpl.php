@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-19 16:56:53
+/* Smarty version 3.1.34-dev-7, created on 2021-12-01 15:26:58
   from 'C:\xampp\htdocs\CerNet2.0\templates\estufaeincubadora\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6197c945480118_15794377',
+  'unifunc' => 'content_61a78632411139_41995987',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5b2f98718287a18ced7e6ccacbcf4c3b048a1aea' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\estufaeincubadora\\datos_informe_mapeo.tpl',
-      1 => 1637337411,
+      1 => 1638368815,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6197c945480118_15794377 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a78632411139_41995987 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -96,7 +96,7 @@ function content_6197c945480118_15794377 (Smarty_Internal_Template $_smarty_tpl)
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 							<li class="nav-item">
-								<a role="tab" class="nav-link  active" id="tab-0" data-toggle="tab" href="#crear_mapeo_estufaeincubadora">
+								<a role="tab" class="nav-link  active" id="crearmapeo" data-toggle="tab" href="#crear_mapeo_estufaeincubadora">
 									<span>Mapeo</span>
 								</a>
 							</li>
@@ -110,11 +110,11 @@ function content_6197c945480118_15794377 (Smarty_Internal_Template $_smarty_tpl)
 									<span>Correlativo</span>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a role="tab" class="nav-link" id="cargar_informes" data-toggle="tab" href="#cargar_informes_estufaeincubadora">
+							<!--<li class="nav-item">
+								<a role="tab" class="nav-link" id="#" data-toggle="tab" href="#cargar_informes_estufaeincubadora">
 									<span>Genera informes</span>
 								</a>
-							</li>
+							</li>-->
 						</ul>				
 					</div>
 
@@ -130,7 +130,7 @@ function content_6197c945480118_15794377 (Smarty_Internal_Template $_smarty_tpl)
 
 												<label>Nombre mapeo:</label>
 												<select id="nombre_mapeo_estufaeincubadora" class="form-control" required>
-													<option value="Sin seleccion">Seleccione...</option>
+													<option value="0">Seleccione...</option>
 													<option value="nombre_eleccion">ASIGNAR NOMBRE</option>
 													<option value="SIN CARGA">SIN CARGA</option>
 													<option value="CON CARGA">CON CARGA</option>
@@ -357,7 +357,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 											<div class="col-sm-5"></div>
 											<div class="col-sm-5">
 												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_estufaeincubadora">Aceptar</button>
-												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_estufaeincubadora">Actualizar</button>
+												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_estufaeincubadora">Actualizar</button><button class="btn-shadow btn-outline-2x btn btn-outline-danger"  id="btn_setear_campos">X</button>
 												
 											</div>  
 										</div>
@@ -405,7 +405,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 	</div>
 </div>
 
-<div class="tab-pane tabs-animation fade show" id="consecutivo_informe_estufaeincubadora" role="tabpanel">
+<div class="tab-pane tabs-animation " id="consecutivo_informe_estufaeincubadora" role="tabpanel">
 	<div class="card-body">
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -555,6 +555,10 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 										</tbody>
 									</table>
+										<div id="aqui_boton_dc">
+											
+										</div>
+										
 								</div>
 							</div>	
 						</div>	
@@ -605,8 +609,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 									</div>
 
 									<div class="form-group">
-										<label for="file">File</label>
-										<input type="file" class="form-control" id="file_estufaeincubadora" name="file_estufaeincubadora"  required />
+									<!--	<label for="file">File</label>
+										<input type="file" class="form-control" id="file_estufaeincubadora" name="file_estufaeincubadora"  required /> -->
 									</div>
 
 									<div class="form-group">

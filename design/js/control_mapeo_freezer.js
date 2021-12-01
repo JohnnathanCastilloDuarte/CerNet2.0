@@ -18,18 +18,22 @@ $("#mostrar_grafica_freezer").hide();
 $("#cargar_informes_freezer").hide();
 $("#cargar_dc_").hide();
 $("#change_mapeo_freezer").hide();
+$("#nombre_empresa").hide();
+$("#boton_condatos_cargados").hide();
+$("#boton_sindatos_cargados").hide();
 
 
 //////////////////////////////////////////////////////////LOGICA DE FUNCIONES
 function setear_campos_freezer() {
+  $("#nombre_mapeo_freezer").val(0);
   $("#fecha_inicio_mapeo_freezer").val("");
-  $("#hora_inicio_mapeo_freezer").val("");
-  $("#minuto_inicio_mapeo_freezer").val("");
-  $("#segundo_inicio_mapeo_freezer").val("");
+  $("#hora_inicio_mapeo_freezer").val("00");
+  $("#minuto_inicio_mapeo_freezer").val("00");
+  $("#segundo_inicio_mapeo_freezer").val("00");
   $("#fecha_fin_mapeo_freezer").val("");
-  $("#hora_fin_mapeo_freezer").val("");
-  $("#minuto_fin_mapeo_freezer").val("");
-  $("#segundo_fin_mapeo_freezer").val("");
+  $("#hora_fin_mapeo_freezer").val("00");
+  $("#minuto_fin_mapeo_freezer").val("00");
+  $("#segundo_fin_mapeo_freezer").val("00");
   $("#intervalo_freezer").val("");
   $("#temperatura_minima_freezer").val("");
   $("#temperatura_maxima_freezer").val("");
@@ -37,6 +41,10 @@ function setear_campos_freezer() {
   $("#temperatura_minima_freezer").val("");
   $("#temperatura_maxima_freezer").val("");
   $("#valor_seteado_temperatura_freezer").val("");
+  $("#valor_seteado_humedad_freezer").val("");
+  $("#humedad_minima_freezer").val("");
+  $("#humedad_maxima_freezer").val("");
+
 }
 
 
@@ -51,7 +59,6 @@ function setear_campos_freezer() {
     }
 
     $.post('templates/freezer/crear_bandeja.php', datos, function(e) {
-      console.log(e)
       if (e == "Si") {
         Swal.fire({
           position: 'center',
@@ -103,11 +110,9 @@ function listar_bandejas_freezer() {
     url: 'templates/freezer/listar_bandeja.php',
     data: {id_asignado_freezer},
       success: function(e) {
-       
       let traer = JSON.parse(e);
       let template = "";
       traer.forEach((result) => {
-
         template +=
           `
 				<tr>
@@ -120,7 +125,10 @@ function listar_bandejas_freezer() {
 					</td>
 				</tr>				
 				`;
+      
+
       });
+
       $("#resultados_bandeja_freezer").html(template);
     }
   });
@@ -239,22 +247,26 @@ function mostrar_correlativo(x) {
    $.post('templates/freezer/consultar_correlativo_freezer.php',{x}, function(e) {  
         let traer = JSON.parse(e);
         $("#aqui_consecutivo_freezer").text(traer.correlativo);
+       
    });
 }
 
 function leer_correlativo_freezer(x) {
 
   $.post('templates/freezer/validar_correlativo.php', {x}, function(response) {
-
+     // console.log(response)
     if (response == "Sin") {
       $("#crear_mapeo_freezer").hide();
-      $("#ver_mapeo_freezer").hide();
-     
-
+      $("#vermapeo").hide();
+      $("#vermapeo").hide();
+      $("#crear_mapeo_freezer").hide();
+      $("#asignacion").hide();
+      $("#Complemento").hide();
+      $("#informes").hide();
     } else {
       $("#crear_mapeo_freezer").show();
-       $("#sin_correlativo_freezer").hide();
-			  $("#traer_informes_freezer").show();	
+      $("#sin_correlativo_freezer").hide();
+			$("#traer_informes_freezer").show();	
 
     }
   });
@@ -274,16 +286,16 @@ $("#cambiando_correlativo_freezer").click(function() {
   }
 
   $.post('templates/freezer/ingresa_correlativo_ultrafreezer.php', data_2, function(e) {
-    console.log(e);
     if (e == "Si") {
       Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Correlativo Creado',
-        timer: 1700
+        showConfirmButton: false,
+        timer: 1500
       });
       $("#aqui_consecutivo_freezer").text(correlativo);
-      setTimeout(recargar_pagina,1700);
+      setTimeout(recargar_pagina,1500);
     }
 
     leer_correlativo_freezer(id_asignado_freezer);
@@ -319,8 +331,6 @@ $(function() {
     let valor_seteado_humedad = $("#valor_seteado_humedad_freezer").val();
     let incluir_inf_base = $("#informe_base_freezer").val();
 
-
-
     const datos = {
       nombre_mapeo,
       fecha_inicio_mapeo,
@@ -344,9 +354,6 @@ $(function() {
     }
 
     $.post('templates/freezer/crear_mapeo.php', datos, function(e) {
-
-      console.log(e)
-
       if (e == "Creado") {
         Swal.fire({
           position: 'center',
@@ -355,10 +362,12 @@ $(function() {
           timer: 1500
         });
         listar_mapeos_freezer();
-        listar_informes_freezer()
         setear_campos_freezer();
         crear_informes_freezer();
         contar_registro_informes_freezer();
+        listar_informes_freezer()
+      }else{
+        alert("error contacta con el administrador");
       }
     });
 
@@ -375,6 +384,22 @@ function listar_mapeos_freezer(){
     data: {id_asignado_freezer},
       url: 'templates/freezer/listar_mapeos.php',
     success: function(e) {
+
+      if(e.length == 2){
+          $("#asignacion").hide();        
+          $("#Complemento").hide();        
+          $("#informes").hide();
+          $("#vermapeo").hide();
+          $("#crear_mapeo").addClass('class="tab-pane tabs-animation fade show active');
+      }else{
+
+          $("#asignacion").show();        
+          $("#Complemento").show();        
+          $("#informes").show();
+          $("#asignacion_informe_freezer").show();
+          $("#vermapeo").show();
+
+
 
       let traer = JSON.parse(e);
       let template = "";
@@ -410,7 +435,7 @@ function listar_mapeos_freezer(){
           `
         <tr>
           <td>${result.nombre}</td>
-          <td><button class="btn btn-success" id="buscar_bandeja_asignada_freezer" data-id="${result.id_mapeo}"  data-id-2="${result.id_asignado}"="${result.nombre}" ><i class="lnr-checkmark-circle"></i></button></td>
+          <td><button class="btn btn-success" id="buscar_bandeja_asignada_freezer" data-id="${result.id_mapeo}"  data-id-2="${result.id_asignado}"="${result.nombre} data-id-3="${result.nombre}" ><i class="lnr-checkmark-circle"></i></button></td>
         </tr>
 
         `;
@@ -418,13 +443,13 @@ function listar_mapeos_freezer(){
 
       $("#listando_mapeos_creados_freezer").html(template2);
       $("#listando_mapeos_freezer").html(template);
-
+      }
 
     }
   });
 }
 
-///////////////////EDITAR MAPEO
+///////////////////eliminar MAPEO
 $(function(){
 $(document).on('click','#eliminar_mapeo_creada_freezer',function(){
     
@@ -450,6 +475,7 @@ $(document).on('click','#eliminar_mapeo_creada_freezer',function(){
         }
         
         $.post('templates/freezer/eliminar_mapeo.php',data, function(e){
+              //console.log(e)
             if(e == "No"){
               Swal.fire({
                 position:'center',
@@ -482,6 +508,7 @@ $(function() {
     $("#btn_actualizar_mapeo_freezer").show();
     $("#btn_nuevo_mapeo_freezer").hide();
     $("#change_mapeo_freezer").show();
+    $("#nombre_empresa").show();  
 
 
     Swal.fire({
@@ -501,10 +528,8 @@ $(function() {
       },
       url: 'templates/freezer/llamar_editar_mapeo.php',
       success: function(e) {
-        console.log(e)
         let traer = JSON.parse(e);
 
-        console.log(e);
         if (traer.informe_base == 1) {
           $("#informe_base_freezer").attr('checked', true);
         } else {
@@ -528,6 +553,7 @@ $(function() {
         $("#valor_seteado_humedad_freezer").val(traer.valor_seteado_humedad);
         $("#valor_seteado_temperatura_freezer").val(traer.valor_seteado_temperatura);
         $("#id_mapeo_creado_freezer").val(traer.id_mapeo);
+        $("#nombre_freezer").val(traer.nombre);
 
       }
 
@@ -563,7 +589,11 @@ $(function() {
 
 $("#btn_actualizar_mapeo_freezer").click(function() {
 
- let nombre_mapeo = $("#nombre_mapeo_freezer").val();
+    //carga si se cambio el nombre del mapeo
+    let nombre_mapeo = $("#nombre_mapeo_freezer").val(); 
+    //carga si se mantiene el nombre del mapeo
+    let nombre_mapeo_establecido = $("#nombre_freezer").val();
+
     let fecha_inicio_mapeo = $("#fecha_inicio_mapeo_freezer").val();
     let hora_inicio_mapeo = $("#hora_inicio_mapeo_freezer").val();
     let minuto_inicio_mapeo = $("#minuto_inicio_mapeo_freezer").val();
@@ -584,6 +614,11 @@ $("#btn_actualizar_mapeo_freezer").click(function() {
     let id_valida = $("#id_valida").val();
     let tipo_mapeo = $("#tipo_de_mapeo").val();
     let if_incluir = "";
+
+   // alert(nombre_mapeo_)
+
+    //consulta el nombre del mapeo
+
 
   if (incluir_inf_base == true) {
     if_incluir = 1;
@@ -616,16 +651,20 @@ $("#btn_actualizar_mapeo_freezer").click(function() {
   }
 
   $.post('templates/freezer/editar_mapeo.php', datos, function(e) {
-
     if (e == "Editado") {
       Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'El registro ha sido editado correctamente',
+        showConfirmButton: false,
         timer: 1500
       });
       listar_mapeos_freezer();
       setear_campos_freezer();
+
+      $('#btn_actualizar_mapeo_freezer').hide();
+      $('#change_mapeo_freezer').hide();
+      $('#btn_nuevo_mapeo_freezer').show();
 
     }
 
@@ -643,8 +682,7 @@ function crear_informes_freezer(){
        id_valida}	
 		$.post('templates/freezer/informe_freezer.php', data , function(response){
 
-      console.log(response);
-
+      
 		});
 }
 
@@ -910,10 +948,10 @@ function listar_informes_freezer(){
 		
 		id_mapeo_freezer = $(this).attr('data-id');
 		let id_asignado = $(this).attr('data-id-2');
-		let nombre = $(this).attr('nombre');
+		let nombre = $(this).attr('data-id-3');
 	
 		listar_bandejas_freezer_c(id_asignado_freezer);
-		
+		  $("#nombre_mapeo_freezer_dc").text(" "+nombre)
 			$("#mapeo_actual").text("--"+nombre);
 	});
 	
@@ -976,42 +1014,130 @@ function listar_freezer_sensores(id_bandeja, id_mapeo_freezer){
 				
 			let traer = JSON.parse(e);
 			let template = "";
+      let template3 = "";
 			let a = 1;
 			let button = "";
 			
+
+        let carguecrudos = e;
+        
 			traer.forEach((result)=>{
 				
-				
-				
-				if(result.datos_crudos == ""  || result.datos_crudos === null){
-					button = `<button class="btn btn-danger" id="btn_cargar_datos_crudos_freezer" data-id="${result.id_freezer_sensor}" 
-										bandeja="${result.nombre_bandeja}" sensor="${result.nombre_sensor}">Falta archivo</button>`
-				}else{
-					button = `<button class="btn btn-success" id="btn_cargar_datos_crudos_freezer" data-id="${result.id_freezer_sensor}" 
-										bandeja="${result.nombre_bandeja}" sensor="${result.nombre_sensor}">Archivo cargado</button>`
-				}
-				
+
 				template +=`
 					
 					<tr>
 								${result.datos_crudos}
 						<td>${result.nombre_bandeja}</td>
 						<td>${result.nombre_sensor}</td>
+            <td>
+              <select class="form-control" data-id="${result.id_freezer_sensor}" id="change_posicion_sensor_freezer">
+                <option value="${result.posicion}">${result.posicion}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+              </select>
+           </td>
 						<td>${result.fecha_registro}</td>
-						<td>
-							${button}
-						</td>
 					</tr>
-				`;
+				`;  
+        template3 += `
+          
+          <tr>
+           
+            <td>
+              <input type="hidden" value="${result.id_bandeja}" name="bandejas">
+            <select class="form-control" id="columna_dc${a}" name="columna_dc${a}">
+             <option value="0">Seleccione...</option>  
+             <option value="2">Columna 1</option>
+             <option value="3">Columna 2</option>
+             <option value="4">Columna 3</option>
+             <option value="5">Columna 4</option>
+             <option value="6">Columna 5</option>
+             <option value="7">Columna 6</option>
+             <option value="8">Columna 7</option>
+             <option value="9">Columna 8</option>
+             <option value="10">Columna 9</option>
+             <option value="11">Columna 10</option>
+             <option value="12">Columna 11</option>
+             <option value="13">Columna 12</option>
+          </select></td> 
+            
+         <td>
+         <input type="hidden" value="${id_valida}" id="id_valida" name="id_valida">
+         <input type="hidden" value="${result.id_freezer_sensor}" id="id_sensor_freezer_dc${a}" name="id_sensor_freezer_dc${a}">
+         ${result.nombre_sensor}
+        </td>
+                
+    </tr>
+
+      `;
 
 			});
-			
+
+      traer.forEach((response)=>{
+        if (response.datos_crudos == null) {
+        $("#boton_sindatos_cargados").show();
+        $("#boton_condatos_cargados").hide();
+        }else{
+        $("#boton_condatos_cargados").show();
+        $("#boton_sindatos_cargados").hide();
+        }
+      })
+
 			$("#mapeos_listos_freezer").html(template);
+      $("#dc_freezer_seleccionador").html(template3);
 			
 			
 		});
 	
 }
+
+//ACTUALIZAR LA POSICION DE MAPEOS
+$(document).on('change','#change_posicion_sensor_freezer',function(){
+
+  let id_freezer_sensor = $(this).attr('data-id');
+  let posicion = $(this).val();
+
+  const datos = {
+    id_freezer_sensor,
+    posicion
+  }
+
+  $.ajax({
+    type:'POST',
+    url:'templates/freezer/cambiar_posicion_sensor.php',
+    data:datos,
+    success:function(response){
+      if(response == 1){
+        Swal.fire({
+          title:'Mensaje',
+          text:'Sensor cambiado de posicion corrrectamente',
+          icon:'success',
+          timer:1500
+        });
+        listar_freezer_sensores(id_bandeja, id_mapeo);
+      }
+    }
+  });
+});
 
 //LISTAR SOLO SENSORES NO REGISTRADOS EN LA TABLA REFRIGERADORES _ SENSORES
 function listar_sensores_freezer(a){
@@ -1038,9 +1164,6 @@ function listar_sensores_freezer(a){
 						</td>				
 					</tr>
 					`;
-
-					
-					
 				});
 			$("#sensores_resultado_freezer").html(template);
 			
@@ -1066,7 +1189,6 @@ function listar_sensores_freezer(a){
 						id_valida : $("#id_valida").val()
 					}
 							$.post('templates/freezer/agregar_sensor_mapeo.php', datos, function(e){
-									  console.log(e);
 								if(e=="Asignado"){
 									Swal.fire({
 										position:'center',
@@ -1183,7 +1305,6 @@ function listar_sensores_freezer(a){
 				data: {id_freezer_sensor},
 				url : 'templates/freezer/listar_datos_crudos.php',
 				success : function(response){
-					console.log(response);
 					$('#fechas').show();
 					let template = "";
 					
@@ -1247,7 +1368,6 @@ function listar_sensores_freezer(a){
     contentType: false,
     processData: false,
     success:function(response) {
-        console.log(response);
 			let traer = JSON.parse(response);
 			let template = "";
 			let msj = "";
@@ -1415,14 +1535,13 @@ function contar_registro_informes_freezer(){
 		$.ajax({
 			
 			type:'POST',
-			data:{id_asignado_freezer, id_mapeo},
+			data:{id_asignado_freezer, id_mapeo_freezer},
 			url: 'templates/freezer/contar_registro_informes.php',
 			success:function(e){
-      
 				if(e == "Abrete"){
 						$("#asignacion_informe_freezer").show();
 				}else{
-					$("#asignacion_informe_freezer").hide();
+					$("#asignacion_informe_freezer").show();
 				}
 				
 			}
@@ -1731,9 +1850,7 @@ function listar_firmador_freezer(){
     data:{id_asignado_freezer},
     url:'templates/freezer/listar_firma.php',
     success:function(response){
-     
         let traer = JSON.parse(response);
-          console.log(response)
         traer.forEach((x)=>{
           $("#persona_firma_freezer").text(x.nombres +' '+ x.apellidos);
         });
@@ -2048,8 +2165,6 @@ function listar_mapeos_inf_base_freezer(){
         url: 'templates/freezer/almacenar_informe_base.php',
         data: data,
         success:function(response){
-          
-          console.log(response)
          
         }
       });
@@ -2080,7 +2195,6 @@ function listar_mapeos_inf_base_freezer(){
 					data: {id_informe, url, id_imagen},
 					url:'templates/freezer/eliminar_image.php',
 					success:function(response){
-            console.log(response);
 						if(response == "Si"){
 							Swal.fire({
 								position:'center',
@@ -2144,8 +2258,6 @@ function listar_mapeos_inf_base_freezer(){
 				data : {id_informe},
 				url : 'templates/freezer/pre_pdf.php',
 				success: function(response){
-        
-          console.log(response)
 					if(response == "Ver"){
             if(tipo==0){
               window.open('templates/freezer/informes/pdf/informe_mapeo_freezer_temp.php?informe='+id_informe);
@@ -2205,7 +2317,6 @@ function validar_generar_informes_freezer(){
       data:{id_asignado_freezer},
       url:'templates/freezer/validar_informes.php',
       success:function(response){
-        //console.log(response);
         
         if(response == "Si"){
           $("#cargar_informes_freezer").show();
@@ -2215,8 +2326,6 @@ function validar_generar_informes_freezer(){
       }
     });
 }
-
-
 $("#cargar_informes_freezer").click(function(){
     
     $.ajax({
@@ -2240,7 +2349,6 @@ $("#cargar_informes_freezer").click(function(){
       }
     });
 });
-
 
 //FUNCION PARA ELIMINAR INFORME
 (function(){
@@ -2298,20 +2406,47 @@ $("#change_mapeo_freezer").click(function(){
 })
 
 
+$(document).on('click','#boton_condatos_cargados',function(){
+
+  var URLactual = $("#es_local").val();
+ 
+  if(URLactual == "Si"){
+    window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
+  }else{
+    window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
+  }
+
+});
+$(document).on('click','#boton_sindatos_cargados',function(){
+
+  var URLactual = $("#es_local").val();
+ 
+  if(URLactual == "Si"){
+    window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado_freezer}&id_mapeo=${id_mapeo_freezer}`, "Datos Crudos", "width=1693px, height=1693px")
+  
+  
+  }else{
+    window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_valida}&id_asignado=${id_asignado_freezer}&id_mapeo=${id_mapeo_freezer}`, "Datos Crudos", "width=1693px, height=1693px");
+  }
+
+});
+
+
+
+
+
 
 //LLAMAR FUNCIONES
+listar_informes_freezer();
 contar_registros_freezer();
 listar_bandejas_freezer();
 listar_mapeos_freezer();
 mostrar_correlativo(id_asignado_freezer);
 leer_correlativo_freezer(id_asignado_freezer);
 contar_registro_informes_freezer();
-listar_informes_freezer();
 listar_participantes_freezer();
 listar_inf_base_freezer();
 listar_mapeos_inf_base_freezer();
 imagenes_equipo_base_freezer();
 imagenes_equipo_base_sensores_freezer();
-validar_generar_informes_freezer();
-
-						 
+validar_generar_informes_freezer();	 

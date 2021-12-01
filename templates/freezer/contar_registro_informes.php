@@ -27,6 +27,7 @@
 		}
 		
 	}
+	echo "SELECT id_informe_freezer FROM informe_freezer WHERE id_mapeo = ".$id_asignado;
 
 	if($validador > 0){
 		echo "Abrete";

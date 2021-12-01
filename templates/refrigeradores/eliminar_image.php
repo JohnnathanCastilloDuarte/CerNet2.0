@@ -10,7 +10,7 @@ $fh = fopen($url, 'w');
 fclose($fh);	
 $eliminar_1 = unlink($url);
 
-if($eliminar_1){}
+if($eliminar_1){
   
   if(!isset($id_imagen)){
 	

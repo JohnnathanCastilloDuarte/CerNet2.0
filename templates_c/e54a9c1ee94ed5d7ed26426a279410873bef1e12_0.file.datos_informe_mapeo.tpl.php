@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-23 16:01:46
+/* Smarty version 3.1.34-dev-7, created on 2021-11-29 16:59:13
   from 'C:\xampp\htdocs\CerNet2.0\templates\refrigeradores\informes\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_619d025acbc555_98192778',
+  'unifunc' => 'content_61a4f8d1b0ac77_44252508',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e54a9c1ee94ed5d7ed26426a279410873bef1e12' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\refrigeradores\\informes\\datos_informe_mapeo.tpl',
-      1 => 1637679527,
+      1 => 1638201551,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619d025acbc555_98192778 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a4f8d1b0ac77_44252508 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -368,7 +368,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 										<div class="col-sm-12" style="text-align:center;">
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo">Aceptar</button>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo">Actualizar</button>
-											<button class="btn btn-danger" id="change_mapeo"><span class="text-white">X</span></button>
+											<button class="btn btn-outline-danger" id="change_mapeo"><span>X</span></button>
 										</div>
 									</div>
 								</form>
@@ -737,7 +737,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header" style="height: 4.5rem;">
 
 						Informes Generados
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

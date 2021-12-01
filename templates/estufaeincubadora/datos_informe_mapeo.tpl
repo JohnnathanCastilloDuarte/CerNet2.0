@@ -72,7 +72,7 @@
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 							<li class="nav-item">
-								<a role="tab" class="nav-link  active" id="tab-0" data-toggle="tab" href="#crear_mapeo_estufaeincubadora">
+								<a role="tab" class="nav-link  active" id="crearmapeo" data-toggle="tab" href="#crear_mapeo_estufaeincubadora">
 									<span>Mapeo</span>
 								</a>
 							</li>
@@ -86,11 +86,11 @@
 									<span>Correlativo</span>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a role="tab" class="nav-link" id="cargar_informes" data-toggle="tab" href="#cargar_informes_estufaeincubadora">
+							<!--<li class="nav-item">
+								<a role="tab" class="nav-link" id="#" data-toggle="tab" href="#cargar_informes_estufaeincubadora">
 									<span>Genera informes</span>
 								</a>
-							</li>
+							</li>-->
 						</ul>				
 					</div>
 
@@ -106,7 +106,7 @@
 
 												<label>Nombre mapeo:</label>
 												<select id="nombre_mapeo_estufaeincubadora" class="form-control" required>
-													<option value="Sin seleccion">Seleccione...</option>
+													<option value="0">Seleccione...</option>
 													<option value="nombre_eleccion">ASIGNAR NOMBRE</option>
 													<option value="SIN CARGA">SIN CARGA</option>
 													<option value="CON CARGA">CON CARGA</option>
@@ -273,7 +273,7 @@
 											<div class="col-sm-5"></div>
 											<div class="col-sm-5">
 												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_estufaeincubadora">Aceptar</button>
-												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_estufaeincubadora">Actualizar</button>
+												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_estufaeincubadora">Actualizar</button><button class="btn-shadow btn-outline-2x btn btn-outline-danger"  id="btn_setear_campos">X</button>
 												
 											</div>  
 										</div>
@@ -321,7 +321,7 @@
 	</div>
 </div>
 
-<div class="tab-pane tabs-animation fade show" id="consecutivo_informe_estufaeincubadora" role="tabpanel">
+<div class="tab-pane tabs-animation " id="consecutivo_informe_estufaeincubadora" role="tabpanel">
 	<div class="card-body">
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -471,6 +471,10 @@
 
 										</tbody>
 									</table>
+										<div id="aqui_boton_dc">
+											
+										</div>
+										
 								</div>
 							</div>	
 						</div>	
@@ -521,8 +525,8 @@
 									</div>
 
 									<div class="form-group">
-										<label for="file">File</label>
-										<input type="file" class="form-control" id="file_estufaeincubadora" name="file_estufaeincubadora"  required />
+									<!--	<label for="file">File</label>
+										<input type="file" class="form-control" id="file_estufaeincubadora" name="file_estufaeincubadora"  required /> -->
 									</div>
 
 									<div class="form-group">

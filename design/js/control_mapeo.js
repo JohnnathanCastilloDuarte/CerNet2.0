@@ -495,7 +495,7 @@ function listar_mapeos(){
 		type : 'POST',
 		data : {id_asignado},
 		url:'templates/refrigeradores/listar_mapeos.php',
-		success:function(e){	
+		success:function(e){
 			let traer = JSON.parse(e);
 			let template = "";
 			let template2 = "";

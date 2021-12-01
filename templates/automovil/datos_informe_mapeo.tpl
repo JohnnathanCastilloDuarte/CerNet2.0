@@ -28,7 +28,7 @@
 <div class="tab-content">
 	<div class="tab-pane tabs-animation fade show active" id="creacion" role="tabpanel">
 		<div class="row">
-			<div class="col-sm-5">
+			<div class="col-sm-6">
 				<div class="card" style="height:100%;">
 					<div class="card-header">
 						<h6 style="text-align:center;">
@@ -85,7 +85,7 @@
 				</div>	
 			</div>
 
-			<div class="col-sm-7">
+			<div class="col-sm-6">
 				<div class="card">
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
@@ -104,11 +104,11 @@
 									<span>Correlativo</span>
 								</a>
 							</li>
-							<li class="nav-item">
+							<!--<li class="nav-item">
 								<a role="tab" class="btn btn-danger" id="cargar_informes_automovil" data-toggle="tab" href="#cargar_informes_automovil">
 									<span>Genera informes</span>
 								</a>
-							</li>
+							</li>-->
 						</ul>				
 					</div>
 
@@ -275,9 +275,9 @@
 
 									<div class="form-row">
 										<div class="col-sm-3">
-											<h5>
+											<h6>
 												Temperatura
-											</h5>
+											</h6>
 										</div>
 										<div class="col-sm-3">
 											<label>	Valor seteado:</label>
