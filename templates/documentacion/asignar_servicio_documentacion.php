@@ -150,8 +150,8 @@ $revisor = 2;
   if($departmento == "Otro"){
 
      ///////////////////// INSERTO EL ID DEL FLUJO EN EL NUEVO PROCESO DOCUMENTAL
-     $creando = mysqli_prepare($connect, "INSERT INTO documentacion (id_persona, id_numot, id_usuario) VALUES (?,?)");
-     mysqli_stmt_bind_param($creando, 'iii', $id_valida_usuario, $id_numot, $id_valida_usuario);
+     $creando = mysqli_prepare($connect, "INSERT INTO documentacion (id_numot, id_usuario) VALUES (?,?)");
+     mysqli_stmt_bind_param($creando, 'ii', $id_numot, $id_valida_usuario);
      mysqli_stmt_execute($creando);
      $id_documentacion = mysqli_stmt_insert_id($creando); 
      
