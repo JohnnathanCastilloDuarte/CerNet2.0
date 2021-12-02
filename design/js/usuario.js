@@ -237,7 +237,8 @@ function buscar_cargos(){
 		type:'POST',
 		url:'templates/usuario/buscar_cargo.php',
 		success:function(response){
-			let traer = JSON.parse()
+			/*let traer = JSON.parse(response);
+			let tampl*/
 		}
 	})
 }
