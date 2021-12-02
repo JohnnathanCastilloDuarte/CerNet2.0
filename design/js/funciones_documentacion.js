@@ -95,9 +95,9 @@ $(document).on('click','#agregar_documentacion',function(){
           icon:'question',
           input: 'select',
           inputOptions: {
-              CSV: 'CSV',
-              SPOT: 'SPOT',
-              GEP: 'GEP',
+              //CSV: 'CSV',
+              //SPOT: 'SPOT',
+              //GEP: 'GEP',
               Otro: 'Otro'        
           },
           inputPlaceholder: 'Seleccione el departamento',
