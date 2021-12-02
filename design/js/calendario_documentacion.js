@@ -14,37 +14,33 @@ function traer_calendario(){
             let traer = JSON.parse(response);
             let template = "";
             let rol = "";
+            let fecha_firma = "";
+            let tipo = "";
 
             traer.forEach((x)=>{
-                if(x.rol == 10){
-                    rol = '<span class="text-mute">Gerente</span>';
-                }else if(x.rol == 2){
-                    rol = '<span class="text-mute">HEAD SPOT</span>';
-                }else if(x.rol == 3){
-                    rol = '<span class="text-mute">Operaciones SPOT</span>';
-                }
-                else if(x.rol == 4){
-                    rol = '<span class="text-mute">HEAD GEP</span>';
-                }else if(x.rol == 5){
-                    rol = '<span class="text-mute">Operaciones GEP</span>';
-                }else if(x.rol == 6){
-                    rol = '<span class="text-mute">HEAD CSV</span>';
-                }else if(x.rol == 7){
-                    rol = '<span class="text-mute">Operaciones CSV</span>';
-                }else if(x.rol == 8){
-                    rol = '<span class="text-mute">Documental</span>';
-                }else if(x.rol == 9){
-                    rol = '<span class="text-mute">Calidad</span>';
+                
+                if(x.fecha_firma == null){
+                    console.log('Aqui');
+                    fecha_firma = 'Sin firma';
+                }else{
+                    fecha_firma = x.fecha_firma;
                 }
 
+                if(x.tipo == null){
+                    console.log('Aqui');
+                    tipo = 'Sin aprobar';
+                }else{
+                    tipo = x.tipo;
+                }
 
                 template += `
                     <tr>
-                        <td>${rol}</td>
+                        <td>${x.rol}</td>
                         <td>${x.usuario}</td>
                         <td>${x.fecha_registro}</td>
-                        <td>${x.fecha_firma}</td>
-                        <td>${x.tipo}</td>
+                        <td>${fecha_firma}</td>
+                        <td>${x.diferencia}</td>
+                        <td>${tipo}</td>
                     </tr>
                 
                 `;

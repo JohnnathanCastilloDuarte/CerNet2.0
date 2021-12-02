@@ -1,10 +1,12 @@
 var id_valida = $("#id_valida").val();
+$("#row_rechazos").hide();
+$("#historial_aprobacion").hide();
 
 //////////////////////// FUNCIONES CREADAS PARA APROBACIONES HEAD/////////////////////////
-listar_documentacion_head();
+listar_documentacion_head(0);
 
 $("#TodasHead").click(function(){
-  listar_documentacion_head();
+  listar_documentacion_head(0);
 });
 $("#RevisadasHead").click(function(){
   listar_documentacion_head(1);
@@ -20,170 +22,218 @@ function listar_documentacion_head(estado_ver){
     id_valida
   }
   
+
+
   $.ajax({
     type:'POST',
     data:datos,
     url:'templates/documentacion/head_templates/traer_documentos.php',
     success:function(response){
       console.log(response);
+     
       let traer = JSON.parse(response);
       let template = "";
       let estado = ""
       let escritura_estado = "";
       let option_estado = "";
       let boton_ver = "";
+      let color_fila = "";
       
       traer.forEach((x)=>{
+
+        if(x.estructura == 1){
+
+          
         
-        if(x.rol == 'Junior Documentary Analyst' || x.rol == 'Leading Senior Documentary Analyst' || x.rol == 'Senior Documentary Analyst' || x.rol == 'Documentary Analyst'){
-          if(x.estado == 1){
+          if(x.rol == 'Junior Documentary Analyst' || x.rol == 'Leading Senior Documentary Analyst' || x.rol == 'Senior Documentary Analyst' || x.rol == 'Documentary Analyst'){
+            if(x.estado == 0){
+              option_estado = `
+              <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
+                <option value="0">Seleccione...</option>
+                <option value="Revisado">Aprobado</option>
+                <option value="error">Rechazado</option>
+              </select>`;
+            }else if(x.estado == 1){
+              option_estado ='<span class="badge badge-muted">Aprobaste || En espera de informes</span>';
+            }else if(x.estado == 2){
+              option_estado ='<span class="badge badge-muted">Subiste documentación || En espera de Head</span>';
+            }else if(x.estado == 3){
+              option_estado ='<span class="badge badge-muted">Rechazaste el documento</span>';
+            }else if(x.estado == 4){
+              option_estado ='<span class="badge badge-muted">Aprobación Inspector || En Espera de Head</span>';
+            }else if(x.estado == 5){
+              option_estado ='<span class="badge badge-muted">Rechazado por Inspector</span>';
+            }else if(x.estado == 6){
+              option_estado ='<span class="badge badge-muted">Aprobadoción HEAD || En Espera de Calidad</span>';
+            }else if(x.estado == 7){
+              option_estado ='<span class="badge badge-muted">Rechazo por HEAD</span>';
+            }else if(x.estado == 8){
+              option_estado ='<span class="badge badge-muted">Aprobadoción Calidad || En Espera de Cliente</span>';
+            }else if(x.estado == 9){
+              option_estado ='<span class="badge badge-muted">Rechazado por calidad</span>';
+            }else if(x.estado == 10){
+              option_estado ='<span class="badge badge-muted">Aprobación Cliente</span>';
+            }else if(x.estado == 11){
+              option_estado ='<span class="badge badge-muted">Rechazo Cliente</span>';
+            }
+          }
+
+          else if(x.rol == 'Inspector Junior' || x.rol == 'Senior Consultant' || x.rol == 'Junior Analyst' || x.rol == 'Consultant' || x.rol == 'Engineer'){
+            if(x.estado == 2){
+              option_estado = `
+              <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
+                <option value="Seleccione">Seleccione...</option>
+                <option value="Revisado">Revisado</option>
+                <option value="error">Rechazado</option>
+              </select>`;
+            }else if(x.estado == 4){
+              option_estado ='<span class="badge badge-muted">Aprobaste el documento || En Espera de Head</span>';
+            }else if(x.estado == 5){
+              option_estado ='<span class="badge badge-muted">Rechazaste</span>';
+            }else if(x.estado == 6){
+              option_estado ='<span class="badge badge-muted">Aprobadoción HEAD || En Espera de Calidad</span>';
+            }else if(x.estado == 7){
+              option_estado ='<span class="badge badge-muted">Rechazo por HEAD</span>';
+            }else if(x.estado == 8){
+              option_estado ='<span class="badge badge-muted">Aprobadoción Calidad || En Espera de Cliente</span>';
+            }else if(x.estado == 9){
+              option_estado ='<span class="badge badge-muted">Rechazado por Calidad</span>';
+            }else if(x.estado == 10){
+              option_estado ='<span class="badge badge-muted">Aprobación Cliente</span>';
+            }else if(x.estado == 11){
+              option_estado ='<span class="badge badge-muted">Rechazo Cliente</span>';
+            }
+          }  
+
+          else if(x.rol == 'Head' || x.rol == 'Chief Operating Officer'){
+            if(x.estado == 4){
+              option_estado = `
+              <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
+                <option value="Seleccione">Seleccione...</option>
+                <option value="Revisado">Revisado</option>
+                <option value="error">Rechazado</option>
+              </select>`;
+            }else if(x.estado == 6){
+              option_estado ='<span class="badge badge-muted">Aprobaste el documento || En Espera de Calidad</span>';
+            }else if(x.estado == 7){
+              option_estado ='<span class="badge badge-muted">Rechazaste el documento</span>';
+            }else if(x.estado == 8){
+              option_estado ='<span class="badge badge-muted">Aprobación Calidad || En Espera de Cliente</span>';
+            }else if(x.estado == 9){
+              option_estado ='<span class="badge badge-muted">Rechazado por Calidad</span>';
+            }else if(x.estado == 10){
+              option_estado ='<span class="badge badge-muted">Aprobación Cliente</span>';
+            }else if(x.estado == 11){
+              option_estado ='<span class="badge badge-muted">Rechazo Cliente</span>';
+            }
+          }
+
+          else if(x.rol == 'Quality Controller'){
+            if(x.estado == 6){
+              option_estado = `
+              <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
+                <option value="0">Seleccione...</option>
+                <option value="Revisado">Revisado</option>
+                <option value="error">Rechazado</option>
+              </select>`;
+            }else if(x.estado == 8){
+              option_estado ='<span class="badge badge-muted">Aprobaste el documento || En espera del cliente</span>';
+            }else if(x.estado == 9){
+              option_estado ='<span class="badge badge-muted">Rechazaste el documento</span>';
+            }else if(x.estado == 10){
+              option_estado ='<span class="badge badge-muted">Aprobación Cliente</span>';
+            }else if(x.estado == 11){
+              option_estado ='<span class="badge badge-muted">Rechazo Cliente</span>';
+            }
+          }
+          
+
+          if(x.estado == 0){
+            boton_ver = `<a class="btn btn-info" onclick="window.open('https://${x.url}')"><i class="fa fa-eye" aria-hidden="true"></i</a>`;
+          }else{
+            boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
+          }
+
+
+          if(x.estado == 0){
+            estado = '<span class="badge badge-primary">Iniciado</span>';
+            escritura_estado = "Link de documentación creado";
+            
+          }else if(x.estado == 1){
+            estado = '<span class="badge badge-success">Aprobación Analista Documental</span>';
+            escritura_estado = "Aprobacion Analista documental";
+            
+          }else if(x.estado == 2){
+            estado = '<span class="badge badge-danger">Informes cargados</span>';
+            escritura_estado = "Informes cargados";
+          }
+          
+          else if(x.estado == 3){
+            estado = '<span class="badge badge-danger">Rechazado Analista Documental</span>';
+            escritura_estado = "Rechazado Analista Documental";
+          }else if(x.estado == 4){
+            estado = '<span class="badge badge-success">Aprobado Inspector</span>';
+            escritura_estado = "Aprobado Inspector";
+          }else if(x.estado == 5){
+            estado = '<span class="badge badge-danger">Rechazado Inspector</span>';
+            escritura_estado = "Rechazado Inspector";
+          }else if(x.estado == 6){
+            estado = '<span class="badge badge-success">Aprobado HEAD / COO</span>';
+            escritura_estado = "Aprobado HEAD / COO";
+          }else if(x.estado == 7){
+            estado = '<span class="badge badge-danger">Rechazado HEAD / COO</span>';
+            escritura_estado = "Rechazado HEAD / COO";
+          }else if(x.estado == 8){
+            estado = '<span class="badge badge-success">Aprobado Calidad</span>';
+            escritura_estado = "Aprobado Calidad";
+          }else if(x.estado == 9){
+            estado = '<span class="badge badge-danger">Rechazado Calidad</span>';
+            escritura_estado = "Rechazado Calidad";
+          }
+          else if(x.estado == 10){
+            estado = '<span class="badge badge-success">Aprobado Cliente</span>';
+            escritura_estado = "Aprobado Cliente";
+          }
+          else if(x.estado == 11){
+            estado = '<span class="badge badge-danger">Rechazado por Cliente</span>';
+            escritura_estado = "Rechazado por Cliente";
+          }
+
+          
+        }///////////// CIERRE DE LA ESTRUCTURA 1 - csv head spot
+        else{
+         
+          if(x.tipo_validador == 0){
             option_estado = `
-            <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
-              <option value="Seleccione">Seleccione...</option>
+            <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}' data-participante = '${x.id_participante}'>
+              <option value="0">Seleccione...</option>
               <option value="Revisado">Aprobado</option>
               <option value="error">Rechazado</option>
             </select>`;
-          }else if(x.estado == 1){
-            option_estado ='<span class="badge badge-muted">Aprobaste || En espera de HEAD</span>';
-          }else if(x.estado == 2){
-            option_estado ='<span class="badge badge-muted">Aprobado HEAD || En espera de Calidad</span>';
-          }else if(x.estado == 3){
-            option_estado ='<span class="badge badge-muted">Aprobación Calidad || En espera de Gerencia</span>';
-          }else if(x.estado == 5){
-            option_estado ='<span class="badge badge-muted">Rechazaste el documento</span>';
-          }else if(x.estado == 6){
-            option_estado ='<span class="badge badge-muted">Rechazado por HEAD</span>';
-          }else if(x.estado == 7){
-            option_estado ='<span class="badge badge-muted">Rechazado por Calidad</span>';
-          }else if(x.estado == 8){
-            option_estado ='<span class="badge badge-muted">Rechazado por Gerente</span>';
+          }else{
+            option_estado =`<span class="badge badge-muted">Faltantes aprobación ${x.faltantes}</span>`;
           }
-        }
 
-        else if(x.rol == 'Head'){
-          if(x.estado == 1){
-            option_estado = `
-            <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
-              <option value="Seleccione">Seleccione...</option>
-              <option value="Revisado">Revisado</option>
-              <option value="error">Rechazado</option>
-            </select>`;
-          }else if(x.estado == 2){
-            option_estado ='<span class="badge badge-muted">Aprobaste || En espera de Calidad</span>';
-          }else if(x.estado == 3){
-            option_estado ='<span class="badge badge-muted">Aprobación Calidad || En espera de Gerencia</span>';
-          }else if(x.estado == 6){
-            option_estado ='<span class="badge badge-muted">Rechazaste el Documento</span>';
-          }else if(x.estado == 7){
-            option_estado ='<span class="badge badge-muted">Rechazado por Calidad</span>';
-          }else if(x.estado == 8){
-            option_estado ='<span class="badge badge-muted">Rechazado por Gerente</span>';
-          }
-        }
-
-        else if(x.rol == 'Calidad'){
-          if(x.estado == 2){
-            option_estado = `
-            <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
-              <option value="Seleccione">Seleccione...</option>
-              <option value="Revisado">Revisado</option>
-              <option value="error">Rechazado</option>
-            </select>`;
-          }else if(x.estado == 3){
-            option_estado ='<span class="badge badge-muted">Aprobaste || En espera de Gerencia</span>';
-          }else if(x.estado == 7){
-            option_estado ='<span class="badge badge-muted">Rechazaste el documento</span>';
-          }else if(x.estado == 8){
-            option_estado ='<span class="badge badge-muted">Rechazado por Gerente</span>';
-          }
-        }
-
-        else if(x.rol == 'CEO' || x.rol == 'COO'){
-          if(x.estado == 3){
-            option_estado = `
-            <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}'>
-              <option value="Seleccione">Seleccione...</option>
-              <option value="Revisado">Revisado</option>
-              <option value="error">Rechazado</option>
-            </select>`;
-          }else if(x.estado == 1){
-            option_estado ='<span class="badge badge-muted">Aprobado Documentación || En espera de HEAD</span>';
-          }else if(x.estado == 2){
-            option_estado ='<span class="badge badge-muted">Aprobado HEAD || En espera de Calidad</span>';
-          }else if(x.estado == 3){
-            option_estado ='<span class="badge badge-muted">Aprobación Calidad || En espera de Gerencia</span>';
-          }else if(x.estado == 4){
-            option_estado ='<span class="badge badge-muted">Aprobaste || Liberado a cliente</span>';
-          }else if(x.estado == 5){
-            option_estado ='<span class="badge badge-muted">Rechazado por Documentador</span>';
-          }else if(x.estado == 6){
-            option_estado ='<span class="badge badge-muted">Rechazado por HEAD</span>';
-          }else if(x.estado == 7){
-            option_estado ='<span class="badge badge-muted">Rechazado por Calidad</span>';
-          }else if(x.estado == 8){
-            option_estado ='<span class="badge badge-muted">Rechazaste el Documento</span>';
-          }
-        }
-
-        
-
-        if(x.estado == 1){
-          alert(x.url);
-          boton_ver = `<a class="btn btn-info" onclick="window.open('https://${x.url}')"><i class="fa fa-eye" aria-hidden="true"></i</a>`;
-        }else{
           boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
-        }
 
+          if(x.estado == 2){
+            estado = '<span class="badge badge-success">Documentación cargada</span>';
+            escritura_estado = "Documentación cargada";
+          }else if(x.estado == 3){
+            estado = '<span class="badge badge-success">Aprobaste</span>';
+            escritura_estado = "En espera del siguiente aprobador";
+          }
 
-
-        if(x.estado == 0){
-          estado = '<span class="badge badge-primary">Creado</span>';
-          escritura_estado = "Sin accion";
-          
-    
-        }else if(x.estado == 1){
-          estado = '<span class="badge badge-success">Documentos cargados Inspector</span>';
-          escritura_estado = "Documentos cargados Inspector";
-          
-        }else if(x.estado == 2){
-          estado = '<span class="badge badge-success">Aprobado Documental</span>';
-          escritura_estado = "Aprobado Documental";
-        }else if(x.estado == 3){
-          estado = '<span class="badge badge-success">Aprobado Inspector</span>';
-          escritura_estado = "Aprobado Inspector";
-        }else if(x.estado == 4){
-          estado = '<span class="badge badge-success">Aprobado Head</span>';
-          escritura_estado = "Aprobado Head";
-        }else if(x.estado == 5){
-          estado = '<span class="badge badge-success">Aprobado Calidad</span>';
-          escritura_estado = "Aprobado Calidad";
-        }else if(x.estado == 6){
-          estado = '<span class="badge badge-success">Aprobado Cliente</span>';
-          escritura_estado = "Aprobado Cliente";
-        }else if(x.estado == 5){
-          estado = '<span class="badge badge-success">Rechazado por Documental</span>';
-          escritura_estado = "Rechazado por documental";
-        }else if(x.estado == 6){
-          estado = '<span class="badge badge-danger">Rechazado por Inspector</span>';
-          escritura_estado = "Rechazado por inspector";
-        }
-        else if(x.estado == 7){
-          estado = '<span class="badge badge-danger">Rechazado por Head</span>';
-          escritura_estado = "Rechazado por Head";
-        }
-        else if(x.estado == 8){
-          estado = '<span class="badge badge-danger">Rechazado por Calidad</span>';
-          escritura_estado = "Rechazado por Calidad";
-        }
-        else if(x.estado == 9){
-          estado = '<span class="badge badge-danger">Rechazado por Calidad</span>';
-          escritura_estado = "Rechazado por Calidad";
-        }
-
-              
+          if(x.faltantes > 0){
+            color_fila = "#eee563";
+          }else{
+            color_fila = "#94ff94";
+          }
+        }  
+        
         template += 
            `
-           <tr>
+           <tr style="background: ${color_fila};">
             <td>${x.id_documentacion}</td>
             <td>${x.empresa}</td>
             <td>${x.archivo}</td>
@@ -191,12 +241,14 @@ function listar_documentacion_head(estado_ver){
             <td>${boton_ver}</td>
             <td><button class="btn btn-muted" id="ver_comentarios" data-id="${x.id_documentacion}"><i class="fa fa-book" aria-hidden="true"></i</button></td>
             <td><button class="btn btn-muted" id="ver_cronograma" data-id="${x.id_documentacion}"><i class="fa fa-calendar" aria-hidden="true"></i</button></td>
+            
             <td>
               ${option_estado}
             </td>
             <td>${estado}</td>
-
+            <td><button id="ver_historial" class="btn btn-primary" data-id="${x.id_documentacion}">Historial</button></td>
           </tr>
+         
          
 
           `;
@@ -224,18 +276,12 @@ $(document).on('submit','#form_head_comentarios',function(e){
     contentType: false,
     processData: false,
     success:function(response){
-      console.log(response);
+      
     }
   
   });
   
 });
-
-////////////// OCULTANDO CAMPO DE ESTADO SI NO ES REVISADO EL DOCUMENTO
-$(document).ready(function(){
-  $("#aprobacion_head").hide();
-});
-
 
 
 ////////////////////////////////
@@ -244,76 +290,107 @@ $(document).on('change','#aprobacion_head',function(){
   
     let id = $(this).attr('data-id');
     let valor = $(this).val();
+    let id_participante = $(this).attr('data-participante');
+
+    let informa_documentacion = "";
+
+    $("#id_documentacion_rechazos").val(id);
   
     const datos = {
       id,
       valor,
+      id_valida,
+      id_participante
+    }
+
+    let id_documentacion_d = id;
+
+    const datos_apro = {
+      informa_documentacion,
+      id_documentacion_d,
       id_valida
+
     }
   
-   Swal.fire({
-     title:'Mensaje',
-     text:'Estas seguro que configurar como '+valor+' ?',
-     icon:'question',
-     showConfirmButton: true,
-     showCancelButton: true,
-     confirmButtonText: 'Si!',
-     cancelButtonText: 'No!'
-   }).then((x)=>{
-     if(x.value){
-       $.ajax({
-         type:'POST',
-         url:'templates/documentacion/head_templates/estado_head.php',
-         data:datos,
-         success:function(response){
-           console.log(response);
-         
-           if(response == "Si"){
-             Swal.fire({
-               title:'Mensaje',
-               text:'Se ha modificado correctamente el estado de la documentación',
-               icon:'success',
-               timer:1500
-             });
-           }else if(response == "Si correo"){
-             Swal.fire({
-               title:'Mensaje',
-               text:`Se ha modificado correctamente el estado de la documentación,
-               se ha enviado un correo para firmar la aprobación del documento`,
-               icon:'success',
-               timer:2100
-             });
-             $.ajax({
-               type:'POST',
-               url:'templates/documentacion/enviar_correo.php',
-               data:datos,
-               success:function(response){
-                 console.log(response);
+    if(valor != "error" && valor != 0){
+      $("#row_rechazos").hide();
+      Swal.fire({
+        title:'Mensaje',
+        text:'Estas seguro que configurar como '+valor+' ?',
+        icon:'question',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!'
+      }).then((x)=>{
+        if(x.value){
+          $.ajax({
+            type:'POST',
+            url:'templates/documentacion/head_templates/estado_head.php',
+            data:datos,
+            success:function(response){
+              console.log(response);
+              
+              if(response == "Si"){
+                Swal.fire({
+                  title:'Mensaje',
+                  text:'Se ha modificado correctamente el estado de la documentación',
+                  icon:'success',
+                  timer:1500
+                });
+              }else if(response == "Si correo"){
+                Swal.fire({
+                  title:'Mensaje',
+                  text:`Se ha modificado correctamente el estado de la documentación,
+                  se ha enviado un correo para firmar la aprobación del documento`,
+                  icon:'success',
+                  timer:2100
+                });
+                $.ajax({
+                  type:'POST',
+                  url:'templates/documentacion/enviar_correo.php',
+                  data:datos_apro,
+                  success:function(response){
+                    console.log(response);
+                  }
+                });
+              }else if(response == "Si documentador"){
+               let tipo = "documentador";
+               const datos = {
+                 id,
+                 valor,
+                 id_valida,
+                 tipo
                }
-             });
-           }else if(response == "Si documentador"){
-            let tipo = "documentador";
-            const datos = {
-              id,
-              valor,
-              id_valida,
-              tipo
+               $.ajax({
+                 type:'POST',
+                 url:'templates/documentacion/enviar_correo.php',
+                 data:datos,
+                 success:function(response){
+                  
+                 }
+               });
+             }else if(response == "Si documentacion"){
+              Swal.fire({
+                title:'Mensaje',
+                text:`Se ha modificado correctamente el estado de la documentación,
+                Se debe cargar la documentación generada por el departamento documental`,
+                icon:'success',
+                timer:2100
+              });
+             }
+              listar_documentacion_head(0);
             }
-            $.ajax({
-              type:'POST',
-              url:'templates/documentacion/enviar_correo.php',
-              data:datos,
-              success:function(response){
-                console.log(response);
-              }
-            });
-          }
-           listar_documentacion_head(0);
-         }
-       })
-     }
-   });
-  
+          })
+        }
+      });
+    }else{
+      $("#row_rechazos").show();
+      motivos_rechazos();
+      documentacion_inspector();
+      traer_rechazos();
+    }
+ 
 });
 
 
@@ -325,7 +402,7 @@ $(document).on('click','#ver_comentarios',function(){
 
 $(document).on('click','#ver_documentacion_aprobacion',function(){
   
-    $("#aprobacion_head").show();
+    //$("#aprobacion_head").show();
     let nombre_archivo = $(this).attr('data-name');
     window.open('templates/documentacion/head_templates/visor_archivo.php?nombre='+nombre_archivo, nombre_archivo); 
 });
@@ -355,3 +432,222 @@ $(document).on('click','#ver_cronograma',function(){
     
 
 });
+
+
+///////////// LISTAR RECHAZOS
+function documentacion_inspector(){
+
+  let tipo = 1;
+
+  $.ajax({
+    type:'POST',
+    data:{tipo},
+    url:'templates/documentacion/controla_rechazos.php',
+    success:function(response){
+      let traer = JSON.parse(response);
+      let template = "";
+
+      traer.forEach((valor)=>{
+        template +=
+        `
+          <option value="${valor.id_documento}">${valor.nombre}</option>
+        
+        `;
+      });
+
+      $("#aqui_documentos_inspector").html("<option value='0'>Seleccione</option>"+template);
+    }
+  })
+}
+
+function motivos_rechazos(){
+
+  let tipo = 2;
+
+  $.ajax({
+    type:'POST',
+    data:{tipo},
+    url:'templates/documentacion/controla_rechazos.php',
+    success:function(response){
+      let traer = JSON.parse(response);
+      let template = "";
+
+      traer.forEach((valor)=>{
+        template += 
+        `
+          <option value="${valor.id}">${valor.motivo}</option>
+        
+        `;
+      });
+
+      $("#motivo_rechazo").html("<option value='0'>Seleccione</option>"+template);
+    }
+  })
+}
+
+
+//////////// evento para guardar el rechazo
+
+$("#guarda_rechazo").click(function(){
+
+    let documento = $("#aqui_documentos_inspector").val();
+    let motivo = $("#motivo_rechazo").val();
+    let id_documentacion = $("#id_documentacion_rechazos").val();
+
+    let tipo = 3;
+
+    const datos = {
+      documento,
+      motivo,
+      id_documentacion,
+      id_valida,
+      tipo
+    }
+
+    $.ajax({
+      type:'POST',
+      data:datos,
+      url:'templates/documentacion/controla_rechazos.php',
+      success:function(response){
+        console.log(response);
+        if(response == "Si"){
+
+          Swal.fire({
+            title:'Mensaje',
+            text:'Se ha guardo el rechazo correctamente',
+            icon:'success',
+            timer:1700
+          });
+
+        }else{
+          Swal.fire({
+            title:'Mensaje',
+            text:'Ya se ha rechazo el documento por ese motivo, selecciona otro motivo',
+            icon:'warning',
+            timer:1700
+          });
+        }
+        traer_rechazos();
+      }
+      
+    });  
+  
+
+});
+
+
+function traer_rechazos(){
+
+  let id_documentacion = $("#id_documentacion_rechazos").val();
+  let tipo = 4;
+
+  const datos = {
+    id_documentacion,
+    tipo
+  }
+
+  $.ajax({
+    type:'POST',
+    data:datos,
+    url:'templates/documentacion/controla_rechazos.php',
+    success:function(response){
+
+      let traer = JSON.parse(response);
+      let template = "";
+
+      traer.forEach((valor)=>{
+
+        template += 
+        `
+          <tr>
+            <td>${valor.documento}</td>
+            <td>${valor.rechazo}</td>
+            <td>${valor.fecha_rechazo}</td>
+            <td>${valor.nombres} ${valor.apellidos}</td>
+          </tr>
+        `;
+      });
+
+      $("#aqui_todos_rechazos").html(template);
+    }
+  });
+}
+
+
+
+$(document).on('click','#ver_historial',function(){
+
+  let id_documentacion = $(this).attr('data-id');
+
+  $("#historial_aprobacion").show();  
+  ya_firmo(id_documentacion, id_valida);
+
+});
+
+
+function ya_firmo(id_documentacion, id_valida) {
+  const datos = {
+    id_documentacion,
+    id_valida
+  }
+  $.ajax({
+    type: 'POST',
+    data: datos,
+    url: 'templates/documentacion/yafirmo.php',
+    success: function(response) {
+
+      
+      let traer = JSON.parse(response);
+      let msj = "";
+          
+        traer.forEach((valor)=>{
+           msj += `
+          <div class="col-sm-4" style="text-align:center;">
+            <span class='text-muted' style='text-align:center;'>${valor.nombre} ${valor.apellido} Ya ha firmado:<br>
+            Nombre proceso documental: ${valor.nombre_documento}.<br>
+            Empresas: Cercal Group - ${valor.empresa}.<br>
+            El dia ${valor.fecha_firma}</span><br>
+                        <img src="templates/documentacion/head_templates/${valor.qr}" style="margin-left:0px" width="300px"/>
+           </div>               
+          `;
+        });
+        
+        $("#m").html(msj);
+        $("#aqui_pdf_bton").html(`<button class="btn btn-danger" data-id="${id_documentacion}" id="descarga_datos_informe">Generar PDF <i class="fas fa-file-pdf"></i></button>`);
+
+    }
+  });
+}
+
+
+//////////// btn que controla la targeta de historial 
+
+$("#cerrar_historial").click(function(){
+  $("#historial_aprobacion").hide();
+})
+
+
+///////////// informe de documentacion 
+$(document).on('click', '#descarga_datos_informe', function(){
+  let id_documentacion = $(this).attr('data-id');
+
+  $.ajax({
+    type:'POST',
+    data:{id_documentacion},
+    url:'templates/documentacion/creador_md5.php',
+    success:function(response){
+      console.log(response);
+      let id_documentacion_d = response;
+      if(es_local == "No"){
+        window.open('https://cercal.net/CerNet2.0/informe_firmantes_final2.php?key=' + id_documentacion_d);  
+    }else{
+      window.open('https://localhost/CerNet2.0/informe_firmantes_final2.php?key=' + id_documentacion_d);  
+    }
+    }
+  })
+
+ 
+
+
+  
+})

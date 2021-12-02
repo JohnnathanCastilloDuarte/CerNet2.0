@@ -59,7 +59,7 @@
 								<th>Modulo</th>
 								<th>Acciones</th>
 							</thead>
-							<tbody id="container">
+							<tbody id="container_privilegio">
 												
 							</tbody>
 						</table>
