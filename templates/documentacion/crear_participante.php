@@ -3,7 +3,6 @@ error_reporting(0);
 include("../../config.ini.php");
 $seleccion = $_POST['seleccion'];
 
-echo $seleccion;
 
 if($seleccion == 1){
  
@@ -74,24 +73,22 @@ if($seleccion == 1){
   mysqli_stmt_execute($creando);
 
 }else{
-    $rol = $_POST['rol'];
-    $id_valida_usuario = $_POST['id_valida_usuario'];
-    $id_documentacion = $_POST['id_documentacion'];
-    $id_persona_oculto = $_POST['id_persona_oculto'];
-  
- $consultar = mysqli_prepare($connect,"SELECT id_usuario FROM persona WHERE id_persona = ?");
- mysqli_stmt_bind_param($consultar, 'i', $id_persona_oculto);
- mysqli_stmt_execute($consultar);
- mysqli_stmt_store_result($consultar);
- mysqli_stmt_bind_result($consultar, $id_usuario);
- mysqli_stmt_fetch($consultar); 
- echo mysqli_stmt_error($consultar);
-  
- $creando = mysqli_prepare($connect,"INSERT INTO participante_documentacion(id_persona, id_documentacion, rol, id_usuario)
+
+  $rol = $_POST['rol'];
+  $id_valida_usuario = $_POST['id_valida_usuario'];
+  $id_documentacion = $_POST['id_documentacion'];
+  $id_persona_oculto = $_POST['id_persona_oculto'];
+
+ $creando = mysqli_prepare($connect,"INSERT INTO participante_documentacion (id_persona, id_documentacion, rol, id_usuario)
                                     VALUES (?,?,?,?)");
-  mysqli_stmt_bind_param($creando, 'iiii', $id_usuario, $id_documentacion, $rol, $id_valida_usuario);
+  mysqli_stmt_bind_param($creando, 'iiii', $id_persona_oculto, $id_documentacion, $rol, $id_valida_usuario);
   mysqli_stmt_execute($creando);
-  echo mysqli_stmt_error($creando);
+
+  if($creando){
+    echo "Creado";
+  }else{
+    echo "Error ".mysqli_stmt_error($creando);
+  }
   
   
 } 

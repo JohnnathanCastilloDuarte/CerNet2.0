@@ -35,7 +35,7 @@ include("../../config.ini.php");
 
 if(!isset($imagen_1)){
 
-$target_dir = "Evidencia_Grafica/Ot_".$id_numot."/Id_servicio_".$id_asignado."/Id_mapeo_".$id_mapeo."/Posicion_sensores/";
+	$target_dir = "Evidencia_Grafica/Ot_".$id_numot."/Id_servicio_".$id_asignado."/Id_mapeo_".$id_mapeo."/Posicion_sensores/";
 	if(is_dir($target_dir)===false){
 		mkdir($target_dir,0777,true);
 	}
@@ -91,7 +91,7 @@ $target_dir = "Evidencia_Grafica/Ot_".$id_numot."/Id_servicio_".$id_asignado."/I
 							}
 			}else{
 				echo " Hubo un error al intentar cargar el archivo.";
-			} 
+			} 	
 		}
 }
 

@@ -330,11 +330,11 @@ else
 }else if(isset($_GET['clave'])){
     
   switch($_GET['parameter']){
-    case 1:
+    case 2:
       include("templates/documentacion/añadir_participantes.php");
     break;
       
-    case 2:
+    case 3:
       include("templates/documentacion/gestor_documentacion.php");
     break;  
   }

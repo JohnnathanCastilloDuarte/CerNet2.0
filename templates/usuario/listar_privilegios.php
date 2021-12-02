@@ -4,7 +4,8 @@ include('../../config.ini.php');
 
 $id_privilegio = $_POST['id_privilegio'];
 
-$traer = mysqli_prepare($connect,"SELECT id_privilegio, perfil, Modulos,     Usuarios, Clientes, Items, Ordenes_trabajo, Servicios, Informes, Documentacion, Cargos FROM privilegio WHERE id_privilegio = ?");
+
+$traer = mysqli_prepare($connect,"SELECT id_privilegio, perfil, Modulos, Usuarios, Clientes, Items, Ordenes_trabajo, Servicios, Informes, Documentacion, Cargos FROM privilegio WHERE id_privilegio = ?");
 mysqli_stmt_bind_param($traer, 'i', $id_privilegio);
 mysqli_stmt_execute($traer);
 mysqli_stmt_store_result($traer);

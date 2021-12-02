@@ -76,6 +76,18 @@ function traer_privilegios(){
 }
 
 
+/////////// EVENTO PARA CAMBIAR DE ROLES
+$("#selecte").change(function(){
+
+  let id_privilegio = $(this).val();
+
+  $("#id_privilegio").val(id_privilegio);
+
+  leer_privilegios(id_privilegio);
+
+});
+
+
 ///////// FUNCION PARA TRAER LOS PRIVILEGIOS
 function leer_privilegios(id_privilegio){
   $.ajax({
@@ -83,9 +95,10 @@ function leer_privilegios(id_privilegio){
     data:{id_privilegio},
     url:'templates/usuario/listar_privilegios.php',
     success:function(response){
+      console.log(response);
       let traer = JSON.parse(response);
       let template = "";
-      let modulos = ['Modulos','Usuarios', 'Clientes', 'Items', 'Ordenes trabajo (OT)', 'Servicios', 'Informes', 'Documentación', 'Cargos']
+      let modulos = ['Modulos','Usuarios', 'Clientes', 'Items', 'Ordenes trabajo (OT)', 'Servicios', 'Informes', 'Documentación', 'Cargos'];
       let f = 0;
 
       let modulo1 = "";
@@ -201,28 +214,17 @@ function leer_privilegios(id_privilegio){
         `;
 
         f = f+1;
-
+        
       });
 
-
-
-      $("#container").html(template);
+      $("#container_privilegio").html(template);
+      
     }
   }) 
 
 }
 
 
-/////////// EVENTO PARA CAMBIAR DE ROLES
-$("#selecte").change(function(){
-
-  let id_privilegio = $(this).val();
-
-  $("#id_privilegio").val(id_privilegio);
-
-  leer_privilegios(id_privilegio);
-
-});
 
 
 ///////////////// EVENTO PARA CAMBIAR LOS PRIVILEGIOS

@@ -41,7 +41,7 @@ if(mysqli_stmt_num_rows($consultar)> 0){
     }else{
   
       $host = "smtp.gmail.com";
-      $Username = "pruebascernet@gmail.com";
+      $Username = "soportecernet@gmail.com";
       $password = "Cercal2021.";
       $url = "http://localhost/CerNet2.0/restablecer_pass.php?key=".$id_protegido;
       $url_cernet = "https://localhost/CerNet2.0";

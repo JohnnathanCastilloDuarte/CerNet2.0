@@ -27,6 +27,8 @@ $revisor = 2;
 
   if($departmento == "CSV" or $departmento == "SPOT" or $departmento == "GEP"){
 
+
+    /*
     $orden1 = 1;
     $orden2 = 2;
     $orden3 = 3;
@@ -34,7 +36,7 @@ $revisor = 2;
     $orden5 = 5;
 
     $estructura = 1;
-
+    */
    
     ///////////////////// INSERTO EL ID DEL FLUJO EN EL NUEVO PROCESO DOCUMENTAL
     $creando = mysqli_prepare($connect, "INSERT INTO documentacion (id_numot, id_flujo, id_usuario, estructura) VALUES (?,?,?,?)");
@@ -42,6 +44,7 @@ $revisor = 2;
     mysqli_stmt_execute($creando);
     $id_documentacion = mysqli_stmt_insert_id($creando); 
 
+    
     //// SE INSERTA EL INSPECTOR
     $insertando_documentador = mysqli_prepare($connect,"INSERT INTO firmantes_documentacion (id_documento, id_usuario) VALUES (?,?)");
     mysqli_stmt_bind_param($insertando_documentador, 'ii', $id_documentacion, $id_valida_usuario);
@@ -144,7 +147,15 @@ $revisor = 2;
   
   }///////// CIERRE DEL IF QUE COMPARA EL COMPORTAMIENTO DEL FLUJO CON LINK
  
+  if($departmento == "Otro"){
 
+     ///////////////////// INSERTO EL ID DEL FLUJO EN EL NUEVO PROCESO DOCUMENTAL
+     $creando = mysqli_prepare($connect, "INSERT INTO documentacion (id_persona, id_numot, id_usuario) VALUES (?,?)");
+     mysqli_stmt_bind_param($creando, 'iii', $id_valida_usuario, $id_numot, $id_valida_usuario);
+     mysqli_stmt_execute($creando);
+     $id_documentacion = mysqli_stmt_insert_id($creando); 
+     
+  }
 
 
 
