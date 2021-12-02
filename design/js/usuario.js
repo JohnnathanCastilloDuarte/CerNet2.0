@@ -226,3 +226,22 @@ $("#formulario_actualizacion_usuario").submit(function(e){
 
 
 
+
+
+
+/////////// FUNCION PARA BUSCAR CARGO
+buscar_cargos();
+function buscar_cargos(){
+
+	$.ajax({
+		type:'POST',
+		url:'templates/usuario/buscar_cargo.php',
+		success:function(response){
+			/*let traer = JSON.parse(response);
+			let tampl*/
+		}
+	})
+}
+
+
+
