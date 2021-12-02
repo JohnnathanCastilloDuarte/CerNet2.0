@@ -7,7 +7,7 @@ echo '<input type="hidden" value='.$doc.' id="doc">';
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <title>Calendario</title>
   <meta charset="utf-8">
@@ -33,6 +33,7 @@ echo '<input type="hidden" value='.$doc.' id="doc">';
                         <th>usuario</th>
                         <th>Fecha de registro</th>
                         <th>Fecha de firma</th>
+                        <th>Dias</th>
                         <th>Tipo</th>
                     </thead>
                     <tbody id="traer_calendario">

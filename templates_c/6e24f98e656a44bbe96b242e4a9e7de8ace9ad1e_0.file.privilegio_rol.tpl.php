@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-13 21:44:51
+/* Smarty version 3.1.34-dev-7, created on 2021-11-29 22:50:22
   from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\privilegio_rol.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61673733a76231_77577833',
+  'unifunc' => 'content_61a54b1e01a662_64003921',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6e24f98e656a44bbe96b242e4a9e7de8ace9ad1e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\privilegio_rol.tpl',
-      1 => 1634154257,
+      1 => 1638222616,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61673733a76231_77577833 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a54b1e01a662_64003921 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#privilegio">
@@ -82,7 +82,7 @@ function content_61673733a76231_77577833 (Smarty_Internal_Template $_smarty_tpl)
 								<th>Modulo</th>
 								<th>Acciones</th>
 							</thead>
-							<tbody id="container">
+							<tbody id="container_privilegio">
 												
 							</tbody>
 						</table>

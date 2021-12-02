@@ -9,11 +9,11 @@ $seleccion = $_POST['seleccion'];
 if($seleccion == 1){
   $json = array();
   
-  $consultar = mysqli_prepare($connect,"SELECT a.id, b.nombre, b.apellido, b.email, a.rol, c.nombre, b.id_usuario FROM participante_documentacion as a, persona as b, empresa as c WHERE b.id_empresa = c.id_empresa AND a.id_documentacion = ? AND a.id_persona = b.id_usuario ORDER BY b.nombre ASC");
+  $consultar = mysqli_prepare($connect,"SELECT a.id, b.nombre, b.apellido, b.email, a.rol, c.nombre, b.id_usuario, a.orden FROM participante_documentacion as a, persona as b, empresa as c WHERE b.id_empresa = c.id_empresa AND a.id_documentacion = ? AND a.id_persona = b.id_usuario ORDER BY b.nombre ASC");
   mysqli_stmt_bind_param($consultar, 'i', $id_documentacion);
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
-  mysqli_stmt_bind_result($consultar, $id_participante, $nombres, $apellidos, $email, $rol, $empresa, $id_usuario);
+  mysqli_stmt_bind_result($consultar, $id_participante, $nombres, $apellidos, $email, $rol, $empresa, $id_usuario, $orden);
   
   while($row = mysqli_stmt_fetch($consultar)){
     $json[] = array(
@@ -23,7 +23,8 @@ if($seleccion == 1){
       'email'=>$email,
       'rol'=>$rol,
       'empresa'=>$empresa,
-      'id_usuario'=>$id_usuario
+      'id_usuario'=>$id_usuario,
+      'orden_firma'=>$orden
     );
   }
   
@@ -34,11 +35,11 @@ if($seleccion == 1){
 else if($seleccion == 2){
   $json = array();
   
-  $consultar = mysqli_prepare($connect,"SELECT a.id, b.nombre, b.apellido, b.email, a.rol, c.nombre, b.id_usuario FROM participante_documentacion as a, persona as b, empresa as c WHERE b.id_empresa = c.id_empresa AND a.id_documentacion = ? AND a.id_persona = b.id_usuario ORDER BY a.rol ASC");
+  $consultar = mysqli_prepare($connect,"SELECT a.id, b.nombre, b.apellido, b.email, a.rol, c.nombre, b.id_usuario, a.orden FROM participante_documentacion as a, persona as b, empresa as c WHERE b.id_empresa = c.id_empresa AND a.id_documentacion = ? AND a.id_persona = b.id_usuario ORDER BY a.orden ASC");
   mysqli_stmt_bind_param($consultar, 'i', $id_documentacion);
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
-  mysqli_stmt_bind_result($consultar, $id_participante, $nombres, $apellidos, $email, $rol, $empresa, $id_usuario);
+  mysqli_stmt_bind_result($consultar, $id_participante, $nombres, $apellidos, $email, $rol, $empresa, $id_usuario, $orden);
   
   while($row = mysqli_stmt_fetch($consultar)){
     $json[] = array(
@@ -48,7 +49,8 @@ else if($seleccion == 2){
       'email'=>$email,
       'rol'=>$rol,
       'empresa'=>$empresa,
-      'id_usuario'=>$id_usuario
+      'id_usuario'=>$id_usuario,
+      'orden_firma'=>$orden
     );
   }
   
