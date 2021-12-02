@@ -115,15 +115,7 @@
 						<div class="position-relative form-group">
 							<label>Departamento</label>
 							<select class="form-control" id="departamento_usuario">
-								<option>Selecciona...</option>
-								<option value="{$departamento_usuario}">{$departamento_usuario}</option>
-								<option value='ADMINISTRACIÓN'>ADMINISTRACIÓN</option>
-								<option value='COMERCIAL'>COMERCIAL</option>
-								<option value='CSV'>CSV</option>
-								<option value='GEP'>GEP</option>
-								<option value='MARKETING'>MARKETING</option>
-								<option value='SPOT'>SPOT</option>
-								<option value='T.I.'>T.I.</option>
+
 							</select>
 						</div>
 					</div>

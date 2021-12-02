@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-16 18:44:23
+/* Smarty version 3.1.34-dev-7, created on 2021-12-02 17:19:46
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6193edf7c74453_11274545',
+  'unifunc' => 'content_61a8f222ed3c60_90905612',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1637084662,
+      1 => 1638460882,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6193edf7c74453_11274545 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a8f222ed3c60_90905612 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -346,6 +346,7 @@ function content_6193edf7c74453_11274545 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Documentación<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
+    
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 ">Gestion documental</a>
