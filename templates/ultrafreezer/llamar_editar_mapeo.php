@@ -1,26 +1,26 @@
 <?php 
-	include("../../config.ini.php");
+include("../../config.ini.php");
 
-	$id_mapeo = $_POST['id_mapeo'];
+$id_mapeo = $_POST['id_mapeo'];
 
-	$listar = mysqli_prepare($connect,"SELECT  nombre, fecha_inicio, hora_inicio, fecha_final, hora_final, 
-													intervalo, temperatura_minima, temperatura_maxima, valor_seteado_temperatura FROM ultrafreezer_mapeo WHERE id_mapeo = $id_mapeo");
-	mysqli_stmt_execute($listar);
-	mysqli_stmt_store_result($listar);
-	mysqli_stmt_bind_result($listar,  $nombre, $fecha_inicio, $hora_inicio, $fecha_final, $hora_final, $intervalo, $temperatura_minima, 
-																		$temperatura_maxima, $valor_seteado_temperatura);
+$listar = mysqli_prepare($connect,"SELECT  nombre, fecha_inicio, hora_inicio, fecha_final, hora_final, 
+	intervalo, temperatura_minima, temperatura_maxima, valor_seteado_temperatura FROM ultrafreezer_mapeo WHERE id_mapeo = $id_mapeo");
+mysqli_stmt_execute($listar);
+mysqli_stmt_store_result($listar);
+mysqli_stmt_bind_result($listar,  $nombre, $fecha_inicio, $hora_inicio, $fecha_final, $hora_final, $intervalo, $temperatura_minima, 
+	$temperatura_maxima, $valor_seteado_temperatura);
 
 
-	$json = array();
+$json = array();
 
-	while($row = mysqli_stmt_fetch($listar)){
+while($row = mysqli_stmt_fetch($listar)){
+	
+	$explode_hora_inicio = explode(":",$hora_inicio);
+	$explode_hora_fin = explode(":",$hora_final);
+	
+	$json[]=array(
 		
-			$explode_hora_inicio = explode(":",$hora_inicio);
-			$explode_hora_fin = explode(":",$hora_final);
 		
-		$json[]=array(
-      
-      
 		'id_mapeo'=>$id_mapeo,	
 		'nombre'=>$nombre,
 		'fecha_inicio'=>$fecha_inicio,
@@ -35,12 +35,12 @@
 		'temperatura_minima'=>$temperatura_minima,
 		'temperatura_maxima'=>$temperatura_maxima,
 		'valor_seteado_temperatura'=>$valor_seteado_temperatura		
-		);
-	}
+	);
+}
 
-	$convert = json_encode($json[0]);
+$convert = json_encode($json[0]);
 
-	echo $convert;
+echo $convert;
 
 
 

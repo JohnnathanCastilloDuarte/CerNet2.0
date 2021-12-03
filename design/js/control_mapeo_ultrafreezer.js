@@ -42,6 +42,7 @@ $("#change_mapeo_ultrafreezer").hide();
 
 
 function setear_campos_ultrafreezer(){
+		$("#nombre_mapeo_ultrafreezer").val(0);
 		$("#fecha_inicio_mapeo_ultrafreezer").val("");
 		$("#hora_inicio_mapeo_ultrafreezer").val("");
 		$("#minuto_inicio_mapeo_ultrafreezer").val("");
@@ -244,7 +245,7 @@ $(document).on('click','#eliminar_bandeja_creada_ultrafreezer',function(){
 							timer:1500
 						});
 						listar_bandejas_ultrafreezer();
-            contar_registros_ultrafreezer();
+          				contar_registros_ultrafreezer();
 					}
 					
 					else if(e == "No"){
@@ -391,7 +392,7 @@ function listar_mapeos_ultrafreezer(){
 								title:'El mapeo ha sido eliminado correctamente',
 								timer:1500
 							});
-							console.log(listar_mapeos_ultrafreezer());
+							listar_mapeos_ultrafreezer();
 						}
 				});
 			}
@@ -455,7 +456,7 @@ function listar_mapeos_ultrafreezer(){
 					timer:1500
 				});
 				listar_mapeos_ultrafreezer();
-     		    listar_informes_ultrafreezer()
+     		    listar_informes_ultrafreezer();
 				setear_campos_ultrafreezer();
 				crear_informes_ultrafreezer();
       			contar_registro_informes_ultrafreezer();
@@ -493,9 +494,9 @@ function listar_mapeos_ultrafreezer(){
 				data: {id_mapeo},
 				url: 'templates/ultrafreezer/llamar_editar_mapeo.php',
 				success:function(e){
-           
+           			
 					let traer = JSON.parse(e);
-			 
+			 			$("#nombre_mapeo_ultrafreezer").val(traer.nombre);
 						$("#fecha_inicio_mapeo_ultrafreezer").val(traer.fecha_inicio);
 						$("#hora_inicio_mapeo_ultrafreezer").val(traer.hora_inicio);
 						$("#minuto_inicio_mapeo_ultrafreezer").val(traer.minuto_inicio);
@@ -558,6 +559,7 @@ function listar_mapeos_ultrafreezer(){
 								title:'El mapeo ha sido eliminado correctamente',
 								timer:1500
 							});
+								
 							listar_mapeos();
 						}
 				});
@@ -895,7 +897,7 @@ function listar_ultrafreezer_sensores(id_bandeja, id_mapeo){
     
 			
 			$("#mapeos_listos_ultrafreezer").html(template);
-      $("#dc_ultrafreezer_seleccionador").html(template_2);
+    	    $("#dc_ultrafreezer_seleccionador").html(template_2);
 			
 			
 		});
@@ -1036,7 +1038,7 @@ function botton_datos_crudos(parameter){
       let botton
       if(response == "No"){
         
-         botton = "<button class='btn btn-danger' id='cargar_dc_ultrafreezer'>Falta archivo</button>";
+         botton = "<button class='btn btn-danger' id='cargar_dc_ultrafreezer'>No se ha cargado el archivo</button>";
         
         
       }else{
@@ -1634,8 +1636,7 @@ function leer_correlativo(x){
       
         if(response.length == 0){
           $("#crear_mapeo").hide();
-           $("#ver_mapeo").hide();
-          
+           $("#ver_mapeo").hide(); 
         }
       else{
         $("#crear_mapeo").show();
@@ -2096,11 +2097,15 @@ $(document).on('change','#cambio_tem', function(){
 			contentType: false,
 			processData: false,
 			success:function(response){	
-        
-       
+       			Swal.fire({
+		          position: 'center',
+		          icon: 'success',
+		          title: 'Imagenes cargardas correctamente',
+		          showConfirmButton: false,
+		          timer: 1000
+		        });	
 				listar_informes_ultrafreezer();
 			}	
-
 		});
 
 		});		
@@ -2212,7 +2217,7 @@ $(document).on('click','#pdf_ultrafreezer',function(){
 								timer:1500							
 							});
 							listar_informes_ultrafreezer();
-              validar_generar_informes();
+             			    validar_generar_informes();
              
 						}
 					}

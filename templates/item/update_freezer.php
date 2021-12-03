@@ -23,7 +23,6 @@ $array_freezer = array();
 
 
 if(isset($_GET['item'])){
-	echo "Hola";
  	//RECUPER EL DATO DE LA URL	
 	$id_equipo = $_GET['item'];
 
@@ -103,7 +102,20 @@ else{
 		'tem_max'=>''
 	);
 	$smarty->assign("array_freezer",$array_freezer);
-}   
-$smarty->display("item/update_freezer.tpl");
+}
+
+//ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
+$convert = json_encode($array_freezer);   
+$conv = base64_encode($convert);
+if ($_GET['pdf'] == 1) {
+
+	header('location: templates/item/pdf/pdf/pdf_freezer.php?&data='.$conv);
+
+}elseif($_GET['pdf'] == 0){
+	$smarty->display("item/update_freezer.tpl");
+}else{
+	echo"No hay permisos para acceder contacta con el administrador";  
+}
+
 
 ?>

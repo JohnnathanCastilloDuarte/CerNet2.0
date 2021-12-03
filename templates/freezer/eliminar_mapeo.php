@@ -41,11 +41,12 @@
 
 	if($id_mapeo_existente){
 		echo "No";
+		//echo "DELETE FROM freezer_mapeo WHERE id_mapeo =".$id_mapeo;
 	}else{
 		
 		$eliminar = mysqli_prepare($connect,"DELETE FROM freezer_mapeo WHERE id_mapeo = $id_mapeo");
 		mysqli_stmt_execute($eliminar);
-		
+
 		if($eliminar){
 			echo "Eliminado";
 		}else{

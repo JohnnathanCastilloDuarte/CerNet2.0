@@ -72,7 +72,7 @@
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 							<li class="nav-item">
-								<a role="tab" class="nav-link  active" id="tab-0" data-toggle="tab" href="#crear_mapeo_estufaeincubadora">
+								<a role="tab" class="nav-link  active" id="crearmapeo" data-toggle="tab" href="#crear_mapeo_estufaeincubadora">
 									<span>Mapeo</span>
 								</a>
 							</li>
@@ -86,11 +86,11 @@
 									<span>Correlativo</span>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a role="tab" class="nav-link" id="cargar_informes" data-toggle="tab" href="#cargar_informes_estufaeincubadora">
+							<!--<li class="nav-item">
+								<a role="tab" class="nav-link" id="#" data-toggle="tab" href="#cargar_informes_estufaeincubadora">
 									<span>Genera informes</span>
 								</a>
-							</li>
+							</li>-->
 						</ul>				
 					</div>
 
@@ -106,7 +106,7 @@
 
 												<label>Nombre mapeo:</label>
 												<select id="nombre_mapeo_estufaeincubadora" class="form-control" required>
-													<option value="Sin seleccion">Seleccione...</option>
+													<option value="0">Seleccione...</option>
 													<option value="nombre_eleccion">ASIGNAR NOMBRE</option>
 													<option value="SIN CARGA">SIN CARGA</option>
 													<option value="CON CARGA">CON CARGA</option>
@@ -273,7 +273,7 @@
 											<div class="col-sm-5"></div>
 											<div class="col-sm-5">
 												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo_estufaeincubadora">Aceptar</button>
-												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_estufaeincubadora">Actualizar</button>
+												<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo_estufaeincubadora">Actualizar</button><button class="btn-shadow btn-outline-2x btn btn-outline-danger"  id="btn_setear_campos">X</button>
 												
 											</div>  
 										</div>
@@ -321,7 +321,7 @@
 	</div>
 </div>
 
-<div class="tab-pane tabs-animation fade show" id="consecutivo_informe_estufaeincubadora" role="tabpanel">
+<div class="tab-pane tabs-animation " id="consecutivo_informe_estufaeincubadora" role="tabpanel">
 	<div class="card-body">
 		<div class="form-row">
 			<div class="col-sm-12">
@@ -471,6 +471,10 @@
 
 										</tbody>
 									</table>
+										<div id="aqui_boton_dc">
+											
+										</div>
+										
 								</div>
 							</div>	
 						</div>	
@@ -521,8 +525,8 @@
 									</div>
 
 									<div class="form-group">
-										<label for="file">File</label>
-										<input type="file" class="form-control" id="file_estufaeincubadora" name="file_estufaeincubadora"  required />
+									<!--	<label for="file">File</label>
+										<input type="file" class="form-control" id="file_estufaeincubadora" name="file_estufaeincubadora"  required /> -->
 									</div>
 
 									<div class="form-group">
@@ -539,246 +543,7 @@
 			</div>
 		</div>
 		<br>
-		<div class="form-row">
-			<div class="col-sm-12">
-				<div class="card">
-					<div class="card-header"> Resultados Datos Crudos</div>
-					<div class="card-body" id="cargue_datos_crudos">
-						<div class="form-row">
-							<div class="col-sm-12" style="text-align:center;">
-								<div id="resultados_dc">
-
-								</div>
-							</div>
-						</div>
-
-						<div id="trayendo_resultados">
-							<div class="form-row" style="text-align:center;">
-								<div class="col-sm-1">
-									<h6>
-										Columna 1
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_1">
-												</tbody>
-											</table>
-										</div>
-									</div>   
-
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 2
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_2">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 3
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_3">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 4
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_4">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 5
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_5">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 6
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_6">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 7
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_7">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div> 
-								<div class="col-sm-1">
-									<h6>
-										Columna 8
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_8">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 9
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_9">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 10
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_10">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 11
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_11">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 12
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_12">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>  
-							</div>
-							<br>
-							<div class="form-row" style="text-align:center;">
-								<div class="col-sm-6">
-									<button class="btn btn-success" id="aprobar_dc_estufaeincubadora">
-										Aprobar carga de DC
-									</button>
-								</div>
-
-								<div class="col-sm-6">
-									<button class="btn btn-danger" id="eliminar_dc_estufaeincubadora">
-										Eliminar DC
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 
 </div>
@@ -789,7 +554,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header" style="height: 4.5rem;">
 
 					Informes Generados
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

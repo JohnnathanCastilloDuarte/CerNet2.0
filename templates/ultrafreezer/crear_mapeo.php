@@ -31,7 +31,7 @@
   $c_dias = number_format(((strtotime($fecha_fin)-strtotime($fecha_incial))/3600)/24,2);
   $c_hora = $c_dias * 24;
     
-  $nombre_construido = $nombre_mapeo." ".$c_hora." HORA(s) ";
+  $nombre_construido = $nombre_mapeo;
 
    
  
