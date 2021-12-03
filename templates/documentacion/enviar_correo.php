@@ -17,6 +17,13 @@ $email = "";
 $id_persona = "";
 $id_documento = "";
 
+$query = mysqli_prepare($connect,"SELECT nombre FROM documentacion WHERE id = ?");
+mysqli_stmt_bind_param($query, 'i', $id_documento);
+mysqli_stmt_execute($query);
+mysqli_stmt_store_result($query);
+mysqli_stmt_bind_result($query, $nombre_proceso);
+mysqli_stmt_fetch($query);  
+
 
 
 if(isset($_POST['id_valida'])){
@@ -170,7 +177,7 @@ if(isset($_POST['informa_documentacion'])){
   $id_documentacion_d = $_POST['id_documentacion_d'];
   $id_usuario = $_POST['id_valida'];
 
-  $documentador = mysqli_prepare($connect,"SELECT b.email FROM participante_documentacion as a, persona as b WHERE a.id_documentacion = ? AND a.id_persona = b.id_usuario AND a.id_persona != ?  AND a.fecha_firma is NULL ORDER BY A.orden ASC LIMIT 1;");
+  $documentador = mysqli_prepare($connect,"SELECT b.email FROM participante_documentacion as a, persona as b WHERE a.id_documentacion = ? AND a.id_persona = b.id_usuario AND a.id_persona != ?  AND a.fecha_firma is NULL ORDER BY a.orden ASC LIMIT 1;");
   mysqli_stmt_bind_param($documentador,'ii', $id_documentacion_d, $id_usuario);
   mysqli_stmt_execute($documentador);
   mysqli_stmt_store_result($documentador);
@@ -196,7 +203,7 @@ if(isset($_POST['informa_documentacion'])){
           <td style='text-align: justify;font-size: 12px; color: #4545fb;font-family: arial;'>
               <p style='font-size: 16px;text-align: center;'>
                   Con la siguiente nos complace informar, que el proceso documental con el nombre <br> 
-                  ".$nombre_proceso.", ya los informes fueron generados, podra validar esta información en el siguiente boton:<br><br>
+                  ".$nombre_proceso.", se encuentra listo para validar su información, podra validar esta información en el siguiente boton:<br><br>
                   <a href='".$url_cernet."'><input type='button' value='Vamos a CerNet2.0' style='background: #0d0d82;color: #eef4f4;font-family: quincy;border-radius: 9px;'></a>
                   <br>
               </p>
@@ -264,7 +271,7 @@ if(isset($_POST['informa_documentacion'])){
   }
   else{
     echo "Hola a todos";
-    $documentador_full = mysqli_prepare($connect,"SELECT b.email FROM participante_documentacion as a, persona as b WHERE a.id_documentacion = ? AND a.id_persona = b.id_usuario  AND a.fecha_firma is not NULL ORDER BY A.orden ASC");
+    $documentador_full = mysqli_prepare($connect,"SELECT b.email FROM participante_documentacion as a, persona as b WHERE a.id_documentacion = ? AND a.id_persona = b.id_usuario  AND a.fecha_firma is not NULL ORDER BY a.orden ASC");
     mysqli_stmt_bind_param($documentador_full,'i', $id_documentacion_d);
     mysqli_stmt_execute($documentador_full);
     mysqli_stmt_store_result($documentador_full);
@@ -289,7 +296,7 @@ if(isset($_POST['informa_documentacion'])){
             <td style='text-align: justify;font-size: 12px; color: #4545fb;font-family: arial;'>
                 <p style='font-size: 16px;text-align: center;'>
                     Con la siguiente nos complace informar, que el proceso documental con el nombre <br> 
-                    ".$nombre_proceso.", ya los informes fueron generados, podra validar esta información en el siguiente boton:<br><br>
+                    ".$nombre_proceso.", Ha sido firmado por los integrantes del mismo, podra validar esta información en el siguiente boton:<br><br>
                     <a href='".$url_cernet."'><input type='button' value='Vamos a CerNet2.0' style='background: #0d0d82;color: #eef4f4;font-family: quincy;border-radius: 9px;'></a>
                     <br>
                 </p>

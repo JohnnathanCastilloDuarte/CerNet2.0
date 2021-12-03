@@ -97,21 +97,6 @@
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<label>Cargo:</label>
-						<select class="form-control" id="cargo_usuario">
-							<option>Selecciona...</option>
-							<option value="Administrativo">Administrativo</option>
-							<option value="Comercial">Comercial</option>
-							<option value="Documentador">Documentador</option>
-							<option value="Gerente general">Gerente general</option>
-							<option value="Ingeniero">Ingeniero</option>
-							<option value="T.I.">T.I.</option>
-						</select>	
-					</div>
-				</div>	
-
-				<div class="row">
-					<div class="col-sm-6">
 						<div class="position-relative form-group">
 							<label>Departamento</label>
 							<select class="form-control" id="departamento_usuario">
@@ -119,6 +104,16 @@
 							</select>
 						</div>
 					</div>
+				</div>	
+
+				<div class="row">
+				<!--
+					<div class="col-sm-6">
+						<label>Cargo:</label>
+						<select class="form-control" id="cargo_usuario">
+							
+						</select>	
+					</div>-->
 					<div class="col-sm-6">
 						<div class="position-relative form-group">						
 							<label>Pais:</label>
