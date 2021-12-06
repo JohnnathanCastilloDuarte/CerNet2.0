@@ -68,6 +68,7 @@ if(isset($_GET['item'])){
 			'tem_max'=>$tem_max
 		);	
 	}
+	$smarty->assign("array_refrigerador",$array_refrigerador);
 	
 }////////// FIN DEL IF PRINCIPAL 
 else{
@@ -101,14 +102,23 @@ else{
 		'tem_max'=>''
 	);	
 	
+	$smarty->assign("array_refrigerador",$array_refrigerador);
+}
+
+//ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
+$convert = json_encode($array_refrigerador);   
+$conv = base64_encode($convert);
+if ($_GET['pdf'] == 1) {
+
+	header('location: templates/item/pdf/pdf/pdf_refrigerador.php?&data='.$conv);
+
+}elseif($_GET['pdf'] == 0){
+	$smarty->display("item/update_refrigerador.tpl");
+}else{
+	echo"No hay permisos para acceder contacta con el administrador";  
 }
 
 
-
-$smarty->assign("array_refrigerador",$array_refrigerador);
-
-
-$smarty->display("item/update_refrigerador.tpl");
 
 
 ?>

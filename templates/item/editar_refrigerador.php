@@ -40,7 +40,7 @@ if($update_refrigerador){
 		WHERE id_refrigerador = $id_item_refrigerador");
 	mysqli_stmt_bind_param($update_refrigerador_2, 'ssssssssssssssssssssi', $fabricante_refrigerador, $modelo_refrigerador, $n_serie_refrigerador, $codigo_interno_refrigerador, $fecha_fabricacion_refrigerador,
 		$direccion_refrigerador, $ubicacion_interna_refrigerador, $voltaje_refrigerador, $potencia_refrigerador, $capacidad_refrigerador, $peso_refrigerador, 
-		$alto_refrigerador, $largo_refrigerador, $ancho_refrigerador, $valor_seteado_tem, $humedad_minima, $humedad_maxima, $valor_seteado_tem,
+		$alto_refrigerador, $largo_refrigerador, $ancho_refrigerador, $valor_seteado_hum, $humedad_minima, $humedad_maxima, $valor_seteado_tem,
 		$temperatura_minima, $temperatura_minima, $id_valida);
 
 	mysqli_stmt_execute($update_refrigerador_2);

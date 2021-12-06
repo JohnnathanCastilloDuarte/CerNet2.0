@@ -131,7 +131,7 @@
           <div class="form-row">
             <div class="col-sm-6">
               <label>Dimensiones: </label>
-              <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo}" required="">
+              <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo_filtro}" required="">
             </div>
             <div class="col-sm-6">
               <label>Limite de penetración: </label>

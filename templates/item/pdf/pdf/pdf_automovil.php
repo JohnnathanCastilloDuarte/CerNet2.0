@@ -11,15 +11,17 @@ $datos = base64_decode($data) ;
 
 $oso=json_decode($datos);
 foreach ($oso as $key) {
-	$nombre_freezer      = $key->nombre_freezer;
+	//información del equipo
+	$nombre      = $key->nombre_estufa;
 	$empresa		     = $key->nombre_empresa;
 	$fabricante		     = $key->fabricante;
 	$modelo		         = $key->modelo;
 	$n_serie		     = $key->n_serie;
 	$c_interno 		     = $key->c_interno;
 	$fecha_fabricacion   = $key->fecha_fabricacion;
-	$descripcion_freezer = $key->descripcion_freezer;
-
+	$descripcion 		 = $key->descripcion_automovil;
+	$placa               = $key->placa;
+	//caracteristicas del equipo
 	$direccion 		=$key->direccion;
 	$ubicacion 		=$key->ubicacion;
 	$voltaje 		=$key->voltaje;
@@ -42,13 +44,13 @@ $pdf->AddPage('A4');
 $html = <<<EOD
 
 <hr>
-<h2>Información del equipo $nombre_freezer</h2>
+<h2>Información del equipo $nombre</h2>
 <hr>
 <br>
 <table border="0" style="padding: 5px 5px 15px 5px;">
 	<tr>
 		<th style="font-weight: bold">Nombre:</th>
-		<th>$nombre_freezer</th>
+		<th>$nombre</th>
 		<th style="width: 125px;"></th>
 		<th style="font-weight: bold">Empresa:</th>
 		<th>$empresa</th>
@@ -74,6 +76,8 @@ $html = <<<EOD
 		<th style="font-weight: bold">Año de fabricación:</th>
 		<th>$fecha_fabricacion</th>
 		<th style="width: 125px;"></th>
+		<th style="font-weight: bold">Placa:</th>
+		<th>$placa</th>
 	</tr>
 </table>
 <table border="0" style="padding: 5px 5px 15px 5px;" >
@@ -82,7 +86,7 @@ $html = <<<EOD
 		
     </tr>	
      <tr>
-		<th style="width:250px; height: 100px ;" border="1">$descripcion_freezer</th>
+		<th style="width:250px; height: 100px ;" border="1">$descripcion</th>
     </tr>	
 </table>
 <br>
@@ -110,27 +114,20 @@ $html = <<<EOD
 	</tr>
 	<tr>
 		<th style="width: 142px; font-weight: bold">Alto:</th>
-		<th style="width: 70px;">$alto</th>
+		<th style="width: 70px;">$peso</th>
 		<th style="width: 142px; font-weight: bold">Largo:</th>
 		<th style="width: 70px;">$largo</th>
 		<th style="width: 142px; font-weight: bold">Ancho:</th>
 		<th style="width: 70px;">$ancho</th>
 	</tr>
-	<tr>
-		<th style="width: 142px; font-weight: bold">Valor seteado humedad:</th>
-		<th style="width: 70px;">$seteado_hum</th>
-		<th style="width: 142px; font-weight: bold">Humedad minima:</th>
-		<th style="width: 70px;">$hum_min</th>
-		<th style="width: 142px; font-weight: bold">Humedad maxima:</th>
-		<th style="width: 70px;">$hum_max</th>
-	</tr>
+
 	<tr>
 		<th style="width: 142px; font-weight: bold">Valor seteado temperatura:</th>
 		<th style="width: 70px;">$seteado_tem</th>
 		<th style="width: 142px; font-weight: bold">Temperatura minima:</th>
-		<th style="width: 70px;">$tem_min</th>
+		<th style="width: 70px;">tem_min</th>
 		<th style="width: 142px; font-weight: bold">Temperatura maxima:</th>
-		<th style="width: 70px;">$tem_max</th>
+		<th style="width: 70px;">tem_max</th>
 	</tr>
 	<tr>
 		<th style=" font-weight: bold">peso</th>
