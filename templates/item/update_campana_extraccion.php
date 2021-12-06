@@ -77,7 +77,9 @@ if (isset($_GET['item'])) {
 			'estado'=>'',
 			'id_usuario'=>'',
 			'fecha_registro'=>'',
-			'nombre_empresa'=>''
+			'nombre_empresa'=>'',
+			'marca'=>'',
+			'fecha_fabricacion'=>''
 		);	
 
 		$smarty->assign("array_campana",$array_campana);

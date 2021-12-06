@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-03 16:53:04
+/* Smarty version 3.1.34-dev-7, created on 2021-12-06 17:39:43
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_campana_extraccion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61aa3d600a3014_70091350',
+  'unifunc' => 'content_61ae3ccf616a89_25950777',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a2460fc03c75e8363fd9c4ee083f5e44948f91e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_campana_extraccion.tpl',
-      1 => 1638546782,
+      1 => 1638808779,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61aa3d600a3014_70091350 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61ae3ccf616a89_25950777 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -137,7 +137,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               </div>
               <div class="col-sm-4">
                 <label>Año fabricación</label>
-                <input type="date" id="fecha_fabricacion_campana" class="form-control" placeholder="" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['fecha_registro'];?>
+                <input type="date" id="fecha_fabricacion_campana" class="form-control" placeholder="" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['fecha_fabricacion'];?>
 ">
               </div>
             </div>

@@ -82,7 +82,7 @@
               </div>
               <div class="col-sm-4">
                 <label>Año fabricación</label>
-                <input type="date" id="fecha_fabricacion_campana" class="form-control" placeholder="" value="{$campana.fecha_registro}">
+                <input type="date" id="fecha_fabricacion_campana" class="form-control" placeholder="" value="{$campana.fecha_fabricacion}">
               </div>
             </div>
             <br>

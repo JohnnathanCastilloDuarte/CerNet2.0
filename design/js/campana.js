@@ -67,7 +67,6 @@ $("#btn_nuevo_item_campana").click(function(){
     id_type_campana,
     id_usuario
    }
-
    $.ajax({
        type:"POST",
        data:datos,
@@ -109,7 +108,7 @@ $("#btn_editar_item_campana").click(function(){
    let serie_campana = $("#serie_campana").val();
    let fecha_fabricacion_campana = $("#fecha_fabricacion_campana").val();
    let velocidad_aire_campana = $("#velocidad_aire_campana").val();
-   let tipo_controlador = "Actualizar";
+   //let tipo_controlador = "Actualizar";
    
    const datos = {
     nombre_campana,
@@ -123,7 +122,6 @@ $("#btn_editar_item_campana").click(function(){
     serie_campana,
     fecha_fabricacion_campana,
     velocidad_aire_campana,
-    tipo_controlador,
     id_item_campana
    }
 
@@ -131,8 +129,9 @@ $("#btn_editar_item_campana").click(function(){
    $.ajax({
     type:"POST",
     data:datos,
-    url:'templates/item/controlador_item_campana.php',
+    url:'templates/item/editar_campana.php',
     success:function(response){
+        console.log(response)
          Swal.fire({
              title:'Mensaje',
              text:'Se ha actualizado con exito la campana',

@@ -17,7 +17,6 @@ include('../../config.ini.php');
     $id_type_campana = $_POST['id_type_campana'];
     $id_usuario = $_POST['id_usuario'];
 
-
     $insertando_item = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre,  estado, id_usuario) VALUES (?, ?, ?, 1, ?)");
     mysqli_stmt_bind_param($insertando_item, 'iisi', $empresa_campana, $id_type_campana, $nombre_campana, $id_usuario);
     mysqli_stmt_execute($insertando_item);
@@ -25,8 +24,8 @@ include('../../config.ini.php');
 
     if($insertando_item){
 
-        $insertando_campana = mysqli_prepare($connect,"INSERT INTO item_campana(id_item, tipo, marca, modelo, serie, codigo, ubicado_en, ubicacion, requisito_velocidad) VALUES (?,?,?,?,?,?,?,?,?)");
-        mysqli_stmt_bind_param($insertando_campana, 'issssssss', $id_item, $tipo_campana, $marca_campana, $modelo_campana, $serie_campana, $codigo_interno_campana, $ubicacion_campana, $direccion_campana, $velocidad_aire_campana);
+        $insertando_campana = mysqli_prepare($connect,"INSERT INTO item_campana(id_item, tipo, marca, modelo, serie, codigo, ubicado_en, ubicacion, requisito_velocidad,fecha_fabricacion) VALUES (?,?,?,?,?,?,?,?,?,?)");
+        mysqli_stmt_bind_param($insertando_campana, 'isssssssss', $id_item, $tipo_campana, $marca_campana, $modelo_campana, $serie_campana, $codigo_interno_campana, $ubicacion_campana, $direccion_campana, $velocidad_aire_campana,$fecha_fabricacion_campana);
         mysqli_stmt_execute($insertando_campana);
 
         if($insertando_campana){

@@ -122,9 +122,9 @@ $html = <<<EOD
 		<th style="width: 142px; font-weight: bold">Valor seteado temperatura:</th>
 		<th style="width: 70px;">$seteado_tem</th>
 		<th style="width: 142px; font-weight: bold">Temperatura minima:</th>
-		<th style="width: 70px;">tem_min</th>
+		<th style="width: 70px;">$tem_min</th>
 		<th style="width: 142px; font-weight: bold">Temperatura maxima:</th>
-		<th style="width: 70px;">tem_max</th>
+		<th style="width: 70px;">$tem_max</th>
 	</tr>
 	<tr>
 		<th style=" font-weight: bold">peso</th>
