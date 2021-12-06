@@ -11,14 +11,14 @@ $datos = base64_decode($data) ;
 
 $oso=json_decode($datos);
 foreach ($oso as $key) {
-	$nombre_freezer      = $key->nombre_freezer;
+	$nombre_ultrafreezer      = $key->nombre_ultrafreezer;
 	$empresa		     = $key->nombre_empresa;
 	$fabricante		     = $key->fabricante;
 	$modelo		         = $key->modelo;
 	$n_serie		     = $key->n_serie;
 	$c_interno 		     = $key->c_interno;
 	$fecha_fabricacion   = $key->fecha_fabricacion;
-	$descripcion_freezer = $key->descripcion_freezer;
+	$descripcion_ultrafreezer = $key->descripcion_ultrafreezer;
 
 	$direccion 		=$key->direccion;
 	$ubicacion 		=$key->ubicacion;
@@ -42,13 +42,13 @@ $pdf->AddPage('A4');
 $html = <<<EOD
 
 <hr>
-<h2>Información del equipo $nombre_freezer</h2>
+<h2>Información del equipo $nombre_ultrafreezer</h2>
 <hr>
 <br>
 <table border="0" style="padding: 5px 5px 15px 5px;">
 	<tr>
 		<th style="font-weight: bold">Nombre:</th>
-		<th>$nombre_freezer</th>
+		<th>$nombre_ultrafreezer</th>
 		<th style="width: 125px;"></th>
 		<th style="font-weight: bold">Empresa:</th>
 		<th>$empresa</th>
@@ -82,7 +82,7 @@ $html = <<<EOD
 		
     </tr>	
      <tr>
-		<th style="width:250px; height: 100px ;" border="1">$descripcion_freezer</th>
+		<th style="width:250px; height: 100px ;" border="1">$descripcion_ultrafreezer</th>
     </tr>	
 </table>
 <br>

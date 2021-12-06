@@ -106,12 +106,24 @@ while($row = mysqli_stmt_fetch($automovil)){
 		'hum_max'=> ''
 
 	);
-
 }
 
-
 $smarty->assign("array_automovil",$array_automovil);
-$smarty->display("item/update_automovil.tpl");
+
+//ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
+$convert = json_encode($array_automovil);   
+$conv = base64_encode($convert);
+if ($_GET['pdf'] == 1) {
+
+	header('location: templates/item/pdf/pdf/pdf_automovil.php?&data='.$conv);
+
+}elseif($_GET['pdf'] == 0){
+	
+	$smarty->display("item/update_automovil.tpl");
+}else{
+	echo"No hay permisos para acceder contacta con el administrador";  
+}
+
 
 
 ?>

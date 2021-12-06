@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2021 a las 18:48:11
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 7.4.22
+-- Tiempo de generación: 06-12-2021 a las 16:01:42
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,7 +37,9 @@ CREATE TABLE `item_campana` (
   `codigo` varchar(250) DEFAULT NULL COMMENT 'codigo interno de la campana',
   `ubicado_en` varchar(300) DEFAULT NULL COMMENT 'Ubicacion interna de campana',
   `ubicacion` varchar(300) DEFAULT NULL COMMENT 'Ubicacion de la empresa donde se encuentra la camapana',
-  `requisito_velocidad` varchar(15) NOT NULL COMMENT 'Requisito de la velocidad de la campana'
+  `requisito_velocidad` varchar(15) NOT NULL COMMENT 'Requisito de la velocidad de la campana',
+  `fecha_fabricacion` date DEFAULT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
