@@ -1,12 +1,12 @@
 <?php 
 
+include("../../config.ini.php");
 
 $id_tipo = $_GET['type'];
 $id_item = $_GET['item'];
 
 
 echo "<input type='hidden' id='type_campana' value='".$id_tipo."'>";
-
 echo "<input type='hidden' id='id_item_campana' value='".$id_item."'>";
 
 $empresas = mysqli_prepare($connect,"SELECT id_empresa, nombre FROM empresa");
@@ -23,6 +23,7 @@ while($row = mysqli_stmt_fetch($empresas)){
 		'nombre_empresa'=>$nombre_empresa	
 	);
 }
+echo $id_empresa;
 $smarty->assign("array_empresa",$array_empresa);
 
 if (isset($_GET['item'])) {
@@ -89,14 +90,23 @@ if (isset($_GET['item'])) {
 
 $convert = json_encode($array_campana);   
 $conv = base64_encode($convert);
+$link = 'templates/item/pdf/pdf/pdf_campana.php?&data='.$conv;
+$link2 = 'http://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_campana.php?&data='.$conv;
+//pdf item
 if ($_GET['pdf'] == 1) {
 
-	header('location: templates/item/pdf/pdf/pdf_campana.php?&data='.$conv);
-
+	header('location: '.$link);
+//ediitar item
 }elseif($_GET['pdf'] == 0){
-	$smarty->display("item/update_campana_extraccion.tpl");    
-}else{
-	echo"No hay permisos para acceder contacta con el administrador";  
+	$smarty->display("item/update_campana_extraccion.tpl");  
+//enviar pdf por correo	  
+}elseif($_GET['pdf'] == 2){
+
+	$correo = $_GET['correo'];
+	//header('location: '.$link2);
+	//return true;
+	header('location: ../documentacion/enviarPDF_correo.php?&correo='.$correo."&link=".$link2);
+
 }
 
 

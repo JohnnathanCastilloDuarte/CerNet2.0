@@ -45,8 +45,6 @@ if(isset($_POST['id_valida'])){
   $id_documento = $_POST['id_document'];
 }
 
-
-
 $key = base64_encode($id_persona);
 $document = base64_encode($id_documento);
 $rest = substr($email, 0,-10);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-03 15:30:55
+/* Smarty version 3.1.34-dev-7, created on 2021-12-07 21:46:09
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\gestionar_item.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61aa2a1f596226_16562214',
+  'unifunc' => 'content_61afc811a097c5_39216928',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '21b539e74cb37b666475e7a0a278285a815a105a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\gestionar_item.tpl',
-      1 => 1638541853,
+      1 => 1638909968,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61aa2a1f596226_16562214 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61afc811a097c5_39216928 (Smarty_Internal_Template $_smarty_tpl) {
 ?><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="app-main__inner">
 	<div class="container-fluid">
@@ -72,11 +72,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['gestionar']->value) {
 &type=<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_tipo'];?>
 &pdf=1" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning btn-sm"><i class="fa fa-file-pdf-o" style="font-size:20.5px; color:red;"></i></a>
 
-									<a id="btn_genear_pdf_item" href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[2];?>
-&item=<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_item'];?>
-&type=<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_tipo'];?>
-&pdf=2" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm"><i class="fa fa-envelope-o" style="font-size:20.5px; color:green;"></i></a>
+									<!--<button id="enviar_correo_pdf" data-id="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_item'];?>
+" data-tipo="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_tipo'];?>
+" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm"><i class="fa fa-envelope-o" style="font-size:20.5px; color:green;"></i></button>-->
+
 								</div>
 							</td>
 					</tr>	

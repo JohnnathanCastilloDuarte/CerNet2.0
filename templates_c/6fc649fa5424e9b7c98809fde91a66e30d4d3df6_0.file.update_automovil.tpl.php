@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-12 20:40:37
+/* Smarty version 3.1.34-dev-7, created on 2021-12-07 21:42:05
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_automovil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_618ec3351f9be3_73708772',
+  'unifunc' => 'content_61afc71d2eddd8_21917616',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fc649fa5424e9b7c98809fde91a66e30d4d3df6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_automovil.tpl',
-      1 => 1636746027,
+      1 => 1638909724,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_618ec3351f9be3_73708772 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61afc71d2eddd8_21917616 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
@@ -60,7 +60,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
 									</a>
 							</li>-->
           </ul>
-
           <input type="hidden"  id="id_item_automovil" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['id_item'];?>
 ">
           <input type="hidden" id="id_automovil" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['id_automovil'];?>
@@ -69,15 +68,30 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
           <div class="form-wizard-content">
             <div id="step-12">
               <div class="form-row">
-                <div class="col-sm-6">
-                  
+                <div class="col-sm-6">  
                   <label>Nombre del Automovil</label>
                   <input type="text" id="nombre_automovil" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['nombre_automovil'];?>
-">
+" placeholder="Nombre automovil">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
                   <select type="text" id="id_empresa" class="form-control">
+                    <?php if ($_smarty_tpl->tpl_vars['automovil']->value['id_empresa'] == '') {?>
+                      <option value="0">Seleccione...</option>
+                     <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
+?>
+                    <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
+"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
+</option>
+                      <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+
+                      <?php } else { ?>
                     <option selected="" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['id_empresa'];?>
 "><?php echo $_smarty_tpl->tpl_vars['automovil']->value['nombre_empresa'];?>
 </option>
@@ -93,6 +107,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                      <?php }?>
 
                   </select>
                 </div>
@@ -102,25 +117,25 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Fabricante/Marca:</label>
-                  <input type="text" id="fabricante_automovil" class="form-control" placeholder="Fabricante automovil" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['fabricante'];?>
+                  <input type="text" id="fabricante_automovil" class="form-control" placeholder="Fabricante/Marca" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['fabricante'];?>
 ">
                 </div>
                 <div class="col-sm-4">
                   <label>Modelo:</label>
-                  <input type="text" id="modelo_automovil" class="form-control" placeholder="Modelo automovil" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['modelo'];?>
+                  <input type="text" id="modelo_automovil" class="form-control" placeholder="Modelo " value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['modelo'];?>
 ">
                 </div>
                 <div class="col-sm-4">
-                  <label>Placa:</label>
-                  <input type="text" id="placa_automovil" class="form-control" placeholder="Modelo automovil" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['placa'];?>
+                  <label>Placa/Patente:</label>
+                  <input type="text" id="placa_automovil" class="form-control" placeholder="Placa/Patente automovil" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['placa'];?>
 ">
                 </div>
               </div>
               <br>
               <div class="form-row">
                 <div class="col-sm-12">
-                  <label>Descripcion:</label>
-                  <textarea class="form-control" id="desc_automovil"><?php echo $_smarty_tpl->tpl_vars['automovil']->value['descripcion_automovil'];?>
+                  <label>Descripción:</label>
+                  <textarea class="form-control" id="desc_automovil" placeholder="Descripción"><?php echo $_smarty_tpl->tpl_vars['automovil']->value['descripcion_automovil'];?>
 </textarea>
                 </div>
               </div>

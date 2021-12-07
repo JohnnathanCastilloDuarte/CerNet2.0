@@ -40,15 +40,23 @@
               <div class="form-row">
                 <div class="col-sm-6">  
                   <label>Nombre del Automovil</label>
-                  <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_automovil}">
+                  <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_automovil}" placeholder="Nombre automovil">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
                   <select type="text" id="id_empresa" class="form-control">
+                    {if $automovil.id_empresa ==""}
+                      <option value="0">Seleccione...</option>
+                     {foreach from=$array_empresas item=empresa}
+                    <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
+                      {/foreach}
+
+                      {else}
                     <option selected="" value="{$automovil.id_empresa}">{$automovil.nombre_empresa}</option>
                       {foreach from=$array_empresas item=empresa}
                     <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
                       {/foreach}
+                      {/if}
 
                   </select>
                 </div>
@@ -58,22 +66,22 @@
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Fabricante/Marca:</label>
-                  <input type="text" id="fabricante_automovil" class="form-control" placeholder="Fabricante automovil" value="{$automovil.fabricante}">
+                  <input type="text" id="fabricante_automovil" class="form-control" placeholder="Fabricante/Marca" value="{$automovil.fabricante}">
                 </div>
                 <div class="col-sm-4">
                   <label>Modelo:</label>
-                  <input type="text" id="modelo_automovil" class="form-control" placeholder="Modelo automovil" value="{$automovil.modelo}">
+                  <input type="text" id="modelo_automovil" class="form-control" placeholder="Modelo " value="{$automovil.modelo}">
                 </div>
                 <div class="col-sm-4">
-                  <label>Placa:</label>
-                  <input type="text" id="placa_automovil" class="form-control" placeholder="Modelo automovil" value="{$automovil.placa}">
+                  <label>Placa/Patente:</label>
+                  <input type="text" id="placa_automovil" class="form-control" placeholder="Placa/Patente automovil" value="{$automovil.placa}">
                 </div>
               </div>
               <br>
               <div class="form-row">
                 <div class="col-sm-12">
-                  <label>Descripcion:</label>
-                  <textarea class="form-control" id="desc_automovil">{$automovil.descripcion_automovil}</textarea>
+                  <label>Descripción:</label>
+                  <textarea class="form-control" id="desc_automovil" placeholder="Descripción">{$automovil.descripcion_automovil}</textarea>
                 </div>
               </div>
               <br>
