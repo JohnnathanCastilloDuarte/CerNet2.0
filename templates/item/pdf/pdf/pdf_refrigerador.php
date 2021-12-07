@@ -1,5 +1,5 @@
 <?php
-require('../../../../recursos/encabezadopdf.php');
+require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 //$id_informe = $_GET['informe'];
 //$resultado_corresponde = "";
@@ -12,6 +12,7 @@ $datos = base64_decode($data) ;
 $oso=json_decode($datos);
 foreach ($oso as $key) {
 	$nombre              = $key->nombre_refrigerador;
+	$nombre_tipo_item    = $key->nombre_tipo_item;
 	$empresa		     = $key->nombre_empresa;
 	$fabricante		     = $key->fabricante;
 	$modelo		         = $key->modelo;
@@ -20,21 +21,21 @@ foreach ($oso as $key) {
 	$fecha_fabricacion   = $key->fecha_fabricacion;
 	$descripcion_refrigerador = $key->descripcion_refrigerador;
 
-	$direccion 		=$key->direccion;
-	$ubicacion 		=$key->ubicacion;
-	$voltaje 		=$key->voltaje;
-	$potencia 		=$key->potencia;
-	$capacidad 		=$key->capacidad;
-	$peso 		    =$key->peso;
-	$alto 			=$key->alto;
-	$largo 			=$key->largo;
-	$ancho 			=$key->ancho;
-	$seteado_hum 	=$key->seteado_hum;
-	$seteado_tem 	=$key->seteado_tem;
-	$hum_min 		=$key->hum_min;
-	$hum_max 		=$key->hum_max;
-	$tem_min 		=$key->tem_min;
-	$tem_max 		=$key->tem_max;
+	$direccion 		= $key->direccion;
+	$ubicacion 		= $key->ubicacion;
+	$voltaje 		= $key->voltaje;
+	$potencia 		= $key->potencia;
+	$capacidad 		= $key->capacidad;
+	$peso 		    = $key->peso;
+	$alto 			= $key->alto;
+	$largo 			= $key->largo;
+	$ancho 			= $key->ancho;
+	$seteado_hum 	= $key->seteado_hum;
+	$seteado_tem 	= $key->seteado_tem;
+	$hum_min 		= $key->hum_min;
+	$hum_max 		= $key->hum_max;
+	$tem_min 		= $key->tem_min;
+	$tem_max 		= $key->tem_max;
 }
 
 $pdf->AddPage('A4');
@@ -50,8 +51,8 @@ $html = <<<EOD
 		<th style="font-weight: bold">Nombre:</th>
 		<th>$nombre</th>
 		<th style="width: 125px;"></th>
-		<th style="font-weight: bold">Empresa:</th>
-		<th>$empresa</th>
+		<th style="font-weight: bold">Tipo de equipo:</th>
+		<th>$nombre_tipo_item</th>
 	</tr>
 	<br>
 	<tr>
@@ -74,6 +75,8 @@ $html = <<<EOD
 		<th style="font-weight: bold">Año de fabricación:</th>
 		<th>$fecha_fabricacion</th>
 		<th style="width: 125px;"></th>
+		<th style="font-weight: bold">Empresa:</th>
+		<th>$empresa</th>
 	</tr>
 </table>
 <table border="0" style="padding: 5px 5px 15px 5px;" >

@@ -1,5 +1,5 @@
 <?php
-require('../../../../recursos/encabezadopdf.php');
+require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 //$id_informe = $_GET['informe'];
 //$resultado_corresponde = "";
@@ -13,6 +13,7 @@ $oso=json_decode($datos);
 foreach ($oso as $key) {
 	//información del equipo
 	$nombre    			 = $key->nombre_filtro;
+	$nombre_tipo_item    = $key->nombre_tipo_item;
 	$empresa		     = $key->nombre_empresa;
 	$modelo		         = $key->modelo;
 	$n_serie		     = $key->serie;
@@ -39,10 +40,10 @@ $html = <<<EOD
 <table border="0" style="padding: 5px 5px 15px 5px;">
 	<tr>
 		<th style="font-weight: bold">Nombre:</th>
-		<th>$nombre</th>
+		<th style="width: 135px;">$nombre</th>
 		<th style="width: 125px;"></th>
-		<th style="font-weight: bold">Empresa:</th>
-		<th>$empresa</th>
+		<th style="font-weight: bold">Tipo de equipo:</th>
+		<th>$nombre_tipo_item</th>
 	</tr>
 	<br>
 	<tr>
@@ -80,7 +81,9 @@ $html = <<<EOD
     <tr>
     	<th style="font-weight: bold; width: 128px">limite de penetración:</th>
     	<th style="padding: 5px 5px 15px 5px;">$penetracion_filtro </th>
-		
+    	<th style="width: 133px;"></th>
+    	<th style="font-weight: bold">Empresa:</th>
+		<th>$empresa</th>
     </tr>	
    
 </table>

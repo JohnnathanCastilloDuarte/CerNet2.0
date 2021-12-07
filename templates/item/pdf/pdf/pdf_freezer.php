@@ -1,5 +1,5 @@
 <?php
-require('../../../../recursos/encabezadopdf.php');
+require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 //$id_informe = $_GET['informe'];
 //$resultado_corresponde = "";
@@ -12,6 +12,7 @@ $datos = base64_decode($data) ;
 $oso=json_decode($datos);
 foreach ($oso as $key) {
 	$nombre_freezer      = $key->nombre_freezer;
+	$nombre_tipo_item    = $key->nombre_tipo_item;
 	$empresa		     = $key->nombre_empresa;
 	$fabricante		     = $key->fabricante;
 	$modelo		         = $key->modelo;
@@ -50,8 +51,8 @@ $html = <<<EOD
 		<th style="font-weight: bold">Nombre:</th>
 		<th>$nombre_freezer</th>
 		<th style="width: 125px;"></th>
-		<th style="font-weight: bold">Empresa:</th>
-		<th>$empresa</th>
+		<th style="font-weight: bold">Tipo de equipo:</th>
+		<th>$nombre_tipo_item</th>
 	</tr>
 	<br>
 	<tr>
@@ -74,6 +75,8 @@ $html = <<<EOD
 		<th style="font-weight: bold">Año de fabricación:</th>
 		<th>$fecha_fabricacion</th>
 		<th style="width: 125px;"></th>
+		<th style="font-weight: bold">Empresa:</th>
+		<th>$empresa</th>
 	</tr>
 </table>
 <table border="0" style="padding: 5px 5px 15px 5px;" >

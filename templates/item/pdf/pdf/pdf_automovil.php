@@ -1,5 +1,5 @@
 <?php
-require('../../../../recursos/encabezadopdf.php');
+require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 //$id_informe = $_GET['informe'];
 //$resultado_corresponde = "";
@@ -12,7 +12,8 @@ $datos = base64_decode($data) ;
 $oso=json_decode($datos);
 foreach ($oso as $key) {
 	//información del equipo
-	$nombre      = $key->nombre_estufa;
+	$nombre              = $key->nombre_estufa;
+	$nombre_tipo_item    = $key->nombre_tipo_item;
 	$empresa		     = $key->nombre_empresa;
 	$fabricante		     = $key->fabricante;
 	$modelo		         = $key->modelo;
@@ -52,8 +53,8 @@ $html = <<<EOD
 		<th style="font-weight: bold">Nombre:</th>
 		<th>$nombre</th>
 		<th style="width: 125px;"></th>
-		<th style="font-weight: bold">Empresa:</th>
-		<th>$empresa</th>
+		<th style="font-weight: bold">Tipo de equipo:</th>
+		<th>$nombre_tipo_item</th>
 	</tr>
 	<br>
 	<tr>
@@ -83,10 +84,14 @@ $html = <<<EOD
 <table border="0" style="padding: 5px 5px 15px 5px;" >
     <tr>
     	<th style="font-weight: bold">Descripción:</th>
+    	<th style="width: 220px;"></th>
+    	<th style="font-weight: bold;width:130px;">Empresa:</th>
+		<th>$empresa</th>
 		
     </tr>	
      <tr>
 		<th style="width:250px; height: 100px ;" border="1">$descripcion</th>
+
     </tr>	
 </table>
 <br>

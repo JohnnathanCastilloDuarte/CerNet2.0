@@ -1,5 +1,5 @@
 <?php
-require('../../../../recursos/encabezadopdf.php');
+require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 //$id_informe = $_GET['informe'];
 //$resultado_corresponde = "";
@@ -13,6 +13,7 @@ $oso=json_decode($datos);
 foreach ($oso as $key) {
 	//información del equipo
 	$nombre    			 = $key->nombre_campana;
+	$nombre_tipo_item    = $key->nombre_tipo_item;
 	$empresa		     = $key->nombre_empresa;
 	$fabricante		     = $key->fabricante;
 	$modelo		         = $key->modelo;
@@ -26,6 +27,7 @@ foreach ($oso as $key) {
 	$tipo_campana        =$key->tipo_campana;
 	$marca   		     =$key->marca;
 	$requisito_velocidad =$key->requisito_velocidad;
+
 
 }
 
@@ -42,46 +44,48 @@ $html = <<<EOD
 		<th style="font-weight: bold">Nombre:</th>
 		<th>$nombre</th>
 		<th style="width: 125px;"></th>
+		<th style="font-weight: bold">Tipo de equipo:</th>
+		<th>$nombre_tipo_item</th>
+	</tr>
+	<br>
+	<tr>
 		<th style="font-weight: bold">Empresa:</th>
 		<th>$empresa</th>
-	</tr>
-	<br>
-	<tr>
+		<th style="width: 125px;"></th>
 		<th style="font-weight: bold">Ubicación del equipo:</th>
 		<th>$ubicacion_en</th>
-		<th style="width: 125px;"></th>
+	</tr>
+	<br>
+	<tr>
 		<th style="font-weight: bold">Dirección:</th>
 		<th>$ubicacion</th>
-	</tr>
-	<br>
-	<tr>
+		<th style="width: 125px;"></th>
 		<th style="font-weight: bold">N° Tipo de campana:</th>
 		<th>$tipo_campana</th>
-		<th style="width: 125px;"></th>
-		<th style="font-weight: bold">Marca:</th>
-		<th>$marca</th>
 	</tr>
 	<br>
 	<tr>
+		<th style="font-weight: bold">Marca:</th>
+		<th>$marca</th>
+		<th style="width: 125px;"></th>
 		<th style="font-weight: bold">Modelo:</th>
 		<th>$modelo</th>
-		<th style="width: 125px;"></th>
-		<th style="font-weight: bold">Codigo interno:</th>
-		<th>$c_interno</th>
 	</tr>
 	<tr>
+		<th style="font-weight: bold">Codigo interno:</th>
+		<th>$c_interno</th>
+		<th style="width: 125px;"></th>
 		<th style="font-weight: bold">Numero de serie:</th>
 		<th>$n_serie</th>
-		<th style="width: 125px;"></th>
-		<th style="font-weight: bold">Año de fabricación:</th>
-		<th>$fecha_fabricacion</th>
 	</tr>
 </table>
 <table border="0" style="padding: 5px 5px 15px 5px;" >
     <tr>
-    	<th style="font-weight: bold; width: 128px">Requisito de velocidad de aire:</th>
+		<th style="font-weight: bold">Año de fabricación:</th>
+		<th>$fecha_fabricacion</th>
+		<th style="width: 125px;"></th>
+    	<th style="font-weight: bold;">Requisito de velocidad de aire:</th>
     	<th style="padding: 5px 5px 15px 5px;">$requisito_velocidad</th>
-		
     </tr>	
    
 </table>
