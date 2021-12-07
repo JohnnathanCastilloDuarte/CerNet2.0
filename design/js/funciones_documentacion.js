@@ -95,9 +95,10 @@ $(document).on('click','#agregar_documentacion',function(){
           icon:'question',
           input: 'select',
           inputOptions: {
-              CSV: 'CSV',
-              SPOT: 'SPOT',
-              GEP: 'GEP'        
+              //CSV: 'CSV',
+              //SPOT: 'SPOT',
+              //GEP: 'GEP',
+              Otro: 'Otro'        
           },
           inputPlaceholder: 'Seleccione el departamento',
           showCancelButton: true,
@@ -161,7 +162,20 @@ function listar_documentacion_activo(id_empresa){
       traer.forEach((x)=>{
         estado = "";
        
-        if(x.estado == 4){
+        if(x.estado == 1){
+         estado += `
+              <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
+                  <option value="0">Seleccione...</option>
+                  <option value="2">Participantes</option>
+                  <option value="3">Documentación</option>
+                </select>
+          `;
+        }else if(x.estado == 0 && x.estructura == 1){
+          estado += `
+                 <input type="text" class="form-control" placeholder="Ingresa aqui la URL de Drive" id="url_inspector"><br>
+                 <button id="guarda_link_inspector" data-id="${x.id_documentacion}" class="btn btn-success">Guardar link</button>
+           `;
+         }else{
           estado += `
               <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
                   <option value="0">Seleccione...</option>
@@ -169,19 +183,7 @@ function listar_documentacion_activo(id_empresa){
                   <option value="3">Documentación</option>
                 </select>
           `;
-        }else if(x.estado == 2){
-         estado += `
-              <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
-                  <option value="0">Seleccione...</option>
-                  <option value="3">Documentación</option>
-                </select>
-          `;
-        }else{
-          estado += `
-                 <input type="text" class="form-control" placeholder="Ingresa aqui la URL de Drive" id="url_inspector"><br>
-                 <button id="guarda_link_inspector" data-id="${x.id_documentacion}" class="btn btn-success">Guardar link</button>
-           `;
-         }
+        }
         
         template +=
           `
@@ -415,7 +417,7 @@ let seleccion = 2;
     url:'templates/documentacion/listar_participantes.php',
     data:{id_documentacion,seleccion},
     success:function(response){
-     
+      console.log(response);
       let traer = JSON.parse(response);
       let template = "";
       let rol = "";
@@ -436,7 +438,17 @@ let seleccion = 2;
               <td>${x.email}</td>
               <td>${rol}</td>
               <td>${x.empresa}</td>
-              <td><button class="btn btn-warning" id="modificar_participante_interno" data-id="${x.id_participante}" title="Modificar"><i class="pe-7s-check"></i></button></td>
+              <td>
+                <select class="form-control" id="orden_firma" data-id="${x.id_participante}">
+                  <option value="${x.orden_firma}">${x.orden_firma}</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </td>
               <td><button class="btn btn-danger" id="eliminar_participante_interno" data-id="${x.id_participante}" data-document = "${id_documentacion}" title="Eliminar">X</button></td>
               <td><button class="btn btn-primary" id="email_participante_interno" data-id="${x.id_participante}" title="Notificar via Email"><i class="pe-7s-mail"></i></button></td>
            </tr>
@@ -446,6 +458,44 @@ let seleccion = 2;
     }
   });  
 }
+
+
+//////////// FUNCIÓN PARA CAMBIAR DE POSICIÓN DE FIRMA
+$(document).on('change','#orden_firma',function(){
+
+    let id_participante = $(this).attr('data-id');
+    let valor = $(this).val();
+
+
+    const datos = {
+      id_participante,
+      valor
+    }
+
+    $.ajax({
+      type:'POST',
+      data:datos,
+      url:'templates/documentacion/change_posicion.php',
+      success:function(response){
+        if(response == "Listo"){
+          Swal.fire({
+            title:'Mensaje',
+            text:'Se ha cambiado el orden correctamente',
+            icon:'success',
+            timer:1700
+          });
+        }
+        listar_cercal_participantes();
+      }
+    })
+
+});
+
+
+
+
+
+
 
 //FUNCION PARA SETEAR CAMPOS
 function limpiando_creacion(){
@@ -517,15 +567,16 @@ if(validar == 2){
     url:'templates/documentacion/crear_participante.php',
     data: datos,
     success:function(response){
-     
+      if(response == "Creado"){
         Swal.fire({
           title:'Mensaje',
           text:'El participante ha sido creado con exito',
           icon:'success',
           timer:1800
         });
+      }
+       
       limpiando_creacion()
-      //listar_empresa_participantes()
       listar_cercal_participantes()
     }
   });
@@ -705,32 +756,6 @@ $(document).on('click','#email_participante_externo',function(){
 
 
 
-///// EVENTOS DE LOS BOTONES DE LISTAR PARTICIPANTES CERCAL
-
-$(document).on('click','#modificar_participante_interno',function(){
-  let id_participante = $(this).attr('data-id');
-  
-  $("#actualizar_persona_documentacion").show();
-  $("#guardar_persona_documentacion").hide();
-  $("#volver_nuevo_participante").show();
-  
-  $.ajax({
-    type:'POST',
-    url:'templates/documentacion/traer_modificar_participantes.php',
-    data:{id_participante},
-    success:function(response){
-      let traer = JSON.parse(response)
-      
-      $("#nombres_participante_documentacion").val(traer.nombres);
-      $("#apellidos_partipante_documentacion").val(traer.apellidos);
-      $("#email_participante_documentacion").val(traer.email);
-      $("#email_participante_documentacion_re").val(traer.email);
-      $("#id_persona_documentacion_oculto").val(traer.id_persona);
-      $("#cargo_participante_documentacion").val(traer.cargo); 
-        
-    }
-  });
-});
 
 ///////ELIMINAR PARTICIPANTE EXTERNO
 $(document).on('click','#eliminar_participante_interno',function(){
@@ -1559,16 +1584,30 @@ $("#guardar_config_documentacion").click(function(){
         data:datos,
         url:'templates/documentacion/guarda_configuracion.php',
         success:function(response){
+         
           if(response == 1){
-            listar_config_documentacion();
+            let informa_documentacion = "si";
+            const datos_segundos = {
+              id_documentacion_d,
+              informa_documentacion 
+            }
+            
+            $.ajax({
+              type:'POST',
+              url:'templates/documentacion/enviar_correo.php',
+              data:datos_segundos,
+              success:function(x){
+              }
+            });  
+              
+          }
+          listar_config_documentacion();
             Swal.fire({
               title:'Mensaje',
               text:'La configuración se ha cargado correctamente',
               icon:'success',
               timer:1500
             });
-
-          }
         }
        });
      }
@@ -1694,6 +1733,8 @@ function listar_config_documentacion(){
     }
   })
 }
+
+
 
 
 

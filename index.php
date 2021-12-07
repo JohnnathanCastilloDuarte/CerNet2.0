@@ -330,11 +330,31 @@ else
 }else if(isset($_GET['clave'])){
     
   switch($_GET['parameter']){
-    case 1:
-      include("templates/documentacion/añadir_participantes.php");
+    case 2:
+      if($id_privilegio != 7){
+        include("templates/documentacion/añadir_participantes.php");
+        ?>
+        <script>
+          Swal.fire({
+            title:'Hola'
+          })
+
+        </script>
+        <?php
+      }else{
+        ?>
+        <script>
+          Swal.fire({
+            title:'Hola'
+          })
+
+        </script>
+        <?php
+      }
+      
     break;
       
-    case 2:
+    case 3:
       include("templates/documentacion/gestor_documentacion.php");
     break;  
   }

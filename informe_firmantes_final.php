@@ -7,6 +7,7 @@ require_once('pdf/tcpdf.php');
 $key_encritp = $_GET['key'];
 $key = base64_decode($key_encritp);
 
+echo "hoklaaasdasf";
 
 $cantidad = mysqli_prepare($connect,"SELECT url FROM archivos_documentacion WHERE id_documentacion = ?");
 mysqli_stmt_bind_param($cantidad, 'i', $key);

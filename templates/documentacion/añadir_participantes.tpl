@@ -36,9 +36,8 @@
                         Empresa
                         <select class="form-control" id="empresa_participante_documentacion" required>
                           <option value="0">Seleccione...</option>
-                          <option value="1">Cercal Group</option> 
+                          <option value="97">Cercal Group</option> 
                           {foreach from=$array_empresa_documentacion item=empresa_documentacion}
- 
                             <option value="{$empresa_documentacion.id_empresa}">{$empresa_documentacion.nombre_empresa}</option>
                            {/foreach}
                         </select>
@@ -131,7 +130,8 @@
                         <th>Email</th>
                         <th>Rol</th>
                         <th>Empresa</th>
-                        <th colspan="3">Gestion</th>
+                        <th>Orden firma</th>
+                        <th colspan="2">Gestion</th>
                       </thead>
                       <tbody id="listo_participantes_1">
 

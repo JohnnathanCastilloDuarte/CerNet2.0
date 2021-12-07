@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-12 23:15:37
+/* Smarty version 3.1.34-dev-7, created on 2021-12-02 21:23:25
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\añadir_participantes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6165faf9d796f0_86727674',
+  'unifunc' => 'content_61a92b3d71ad68_10914510',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36372aa2f35b31a2a22d483e7b47b35f2cd6c709' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\añadir_participantes.tpl',
-      1 => 1634070939,
+      1 => 1638464252,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6165faf9d796f0_86727674 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a92b3d71ad68_10914510 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab1">
@@ -60,13 +60,12 @@ function content_6165faf9d796f0_86727674 (Smarty_Internal_Template $_smarty_tpl)
                         Empresa
                         <select class="form-control" id="empresa_participante_documentacion" required>
                           <option value="0">Seleccione...</option>
-                          <option value="1">Cercal Group</option> 
+                          <option value="97">Cercal Group</option> 
                           <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa_documentacion']->value, 'empresa_documentacion');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['empresa_documentacion']->value) {
 ?>
- 
                             <option value="<?php echo $_smarty_tpl->tpl_vars['empresa_documentacion']->value['id_empresa'];?>
 "><?php echo $_smarty_tpl->tpl_vars['empresa_documentacion']->value['nombre_empresa'];?>
 </option>
@@ -164,7 +163,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <th>Email</th>
                         <th>Rol</th>
                         <th>Empresa</th>
-                        <th colspan="3">Gestion</th>
+                        <th>Orden firma</th>
+                        <th colspan="2">Gestion</th>
                       </thead>
                       <tbody id="listo_participantes_1">
 

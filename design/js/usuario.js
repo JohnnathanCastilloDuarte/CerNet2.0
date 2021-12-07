@@ -226,3 +226,31 @@ $("#formulario_actualizacion_usuario").submit(function(e){
 
 
 
+
+
+
+/////////// FUNCION PARA BUSCAR CARGO
+buscar_cargos();
+function buscar_cargos(){
+
+	$.ajax({
+		type:'POST',
+		url:'templates/usuario/buscar_cargo.php',
+		success:function(response){
+			let traer = JSON.parse(response);
+			let template = "";
+	
+			traer.forEach((valor)=>{
+				template += 
+				`
+					<option value="${valor.id_cargo}">${valor.cargo}</option>;
+				`;
+			});
+
+			$("#cargo_usuario").html("<option value='0'>Seleccione</option>"+template);
+		}
+	})
+}
+
+
+

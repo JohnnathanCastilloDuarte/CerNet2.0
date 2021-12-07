@@ -31,7 +31,7 @@ function ya_firmo() {
   $.ajax({
     type: 'POST',
     data: datos,
-    url: '../documentacion/yafirmo.php',
+    url: 'templates/documentacion/yafirmo.php',
     success: function(response) {
       console.log(response);
       let traer = JSON.parse(response);
@@ -49,9 +49,6 @@ function ya_firmo() {
       } else {
         $("#id_t_firmantes").val(traer.id_t_firmantes);
       }
-
-
-
 
     }
   });
@@ -191,7 +188,7 @@ $("#firmar_2_c").click(function() {
           url: '../documentacion/firmar_ya.php',
           success: function(response) {
             console.log(response);
-
+            /*
             if (response == "si") {
 
               Swal.fire({
@@ -202,8 +199,8 @@ $("#firmar_2_c").click(function() {
               });
               ya_firmo();
               $("#firmar_2_c").hide();
-
-            }
+              
+            }*/
           }
         });
       }
@@ -227,29 +224,42 @@ function listar_documentacion_arriba() {
       id_documentacion
     },
     success: function(res) {
-      console.log(res)
-      let traer = JSON.parse(res);
+
       let template = "";
-      let estado = "";
-      let firma = "";
-      let view = "";
-      let template2 = "";
-      let contador = 1;
-      let firma2 = "";
 
-      traer.forEach((x) => {
+      if(res != "No existe"){
+        let traer = JSON.parse(res);
 
-        template +=
-          `
-            <tr>
-              <td>${x.fecha_registro}</td>
-              <td>${x.nombre}</td>
-              <td><img src='../documentacion/recursos/001-view.png' class='btn btn-primary' id='ver_c' data-id='${x.url}' data-mas='${x.id}'></td>
-            </tr>
+        let estado = "";
+        let firma = "";
+        let view = "";
         
-          `;
+        let contador = 1;
+        let firma2 = "";
 
-      });
+        traer.forEach((x) => {
+
+          template +=
+            `
+              <tr>
+                <td>${x.fecha_registro}</td>
+                <td>${x.nombre}</td>
+                <td><img src='../documentacion/recursos/001-view.png' class='btn btn-primary' id='ver_c' data-id='${x.url}' data-mas='${x.id}'></td>
+              </tr>
+          
+            `;
+
+        });
+        
+      }else{
+   
+        template += 
+        `<tr>
+          <td colspan = "3" class="text-success">Se ha cargado archivos por parte del Inspector</td>
+        </tr>
+        
+        `;
+      }  
       $("#listar_1").html(template);
     }
   });
@@ -391,7 +401,7 @@ $(document).on("click", "#ver_c", function() {
   if (lugar == "externo") {
     window.open('https://cercal.net/CerNet2.0/informe_firmantes_final2.php?key=' + id_documentacion_encript);
   } else {
-    window.open('http://localhost/CerNet2.0/informe_firmantes_final2.php?key=' + id_documentacion_encript);
+    window.open('https://localhost/CerNet2.0/informe_firmantes_final2.php?key=' + id_documentacion_encript);
   }
 
   /*

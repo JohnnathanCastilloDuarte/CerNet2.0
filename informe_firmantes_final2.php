@@ -120,13 +120,13 @@ $pdf->writeHTML($html, true, false, false, false, '');
 
 $que_hace = "";
 
-$consultar_2 = mysqli_prepare($connect,"SELECT  a.firma, a.fecha_firma, b.nombre, b.apellido, b.cargo, a.tipo_firma, c.rol, a.qr FROM
-firmantes_documentacion as a, persona as b, participante_documentacion as c WHERE a.id_documento = ?
-AND a.id_usuario = b.id_usuario AND a.id_usuario = c.id_persona AND a.tipo_firma != '' ORDER BY fecha_firma ASC;");
+$consultar_2 = mysqli_prepare($connect,"SELECT   a.fecha_firma, b.nombre, b.apellido, d.nombre, a.rol, a.qr FROM
+participante_documentacion as a, persona as b, cargo as d WHERE a.id_documentacion = ?
+AND a.id_persona = b.id_usuario AND a.fecha_firma is not null AND b.id_cargo = d.id_cargo  ORDER BY fecha_firma ASC;;");
 mysqli_stmt_bind_param($consultar_2, 'i', $key);
 mysqli_stmt_execute($consultar_2);
 mysqli_stmt_store_result($consultar_2);
-mysqli_stmt_bind_result($consultar_2,  $firma, $fecha_registro, $nombre, $apellido, $cargo, $tipo_firma, $tipo, $qr);
+mysqli_stmt_bind_result($consultar_2,  $fecha_registro, $nombre, $apellido, $cargo, $tipo, $qr);
 
 while($row = mysqli_stmt_fetch($consultar_2)){
 
@@ -145,30 +145,14 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
     $pdf->writeHTMLCell(60, 5, 140, '', '<srtong>Firma</srtong>', 1, 1, 0, true, 'C', true);
 
-    if($firma == 0){
-      $firma_que = "Pluma";
-      $img = base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $tipo_firma));
 
-      $rutaImagenSalida = __DIR__ . "/".$contador.".png";
-      $imagenBinaria = base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $tipo_firma));
-      $bytes = file_put_contents($rutaImagenSalida, $imagenBinaria);
-
-
-      $pdf->writeHTMLCell(60, 30, 10, '','<br> '. $nombre.' '.$apellido.'<br> Cargo: '.$cargo, 1, 0, 0, true, 'C', true);
-
-      $pdf->writeHTMLCell(70,30, 70, '',$fecha_registro, 1, 0, 0, true, 'C', true);
-
-      $pdf->writeHTMLCell(60, 30, 140, '', '<br><br><img src="'.$contador.'.png" width="120" height="89"/>', 1, 1, 0, true, 'M', true);
-
-
-    }else{
       $firma_que = "Token";
       $pdf->writeHTMLCell(60, 30, 10, '', $nombre.' '.$apellido.'<br> Cargo: '.$cargo, 1, 0, 0, true, 'C', true);
 
       $pdf->writeHTMLCell(70,30, 70, '',$fecha_registro, 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(60, 30, 140, '', '<p><img src="templates/documentacion/'.$qr.'" border="0" height="80" width="80" align="middle" /></p>', 1, 1, 0, true, 'C', true);
-    }
+      $pdf->writeHTMLCell(60, 30, 140, '', '<p><img src="templates/documentacion/head_templates/'.$qr.'" border="0" height="80" width="80" align="middle" /></p>', 1, 1, 0, true, 'C', true);
+    
   
 
     if($contador == 4){

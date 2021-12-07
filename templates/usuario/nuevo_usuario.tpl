@@ -97,36 +97,23 @@
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<label>Cargo:</label>
-						<select class="form-control" id="cargo_usuario">
-							<option>Selecciona...</option>
-							<option value="Administrativo">Administrativo</option>
-							<option value="Comercial">Comercial</option>
-							<option value="Documentador">Documentador</option>
-							<option value="Gerente general">Gerente general</option>
-							<option value="Ingeniero">Ingeniero</option>
-							<option value="T.I.">T.I.</option>
-						</select>	
+						<div class="position-relative form-group">
+							<label>Departamento</label>
+							<select class="form-control" id="departamento_usuario">
+
+							</select>
+						</div>
 					</div>
 				</div>	
 
 				<div class="row">
+				<!--
 					<div class="col-sm-6">
-						<div class="position-relative form-group">
-							<label>Departamento</label>
-							<select class="form-control" id="departamento_usuario">
-								<option>Selecciona...</option>
-								<option value="{$departamento_usuario}">{$departamento_usuario}</option>
-								<option value='ADMINISTRACIÓN'>ADMINISTRACIÓN</option>
-								<option value='COMERCIAL'>COMERCIAL</option>
-								<option value='CSV'>CSV</option>
-								<option value='GEP'>GEP</option>
-								<option value='MARKETING'>MARKETING</option>
-								<option value='SPOT'>SPOT</option>
-								<option value='T.I.'>T.I.</option>
-							</select>
-						</div>
-					</div>
+						<label>Cargo:</label>
+						<select class="form-control" id="cargo_usuario">
+							
+						</select>	
+					</div>-->
 					<div class="col-sm-6">
 						<div class="position-relative form-group">						
 							<label>Pais:</label>

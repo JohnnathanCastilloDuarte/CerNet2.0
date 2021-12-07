@@ -6,16 +6,25 @@ $nombre = $_POST['nombre'];
 $tipo = $_POST['tipo'];
 $id_documentacion = $_POST['id_documentacion_d'];
 
-$eliminar = mysqli_prepare($connect,"DELETE FROM archivos_documentacion WHERE id_documentacion = ?");
-mysqli_stmt_bind_param($eliminar, 'i', $id_documentacion);
-mysqli_stmt_execute($eliminar);
-
-$query = mysqli_prepare($connect,"UPDATE documentacion SET nombre = ? , tipo = ? WHERE id = ?");
+$query = mysqli_prepare($connect,"UPDATE documentacion SET nombre = ? , tipo = ?, estado = 2 WHERE id = ?");
 mysqli_stmt_bind_param($query, 'sii', $nombre, $tipo, $id_documentacion);
 mysqli_stmt_execute($query);
 
 if($query){
-  echo 1;
+
+  $query_2 = mysqli_prepare($connect,"SELECT estructura FROM documentacion WHERE id = ?");
+  mysqli_stmt_bind_param($query_2, 'i', $id_documentacion);
+  mysqli_stmt_execute($query_2);
+  mysqli_stmt_store_result($query_2);
+  mysqli_stmt_bind_param($query_2, $estructura);
+  mysqli_stmt_fetch($query_2);
+
+  if($estructura == 1){
+    echo 1;
+  }else{
+    echo 2;
+  }
+
 }else{
   echo 0;
 }
