@@ -4,15 +4,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/Exception.php';
-require 'PHPMailer/SMTP.php';
 
-error_reporting(0);
 include('../../config.ini.php');
 
 
 $variable_url = $_SERVER['HTTP_HOST'];
-$url = "";
 $mail = new PHPMailer(true);
+
+
+$url = "";
 $email = "";
 $id_persona = "";
 $id_documento = "";

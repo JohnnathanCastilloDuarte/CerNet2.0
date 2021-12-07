@@ -45,12 +45,21 @@
                 <div class="col-sm-6">
                   <div class="position-relative form-group">
                     <label>Empresa:</label>
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa">
+
+                    <div >
+                      
+                      <table class="table" id="aqui_resultados_empresa">
+                         
+                      </table>
+                    </div>
+                    <!--
                     <select id="empresa_bodega" class="form-control">
-															<option value="{$bodega.id_empresa}">{$bodega.nombre_empresa}</option>
-															{foreach from=$array_empresa item=empresa}
-															<option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-															{/foreach}
-														</select>
+                      <option value="{$bodega.id_empresa}">{$bodega.nombre_empresa}</option>
+                      {foreach from=$array_empresa item=empresa}
+                      <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
+                      {/foreach}
+                    </select>-->
                   </div>
                 </div>
               </div>

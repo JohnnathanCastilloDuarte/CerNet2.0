@@ -26,6 +26,7 @@ mysqli_stmt_bind_result($execute_query, $id_privilegio, $id_rol, $imagen);
 mysqli_stmt_fetch($execute_query);
 
 $smarty->assign("imagen",$imagen);
+$smarty->assign("id_privilegio_actual",$id_privilegio);
 
 //mostrar imagen 
 $img = "SELECT imagen_usuario FROM persona WHERE id_usuario = ?";
@@ -37,6 +38,7 @@ mysqli_stmt_bind_result($execute_query2, $imagen_usuario);
 mysqli_stmt_fetch($execute_query2);
 
 $smarty->assign("imagen_usuario",$imagen_usuario);
+
 
 
 

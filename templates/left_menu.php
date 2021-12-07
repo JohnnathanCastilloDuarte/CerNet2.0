@@ -257,7 +257,9 @@
     <ul>
     <li>
     
-    <a href="index.php?module={$modulo[2]}&page={$page[0]}">Gestion documental</a>
+    {if $id_privilegio_actual != 7}
+    <a href="index.php?module={$modulo[2]}&page={$page[0]}">Gestion documental</a>.
+    {/if}
       <a href="index.php?module={$modulo[2]}&page={$page[1]}">Revisión documental</a>
     </li>
     </ul>  
