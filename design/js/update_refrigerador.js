@@ -85,8 +85,10 @@ function setear_campos(){
       temperatura_minima : $("#temperatura_minima").val(),
       temperatura_maxima : $("#temperatura_maxima").val(),
 		}
+
+    //alert($("#valor_seteado_hum").val());
 		
-		$.post('templates/item/editar_refrigerador.php', datos, function(responsive){
+	$.post('templates/item/editar_refrigerador.php', datos, function(responsive){
 			
 			if(responsive == "Si"){
 				Swal.fire({

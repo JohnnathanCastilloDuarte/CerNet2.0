@@ -23,7 +23,6 @@
 	</li>
 </ul>
 
-
 <!--Comienza el contenido de las tabs-->
 <div class="tab-content">
 	<div class="tab-pane tabs-animation fade show active" id="creacion" role="tabpanel">
@@ -112,7 +111,7 @@
 
 											<label>Nombre mapeo:</label>
 											<select id="nombre_mapeo_ultrafreezer" class="form-control" required>
-												<option value="Sin seleccion">Seleccione...</option>
+												<option value="0">Seleccione...</option>
 												<option value="FFFFF">NOMBRE PERSONALIZADO</option>
 												<option value="SIN CARGA">DISTRIBUCIÓN TERMICA SIN CARGA</option>
 												<option value="CON CARGA">DISTRIBUCIÓN TERMICA CON CARGA</option>
@@ -484,7 +483,7 @@
 						</div>	
 					</div>
 
-					<div class="form-row"> 
+					<div class="form-row" style="text-align: center;"> 
 						<div class="col-sm-12" id="botton_datos_crudos_ultrafreezer">
 						</div>
 					</div>

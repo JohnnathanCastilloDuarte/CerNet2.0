@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-16 23:49:53
+/* Smarty version 3.1.34-dev-7, created on 2021-12-01 15:43:00
   from 'C:\xampp\htdocs\CerNet2.0\templates\automovil\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6194359163acd0_92367073',
+  'unifunc' => 'content_61a789f44516b2_10611291',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2c3317aa7dbdba6f3f1555b7e1ff1b760525485b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\automovil\\datos_informe_mapeo.tpl',
-      1 => 1637102992,
+      1 => 1638369779,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6194359163acd0_92367073 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a789f44516b2_10611291 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -51,7 +51,7 @@ function content_6194359163acd0_92367073 (Smarty_Internal_Template $_smarty_tpl)
 <div class="tab-content">
 	<div class="tab-pane tabs-animation fade show active" id="creacion" role="tabpanel">
 		<div class="row">
-			<div class="col-sm-5">
+			<div class="col-sm-6">
 				<div class="card" style="height:100%;">
 					<div class="card-header">
 						<h6 style="text-align:center;">
@@ -109,7 +109,7 @@ function content_6194359163acd0_92367073 (Smarty_Internal_Template $_smarty_tpl)
 				</div>	
 			</div>
 
-			<div class="col-sm-7">
+			<div class="col-sm-6">
 				<div class="card">
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
@@ -128,11 +128,11 @@ function content_6194359163acd0_92367073 (Smarty_Internal_Template $_smarty_tpl)
 									<span>Correlativo</span>
 								</a>
 							</li>
-							<li class="nav-item">
+							<!--<li class="nav-item">
 								<a role="tab" class="btn btn-danger" id="cargar_informes_automovil" data-toggle="tab" href="#cargar_informes_automovil">
 									<span>Genera informes</span>
 								</a>
-							</li>
+							</li>-->
 						</ul>				
 					</div>
 
@@ -359,9 +359,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 									<div class="form-row">
 										<div class="col-sm-3">
-											<h5>
+											<h6>
 												Temperatura
-											</h5>
+											</h6>
 										</div>
 										<div class="col-sm-3">
 											<label>	Valor seteado:</label>

@@ -37,7 +37,7 @@ $fecha_fin = $fecha_fin_mapeo.' '.$hora_fin_mapeo.':'.$minuto_fin_mapeo.':'.$seg
 $c_dias = number_format(((strtotime($fecha_fin)-strtotime($fecha_incial))/3600)/24,2);
 $c_hora = $c_dias * 24;
 
-$nombre_construido = "MAPEO A ".$c_hora." HORA(s) ".$nombre_mapeo;
+$nombre_construido = $nombre_mapeo;
 
 
 

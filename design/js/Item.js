@@ -1,5 +1,4 @@
 
-
 $(document).on('click','#btn_abrir_item',function(){
 
 	let url = '';
@@ -21,8 +20,6 @@ $(document).on('click','#btn_abrir_item',function(){
 
 
 });
-
-
 
 //function para crear item
 (function(){
@@ -172,5 +169,62 @@ function lista_item_cliente(){
 	});
 }
 
+//funcuion para enviar el PDF por correo
+
+$(document).on('click',"#enviar_correo_pdf",function(){
+  		
+  		let id_item =($(this).data("id"));	
+  		let id_tipo =($(this).data("tipo"));	
+        Swal.fire({
+          title: 'Enviar PDF',
+          icon:'question',
+          text:'Ingrese el correo al que se enviara el PDF'+id_item,
+          input: 'text',
+          inputAttributes: {
+   		  autocapitalize: 'on'
+  		  },
+          inputPlaceholder: 'Ingrese el correo',
+          showCancelButton: true,
+        }).then((result)=>{
+        
+          if(result.value){
+            let correo = result.value;
+            let pdf = 2;
+
+            //alert(correo+"//"+id_item+"//"+id_tipo);
+             
+            const datos = {
+              correo,
+              id_item,
+              id_tipo,
+              pdf,
+            } 
+              $.ajax({
+              type:'POST',
+              url:'templates/item/enviarPDF.php',
+              data:datos,
+              success:function(response){
+                console.log(response);
+               
+                if(response == "Si"){
+                  Swal.fire({
+                    title:'Mensaje',
+                    text:'Se ha enviado el PDF correctamente'+response,
+                    timer:1500,
+                    icon:'success'
+                  });
+        
+                }else{
+                	alert("algo malio sal"+response);
+                }
+
+              }
+            });
+
+          }
+
+        });
+
+});
 
 lista_item_cliente();

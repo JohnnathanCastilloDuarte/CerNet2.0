@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-19 14:41:54
+/* Smarty version 3.1.34-dev-7, created on 2021-12-01 15:39:20
   from 'C:\xampp\htdocs\CerNet2.0\templates\ultrafreezer\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6197a9a25c0f83_13714435',
+  'unifunc' => 'content_61a78918be0aa5_43741909',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e7c30965dc2d2e0ea8f92583a703f7d66c23bd0f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\ultrafreezer\\datos_informe_mapeo.tpl',
-      1 => 1637329274,
+      1 => 1638368419,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6197a9a25c0f83_13714435 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61a78918be0aa5_43741909 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -45,7 +45,6 @@ function content_6197a9a25c0f83_13714435 (Smarty_Internal_Template $_smarty_tpl)
 		</a>
 	</li>
 </ul>
-
 
 <!--Comienza el contenido de las tabs-->
 <div class="tab-content">
@@ -136,7 +135,7 @@ function content_6197a9a25c0f83_13714435 (Smarty_Internal_Template $_smarty_tpl)
 
 											<label>Nombre mapeo:</label>
 											<select id="nombre_mapeo_ultrafreezer" class="form-control" required>
-												<option value="Sin seleccion">Seleccione...</option>
+												<option value="0">Seleccione...</option>
 												<option value="FFFFF">NOMBRE PERSONALIZADO</option>
 												<option value="SIN CARGA">DISTRIBUCIÓN TERMICA SIN CARGA</option>
 												<option value="CON CARGA">DISTRIBUCIÓN TERMICA CON CARGA</option>
@@ -568,7 +567,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 						</div>	
 					</div>
 
-					<div class="form-row"> 
+					<div class="form-row" style="text-align: center;"> 
 						<div class="col-sm-12" id="botton_datos_crudos_ultrafreezer">
 						</div>
 					</div>

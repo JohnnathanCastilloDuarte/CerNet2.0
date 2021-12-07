@@ -1713,6 +1713,35 @@ function listar_informes_automovil(){
 }
 
 
+$(document).on('submit','#form_2_automovil',function(e){
+            e.preventDefault();
+    
+  $.ajax({
+    url: 'templates/automovil/actualizar_informe_parte_1.php',
+    type: 'POST',
+    dataType: 'html',
+    data: new FormData(this),
+    cache: false,
+    contentType: false,
+    processData: false,
+    success:function(response){   
+      
+       if(response == "Si"){
+          Swal.fire({
+            position:'center',
+            title:'Ha sido actualizado correctamente',
+            icon:'success',
+            timer:1500
+          });
+          listar_informes_automovil();
+        }else{
+          alert("Algo salio mal, contacta con el administrador"+response);
+        }
+
+    } 
+  });   
+  });   
+
 
 
 

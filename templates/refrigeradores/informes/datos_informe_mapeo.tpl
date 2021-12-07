@@ -284,7 +284,7 @@
 										<div class="col-sm-12" style="text-align:center;">
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_nuevo_mapeo">Aceptar</button>
 											<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_mapeo">Actualizar</button>
-											<button class="btn btn-danger" id="change_mapeo"><span class="text-white">X</span></button>
+											<button class="btn btn-outline-danger" id="change_mapeo"><span>X</span></button>
 										</div>
 									</div>
 								</form>
@@ -653,7 +653,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header" style="height: 4.5rem;">
 
 						Informes Generados
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

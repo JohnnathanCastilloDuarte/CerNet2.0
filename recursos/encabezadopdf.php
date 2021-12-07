@@ -19,8 +19,8 @@ class MYPDF extends TCPDF
         $this->SetFont('helvetica', 'B', 10);
         // Title
 		//$this->writeHTMLCell(50, 20, 15, 7, '', 1, 0, 0, true, 'C', true);
-    $this->SetFont('helvetica', 'B', 9);	
-	//	$this->MultiCell(60, 20, $a, 1, 'C', 0, 0, 65, 7, true, 0,true, true, 20, 'M');
+    	$this->SetFont('helvetica', 'B', 9);	
+		//	$this->MultiCell(60, 20, $a, 1, 'C', 0, 0, 65, 7, true, 0,true, true, 20, 'M');
 		$this->SetFont('helvetica', 'B', 10);
 	//	$this->writeHTMLCell(70, 15, 125, 7, 'Informe: '.$nombre_informe.' <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 		//$this->MultiCell(91, 15, 'Informe:  // REVISION: 0.0.0', 1, 'C', 0, 1, 190, 7, true, 1, true, true, 0, 'M');		

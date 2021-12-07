@@ -5,19 +5,19 @@
 		</a>
 	</li>
 	<li class="nav-item" id="asignacion_mapeo_freezer">
-		<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#asignacion_freezer">
+		<a role="tab" class="nav-link" id="asignacion" data-toggle="tab" href="#asignacion_freezer">
 			<span>Asignación</span>
 		</a>
 	</li>
 
 	<li class="nav-item" id="asignacion_participantes_freezer">
-		<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#participantes_freezer">
+		<a role="tab" class="nav-link" id="Complemento" data-toggle="tab" href="#participantes_freezer">
 			<span>Complemento</span>
 		</a>
 	</li>
 
 	<li class="nav-item" id="asignacion_informe_freezer">
-		<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#informes_1_freezer">
+		<a role="tab" class="nav-link" id="informes" data-toggle="tab" href="#informes_1_freezer">
 			<span>Informes</span>
 		</a>
 	</li>
@@ -78,12 +78,12 @@
 					<div class="card-header">
 						<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 							<li class="nav-item">
-								<a role="tab" class="nav-link  active" id="tab-0" data-toggle="tab" href="#crear_mapeo_freezer">
+								<a role="tab" class="nav-link  active" id="mapeo" data-toggle="tab" href="#crear_mapeo_freezer">
 									<span>Mapeo</span>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#ver_mapeo_freezer">
+								<a role="tab" class="nav-link" id="vermapeo" data-toggle="tab" href="#ver_mapeo_freezer">
 									<span>Ver mapeo</span>
 								</a>
 							</li>
@@ -92,11 +92,13 @@
 									<span>Correlativo</span>
 								</a>
 							</li>
+							<!--
 							<li class="nav-item">
-								<a role="tab" class="nav-link" id="cargar_informes_freezer" data-toggle="tab" href="#cargar_informes">
+								<a role="tab" class="nav-link" id="informes_freezer" data-toggle="tab" href="#cargar_informes">
 									<span>Genera informes</span>
 								</a>
 							</li>
+						-->
 						</ul>				
 					</div>
 
@@ -109,10 +111,9 @@
 									
 									<div class="form-row">
 										<div class="col-sm-5">
-
 											<label>Nombre mapeo:</label>
 											<select id="nombre_mapeo_freezer" class="form-control" required>
-												<option value="Sin seleccion">Seleccione...</option>
+												<option value="0">Seleccione...</option>
 												<option value="SIN CARGA">SIN CARGA</option>
 												<option value="CON CARGA">CON CARGA</option>
 												<option value="CON CARGA MÍNIMA">CON CARGA MÍNIMA</option>
@@ -134,6 +135,7 @@
 												<option value="SENSOR AMBIENTE CARGA MÁXIMA">SENSOR AMBIENTE CARGA MÁXIMA</option>
 												<option value="SENSORES DE MONITOREO CARGA MÁXIMA">SENSORES DE MONITOREO CARGA MÁXIMA</option>
 											</select>
+
 										</div>
 
 									</div>
@@ -302,7 +304,11 @@
 									<div class="form-row">
 										<div class="col-sm-6">
 											<label>¿ Incluir en informe base ?</label>
-											<input type="checkbox" id="informe_base_freezer" value="1">
+											<select class="form-control" id="informe_base_freezer">
+												<option value="null">Seleccione...</option>
+												<option value="1">Si</option>
+												<option value="0">No</option>
+											</select>
 										</div>
 										<div class="col-sm-6">
 											<label></label>
@@ -327,7 +333,7 @@
 							</div>
 						</div>
 
-						<div class="tab-pane tabs-animation fade show" id="ver_mapeo_freezer" role="tabpanel">
+						<div class="tab-pane tabs-animation fade" id="ver_mapeo_freezer" role="tabpanel">
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table">
@@ -493,6 +499,7 @@
 											<thead>
 												<th>Bandeja</th>
 												<th>Sensor</th>
+												<th>Posicion</th>
 												<th>Fecha registro</th>
 												<!--<th >Datos crudos</th>-->
 											</thead>	
@@ -500,8 +507,10 @@
 
 											</tbody>
 										</table>
-
-
+									<div style="text-align: center;">
+										<button class="btn btn-success" id="boton_condatos_cargados">Datos crudos cargados</button>
+										<button class="btn btn-danger" id="boton_sindatos_cargados">Datos crudos por cargar</button>
+									 </div>
 									</div>
 								</div>	
 							</div>	
@@ -527,41 +536,38 @@
 							Carga de datos crudos
 						</div>
 						<div class="card-body">
-							<div class="form-row">
-								<div class="col-sm-12" style="text-align:center;">
-									<form id="form_freezer" enctype="multipart/form-data" method="post">
-										<div class="form-group">
-											<h6>Nombre bandeja: <label id="nombre_bandeja_freezer"></label></h6>
-											<h6>Nombre sensor: <label id="nombre_sensor_freezer"></label></h6>
-										</div>
-										<input type="hidden" id="id_freezer_sensor" name="id_freezer_sensor">
-										<input type="hidden" id="id_mapeo_freezer" name="id_mapeo_freezer">
-										<input type="hidden" id="id_asignado_form_freezer" name="id_asignado_form_freezer">
+						<div class="form-row">
+							<div class="col-sm-12" style="text-align:center;">
+								<form id="form_freezer" enctype="multipart/form-data" method="post">
+									<div class="form-group" style="text-align:left;">
+										<h6>Nombre Mapeo:&nbsp;&nbsp;<label id="nombre_mapeo_freezer_dc"></label></h6>
+									</div>
+									<input type="hidden" id="id_mapeo_freezer" name="id_mapeo_freezer">
+									<input type="hidden" id="id_asignado_freezer" name="id_asignado_freezer">
 
-										<!--
-										<div class="form-group">
-											<label for="file">File</label>
-											<input type="file" class="form-control" id="file_freezer" name="file_freezer"  required />
-										</div>
+									<div class="form-row">
+										<div class="col-sm-12">
+											<table class="table">
+												<thead>
+													<th>Columna</th>
+													<th>Sensor</th>
+												</thead>
+												<tbody id="dc_freezer_seleccionador">
 
-
-										<div class="form-group">
-											<button class="btn btn-success">
-												Cargar
-											</button>
+												</tbody>
+											</table>
 										</div>
-									-->
+									</div>
+									<button class="btn btn-success">Cargar mapeos</button>
+
 								</form>
 							</div>
 
 						</div>
-						<div class="row">
-					     <button class="btn btn-success btn-aling-center">cargar datos crudos</button>
-					   </div>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6">
+		<!--	<div class="col-sm-6">
 				<div class="card">
 					<div class="card-header"> Resultados Datos Crudos</div>
 					<div class="card-body">
@@ -573,7 +579,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div><!--Cierre del tab asignacion-->
@@ -669,7 +675,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header" style="height: 4.5rem;">
 
 					Informes Generados
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
