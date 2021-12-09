@@ -30,7 +30,7 @@
 									<br> 
 									<a target="_blank" id="btn_genear_pdf_item" href="index.php?module={$modulo[7]}&page={$page[2]}&item={$gestionar.id_item}&type={$gestionar.id_tipo}&pdf=1" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning btn-sm"><i class="fa fa-file-pdf-o" style="font-size:20.5px; color:red;"></i></a>
 
-									<!--<button id="enviar_correo_pdf" data-id="{$gestionar.id_item}" data-tipo="{$gestionar.id_tipo}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm"><i class="fa fa-envelope-o" style="font-size:20.5px; color:green;"></i></button>-->
+									<button id="enviar_correo_pdf" data-id="{$gestionar.id_item}" data-tipo="{$gestionar.id_tipo}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm"><i class="fa fa-envelope-o" style="font-size:20.5px; color:green;"></i></button>
 
 								</div>
 							</td>

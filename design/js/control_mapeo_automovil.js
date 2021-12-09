@@ -1739,6 +1739,37 @@ $("#traer_informes_automovil").html(template);
 }
 
 
+//FUNCION PARA CONTROLAR EL BOTTON DE EVIDENCIAS GRAFICAS
+(function(){
+  
+    $(document).on('submit','#form_1_automovil',function(e){
+              e.preventDefault();
+
+    $.ajax({
+      url: 'templates/automovil/cargar_evidencias_graficas_automovil.php',
+      type: 'POST',
+      dataType: 'html',
+      data: new FormData(this),
+      cache: false,
+      contentType: false,
+      processData: false,
+      success:function(response){ 
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Imagenes cargardas correctamente',
+              showConfirmButton: false,
+              timer: 1000
+            }); 
+        listar_informes_ultrafreezer();
+      } 
+    });
+
+    });   
+  
+}());
+
+
 $(document).on('submit','#form_2_automovil',function(e){
   e.preventDefault();
   

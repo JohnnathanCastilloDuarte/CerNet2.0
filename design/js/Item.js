@@ -206,7 +206,7 @@ $(document).on('click',"#enviar_correo_pdf",function(){
               success:function(response){
                 console.log(response);
                
-                if(response == "Si"){
+                if(response == ""){
                   Swal.fire({
                     title:'Mensaje',
                     text:'Se ha enviado el PDF correctamente'+response,

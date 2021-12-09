@@ -59,8 +59,7 @@
     	//Campana		
     	case 12:
 
-    			header('location: update_campana_extraccion.php?item='.$id_item.'&pdf='.$pdf);
-    			// http://localhost/CerNet2.0/templates/item/update_campana_extraccion.php?item=1&pdf=1
+    			header('location: update_campana_extraccion.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);
 
     		break;	
     	//Flujo laminal		
