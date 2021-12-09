@@ -18,7 +18,7 @@
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Caracteristica del equipo</span>
+											<em>2</em><span>Caracteristicas del equipo</span>
 									</a>
             </li>
             <!--	<li>
@@ -39,7 +39,7 @@
             <div id="step-12">
               <div class="form-row">
                 <div class="col-sm-6">  
-                  <label>Nombre del Automovil</label>
+                  <label>Nombre del vehículo</label>
                   <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_automovil}" placeholder="Nombre automovil">
                 </div>
                 <div class="col-sm-6">
@@ -115,22 +115,22 @@
               <br>
               <div class="form-row">
                 <div class="col-sm-4">
-                  <label>Voltaje:</label>
+                  <label>Voltaje(V):</label>
                   <input type="text" id="voltaje_automovil" class="form-control" placeholder="Voltaje" value="{$automovil.voltaje}">
                 </div>
                 <div class="col-sm-4">
-                  <label>Potencia:</label>
+                  <label>Potencia(A):</label>
                   <input type="text" id="potencia_automovil" class="form-control" placeholder="Potencia" value="{$automovil.potencia}">
                 </div>
                 <div class="col-sm-4">
-                  <label>Capacidad:</label>
+                  <label>Capacidad(M3):</label>
                   <input type="text" id="capacidad_automovil" class="form-control" placeholder="Capacidad" value="{$automovil.capacidad}">
                 </div>
               </div>
               <br>
               <div class="form-row">
                 <div class="col-sm-3">
-                  <label>Peso:</label>
+                  <label>Peso(K):</label>
                   <input type="text" id="peso_automovil" class="form-control" placeholder="Peso" value="{$automovil.peso}">
                 </div>
                 <div class="col-sm-3">
@@ -151,17 +151,17 @@
 
               <div class="form-row">
                 <div class="col-sm-4">
-                  <label>Valor seteado temperatura:</label>
+                  <label>Valor seteado temperatura(°C):</label>
                   <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="{$automovil.seteado_tem}" required>
                 </div>
 
                 <div class="col-sm-4">
-                  <label>Temperatura minima:</label>
+                  <label>Temperatura minima(°C):</label>
                   <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura minima" value="{$automovil.tem_min}" required>
                 </div>
 
                 <div class="col-sm-4">
-                  <label>Temperatura maxima:</label>
+                  <label>Temperatura maxima(°C):</label>
                   <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura maxima" value="{$automovil.tem_max}" required>
                 </div>
               </div>
