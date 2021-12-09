@@ -18,7 +18,7 @@
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Caracteristicas del equipo</span>
+											<em>2</em><span>Características del equipo</span>
 									</a>
             </li>
             <!--	<li>
@@ -91,7 +91,7 @@
                   <input type="text" id="n_serie_automovil" class="form-control" placeholder="N° Serie" value="{$automovil.n_serie}">
                 </div>
                 <div class="col-sm-4">
-                  <label>Codigo interno:</label>
+                  <label>Código interno:</label>
                   <input type="text" id="codigo_interno_automovil" class="form-control" placeholder="Codigo interno" value="{$automovil.c_interno}">
                 </div>
                 <div class="col-sm-4">
