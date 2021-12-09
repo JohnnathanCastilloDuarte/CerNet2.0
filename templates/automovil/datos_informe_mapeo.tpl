@@ -78,6 +78,7 @@
 									<th>Acciones</th>
 								</thead>
 								<tbody id="resultados_bandeja_automovil" style="text-align:center;">
+									
 								</tbody>
 							</table>
 						</div>
@@ -273,7 +274,7 @@
 
 
 
-									<div class="form-row">
+									<!-- <div class="form-row">
 										<div class="col-sm-3">
 											<h6>
 												Temperatura
@@ -292,7 +293,7 @@
 											<label>Maxima:</label>
 											<input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura maxima" required>
 										</div>
-									</div>
+									</div> -->
 									<br>
 									
 									<div class="form-row">
@@ -518,6 +519,11 @@
 							</div>	
 						</div>	
 					</div>
+						<br>
+						<br>
+						<div id="aqui_boton_dc" style="text-align: center;">
+						
+						</div>
 					
 					<div class="form-row"> 
 						<div class="col-sm-12" id="botton_datos_crudos_automovil">
