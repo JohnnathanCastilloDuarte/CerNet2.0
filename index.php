@@ -215,6 +215,8 @@ else
                 include("templates/item/update_filtro.php");
               }else if($_GET["type"] == 12){
                 include("templates/item/update_campana_extraccion.php");
+              }else if($_GET["type"] == 14){
+                include("templates/item/update_camara_congelada.php");
               }
             }else if($_GET["page"] == 4){
               include("templates/item/historial_item.php");
