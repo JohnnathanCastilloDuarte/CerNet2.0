@@ -18,7 +18,7 @@
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Caracteristica del equipo</span>
+											<em>2</em><span>Características del equipo</span>
 									</a>
             </li>
             <!--	<li>
@@ -39,8 +39,8 @@
             <div id="step-12">
               <div class="form-row">
                 <div class="col-sm-6">  
-                  <label>Nombre del Automovil</label>
-                  <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_automovil}" placeholder="Nombre automovil">
+                  <label>Nombre del vehículo</label>
+                  <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_automovil}" placeholder="Nombre vehículo">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-sm-4">
                   <label>Placa/Patente:</label>
-                  <input type="text" id="placa_automovil" class="form-control" placeholder="Placa/Patente automovil" value="{$automovil.placa}">
+                  <input type="text" id="placa_automovil" class="form-control" placeholder="Placa/Patente vehículo" value="{$automovil.placa}">
                 </div>
               </div>
               <br>
@@ -91,8 +91,8 @@
                   <input type="text" id="n_serie_automovil" class="form-control" placeholder="N° Serie" value="{$automovil.n_serie}">
                 </div>
                 <div class="col-sm-4">
-                  <label>Codigo interno:</label>
-                  <input type="text" id="codigo_interno_automovil" class="form-control" placeholder="Codigo interno" value="{$automovil.c_interno}">
+                  <label>Código interno:</label>
+                  <input type="text" id="codigo_interno_automovil" class="form-control" placeholder="Código interno" value="{$automovil.c_interno}">
                 </div>
                 <div class="col-sm-4">
                   <label>Año fabricación</label>
@@ -115,22 +115,22 @@
               <br>
               <div class="form-row">
                 <div class="col-sm-4">
-                  <label>Voltaje:</label>
+                  <label>Voltaje(V):</label>
                   <input type="text" id="voltaje_automovil" class="form-control" placeholder="Voltaje" value="{$automovil.voltaje}">
                 </div>
                 <div class="col-sm-4">
-                  <label>Potencia:</label>
+                  <label>Potencia(A):</label>
                   <input type="text" id="potencia_automovil" class="form-control" placeholder="Potencia" value="{$automovil.potencia}">
                 </div>
                 <div class="col-sm-4">
-                  <label>Capacidad:</label>
+                  <label>Capacidad(m3):</label>
                   <input type="text" id="capacidad_automovil" class="form-control" placeholder="Capacidad" value="{$automovil.capacidad}">
                 </div>
               </div>
               <br>
               <div class="form-row">
                 <div class="col-sm-3">
-                  <label>Peso:</label>
+                  <label>Peso(K):</label>
                   <input type="text" id="peso_automovil" class="form-control" placeholder="Peso" value="{$automovil.peso}">
                 </div>
                 <div class="col-sm-3">
@@ -151,18 +151,18 @@
 
               <div class="form-row">
                 <div class="col-sm-4">
-                  <label>Valor seteado temperatura:</label>
+                  <label>Valor seteado temperatura(°C):</label>
                   <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="{$automovil.seteado_tem}" required>
                 </div>
 
                 <div class="col-sm-4">
-                  <label>Temperatura minima:</label>
-                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura minima" value="{$automovil.tem_min}" required>
+                  <label>Temperatura mínima(°C):</label>
+                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura mínima" value="{$automovil.tem_min}" required>
                 </div>
 
                 <div class="col-sm-4">
-                  <label>Temperatura maxima:</label>
-                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura maxima" value="{$automovil.tem_max}" required>
+                  <label>Temperatura máxima(°C):</label>
+                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="{$automovil.tem_max}" required>
                 </div>
               </div>
 
