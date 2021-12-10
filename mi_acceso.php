@@ -1,6 +1,6 @@
 <?php
 session_start();
-//LLAMADA AL ARCHIVO PRINCIPAL DE ACCESO A BASE DE DATOS E INTEGRACION DE SMARTY
+//LLAMADA AL ARCHIVO PRINCIPAL DE ACCESO A BASE DE DATOS E INTEGRACION DE SMART
 include("config.ini.php");
 $smarty->assign("error_0001","");
 if(isset($_GET["error"]))
