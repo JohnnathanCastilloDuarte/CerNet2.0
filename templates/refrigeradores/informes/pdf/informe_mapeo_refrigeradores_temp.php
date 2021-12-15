@@ -3,7 +3,7 @@
 		require('../../../../config.ini.php');
 		$id_informe = $_GET['informe'];
 		$resultado_corresponde = "";
-    $posicion_sensores_indicativo = 1;
+        $posicion_sensores_indicativo = 1;
 	 
 		
 		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////

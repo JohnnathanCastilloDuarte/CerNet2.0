@@ -378,6 +378,7 @@
 		</div>
 	</div>
 </div>
+
 </div>	
 </div>
 </div>
@@ -519,11 +520,11 @@
 							</div>	
 						</div>	
 					</div>
-						<br>
-						<br>
-						<div id="aqui_boton_dc" style="text-align: center;">
+					<br>
+					<br>
+					<div id="aqui_boton_dc" style="text-align: center;">
 						
-						</div>
+					</div>
 					
 					<div class="form-row"> 
 						<div class="col-sm-12" id="botton_datos_crudos_automovil">
@@ -571,29 +572,29 @@
 										<input type="file" class="form-control" id="file_automovil" name="file_automovil"  required />
 									</div>
 								-->
-									
-									<div class="form-group" id="botoncito_automovil_dc">
-										<button class="btn btn-success">
-											Cargar
-										</button>
-									</div>
-								</form>
-								
-								<div class="form-group" id="carga_up_automovil" style="text-align:center">
-									<img src="templates/automovil/recursos/cargaup.gif" style="width:150px;">
+
+								<div class="form-group" id="botoncito_automovil_dc">
+									<button class="btn btn-success">
+										Cargar
+									</button>
 								</div>
-								
-								<div class="form-group" id="si_existe_dc_autmovil">
-									
-								</div>
+							</form>
+
+							<div class="form-group" id="carga_up_automovil" style="text-align:center">
+								<img src="templates/automovil/recursos/cargaup.gif" style="width:150px;">
 							</div>
 
+							<div class="form-group" id="si_existe_dc_autmovil">
+
+							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-		<br>
+	</div>
+	<br>
       <!--
       <div class="form-row">
         <div class="col-sm-12">

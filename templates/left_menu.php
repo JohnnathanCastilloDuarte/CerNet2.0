@@ -247,6 +247,10 @@
     <a href="index.php?module={$modulo[6]}&page={$page[8]}"><i class="metismenu-icon pe-7s-news-paper"></i>Campana de extracción</a>
     </li>
 
+    <li>
+    <a href="index.php?module={$modulo[6]}&page={$page[9]}"><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
+    </li>
+
 
     </ul>
     </li>
