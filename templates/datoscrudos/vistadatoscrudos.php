@@ -91,13 +91,13 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 
 								<label>Archivo DC</label>
 								<input type="file" class="form-control" name="file">
-
+								<!--
 								<label for="">Rango >=</label>
 								<input type="text" name="rango_mayor_igual" id="rango_mayor_igual" class="form-control">
 
 								<label for="">Rango <=</label>
 								<input type="text" name="rango_menor_igual" id="rango_menor_igual" class="form-control">
-
+-->
 								<br>
 								<button class="btn btn-success" id="btn_carga_dc">Cargar</button>
 							</form>	
@@ -120,6 +120,7 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 		</div>
 	</div>
 	<br><br>
+	<!--
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card" id="resultados_tipo_termocupla">
@@ -147,7 +148,7 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 		</div>
 
 		
-	</div>
+	</div>-->
 
 	<script type="text/javascript" src="../../design/Datatables/sweetalert2.all.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
