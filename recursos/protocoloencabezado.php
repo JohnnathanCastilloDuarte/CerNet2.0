@@ -26,11 +26,13 @@ class MYPDF extends TCPDF
 		//$this->MultiCell(91, 15, 'Informe:  // REVISION: 0.0.0', 1, 'C', 0, 1, 190, 7, true, 1, true, true, 0, 'M');		
 		//$this->writeHTMLCell(70, 5, 125, 22, '<table><tr><td width="120%">Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
    
+
+     $this->writeHTMLCell(120, 9, 15, 30, 'PROTOCOLO DE MAPEO TÉRMICO', 1, 0, 0, true, 'C', true);
+	$this->writeHTMLCell(120, 9, 15, 39, 'BODEGA ROBÓTICA (MÓDULO A12)', 1, 0, 0, true, 'C', true);
     
-    $this->MultiCell(120, 16.5, '$', 1, 'C', 0, 0, 15, 30, true, 0, false, true, 16, 'M');
-    $this->Image('logo_big.png',10,8,22);
-	$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
-	$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
+
+	$this->writeHTMLCell(60, 9, 135, 30, '<p> Protocolo: <br> Versión: ', 1, 0, 0, 	true, 'L', true);
+	$this->writeHTMLCell(60, 9, 135, 39, '<br><br> <table><tr><td>Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'R', true);
     
     }
 	

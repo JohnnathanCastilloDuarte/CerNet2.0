@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-01 15:43:00
+/* Smarty version 3.1.34-dev-7, created on 2021-12-09 14:43:22
   from 'C:\xampp\htdocs\CerNet2.0\templates\automovil\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a789f44516b2_10611291',
+  'unifunc' => 'content_61b207fa829614_64800817',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2c3317aa7dbdba6f3f1555b7e1ff1b760525485b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\automovil\\datos_informe_mapeo.tpl',
-      1 => 1638369779,
+      1 => 1639057169,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a789f44516b2_10611291 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b207fa829614_64800817 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -102,6 +102,7 @@ function content_61a789f44516b2_10611291 (Smarty_Internal_Template $_smarty_tpl)
 									<th>Acciones</th>
 								</thead>
 								<tbody id="resultados_bandeja_automovil" style="text-align:center;">
+									
 								</tbody>
 							</table>
 						</div>
@@ -357,7 +358,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
 
 
-									<div class="form-row">
+									<!-- <div class="form-row">
 										<div class="col-sm-3">
 											<h6>
 												Temperatura
@@ -376,7 +377,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 											<label>Maxima:</label>
 											<input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura maxima" required>
 										</div>
-									</div>
+									</div> -->
 									<br>
 									
 									<div class="form-row">
@@ -602,6 +603,11 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 							</div>	
 						</div>	
 					</div>
+						<br>
+						<br>
+						<div id="aqui_boton_dc" style="text-align: center;">
+						
+						</div>
 					
 					<div class="form-row"> 
 						<div class="col-sm-12" id="botton_datos_crudos_automovil">

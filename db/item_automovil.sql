@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 03-11-2021 a las 14:53:46
--- Versión del servidor: 5.7.36
--- Versión de PHP: 7.3.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-12-2021 a las 19:39:20
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `god_cercal_prueba`
+-- Base de datos: `god_cernet_2_0`
 --
 
 -- --------------------------------------------------------
@@ -53,16 +52,8 @@ CREATE TABLE `item_automovil` (
   `largo` varchar(5) DEFAULT NULL COMMENT 'Largo del automovil ',
   `ancho` varchar(5) DEFAULT NULL COMMENT 'Ancho del automovil',
   `id_usuario` int(11) DEFAULT NULL COMMENT 'id usuario que registra el automovil',
-  `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha en que se registra el automovil'
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha en que se registra el automovil'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `item_automovil`
---
-
-INSERT INTO `item_automovil` (`id_automovil`, `id_item`, `fabricante`, `modelo`, `n_serie`, `c_interno`, `placa`, `fecha_fabricacion`, `direccion`, `valor_seteado_hum`, `hum_min`, `hum_max`, `valor_seteado_tem`, `tem_min`, `tem_max`, `ubicacion`, `voltaje`, `potencia`, `capacidad`, `peso`, `alto`, `largo`, `ancho`, `id_usuario`, `fecha_registro`) VALUES
-(1, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-03-23 16:38:32'),
-(2, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2021-05-18 22:58:28');
 
 --
 -- Índices para tablas volcadas
@@ -82,7 +73,7 @@ ALTER TABLE `item_automovil`
 -- AUTO_INCREMENT de la tabla `item_automovil`
 --
 ALTER TABLE `item_automovil`
-  MODIFY `id_automovil` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id principal de la tabla', AUTO_INCREMENT=3;
+  MODIFY `id_automovil` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id principal de la tabla';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

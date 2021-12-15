@@ -23,7 +23,6 @@ while($row = mysqli_stmt_fetch($empresas)){
 		'nombre_empresa'=>$nombre_empresa	
 	);
 }
-echo $id_empresa;
 $smarty->assign("array_empresa",$array_empresa);
 
 if (isset($_GET['item'])) {
@@ -87,11 +86,10 @@ if (isset($_GET['item'])) {
 
 	$smarty->assign("array_campana",$array_campana);
 }
-
+//ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
 $convert = json_encode($array_campana);   
 $conv = base64_encode($convert);
 $link = 'templates/item/pdf/pdf/pdf_campana.php?&data='.$conv;
-$link2 = 'http://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_campana.php?&data='.$conv;
 //pdf item
 if ($_GET['pdf'] == 1) {
 
@@ -102,10 +100,18 @@ if ($_GET['pdf'] == 1) {
 //enviar pdf por correo	  
 }elseif($_GET['pdf'] == 2){
 
-	$correo = $_GET['correo'];
-	//header('location: '.$link2);
-	//return true;
-	header('location: ../documentacion/enviarPDF_correo.php?&correo='.$correo."&link=".$link2);
+	$url = $_SERVER['HTTP_HOST'];
+		
+	if($url = 'cercal.net') {
+
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_campana.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);		
+	}else{ 	
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_campana.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
+	}
 
 }
 

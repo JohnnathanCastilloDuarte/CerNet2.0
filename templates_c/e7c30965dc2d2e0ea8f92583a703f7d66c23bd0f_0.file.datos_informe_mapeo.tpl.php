@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-01 15:39:20
+/* Smarty version 3.1.34-dev-7, created on 2021-12-09 16:34:37
   from 'C:\xampp\htdocs\CerNet2.0\templates\ultrafreezer\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a78918be0aa5_43741909',
+  'unifunc' => 'content_61b2220d3414c1_66719865',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e7c30965dc2d2e0ea8f92583a703f7d66c23bd0f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\ultrafreezer\\datos_informe_mapeo.tpl',
-      1 => 1638368419,
+      1 => 1639064076,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a78918be0aa5_43741909 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b2220d3414c1_66719865 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -631,253 +631,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 			</div>
 		</div>
 		<br>
-		<div class="form-row" id="card_resultaodos_datos_crudos">
-			<div class="col-sm-12">
-				<div class="card">
-					<div class="card-header"> Resultados Datos Crudos</div>
-					<div class="card-body">
-						<div class="form-row">
-							<div class="col-sm-12" style="text-align:center;">
-								<div id="resultados_dc">
-								</div>
-							</div>
-						</div>
 
-						<div id="trayendo_resultados">
-							<div class="form-row" style="text-align:center;">
-								<div class="col-sm-1">
-									<h6>
-										Columna 1
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_1">
-												</tbody>
-											</table>
-										</div>
-									</div>   
-
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 2
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_2">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 3
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_3">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 4
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_4">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-1">
-									<h6>
-										Columna 5
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_5">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-1">
-									<h6>
-										Columna 6
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_6">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-1">
-									<h6>
-										Columna 7
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_7">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-1">
-									<h6>
-										Columna 8
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_8">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-1">
-									<h6>
-										Columna 9
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_9">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-1">
-									<h6>
-										Columna 10
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_10">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-1">
-									<h6>
-										Columna 11
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_11">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-1">
-									<h6>
-										Columna 12
-									</h6>
-									<div class="scroll-area-sm">
-										<div class="scrollbar-container">
-											<table class="table" width="100%">
-												<thead>
-													<th>Tiempo</th>
-													<th>Temperatura</th>
-												</thead>
-												<tbody id="columna_12">
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-
-							</div>
-							<br>
-							<div class="form-row" style="text-align:center;">
-								<div class="col-sm-6">
-									<button class="btn btn-success" id="aprobar_dc">
-										Aprobar carga de DC
-									</button>
-								</div>
-
-								<div class="col-sm-6">
-									<button class="btn btn-danger" id="eliminar_dc">
-										Eliminar DC
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 
 </div>
