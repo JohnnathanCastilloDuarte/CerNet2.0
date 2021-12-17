@@ -2,9 +2,10 @@
 error_reporting(0);
 include("../../config.ini.php");
 
-$ot = 'OT'.$_POST['ot'];
+$ot = 'OT-'.$_POST['ot'];
 
 $consultar = mysqli_prepare($connect,"SELECT a.id_numot, a.numot ,a.id_usuario_asignado, c.nombre, c.apellido, d.nombre, e.departamento, a.id_empresa, a.fecha_creacion, a.fecha_asignacion, b.nombre, a.cantidad_informes FROM numot as a, empresa as b, persona as c, cargo as d, departamento as e WHERE a.id_empresa = b.id_empresa AND numot = ? AND a.id_usuario_asignado = c.id_usuario AND c.id_cargo = d.id_cargo AND d.id_departamento = e.id;");
+
 mysqli_stmt_bind_param($consultar , 's', $ot);
 mysqli_stmt_execute($consultar);
 mysqli_stmt_store_result($consultar);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-17 15:20:22
+/* Smarty version 3.1.34-dev-7, created on 2021-12-17 17:47:35
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61bc9ca6846ba1_25637616',
+  'unifunc' => 'content_61bcbf27b84649_09926097',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1639750765,
+      1 => 1639759644,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61bc9ca6846ba1_25637616 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61bcbf27b84649_09926097 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -300,51 +300,45 @@ function content_61bc9ca6846ba1_25637616 (Smarty_Internal_Template $_smarty_tpl)
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Refrigeradores</a>
     </li>
-    <!--
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[2];?>
-"><i class="metismenu-icon pe-7s-graph2"></i>Historial Refrigeradores</a>
-    </li>-->
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>UltraFreezer</a>
     </li>
 
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[4];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Freezer</a>
     </li>
 
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[5];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[4];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
     </li>
 
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[6];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[5];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
     </li>
 
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[7];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[6];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Filtros</a>
     </li>
 
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[8];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[7];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Campana de extracción</a>
     </li>
 
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[9];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[8];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
     </li>
 

@@ -222,36 +222,32 @@
     <li>
     <a href="index.php?module={$modulo[6]}&page={$page[1]}"><i class="metismenu-icon pe-7s-news-paper"></i>Refrigeradores</a>
     </li>
-    <!--
     <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[2]}"><i class="metismenu-icon pe-7s-graph2"></i>Historial Refrigeradores</a>
-    </li>-->
-    <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[3]}"><i class="metismenu-icon pe-7s-news-paper"></i>UltraFreezer</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[2]}"><i class="metismenu-icon pe-7s-news-paper"></i>UltraFreezer</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[4]}"><i class="metismenu-icon pe-7s-news-paper"></i>Freezer</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[3]}"><i class="metismenu-icon pe-7s-news-paper"></i>Freezer</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[5]}"><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[4]}"><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[6]}"><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[5]}"><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[7]}"><i class="metismenu-icon pe-7s-news-paper"></i>Filtros</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[6]}"><i class="metismenu-icon pe-7s-news-paper"></i>Filtros</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[8]}"><i class="metismenu-icon pe-7s-news-paper"></i>Campana de extracción</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[7]}"><i class="metismenu-icon pe-7s-news-paper"></i>Campana de extracción</a>
     </li>
 
     <li>
-    <a href="index.php?module={$modulo[6]}&page={$page[9]}"><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
+    <a href="index.php?module={$modulo[6]}&page={$page[8]}"><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
     </li>
 
 

@@ -263,10 +263,28 @@ else
             if($_GET["page"] == 1){
               include("templates/mapeos_generales/gestionar_informes.php");
             }else if($_GET["page"] == 2){
-              if($_GET["type"] == 6){
-                include("templates/refrigeradores/informes/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 1){
+              include("templates/refrigeradores/gestionar_informes.php");
+            }else if($_GET["page"] == 3){
+              include("templates/ultrafreezer/gestionar_informes.php");
+            }else if($_GET["page"] == 4){
+              include("templates/freezer/gestionar_informes.php");
+            }else if($_GET["page"] == 5){
+              include("templates/estufaeincubadora/gestionar_informes.php");
+            }else if($_GET["page"] == 6){
+              include("templates/automovil/gestionar_informes.php");
+            }else if ($_GET["page"] == 7){
+              include("templates/filtros/gestionar_informes.php");
+            }else if ($_GET["page"] == 8){
+              include("templates/campana_extraccion/gestionar_informes.php");
+            } else if ($_GET["page"] == 9){
+              include("templates/protocolos/gestionar_protocolos.php");
+            }
+
+            else if($_GET["page"] == 10){
+               if($_GET["type"] == 1){
                 include("templates/mapeos_generales/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 2){
+                include("templates/refrigeradores/informes/datos_informe_mapeo.php");
               }else if($_GET["type"] == 9){
                 include("templates/ultrafreezer/datos_informe_mapeo.php");
               }else if($_GET["type"] == 8){
@@ -282,25 +300,6 @@ else
               } else if($_GET["type"] == 15){
                 include("templates/protocolos/datos_protocolos.php");
               }
-            }else if($_GET["page"] == 3){
-              include("templates/refrigeradores/historial_refrigeradores.php");
-            }else if($_GET["page"] == 4){
-              include("templates/ultrafreezer/gestionar_informes.php");
-            }else if($_GET["page"] == 5){
-              include("templates/freezer/gestionar_informes.php");
-            }else if($_GET["page"] == 6){
-              include("templates/estufaeincubadora/gestionar_informes.php");
-            }else if($_GET["page"] == 7){
-              include("templates/automovil/gestionar_informes.php");
-            }
-            else if ($_GET["page"] == 8){
-              include("templates/filtros/gestionar_informes.php");
-            }
-            else if ($_GET["page"] == 9){
-              include("templates/campana_extraccion/gestionar_informes.php");
-            }
-            else if ($_GET["page"] == 10){
-              include("templates/protocolos/gestionar_protocolos.php");
             }
           }
        break;
