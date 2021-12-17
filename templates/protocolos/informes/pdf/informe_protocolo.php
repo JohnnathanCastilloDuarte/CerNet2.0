@@ -851,7 +851,9 @@ b{
 		<td><p>Documentación de Calificación o commissioning</p></td>
 		<td><p>{}</p></td>
 	</tr>
-
+	<tr>
+		<td colspan="2" style="text-align: left"><p>Docum. complementaria:{}</p></td>
+	</tr>
 	<tr>
 		<td colspan="4" class="observaciones"><b>Observaciones:{}</b><br>{}</td>
 	</tr>
@@ -895,6 +897,610 @@ b{
 
 EOD;
 $pdf->writeHTML($txt_8, true, false, false, false, '');
+
+
+$pdf->AddPage('A4');
+
+
+/////////////
+$txt_9= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;			
+}
+tr,th{
+	height: 20px;
+}
+table{
+	text-align: center;
+	width: 638px;
+	padding: 2px 2px 2px 2px;
+	align-content: center;
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<p><b>4.4</b> Verificar los servicios de apoyo – Sistema de Climatización.</p>
+<br>
+<table class="table" border="1"  >
+	<tr>
+		<th style="text-align: center; width: 35px;"><p>N°</p></th>
+		<th style="width: 301.3px;"><p>Documento</p></th>
+		<th style="width: 301.3	px;"><p>Descripción</p></th>
+	</tr>
+	<tr>
+		<td style="height: 112px;"><p>1</p></td>
+		<td style="text-align:center;border:1px dotted #000; padding:8px;"><p><b>Análisis de Riesgo</b></p></td>
+		<td style="text-align: left ;"><p>Código:</p>
+			<p><b>No Revisión:</b></p>	
+		</td>
+	</tr>
+	<tr>
+		<td class="observaciones"><b>Observaciones:{}</b><br>{}</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="height: 60px;text-align: left; width: 638px;">
+			<p>Desviaciones:</p>
+			<p><b>{}</b></p>
+		</td>
+	</tr>
+	
+	<table border="0" style="border-left: 1px solid #000; border-right: 1.1px solid #000;width:637.9px">
+		<tr><td></td></tr>
+	 <tr>
+		<td style="width: 140.1px;text-align: left"><b>Resultado</b></td>
+		<td style="width: 60px;">CUMPLE</td>
+		<td style="width: 33.7px;"><div style="width: 5px; height: 3px; border: 1px solid #000;margin: 11px"></div></td>
+		<td style="width: 60px;"></td>
+		<td style="width: 80px;text-align: left;">NO CUMPLE</td>
+		<td style="width: 33.7px;"><div style="width: 5px; height: 3px; border: 1px solid #000;margin: 11px"></div></td>
+		<td style="width: 60px;"></td>
+		<td style="width: 80px;text-align: left">NO APLICA</td>
+		<td style="width: 33.7px;"><div style="width: 5px; height: 3px; border: 1px solid #000;margin: 11px"></div></td>
+		<td style="width: 60px;"></td>
+	 </tr>
+    </table>
+    <table border="1" style="text-align: left;">
+	<tr>
+		<td><b>Realizado por:</b></td>
+		<td><b>Verificado por:</b></td>
+	</tr>
+	<tr>
+		<td style="height: 50px;"><p>Firma:</p></td>
+		<td style="height: 50px;"><p>Firma:</p></td>
+	</tr>
+	<tr>
+		<td style="height: 50px;"><p>Fecha:</p></td>
+		<td style="height: 50px;"><p>Fecha:</p></td>
+	</tr>
+</table>
+    </table>
+
+EOD;
+$pdf->writeHTML($txt_9, true, false, false, false, '');
+
+
+$pdf->AddPage('A4');
+
+
+/////////////
+$txt_10= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;		
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<p><b>4.6</b>Para la distribución de la temperatura en la bodega se debe considerar lo siguiente:</p>
+<p>Según el suplemento técnico OMS Reporte Técnico N°961- anexo 9 “Model guidance for the storage
+and transport of time- temperature – sensitive pharmaceutical products” dentro del punto 5-
+ubicación de sensores de monitoreo se recomienda según el layout del área del almacenamiento:</p>
+
+<p>− Largo y ancho: se recomienda la utilización de una “rejilla” a lo largo y ancho del plano, para la
+distribución de los sensores tomando entre 5- 10 metros de distancia lineal entre cada sensor. Si
+son bodegas con mayores longitudes de almacenamiento pueden colocarse los sensores a una
+distancia lineal de 20 o 30 metros entre ellos.</p>
+
+<p>− Altura: según la altura de la bodega los sensores deben instalarse de la siguiente manera. Para
+alturas máximas de 3,6 metros o menos considerar tres alturas, uno a nivel del suelo, nivel medio
+a 1,2 metros y nivel alto a 3 metros. Para alturas superiores a los 3,6 metros considerar un nivel
+bajo al suelo, nivel medio (múltiplos) y nivel alto. Por ejemplo, para una bodega de 7 metros se
+recomienda colocar a nivel bajo 0,3 metros; nivel medio 1 a 1,8 metros; medio 2 a 3,6 metros; alto a
+5,4 metros.</p>
+
+<p>Los sensores de monitoreo deben ubicarse donde están almacenados los productos o donde se planea
+almacenar.</p>
+
+<p>Considerando la guía anteriormente mencionada es que se define lo siguiente:</p>
+
+<p>La bodega es de forma irregular con las siguientes dimensiones máximas:</p>
+<p>− Largo: La bodega cuenta con 32.5 metros los cuales serán divididos en 5 puntos de medición.</p>
+<p>− Ancho: La bodega cuenta con 16.3 metros los cuales serán divididos en 4 puntos de medición.</p>
+<p>− Altura: La instalación de sensores se realizará para 3 alturas considerando que la altura de la bodega es de 10.00 metros y la altura máxima de almacenamiento es de 2.20 m, de esta forma se
+consideran las siguientes posiciones: Zona Alta (2.20 metros), Zona Media (1.00 metros), y Zona
+Baja (0.30 metros).</p>
+
+EOD;
+$pdf->writeHTML($txt_10, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+//////////////
+
+$txt_11= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;		
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<p>* Más abajo se puede observar el plano de ubicación de sensores.</p>
+<br>
+<p>Los sensores de almacenamiento deben ubicarse donde están almacenados los productos o donde se
+planea almacenar, no es necesario instalar sensores sobre áreas como las bahías de despachos a
+menos que estén cerca de los racks de almacenamiento.</p>
+<br>
+<p>Se realizará una inspección visual de la bodega donde se determinan las áreas críticas que pueden
+afectar las temperaturas de los productos almacenados.</p><br>
+
+<p>Se determinan entonces, teniendo en cuenta los puntos más críticos mencionados anteriormente, la
+instalación de 48 sensores, ubicados al interior de la bodega para evaluar comportamiento bajo
+criterio de sobrepasar las temperaturas límites de la bodega robótica (módulo A12) en 15°C a 30°C,
+definidas por MEDTRONIC.</p>
+<br>
+<p>La posición de los sensores se encuentra registrada y visualizada en “plano de planta con ubicación
+de sensores”</p>
+<br>
+<p>La bodega se encuentra con capacidad de ocupación de 40% de carga.</p>
+
+EOD;
+$pdf->writeHTML($txt_11, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+///////
+
+$txt_11= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;		
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<p>* Más abajo se puede observar el plano de ubicación de sensores.</p>
+<br>
+<p>Los sensores de almacenamiento deben ubicarse donde están almacenados los productos o donde se
+planea almacenar, no es necesario instalar sensores sobre áreas como las bahías de despachos a
+menos que estén cerca de los racks de almacenamiento.</p>
+<br>
+<p>Se realizará una inspección visual de la bodega donde se determinan las áreas críticas que pueden
+afectar las temperaturas de los productos almacenados.</p><br>
+
+<p>Se determinan entonces, teniendo en cuenta los puntos más críticos mencionados anteriormente, la
+instalación de <b>48 sensores,</b> ubicados al interior de la bodega para evaluar comportamiento bajo
+criterio de sobrepasar las temperaturas límites de la bodega robótica (módulo A12) en 15°C a 30°C,
+definidas por MEDTRONIC.</p>
+<br>
+<p>La posición de los sensores se encuentra registrada y visualizada en “plano de planta con ubicación
+de sensores”</p>
+<br>
+<p>La bodega se encuentra con capacidad de ocupación de 40% de carga.</p>
+
+
+EOD;
+$pdf->writeHTML($txt_11, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+///////
+
+$txt_12= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;		
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<p><b>4.7</b>Para el mapeo térmico y de humedad relativa se utilizarán los siguientes modelos de sensores
+datalogger:</p>
+<p>− Marca: Elitech /Modelo: RC-4HC/ Rango de medición: 2.0°C - 40.0°C</p>
+<p>− Marca: Ebro/ Modelo: EBI 20 TH/ Rango de medición: 0°C - 40°C</p>
+<table border="1">
+	<tr>
+		<td style="height: 200px;"></td>
+	</tr>
+</table>
+
+<br>
+<p>Los sensores se encuentran programados para registrar las temperaturas y humedad relativa en la
+bodega cada 5 minutos.</p>
+<br>
+<p>El mapeo térmico en MEDTRONIC, tiene una duración de 7 días corridos.</p>
+
+
+EOD;
+$pdf->writeHTML($txt_12, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+///////
+
+$txt_13= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;
+    text-align: center;		
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<p><b><u>Plano de Bodega Robótica (Módulo A12) con ubicación de Sensores:</u></b></p>
+<br>
+<br>
+<table border="1">
+	<tr>
+		<td style="height: 350px;"></td>
+	</tr>
+</table>
+<br>
+<p style="text-align: left">Se consideran 20 puntos con 3 alturas cada uno, para obtener datos de temperatura y humedad
+relativa.</p>
+
+EOD;
+$pdf->writeHTML($txt_13, true, false, false, false, '');
+
+
+$pdf->AddPage('A4');
+///////
+
+$txt_14= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;	
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<h2>5 ANEXO</h2>
+<br>
+<p>En los informes de mapeo térmico y de humedad relativa se pueden encontrar resultados más
+detallados en donde se indica:</p>
+<br>
+<p>− Fechas de inicio y termino del mapeo térmico, cantidad y tiempo de medición.</p>
+<p>− Resultado de MKT general y en cada punto de medición.</p>
+<p>− Identificación de puntos fríos y calientes.</p>
+<p>− Temperaturas máximas y mínimas.</p>
+<p>− Identificación de la posición y ubicación de los sensores en función a los puntos críticos obtenidos
+durante el estudio.</p>
+<p>− Gráficas promedio y gráficas con la totalidad de los datos obtenidos en cada medición.</p>
+<p>− Agregar fotografías de la bodega.</p>
+<p>− Agregar los resultados de Humedad Relativa.</p>
+
+EOD;
+$pdf->writeHTML($txt_14, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+///////
+
+$txt_15= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;	
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+</style>
+<br>
+<h2>ANEXO N°2</h2>
+<br>
+<p>Plano con ubicación de sensores internos del cliente MEDTRONIC en Bodega Robótica (Módulo A12)
+con sus respectivos certificados de calibración.</p>
+<br>
+<table border="1">
+	<tr>
+		<td style="height: 350px;"></td>
+	</tr>
+</table>
+
+EOD;
+$pdf->writeHTML($txt_15, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+///////
+
+$txt_16= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;	
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+td,th{
+	height: 22px;	
+	text-align: center;
+}
+</style>
+<br>
+<br>
+<table border="1">
+	<tr>
+		<th><p><b>Sensor</b></p></th>
+		<th><p><b>Ubicación</b></p></th>
+		<th><p><b>Altura</b></p></th>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+
+</table>
+
+EOD;
+$pdf->writeHTML($txt_16, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+///////
+
+$txt_17= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;	
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+td,th{
+	height: 22px;	
+	text-align: center;
+}
+</style>
+<br>
+<br>
+<table border="1">
+	<tr>
+		<th><p><b>Sensor</b></p></th>
+		<th><p><b>Ubicación</b></p></th>
+		<th><p><b>Altura</b></p></th>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+
+</table>
+
+EOD;
+$pdf->writeHTML($txt_17, true, false, false, false, '');
+
+$pdf->AddPage('A4');
+///////
+
+$txt_18= <<<EOD
+<style>
+<style type="">
+p{
+    font-size: 	15px;	
+}
+b{
+	font-size: 15px;
+}
+.observaciones{
+	text-align:left; 
+	width: 190px;
+}
+.cuadrado {
+     width: 100px; 
+     height: 100px; 
+     background: #428bca;
+}
+.informacion{
+	height: 50px;
+}
+.left{
+	text-align: left;
+}
+td,th{
+	height: 22px;	
+	text-align: center;
+}
+</style>
+<br>
+<br>
+<table border="1">
+	<tr>
+		<th><p><b>Sensor</b></p></th>
+		<th><p><b>Ubicación</b></p></th>
+		<th><p><b>Altura</b></p></th>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+
+</table>
+
+EOD;
+$pdf->writeHTML($txt_18, true, false, false, false, '');
+
 
 
 $pdf->Output('Algo.pdf', 'I');

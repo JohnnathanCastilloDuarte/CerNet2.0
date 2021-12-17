@@ -3,7 +3,7 @@
 		require('../../../../config.ini.php');
 		$id_informe = $_GET['informe'];
 		$resultado_corresponde = "";
-    $posicion_sensores_indicativo = 1;
+        $posicion_sensores_indicativo = 1;
 	 
 		
 		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////
@@ -50,7 +50,7 @@
 		mysqli_stmt_bind_result($query_5, $nombre_empresa, $direccion_empresa);
 		mysqli_stmt_fetch($query_5);
 	
-		$a = "MAPEO TERMICO HUMEDAD";
+		$a = "MAPEO TERMICO TEMPERATURA";
 
 		// 2-CONSULTAR LA INFORMACIÓN DE IDENTIFICACIÓN DEL EQUIPO
 		$query_6 = mysqli_prepare($connect,"SELECT a.nombre, a.descripcion, b.fabricante, b.modelo, b.n_serie, b.c_interno, b.ubicacion 
@@ -63,12 +63,12 @@
 
 
 		//3-CONSULTAR INFORMACIÓN DE MAPEO DEL EQUIPO
-		$query_7 = mysqli_prepare($connect,"SELECT valor_seteado_humedad, humedad_minima, humedad_maxima, fecha_inicio, hora_inicio,
+		$query_7 = mysqli_prepare($connect,"SELECT valor_seteado_temperatura, temperatura_minima, temperatura_maxima, fecha_inicio, hora_inicio,
 																				fecha_final, hora_final,intervalo	FROM refrigerador_mapeo WHERE id_asignado = ? AND id_mapeo = ?");
 		mysqli_stmt_bind_param($query_7, 'ii', $id_asignado, $id_mapeo);
 		mysqli_stmt_execute($query_7);
 		mysqli_stmt_store_result($query_7);
-		mysqli_stmt_bind_result($query_7, $valor_seteado, $humedad_min, $humedad_max, $fecha_inicio, $hora_inicio, $fecha_final, $hora_final, $intervalo);
+		mysqli_stmt_bind_result($query_7, $valor_seteado, $temperatura_min, $temperatura_max, $fecha_inicio, $hora_inicio, $fecha_final, $hora_final, $intervalo);
 		mysqli_stmt_fetch($query_7);
 		
 			$fecha_incial = $fecha_inicio.' '.$hora_inicio;
@@ -80,7 +80,7 @@
 			
 
 			
-		$query_8 = mysqli_prepare($connect,"SELECT COUNT(a.humedad) / COUNT(DISTINCT b.id_sensor) as x  FROM refrigerador_datos_crudos as a , refrigerador_sensor as b 
+		$query_8 = mysqli_prepare($connect,"SELECT COUNT(a.temperatura) / COUNT(DISTINCT b.id_sensor) as x  FROM refrigerador_datos_crudos as a , refrigerador_sensor as b 
 																				WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_asignado = ? AND b.id_mapeo = ?");
 		mysqli_stmt_bind_param($query_8, 'ii', $id_asignado, $id_mapeo);
 		mysqli_stmt_execute($query_8);
@@ -93,17 +93,17 @@
 		
 
 		//4-CALCULO DE TIEMPO ACUMULADO AL LIMITE MAXIMO 
-		$query_9 = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.humedad AS DECIMAL(6,2))) as maximo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
-																				WHERE CAST(a.humedad AS DECIMAL(6,2)) >= ? AND b.id_asignado = ? AND a.id_refrigerador_sensor = b.id_refrigerador_sensor 
+		$query_9 = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.temperatura AS DECIMAL(6,2))) as maximo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
+																				WHERE CAST(a.temperatura AS DECIMAL(6,2)) >= ? AND b.id_asignado = ? AND a.id_refrigerador_sensor = b.id_refrigerador_sensor 
 																				GROUP BY a.time");
-		mysqli_stmt_bind_param($query_9, 'ii', $humedad_max, $id_asignado);
+		mysqli_stmt_bind_param($query_9, 'ii', $temperatura_max, $id_asignado);
 		mysqli_stmt_execute($query_9);
 		mysqli_stmt_store_result($query_9);
 		mysqli_stmt_bind_result($query_9, $maximo);
 		mysqli_stmt_fetch($query_9);
 		
 
-		$query_10 = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.humedad AS DECIMAL(6,2))) as maximo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
+		$query_10 = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.temperatura AS DECIMAL(6,2))) as maximo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
 																				WHERE b.id_asignado = ? AND a.id_refrigerador_sensor = b.id_refrigerador_sensor 
 																				GROUP BY a.time");
 		mysqli_stmt_bind_param($query_10, 'i', $id_asignado);
@@ -113,10 +113,10 @@
 		mysqli_stmt_fetch($query_10);
 
 		
-		$query_11 = mysqli_prepare($connect,"SELECT DISTINCT MIN(CAST(a.humedad AS DECIMAL(6,2))) as minimo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
-																				WHERE CAST(a.humedad AS DECIMAL(6,2)) <= ? AND b.id_asignado = ? AND a.id_refrigerador_sensor = b.id_refrigerador_sensor 
+		$query_11 = mysqli_prepare($connect,"SELECT DISTINCT MIN(CAST(a.temperatura AS DECIMAL(6,2))) as minimo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
+																				WHERE CAST(a.temperatura AS DECIMAL(6,2)) <= ? AND b.id_asignado = ? AND a.id_refrigerador_sensor = b.id_refrigerador_sensor 
 																				GROUP BY a.time");
-		mysqli_stmt_bind_param($query_11, 'ii', $humedad_min, $id_asignado);
+		mysqli_stmt_bind_param($query_11, 'ii', $temperatura_min, $id_asignado);
 		mysqli_stmt_execute($query_11);
 		mysqli_stmt_store_result($query_11);
 		mysqli_stmt_bind_result($query_11, $minimo);
@@ -151,7 +151,7 @@
 
 	
 		//////////CONSULTAR EL PROMEDIO GENERAL
-		$query_13 = mysqli_prepare($connect,"SELECT AVG(CAST(a.humedad AS DECIMAL(6,2))) as promedio FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
+		$query_13 = mysqli_prepare($connect,"SELECT AVG(CAST(a.temperatura AS DECIMAL(6,2))) as promedio FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
 																					WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? AND b.id_asignado = ? ");
 		mysqli_stmt_bind_param($query_13, 'ii', $id_mapeo, $id_asignado);
 		mysqli_stmt_execute($query_13);
@@ -162,7 +162,7 @@
 		$prom_general = number_format($d_2,2);
 
 
-		$query_14 = mysqli_prepare($connect,"SELECT MAX(CAST(a.humedad AS DECIMAL(6,2))) as maximo, a.time, c.nombre, d.nombre FROM refrigerador_datos_crudos as a,
+		$query_14 = mysqli_prepare($connect,"SELECT MAX(CAST(a.temperatura AS DECIMAL(6,2))) as maximo, a.time, c.nombre, d.nombre FROM refrigerador_datos_crudos as a,
 																					refrigerador_sensor as b, bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? 
 																					AND b.id_asignado = ?
 																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor GROUP BY a.time, c.nombre, d.nombre ORDER BY maximo DESC LIMIT 1  ");
@@ -174,7 +174,7 @@
 	
 		//CALCULO DEL MINIMO GENERAL
 
-		$query_15 = mysqli_prepare($connect,"SELECT MIN(CAST(a.humedad AS DECIMAL(6,2))) as minimo, a.time, c.nombre, d.nombre FROM refrigerador_datos_crudos as a,
+		$query_15 = mysqli_prepare($connect,"SELECT MIN(CAST(a.temperatura AS DECIMAL(6,2))) as minimo, a.time, c.nombre, d.nombre FROM refrigerador_datos_crudos as a,
 																					refrigerador_sensor as b, bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? 
 																					AND b.id_asignado = ?
 																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor GROUP BY a.time, c.nombre, d.nombre ORDER BY minimo ASC LIMIT 1  ");
@@ -186,7 +186,7 @@
 
 		//CALCULO DE LA DESVIACIÓN ESTANDAR		
 
-		$query_16 = mysqli_prepare($connect,"SELECT STD(CAST(a.humedad AS DECIMAL(6,2))) as desviacion FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, 
+		$query_16 = mysqli_prepare($connect,"SELECT STD(CAST(a.temperatura AS DECIMAL(6,2))) as desviacion FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, 
 																					bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? AND b.id_asignado = ?
 																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor  ");
 		mysqli_stmt_bind_param($query_16, 'ii', $id_mapeo, $id_asignado);
@@ -198,7 +198,7 @@
 		$desviacion_general = number_format($d_3);
 		
 		$desv_3max_num=number_format($prom_general+(3*$desviacion_general),2);
-		if($desv_3max_num<$humedad_max)
+		if($desv_3max_num<$temperatura_max)
 		{
 		$cumple_max="Si cumple";
 		}
@@ -208,7 +208,7 @@
 			}
 		
 		$desv_3min_num=number_format($prom_general-(3*$desviacion_general),2);
-		if($desv_3min_num>$humedad_min)
+		if($desv_3min_num>$temperatura_min)
 		{
 		$cumple_min="Si cumple";
 		}
@@ -221,7 +221,7 @@
 
 	//CALCULAR MKT 
 
-	$query_17 = mysqli_prepare($connect,"SELECT AVG(EXP(-83.144/(0.0083144*(CAST(humedad AS DECIMAL(6,2))+273.15)))) as valor FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, 
+	$query_17 = mysqli_prepare($connect,"SELECT AVG(EXP(-83.144/(0.0083144*(CAST(temperatura AS DECIMAL(6,2))+273.15)))) as valor FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, 
 																					bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? AND b.id_asignado = ?
 																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor  ");
 	mysqli_stmt_bind_param($query_17, 'ii', $id_mapeo, $id_asignado);
@@ -234,7 +234,7 @@
 
 
 	//CALCULO DE LA DIFERENCIA MAXIMA 
-	$query_18 = mysqli_prepare($connect,"SELECT MAX(CAST(humedad AS DECIMAL(6,2))) AS maximo, MIN(CAST(humedad AS DECIMAL(6,2))) as minimo, MAX(CAST(humedad AS DECIMAL(6,2))) - MIN(CAST(humedad AS DECIMAL(6,2))) AS resta,
+	$query_18 = mysqli_prepare($connect,"SELECT MAX(CAST(temperatura AS DECIMAL(6,2))) AS maximo, MIN(CAST(temperatura AS DECIMAL(6,2))) as minimo, MAX(CAST(temperatura AS DECIMAL(6,2))) - MIN(CAST(temperatura AS DECIMAL(6,2))) AS resta,
 																				a.time FROM refrigerador_datos_crudos as a,
 																					refrigerador_sensor as b, bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ?
 																					AND b.id_asignado = ?
@@ -246,7 +246,7 @@
 	mysqli_stmt_fetch($query_18);
 
 	$query_19 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.humedad = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
+																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
 	mysqli_stmt_bind_param($query_19, 'isii', $dif_maxi, $dif_max_time, $id_asignado, $id_mapeo);
 	mysqli_stmt_execute($query_19);
 	mysqli_stmt_store_result($query_19);
@@ -255,7 +255,7 @@
 
 
 	$query_20 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.humedad = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
+																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
 	mysqli_stmt_bind_param($query_20, 'isii', $dif_min, $dif_max_time, $id_asignado, $id_mapeo);
 	mysqli_stmt_execute($query_20);
 	mysqli_stmt_store_result($query_20);
@@ -265,7 +265,7 @@
 
 
 	//CALCULO DE LA DIFERENCIA MAXIMA 
-	$query_21 = mysqli_prepare($connect,"SELECT MAX(CAST(humedad AS DECIMAL(6,2))) AS maximo, MIN(CAST(humedad AS DECIMAL(6,2))) as minimo, MAX(CAST(humedad AS DECIMAL(6,2))) - MIN(CAST(humedad AS DECIMAL(6,2))) AS resta,
+	$query_21 = mysqli_prepare($connect,"SELECT MAX(CAST(temperatura AS DECIMAL(6,2))) AS maximo, MIN(CAST(temperatura AS DECIMAL(6,2))) as minimo, MAX(CAST(temperatura AS DECIMAL(6,2))) - MIN(CAST(temperatura AS DECIMAL(6,2))) AS resta,
 																				a.time FROM refrigerador_datos_crudos as a,
 																					refrigerador_sensor as b, bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ?
 																					AND b.id_asignado = ?
@@ -277,7 +277,7 @@
 	mysqli_stmt_fetch($query_21);
 
 	$query_22 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.humedad = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
+																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
 	mysqli_stmt_bind_param($query_22, 'isii', $dif_maxi, $dif_max_time, $id_asignado, $id_mapeo);
 	mysqli_stmt_execute($query_22);
 	mysqli_stmt_store_result($query_22);
@@ -286,7 +286,7 @@
 
 
 	$query_23 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.humedad = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
+																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
 	mysqli_stmt_bind_param($query_23, 'isii', $dif_min, $dif_max_time, $id_asignado, $id_mapeo);
 	mysqli_stmt_execute($query_23);
 	mysqli_stmt_store_result($query_23);
@@ -296,7 +296,7 @@
 
 
 	//CALCULO DE LA DIFERENCIA MINIMA
-	$query_24 = mysqli_prepare($connect,"SELECT MIN(CAST(humedad AS DECIMAL(6,2))) AS maximo, MIN(CAST(humedad AS DECIMAL(6,2))) as minimo, MAX(CAST(humedad AS DECIMAL(6,2))) - MIN(CAST(humedad AS DECIMAL(6,2))) AS resta,
+	$query_24 = mysqli_prepare($connect,"SELECT MIN(CAST(temperatura AS DECIMAL(6,2))) AS maximo, MIN(CAST(temperatura AS DECIMAL(6,2))) as minimo, MAX(CAST(temperatura AS DECIMAL(6,2))) - MIN(CAST(temperatura AS DECIMAL(6,2))) AS resta,
 																				a.time FROM refrigerador_datos_crudos as a,
 																					refrigerador_sensor as b, bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ?
 																					AND b.id_asignado = ?
@@ -309,7 +309,7 @@
 
   
 	$query_25 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.humedad = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
+																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
 	mysqli_stmt_bind_param($query_25, 'isii', $dif_maxi_2, $dif_max_time_2, $id_asignado, $id_mapeo);
 	mysqli_stmt_execute($query_25);
 	mysqli_stmt_store_result($query_25);
@@ -319,15 +319,15 @@
   
 
 	$query_26 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.humedad = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
-	mysqli_stmt_bind_param($query_26, 'ssii', $dif_min_2, $dif_max_time_2, $id_asignado, $id_mapeo);
+																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
+	mysqli_stmt_bind_param($query_26, 'isii', $dif_min_2, $dif_max_time_2, $id_asignado, $id_mapeo);
 	mysqli_stmt_execute($query_26);
 	mysqli_stmt_store_result($query_26);
 	mysqli_stmt_bind_result($query_26, $dif_min_sensor_2);
 	mysqli_stmt_fetch($query_26);
 
 	//SENSORES CON PROMEDIO MAS ALTO
-	$query_27 = mysqli_prepare($connect,"SELECT AVG(CAST(a.humedad AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
+	$query_27 = mysqli_prepare($connect,"SELECT AVG(CAST(a.temperatura AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
 																				WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? AND b.id_asignado = ? AND c.id_bandeja = b.id_bandeja AND d.id_sensor = b.id_sensor
 																				GROUP BY c.nombre ,d.nombre order by promedio desc limit 1 ");
 	mysqli_stmt_bind_param($query_27, 'ii', $id_mapeo ,$id_asignado);
@@ -339,7 +339,7 @@
 	$max_avg = number_format($d_4,2);
 
 	//SENSORES CON PROMEDIO MAS BAJO 
-	$query_28 = mysqli_prepare($connect,"SELECT AVG(CAST(a.humedad AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
+	$query_28 = mysqli_prepare($connect,"SELECT AVG(CAST(a.temperatura AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
 																				WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? AND b.id_asignado = ? AND c.id_bandeja = b.id_bandeja AND d.id_sensor = b.id_sensor
 																				GROUP BY c.nombre ,d.nombre order by promedio ASC limit 1 ");
 	mysqli_stmt_bind_param($query_28, 'ii', $id_mapeo ,$id_asignado);
@@ -351,7 +351,7 @@
 	$min_avg = number_format($d_5,2);
 
 	//SENSOR CON MAYOR DESVIACION
-	$query_29 = mysqli_prepare($connect,"SELECT std(CAST(a.humedad AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
+	$query_29 = mysqli_prepare($connect,"SELECT std(CAST(a.temperatura AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
 																				WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? AND b.id_asignado = ? AND c.id_bandeja = b.id_bandeja AND d.id_sensor = b.id_sensor
 																				GROUP BY c.nombre ,d.nombre order by promedio DESC limit 1 ");
 	mysqli_stmt_bind_param($query_29, 'ii', $id_mapeo ,$id_asignado);
@@ -363,7 +363,7 @@
 	$max_desv = number_format($d_6,2);
 	
 	//SENSOR CON MENOR DESVIACION
-	$query_30 = mysqli_prepare($connect,"SELECT std(CAST(a.humedad AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
+	$query_30 = mysqli_prepare($connect,"SELECT std(CAST(a.temperatura AS DECIMAL(6,2))) as promedio, c.nombre, d.nombre FROM refrigerador_datos_crudos as a, refrigerador_sensor as b, bandeja as c, sensores as d 
 																				WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ? AND b.id_asignado = ? AND c.id_bandeja = b.id_bandeja AND d.id_sensor = b.id_sensor
 																				GROUP BY c.nombre ,d.nombre order by promedio ASC limit 1 ");
 	mysqli_stmt_bind_param($query_30, 'ii', $id_mapeo ,$id_asignado);
@@ -386,16 +386,6 @@
   mysqli_stmt_bind_result($query_31, $ubicacion_posicion_sensores);
   mysqli_stmt_fetch($query_31);
 
-  $mostrar_imagen_1 = "";
-
-  if($query_31){
-    $mostrar_imagen_1 = "<img src='../../$ubicacion_posicion_sensores' width='450px'>";
-  }else{
-    $mostrar_imagen_1 = "sin imagen";
-  }
-
-
-
 
 
   $query_34 = mysqli_prepare($connect,"SELECT ubicacion FROM images_informe_refrigeradores WHERE id_informe = ? AND tipo_imagen = 2");
@@ -405,24 +395,12 @@
   mysqli_stmt_bind_result($query_34, $img_sensores_2);
   mysqli_stmt_fetch($query_34);
 
-  $mostrar_imagen_2 = "";
-  if($query_34){
-    $mostrar_imagen_2 = "<img src='../../$img_sensores_2' width='450px'>";
-  }
-
-
-
   $query_35 = mysqli_prepare($connect,"SELECT ubicacion FROM images_informe_refrigeradores WHERE id_informe = ? AND tipo_imagen = 3");
   mysqli_stmt_bind_param($query_35, 'i', $id_informe);
   mysqli_stmt_execute($query_35);
   mysqli_stmt_store_result($query_35);
   mysqli_stmt_bind_result($query_35, $img_sensores_3);
   mysqli_stmt_fetch($query_35);
-
-  $mostrar_imagen_3 = "";
-  if($query_35){
-    $mostrar_imagen_3 = "<img src='../../$img_sensores_3' width='450px'>";
-  }
   
   
 
@@ -430,7 +408,7 @@
   /////////////////////////////////////////////////////////////INICIO INFORME////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$pdf->AddPage('A4');
+		$pdf->AddPage('A4');
 
 $html = <<<EOD
 
@@ -486,10 +464,10 @@ text-align:left;
 		<tr><td width="30%" class="enunciado">N° de serie / Código interno</td><td width="70%">$n_serie_item</td></tr>
 		<tr><td width="30%" class="enunciado">Ubicación</td><td width="70%">$ubicacion_item</td></tr>
 		<tr><td width="30%" class="enunciado">Valor seteado</td><td width="70%">$valor_seteado</td></tr>
-		<tr><td width="30%" rowspan="2" class="enunciado">Límites (HR%)</td>
+		<tr><td width="30%" rowspan="2" class="enunciado">Límites (°C)</td>
 
 		<td width="35%">Máximo</td><td width="35%">Mínimo</td></tr>
-		<tr><td width="35%">$humedad_max</td><td width="35%">$humedad_min</td></tr>
+		<tr><td width="35%">$temperatura_max</td><td width="35%">$temperatura_min</td></tr>
 		</table><br><br>
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>2. Resumen de las Mediciones</strong></H3></td></tr>
@@ -508,21 +486,21 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medición Obtenida</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio General (HR%)</td><td width="70%" colspan="5">$prom_general</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio General (°C)</td><td width="70%" colspan="5">$prom_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Máximo General (HR%)</td><td width="10%">$max_general</td>
+		<tr><td width="30%" class="enunciado">Máximo General (°C)</td><td width="10%">$max_general</td>
 		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posición: $bandeja_max_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Mínimo General (HR%)</td><td width="10%">$min_general</td>
+		<tr><td width="30%" class="enunciado">Mínimo General (°C)</td><td width="10%">$min_general</td>
 		<td width="10%">a las:</td><td width="20%">$min_time_general</td><td width="10%">En:</td><td width="20%">$sensor_min_general, Ubicado en posición: $bandeja_min_general</td></tr>
 
 		<tr><td width="30%" class="enunciado">Desv. Estandar de todos los sensores</td><td width="70%" colspan="3">$desviacion_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio + 3 Desv. Est. (HR%)</td><td width="20%">$desv_3max_num</td><td width="25%">Cumple Limite Máx.</td><td width="25%">$cumple_max</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio + 3 Desv. Est. (°C)</td><td width="20%">$desv_3max_num</td><td width="25%">Cumple Limite Máx.</td><td width="25%">$cumple_max</td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio - 3 Desv. Est. (HR%)</td><td width="20%">$desv_3min_num</td><td width="25%">Cumple Limite Mín.</td><td width="25%">$cumple_min</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio - 3 Desv. Est. (°C)</td><td width="20%">$desv_3min_num</td><td width="25%">Cumple Limite Mín.</td><td width="25%">$cumple_min</td></tr>
 
-		<tr><td width="30%" class="enunciado">MKT General (HR%)*</td><td width="70%">$mkt_gen</td></tr>
+		<tr><td width="30%" class="enunciado">MKT General (°C)*</td><td width="70%">$mkt_gen</td></tr>
 
 		</table>
 		* Usa: Energía activación = 83,144 (kj/mol) y Constante universal de gases ideales = 0,0083144 (kj/mol)<br><br>
@@ -537,13 +515,13 @@ text-align:left;
 		<td width="20%" class="enunciado">$dif_max_time_2</td><td width="7%">entre</td><td width="10%">$dif_max_sensor_2</td><td width="3%">y</td>
 		<td width="10%" class="enunciado">$dif_min_sensor_2</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con promedio más alto (HR%)</td><td width="10%">$max_avg</td><td width="10%">en:</td><td width="50%">$max_avg_sensor, ubicado en: $max_avg_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con promedio más alto (°C)</td><td width="10%">$max_avg</td><td width="10%">en:</td><td width="50%">$max_avg_sensor, ubicado en: $max_avg_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con promedio más bajo (HR%)</td><td width="10%">$min_avg</td><td width="10%">en:</td><td width="50%">$min_avg_sensor, ubicado en: $min_avg_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con promedio más bajo (°C)</td><td width="10%">$min_avg</td><td width="10%">en:</td><td width="50%">$min_avg_sensor, ubicado en: $min_avg_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con mayor Desv. Est. (HR%)</td><td width="10%">$max_desv</td><td width="10%">en:</td><td width="50%">$max_desv_sensor, ubicado en: $max_desv_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con mayor Desv. Est. (°C)</td><td width="10%">$max_desv</td><td width="10%">en:</td><td width="50%">$max_desv_sensor, ubicado en: $max_desv_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con menor Desv. Est. (HR%)</td><td width="10%">$min_desv</td><td width="10%">en:</td><td width="50%">$min_desv_sensor, ubicado en: $min_desv_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con menor Desv. Est. (°C)</td><td width="10%">$min_desv</td><td width="10%">en:</td><td width="50%">$min_desv_sensor, ubicado en: $min_desv_posicion</td></tr>
 </table>
 
 <br><br><br><br><br><br>
@@ -552,7 +530,6 @@ text-align:left;
 EOD;
 
 $pdf->writeHTML($html, true, false, false, false, '');
-
 
 $html_2 = <<<EOD
 <style>
@@ -589,16 +566,14 @@ tr:nth-child(even)
 </style>
 
  
-<table><tr><td colspan="8" bgcolor="#DDDDDD"><H3><strong>Ubicación de los Sensores</strong></H3></td></tr>
-
-<tr><td width="100%">Sensores ubicados en Bodega <strong>Zona</strong></td></tr>
-<tr><td width="100%"><br> $mostrar_imagen_1 </td></tr>
-</table>
+<table>
+<tr><td bgcolor="#DDDDDD"><strong>Ubicación de los Sensores</strong></td></tr>
+<tr><td><br><br><img src="../../$ubicacion_posicion_sensores"></td></tr></table><br><br><br>
 EOD;
 
 $pdf->writeHTML($html_2, true,false,false,false,'');
-$pdf->AddPage('A4');
 
+$pdf->AddPage('A4');
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(170, 170, 170)));
 //TITULOS
 $pdf->writeHTMLCell(15, 5, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
@@ -662,15 +637,15 @@ $pdf->AddPage('A4');
 //TITULOS
 $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (°C)', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (°C)', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
@@ -681,11 +656,11 @@ $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, t
 $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
 
 
-$query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.humedad AS DECIMAL(6,2))) as Minimo, 
-                                    MAX(CAST(b.humedad AS DECIMAL(6,2))) as Maximo,AVG(CAST(b.humedad AS DECIMAL(6,2))) as Promedio, STD(CAST(b.humedad AS DECIMAL(6,2))) as Desv_Estandar, 
-                                    SUM(CASE WHEN CAST(b.humedad AS DECIMAL(6,2))>$humedad_max THEN 1 ELSE 0 END) as tiempo_over, 
-                                    SUM(CASE WHEN CAST(b.humedad AS DECIMAL(6,2))<$humedad_min THEN 1 ELSE 0 END) as tiempo_low,
-                                    AVG(EXP(-83.144/(0.0083144*(CAST(b.humedad AS DECIMAL(6,2))+273.15)))) as valor FROM sensores as a,
+$query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.temperatura AS DECIMAL(6,2))) as Minimo, 
+                                    MAX(CAST(b.temperatura AS DECIMAL(6,2))) as Maximo,AVG(CAST(b.temperatura AS DECIMAL(6,2))) as Promedio, STD(CAST(b.temperatura AS DECIMAL(6,2))) as Desv_Estandar, 
+                                    SUM(CASE WHEN CAST(b.temperatura AS DECIMAL(6,2))>$temperatura_max THEN 1 ELSE 0 END) as tiempo_over, 
+                                    SUM(CASE WHEN CAST(b.temperatura AS DECIMAL(6,2))<$temperatura_min THEN 1 ELSE 0 END) as tiempo_low,
+                                    AVG(EXP(-83.144/(0.0083144*(CAST(b.temperatura AS DECIMAL(6,2))+273.15)))) as valor FROM sensores as a,
                                     refrigerador_datos_crudos as b, refrigerador_sensor as c WHERE a.id_sensor = c.id_sensor AND c.id_refrigerador_sensor = b.id_refrigerador_sensor AND c.id_mapeo = ? GROUP BY a.nombre");
 mysqli_stmt_bind_param($query_33, 'i', $id_mapeo);
 mysqli_stmt_execute($query_33);
@@ -778,7 +753,7 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
 <tr><td><br>Valores Promedio, Máximo y Mínimo</td></tr>
-<tr><td>$mostrar_imagen_2</td></tr></table><br><br><br>
+<tr><td><br><br><img src="../../$img_sensores_2" width="450px"></td></tr></table><br><br><br>
 <table>
 
 EOD;
@@ -824,7 +799,7 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
 <tr><td><br>Datos de los sensores - Periodo representativo</td></tr>
-<tr><td>$mostrar_imagen_3</td></tr></table><br><br><br>
+<tr><td><br><br><img src="../../$img_sensores_3" width="450px"></td></tr></table><br><br><br>
 <table>
 
 <tr><td bgcolor="#DDDDDD"><strong>Comentarios</strong></td></tr>
@@ -833,40 +808,6 @@ tr:nth-child(even)
 <tr><td>$observacion</td></tr>
 </table>
 <br><br><br><br><br>
-EOD;
-
-$pdf->writeHTML($txt, true, false, false, false, '');
-$pdf->AddPage('A4');
-
-$txt_2= <<<EOD
-<style>
-table 
-{
-  border-collapse: collapse;
-  width: 100%;
-  text-align: center;
-  vertical-align: middle;
-}
-
-th 
-{
-  background-color: #3138AA;
-  color: #FFFFFF;
-  vertical-align: middle;
-}
-
-th, td 
-{
-  border: 1px solid #BBBBBB;
-  padding: 3px;
-  vertical-align: middle;
-}
-
-tr:nth-child(even) 
-{
-	background-color: #f2f2f2;
-}
-</style>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
 <tr><td height="90"><br><br><br>Ing. Raúl Quevedo Silva<br>COO - Chief Operation Officer - Cercal Group Spa.</td><td height="50"></td></tr>
@@ -874,7 +815,7 @@ tr:nth-child(even)
 
 EOD;
 
-$pdf->writeHTML($txt_2, true, false, false, false, '');
+$pdf->writeHTML($txt, true, false, false, false, '');
 
 		$pdf->Output('Algo.pdf', 'I');
 ?>

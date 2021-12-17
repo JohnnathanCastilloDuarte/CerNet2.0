@@ -3,8 +3,8 @@
 		require('../../../../config.ini.php');
 		$id_informe = $_GET['informe'];
 		$resultado_corresponde = "";
-    $posicion_sensores_indicativo = 1;
-	 
+        $posicion_sensores_indicativo = 1;
+ 	 
 		
 		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////
 
@@ -486,7 +486,7 @@ text-align:left;
 		<tr><td width="30%" class="enunciado">N° de serie / Código interno</td><td width="70%">$n_serie_item</td></tr>
 		<tr><td width="30%" class="enunciado">Ubicación</td><td width="70%">$ubicacion_item</td></tr>
 		<tr><td width="30%" class="enunciado">Valor seteado</td><td width="70%">$valor_seteado</td></tr>
-		<tr><td width="30%" rowspan="2" class="enunciado">Límites (HR%)</td>
+		<tr><td width="30%" rowspan="2" class="enunciado">Límites (°C)</td>
 
 		<td width="35%">Máximo</td><td width="35%">Mínimo</td></tr>
 		<tr><td width="35%">$humedad_max</td><td width="35%">$humedad_min</td></tr>
@@ -508,21 +508,21 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medición Obtenida</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio General (HR%)</td><td width="70%" colspan="5">$prom_general</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio General (°C)</td><td width="70%" colspan="5">$prom_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Máximo General (HR%)</td><td width="10%">$max_general</td>
+		<tr><td width="30%" class="enunciado">Máximo General (°C)</td><td width="10%">$max_general</td>
 		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posición: $bandeja_max_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Mínimo General (HR%)</td><td width="10%">$min_general</td>
+		<tr><td width="30%" class="enunciado">Mínimo General (°C)</td><td width="10%">$min_general</td>
 		<td width="10%">a las:</td><td width="20%">$min_time_general</td><td width="10%">En:</td><td width="20%">$sensor_min_general, Ubicado en posición: $bandeja_min_general</td></tr>
 
 		<tr><td width="30%" class="enunciado">Desv. Estandar de todos los sensores</td><td width="70%" colspan="3">$desviacion_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio + 3 Desv. Est. (HR%)</td><td width="20%">$desv_3max_num</td><td width="25%">Cumple Limite Máx.</td><td width="25%">$cumple_max</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio + 3 Desv. Est. (°C)</td><td width="20%">$desv_3max_num</td><td width="25%">Cumple Limite Máx.</td><td width="25%">$cumple_max</td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio - 3 Desv. Est. (HR%)</td><td width="20%">$desv_3min_num</td><td width="25%">Cumple Limite Mín.</td><td width="25%">$cumple_min</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio - 3 Desv. Est. (°C)</td><td width="20%">$desv_3min_num</td><td width="25%">Cumple Limite Mín.</td><td width="25%">$cumple_min</td></tr>
 
-		<tr><td width="30%" class="enunciado">MKT General (HR%)*</td><td width="70%">$mkt_gen</td></tr>
+		<tr><td width="30%" class="enunciado">MKT General (°C)*</td><td width="70%">$mkt_gen</td></tr>
 
 		</table>
 		* Usa: Energía activación = 83,144 (kj/mol) y Constante universal de gases ideales = 0,0083144 (kj/mol)<br><br>
@@ -537,13 +537,13 @@ text-align:left;
 		<td width="20%" class="enunciado">$dif_max_time_2</td><td width="7%">entre</td><td width="10%">$dif_max_sensor_2</td><td width="3%">y</td>
 		<td width="10%" class="enunciado">$dif_min_sensor_2</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con promedio más alto (HR%)</td><td width="10%">$max_avg</td><td width="10%">en:</td><td width="50%">$max_avg_sensor, ubicado en: $max_avg_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con promedio más alto (°C)</td><td width="10%">$max_avg</td><td width="10%">en:</td><td width="50%">$max_avg_sensor, ubicado en: $max_avg_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con promedio más bajo (HR%)</td><td width="10%">$min_avg</td><td width="10%">en:</td><td width="50%">$min_avg_sensor, ubicado en: $min_avg_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con promedio más bajo (°C)</td><td width="10%">$min_avg</td><td width="10%">en:</td><td width="50%">$min_avg_sensor, ubicado en: $min_avg_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con mayor Desv. Est. (HR%)</td><td width="10%">$max_desv</td><td width="10%">en:</td><td width="50%">$max_desv_sensor, ubicado en: $max_desv_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con mayor Desv. Est. (°C)</td><td width="10%">$max_desv</td><td width="10%">en:</td><td width="50%">$max_desv_sensor, ubicado en: $max_desv_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con menor Desv. Est. (HR%)</td><td width="10%">$min_desv</td><td width="10%">en:</td><td width="50%">$min_desv_sensor, ubicado en: $min_desv_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con menor Desv. Est. (°C)</td><td width="10%">$min_desv</td><td width="10%">en:</td><td width="50%">$min_desv_sensor, ubicado en: $min_desv_posicion</td></tr>
 </table>
 
 <br><br><br><br><br><br>
@@ -662,15 +662,15 @@ $pdf->AddPage('A4');
 //TITULOS
 $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (°C)', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (HR%)', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (°C)', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
