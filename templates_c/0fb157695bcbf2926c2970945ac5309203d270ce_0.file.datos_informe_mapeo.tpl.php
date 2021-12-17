@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-15 18:37:28
+/* Smarty version 3.1.34-dev-7, created on 2021-12-17 15:26:10
   from 'C:\xampp\htdocs\CerNet2.0\templates\mapeos_generales\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61ba27d8d79d94_71112095',
+  'unifunc' => 'content_61bc9e02438a45_60072141',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0fb157695bcbf2926c2970945ac5309203d270ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\mapeos_generales\\datos_informe_mapeo.tpl',
-      1 => 1639589847,
+      1 => 1639603089,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61ba27d8d79d94_71112095 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61bc9e02438a45_60072141 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -524,7 +524,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                 <div class="card" id="edicion_informe">
                     <div class="card-header">Edición de informe <button id="close_edicion" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
                     <div class="card-body">
-
+                        <div class="row" id="editar_informe">
+                                    
+                        </div>
                     </div>
                 </div>
             </div>

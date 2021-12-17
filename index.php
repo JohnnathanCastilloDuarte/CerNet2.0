@@ -261,10 +261,12 @@ else
         case 8: 
           if($octavo_modulo == 1){
             if($_GET["page"] == 1){
-              include("templates/refrigeradores/gestionar_informes.php");
+              include("templates/mapeos_generales/gestionar_informes.php");
             }else if($_GET["page"] == 2){
               if($_GET["type"] == 6){
                 include("templates/refrigeradores/informes/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 1){
+                include("templates/mapeos_generales/datos_informe_mapeo.php");
               }else if($_GET["type"] == 9){
                 include("templates/ultrafreezer/datos_informe_mapeo.php");
               }else if($_GET["type"] == 8){

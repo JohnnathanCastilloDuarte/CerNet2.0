@@ -1279,7 +1279,6 @@ $("#creacion_hum").click(function(){
 
 
 $(document).on('click','#editar_informe',function(){
-
         $("#edicion_informe").show();
         $("#card_informes").hide();
 });
@@ -1327,8 +1326,23 @@ $(document).on('click','#eliminar_informe',function(){
                     })
                 }
             });    
-
 });
+
+
+
+function listar_info_temp(id_informe){
+
+    let movimiento = "Consultar_temp";
+
+    $.ajax({
+        type:'POST',
+        data:{id_informe},
+        url:'templates/mapeos_generales/controlador_informes.php',
+        success:function(response){
+            console.log(response);
+        }
+    })
+}
 
 
 

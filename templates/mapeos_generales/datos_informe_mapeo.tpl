@@ -440,7 +440,9 @@
                 <div class="card" id="edicion_informe">
                     <div class="card-header">Edición de informe <button id="close_edicion" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
                     <div class="card-body">
-
+                        <div class="row" id="editar_informe">
+                                    
+                        </div>
                     </div>
                 </div>
             </div>
