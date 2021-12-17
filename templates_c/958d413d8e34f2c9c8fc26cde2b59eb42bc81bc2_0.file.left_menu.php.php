@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-12 20:07:33
+/* Smarty version 3.1.34-dev-7, created on 2021-12-17 15:20:22
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61b648752c7937_24211851',
+  'unifunc' => 'content_61bc9ca6846ba1_25637616',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1639336043,
+      1 => 1639750765,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b648752c7937_24211851 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61bc9ca6846ba1_25637616 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -293,6 +293,11 @@ function content_61b648752c7937_24211851 (Smarty_Internal_Template $_smarty_tpl)
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
+"><i class="metismenu-icon pe-7s-news-paper"></i>Mapeos generales</a>
+    </li>
+    <li>
+    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Refrigeradores</a>
     </li>
     <!--
@@ -353,9 +358,11 @@ function content_61b648752c7937_24211851 (Smarty_Internal_Template $_smarty_tpl)
     <ul>
     <li>
     
+    <?php if ($_smarty_tpl->tpl_vars['id_privilegio_actual']->value != 7) {?>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
-">Gestion documental</a>
+">Gestion documental</a>.
+    <?php }?>
       <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 ">Revisión documental</a>

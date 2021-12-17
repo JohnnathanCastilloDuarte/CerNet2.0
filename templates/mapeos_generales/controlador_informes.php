@@ -157,6 +157,29 @@ if($movimiento == "Leer"){
     }else{
         echo "No";
     }
+
+
+
+}else if($movimiento == "Consultar_temp_1"){
+
+    $id_informe = $_POST['id_informe'];
+    $array_informes=array();
+    
+    $consultar_informes = mysqli_prepare($connect,"SELECT a.comentario, a.observacion FROM informes_general WHERE id_informe = ?");
+    mysqli_stmt_bind_param($consultar_informes, 'i', $id_informe);
+    mysqli_stmt_execute($consultar_informes);
+    mysqli_stmt_store_result($consultar_informes);
+    mysqli_stmt_bind_result($consultar_informes, $comentario, $observacion);
+    mysqli_stmt_fetch($consultar_informes);
+
+    $array_informes[]=array(
+        'comentario'=>$comentario,
+        'observacion'=>$observacion
+    );
+
+    $convert = json_encode($array_informes);
+    echo $convert;
+    
 }
 
 mysqli_close($connect);
