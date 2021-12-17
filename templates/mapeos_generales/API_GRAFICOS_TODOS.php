@@ -4,13 +4,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <?php 
 
-function API_GRAFICOS($id_mapeo){
+function API_GRAFICOS($id_mapeo, $tipo_grafi){
 
   include("../../config.ini.php"); 
   
   ///////////////////////////////////////////// VALIDO LA EXISTENCIA DE LA IMAGEN PARA EVITAR EL APROBAR DEL MISMO
  
-  $validador = mysqli_prepare($connect,"SELECT a.id_imagen FROM images_informe_refrigeradores as a, informe_refrigerador as b WHERE a.id_informe = b.id_informe_refrigerador AND b.id_mapeo = ? AND a.tipo_imagen = 1");
+  $validador = mysqli_prepare($connect,"SELECT a.id_imagen FROM imagenes_general_informe as a, informes_general as b WHERE a.id_informe = b.id_informe AND b.id_mapeo = ? AND a.tipo = 2");
   mysqli_stmt_bind_param($validador, 'i', $id_mapeo);
   mysqli_stmt_execute($validador);
   mysqli_stmt_store_result($validador);
@@ -34,10 +34,12 @@ function API_GRAFICOS($id_mapeo){
   $array_data = array();
   $contador_sensores = 0;
   $array_id_sensor = array();
+  $datos = "";
+  $colum = "";
   
   echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 
-  $consultar = mysqli_prepare($connect,"SELECT a.nombre, b.id_refrigerador_sensor FROM sensores AS a, refrigerador_sensor AS b  WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ?");
+  $consultar = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo FROM sensores AS a, mapeo_general_sensor AS b  WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ?");
   mysqli_stmt_bind_param($consultar, 'i', $id_mapeo);  
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
@@ -71,18 +73,29 @@ function API_GRAFICOS($id_mapeo){
     }
     echo "],";
 
-    $consultar_data = mysqli_prepare($connect,"SELECT DISTINCT time FROM refrigerador_datos_crudos WHERE id_refrigerador_sensor = ?");
+    $consultar_data = mysqli_prepare($connect,"SELECT DISTINCT time FROM datos_crudos_general WHERE id_sensor_mapeo = ?");
       mysqli_stmt_bind_param($consultar_data, 'i', $array_id_sensor[0][0]);
       mysqli_stmt_execute($consultar_data);
       mysqli_stmt_store_result($consultar_data);
       mysqli_stmt_bind_result($consultar_data, $time);
 
-      $query_31 = mysqli_prepare($connect,"SELECT a.temperatura FROM refrigerador_datos_crudos  as a, refrigerador_sensor as b WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND  b.id_mapeo = ?   ORDER BY a.time ASC, a.id_refrigerador_sensor ASC");
-      mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
-      mysqli_stmt_execute($query_31);
-      mysqli_stmt_store_result($query_31);
-      mysqli_stmt_bind_result($query_31, $datos);	
-      $colum = mysqli_stmt_num_rows($consultar_data);	
+      if($tipo_grafi == "TEMP"){
+        $query_31 = mysqli_prepare($connect,"SELECT a.temp FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ?   ORDER BY a.time ASC, a.id_sensor_mapeo ASC");
+        mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
+        mysqli_stmt_execute($query_31);
+        mysqli_stmt_store_result($query_31);
+        mysqli_stmt_bind_result($query_31, $datos);	
+        $colum = mysqli_stmt_num_rows($consultar_data);	
+      }else{
+        $query_31 = mysqli_prepare($connect,"SELECT a.hum FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ?   ORDER BY a.time ASC, a.id_sensor_mapeo ASC");
+        mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
+        mysqli_stmt_execute($query_31);
+        mysqli_stmt_store_result($query_31);
+        mysqli_stmt_bind_result($query_31, $datos);	
+        $colum = mysqli_stmt_num_rows($consultar_data);	
+      }
+
+    
 
 
       for($j=1;$j<=$colum;$j++){
@@ -176,7 +189,9 @@ function API_GRAFICOS($id_mapeo){
 
 
 $id_mapeo = $_GET['id_mapeo'];
- API_GRAFICOS($id_mapeo);
+$tipo_grafi = $_GET['type'];
+
+ API_GRAFICOS($id_mapeo,$tipo_grafi);
 
 ?>
 
