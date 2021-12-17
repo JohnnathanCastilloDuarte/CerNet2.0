@@ -1281,6 +1281,8 @@ $("#creacion_hum").click(function(){
 $(document).on('click','#editar_informe',function(){
         $("#edicion_informe").show();
         $("#card_informes").hide();
+        let id_informe = $(this).attr('data-id');
+        listar_info_temp(id_informe);
 });
 
 $("#close_edicion").click(function(){
@@ -1336,13 +1338,131 @@ function listar_info_temp(id_informe){
 
     $.ajax({
         type:'POST',
-        data:{id_informe},
+        data:{id_informe,movimiento},
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
             console.log(response);
+            let traer = JSON.parse(response);
+            let template = "";
+            let url_imagen_1 = "";
+            let url_imagen_2 = "";
+            let url_imagen_3 = "";
+
+            traer.forEach((valor)=>{
+              
+                if(valor.url1 == null){
+                    url_imagen_1 = "design/images/no_imagen.png";
+                }else{
+                    url_imagen_1 = valor.url1;
+                }
+                if(valor.url2 == null){
+                    url_imagen_2 = "design/images/no_imagen.png";
+                }else{
+                    url_imagen_2 = valor.url2;
+                }
+                if(valor.url3 == null){
+                    url_imagen_3 = "design/images/no_imagen.png";
+                }else{
+                    url_imagen_3 = valor.url3;
+                }
+
+
+                template += 
+                `
+                <form id="formulario_informe" enctype="multipart/form-data" method="post">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Comentarios:</label>
+                            <textarea class="form-control" value="${valor.comentario}" id="comentario_informe_temp" name="comentario_informe_temp">${valor.comentario}</textarea>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Observación:</label>
+                            <textarea class="form-control" value="${valor.observacion}" id="observacion_informe_temp" name="observacion_informe_temp">${valor.observacion}</textarea>
+                        </div>
+                    </div>    
+                    
+                    <hr>
+
+                    <div class="row" style="text-align: center;">
+
+                        <div class="col-sm-4">
+                            <label>Ubicación de sensores</label>
+                            <img src="${url_imagen_1}">
+                            <input type="file" name="imagen_tipo_1" class="form-control">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Valores promedio, mínima y maxíma</label>
+                            <button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;" data-type="${valor.tipo_informe}">
+                            <img src="design/images/grafico.jpg" style="width: 100%;"></button>
+                            <img src="${url_imagen_2}">
+                            <input type="file" name="imagen_tipo_2" class="form-control">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Periodo representativo</label>
+                            <button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;"  data-type="${valor.tipo_informe}">
+                            <img src="design/images/grafico.jpg" style="width: 100%;"></button>
+                            <img src="${url_imagen_3}">
+                            <input type="file" name="imagen_tipo_3" class="form-control">
+                        </div>
+                    </div> 
+                    
+                    <hr>
+
+                    <div class="row" style="text-align:center;">
+                        <div class="col-sm-12">
+                            <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
+                        </div>
+                    </div>
+
+                </form>    
+                   
+                `;
+            });
+
+            $("#editar_informe_row").html(template);
         }
     })
 }
+
+
+///////// VER GRAFICOS DE CERNET 
+$(document).on('click','#ver_grafico_todos_promedio',function(){
+    let id_mapeo = $("#id_mapeo_informe").val();
+    let tipo_informe = $(this).attr('data-type');
+    window.open('templates/mapeos_generales/API_GRAFICOS_PROMEDIOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
+});
+
+$(document).on('click','#ver_grafico_todos_todos',function(){
+    let id_mapeo = $("#id_mapeo_informe").val();
+    let tipo_informe = $(this).attr('data-type');
+    window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
+
+});
+
+///// ENVIO FORMULARIO
+$(document).on('submit','#formulario_informe',function(e){
+    e.preventDefault();
+
+
+    /*
+    $.ajax({
+        url: 'templates/mapeos_generales/cargar_data_informes.php',
+        type: 'POST',
+        dataType: 'html',
+        data: new FormData(this),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success:function(response){
+
+        }
+    });*/
+    
+});
+
+
 
 
 
