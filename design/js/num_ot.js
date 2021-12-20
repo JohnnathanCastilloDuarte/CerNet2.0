@@ -34,7 +34,6 @@ var id_gestionar = "";
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
 							
-							
 							if(r=="null"){
 									//$("#alert_ot_s").hide();
 									//$("#alert_ot_n").show();

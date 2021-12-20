@@ -483,7 +483,7 @@ function listar_equipos(id_servicio, id_servicio){
 			let traer =  JSON.parse(e);
 			let template = "";
 			let boton = "";
-
+				console.log(e)
 					if(traer.length == 0){
 						Swal.fire({
 							title:'Mensaje',

@@ -285,19 +285,19 @@ else
                 include("templates/mapeos_generales/datos_informe_mapeo.php");
               }else if($_GET["type"] == 2){
                 include("templates/refrigeradores/informes/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 9){
-                include("templates/ultrafreezer/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 8){
+              }else if($_GET["type"] == 3){
                 include("templates/freezer/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 14){
+              }else if($_GET["type"] == 4){
+                include("templates/ultrafreezer/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 5){
                 include("templates/estufaeincubadora/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 13){
+              }else if($_GET["type"] == 6){
                 include("templates/automovil/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 11){
+              }else if($_GET["type"] == 7){
                 include("templates/filtros/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 12){
+              }else if($_GET["type"] == 8){
                 include("templates/campana_extraccion/datos_informe_mapeo.php");
-              } else if($_GET["type"] == 15){
+              } else if($_GET["type"] == 9){
                 include("templates/protocolos/datos_protocolos.php");
               }
             }
