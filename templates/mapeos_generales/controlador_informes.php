@@ -214,6 +214,22 @@ if($movimiento == "Leer"){
     $convert = json_encode($array_informes);
     echo $convert;
     
+}else if($movimiento == "redireccion_informes"){
+
+    $id_informe = $_POST['id_informe'];
+
+    $consultar = mysqli_prepare($connect,"SELECT tipo FROM informes_general WHERE id_informe = ?");
+    mysqli_stmt_bind_param($consultar, 'i', $id_informe);
+    mysqli_stmt_execute($consultar);
+    mysqli_stmt_store_result($consultar);
+    mysqli_stmt_bind_result($consultar, $tipo);
+    mysqli_stmt_fetch($consultar);
+
+    echo $tipo;
+
+
+
+    
 }
 
 mysqli_close($connect);
