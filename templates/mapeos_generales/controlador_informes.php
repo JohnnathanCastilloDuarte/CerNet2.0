@@ -160,21 +160,55 @@ if($movimiento == "Leer"){
 
 
 
-}else if($movimiento == "Consultar_temp_1"){
+}else if($movimiento == "Consultar_temp"){
 
     $id_informe = $_POST['id_informe'];
     $array_informes=array();
-    
-    $consultar_informes = mysqli_prepare($connect,"SELECT a.comentario, a.observacion FROM informes_general WHERE id_informe = ?");
+
+        
+    $consultar_informes = mysqli_prepare($connect,"SELECT comentario, observacion, tipo FROM informes_general WHERE id_informe = ?");
     mysqli_stmt_bind_param($consultar_informes, 'i', $id_informe);
     mysqli_stmt_execute($consultar_informes);
     mysqli_stmt_store_result($consultar_informes);
-    mysqli_stmt_bind_result($consultar_informes, $comentario, $observacion);
+    mysqli_stmt_bind_result($consultar_informes, $comentario, $observacion, $tipo);
     mysqli_stmt_fetch($consultar_informes);
+
+
+
+    $consultar_imagenes_1 = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 1");
+    mysqli_stmt_bind_param($consultar_imagenes_1, 'i', $id_informe);
+    mysqli_stmt_execute($consultar_imagenes_1);
+    mysqli_stmt_store_result($consultar_imagenes_1);
+    mysqli_stmt_bind_result($consultar_imagenes_1, $id_imagen1, $tipo1, $url1);
+    mysqli_stmt_fetch($consultar_imagenes_1);
+
+    $consultar_imagenes_2 = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 1");
+    mysqli_stmt_bind_param($consultar_imagenes_2, 'i', $id_informe);
+    mysqli_stmt_execute($consultar_imagenes_2);
+    mysqli_stmt_store_result($consultar_imagenes_2);
+    mysqli_stmt_bind_result($consultar_imagenes_2, $id_imagen2, $tipo2, $url2);
+    mysqli_stmt_fetch($consultar_imagenes_2);
+
+    $consultar_imagenes_3 = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 1");
+    mysqli_stmt_bind_param($consultar_imagenes_3, 'i', $id_informe);
+    mysqli_stmt_execute($consultar_imagenes_3);
+    mysqli_stmt_store_result($consultar_imagenes_3);
+    mysqli_stmt_bind_result($consultar_imagenes_3, $id_imagen3, $tipo3, $url3);
+    mysqli_stmt_fetch($consultar_imagenes_3);
 
     $array_informes[]=array(
         'comentario'=>$comentario,
-        'observacion'=>$observacion
+        'observacion'=>$observacion,
+        'id_imagen1'=>$id_imagen1,
+        'tipo1'=>$tipo1,
+        'url1'=>$url1,
+        'id_imagen2'=>$id_imagen2,
+        'tipo2'=>$tipo2,
+        'url2'=>$url2, 
+        'id_imagen3'=>$id_imagen3,
+        'tipo3'=>$tipo3,
+        'url3'=>$url3,
+        'tipo_informe'=>$tipo
     );
 
     $convert = json_encode($array_informes);
