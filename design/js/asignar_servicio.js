@@ -479,7 +479,11 @@ function listar_equipos(id_servicio){
 	
 	
 		$.post('templates/OT/listar_equipos.php', data ,function(e){
+<<<<<<< HEAD
 			 console.log(e)
+=======
+		
+>>>>>>> e6edb64a1f887685774da4c2ece868eb0df21010
 			let traer =  JSON.parse(e);
 			let template = "";
 			let boton = "";
