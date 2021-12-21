@@ -182,14 +182,14 @@ if($movimiento == "Leer"){
     mysqli_stmt_bind_result($consultar_imagenes_1, $id_imagen1, $tipo1, $url1);
     mysqli_stmt_fetch($consultar_imagenes_1);
 
-    $consultar_imagenes_2 = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 1");
+    $consultar_imagenes_2 = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 2");
     mysqli_stmt_bind_param($consultar_imagenes_2, 'i', $id_informe);
     mysqli_stmt_execute($consultar_imagenes_2);
     mysqli_stmt_store_result($consultar_imagenes_2);
     mysqli_stmt_bind_result($consultar_imagenes_2, $id_imagen2, $tipo2, $url2);
     mysqli_stmt_fetch($consultar_imagenes_2);
 
-    $consultar_imagenes_3 = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 1");
+    $consultar_imagenes_3 = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 3");
     mysqli_stmt_bind_param($consultar_imagenes_3, 'i', $id_informe);
     mysqli_stmt_execute($consultar_imagenes_3);
     mysqli_stmt_store_result($consultar_imagenes_3);
@@ -197,6 +197,7 @@ if($movimiento == "Leer"){
     mysqli_stmt_fetch($consultar_imagenes_3);
 
     $array_informes[]=array(
+        'id_informe'=>$id_informe,
         'comentario'=>$comentario,
         'observacion'=>$observacion,
         'id_imagen1'=>$id_imagen1,

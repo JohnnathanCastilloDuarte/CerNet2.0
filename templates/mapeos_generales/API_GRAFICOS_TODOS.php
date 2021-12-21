@@ -57,9 +57,40 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
     } 
 
     ?> 
-   
+    <div class="row"  style="text-align: center;">
+  <div class="col-sm-2">
+    <div class="card">
+      <div class="card-header">Rangos de grafica</div>
+      <div class="card-body">
+        <div class="row" style="text-align: center;">
+     
+          <div class="col-sm-12">
+            <label>Limite Min. (Ej: 5.00)</label>
+            <input type="number" class="form-control"  id="limite_min" name="limite_min">
+            <label>Limite Max. (Ej: 50.30)</label>
+            <input type="number" class="form-control" id="limite_max" name="limite_max"> 
+            <hr>
+            <button id="ajustar_limite" class="btn btn-info">Generar</button>
+            <button id="reset_limite" class="btn btn-danger">Reset</button>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
 
     <script type="text/javascript">
+
+    $("#ajustar_limite").click(function(){
+      location.reload();
+    });
+
+    $("#reset_limite").click(function(){
+      $("#limite_min").val('');
+      $("#limite_max").val(''); 
+      location.reload();
+    });
+
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
@@ -120,13 +151,28 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
     ?>
     ]);
 
-    var options = {
-    title: 'Grafico de todos los sensores',
+    var lim_min = $("#limite_min").val();
+    var lim_max = $("#limite_max").val(); 
+
+   if(lim_min.length == 0){
+      var options = {
+      curveType: 'function',
+      legend: { position: 'bottom' },
+      hAxis : { textStyle : { fontSize: 15} }, 
+      vAxis : { textStyle : { fontSize: 20}},
+      };
+    }else{
+      var options = {
     curveType: 'function',
     legend: { position: 'bottom' },
-    hAxis : { textStyle : { fontSize: 10} }, 
-    vAxis : { textStyle : { fontSize: 10} },
+    hAxis : { textStyle : { fontSize: 15} }, 
+    vAxis : { textStyle : { fontSize: 20},
+    viewWindow: {
+        min: lim_min,
+        max: lim_max
+    }, },
     };
+    }
 
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
     var chart_div = document.getElementById('curve_chart');
@@ -147,7 +193,8 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
     }
     </script>
     <textarea id="aqui_algo"></textarea>
-    <div id="curve_chart" style="width: 900px; height: 500px; margin-left:300px;"></div>
+    <h2 style="font-family: Quincy;margin-left: 40%;margin-top: 05%;position: absolute;">Grafico de todos los sensores</h2>
+    <div id="curve_chart" style="width: 1000px; height: 700px; margin-left:300px;"></div>
     <br>
     <div style="margin-left:700px;">
       <button class="btn btn-success" id="aprobar_grafico_1">

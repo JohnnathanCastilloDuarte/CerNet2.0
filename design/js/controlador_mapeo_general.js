@@ -1347,29 +1347,39 @@ function listar_info_temp(id_informe){
             let url_imagen_1 = "";
             let url_imagen_2 = "";
             let url_imagen_3 = "";
+            let btn_file_1 = "";
+            let btn_file_2 = "";
+            let btn_file_3 = "";
 
             traer.forEach((valor)=>{
               
                 if(valor.url1 == null){
                     url_imagen_1 = "design/images/no_imagen.png";
+                    btn_file_1 = "<input type='file' name='imagen_tipo_1' class='form-control'>";
                 }else{
-                    url_imagen_1 = valor.url1;
+                    url_imagen_1 = "templates/mapeos_generales/"+valor.url1;
+                    btn_file_1 = "<span class='text-success'>Imagen Cargada</span>";
                 }
                 if(valor.url2 == null){
                     url_imagen_2 = "design/images/no_imagen.png";
+                    btn_file_2 = "<input type='file' name='imagen_tipo_2' class='form-control'>";
                 }else{
-                    url_imagen_2 = valor.url2;
+                    url_imagen_2 = "templates/mapeos_generales/"+valor.url2;
+                    btn_file_2 = "<span class='text-success'>Imagen Cargada</span>";
                 }
                 if(valor.url3 == null){
                     url_imagen_3 = "design/images/no_imagen.png";
+                    btn_file_3 = "<input type='file' name='imagen_tipo_3' class='form-control'>";
                 }else{
-                    url_imagen_3 = valor.url3;
+                    url_imagen_3 = "templates/mapeos_generales/"+valor.url3;
+                    btn_file_3 = "<span class='text-success'>Imagen Cargada</span>";
                 }
 
 
                 template += 
                 `
                 <form id="formulario_informe" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="id_informe_actual" value="${valor.id_informe}">
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Comentarios:</label>
@@ -1386,25 +1396,28 @@ function listar_info_temp(id_informe){
                     <div class="row" style="text-align: center;">
 
                         <div class="col-sm-4">
-                            <label>Ubicación de sensores</label>
-                            <img src="${url_imagen_1}">
-                            <input type="file" name="imagen_tipo_1" class="form-control">
+                            <label>Ubicación de sensores</label><br>
+                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url1}" id="eliminar_imagen"><span style="color: white;">X</span></a>
+                            <img src="${url_imagen_1}" style="width: 100%;">
+                            ${btn_file_1}
                         </div>
 
                         <div class="col-sm-4">
-                            <label>Valores promedio, mínima y maxíma</label>
+                            <label>Valores promedio, mínima y maxíma</label><br>
+                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url2}" id="eliminar_imagen"><span style="color: white;">X</span></a>
                             <button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;" data-type="${valor.tipo_informe}">
                             <img src="design/images/grafico.jpg" style="width: 100%;"></button>
-                            <img src="${url_imagen_2}">
-                            <input type="file" name="imagen_tipo_2" class="form-control">
+                            <img src="${url_imagen_2}" style="width: 100%;">
+                            ${btn_file_2}
                         </div>
 
                         <div class="col-sm-4">
-                            <label>Periodo representativo</label>
+                            <label>Periodo representativo</label><br>
+                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url3}" id="eliminar_imagen"><span style="color: white;">X</span></a>
                             <button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;"  data-type="${valor.tipo_informe}">
                             <img src="design/images/grafico.jpg" style="width: 100%;"></button>
-                            <img src="${url_imagen_3}">
-                            <input type="file" name="imagen_tipo_3" class="form-control">
+                            <img src="${url_imagen_3}" style="width: 100%;">
+                            ${btn_file_3}
                         </div>
                     </div> 
                     
@@ -1445,8 +1458,6 @@ $(document).on('click','#ver_grafico_todos_todos',function(){
 $(document).on('submit','#formulario_informe',function(e){
     e.preventDefault();
 
-
-    /*
     $.ajax({
         url: 'templates/mapeos_generales/cargar_data_informes.php',
         type: 'POST',
@@ -1456,9 +1467,11 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
+            console.log(response);
 
+            listar_info_temp(response);
         }
-    });*/
+    });
     
 });
 
@@ -1485,6 +1498,23 @@ $(document).on('click','#ver_informe',function(){
 
 });
 
+
+/////////// ELIMINAR IMAGEN
+
+$(document).on('click','#eliminar_imagen',function(){
+
+        let id = $(this).attr('data-id');
+        let url = $(this).attr('data-url');
+
+        $.ajax({
+            type:'POST',
+            data:{id, url},
+            url:'templates/mapeos_generales/eliminar_imagenes.php',
+            success:function(response){
+                listar_info_temp(id);
+            }
+        })
+});
 
 
 
