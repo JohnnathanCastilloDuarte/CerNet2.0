@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-03 13:50:42
+/* Smarty version 3.1.34-dev-7, created on 2021-12-21 17:11:04
   from '/home/god/public_html/CerNet2.0/templates/left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61aa20b285aba6_70981513',
+  'unifunc' => 'content_61c20aa8263777_86092448',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '820443aa1ce5f2a123775b639273f42433eaf5f3' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/left_menu.php',
-      1 => 1638539440,
+      1 => 1640106619,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61aa20b285aba6_70981513 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c20aa8263777_86092448 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -346,12 +346,12 @@ function content_61aa20b285aba6_70981513 (Smarty_Internal_Template $_smarty_tpl)
     <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Documentación<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
     <li>
+    
     <?php if ($_smarty_tpl->tpl_vars['id_privilegio_actual']->value != 7) {?>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 ">Gestion documental</a>.
     <?php }?>
-      
       <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 ">Revisión documental</a>
