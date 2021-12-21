@@ -36,7 +36,7 @@ $("#form_datos_crudos").submit(function(e){
 
             console.log(response);
           
-            
+            /*
             let traer = JSON.parse(response);
             let template = "";
             let contador = 1;
@@ -59,8 +59,7 @@ $("#form_datos_crudos").submit(function(e){
                     v1 = `<span class="text-danger">${valor.v1}</span>`;
                     contador_errores++;
                 }else{
-                    v1 = `<span class="text-success">${valor.v1}</span>`;
-                    
+                    v1 = `<span class="text-success">${valor.v1}</span>`;   
                 }
                 if(valor.v2 < rango_menor_igual || valor.v2 > rango_mayor_igual){
                     v2 = `<span class="text-danger">${valor.v2}</span>`;
@@ -142,7 +141,7 @@ $("#form_datos_crudos").submit(function(e){
             });
 
             $("#mostrar_dc_1").html(template);
-            cargar_backtrack_dc();
+            
           
             if(contador_errores > 0){
                 Swal.fire({
@@ -161,8 +160,14 @@ $("#form_datos_crudos").submit(function(e){
                     timer:1500
                 });
                 $("#btn_carga_dc").hide();
-            }
-            
+            }*/
+            Swal.fire({
+                title:'Mensaje',
+                text:'Se ha cargado el archivo de datos crudos con exito',
+                icon:'success',
+                timer:1500
+            });
+            cargar_backtrack_dc();
         }   
     });
         
@@ -217,7 +222,7 @@ function cargar_backtrack_dc(){
             let contador_bad = "";
 
             traer.forEach((resultado)=>{
-                if(resultado.estado == 0){
+                if(resultado.estado == 1){
                     contador_bad = 1;
 
                     template +=
@@ -227,7 +232,7 @@ function cargar_backtrack_dc(){
                                 <div class="card-header">${resultado.nombres}  ${resultado.apellidos} <br> ${resultado.fecha_registro}</div>
                             </div>
                             <a href="${resultado.url_archivo}"><img src="../../design/images/excel.png" style="width: 25%;"></img></a>
-                            <a href="${resultado.url_error}"><img src="../../design/images/log.png" style="width: 25%;"></img></a>
+                            
                         </div>
                     
                     `;

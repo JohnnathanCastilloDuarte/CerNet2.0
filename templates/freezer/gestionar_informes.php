@@ -1,6 +1,6 @@
 <?php 
 
-$tipo_1 = "Mapeo termico de freezer";
+$tipo_1 = "Distribución termica de freezer";
 
 $tipo_2 = "Calificación freezer";
 

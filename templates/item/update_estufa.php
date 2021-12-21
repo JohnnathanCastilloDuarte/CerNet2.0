@@ -1,4 +1,6 @@
 <?php 
+
+include("../../config.ini.php");
 //CONSULTAR EMPRESAS
 $consultar_empresa = mysqli_prepare($connect,"SELECT id_empresa, nombre FROM empresa");
 mysqli_stmt_execute($consultar_empresa);
@@ -107,8 +109,20 @@ if ($_GET['pdf'] == 1) {
 
 }elseif($_GET['pdf'] == 0){
     $smarty->display('item/update_estufa.tpl');
-}else{
-	echo"No hay permisos para acceder contacta con el administrador";  
+}elseif($_GET['pdf'] == 2){
+
+	$url = $_SERVER['HTTP_HOST'];
+		
+	if($url = 'cercal.net') {
+
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_estufa.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);		
+	}else{ 	
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_estufa.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
+	}
 }
 
 

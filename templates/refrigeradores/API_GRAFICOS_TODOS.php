@@ -10,7 +10,6 @@ function API_GRAFICOS($id_mapeo){
   
   ///////////////////////////////////////////// VALIDO LA EXISTENCIA DE LA IMAGEN PARA EVITAR EL APROBAR DEL MISMO
  
-  
   $validador = mysqli_prepare($connect,"SELECT a.id_imagen FROM images_informe_refrigeradores as a, informe_refrigerador as b WHERE a.id_informe = b.id_informe_refrigerador AND b.id_mapeo = ? AND a.tipo_imagen = 1");
   mysqli_stmt_bind_param($validador, 'i', $id_mapeo);
   mysqli_stmt_execute($validador);

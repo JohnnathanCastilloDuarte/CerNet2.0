@@ -1,6 +1,6 @@
 <?php 
- 	//RECUPER EL DATO DE LA URL	
-
+ //RECUPER EL DATO DE LA URL	
+include("../../config.ini.php");
 
 $tipo_item = $_GET['type'];
 
@@ -22,8 +22,6 @@ while($row = mysqli_stmt_fetch($consultar_empresa)){
 }
 
 $smarty->assign("array_empresas",$array_empresas);
-
-
 
 $array_automovil = array();
 if (isset($_GET['item'])) {
@@ -73,7 +71,8 @@ while($row = mysqli_stmt_fetch($automovil)){
 		'hum_min'=>$hum_min,
 		'hum_max'=>$hum_max,
 		'nombre_tipo_item'=>$nombre_tipo_item
-	);	
+	);
+	$smarty->assign("array_automovil",$array_automovil);	
  }
 }else{
 		
@@ -108,22 +107,35 @@ while($row = mysqli_stmt_fetch($automovil)){
 		'nombre_tipo_item'=>''
 
 	);
+	$smarty->assign("array_automovil",$array_automovil);
 }
-
-$smarty->assign("array_automovil",$array_automovil);
 
 //ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
 $convert = json_encode($array_automovil);   
 $conv = base64_encode($convert);
+$link = 'templates/item/pdf/pdf/pdf_automovil.php?&data='.$conv;
+//pdf item
 if ($_GET['pdf'] == 1) {
 
-	header('location: templates/item/pdf/pdf/pdf_automovil.php?&data='.$conv);
-
-}elseif($_GET['pdf'] == 0){
-	
+	header('location: '.$link);
+//ediitar item
+}elseif($_GET['pdf'] == 0){	
 	$smarty->display("item/update_automovil.tpl");
-}else{
-	echo"No hay permisos para acceder contacta con el administrador";  
+//enviar pdf por correo	  
+}elseif($_GET['pdf'] == 2){
+
+	$url = $_SERVER['HTTP_HOST'];
+		
+	if($url = 'cercal.net') {
+
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_automovil.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);		
+	}else{ 	
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_automovil.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
+	}
 }
 
 

@@ -66,7 +66,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8,9));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10));
 
 
 $aprobaciones = array();
@@ -209,11 +209,11 @@ else
                 include("templates/item/update_estufa.php");
               }else if($_GET["type"] == 6){
                 include("templates/item/update_incubadora.php");
-              }else if($_GET["type"] == 23){
+              }else if($_GET["type"] == 7){
                 include("templates/item/update_automovil.php");
               }else if($_GET["type"] == 11){
                 include("templates/item/update_filtro.php");
-              }else if($_GET["type"] == 0){
+              }else if($_GET["type"] == 12){
                 include("templates/item/update_campana_extraccion.php");
               }else if($_GET["type"] == 14){
                 include("templates/item/update_camara_congelada.php");
@@ -261,39 +261,45 @@ else
         case 8: 
           if($octavo_modulo == 1){
             if($_GET["page"] == 1){
-              include("templates/refrigeradores/gestionar_informes.php");
+              include("templates/mapeos_generales/gestionar_informes.php");
             }else if($_GET["page"] == 2){
-              if($_GET["type"] == 6){
-                include("templates/refrigeradores/informes/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 9){
-                include("templates/ultrafreezer/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 8){
-                include("templates/freezer/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 14){
-                include("templates/estufaeincubadora/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 12){
-                include("templates/automovil/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 11){
-                include("templates/filtros/datos_informe_mapeo.php");
-              }else if($_GET["type"] == 0){
-                include("templates/campana_extraccion/datos_informe_mapeo.php");
-              }
+              include("templates/refrigeradores/gestionar_informes.php");
             }else if($_GET["page"] == 3){
-              include("templates/refrigeradores/historial_refrigeradores.php");
-            }else if($_GET["page"] == 4){
               include("templates/ultrafreezer/gestionar_informes.php");
-            }else if($_GET["page"] == 5){
+            }else if($_GET["page"] == 4){
               include("templates/freezer/gestionar_informes.php");
-            }else if($_GET["page"] == 6){
+            }else if($_GET["page"] == 5){
               include("templates/estufaeincubadora/gestionar_informes.php");
-            }else if($_GET["page"] == 7){
+            }else if($_GET["page"] == 6){
               include("templates/automovil/gestionar_informes.php");
-            }
-            else if ($_GET["page"] == 8){
+            }else if ($_GET["page"] == 7){
               include("templates/filtros/gestionar_informes.php");
-            }
-            else if ($_GET["page"] == 9){
+            }else if ($_GET["page"] == 8){
               include("templates/campana_extraccion/gestionar_informes.php");
+            } else if ($_GET["page"] == 9){
+              include("templates/protocolos/gestionar_protocolos.php");
+            }
+
+            else if($_GET["page"] == 10){
+               if($_GET["type"] == 1){
+                include("templates/mapeos_generales/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 2){
+                include("templates/refrigeradores/informes/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 3){
+                include("templates/freezer/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 4){
+                include("templates/ultrafreezer/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 5){
+                include("templates/estufaeincubadora/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 6){
+                include("templates/automovil/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 7){
+                include("templates/filtros/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 8){
+                include("templates/campana_extraccion/datos_informe_mapeo.php");
+              } else if($_GET["type"] == 9){
+                include("templates/protocolos/datos_protocolos.php");
+              }
             }
           }
        break;

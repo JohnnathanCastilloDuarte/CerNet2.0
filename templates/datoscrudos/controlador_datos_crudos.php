@@ -6,8 +6,9 @@ $id_valida = $_POST['id_valida'];
 $id_asignado = $_POST['id_asignado'];
 $id_mapeo = $_POST['id_mapeo'];
 $tipo_archivo_dc = $_POST['tipo_archivo_dc'];
+/*
 $rango_mayor_igual = $_POST['rango_mayor_igual'];
-$rango_menor_igual = $_POST['rango_menor_igual'];
+$rango_menor_igual = $_POST['rango_menor_igual'];*/
 
 
 $query1 = mysqli_prepare($connect,"SELECT c.nombre FROM item_asignado as a, item as b, tipo_item as c WHERE a.id_asignado = ? AND 
@@ -57,6 +58,19 @@ switch ($nombre){
 
 		$start = date("Y-m-d H:i:s",strtotime($pre_start));
 		$end = date("Y-m-d H:i:s",strtotime($pre_end));
+
+
+    case 'Camara Congelada':
+     
+        $fechas = mysqli_prepare($connect,"SELECT fecha_inicio, fecha_fin, intervalo FROM mapeo_general WHERE id_mapeo = ?");
+        mysqli_stmt_bind_param($fechas, 'i', $id_mapeo);
+        mysqli_stmt_execute($fechas);
+        mysqli_stmt_store_result($fechas);
+        mysqli_stmt_bind_result($fechas, $fecha_incio, $fecha_fin, $intervalo);
+        mysqli_stmt_fetch($fechas);
+
+        $start = date("Y-m-d H:i:s",strtotime($fecha_incio));
+		$end = date("Y-m-d H:i:s",strtotime($fecha_fin));
 
 
     break;
@@ -135,10 +149,8 @@ else
             
             if($incrementador <= 9){
                 $nombre_archivo_n = "datos_crudos0".$incrementador.".csv";
-                $nombre_archivo_txt = "error_datos_crudos0".$incrementador.".csv";
             }else{
                 $nombre_archivo_n = "datos_crudos".$incrementador.".csv";
-                $nombre_archivo_txt = "error_datos_crudos0".$incrementador.".csv";
             }
 
             
@@ -148,7 +160,6 @@ else
         }
         
         $personalizado = $directorio_carga.$nombre_archivo_n;
-        $personalida_txt = $directorio_carga.$nombre_archivo_txt;
         $url_archivo =  $personalizado;
 
     }while($validador == 0);  
@@ -158,7 +169,7 @@ else
   {
          
     rename("$archivo","$personalizado"); 
-
+    /*
     $variable_contador = 0;
     $array_datos_crudos = array();
     $z_1 = 1;
@@ -168,9 +179,14 @@ else
 
     //fopen($personalida_txt, 'w');
 
+
     while(($column=fgetcsv($abrir_archivo,10000,";","\t"))!==false){
 
-        if($variable_contador > 6){
+        
+        if($variable_contador == 7){
+
+            
+            /*
 
             $fecha_archivo = $column[0]." ".$column[1];
             $fecha_hora_sql = date("Y-m-d H:i:s",strtotime($fecha_archivo));
@@ -186,41 +202,17 @@ else
             
             if(($fecha_suma>=$start) && ($fecha_suma<=$end)){
 
-                
-
-                if($column[2] < $rango_menor_igual || $column[2] > $rango_mayor_igual){
-                    
-                    $errores = "si";
-                }else{
-
-                    
-                    $errores = "no";
-                }
-
-                $array_datos_crudos[] = array(
-                    'fecha_hora'=>$fecha_suma,
-                    'v1'=>str_replace(",",".",$column[2]),
-                    'v2'=>str_replace(",",".",$column[3]),
-                    'v3'=>str_replace(",",".",$column[4]),
-                    'v4'=>str_replace(",",".",$column[5]),
-                    'v5'=>str_replace(",",".",$column[6]),
-                    'v6'=>str_replace(",",".",$column[7]),
-                    'v7'=>str_replace(",",".",$column[8]),
-                    'v8'=>str_replace(",",".",$column[9]),
-                    'v9'=>str_replace(",",".",$column[10]),
-                    'v10'=>str_replace(",",".",$column[11])
-                );
 
                 $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));  
                 $z_1=2; 
             }
-            
+           
                 
         }
 
         $variable_contador++;
     }   
-    
+    /*
     $estado = "";
    
     if($errores == "si"){
@@ -276,22 +268,22 @@ else
         $personalizado_FINAL = $directorio_carga."ORIGINAL_".$nombre_archivo_n;
         rename("$personalizado","$personalizado_FINAL"); 
         $url_archivo =  $personalizado_FINAL;
-    }
+    }*/
     
     //////////////////// INSERTAMOS LA INFORMACIÓN DE DATOS CRUDOS
-
-    $insertar = mysqli_prepare($connect,"INSERT INTO registro_dc (id_mapeo, id_asignado, url_archivo, url_error, estado, id_usuario) VALUES (?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($insertar, 'iissii', $id_mapeo, $id_asignado, $url_archivo, $personalida_txt, $estado, $id_valida);
+    $estado = 1;
+    $insertar = mysqli_prepare($connect,"INSERT INTO registro_dc (id_mapeo, id_asignado, url_archivo, estado, id_usuario) VALUES (?,?,?,?,?)");
+    mysqli_stmt_bind_param($insertar, 'iisii', $id_mapeo, $id_asignado, $url_archivo, $estado, $id_valida);
     mysqli_stmt_execute($insertar);
 
     $convert = json_encode($array_datos_crudos);
     echo $convert;
 
 
-    }
+    } 
 
 
-}  
+} 
     
 mysqli_close($connect);
 ?>

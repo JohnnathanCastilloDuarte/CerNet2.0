@@ -48,7 +48,7 @@
                                             <td>{$mapeo.empresa}</td>
                                             <td>{$mapeo.nombre_usuario} {$mapeo.apellido_usuario}</td>
                                             <td>
-                                                <a href="index.php?module={$modulo[6]}&page={$page[1]}&asignado={$mapeo.id_asignado}&type={$id_servicio_mapeo}" class="btn btn-outline-success">Informe</a>
+                                                <a href="index.php?module={$modulo[6]}&page={$page[9]}&asignado={$mapeo.id_asignado}&type={$id_servicio_mapeo}" class="btn btn-outline-success">Informe</a>
                                             </td>
                                         </tr>
                                         {/foreach}

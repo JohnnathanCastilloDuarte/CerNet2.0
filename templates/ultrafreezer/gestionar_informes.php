@@ -1,7 +1,7 @@
 <?php 
 
 	error_reporting(0);
-	$tipo_1 = "Mapeo termico de Ultrafreezer";
+	$tipo_1 = "Distribución termica de ultrafreezer";
 
 	$tipo_2 = "Calificación ultrafreezer";
 

@@ -26,12 +26,12 @@ function limpiar_campos_automovil(){
 		 $("#alto_automovil").val();
 	     $("#largo_automovil").val();
 		 $("#ancho_automovil").val();
-		 $("#valor_seteado_tem_automovil").val();
-		 $("#temperatura_minima_automovil").val();
-		 $("#temperatura_maxima_automovil").val();
 		 $("#placa_automovil").val();
 		 $("#id_item_automovil").val();
 		 $("#id_item_vehiculo").val();
+		 $("#valor_seteado_tem_automovil").val();
+		 $("#temperatura_minima_automovil").val();
+		 $("#temperatura_maxima_automovil").val();
   
 }
 
@@ -69,10 +69,10 @@ $("#btn_editar_item_automovil").click(function(){
 		alto_automovil              : $("#alto_automovil").val(),
 		largo_automovil             : $("#largo_automovil").val(),
 		ancho_automovil             : $("#ancho_automovil").val(),
+		placa_automovil             : $("#placa_automovil").val(),
 		valor_seteado_tem_automovil : $("#valor_seteado_tem_automovil").val(),
 		temperatura_minima_automovil: $("#temperatura_minima_automovil").val(),
 		temperatura_maxima_automovil: $("#temperatura_maxima_automovil").val(),
-		placa_automovil             : $("#placa_automovil").val(),
 		id_valida,
 		id_tipo_item,
 
@@ -127,10 +127,10 @@ $("#btn_nuevo_item_automovil").click(function(){
 		alto_automovil              : $("#alto_automovil").val(),
 		largo_automovil             : $("#largo_automovil").val(),
 		ancho_automovil             : $("#ancho_automovil").val(),
+		placa_automovil             : $("#placa_automovil").val(),
 		valor_seteado_tem_automovil : $("#valor_seteado_tem_automovil").val(),
 		temperatura_minima_automovil: $("#temperatura_minima_automovil").val(),
 		temperatura_maxima_automovil: $("#temperatura_maxima_automovil").val(),
-		placa_automovil             : $("#placa_automovil").val(),
 		id_valida,
 		id_tipo_item
 

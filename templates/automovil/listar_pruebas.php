@@ -7,8 +7,9 @@ $consultar = "";
 
 
 if($parametro == "L"){
-  $consultar = mysqli_prepare($connect,"SELECT id_mapeo, nombre, fecha_inicio, hora_inicio, fecha_final, hora_final, intervalo, temperatura_minima, temperatura_maxima, valor_seteado_temperatura
-                                      FROM automovil_mapeo WHERE id_asignado = ?");
+  $consultar = mysqli_prepare($connect,"SELECT a.id_mapeo, a.nombre, a.fecha_inicio, a.hora_inicio, a.fecha_final, a.hora_final, a.intervalo, c.tem_min, c.tem_max, c.valor_seteado_tem
+FROM automovil_mapeo as a,item_asignado as b,item_automovil as c 
+WHERE a.id_asignado = ? AND a.id_asignado = b.id_asignado AND b.id_item = c.id_item");
   mysqli_stmt_bind_param($consultar, 'i', $id_asignado_automovil);
 
 }else{
