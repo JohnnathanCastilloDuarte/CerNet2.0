@@ -5,7 +5,7 @@
 	$ot = $_POST['ot'];
 	$id_empresa = $_POST['id_empresa'];
 	$id_servicio = $_POST['id_servicio'];
-
+  echo $id_empresa;
 	$query = mysqli_prepare($connect,"SELECT id_tipo_item FROM servicio as a, servicio_tipo as b WHERE a.id_servicio = ? AND a.id_servicio_tipo = b.id_servicio_tipo");
 	mysqli_stmt_bind_param($query, 'i', $id_servicio);
 	mysqli_stmt_execute($query);

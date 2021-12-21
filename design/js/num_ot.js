@@ -302,3 +302,35 @@ function validar(){
 }());
 
 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+
