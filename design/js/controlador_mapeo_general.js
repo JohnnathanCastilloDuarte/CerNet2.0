@@ -18,9 +18,9 @@ listar_bandejas();
 listar_mapeos();
 
 $(document).ready(function(){
-   $("#id_mapeo_configurar").val('');
-    $("#id_bandeja_configurar").val('');
-    $("#id_mapeo_informe").val('');
+ $("#id_mapeo_configurar").val('');
+ $("#id_bandeja_configurar").val('');
+ $("#id_mapeo_informe").val('');
 })
 
 
@@ -86,19 +86,19 @@ function listar_bandejas(){
 
                 template+=
                 `
-                    <tr>
-                        <td>${valor.nombre}</td>
-                        <td><button class="btn btn-info" data-id="${valor.id_bandeja}"  data-name = "${valor.nombre}" id="btn_modificar_bandeja">Modificar</button>
-                        <button class="btn btn-danger" data-id="${valor.id_bandeja}" id="btn_eliminar_bandeja">Eliminar</button></td>
-                    </tr>
+                <tr>
+                <td>${valor.nombre}</td>
+                <td><button class="btn btn-info" data-id="${valor.id_bandeja}"  data-name = "${valor.nombre}" id="btn_modificar_bandeja">Modificar</button>
+                <button class="btn btn-danger" data-id="${valor.id_bandeja}" id="btn_eliminar_bandeja">Eliminar</button></td>
+                </tr>
                 `;
 
                 template2 +=
                 `
                 <tr>
-                    <td>${valor.nombre}</td>
-                    <td><button class="btn btn-info" data-id="${valor.id_bandeja}"  data-name = "${valor.nombre}" id="btn_utilizar_bandeja">Utilizar</button>
-                    </td>
+                <td>${valor.nombre}</td>
+                <td><button class="btn btn-info" data-id="${valor.id_bandeja}"  data-name = "${valor.nombre}" id="btn_utilizar_bandeja">Utilizar</button>
+                </td>
                 </tr>
                 
                 `;
@@ -132,30 +132,30 @@ $(document).on('click','#btn_eliminar_bandeja',function(){
         showCancelButton: true,
         confirmButtonText: 'Si!',
         cancelButtonText: 'No!',
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type:'POST',
-                    data:datos,
-                    url:'templates/mapeos_generales/controlador_bandeja.php',
-                    success:function(response){
-                        console.log(response);
-                        if(response == "Si"){
-                            Swal.fire({
-                                title:'Mensaje',
-                                text:'Se ha eliminado la bandeja con exito',
-                                icon:'success',
-                                timer:1700
-                            });
-            
-                            listar_bandejas();
-                        }
-                    }
-            
-                })
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type:'POST',
+                data:datos,
+                url:'templates/mapeos_generales/controlador_bandeja.php',
+                success:function(response){
+                    console.log(response);
+                    if(response == "Si"){
+                        Swal.fire({
+                            title:'Mensaje',
+                            text:'Se ha eliminado la bandeja con exito',
+                            icon:'success',
+                            timer:1700
+                        });
 
-            }
-        });
+                        listar_bandejas();
+                    }
+                }
+
+            })
+
+        }
+    });
 });
 
 //// MODIFICAR BANDEJA
@@ -288,39 +288,39 @@ function listar_mapeos(){
             let template3 = "";
 
             traer.forEach((valor)=>{
-                
-                
+
+
 
                 template +=
                 `
-                    <tr>
-                        <td>${valor.nombre}</td>
-                        <td>${valor.fecha_inicio}</td>
-                        <td>${valor.fecha_fin}</td>
-                        <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="editar_mapeo">Editar</button>
-                        <button class="btn btn-danger" data-id="${valor.id_mapeo}" id="eliminar_mapeo">Eliminar</button></td>
-                    </tr>
+                <tr>
+                <td>${valor.nombre}</td>
+                <td>${valor.fecha_inicio}</td>
+                <td>${valor.fecha_fin}</td>
+                <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="editar_mapeo">Editar</button>
+                <button class="btn btn-danger" data-id="${valor.id_mapeo}" id="eliminar_mapeo">Eliminar</button></td>
+                </tr>
                 `;
 
                 template2 += 
                 `
-                    <tr>
-                        <td>${valor.nombre}</td>
-                        <td>${valor.fecha_inicio}</td>
-                        <td>${valor.fecha_fin}</td>
-                        <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="configurar_mapeo" data-name="${valor.nombre}">Configurar</button></td>
-                    </tr>
+                <tr>
+                <td>${valor.nombre}</td>
+                <td>${valor.fecha_inicio}</td>
+                <td>${valor.fecha_fin}</td>
+                <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="configurar_mapeo" data-name="${valor.nombre}">Configurar</button></td>
+                </tr>
                 
                 `;
 
                 template3 += 
                 `
-                    <tr>
-                        <td>${valor.nombre}</td>
-                        <td>${valor.fecha_inicio}</td>
-                        <td>${valor.fecha_fin}</td>
-                        <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="configurar_informes" data-name="${valor.nombre}">Informes</button></td>
-                    </tr>
+                <tr>
+                <td>${valor.nombre}</td>
+                <td>${valor.fecha_inicio}</td>
+                <td>${valor.fecha_fin}</td>
+                <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="configurar_informes" data-name="${valor.nombre}">Informes</button></td>
+                </tr>
                 
                 `;
             });
@@ -347,30 +347,30 @@ $(document).on('click','#editar_mapeo',function(){
             console.log(response);
             let traer = JSON.parse(response);
 
-          
+
             
-                $("#nombre_prueba").val(traer.nombre);
-                $("#fecha_inicio_mapeo_general").val(traer.fecha_inicio);
-                $("#hora_inicio_mapeo_general").val(traer.hora_inicio);
-                $("#minuto_inicio_mapeo_general").val(traer.minuto_inicio);
-                $("#segundo_inicio_mapeo_general").val(traer.segundo_inicio);
-                $("#fecha_fin_mapeo_general").val(traer.fecha_fin);
-                $("#hora_fin_mapeo_general").val(traer.hora_fin);
-                $("#minuto_fin_mapeo_general").val(traer.minuto_fin);
-                $("#segundo_fin_mapeo_general").val(traer.segundo_fin);
-                $("#intervalo_mapeo").val(traer.intervalo);
-                
+            $("#nombre_prueba").val(traer.nombre);
+            $("#fecha_inicio_mapeo_general").val(traer.fecha_inicio);
+            $("#hora_inicio_mapeo_general").val(traer.hora_inicio);
+            $("#minuto_inicio_mapeo_general").val(traer.minuto_inicio);
+            $("#segundo_inicio_mapeo_general").val(traer.segundo_inicio);
+            $("#fecha_fin_mapeo_general").val(traer.fecha_fin);
+            $("#hora_fin_mapeo_general").val(traer.hora_fin);
+            $("#minuto_fin_mapeo_general").val(traer.minuto_fin);
+            $("#segundo_fin_mapeo_general").val(traer.segundo_fin);
+            $("#intervalo_mapeo").val(traer.intervalo);
 
-                Swal.fire({
-                    title:'Mensaje',
-                    text:'Revisa la pestaña de mapeo, para actualizar tus datos',
-                    icon:'info',
-                    timer:2000
-                });
 
-                $("#btn_nuevo_mapeo_general").hide();
-                $("#btn_editar_mapeo_general").show();
-                $("#btn_atras_mapeo_general").show();
+            Swal.fire({
+                title:'Mensaje',
+                text:'Revisa la pestaña de mapeo, para actualizar tus datos',
+                icon:'info',
+                timer:2000
+            });
+
+            $("#btn_nuevo_mapeo_general").hide();
+            $("#btn_editar_mapeo_general").show();
+            $("#btn_atras_mapeo_general").show();
             
         }
 
@@ -468,29 +468,29 @@ $(document).on('click','#eliminar_mapeo',function(){
         showCancelButton: true,
         confirmButtonText: 'Si!',
         cancelButtonText: 'No!',
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type:'POST',
-                    data:{id_mapeo, movimiento},
-                    url:'templates/mapeos_generales/controlador_mapeo.php',
-                    success:function(response){
-                        console.log(response);
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type:'POST',
+                data:{id_mapeo, movimiento},
+                url:'templates/mapeos_generales/controlador_mapeo.php',
+                success:function(response){
+                    console.log(response);
 
-                        if(response == "Si"){
-                            Swal.fire({
-                                title:'Mensaje',
-                                text:'Se ha eliminado, el mapeo exitosamente',
-                                icon:'sucess',
-                                timer:1700
-                            });
+                    if(response == "Si"){
+                        Swal.fire({
+                            title:'Mensaje',
+                            text:'Se ha eliminado, el mapeo exitosamente',
+                            icon:'sucess',
+                            timer:1700
+                        });
 
-                            listar_mapeos();
-                        }
+                        listar_mapeos();
                     }
-                })
-            }
-        });
+                }
+            })
+        }
+    });
 });
 
 
@@ -548,14 +548,14 @@ $("#buscador_sensores").keyup(function(){
             traer.forEach((valor)=>{
                 template += 
                 
-                    `
-                        <tr>
-                            <td>${valor.nombre}</td>
-                            <td>${valor.certificado}</td>
-                            <td><button class="btn btn-primary" id="agregar_sensor" data-id="${valor.id_sensor}">Agregar</button></td>
-                        </tr>
+                `
+                <tr>
+                <td>${valor.nombre}</td>
+                <td>${valor.certificado}</td>
+                <td><button class="btn btn-primary" id="agregar_sensor" data-id="${valor.id_sensor}">Agregar</button></td>
+                </tr>
                 
-                    `;  
+                `;  
             });
 
             $("#resultado_sensores").html(template);
@@ -594,7 +594,7 @@ $(document).on('click','#agregar_sensor',function(){
             data:datos,
             url:'templates/mapeos_generales/controlador_sensor.php',
             success:function(response){
-     
+
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',
@@ -663,99 +663,99 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
 
                 template += 
                 `
-                    <tr>
-                        <td>${valor.nombre}</td>
-                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion">
-                                <option value="${valor.posicion}">${valor.posicion}</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                            </select></td>
-                        <td><button class="btn btn-danger" id="remover_sensor" data-id="${valor.id_sensor_mapeo}">X</button></td>    
-                    </tr>
-                    
+                <tr>
+                <td>${valor.nombre}</td>
+                <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion">
+                <option value="${valor.posicion}">${valor.posicion}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                </select></td>
+                <td><button class="btn btn-danger" id="remover_sensor" data-id="${valor.id_sensor_mapeo}">X</button></td>    
+                </tr>
+
                 `;
 
                 template2 += 
                 ` 
-                    <input type="hidden" name="id_valor_sensor[]" value="${valor.id_sensor_mapeo}">
-                    <tr>
-                        <td>${valor.nombre}</td>
-                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion_temp" name="cambiar_posicion_temp[]">
-                            <option value="${val_temp}">${temp}</option>
-                            <option value="no aplica">no aplica</option>
-                            <option value="2">1</option>
-                            <option value="3">2</option>
-                            <option value="4">3</option>
-                            <option value="5">4</option>
-                            <option value="6">5</option>
-                            <option value="7">6</option>
-                            <option value="8">7</option>
-                            <option value="9">8</option>
-                            <option value="10">9</option>
-                            <option value="11">10</option>
-                            <option value="12">11</option>
-                            <option value="13">12</option>
-                            <option value="14">13</option>
-                            <option value="15">14</option>
-                            <option value="16">15</option>
-                            <option value="17">16</option>
-                            <option value="18">17</option>
-                            <option value="19">18</option>
-                            <option value="20">19</option>
-                            <option value="21">20</option>
-                        </select></td>
-                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion_hum" name="cambiar_posicion_hum[]">
-                            <option value="${val_hum}">${hum}</option>
-                            <option value="no aplica">no aplica</option>
-                            <option value="2">1</option>
-                            <option value="3">2</option>
-                            <option value="4">3</option>
-                            <option value="5">4</option>
-                            <option value="6">5</option>
-                            <option value="7">6</option>
-                            <option value="8">7</option>
-                            <option value="9">8</option>
-                            <option value="10">9</option>
-                            <option value="11">10</option>
-                            <option value="12">11</option>
-                            <option value="13">12</option>
-                            <option value="14">13</option>
-                            <option value="15">14</option>
-                            <option value="16">15</option>
-                            <option value="17">16</option>
-                            <option value="18">17</option>
-                            <option value="19">18</option>
-                            <option value="20">19</option>
-                            <option value="21">20</option>
-                        </select></td>
-                    </tr>    
+                <input type="hidden" name="id_valor_sensor[]" value="${valor.id_sensor_mapeo}">
+                <tr>
+                <td>${valor.nombre}</td>
+                <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion_temp" name="cambiar_posicion_temp[]">
+                <option value="${val_temp}">${temp}</option>
+                <option value="no aplica">no aplica</option>
+                <option value="2">1</option>
+                <option value="3">2</option>
+                <option value="4">3</option>
+                <option value="5">4</option>
+                <option value="6">5</option>
+                <option value="7">6</option>
+                <option value="8">7</option>
+                <option value="9">8</option>
+                <option value="10">9</option>
+                <option value="11">10</option>
+                <option value="12">11</option>
+                <option value="13">12</option>
+                <option value="14">13</option>
+                <option value="15">14</option>
+                <option value="16">15</option>
+                <option value="17">16</option>
+                <option value="18">17</option>
+                <option value="19">18</option>
+                <option value="20">19</option>
+                <option value="21">20</option>
+                </select></td>
+                <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion_hum" name="cambiar_posicion_hum[]">
+                <option value="${val_hum}">${hum}</option>
+                <option value="no aplica">no aplica</option>
+                <option value="2">1</option>
+                <option value="3">2</option>
+                <option value="4">3</option>
+                <option value="5">4</option>
+                <option value="6">5</option>
+                <option value="7">6</option>
+                <option value="8">7</option>
+                <option value="9">8</option>
+                <option value="10">9</option>
+                <option value="11">10</option>
+                <option value="12">11</option>
+                <option value="13">12</option>
+                <option value="14">13</option>
+                <option value="15">14</option>
+                <option value="16">15</option>
+                <option value="17">16</option>
+                <option value="18">17</option>
+                <option value="19">18</option>
+                <option value="20">19</option>
+                <option value="21">20</option>
+                </select></td>
+                </tr>    
                 `;
 
             });
 
-            $("#listar_sensores_asignados").html(template);
-            $("#sensores_asignado_dc").html(template2);
-        }
-    }); 
-    
+$("#listar_sensores_asignados").html(template);
+$("#sensores_asignado_dc").html(template2);
+}
+}); 
+
 
 }
 
@@ -800,29 +800,29 @@ $(document).on('change','#cambiar_posicion', function(){
 
 $(document).on('click','#remover_sensor',function(response){
 
-        let id_mapeo = $(this).attr('data-id');
-        let movimiento = "remover";
+    let id_mapeo = $(this).attr('data-id');
+    let movimiento = "remover";
 
-        $.ajax({
-            type:'POST',
-            data:{id_mapeo, movimiento},
-            url:'templates/mapeos_generales/controlador_sensor.php',
-            success:function(response){
-                let id_mapeo_actual = $("#id_mapeo_configurar").val();
-                let id_bandeja_actual = $("#id_bandeja_configurar").val();
-                console.log(response);
-    
-                if(response == "Si"){
-                    Swal.fire({
-                        title:'Mensaje',
-                        text:'Se ha removido el sensor',
-                        icon:'success',
-                        timer:1700
-                    });
-                    listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
-                }
+    $.ajax({
+        type:'POST',
+        data:{id_mapeo, movimiento},
+        url:'templates/mapeos_generales/controlador_sensor.php',
+        success:function(response){
+            let id_mapeo_actual = $("#id_mapeo_configurar").val();
+            let id_bandeja_actual = $("#id_bandeja_configurar").val();
+            console.log(response);
+
+            if(response == "Si"){
+                Swal.fire({
+                    title:'Mensaje',
+                    text:'Se ha removido el sensor',
+                    icon:'success',
+                    timer:1700
+                });
+                listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
             }
-        });
+        }
+    });
 });
 
 
@@ -832,13 +832,13 @@ $("#cargar_archivo_dc").click(function(){
     var URLactual = $("#es_local").val();
     let id_mapeo = $("#id_mapeo_configurar").val();
 
-	if(URLactual == "Si"){
-		window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px")
+    if(URLactual == "Si"){
+      window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px")
 
 
-	}else{
-		window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
-	}
+  }else{
+      window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
+  }
 });
 
 $("#cargado_archivo_dc").click(function(){
@@ -846,13 +846,13 @@ $("#cargado_archivo_dc").click(function(){
     var URLactual = $("#es_local").val();
     let id_mapeo = $("#id_mapeo_configurar").val();
 
-	if(URLactual == "Si"){
-		window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px")
+    if(URLactual == "Si"){
+      window.open(`https://localhost/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px")
 
 
-	}else{
-		window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
-	}
+  }else{
+      window.open(`https://cercal.net/CerNet2.0/templates/datoscrudos/vistadatoscrudos.php?id_valida=${id_usuario}&id_asignado=${id_asignado}&id_mapeo=${id_mapeo}`, "Datos Crudos", "width=1693px, height=1693px");
+  }
 });
 
 
@@ -984,8 +984,8 @@ $(document).on('submit', '#formulario_sensores_generales',function(e){
             $("#configuracion_datos_crudos").hide();
 
             if(response == "Terminado"){
-           
-               
+
+
                 Swal.fire({
                     title:'Mensaje',
                     text:'Se ha cargado correctamente los datos crudos',
@@ -1008,37 +1008,37 @@ $(document).on('submit', '#formulario_sensores_generales',function(e){
 
 $("#eliminar_datos_crudos").click(function(){
 
-        let id_mapeo = $("#id_mapeo_datos_crudos").val();
-        let movimiento = "Eliminar_dc";
+    let id_mapeo = $("#id_mapeo_datos_crudos").val();
+    let movimiento = "Eliminar_dc";
 
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Deseas eliminar los datos crudos para esta prueba?',
-            showConfirmButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Si!',
-            cancelButtonText: 'No!',
-            }).then((result) => {
-                $.ajax({
-                    type:'POST',
-                    data:{id_mapeo,movimiento},
-                    url:'templates/mapeos_generales/controlador_datos_crudos.php',
-                    success:function(response){
-                        console.log(response);
-                        if(response == "Listo"){
-                            Swal.fire({
-                                title:'Mensaje',
-                                text:'Se ha eliminado con exito los datos crudos',
-                                icon:'success',
-                                timer:1700
-                            });
-                            validar_datos_crudos(id_mapeo, "validar_carga_db");
-                        }
-                        
-                    }
-                });    
-            });
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Deseas eliminar los datos crudos para esta prueba?',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!',
+    }).then((result) => {
+        $.ajax({
+            type:'POST',
+            data:{id_mapeo,movimiento},
+            url:'templates/mapeos_generales/controlador_datos_crudos.php',
+            success:function(response){
+                console.log(response);
+                if(response == "Listo"){
+                    Swal.fire({
+                        title:'Mensaje',
+                        text:'Se ha eliminado con exito los datos crudos',
+                        icon:'success',
+                        timer:1700
+                    });
+                    validar_datos_crudos(id_mapeo, "validar_carga_db");
+                }
+
+            }
+        });    
+    });
 });
 
 
@@ -1117,7 +1117,7 @@ $(document).on('click','#configurar_informes',function(){
 
 
 function listar_informes_x_prueba(id_mapeo){
-    
+
     let movimiento = "Leer";
 
     const datos = {
@@ -1136,27 +1136,27 @@ function listar_informes_x_prueba(id_mapeo){
                 template += 
                 `
                 <tr>
-                    <td colspan="4" class="text-warning">No existen informes</td>
+                <td colspan="4" class="text-warning">No existen informes</td>
                 </tr>
                 `;
             }else{
-                
+
                 let traer = JSON.parse(response);
                 
                 traer.forEach((valor)=>{
 
                     template += 
                     `
-                        <tr>
-                            <td>${valor.nombre}</td>
-                            <td>${valor.tipo}</td>
-                            <td>${valor.fecha_registro}</td>
-                            <td>
-                                <button class="btn btn-info" id="editar_informe" data-id="${valor.id_informe}">Editar</button>
-                                <button class="btn btn-info" id="ver_informe" data-id="${valor.id_informe}">Ver</button>
-                                <button class="btn btn-danger" id="eliminar_informe" data-id="${valor.id_informe}">Eliminar</button>
-                            </td>
-                        </tr>
+                    <tr>
+                    <td>${valor.nombre}</td>
+                    <td>${valor.tipo}</td>
+                    <td>${valor.fecha_registro}</td>
+                    <td>
+                    <button class="btn btn-info" id="editar_informe" data-id="${valor.id_informe}">Editar</button>
+                    <button class="btn btn-info" id="ver_informe" data-id="${valor.id_informe}">Ver</button>
+                    <button class="btn btn-danger" id="eliminar_informe" data-id="${valor.id_informe}">Eliminar</button>
+                    </td>
+                    </tr>
                     `;
                 });
 
@@ -1182,7 +1182,7 @@ $("#creacion_temp").click(function(){
             icon:'info',
             timer:1500
         });
-    
+
     }else{
 
         const datos = {
@@ -1220,7 +1220,7 @@ $("#creacion_temp").click(function(){
             
         });
     }    
-   
+
 });
 
 
@@ -1237,7 +1237,7 @@ $("#creacion_hum").click(function(){
         });
     }else{
 
-    
+
         let movimiento = "crear_hum";
 
         const datos = {
@@ -1279,10 +1279,10 @@ $("#creacion_hum").click(function(){
 
 
 $(document).on('click','#editar_informe',function(){
-        $("#edicion_informe").show();
-        $("#card_informes").hide();
-        let id_informe = $(this).attr('data-id');
-        listar_info_temp(id_informe);
+    $("#edicion_informe").show();
+    $("#card_informes").hide();
+    let id_informe = $(this).attr('data-id');
+    listar_info_temp(id_informe);
 });
 
 $("#close_edicion").click(function(){
@@ -1294,44 +1294,41 @@ $("#close_edicion").click(function(){
 ///////// ELIMINAR INFORME
 $(document).on('click','#eliminar_informe',function(){
 
-        let id_informe = $(this).attr('data-id');
-        let movimiento = "eliminar_informe";
-        let id_mapeo = $("#id_mapeo_informe").val();
+    let id_informe = $(this).attr('data-id');
+    let movimiento = "eliminar_informe";
+    let id_mapeo = $("#id_mapeo_informe").val();
 
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Deseas eliminar el informe?',
-            showConfirmButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Si!',
-            cancelButtonText: 'No!',
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        type:'POST',
-                        data:{id_informe, movimiento},
-                        url:'templates/mapeos_generales/controlador_informes.php',
-                        success:function(response){
-                            console.log(response);
-                            if(response == "Si"){
-                                Swal.fire({
-                                    title:'Mensaje',
-                                    text:'Se ha eliminado el informe correctamente',
-                                    icon:'success',
-                                    timer:1700
-                                });
-                                listar_informes_x_prueba(id_mapeo);
-                            }
-                        }
-
-                    })
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Deseas eliminar el informe?',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!',
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type:'POST',
+                data:{id_informe, movimiento},
+                url:'templates/mapeos_generales/controlador_informes.php',
+                success:function(response){
+                    console.log(response);
+                    if(response == "Si"){
+                        Swal.fire({
+                            title:'Mensaje',
+                            text:'Se ha eliminado el informe correctamente',
+                            icon:'success',
+                            timer:1700
+                        });
+                        listar_informes_x_prueba(id_mapeo);
+                    }
                 }
-            });    
+
+            })
+        }
+    });    
 });
-
-
-
 function listar_info_temp(id_informe){
 
     let movimiento = "Consultar_temp";
@@ -1349,7 +1346,7 @@ function listar_info_temp(id_informe){
             let url_imagen_3 = "";
 
             traer.forEach((valor)=>{
-              
+
                 if(valor.url1 == null){
                     url_imagen_1 = "design/images/no_imagen.png";
                 }else{
@@ -1370,54 +1367,54 @@ function listar_info_temp(id_informe){
                 template += 
                 `
                 <form id="formulario_informe" enctype="multipart/form-data" method="post">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label>Comentarios:</label>
-                            <textarea class="form-control" value="${valor.comentario}" id="comentario_informe_temp" name="comentario_informe_temp">${valor.comentario}</textarea>
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Observación:</label>
-                            <textarea class="form-control" value="${valor.observacion}" id="observacion_informe_temp" name="observacion_informe_temp">${valor.observacion}</textarea>
-                        </div>
-                    </div>    
-                    
-                    <hr>
+                <div class="row">
+                <div class="col-sm-6">
+                <label>Comentarios:</label>
+                <textarea class="form-control" value="${valor.comentario}" id="comentario_informe_temp" name="comentario_informe_temp">${valor.comentario}</textarea>
+                </div>
+                <div class="col-sm-6">
+                <label>Observación:</label>
+                <textarea class="form-control" value="${valor.observacion}" id="observacion_informe_temp" name="observacion_informe_temp">${valor.observacion}</textarea>
+                </div>
+                </div>    
 
-                    <div class="row" style="text-align: center;">
+                <hr>
 
-                        <div class="col-sm-4">
-                            <label>Ubicación de sensores</label>
-                            <img src="${url_imagen_1}">
-                            <input type="file" name="imagen_tipo_1" class="form-control">
-                        </div>
+                <div class="row" style="text-align: center;">
 
-                        <div class="col-sm-4">
-                            <label>Valores promedio, mínima y maxíma</label>
-                            <button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;" data-type="${valor.tipo_informe}">
-                            <img src="design/images/grafico.jpg" style="width: 100%;"></button>
-                            <img src="${url_imagen_2}">
-                            <input type="file" name="imagen_tipo_2" class="form-control">
-                        </div>
+                <div class="col-sm-4">
+                <label>Ubicación de sensores</label>
+                <img src="${url_imagen_1}">
+                <input type="file" name="imagen_tipo_1" class="form-control">
+                </div>
 
-                        <div class="col-sm-4">
-                            <label>Periodo representativo</label>
-                            <button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;"  data-type="${valor.tipo_informe}">
-                            <img src="design/images/grafico.jpg" style="width: 100%;"></button>
-                            <img src="${url_imagen_3}">
-                            <input type="file" name="imagen_tipo_3" class="form-control">
-                        </div>
-                    </div> 
-                    
-                    <hr>
+                <div class="col-sm-4">
+                <label>Valores promedio, mínima y maxíma</label>
+                <button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;" data-type="${valor.tipo_informe}">
+                <img src="design/images/grafico.jpg" style="width: 100%;"></button>
+                <img src="${url_imagen_2}">
+                <input type="file" name="imagen_tipo_2" class="form-control">
+                </div>
 
-                    <div class="row" style="text-align:center;">
-                        <div class="col-sm-12">
-                            <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
-                        </div>
-                    </div>
+                <div class="col-sm-4">
+                <label>Periodo representativo</label>
+                <button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;"  data-type="${valor.tipo_informe}">
+                <img src="design/images/grafico.jpg" style="width: 100%;"></button>
+                <img src="${url_imagen_3}">
+                <input type="file" name="imagen_tipo_3" class="form-control">
+                </div>
+                </div> 
+
+                <hr>
+
+                <div class="row" style="text-align:center;">
+                <div class="col-sm-12">
+                <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
+                </div>
+                </div>
 
                 </form>    
-                   
+
                 `;
             });
 
@@ -1438,14 +1435,11 @@ $(document).on('click','#ver_grafico_todos_todos',function(){
     let id_mapeo = $("#id_mapeo_informe").val();
     let tipo_informe = $(this).attr('data-type');
     window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
-
 });
 
 ///// ENVIO FORMULARIO
 $(document).on('submit','#formulario_informe',function(e){
     e.preventDefault();
-
-
     /*
     $.ajax({
         url: 'templates/mapeos_generales/cargar_data_informes.php',
@@ -1459,7 +1453,6 @@ $(document).on('submit','#formulario_informe',function(e){
 
         }
     });*/
-    
 });
 
 /////////////////// VER INFORME
@@ -1474,19 +1467,13 @@ $(document).on('click','#ver_informe',function(){
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
             if(response == "TEMP"){
-                window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
-            }
-            
+                window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_temp.php?informe='+id_informe);
+                //window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
+            }else if (response == "HUM"){
+                window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_hr.php?informe='+id_informe);
+            }else if (response == "info Base"){
+                window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_base.php?informe='+id_informe);
+            } 
         }
-
     })
-
-
-
 });
-
-
-
-
-
-
