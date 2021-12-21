@@ -227,9 +227,6 @@ if($movimiento == "Leer"){
     mysqli_stmt_fetch($consultar);
 
     echo $tipo;
-
-
-
     
 }
 
