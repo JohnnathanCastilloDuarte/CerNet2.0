@@ -78,8 +78,6 @@ $c_dias = number_format(((strtotime($fecha_fin)-strtotime($fecha_incial))/3600)/
 			//$c_hora = $c_dias * 24;
 
 
-
-
 $query_8 = mysqli_prepare($connect,"SELECT COUNT(a.humedad) / COUNT(DISTINCT b.id_sensor) as x  FROM refrigerador_datos_crudos as a , refrigerador_sensor as b 
 	WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_asignado = ? AND b.id_mapeo = ?");
 mysqli_stmt_bind_param($query_8, 'ii', $id_asignado, $id_mapeo);
@@ -103,8 +101,8 @@ mysqli_stmt_bind_result($query_9, $maximo);
 mysqli_stmt_fetch($query_9);
 
 
-$query_10 = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.humedad AS DECIMAL(6,2))) as maximo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
-	WHERE b.id_asignado = ? AND a.id_refrigerador_sensor = b.id_refrigerador_sensor 
+$query_10 = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.hum AS DECIMAL(6,2))) as maximo, a.time FROM datos_crudos_general as a, mapeo_general_sensor as b 
+	WHERE b.id_mapeo = 1 AND a.id_sensor_mapeo = b.id_sensor_mapeo 
 	GROUP BY a.time");
 mysqli_stmt_bind_param($query_10, 'i', $id_asignado);
 mysqli_stmt_execute($query_10);
@@ -147,7 +145,6 @@ if( $concepto == "concepto"){
 }else{
 	$resultado_corresponde = $concepto;
 }
-
 
 
 		//////////CONSULTAR EL PROMEDIO GENERAL
