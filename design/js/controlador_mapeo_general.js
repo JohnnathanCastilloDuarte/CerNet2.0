@@ -1478,21 +1478,28 @@ $(document).on('submit','#formulario_informe',function(e){
 /////////////////// VER INFORME
 $(document).on('click','#ver_informe',function(){
 
-    let id_informe = $(this).attr('data-id');
-    let movimiento = "redireccion_informes";
+  let id_informe = $(this).attr('data-id');
+  let movimiento = "redireccion_informes";
 
-    $.ajax({
-        type:'POST',
-        data:{id_informe, movimiento},
-        url:'templates/mapeos_generales/controlador_informes.php',
-        success:function(response){
-            if(response == "TEMP"){
-                window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
-            }
-            
-        }
+  $.ajax({
+    type: 'POST',
+    data: {
+      id_informe,
+      movimiento
+    },
+    url: 'templates/mapeos_generales/controlador_informes.php',
+    success: function(response) {
+      if (response == "TEMP") {
+        window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_temp.php?informe=' + id_informe);
+        //window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
+      } else if (response == "HUM") {
+        window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_hr.php?informe=' + id_informe);
+      } else if (response == "info Base") {
+        window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_base.php?informe=' + id_informe);
+      }
+    }
+  });
 
-    })
 
 
 
