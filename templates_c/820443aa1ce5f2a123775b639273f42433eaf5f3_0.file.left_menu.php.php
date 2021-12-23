@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-21 18:17:59
+/* Smarty version 3.1.34-dev-7, created on 2021-12-23 13:59:00
   from '/home/god/public_html/CerNet2.0/templates/left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c21a57810b09_58560388',
+  'unifunc' => 'content_61c480a43e66c5_85586576',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '820443aa1ce5f2a123775b639273f42433eaf5f3' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/left_menu.php',
-      1 => 1640110675,
+      1 => 1640267912,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c21a57810b09_58560388 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c480a43e66c5_85586576 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -255,8 +255,9 @@ function content_61c21a57810b09_58560388 (Smarty_Internal_Template $_smarty_tpl)
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
-"><i class="metismenu-icon pe-7s-paperclip"></i>Nueva OT</a>
+"><i class="metismenu-icon pe-7s-paperclip"></i>Gestionar OT</a>
     </li>
+    <!--
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
@@ -266,7 +267,7 @@ function content_61c21a57810b09_58560388 (Smarty_Internal_Template $_smarty_tpl)
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial OT</a>
-    </li>
+    </li>-->
     </ul>
     </li>
     </div>

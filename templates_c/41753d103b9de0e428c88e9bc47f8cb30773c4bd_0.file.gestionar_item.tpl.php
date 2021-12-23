@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-09 14:20:54
+/* Smarty version 3.1.34-dev-7, created on 2021-12-23 14:25:29
   from '/home/god/public_html/CerNet2.0/templates/item/gestionar_item.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61b210c6d4b916_38315343',
+  'unifunc' => 'content_61c486d92ab4d0_20474225',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '41753d103b9de0e428c88e9bc47f8cb30773c4bd' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/gestionar_item.tpl',
-      1 => 1639059650,
+      1 => 1640269525,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b210c6d4b916_38315343 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c486d92ab4d0_20474225 (Smarty_Internal_Template $_smarty_tpl) {
 ?><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="app-main__inner">
 	<div class="container-fluid">
@@ -72,9 +72,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['gestionar']->value) {
 &type=<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_tipo'];?>
 &pdf=1" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning btn-sm"><i class="fa fa-file-pdf-o" style="font-size:20.5px; color:red;"></i></a>
 
-									<!--<button id="enviar_correo_pdf" data-id="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_item'];?>
+									<button id="enviar_correo_pdf" data-id="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_item'];?>
 " data-tipo="<?php echo $_smarty_tpl->tpl_vars['gestionar']->value['id_tipo'];?>
-" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm"><i class="fa fa-envelope-o" style="font-size:20.5px; color:green;"></i></button>-->
+" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm"><i class="fa fa-envelope-o" style="font-size:20.5px; color:green;"></i></button>
 
 								</div>
 							</td>

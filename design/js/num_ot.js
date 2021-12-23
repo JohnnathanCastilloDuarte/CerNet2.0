@@ -35,10 +35,7 @@ var id_gestionar = "";
 						success:function(r){
 							console.log(r);
 							if(r=="null"){
-									//$("#alert_ot_s").hide();
-									//$("#alert_ot_n").show();
-									$("#sin_ot").show();
-									$("#encuentra_ot").hide();
+		
 									Swal.fire({
 										position:'center',
 										icon:'success',
@@ -46,21 +43,17 @@ var id_gestionar = "";
 										title:'La OT se encuentra disponible',
 										timer:2000
 									});
+                $("#sin_ot").show();
 								$("#btn_nueva_ot").show();
 								$("#btn_gestionar_ot_2").hide();
 									
-								}else if(r !="null"){
-									
+								}else{
+									 $("#sin_ot").show();
 									let traer = JSON.parse(r);
-									//$("#alert_ot_s").show();
-									$("#sin_ot").hide();
-									//$("#alert_ot_n").hide();
-									$("#sin_ot").hide();
-									$("#encuentra_ot").show();
-									$("#empresa_registra_ot").text(traer.empresa);
-									$("#empresa_registra_ot").val(traer.id_empresa);
-									$("#usuario_ot").text('- '+traer.nombre +' '+traer.apellido +' -'+ traer.departamento +' '+ traer.cargo);
-									$("#usuario_ot").val(traer.id_usuario);
+									$("#buscador_empresa").val(traer.empresa);
+									$("#id_empresa").val(traer.id_empresa);
+									$("#usuario_asignado_ot_n").text('- '+traer.nombre +' '+traer.apellido +' -'+ traer.departamento +' '+ traer.cargo);
+									$("#usuario_asignado_ot_n").val(traer.id_usuario);
 									$("#cantidad_informes_ot").text(traer.cantidad_informes);
 									$("#fecha_creacion_ot").text(traer.fecha_creacion);
 									$("#fecha_asignacion_ot").text(traer.fecha_asignacion);
@@ -74,9 +67,8 @@ var id_gestionar = "";
 										timer:2000
 									});
 								
-								}else if (r){
 								}
-						}
+            }
 						
 					});
 					
@@ -187,8 +179,7 @@ function validar(){
 
 			window.open('https://localhost/CerNet2.0/index.php?module=6&page=3&id_ot_oculto='+id_gestionar);
 		}else{
-
-			window.open('https://cercal.cl/CerNet2.0/index.php?module=6&page=3&id_ot_oculto='+id_gestionar);
+			window.open('https://cercal.net/CerNet2.0/index.php?module=6&page=3&id_ot_oculto='+id_gestionar);
 		}
 				
 		
