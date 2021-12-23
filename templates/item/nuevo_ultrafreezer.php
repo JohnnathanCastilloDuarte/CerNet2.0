@@ -49,7 +49,6 @@ if($id_item_insertado > 0){
 //INSERTAMOS EN LA TABLA ITEM_FREEZER
   $insertando_ultrafreezer = mysqli_prepare($connect,"INSERT INTO item_ultrafreezer 
                                                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
   mysqli_stmt_bind_param($insertando_ultrafreezer, 'iissssssssssssssssssssis', 
     $id, 
     $id_item_insertado, 

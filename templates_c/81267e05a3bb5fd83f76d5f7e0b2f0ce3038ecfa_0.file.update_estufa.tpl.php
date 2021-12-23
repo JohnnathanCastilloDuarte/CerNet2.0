@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-24 14:27:47
+/* Smarty version 3.1.34-dev-7, created on 2021-12-23 15:52:19
   from '/home/god/public_html/CerNet2.0/templates/item/update_estufa.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_619e4be36c88b8_65676103',
+  'unifunc' => 'content_61c49b335ca372_93921646',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '81267e05a3bb5fd83f76d5f7e0b2f0ce3038ecfa' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_estufa.tpl',
-      1 => 1636563998,
+      1 => 1640274734,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619e4be36c88b8_65676103 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c49b335ca372_93921646 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -47,7 +47,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
               <a href="#step-22">
 											<em>2</em><span>Caracteristica del equipo</span>
 									</a>
-            </li>
+            </li> 
             <!--	<li>
 									<a href="#step-32">
 											<em>3</em><span>Equipos</span>
@@ -78,9 +78,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
                 <div class="col-sm-6">
                   <label>Empresa:</label>
                   <select class="form-control" id="empresa_estufa">
+                    <?php if ($_smarty_tpl->tpl_vars['estufa']->value['id_empresa'] !== '') {?>
                     <option value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['estufa']->value['nombre_estufa'];?>
+"><?php echo $_smarty_tpl->tpl_vars['estufa']->value['nombre_empresa'];?>
 </option>
+                    <?php }?>
                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
 if ($_from !== null) {
@@ -88,7 +90,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 ?>
 										<option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
 "><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
-</option>										
+</option>	
 										<?php
 }
 }

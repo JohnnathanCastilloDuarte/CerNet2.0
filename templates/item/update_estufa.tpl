@@ -19,7 +19,7 @@
               <a href="#step-22">
 											<em>2</em><span>Caracteristica del equipo</span>
 									</a>
-            </li>
+            </li> 
             <!--	<li>
 									<a href="#step-32">
 											<em>3</em><span>Equipos</span>

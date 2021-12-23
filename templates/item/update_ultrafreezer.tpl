@@ -143,7 +143,6 @@
               </div>
 
               <br>
-
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Valor seteado temperatura:</label>
