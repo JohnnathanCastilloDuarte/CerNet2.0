@@ -1,9 +1,9 @@
 <?php
-		require('../../../../recursos/encabezadopdf.php');
-		require('../../../../config.ini.php');
-		$id_informe = $_GET['informe'];
-		$resultado_corresponde = "";
-    $posicion_sensores_indicativo = 1;
+	require('../../../../recursos/encabezadopdf.php');
+	require('../../../../config.ini.php');
+	$id_informe = $_GET['informe'];
+	$resultado_corresponde = "";
+	$posicion_sensores_indicativo = 1;
 	 
  
 
