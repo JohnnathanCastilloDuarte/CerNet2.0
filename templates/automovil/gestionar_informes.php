@@ -1,6 +1,6 @@
 <?php 
 
-	$tipo_1 = "Distribución termica de automovil";
+	$tipo_1 = "Distribución termica de vehículo";
 
 	//$tipo_2 = "Calificación ultrafreezer";
 

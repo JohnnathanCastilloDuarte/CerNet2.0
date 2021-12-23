@@ -1,6 +1,6 @@
 <?php 
 	//VARIABLE OT
-	$ot = $_POST['id_ot_oculto'];
+	$ot = $_GET['id_ot_oculto'];
 	$smarty->assign("ot",$ot);
 
 	//CONSULTAR OT Y LOS SERVICIOS ASIGNADOS
@@ -13,13 +13,7 @@
 	mysqli_stmt_fetch($consultar_ot);
 
 	$smarty->assign("numot",$numot);
-$smarty->assign("id_empresa_numot",$id_empresa);
-
-
-
-
-
-
+	$smarty->assign("id_empresa_numot",$id_empresa);
 
 
 

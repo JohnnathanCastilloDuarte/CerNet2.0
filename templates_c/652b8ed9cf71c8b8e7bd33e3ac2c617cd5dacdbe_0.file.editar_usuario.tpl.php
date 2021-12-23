@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-22 22:49:08
+/* Smarty version 3.1.34-dev-7, created on 2021-12-23 14:14:00
   from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\editar_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617323c4ed2245_15242744',
+  'unifunc' => 'content_61c47618c28aa2_77528505',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '652b8ed9cf71c8b8e7bd33e3ac2c617cd5dacdbe' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\editar_usuario.tpl',
-      1 => 1634935747,
+      1 => 1640265235,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617323c4ed2245_15242744 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c47618c28aa2_77528505 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form method="post" id="formulario_actualizacion_usuario" enctype="multipart/form-data">
 	<input type="hidden" name="id_usuario" value="<?php echo $_smarty_tpl->tpl_vars['id_usuario']->value;?>
 ">
@@ -78,10 +78,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['persona_array']->value) {
 						<br>
 
 						<div class="row mx-auto">
-							<div id="preview" class="mx-auto">
-								<img style="width: 100%; height:150px; text-aling:center;" src="<?php echo $_smarty_tpl->tpl_vars['imagen_encontrada']->value;?>
+							<div id="preview">
+								<img style="width: 350px; height:150px; text-aling:center;" src="<?php echo $_smarty_tpl->tpl_vars['imagen_encontrada']->value;?>
 " alt="" class="d-block ui-w-30 rounded-circle"  value="<?php echo $_smarty_tpl->tpl_vars['imagen_encontrada']->value;?>
 ">
+
 							</div>
 							<input type="file" name="profile_image" id="file" class="form-control" >
 						</div>
@@ -301,6 +302,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 		reader.onload = function(){
 			let preview = document.getElementById('preview'),
 			image = document.createElement('img');
+			document.getElementById(image.style.width = "350px")
 
 			image.src = reader.result;
 

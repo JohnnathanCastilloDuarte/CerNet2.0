@@ -3,7 +3,7 @@ error_reporting(0);
 
 include("../../config.ini.php");
 
-$num_ot = 'OT-'.$_POST['num_ot'];
+$num_ot = 'OT'.$_POST['num_ot'];
 $empresa= $_POST['empresa'];
 $c_informes= $_POST['c_informes'];
 $u_asignado= $_POST['u_asignado'];

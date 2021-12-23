@@ -33,7 +33,7 @@ var id_gestionar = "";
 						data: { ot },
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
-							
+							console.log(r);
 							if(r=="null"){
 									//$("#alert_ot_s").hide();
 									//$("#alert_ot_n").show();
@@ -177,18 +177,28 @@ function validar(){
 }
 
 
-(function(){	
+(function(){
+	
 	$("#btn_gestionar_ot_1").click(function(){
-		 id_gestionar = $("#id_ot_oculto").val();
+		let id_gestionar = $("#id_ot_oculto").val();
 		validar()
+		let URLactual = document.location.origin
+		if(URLactual == "https://localhost" || URLactual =="http://localhost"){
+
+			window.open('https://localhost/CerNet2.0/index.php?module=6&page=3&id_ot_oculto='+id_gestionar);
+		}else{
+
+			window.open('https://cercal.cl/CerNet2.0/index.php?module=6&page=3&id_ot_oculto='+id_gestionar);
+		}
+				
+		
 
 				
 	});	
 	
 	$("#btn_gestionar_ot_2").click(function(){
-		 id_gestionar = $("#id_ot_oculto").val();
-				validar()
-		
+		id_gestionar = $("#id_ot_oculto").val();
+	
 	});
 
 }());
@@ -301,4 +311,48 @@ function validar(){
 	
 }());
 
+
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+	$("#buscador_empresa").val(nombre_empresa);
+    $("#id_empresa").val(id_empresa);
+
+	$("#aqui_resultados_empresa").hide();
+
+});
 
