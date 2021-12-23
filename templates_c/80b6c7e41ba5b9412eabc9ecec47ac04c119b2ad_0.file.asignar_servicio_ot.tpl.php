@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-21 19:35:57
+/* Smarty version 3.1.34-dev-7, created on 2021-12-23 14:54:11
   from 'C:\xampp\htdocs\CerNet2.0\templates\OT\asignar_servicio_ot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c21e8d0010a5_69254119',
+  'unifunc' => 'content_61c47f83b3b493_61639840',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '80b6c7e41ba5b9412eabc9ecec47ac04c119b2ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\OT\\asignar_servicio_ot.tpl',
-      1 => 1640111024,
+      1 => 1640267644,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c21e8d0010a5_69254119 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c47f83b3b493_61639840 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container-fluid">
 	<div class="row mb-2">
 		<div class="col-sm-6">
