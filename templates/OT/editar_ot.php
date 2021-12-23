@@ -4,7 +4,7 @@
 $id_numot= $_POST['id_numot'];
 $empresa= $_POST['empresa'];
 $u_asignado= $_POST['u_asignado'];
-$ot = 'OT-'.$_POST['ot'];
+$ot = 'OT'.$_POST['ot'];
 $id_valida = $_POST['id_valida'];
 		
 			$antigua_ot = mysqli_prepare($connect,"SELECT a.numot, b.nombre, c.nombre, c.apellido FROM numot as a, empresa as b, persona as c WHERE 
