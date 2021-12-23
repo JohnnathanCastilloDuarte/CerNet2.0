@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-21 19:01:26
+/* Smarty version 3.1.34-dev-7, created on 2021-12-23 14:27:33
   from '/home/god/public_html/CerNet2.0/templates/OT/nueva_ot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c224865e5c20_83119162',
+  'unifunc' => 'content_61c4875562d615_21758436',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7f90219e8a33a16667e68c7df7b8b36e695e920f' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/OT/nueva_ot.tpl',
-      1 => 1640113160,
+      1 => 1640269640,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c224865e5c20_83119162 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c4875562d615_21758436 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_ot">
@@ -29,94 +29,41 @@ function content_61c224865e5c20_83119162 (Smarty_Internal_Template $_smarty_tpl)
   </li>
 </ul>
 
-<form action="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[2];?>
-" method="POST" id="formulario">
-  <div class="tab-content">
-    <div class="tab-pane tabs-animation fade show active" id="crear_ot" role="tabpanel">
-      <div class="row">
-        <div class="col-sm-5">
-          <div class="card">
-            <div class="card-header">
-              Creación de OT
+<div class="tab-content">
+  <div class="tab-pane tabs-animation fade show active" id="crear_ot" role="tabpanel">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="card">
+          <div class="card-header">
+            Creación de OT
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <label>Numero OT:</label>
+              <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text">OT-</span></div>
+                <input type="text" id="num_ot" class="form-control" placeholder="Ingrese el numero de OT" maxlength="5" required>
+                <div class="input-group-append"><a class="btn btn-success text-white" id="btn_buscar_num_ot" style="bg-color:white;">Buscar</a></div>
+              </div>
             </div>
-            <div class="card-body">
+            <br>
+         
+            <div id="sin_ot">
+              <input type="hidden" id="id_ot_oculto">
               <div class="row">
-                <label>Numero OT:</label>
-                <div class="input-group">
-                  <div class="input-group-prepend"><span class="input-group-text">OT-</span></div>
-                  <input type="text" id="num_ot" class="form-control" placeholder="Ingrese el numero de OT" maxlength="5" required>
-                  <div class="input-group-append"><a class="btn btn-success text-white" id="btn_buscar_num_ot" style="bg-color:white;">Buscar</a></div>
-                </div>
-              </div>
-              <br>
-              <div id="encuentra_ot">
-                <div class="row">
-                  <input type="hidden" id="id_ot_oculto" name="id_ot_oculto">
-                  <label>Empresa:</label>
-                  <select id="empresa_ot" class="form-control">
-										<option id="empresa_registra_ot" ></option>
-										<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-										<option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['empresa'];?>
-</option>
-										<?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-									</select>
-                </div>
-                <br>
-                <div class="row">
-                  <label>Usuario asignado:</label>
-                  <select id="usuario_asignado_ot" class="form-control">
-									<option id="usuario_ot"></option>
-									<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_personas']->value, 'persona');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['persona']->value) {
-?>
-									<option value="<?php echo $_smarty_tpl->tpl_vars['persona']->value['id_persona'];?>
-">- <?php echo $_smarty_tpl->tpl_vars['persona']->value['nombre'];?>
- <?php echo $_smarty_tpl->tpl_vars['persona']->value['apellido'];?>
- - <?php echo $_smarty_tpl->tpl_vars['persona']->value['departamento'];?>
- <?php echo $_smarty_tpl->tpl_vars['persona']->value['cargo'];?>
-</option>
-									<?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-								</select>
-                </div>
-                <br>
-                <div class="row" style="text-align:center;">
-                  <div class="col-sm-12">
-                    <a class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info text-info" id="btn_editar_ot">Actualizar</a>
-                    <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-primary" id="btn_gestionar_ot_1" type="submit">Gestionar OT</button>
+                <label>Empresa</label>
+                <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa">
+                <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['id_empresa'];?>
+">
+                <div>
 
-                  </div>
+                  <table class="table" id="aqui_resultados_empresa">
+                  </table>
                 </div>
               </div>
-              <div id="sin_ot">
-                <input type="hidden" id="id_ot_oculto">
-                <div class="row">
-                  <label>Empresa</label>
-                  <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['empresa'];?>
-">
-                  <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['id_empresa'];?>
-">
-                  <div>
-                          <table class="table" id="aqui_resultados_empresa" >
-                          </table>
-                  </div> 
-                </div>
-                <div class="row">
-                  <label>Usuario asignado:</label>
-                  <select id="usuario_asignado_ot_n" class="form-control">
+              <div class="row">
+                <label>Usuario asignado:</label>
+                <select id="usuario_asignado_ot_n" class="form-control">
 									<option value="0">Seleccione...</option>
 									<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_personas']->value, 'persona');
@@ -134,19 +81,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['persona']->value) {
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 								</select>
-                </div>
-                <br>
-                <div class="row" style="text-align:center;">
-                  <div class="col-sm-12">
-                    <a class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info text-info" id="btn_nueva_ot">Aceptar</a>
-                    <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-primary" id="btn_gestionar_ot_2" type="submit">Gestionar OT</button>
-                  </div>
+              </div>
+              <br>
+              <div class="row" style="text-align:center;">
+                <div class="col-sm-12">
+                  <a class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info text-info" id="btn_nueva_ot">Aceptar</a>
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-primary" id="btn_gestionar_ot_2" type="submit">Gestionar OT</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!--
+      </div>
+      <!--
 			<div class="col-sm-7">
 				<div class="card">
 					<div class="card-header">
@@ -190,14 +137,14 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 					</div>
 				</div>	
 			</div>-->
-      </div>
-
     </div>
 
-    <?php echo '<script'; ?>
+  </div>
+
+  <?php echo '<script'; ?>
  type="text/javascript" src="design/js/num_ot.js"><?php echo '</script'; ?>
 >
-    <!--<div class="tab-pane tabs-animation fade show" id="historial_ot" role="tabpanel">
+  <!--<div class="tab-pane tabs-animation fade show" id="historial_ot" role="tabpanel">
 			<div class="row">
 			<div class="col-sm-12">
 				<div class="card">
@@ -252,6 +199,5 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 			</div>
 		</div>
 	</div>	-->
-  </div>
-</form><?php }
+</div><?php }
 }
