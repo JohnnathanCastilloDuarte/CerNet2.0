@@ -39,8 +39,9 @@
 						<br>
 
 						<div class="row mx-auto">
-							<div id="preview" class="mx-auto">
-								<img style="width: 100%; height:150px; text-aling:center;" src="{$imagen_encontrada}" alt="" class="d-block ui-w-30 rounded-circle"  value="{$imagen_encontrada}">
+							<div id="preview">
+								<img style="width: 350px; height:150px; text-aling:center;" src="{$imagen_encontrada}" alt="" class="d-block ui-w-30 rounded-circle"  value="{$imagen_encontrada}">
+
 							</div>
 							<input type="file" name="profile_image" id="file" class="form-control" >
 						</div>
@@ -213,6 +214,7 @@
 		reader.onload = function(){
 			let preview = document.getElementById('preview'),
 			image = document.createElement('img');
+			document.getElementById(image.style.width = "350px")
 
 			image.src = reader.result;
 
