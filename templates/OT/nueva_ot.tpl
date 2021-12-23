@@ -38,19 +38,21 @@
                 </div>
               </div>
               <div class="row">
-                <label>Usuario asignado:</label>
-                <select id="usuario_asignado_ot_n" class="form-control">
-									<option value="0">Seleccione...</option>
-									{foreach from=$array_personas  item=persona}
-									<option value="{$persona.id_persona}">-{$persona.nombre} {$persona.apellido} -{$persona.departamento} {$persona.cargo}</option>
-									{/foreach}
-								</select>
+                <label>Usuario</label>
+                <input type="text" id="buscador_usuarios" class="form-control" placeholder="Ingresa el usuario">
+                <input type="hidden" id="id_usuario">
+                <div>
+
+                  <table class="table" id="aqui_resultados_usuario">
+                  </table>
+                </div>
               </div>
               <br>
               <div class="row" style="text-align:center;">
                 <div class="col-sm-12">
                   <a class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info text-info" id="btn_nueva_ot">Aceptar</a>
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-primary" id="btn_gestionar_ot_2" type="submit">Gestionar OT</button>
+				  <a class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info text-primary" id="btn_editar_ot">Actualizar</a>
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-primary" id="btn_gestionar_ot_1">Gestionar OT</button>
                 </div>
               </div>
             </div>

@@ -1,8 +1,8 @@
 <?php
 require_once('../../../../pdf/tcpdf.php');
-$a = "a";
-$nombre_informe = "a";
-$numot = "a";
+$a = "";
+$nombre_informe = "";
+$numot = "";
 
 //CABECERAS PERSONALIZADAS
 class MYPDF extends TCPDF 

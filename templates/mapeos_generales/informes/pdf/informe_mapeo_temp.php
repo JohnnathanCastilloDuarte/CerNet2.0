@@ -4,17 +4,18 @@
 		$id_informe = $_GET['informe'];
 		$resultado_corresponde = "";
         $posicion_sensores_indicativo = 1;
-	 
+
+		$a = "PRUEBA DE DISTRIBUCIÓN TERMICA";
 		
 		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////
 
 		// 1-CONSULTAR LA INFORMACIÓN LA CUAL SE IMPRIMIRA EN LAS CABECERAS Y EL NOMBRE DEL INFORME
 
-		$query_1 = mysqli_prepare($connect,"SELECT nombre, id_asignado, id_mapeo, concepto, observacion, comentarios FROM informe_refrigerador WHERE id_informe_refrigerador = ?");
+		$query_1 = mysqli_prepare($connect,"SELECT nombre, id_asignado, id_mapeo, observacion, comentario FROM informes_general WHERE id_informe = ?");
 		mysqli_stmt_bind_param($query_1, 'i', $id_informe);
 		mysqli_stmt_execute($query_1);
 		mysqli_stmt_store_result($query_1);
-		mysqli_stmt_bind_result($query_1, $dato_1, $id_asignado, $id_mapeo, $concepto, $observacion, $comentarios);
+		mysqli_stmt_bind_result($query_1, $dato_1, $id_asignado, $id_mapeo, $observacion, $comentarios);
 		mysqli_stmt_fetch($query_1);
 		$nombre_informe = $dato_1;
 
@@ -53,13 +54,25 @@
 		$a = "MAPEO TERMICO TEMPERATURA";
 
 		// 2-CONSULTAR LA INFORMACIÓN DE IDENTIFICACIÓN DEL EQUIPO
-		$query_6 = mysqli_prepare($connect,"SELECT a.nombre, a.descripcion, b.fabricante, b.modelo, b.n_serie, b.c_interno, b.ubicacion 
-																			  FROM item as a, item_refrigerador as b WHERE a.id_item = b.id_item AND a.id_item = ?");
+		$query_6 = mysqli_prepare($connect,"SELECT a.nombre, a.descripcion, a.id_tipo FROM item as a WHERE a.id_item = ?");
 		mysqli_stmt_bind_param($query_6, 'i', $id_item);
 		mysqli_stmt_execute($query_6);
 		mysqli_stmt_store_result($query_6);
-		mysqli_stmt_bind_result($query_6, $nombre_item, $descripcion_item, $fabricante_item, $modelo_item, $n_serie_item, $c_interno_item, $ubicacion_item);
+		mysqli_stmt_bind_result($query_6, $nombre_item, $descripcion_item, $tipo_item);
 		mysqli_stmt_fetch($query_6);
+
+
+		///////////////// VALIDO EL TIPO DE ITEM Y POR ENDE QUE TABLA CONSULTAR
+
+		$traer_tipo_item = mysqli_prepare($connect,"SELECT nombre FROM tipo_item WHERE id_item = ?");
+		mysqli_stmt_bind_param($traer_tipo_item, 'i', $tipo_item);
+		mysqli_stmt_execute($traer_tipo_item);
+		mysqli_stmt_store_result($traer_tipo_item);
+		mysqli_stmt_bind_result($traer_tipo_item, $nombre_tipo_item);
+		mysqli_stmt_fetch($traer_tipo_item);
+
+		echo $nombre_tipo_item;
+
 
 
 		//3-CONSULTAR INFORMACIÓN DE MAPEO DEL EQUIPO
@@ -568,7 +581,7 @@ tr:nth-child(even)
  
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Ubicación de los Sensores</strong></td></tr>
-<tr><td><br><br><img src="../../$ubicacion_posicion_sensores"></td></tr></table><br><br><br>
+<tr><td><br><br></td></tr></table><br><br><br>
 EOD;
 
 $pdf->writeHTML($html_2, true,false,false,false,'');
@@ -753,7 +766,7 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
 <tr><td><br>Valores Promedio, Máximo y Mínimo</td></tr>
-<tr><td><br><br><img src="../../$img_sensores_2" width="450px"></td></tr></table><br><br><br>
+<tr><td><br><br></td></tr></table><br><br><br>
 <table>
 
 EOD;
@@ -799,7 +812,7 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
 <tr><td><br>Datos de los sensores - Periodo representativo</td></tr>
-<tr><td><br><br><img src="../../$img_sensores_3" width="450px"></td></tr></table><br><br><br>
+<tr><td><br><br></td></tr></table><br><br><br>
 <table>
 
 <tr><td bgcolor="#DDDDDD"><strong>Comentarios</strong></td></tr>
