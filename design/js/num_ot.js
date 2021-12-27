@@ -43,17 +43,26 @@ var id_gestionar = "";
 										title:'La OT se encuentra disponible',
 										timer:2000
 									});
-                $("#sin_ot").show();
+
+                				$("#sin_ot").show();
 								$("#btn_nueva_ot").show();
 								$("#btn_gestionar_ot_2").hide();
+								$("#btn_gestionar_ot_1").hide();
+								$("#btn_editar_ot").hide();
+								$("#buscador_empresa").val('');
+								$("#buscador_usuarios").val('');
+								
 									
 								}else{
-									 $("#sin_ot").show();
+									$("#btn_gestionar_ot_1").show();
+									$("#btn_editar_ot").show();
+									$("#btn_nueva_ot").hide();
+									$("#sin_ot").show();
 									let traer = JSON.parse(r);
 									$("#buscador_empresa").val(traer.empresa);
 									$("#id_empresa").val(traer.id_empresa);
-									$("#usuario_asignado_ot_n").text('- '+traer.nombre +' '+traer.apellido +' -'+ traer.departamento +' '+ traer.cargo);
-									$("#usuario_asignado_ot_n").val(traer.id_usuario);
+									$("#buscador_usuarios").val(traer.nombre +' '+traer.apellido);
+									$("#id_usuario").val(traer.id_usuario);
 									$("#cantidad_informes_ot").text(traer.cantidad_informes);
 									$("#fecha_creacion_ot").text(traer.fecha_creacion);
 									$("#fecha_asignacion_ot").text(traer.fecha_asignacion);
@@ -84,8 +93,8 @@ var id_gestionar = "";
 		const recojo = {
 			id_numot : $("#id_ot_oculto").val(),
 			ot: $("#num_ot").val(),
-			empresa : $("#empresa_ot").val(),
-			u_asignado : $("#usuario_asignado_ot").val(),
+			empresa : $("#id_empresa").val(),
+			u_asignado : $("#id_usuario").val(),
 			id_valida : $("#id_valida").val()
 		}
 		
@@ -148,7 +157,7 @@ var id_gestionar = "";
 					timer: 1500,
 				});
 				
-				$("#btn_gestionar_ot_2").show();
+				$("#btn_gestionar_ot_1").show();
 				$("#btn_nueva_ot").hide();
 			}	
 			
@@ -346,4 +355,50 @@ $(document).on('click','#seleccionar_empresa',function(){
 	$("#aqui_resultados_empresa").hide();
 
 });
+
+
+$("#aqui_resultados_usuario").hide();
+$("#buscador_usuarios").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_usuario.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_usuario").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_usuario" data-id="${valor.id_usuario}" data-name="${valor.nombre}" data-apell="${valor.apellido}"> ${valor.nombre} ${valor.apellido}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_usuario").html(template);
+
+		}
+	})
+});
+
+
+$(document).on('click','#seleccionar_usuario',function(){
+
+	let id_usuario = $(this).attr('data-id');
+	let nombre = $(this).attr('data-name');
+	let apellido = $(this).attr('data-apell');
+	$("#buscador_usuarios").val(nombre+' '+apellido);
+    $("#id_usuario").val(id_usuario);
+
+	$("#aqui_resultados_usuario").hide();
+
+});
+
 

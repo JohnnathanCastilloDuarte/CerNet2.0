@@ -4,11 +4,11 @@ include("../../config.ini.php");
 
 $ot = 'OT'.$_POST['ot'];
 
-$consultar = mysqli_prepare($connect,"SELECT a.id_numot, a.numot ,a.id_usuario_asignado, c.nombre, c.apellido, d.nombre, e.departamento, a.id_empresa, a.fecha_creacion, a.fecha_asignacion, b.nombre, a.cantidad_informes FROM numot as a, empresa as b, persona as c, cargo as d, departamento as e WHERE a.id_empresa = b.id_empresa AND numot = ? AND a.id_usuario_asignado = c.id_usuario AND c.id_cargo = d.id_cargo AND d.id_departamento = e.id");
+$consultar = mysqli_prepare($connect,"SELECT a.id_numot, a.numot ,a.id_usuario_asignado, c.nombre, c.apellido, a.id_empresa, a.fecha_creacion, a.fecha_asignacion, b.nombre FROM numot as a, empresa as b, persona as c WHERE a.id_empresa = b.id_empresa AND numot = ? AND a.id_usuario_asignado = c.id_usuario");
 mysqli_stmt_bind_param($consultar , 's', $ot);
 mysqli_stmt_execute($consultar);
 mysqli_stmt_store_result($consultar);
-mysqli_stmt_bind_result($consultar, $id_numot, $num_ot, $id_usuario_asignado, $nombre, $apellido, $departamento, $cargo,  $id_empresa, $fecha_creacion, $fecha_asignacion, $empresa, $cantidad_informes);
+mysqli_stmt_bind_result($consultar, $id_numot, $num_ot, $id_usuario_asignado, $nombre, $apellido,  $id_empresa, $fecha_creacion, $fecha_asignacion, $empresa);
 
 
 if($consultar != null){
@@ -20,13 +20,10 @@ if($consultar != null){
 			'id_usuario'=>$id_usuario_asignado,
 			'nombre'=>$nombre,
 			'apellido'=>$apellido,
-			'departamento'=>$departamento,
-			'cargo'=>$cargo,	
 			'id_empresa'=>$id_empresa,
 			'fecha_creacion'=>$fecha_creacion,
 			'fecha_asignacion'=>$fecha_asignacion,	
-			'empresa'=>$empresa,
-			'cantidad_informes'=>$cantidad_informes	
+			'empresa'=>$empresa
 		);
 	}
 	
