@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-19 18:56:07
+/* Smarty version 3.1.34-dev-7, created on 2021-12-23 19:44:13
   from '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6197f347ed7823_76660590',
+  'unifunc' => 'content_61c4d18d11b117_36103182',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '174faa9eb5dc95114cb87835de6da5030a87abc5' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl',
-      1 => 1637347602,
+      1 => 1640288647,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6197f347ed7823_76660590 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c4d18d11b117_36103182 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -68,7 +68,6 @@ function content_6197f347ed7823_76660590 (Smarty_Internal_Template $_smarty_tpl)
             </li>-->
 
       </ul>
-      
       <div class="form-wizard-content">
        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_filtro']->value, 'filtro');
@@ -95,6 +94,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
               <div class="position-relative form-group">
                 <label>Empresa:</label>
                 <select id="empresa_filtro" class="form-control">
+                  <?php if ($_smarty_tpl->tpl_vars['filtro']->value['id_empresa'] !== '') {?>
                   <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['id_empresa'];?>
 "><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_empresa'];?>
 </option>
@@ -110,6 +110,20 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                  <?php } else { ?>
+                  <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa']->value, 'empresa');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
+?>
+                  <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresa'];?>
+"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresa'];?>
+</option>
+                  <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                  <?php }?>
                 </select>
               </div>
             </div>
@@ -119,12 +133,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div class="col-sm-6">
               <label>Marca: </label>
               <input type="text" class="form-control" id="marca_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['marca'];?>
-" required="">
+" placeholder="Marca filtro">
             </div>
             <div class="col-sm-6">
               <label>Modelo: </label>
               <input type="text" class="form-control" id="modelo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['modelo'];?>
-" required="">
+" required="" placeholder="Modelo filtro">
             </div>
           </div>
           
@@ -134,12 +148,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div class="col-sm-6">
               <label>Serie: </label>
               <input type="text" class="form-control" id="serie_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['serie'];?>
-" required="">
+" required="" placeholder="Serie filtro">
             </div>
             <div class="col-sm-6">
               <label>Cantidad Filtros HEPA: </label>
               <input type="number" class="form-control" id="cantidad_filtros_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['cantidad_filtros'];?>
-" required="">
+" required="" placeholder="Cantidad de filtros">
             </div>
           </div>
           
@@ -149,11 +163,19 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div class="col-sm-4">
               <label>Dirección: </label>
               <input type="text" class="form-control" id="ubicacion_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicacion'];?>
-" required="">
+" required="" placeholder="Dirección de filtro">
             </div>
             <div class="col-sm-4">
-              <label>Ubicado en: </label>
+              <label>Ubicado en: </label>      
               <select class="form-control" id="ubicado_en_filtro">
+              <?php if ($_smarty_tpl->tpl_vars['filtro']->value['ubicado_en'] == '') {?>
+                <option value="0">Seleccione...</option>
+                <option value="UMA">UMA</option>
+                <option value="Sala">Sala</option>
+                <option value="VEX">VEX</option>
+                <option value="VIN">VIN</option>
+                <option value="COP">COP</option>
+              <?php } else { ?>
                 <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicado_en'];?>
 "><?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicado_en'];?>
 </option>
@@ -162,12 +184,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <option value="VEX">VEX</option>
                 <option value="VIN">VIN</option>
                 <option value="COP">COP</option>
+              <?php }?>
               </select> 
              </div>
              <div class="col-sm-4">
               <label>Lugar: </label>
                <input type="text" class="form-control" id="lugar_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['lugar_filtro'];?>
-" required="">
+" required="" placeholder="Lugar filtro">
              </div>
           </div>
           
@@ -176,13 +199,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           <div class="form-row">
             <div class="col-sm-6">
               <label>Dimensiones: </label>
-              <input type="text" class="form-control" id="tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['tipo'];?>
-" required="">
+              <input type="text" class="form-control" id="tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['tipo_filtro'];?>
+" required="" placeholder="Dimensiones del filtro">
             </div>
             <div class="col-sm-6">
               <label>Limite de penetración: </label>
               <input type="text" class="form-control" id="penetracion_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['penetracion_filtro'];?>
-" required="">
+" required="" placeholder=" limite de penetración">
             </div>
           </div>
           <?php

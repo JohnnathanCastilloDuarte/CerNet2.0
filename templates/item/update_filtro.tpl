@@ -43,7 +43,6 @@
             </li>-->
 
       </ul>
-      
       <div class="form-wizard-content">
        {foreach from=$array_filtro item=filtro}
         <input type="hidden" id="id_filtro" value = "{$filtro.id_filtro}">

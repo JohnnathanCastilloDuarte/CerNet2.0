@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <div class="card">
       <div class="card-header">
-
+ 
         {foreach from=$array_campana  item=campana}
         <h5 id="text_enunciado_campana">
 
