@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-24 17:02:10
+/* Smarty version 3.1.34-dev-7, created on 2021-12-28 23:15:59
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_estufa.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_619e62024c4044_06977242',
+  'unifunc' => 'content_61cb8c9f22baf2_60138913',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8cfa87615307b0cf3a96451ce1aa8dc349ce1246' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_estufa.tpl',
-      1 => 1637767578,
+      1 => 1640729743,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619e62024c4044_06977242 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61cb8c9f22baf2_60138913 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -47,7 +47,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
               <a href="#step-22">
 											<em>2</em><span>Caracteristica del equipo</span>
 									</a>
-            </li>
+            </li> 
             <!--	<li>
 									<a href="#step-32">
 											<em>3</em><span>Equipos</span>
@@ -78,11 +78,21 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
                 <div class="col-sm-6">
                   <label>Empresa:</label>
                   <select class="form-control" id="empresa_estufa">
-                    <?php if ($_smarty_tpl->tpl_vars['estufa']->value['id_empresa'] !== '') {?>
-                    <option value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['estufa']->value['nombre_empresa'];?>
-</option>
-                    <?php }?>
+                    <?php if ($_smarty_tpl->tpl_vars['estufa']->value['id_empresa'] == '') {?>
+                    <option value="0" selected="">Seleccione</option>
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
+?>
+                    <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
+"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
+</option>  
+                    <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                    <?php } else { ?>
                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
 if ($_from !== null) {
@@ -95,6 +105,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                    <?php }?>
                   </select>
                   
                 </div>

@@ -40,7 +40,7 @@
                 <input type="hidden" id="id_item_ultrafreezer" value="{$ultrafreezer.id_ultrafreezer}">
                   <input type="hidden" id="id_item_2_ultrafreezer" value="{$ultrafreezer.id_item}">
                   <label>Nombre del Ultrafreezer</label>
-                  <input type="text" id="nombre_ultrafreezer" class="form-control" value="{$ultrafreezer.nombre_ultrafreezer}" required="">
+                  <input type="text" id="nombre_ultrafreezer" class="form-control" value="{$ultrafreezer.nombre_ultrafreezer}" required="" placeholder="Nombre ultrafreezer">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
@@ -75,8 +75,8 @@
               <br>
               <div class="form-row">
                 <div class="col-sm-12">
-                  <label>Descripcion:</label>
-                  <textarea class="form-control" id="desc_ultrafreezer">{$ultrafreezer.descripcion_ultrafreezer}</textarea>
+                  <label>Descripción:</label>
+                  <textarea class="form-control" id="desc_ultrafreezer" placeholder="Descripción"> {$ultrafreezer.descripcion_ultrafreezer}</textarea>
                 </div>
               </div>
               <br>

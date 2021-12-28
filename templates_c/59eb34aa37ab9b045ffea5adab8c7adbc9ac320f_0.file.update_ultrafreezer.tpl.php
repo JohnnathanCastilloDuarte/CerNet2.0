@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-24 18:30:03
+/* Smarty version 3.1.34-dev-7, created on 2021-12-28 23:03:26
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_ultrafreezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_619e769ba09fb1_34163160',
+  'unifunc' => 'content_61cb89aee67467_33147103',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '59eb34aa37ab9b045ffea5adab8c7adbc9ac320f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_ultrafreezer.tpl',
-      1 => 1637774997,
+      1 => 1640729004,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619e769ba09fb1_34163160 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61cb89aee67467_33147103 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -71,7 +71,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
 ">
                   <label>Nombre del Ultrafreezer</label>
                   <input type="text" id="nombre_ultrafreezer" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['nombre_ultrafreezer'];?>
-" required="">
+" required="" placeholder="Nombre ultrafreezer">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
@@ -128,8 +128,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               <br>
               <div class="form-row">
                 <div class="col-sm-12">
-                  <label>Descripcion:</label>
-                  <textarea class="form-control" id="desc_ultrafreezer"><?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['descripcion_ultrafreezer'];?>
+                  <label>Descripción:</label>
+                  <textarea class="form-control" id="desc_ultrafreezer" placeholder="Descripción"> <?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['descripcion_ultrafreezer'];?>
 </textarea>
                 </div>
               </div>
@@ -209,7 +209,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               </div>
 
               <br>
-
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Valor seteado temperatura:</label>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-04 00:15:50
+/* Smarty version 3.1.34-dev-7, created on 2021-12-28 22:26:33
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61aaa5261c55a4_35141660',
+  'unifunc' => 'content_61cb8109e48a79_08041104',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10cd508aa62a2b747cc0b00d78a3d76fc3305eb7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_bodega.tpl',
-      1 => 1638573348,
+      1 => 1640726791,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61aaa5261c55a4_35141660 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61cb8109e48a79_08041104 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -68,7 +68,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['bodega']->value) {
 ">
                   <div class="position-relative form-group">
                     <label>Nombre bodega:</label><input name="text" id="nombre_bodega" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['nombre_item'];?>
-">
+" placeholder="Nombre de bodega">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -110,7 +110,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="col-sm-12">
                   <div class="position-relative form-group">
                     <label>Descripción:</label>
-                    <textarea class="form-control" id="descripcion_item_bodega"><?php echo $_smarty_tpl->tpl_vars['bodega']->value['descripcion_bodega'];?>
+                    <textarea class="form-control" id="descripcion_item_bodega" placeholder="Descripción"><?php echo $_smarty_tpl->tpl_vars['bodega']->value['descripcion_bodega'];?>
 </textarea>
                   </div>
                 </div>
