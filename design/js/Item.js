@@ -178,7 +178,7 @@ $(document).on('click',"#enviar_correo_pdf",function(){
         Swal.fire({
           title: 'Enviar PDF',
           icon:'question',
-          text:'Ingrese el correo al que se enviara el PDF'+id_item,
+          text:'Ingrese el correo al que se enviara el PDF',
           input: 'text',
           inputAttributes: {
    		  autocapitalize: 'on'
@@ -204,18 +204,22 @@ $(document).on('click',"#enviar_correo_pdf",function(){
               url:'templates/item/enviarPDF.php',
               data:datos,
               success:function(response){
-                console.log(response);
                
                 if(response == ""){
                   Swal.fire({
                     title:'Mensaje',
-                    text:'Se ha enviado el PDF correctamente'+response,
+                    text:'Se ha enviado el PDF correctamente',
                     timer:1500,
                     icon:'success'
                   });
         
                 }else{
-                	alert("algo malio sal"+response);
+                	 Swal.fire({
+                    title:'Mensaje',
+                    text:'Erro al enviar PDF intenta de nuevo o contancta con el administrador',
+                    timer:1500,
+                    icon:'info'
+                  });
                 }
 
               }

@@ -39,7 +39,7 @@
                 <div class="col-sm-6">
                   <input type="hidden" id="id_item_bodega" value="{$id_item}">
                   <div class="position-relative form-group">
-                    <label>Nombre bodega:</label><input name="text" id="nombre_bodega" class="form-control" value="{$bodega.nombre_item}">
+                    <label>Nombre bodega:</label><input name="text" id="nombre_bodega" class="form-control" value="{$bodega.nombre_item}" placeholder="Nombre de bodega">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -69,7 +69,7 @@
                 <div class="col-sm-12">
                   <div class="position-relative form-group">
                     <label>Descripción:</label>
-                    <textarea class="form-control" id="descripcion_item_bodega">{$bodega.descripcion_bodega}</textarea>
+                    <textarea class="form-control" id="descripcion_item_bodega" placeholder="Descripción">{$bodega.descripcion_bodega}</textarea>
                   </div>
                 </div>
               </div>

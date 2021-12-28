@@ -27,7 +27,7 @@ class MYPDF extends TCPDF
 		//$this->writeHTMLCell(70, 5, 125, 22, '<table><tr><td width="120%">Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
    
     
-    $this->MultiCell(120, 16.5, '$', 1, 'C', 0, 0, 15, 30, true, 0, false, true, 16, 'M');
+    $this->MultiCell(120, 16.5, 'Detalle del informe Cercal Group ', 1, 'C', 0, 0, 15, 30, true, 0, false, true, 16, 'M');
     $this->Image('logo_big.png',10,8,22);
 	$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 	$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
