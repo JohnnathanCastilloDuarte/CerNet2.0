@@ -46,7 +46,6 @@
                   <div class="position-relative form-group">
                     <label>Empresa:</label>
                     <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa">
-
                     <div >
                       
                       <table class="table" id="aqui_resultados_empresa">

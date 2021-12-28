@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-23 14:27:33
+/* Smarty version 3.1.34-dev-7, created on 2021-12-27 15:20:06
   from '/home/god/public_html/CerNet2.0/templates/OT/nueva_ot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c4875562d615_21758436',
+  'unifunc' => 'content_61c9d9a697db69_65612641',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7f90219e8a33a16667e68c7df7b8b36e695e920f' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/OT/nueva_ot.tpl',
-      1 => 1640269640,
+      1 => 1640618238,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c4875562d615_21758436 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61c9d9a697db69_65612641 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#crear_ot">
@@ -62,31 +62,21 @@ function content_61c4875562d615_21758436 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
               </div>
               <div class="row">
-                <label>Usuario asignado:</label>
-                <select id="usuario_asignado_ot_n" class="form-control">
-									<option value="0">Seleccione...</option>
-									<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_personas']->value, 'persona');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['persona']->value) {
-?>
-									<option value="<?php echo $_smarty_tpl->tpl_vars['persona']->value['id_persona'];?>
-">-<?php echo $_smarty_tpl->tpl_vars['persona']->value['nombre'];?>
- <?php echo $_smarty_tpl->tpl_vars['persona']->value['apellido'];?>
- -<?php echo $_smarty_tpl->tpl_vars['persona']->value['departamento'];?>
- <?php echo $_smarty_tpl->tpl_vars['persona']->value['cargo'];?>
-</option>
-									<?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-								</select>
+                <label>Usuario</label>
+                <input type="text" id="buscador_usuarios" class="form-control" placeholder="Ingresa el usuario">
+                <input type="hidden" id="id_usuario">
+                <div>
+
+                  <table class="table" id="aqui_resultados_usuario">
+                  </table>
+                </div>
               </div>
               <br>
               <div class="row" style="text-align:center;">
                 <div class="col-sm-12">
                   <a class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info text-info" id="btn_nueva_ot">Aceptar</a>
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-primary" id="btn_gestionar_ot_2" type="submit">Gestionar OT</button>
+				  <a class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info text-primary" id="btn_editar_ot">Actualizar</a>
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-primary" id="btn_gestionar_ot_1">Gestionar OT</button>
                 </div>
               </div>
             </div>
