@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-06 17:39:43
+/* Smarty version 3.1.34-dev-7, created on 2021-12-29 15:00:05
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_campana_extraccion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61ae3ccf616a89_25950777',
+  'unifunc' => 'content_61cc69e56c9145_08784926',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a2460fc03c75e8363fd9c4ee083f5e44948f91e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_campana_extraccion.tpl',
-      1 => 1638808779,
+      1 => 1640786396,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61ae3ccf616a89_25950777 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61cc69e56c9145_08784926 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -53,42 +53,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['campana']->value) {
 ">
               </div>
               <div class="col-sm-6">
-                <label >Empresa</label>
-                <select class="form-control" id="empresa_campana" required>
-                  <?php if ($_smarty_tpl->tpl_vars['campana']->value['nombre_empresa'] == '') {?>
-                  <option value="0">Seleccione....</option>
-                  <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-                  <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresa'];?>
-</option>
-                  <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                  <?php } else { ?>
-                  <option value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['campana']->value['nombre_empresa'];?>
-</option>
-                  <option value="0">Seleccione....</option>
-                  <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-                  <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresa'];?>
-</option>
-                  <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                  <?php }?>
-
-                </select>
+                <label>Empresa</label>
+                <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['nombre_empresa'];?>
+">
+                <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['id_empresa'];?>
+">
+                <div>
+                    <table class="table" id="aqui_resultados_empresa" >
+                    </table>
+                </div> 
               </div>
 
             </div>

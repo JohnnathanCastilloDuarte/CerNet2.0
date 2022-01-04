@@ -98,15 +98,42 @@ function trayendo_equipo(){
 $(document).on('click','#btn_agregar_equipo',function(){
 
     let id_equipo = $(this).attr('data-id');
-    let id_informe  = $("#id_informe_filtro").val();
-    let proceso = 3;
+    let activador = "";
+    let datos = "";
+    let proceso = 0;
+
+    let pk = $("#pk").val();
 
 
-    const datos = {
-        id_equipo,
-        id_informe,
-        proceso
+    if(pk == "campana_extraccion"){
+        
+        proceso = 33;
+        let tipo_prueba = $("#tipo_prueba").val();
+        let id_asignado_campana = $("#id_asignado_campana").val();
+     
+        datos = {
+            id_equipo,
+            proceso,
+            tipo_prueba,
+            id_asignado_campana
+        }
+
+
+    }else{
+
+        let id_informe  = $("#id_informe_filtro").val();
+        proceso = 3;
+
+
+        datos = {
+            id_equipo,
+            id_informe,
+            proceso
+        }
+
     }
+
+    
 
     $.ajax({
         type:'POST',
@@ -144,13 +171,30 @@ $("#mostrar_equipos_mediciones_filtros").click(function(){
 //// FUNCION PARA ENLISTAR LOS EQUIPOS ASIGNADOS
 function listar_equipos_asignados(){
 
-    let id_informe  = $("#id_informe_filtro").val();
-    let proceso = 4;
+    let proceso = "";
+    let pk = $("#pk").val();
+    let datos = "";
 
-    datos = {   
-        id_informe,
-        proceso
+    if(pk == "campana_extraccion"){
+
+        proceso = 44;
+        let id_asignado = $("#id_asignado_campana").val();
+        datos = {
+            proceso,
+            id_asignado
+        }
+
+    }else{
+        let id_informe  = $("#id_informe_filtro").val();
+        proceso = 4;
+
+        datos = {   
+            id_informe,
+            proceso
+        }
     }
+
+    
 
     $.ajax({
         type:'POST',
@@ -167,6 +211,7 @@ function listar_equipos_asignados(){
                     `
                         <tr>
                             <td>${x.nombre_equipo}</td>
+                            <td>${x.tipo_prueba}</td>
                             <td><button class="btn btn-danger" id="retirar_equipo_medicion_filtro" data-id="${x.id_medicion}">X</button></td>
                         </tr>
                     
