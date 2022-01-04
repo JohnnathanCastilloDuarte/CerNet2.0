@@ -3,6 +3,7 @@
     include("../../config.ini.php");
 
     $nombre_campana = $_POST['nombre_campana'];
+    $id_empresa = $_POST['empresa_campana'];
     $ubicacion_campana  = $_POST['ubicacion_campana'];
     $direccion_campana = $_POST['direccion_campana'];
     $tipo_campana = $_POST['tipo_campana'];
@@ -16,8 +17,8 @@
 
     $array_campana = array();
 
-    $update_item = mysqli_prepare($connect,"UPDATE item SET  nombre=? WHERE id_item = ?");
-    mysqli_stmt_bind_param($update_item, 'si', $nombre_campana, $id_item_campana);
+    $update_item = mysqli_prepare($connect,"UPDATE item SET  nombre=?, id_empresa = ? WHERE id_item = ?");
+    mysqli_stmt_bind_param($update_item, 'sii', $nombre_campana, $id_empresa, $id_item_campana);
     mysqli_stmt_execute($update_item);
 
 

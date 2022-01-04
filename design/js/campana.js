@@ -39,7 +39,7 @@ function setear_campos(){
 $("#btn_nuevo_item_campana").click(function(){
 
    let nombre_campana =  $("#nombre_campana").val();
-   let empresa_campana = $("#empresa_campana").val();
+   let empresa_campana = $("#id_empresa").val();
    let ubicacion_campana = $("#ubicacion_campana").val();
    let direccion_campana = $("#direccion_campana").val();
    let tipo_campana = $("#tipo_campana").val();
@@ -72,6 +72,7 @@ $("#btn_nuevo_item_campana").click(function(){
        data:datos,
        url:'templates/item/controlador_item_campana.php',
        success:function(response){
+           console.log(response);
               if (response == "Si") {
             Swal.fire({
                 title:'Mensaje',
@@ -98,7 +99,7 @@ $("#btn_nuevo_item_campana").click(function(){
 $("#btn_editar_item_campana").click(function(){
 
    let nombre_campana =  $("#nombre_campana").val();
-   let empresa_campana = $("#empresa_campana").val();
+   let empresa_campana = $("#id_empresa").val();
    let ubicacion_campana = $("#ubicacion_campana").val();
    let direccion_campana = $("#direccion_campana").val();
    let tipo_campana = $("#tipo_campana").val();
@@ -180,3 +181,46 @@ function traer_datos_campana(id_item_campana){
     })
 }
 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+	$("#buscador_empresa").val(nombre_empresa);
+    $("#id_empresa").val(id_empresa);
+
+	$("#aqui_resultados_empresa").hide();
+
+});

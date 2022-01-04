@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-02 14:47:33
+/* Smarty version 3.1.34-dev-7, created on 2022-01-03 21:43:47
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a8ce75c5f638_33275346',
+  'unifunc' => 'content_61d36003c72c61_42784276',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1638393800,
+      1 => 1641242624,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a8ce75c5f638_33275346 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d36003c72c61_42784276 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -136,7 +136,7 @@ function content_61a8ce75c5f638_33275346 (Smarty_Internal_Template $_smarty_tpl)
           </a>
         </div>
          <div class="card-body collapse" id="collapseOne44" >
-            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
+            <input type="text" name="id_informe_filtro" id="id_informe_filtro">
 
             <div class="row">
               <div class="col-sm-6">

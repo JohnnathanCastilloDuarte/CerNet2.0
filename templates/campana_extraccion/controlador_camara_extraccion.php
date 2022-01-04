@@ -1,0 +1,373 @@
+<?php 
+    include('../../config.ini.php');
+
+    $movimiento = $_POST['movimiento'];
+
+    if($movimiento == "Listar_1"){
+       
+        $id_asignado = $_POST['id_asignado'];
+        $array_pruebas = array();
+
+        $consultar1 = mysqli_prepare($connect,"SELECT id_inspeccion, insp_1, insp_2, insp_3, insp_4, insp_5 FROM campana_extraccion_inspeccion WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar1);
+        mysqli_stmt_store_result($consultar1);
+        mysqli_stmt_bind_result($consultar1, $id_inspeccion, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5);
+
+        while($row = mysqli_stmt_fetch($consultar1)){
+
+            $array_pruebas[]=array
+            (
+                'id_inspeccion'=>$id_inspeccion,
+                'insp_1'=>$insp_1,
+                'insp_2'=>$insp_2,
+                'insp_3'=>$insp_3,
+                'insp_4'=>$insp_4,
+                'insp_5'=>$insp_5
+
+            );
+        }
+
+        $convert = json_encode($array_pruebas);
+        echo $convert;
+   
+   
+    }else if($movimiento == "Listar_2"){
+
+        $id_asignado = $_POST['id_asignado'];
+        $array_pruebas = array();
+
+        $consultar1 = mysqli_prepare($connect,"SELECT id_prueba, requisito, valor_obtenido, veredicto FROM campana_extraccion_prueba_1 WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar1);
+        mysqli_stmt_store_result($consultar1);
+        mysqli_stmt_bind_result($consultar1, $id_prueba, $requisito, $valor_obtenido, $veredicto);
+
+        while($row = mysqli_stmt_fetch($consultar1)){
+
+            $array_pruebas[]=array(
+                'id_prueba'=>$id_prueba,
+                'requisito'=>$requisito,
+                'valor_obtenido'=>$valor_obtenido,
+                'veredicto'=>$veredicto
+            );
+        }
+
+        $convert = json_encode($array_pruebas);
+        echo $convert;
+
+
+    }else if($movimiento == "Listar_3"){
+
+        $id_asignado = $_POST['id_asignado'];
+        $array_pruebas = array();
+
+        $consultar1 = mysqli_prepare($connect,"SELECT id_prueba, medicion_1, medicion_2, medicion_3, medicion_4, medicion_5, medicion_6 FROM campana_extraccion_prueba_2 WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar1);
+        mysqli_stmt_store_result($consultar1);
+        mysqli_stmt_bind_result($consultar1, $id_prueba, $medicion_1, $medicion_2, $medicion_3, $medicion_4, $medicion_5, $medicion_6);
+
+        while($row = mysqli_stmt_fetch($consultar1)){
+            $array_pruebas[] = array(
+                'id_prueba'=>$id_prueba,
+                'medicion_1'=>$medicion_1,
+                'medicion_2'=>$medicion_2,
+                'medicion_3'=>$medicion_3,
+                'medicion_4'=>$medicion_4,
+                'medicion_5'=>$medicion_5,
+                'medicion_6'=>$medicion_6
+            );
+        }
+
+        $convert = json_encode($array_pruebas);
+
+        echo $convert;
+
+
+
+
+    }else if($movimiento == "Listar_4"){
+
+        $id_asignado = $_POST['id_asignado'];
+        $array_pruebas = array();
+
+ 
+        $consultar1 = mysqli_prepare($connect,"SELECT id_prueba, medicion_1, medicion_2, medicion_3, medicion_4 FROM campana_extraccion_prueba_3 WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar1);
+        mysqli_stmt_store_result($consultar1);
+        mysqli_stmt_bind_result($consultar1, $id_prueba, $medicion_1, $medicion_2, $medicion_3, $medicion_4);
+
+        while($row = mysqli_stmt_fetch($consultar1)){
+            $array_pruebas[] = array(
+                'id_prueba'=>$id_prueba,
+                'medicion_1'=>$medicion_1,
+                'medicion_2'=>$medicion_2,
+                'medicion_3'=>$medicion_3,
+                'medicion_4'=>$medicion_4
+            );
+        }
+
+        $convert = json_encode($array_pruebas);
+
+        echo $convert;
+
+
+
+
+    }else if($movimiento == "Listar_5"){
+
+        $id_asignado = $_POST['id_asignado'];
+        $array_pruebas = array();
+
+ 
+        $consultar1 = mysqli_prepare($connect,"SELECT id_prueba, punto_1, punto_2, punto_3, punto_promedio, categoria FROM campana_extraccion_prueba_4 WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar1);
+        mysqli_stmt_store_result($consultar1);
+        mysqli_stmt_bind_result($consultar1, $id_prueba, $punto_1, $punto_2, $punto_3, $punto_promedio, $categoria);
+
+        while($row = mysqli_stmt_fetch($consultar1)){
+            $array_pruebas[] = array(
+                'id_prueba'=>$id_prueba,
+                'punto_1'=>$punto_1,
+                'punto_2'=>$punto_2,
+                'punto_3'=>$punto_3,
+                'punto_promedio'=>$punto_promedio,
+                'categoria'=>$categoria
+            );
+        }
+
+        $convert = json_encode($array_pruebas);
+
+        echo $convert;
+
+
+
+
+    }else if($movimiento == "Listar_6"){
+
+        $id_asignado = $_POST['id_asignado'];
+        $array_pruebas = array();
+        $categoria_1 = 1;
+
+ 
+        $consultar1 = mysqli_prepare($connect,"SELECT id_prueba, resultado, cumple, categoria FROM campana_extraccion_prueba_5 WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar1);
+        mysqli_stmt_store_result($consultar1);
+        mysqli_stmt_bind_result($consultar1, $id_prueba, $resultado, $cumple, $categoria);
+
+        while($row = mysqli_stmt_fetch($consultar1)){
+            $array_pruebas[] = array(
+                'id_prueba'=>$id_prueba,
+                'resultado'=>$resultado,
+                'cumple'=>$cumple,
+                'categoria'=>$categoria
+            );
+        }
+
+        $convert = json_encode($array_pruebas);
+
+        echo $convert;
+
+
+
+
+    }else if($movimiento == "Validador_creator"){
+
+        $id_asignado = $_POST['id_asignado'];
+        $validator = $_POST['validator'];
+
+        if($validator == 1){
+
+            $consultar1 = mysqli_prepare($connect, "SELECT id_prueba FROM campana_extraccion_prueba_1 WHERE id_asignado = ?");
+            mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+            mysqli_stmt_execute($consultar1);
+            mysqli_stmt_store_result($consultar1);
+            mysqli_stmt_bind_result($consultar1, $id_prueba);
+            
+            if(mysqli_stmt_num_rows($consultar1) > 0){
+                echo "Ok";
+            }else{
+                for($i == 1; $i < 10; $i++){
+
+                    $creando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_1 (id_asignado) VALUES (?)");
+                    mysqli_stmt_bind_param($creando, 'i', $id_asignado);
+                    mysqli_stmt_execute($creando);
+
+                    if($creando){
+                        $exito++;
+                    }
+                }
+
+                if($exito == 10){
+                    echo "Exito";
+                }
+            }
+
+        }else if($validator == 2){
+
+            $consultar2 = mysqli_prepare($connect,"SELECT id_prueba  FROM campana_extraccion_prueba_2 WHERE id_asignado = ?");
+            mysqli_stmt_bind_param($consultar2, 'i', $id_asignado);
+            mysqli_stmt_execute($consultar2);
+            mysqli_stmt_store_result($consultar2);
+            mysqli_stmt_bind_result($consultar2, $id_prueba_2);
+            mysqli_stmt_fetch($consultar2);
+
+
+                
+            if(mysqli_stmt_num_rows($consultar2) > 0){
+                echo "Ok pruebas_2_1";
+            }else{
+                for($i == 1; $i < 4; $i++){
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_2 (id_asignado) VALUES (?)");
+                    mysqli_stmt_bind_param($insertando, 'i', $id_asignado);
+                    mysqli_stmt_execute($insertando);
+                }
+            }
+
+        }else if($validator == 3){
+
+            $consultar3 = mysqli_prepare($connect,"SELECT id_prueba  FROM campana_extraccion_prueba_3 WHERE id_asignado = ?");
+            mysqli_stmt_bind_param($consultar3, 'i', $id_asignado);
+            mysqli_stmt_execute($consultar3);
+            mysqli_stmt_store_result($consultar3);
+            mysqli_stmt_bind_result($consultar3, $id_prueba_3);
+            mysqli_stmt_fetch($consultar3);
+    
+    
+                
+            if(mysqli_stmt_num_rows($consultar3) > 0){
+                echo "Ok pruebas_3";
+            }else{
+                for($i == 1; $i < 4; $i++){
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_3 (id_asignado) VALUES (?)");
+                    mysqli_stmt_bind_param($insertando, 'i', $id_asignado);
+                    mysqli_stmt_execute($insertando);
+                }
+            }
+
+        }else if($validator == 4){
+
+            $categoria_1 = 1;
+
+            $consultar4 = mysqli_prepare($connect,"SELECT id_prueba  FROM campana_extraccion_prueba_4 WHERE id_asignado = ? AND categoria = ?");
+            mysqli_stmt_bind_param($consultar4, 'ii', $id_asignado, $categoria_1);
+            mysqli_stmt_execute($consultar4);
+            mysqli_stmt_store_result($consultar4);
+            mysqli_stmt_bind_result($consultar4, $id_prueba_4);
+            mysqli_stmt_fetch($consultar4);
+
+
+                
+            if(mysqli_stmt_num_rows($consultar4) > 0){
+                echo "Ok pruebas_4_1";
+            }else{
+                for($i == 1; $i < 2; $i++){
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_4 (id_asignado, categoria) VALUES (?,?)");
+                    mysqli_stmt_bind_param($insertando, 'ii', $id_asignado, $categoria_1);
+                    mysqli_stmt_execute($insertando);
+                }
+            }
+
+        }else if($validator == 5){
+
+            $categoria_2 = 2;
+
+            $consultar5 = mysqli_prepare($connect,"SELECT id_prueba  FROM campana_extraccion_prueba_4 WHERE id_asignado = ? AND categoria = ?");
+            mysqli_stmt_bind_param($consultar5, 'ii', $id_asignado, $categoria_2);
+            mysqli_stmt_execute($consultar5);
+            mysqli_stmt_store_result($consultar5);
+            mysqli_stmt_bind_result($consultar5, $id_prueba_5);
+            mysqli_stmt_fetch($consultar5);
+
+
+                
+            if(mysqli_stmt_num_rows($consultar5) > 0){
+                echo "Ok pruebas_4_2";
+            }else{
+                for($i == 1; $i < 2; $i++){
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_4 (id_asignado, categoria) VALUES (?,?)");
+                    mysqli_stmt_bind_param($insertando, 'ii', $id_asignado, $categoria_2);
+                    mysqli_stmt_execute($insertando);
+                }
+            }
+
+        }else if($validator == 6){
+
+            $categoria_3 = 3;
+
+            $consultar6 = mysqli_prepare($connect,"SELECT id_prueba  FROM campana_extraccion_prueba_4 WHERE id_asignado = ? AND categoria = ?");
+            mysqli_stmt_bind_param($consultar6, 'ii', $id_asignado, $categoria_3);
+            mysqli_stmt_execute($consultar6);
+            mysqli_stmt_store_result($consultar6);
+            mysqli_stmt_bind_result($consultar6, $id_prueba_6);
+            mysqli_stmt_fetch($consultar6);
+    
+    
+                
+            if(mysqli_stmt_num_rows($consultar6) > 0){
+                echo "Ok pruebas_4_4";
+            }else{
+                for($i == 1; $i < 1; $i++){
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_4 (id_asignado, categoria) VALUES (?,?)");
+                    mysqli_stmt_bind_param($insertando, 'ii', $id_asignado, $categoria_3);
+                    mysqli_stmt_execute($insertando);
+                }
+            }
+
+        }else if($validator == 7){
+
+            $categoria_1 = 1;
+
+            $consultar = mysqli_prepare($connect,"SELECT id_prueba  FROM campana_extraccion_prueba_5 WHERE id_asignado = ? AND categoria = ?");
+            mysqli_stmt_bind_param($consultar, 'ii', $id_asignado, $categoria_1);
+            mysqli_stmt_execute($consultar);
+            mysqli_stmt_store_result($consultar);
+            mysqli_stmt_bind_result($consultar, $id_prueba);
+            mysqli_stmt_fetch($consultar);
+    
+    
+                
+            if(mysqli_stmt_num_rows($consultar) > 0){
+                echo "Ok";
+            }else{
+                for($i == 1; $i < 5; $i++){
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_5 (id_asignado, categoria) VALUES (?,?)");
+                    mysqli_stmt_bind_param($insertando, 'ii', $id_asignado, $categoria_1);
+                    mysqli_stmt_execute($insertando);
+                }
+            }
+
+        }else if($validator == 8){
+
+            $categoria_2 = 2;
+
+            $consultar = mysqli_prepare($connect,"SELECT id_prueba  FROM campana_extraccion_prueba_5 WHERE id_asignado = ? AND categoria = ?");
+            mysqli_stmt_bind_param($consultar, 'ii', $id_asignado, $categoria_2);
+            mysqli_stmt_execute($consultar);
+            mysqli_stmt_store_result($consultar);
+            mysqli_stmt_bind_result($consultar, $id_prueba);
+            mysqli_stmt_fetch($consultar);
+    
+    
+                
+            if(mysqli_stmt_num_rows($consultar) > 0){
+                echo "Ok";
+            }else{
+                for($i == 1; $i < 5; $i++){
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_5 (id_asignado, categoria) VALUES (?,?)");
+                    mysqli_stmt_bind_param($insertando, 'ii', $id_asignado, $categoria_2);
+                    mysqli_stmt_execute($insertando);
+                }
+            }
+
+        }
+       
+            
+    }
+
+mysqli_close($connect);
+?>
