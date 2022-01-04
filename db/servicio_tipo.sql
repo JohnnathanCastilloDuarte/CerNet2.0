@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-12-2021 a las 16:56:36
+-- Tiempo de generación: 04-01-2022 a las 04:56:21
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.3.31
 
@@ -49,7 +49,8 @@ INSERT INTO `servicio_tipo` (`id_servicio_tipo`, `servicio`, `id_modulo`, `fecha
 (6, 'Distribución termica de automovil', 8, '2021-12-20 13:59:54', 2, 7),
 (7, 'Inspección de integridad de filtros', 8, '2021-12-20 14:10:40', 2, 11),
 (8, 'Inspección en campana de extracción', 8, '2021-12-20 14:15:16', 2, 12),
-(9, 'Protocolo', 8, '2021-12-20 14:19:48', 2, 1);
+(9, 'Protocolo', 8, '2021-12-20 14:19:48', 2, 1),
+(10, 'Inspección flujo laminar', 8, '2022-01-04 02:30:12', 2, 13);
 
 --
 -- Índices para tablas volcadas
@@ -69,7 +70,7 @@ ALTER TABLE `servicio_tipo`
 -- AUTO_INCREMENT de la tabla `servicio_tipo`
 --
 ALTER TABLE `servicio_tipo`
-  MODIFY `id_servicio_tipo` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id autoincrementable del servicio_tipo', AUTO_INCREMENT=10;
+  MODIFY `id_servicio_tipo` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id autoincrementable del servicio_tipo', AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
