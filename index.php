@@ -67,7 +67,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11));
 
 
 $aprobaciones = array();
@@ -216,6 +216,8 @@ else
                 include("templates/item/update_filtro.php");
               }else if($_GET["type"] == 12){
                 include("templates/item/update_campana_extraccion.php");
+              }else if($_GET["type"] == 13){
+                include("templates/item/update_flujo_laminar.php");
               }else if($_GET["type"] == 14){
                 include("templates/item/update_camara_congelada.php");
               }
@@ -277,7 +279,7 @@ else
               include("templates/filtros/gestionar_informes.php");
             }else if ($_GET["page"] == 8){
               include("templates/campana_extraccion/gestionar_informes.php");
-            } else if ($_GET["page"] == 9){
+            }else if ($_GET["page"] == 9){
               include("templates/protocolos/gestionar_protocolos.php");
             }
 
@@ -298,9 +300,13 @@ else
                 include("templates/filtros/datos_informe_mapeo.php");
               }else if($_GET["type"] == 8){
                 include("templates/campana_extraccion/datos_informe_mapeo.php");
-              } else if($_GET["type"] == 9){
+              }else if($_GET["type"] == 9){
                 include("templates/protocolos/datos_protocolos.php");
+              }else if($_GET["type"] == 10){
+                include("templates/flujo_laminar/datos_informe_mapeo.php");
               }
+            }else if($_GET['page'] == 11 ){
+              include("templates/flujo_laminar/gestionar_informe.php");
             }
           }
        break;
