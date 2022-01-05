@@ -78,6 +78,10 @@
                         <label>Cargo</label>
                         <input type="text" id="cargo_participante_documentacion" class="form-control">
                       </div>
+                      <div class="col-sm-6">
+                       <label>Departamento</label> 
+                        <input type="text" id="departamento_participante_documentacion" class="form-control">
+                      </div>
                     </div>
                     <br>
                      <div class="row">

@@ -2,7 +2,7 @@
 $("#tipo_termocupla").hide();
 $("#resultados_tipo_termocupla").hide();
 $("#tipo_sensor").hide();
-
+//cargar_backtrack_dc();
 
 
 
@@ -33,8 +33,6 @@ $("#form_datos_crudos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-
-            console.log(response);
           
             /*
             let traer = JSON.parse(response);
@@ -209,8 +207,6 @@ function cargar_backtrack_dc(){
         id_asignado,
         id_mapeo
     }
-   
-
 
     $.ajax({
         type:'POST',
@@ -220,7 +216,7 @@ function cargar_backtrack_dc(){
             let traer = JSON.parse(response);
             let template = "";
             let contador_bad = "";
-
+          
             traer.forEach((resultado)=>{
                 if(resultado.estado == 1){
                     contador_bad = 1;

@@ -118,8 +118,7 @@ $(document).on('click','#agregar_documentacion',function(){
               url:'templates/documentacion/asignar_servicio_documentacion.php',
               data:datos,
               success:function(response){
-                console.log(response);
-               
+                         
                 if(response == "Si"){
                   Swal.fire({
                     title:'Mensaje',
@@ -342,7 +341,7 @@ $("#listar_usuarios_cernet").change(function(){
         data: datos,
         url:'templates/documentacion/listar_particiante_x_empresa.php',
         success:function(response){
-    
+          console.log(response);
           let traer = JSON.parse(response);
           let template = ""
 
@@ -353,6 +352,7 @@ $("#listar_usuarios_cernet").change(function(){
            $("#apellidos_partipante_documentacion").val(x.apellido);
            $("#email_participante_documentacion").val(x.email);
            $("#cargo_participante_documentacion").val(x.cargo);
+           $("#departamento_participante_documentacion").val(x.departamento);
           });
         }
      }); 
@@ -417,7 +417,7 @@ let seleccion = 2;
     url:'templates/documentacion/listar_participantes.php',
     data:{id_documentacion,seleccion},
     success:function(response){
-      console.log(response);
+     
       let traer = JSON.parse(response);
       let template = "";
       let rol = "";
@@ -520,7 +520,8 @@ let empresa = $("#empresa_participante_documentacion").val();
 let email = $("#email_participante_documentacion").val();
 let email_re = $("#email_participante_documentacion_re").val();
 let id_persona_oculto = $("#id_persona_documentacion_oculto").val();
-let cargo = $("#cargo_participante_documentacion").val();  
+let cargo = $("#cargo_participante_documentacion").val();
+let departamento = $("#departamento_participante_documentacion").val();
 let datos = "";
 let seleccion = "";
 let validar = 0;
@@ -537,7 +538,8 @@ if(id_persona_oculto.length == 0){
     cargo,
     id_valida_usuario,
     id_documentacion,
-    seleccion
+    seleccion,
+    departamento
   }
     if(email != email_re){
    
@@ -556,7 +558,8 @@ if(id_persona_oculto.length == 0){
     id_valida_usuario,
     id_documentacion,
     id_persona_oculto,
-    seleccion
+    seleccion,
+    departamento
   }
 }
   
@@ -567,6 +570,7 @@ if(validar == 2){
     url:'templates/documentacion/crear_participante.php',
     data: datos,
     success:function(response){
+     
       if(response == "Creado"){
         Swal.fire({
           title:'Mensaje',
@@ -822,8 +826,7 @@ $(document).on('click','#email_participante_interno',function(){
             url:'templates/documentacion/enviar_correo.php',
             data:datos,
             success:function(x){
-              console.log(x);
-            }
+                          }
           });
         }
       });
@@ -1631,8 +1634,7 @@ $("#formulario_pdf").on("submit", function(e){
     contentType: false,
     processData: false,
     success:function(respuesta){
-        
-
+      
         $("#pdf_grande").show();
         listar_pdf_grande();
         $("#gif_loading").hide();
@@ -1650,7 +1652,7 @@ function listar_pdf_grande(){
     data:{id_documentacion_d},
     url:'templates/documentacion/traer_pdf_grande.php',
     success:function(respuesta){
-           
+     
       let template = "";
       if(respuesta != "No"){
         $("#primer_set").hide();
@@ -1688,6 +1690,7 @@ $("#eliminar_documento_cargado").click(function(){
         url:'templates/documentacion/eliminar_documento_pdf.php',
         data:{url},
         success:function(response){
+          
           if(response=="Eliminado"){
             Swal.fire({
               title:'Mensaje',

@@ -17,7 +17,11 @@ if(isset($_GET["error"]))
 
 		case 'error_0003':
 			$smarty->assign("error_0001","<div class='alert alert-success fade show' role='alert'>Sesión cerrada correctamente.</div>");
-		break;			
+		break;	
+      
+    case 'error_0004':
+			$smarty->assign("error_0001","<div class='alert alert-danger fade show' role='alert'>Error 0004: Usuario no existe revisa las credenciales o comunicate con el administrador.</div>");
+		break;			  
 			
 		default:
 			$smarty->assign("error_0001","");

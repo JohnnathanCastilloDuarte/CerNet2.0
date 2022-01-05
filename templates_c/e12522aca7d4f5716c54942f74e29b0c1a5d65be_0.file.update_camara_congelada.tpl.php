@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-09 14:16:18
+/* Smarty version 3.1.34-dev-7, created on 2022-01-03 01:38:12
   from '/home/god/public_html/CerNet2.0/templates/item/update_camara_congelada.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61b20fb2cfd3a7_96278107',
+  'unifunc' => 'content_61d25384a57ad1_25237531',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e12522aca7d4f5716c54942f74e29b0c1a5d65be' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_camara_congelada.tpl',
-      1 => 1639059154,
+      1 => 1641173889,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b20fb2cfd3a7_96278107 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d25384a57ad1_25237531 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_camara_congelada']->value, 'camara_congelada');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['camara_congelada']->value) {
@@ -32,7 +32,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['camara_congelada']->value) {
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header"> 
+                 <?php if ($_smarty_tpl->tpl_vars['camara_congelada']->value['id_item'] == '') {?>
+                  <h5>Creacion camara congelada</h5>
+                  <?php } else { ?>
+                  <h5>Edición del equipo </h5>
+                  <?php }?>
+              </div>
                 <div class="card-body">
                     <div class="row">
                         

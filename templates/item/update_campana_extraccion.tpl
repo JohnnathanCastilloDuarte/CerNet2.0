@@ -18,6 +18,8 @@
            </li>
          </ul>
          <div class="form-wizard-content">
+             <input type='hidden' id='type_campana' value='{$id_tipo}'>
+             <input type='hidden' id='id_item_campana' value='{$id_item}'>
           <div id="step-12">
             <div class="form-row">
               <div class="col-sm-6">
@@ -25,22 +27,13 @@
                 <input type="text" id="nombre_campana" class="form-control" placeholder="Nombre campana" value="{$campana.nombre_campana}">
               </div>
               <div class="col-sm-6">
-                <label >Empresa</label>
-                <select class="form-control" id="empresa_campana" required>
-                  {if $campana.nombre_empresa == ""}
-                  <option value="0">Seleccione....</option>
-                  {foreach from=$array_empresa item=empresa}
-                  <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-                  {/foreach}
-                  {else}
-                  <option value="{$campana.id_empresa}">{$campana.nombre_empresa}</option>
-                  <option value="0">Seleccione....</option>
-                  {foreach from=$array_empresa item=empresa}
-                  <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-                  {/foreach}
-                  {/if}
-
-                </select>
+                <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="{$campana.id_empresa}">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$campana.nombre_empresa}">
+                    <div >
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
               </div>
 
             </div>

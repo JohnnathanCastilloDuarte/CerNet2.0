@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-02 16:55:15
+/* Smarty version 3.1.34-dev-7, created on 2022-01-03 13:41:10
   from '/home/god/public_html/CerNet2.0/templates/documentacion/añadir_participantes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a8fa73e9cf00_24018737',
+  'unifunc' => 'content_61d2fcf680c648_38367649',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0ed0977a6e2b6ea49079fa107c256454b0c5b068' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/documentacion/añadir_participantes.tpl',
-      1 => 1638464108,
+      1 => 1641217077,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a8fa73e9cf00_24018737 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d2fcf680c648_38367649 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab1">
@@ -110,6 +110,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                       <div class="col-sm-6">
                         <label>Cargo</label>
                         <input type="text" id="cargo_participante_documentacion" class="form-control">
+                      </div>
+                      <div class="col-sm-6">
+                       <label>Departamento</label> 
+                        <input type="text" id="departamento_participante_documentacion" class="form-control">
                       </div>
                     </div>
                     <br>

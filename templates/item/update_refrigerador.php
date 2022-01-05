@@ -122,11 +122,11 @@ if ($_GET['pdf'] == 1) {
 		
 	if($url = 'cercal.net') {
 
-		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_automovil.php';
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_refrigerador.php';
 		$correo = $_GET['correo'];
 		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);		
 	}else{ 	
-		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_automovil.php';
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_refrigerador.php';
 		$correo = $_GET['correo'];
 		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
 	}

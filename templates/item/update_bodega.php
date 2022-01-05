@@ -1,8 +1,9 @@
  <?php 
-  
+
+  include("../../config.ini.php");
 $id_tipo = $_GET['type'];
 
-echo "<input value='".$id_tipo."' id='id_tipo' hidden>";
+$smarty->assign("id_tipo",$id_tipo);
 
 //consultar empresas
 $empresas = mysqli_prepare($connect,"SELECT id_empresa, nombre FROM empresa");
@@ -182,10 +183,35 @@ else{
 	);
   
   $smarty->assign("array_bodega",$array_bodega);
-  
 }
 
-$smarty->display("item/update_bodega.tpl");
+//ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
+$convert = json_encode($array_bodega);   
+$conv = base64_encode($convert);
+$link = 'templates/item/pdf/pdf/pdf_bodega.php?&data='.$conv;
+//pdf item
+if ($_GET['pdf'] == 1) {
+
+	header('location: '.$link);
+//ediitar item
+}elseif($_GET['pdf'] == 0){
+  $smarty->display("item/update_bodega.tpl");
+//enviar pdf por correo	  
+}elseif($_GET['pdf'] == 2){
+
+	$url = $_SERVER['HTTP_HOST'];
+		
+	if($url = 'cercal.net') {
+
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_bodega.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
+	}else{ 	
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_bodega.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
+	}
+}
 
   
 ?>

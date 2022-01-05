@@ -62,7 +62,7 @@ function setear_campos(){
 		 	id_item_refrigerador : $("#id_item_refrigerador").val(),
 		 	id_item,
 		 	nombre_refrigerador : $("#nombre_refrigerador").val(),
-		 	empresa_refrigerador : $("#empresa_refrigerador").val(),
+		 	empresa_refrigerador : $("#id_empresa").val(),
 		  fabricante_refrigerador : $("#fabricante_refrigerador").val(),
 			modelo_refrigerador : $("#modelo_refrigerador").val(),
 			desc_refrigerador : $("#desc_refrigerador").val(),
@@ -88,7 +88,7 @@ function setear_campos(){
 
     //alert($("#valor_seteado_hum").val());
 		
-	$.post('templates/item/editar_refrigerador.php', datos, function(responsive){
+  	$.post('templates/item/editar_refrigerador.php', datos, function(responsive){
 			
 			if(responsive == "Si"){
 				Swal.fire({
@@ -100,6 +100,7 @@ function setear_campos(){
 				});
 			}
 		});
+     
   
 
 	});
@@ -109,7 +110,7 @@ function setear_campos(){
 $("#btn_nuevo_item_refrigerador").click(function(){
 
 
-  let id_empresa_refrigerador = $("#empresa_refrigerador").val();
+  let id_empresa_refrigerador = $("#id_empresa").val();
 
     if (id_empresa_refrigerador == 0) {
       Swal.fire({
@@ -121,7 +122,7 @@ $("#btn_nuevo_item_refrigerador").click(function(){
    
   const datos = {
     nombre_refrigerador : $("#nombre_refrigerador").val(),
-    empresa_refrigerador : $("#empresa_refrigerador").val(),
+    empresa_refrigerador : $("#id_empresa").val(),
     fabricante_refrigerador : $("#fabricante_refrigerador").val(),
     modelo_refrigerador : $("#modelo_refrigerador").val(),
     desc_refrigerador : $("#desc_refrigerador").val(),
@@ -145,7 +146,7 @@ $("#btn_nuevo_item_refrigerador").click(function(){
     temperatura_maxima : $("#temperatura_maxima").val(),
     id_valida
    }
-  $.post('templates/item/nuevo_refrigerador.php', datos, function(response){
+   $.post('templates/item/nuevo_refrigerador.php', datos, function(response){
       
       if(response == "Si"){
          Swal.fire({
@@ -165,6 +166,52 @@ $("#btn_nuevo_item_refrigerador").click(function(){
         });
       }
   });
+ 
 }
   
 });
+
+//////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+
+	$("#aqui_resultados_empresa").hide();
+
+})

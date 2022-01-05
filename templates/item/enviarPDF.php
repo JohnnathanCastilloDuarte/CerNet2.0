@@ -9,7 +9,8 @@
     	//bodega
     	case 1:
     		
-    		
+    		 header('location: update_bodega.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);
+         // echo "update_bodega.php?item=".$id_item."&pdf=".$pdf."&correo=".$correo;
     		break;
     	//Refrigerador	
     	case 2:
@@ -60,13 +61,19 @@
     	//Campana		
     	case 12:
 
-    		  header('location: update_campana_extraccion.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);
+    		    header('location: update_campana_extraccion.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);
 
     		break;	
     	//Flujo laminal		
     	case 13:
 
     	
+    		break;			
+        
+      case 14:
+
+    	      header('location: update_camara_congelada.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);
+        
     		break;			
 
 

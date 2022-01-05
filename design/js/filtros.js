@@ -39,7 +39,7 @@ function limpiar_campos_filtro(){
 $("#btn_crear_item_filtro").click(function(){
   
   let nombre_filtro = $("#nombre_filtro").val();
-  let empresa_filtro = $("#empresa_filtro").val();
+  let empresa_filtro = $("#id_empresa").val();
   let marca_filtro = $("#marca_filtro").val();
   let modelo_filtro = $("#modelo_filtro").val();
   let serie_filtro = $("#serie_filtro").val();
@@ -103,7 +103,7 @@ $("#btn_crear_item_filtro").click(function(){
 $("#btn_editar_item_filtro").click(function(){
   
   let nombre_filtro = $("#nombre_filtro").val();
-  let empresa_filtro = $("#empresa_filtro").val();
+  let empresa_filtro = $("#id_empresa").val();
   let marca_filtro = $("#marca_filtro").val();
   let modelo_filtro = $("#modelo_filtro").val();
   let serie_filtro = $("#serie_filtro").val();
@@ -161,3 +161,48 @@ $("#btn_editar_item_filtro").click(function(){
   })
   
 });
+
+//////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+
+	$("#aqui_resultados_empresa").hide();
+
+})

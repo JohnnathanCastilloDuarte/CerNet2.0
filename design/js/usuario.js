@@ -20,7 +20,10 @@ $("#exampleCustomRadio1").attr('disabled','disabled');
 $("#exampleCustomRadio2").attr('disabled','disabled');
 $("#exampleCustomRadio3").attr('disabled','disabled');
 $("#exampleCustomRadio4").attr('disabled','disabled');
+$("#privilegios").attr('disabled','disabled');
 
+mostar_departamentos();
+mostrar_privilegios();
 
 validar_usuario();
 comparar_pass();
@@ -44,7 +47,6 @@ function validar_usuario(){
 					data: {usuario},
 					url: 'templates/usuario/validar_usuario.php',
 					success: function(e){
-						console.log(e);
 						if(e == "disponible"){
 							Swal.fire({
 								position:'center',
@@ -96,6 +98,7 @@ function comparar_pass(){
 				$("#exampleCustomRadio2").attr('disabled','disabled');
 				$("#exampleCustomRadio3").attr('disabled','disabled');
 				$("#exampleCustomRadio4").attr('disabled','disabled');
+        $("#privilegios").attr('disabled','disabled');
 			}else{
 				alerta="<div class='alert alert-success' role='alert'>Las contraseñas  coinciden</div>";	
 				$("#coinciden_pass").html(alerta);
@@ -113,12 +116,164 @@ function comparar_pass(){
 				$("#exampleCustomRadio2").attr('disabled', false);
 				$("#exampleCustomRadio3").attr('disabled', false);
 				$("#exampleCustomRadio4").attr('disabled', false);
+        $("#privilegios").attr('disabled',false);
 			}
 			
 				
 	});
 	
 }
+
+//mostrar privilegios
+function mostrar_privilegios(){
+   let tipo_mostrar = 'privilegios';
+   $.ajax({
+     type:'POST',
+     data:{tipo_mostrar},
+     url:'templates/usuario/mostrar_departamentos_usuario.php',
+     success:function(e){
+       let traer = JSON.parse(e);
+       let template = "";
+       
+       traer.forEach((valor)=>{
+				template +=
+				`	
+					<option value="${valor.id_privilegio}">${valor.nombre_privilegio}</option>
+					
+				`;
+			});
+
+			$("#privilegios").html(template);
+     }
+   });
+}
+
+//mostrar departamentos
+function mostar_departamentos(){
+   let tipo_mostrar = 'departamentos';
+   $.ajax({
+     type:'POST',
+     data:{tipo_mostrar},
+     url:'templates/usuario/mostrar_departamentos_usuario.php',
+     success:function(e){
+       let traer = JSON.parse(e);
+       let template = "";
+       
+       traer.forEach((valor)=>{
+				template +=
+				`	
+					<option value="${valor.id_departamento}" data-id="${valor.id_departamento}">${valor.nombre_departamento}</option>
+					
+				`;
+			});
+
+			$("#departamento_usuario").html(template);
+     }
+   });
+}
+
+//mostrar roles segun departamento
+$("#departamento_usuario").change(function(){
+  
+  let id_departamento = $('#departamento_usuario').val();
+	let tipo_mostrar = 'cargos';
+   $.ajax({
+     type:'POST',
+     data: {tipo_mostrar,id_departamento},
+     url:'templates/usuario/mostrar_departamentos_usuario.php',
+      success:function(e){
+       let traer = JSON.parse(e);
+       let template = "";
+       
+       traer.forEach((valor)=>{
+				template +=
+				`	
+					<option value="${valor.cargo}">${valor.nombre_cargo}</option>
+					
+				`;
+			});
+
+			$("#cargo_usuario").html(template);
+     }
+   });
+
+});
+
+mostar_departamentos_editar();
+
+//mostrar departamentos editar
+function mostar_departamentos_editar(){
+   let tipo_mostrar = 'departamentos';
+   let id_departamento_editar = $("#id_departamento_editar").val();
+   let nombre_departamento = $("#nombre_departamento_editar").val();
+  // let nombre_cargo = $("#nombre_cargo_editar").val();
+//   let id_cargo_editar = $("#id_cargo_editar").val();
+   $.ajax({
+     type:'POST',
+     data:{tipo_mostrar},
+     url:'templates/usuario/mostrar_departamentos_usuario.php',
+     success:function(e){
+       let traer = JSON.parse(e);
+       let template = "";
+       
+        template +=
+          `	
+						<option value="${id_departamento_editar}" selected>${nombre_departamento}</option>
+					
+				`;
+       
+       traer.forEach((valor)=>{
+				template +=
+				`	
+					<option value="${valor.id_departamento}" data-id="${valor.id_departamento}">${valor.nombre_departamento}</option>
+					
+				`;
+			});
+
+			$("#departamento_usuario_editar").html(template);
+     }
+   });
+}
+
+//mostrar roles segun departamento2
+$("#departamento_usuario_editar").change(function(){
+  
+   let id_departamento = $('#departamento_usuario_editar').val();
+	 let tipo_mostrar = 'cargos';
+   //let id_departamento_editar = $("#id_departamento_editar").val();
+  // let nombre_departamento = $("#nombre_departamento_editar").val();
+   let nombre_cargo = $("#nombre_cargo_editar").val();
+   let id_cargo_editar = $("#id_cargo_editar").val();
+  
+  // console.log(id_departamento_editar)
+   $.ajax({
+     type:'POST',
+     data: {tipo_mostrar,id_departamento},
+     url:'templates/usuario/mostrar_departamentos_usuario.php',
+      success:function(e){
+       let traer = JSON.parse(e);
+       let template = "";
+      
+        template +=
+          `	
+					<option value="${id_cargo_editar}" selected>${nombre_cargo}</option>
+					
+				`;
+       traer.forEach((valor)=>{
+				template +=
+				`	
+					<option value="${valor.cargo}">${valor.nombre_cargo}</option>
+					
+				`;
+			});
+
+			$("#cargo_usuario_editar").html(template);
+        console.log(222);
+     }
+   });
+
+});
+
 
 //crear nuevo usuario
 (function(){
@@ -130,7 +285,6 @@ function comparar_pass(){
 					data: {email},
 					url: 'templates/usuario/valida_email.php',
 					success:function(e){
-						console.log(e);
 						if(e == "disponible"){
 							Swal.fire({
 								position:'center',
@@ -155,25 +309,27 @@ function comparar_pass(){
 
 
 $("#btn_nuevo_usuario").click(function(){
-
+  
+  let estado_defecto = 'Activo';
+  let telefono = $("#telefono_usuario").val();
   const datos = {
   usuario: $("#usuario_principal").val(),
   clave: $("#clave_usuario").val(),
-  //file: $('input[type=file]').val().replace(/C:\\fakepath\\/i, ''),
   nombre_usuario: $("#nombre_usuario").val(),
   apellido_usuario: $("#apellido_usuario").val(),
   email_usuario: $("#email_usuario").val(),
-  telefono_usuario: $("#telefono_usuario").val(),
+  telefonoUsuario: telefono,
   numero_identificacion: $("#numero_identificacion").val(),
-  cargo_usuario:$("#cargo_usuario").val(),
+  cargo_usuario: $("#cargo_usuario").val(),
   departamento_usuario:$("#departamento_usuario").val(),
   pais_usuario: $("#pais_usuario").val(),
-  empresa_usuario:$("#empresa_usuario").val(),	
-  estado_usuario :$('input:radio[name=estado_usuario]:checked').val()	
+  empresa_usuario: $("#empresa_usuario").val(),	
+  privilegios_usuario: $("#privilegios").val(),  
+  estado_usuario: estado_defecto
   }
 
-  $.post('templates/usuario/crear_usuario.php',datos,function(e){
-    console.log(e);
+ $.post('templates/usuario/crear_usuario.php',datos,function(e){
+    
     if(e=="creado"){
       Swal.fire({
         position:'center',
@@ -187,7 +343,7 @@ $("#btn_nuevo_usuario").click(function(){
       });
     }
   });
-
+  
 });//fin del evento .click
 
 
@@ -199,7 +355,6 @@ $("#formulario_actualizacion_usuario").submit(function(e){
 
     var formData = new FormData(document.getElementById("formulario_actualizacion_usuario"));
   
-  
   	$.ajax({
       type: 'POST',
       dataType: 'html',
@@ -209,7 +364,7 @@ $("#formulario_actualizacion_usuario").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-          console.log(response);
+        console.log(response);
           if(response == "Actualizado"){
             Swal.fire({
               title:'Mensaje',
@@ -218,15 +373,13 @@ $("#formulario_actualizacion_usuario").submit(function(e){
               timer:1500
             });
 
+          }else{
+            alert("error");
           }
       }
 		});
 
 });
-
-
-
-
 
 
 /////////// FUNCION PARA BUSCAR CARGO

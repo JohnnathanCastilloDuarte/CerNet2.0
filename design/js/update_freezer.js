@@ -67,7 +67,7 @@ function setear_campos(){
 			id_item_freezer : $("#id_item_freezer").val(),
 			id_item_2,
 			nombre_freezer : $("#nombre_freezer").val(),
-			empresa_freezer : $("#empresa_freezer").val(),
+			empresa_freezer : $("#id_empresa").val(),
 			fabricante_freezer : $("#fabricante_freezer").val(),
 			modelo_freezer : $("#modelo_freezer").val(),
 			desc_freezer : $("#desc_freezer").val(),
@@ -122,7 +122,7 @@ function setear_campos(){
 /////////Funcion apra crear freezer
 $("#btn_nuevo_item_freezer").click(function(){
 
-	let id_empresa_freezer = $("#empresa_freezer").val();
+	let id_empresa_freezer = $("#id_empresa").val();
 
 	if (id_empresa_freezer == 0) {
 		   Swal.fire({
@@ -134,7 +134,7 @@ $("#btn_nuevo_item_freezer").click(function(){
 
 	const datos = {
 		nombre_freezer : $("#nombre_freezer").val(),
-		empresa_freezer : $("#empresa_freezer").val(),
+		empresa_freezer : $("#id_empresa").val(),
 		fabricante_freezer : $("#fabricante_freezer").val(),
 		modelo_freezer : $("#modelo_freezer").val(),
 		desc_freezer : $("#desc_freezer").val(),
@@ -182,5 +182,50 @@ $("#btn_nuevo_item_freezer").click(function(){
 
 	});
  }
+
+})
+
+//////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+
+	$("#aqui_resultados_empresa").hide();
 
 })

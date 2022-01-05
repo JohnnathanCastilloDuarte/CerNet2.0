@@ -21,11 +21,19 @@ $user = $_GET['user'];
 
 //consultar usuario
 $id_empresa = "";
-$persona = mysqli_query($connect,"SELECT * FROM persona as a , usuario as b  WHERE a.id_usuario = b.id_usuario AND a.id_usuario = $user");
+$persona = mysqli_query($connect,"SELECT *,a.nombre as nombre_persona, c.nombre as nombre_cargo, d.departamento as nombre_departamento, a.estado as estado_persona 
+FROM persona as a , usuario as b, cargo as c, departamento as d
+WHERE a.id_usuario = b.id_usuario AND c.id_cargo = a.id_cargo AND d.id=c.id_departamento AND a.id_usuario = $user");
 $array_persona=array();	
 while($fila = mysqli_fetch_array($persona))
 {
   $id_empresa = $fila['id_empresa'];
+  $id_departamento = $fila['id_departamemnto'];
+  $id_cargo = $fila['id_cargo'];
+  $nombre_cargo = $fila['nombre_cargo'];
+  $nombre_departamento = $fila['nombre_departamento'];
+  $estado_persona = $fila['estado_persona'];
+  $nombre_persona = $fila['nombre_persona'];
   $array_persona[]=$fila;
 }
 //consultar empresa 

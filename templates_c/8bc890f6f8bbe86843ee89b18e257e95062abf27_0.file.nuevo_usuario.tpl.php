@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-03 15:05:14
+/* Smarty version 3.1.34-dev-7, created on 2022-01-03 12:41:34
   from '/home/god/public_html/CerNet2.0/templates/usuario/nuevo_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61aa322a9a15c1_70351155',
+  'unifunc' => 'content_61d2eefe6dc576_43562322',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8bc890f6f8bbe86843ee89b18e257e95062abf27' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/usuario/nuevo_usuario.tpl',
-      1 => 1638464023,
+      1 => 1641188510,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61aa322a9a15c1_70351155 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d2eefe6dc576_43562322 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-4">	
 		<div class="card">
@@ -32,7 +32,7 @@ function content_61aa322a9a15c1_70351155 (Smarty_Internal_Template $_smarty_tpl)
 				<?php echo $_smarty_tpl->tpl_vars['alerta']->value;?>
 
 				<div class="col-sm-12">
-					<div class="position-relative form-group"><label for="nombre_usuario" class=""><span class="text-danger">*</span>Usuario</label>
+					<div class="position-relative form-group"><label for="nombre_usuario" class=""><span class="text-danger">*</span>Nombre usuario</label>
 						<input name="usuario" id="usuario_principal" placeholder="Ingrese un usuario" type="text" class="form-control" required>
 					</div>
 				</div>
@@ -120,30 +120,7 @@ function content_61aa322a9a15c1_70351155 (Smarty_Internal_Template $_smarty_tpl)
 							<input type="text" class="form-control" id="numero_identificacion" placeholder="# de identificación" >
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<label>Cargo:</label>
-						<select class="form-control" id="cargo_usuario">
-							<option>Selecciona...</option>
-							<option value="Administrativo">Administrativo</option>
-							<option value="Comercial">Comercial</option>
-							<option value="Documentador">Documentador</option>
-							<option value="Gerente general">Gerente general</option>
-							<option value="Ingeniero">Ingeniero</option>
-							<option value="T.I.">T.I.</option>
-						</select>	
-					</div>
-				</div>	
-
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="position-relative form-group">
-							<label>Departamento</label>
-							<select class="form-control" id="departamento_usuario">
-
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-6">
+          <div class="col-sm-6">
 						<div class="position-relative form-group">						
 							<label>Pais:</label>
 							<select class="form-control" id="pais_usuario">
@@ -163,13 +140,38 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 							</select>
 						</div>
 					</div>
-				</div>
+				</div>	
 
 				<div class="row">
+				<!--
 					<div class="col-sm-6">
+						<label>Cargo:</label>
+						<select class="form-control" id="cargo_usuario">
+							
+						</select>	
+					</div>-->
+					<div class="col-sm-6">
+						<div class="position-relative form-group">
+							<label>Departamento</label>
+							<select class="form-control" id="departamento_usuario">
+               
+							</select>
+						</div>
+					</div>
+          
+          <div class="col-sm-6">
+						<label>Cargo:</label>
+							<select class="form-control" id="cargo_usuario">
+								
+								
+							</select>
+					</div>
+				</div>
+        	<div class="row">
+          <div class="col-sm-6">
 						<label>Empresa:</label>
 							<select class="form-control" id="empresa_usuario">
-								<option>Selecciona...</option>
+								<option>Seleccione...</option>
 								<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['empresas']->value, 'empresa');
 if ($_from !== null) {
@@ -184,7 +186,17 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 							</select>
 					</div>
+             <div class="col-sm-6">
+						<label>Tipo Usuario:</label>
+							<select class="form-control" id="privilegios">
+								<option value="0" selected>Seleccione...</option>
+								
+							</select>
+					</div>
 				</div>
+
+				
+        <!--
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="position-relative form-group"><label>Estado:</label></div>
@@ -213,11 +225,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 							<label class="custom-control-label" for="exampleCustomRadio4">Vacaciones</label>	
 						</div>
 					</div>
-				</div>
+				</div>-->
+        
 			</div>
 			<br>
 			<div class="col-sm-12">
-			<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_nuevo_usuario" name="btn_nuevo_usuario">Aceptar</button>
+			<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info btn-align-center" id="btn_nuevo_usuario" name="btn_nuevo_usuario">Aceptar</button>
 			</div>
 		</div><!--Cierre del card-body--> 
 	</div><!--Cierre del col-sm-7-->

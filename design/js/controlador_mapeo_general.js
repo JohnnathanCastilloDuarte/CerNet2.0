@@ -43,7 +43,7 @@ $("#btn_nueva_altura_bandeja").click(function(){
         data:datos,
         url:'templates/mapeos_generales/controlador_bandeja.php',
         success:function(response){
-            console.log(response);
+          
             if(response == "Listo"){
                 Swal.fire({
                     title:'Mensaje',
@@ -76,7 +76,6 @@ function listar_bandejas(){
         data:datos,
         url:'templates/mapeos_generales/controlador_bandeja.php',
         success:function(response){
-            console.log(response);
 
             let traer = JSON.parse(response);
             let template = "";
@@ -139,7 +138,7 @@ $(document).on('click','#btn_eliminar_bandeja',function(){
                     data:datos,
                     url:'templates/mapeos_generales/controlador_bandeja.php',
                     success:function(response){
-                        console.log(response);
+                  
                         if(response == "Si"){
                             Swal.fire({
                                 title:'Mensaje',
@@ -280,7 +279,7 @@ function listar_mapeos(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_mapeo.php',
         success:function(response){
-            console.log(response);
+       
 
             let traer = JSON.parse(response);
             let template = "";
@@ -344,7 +343,7 @@ $(document).on('click','#editar_mapeo',function(){
         data:{id_mapeo, movimiento},
         url:'templates/mapeos_generales/controlador_mapeo.php',
         success:function(response){
-            console.log(response);
+           
             let traer = JSON.parse(response);
 
           
@@ -433,7 +432,7 @@ $("#btn_editar_mapeo_general").click(function(){
         data:datos,
         url:'templates/mapeos_generales/controlador_mapeo.php',
         success:function(response){
-            console.log(response);
+       
 
             if(response == "Si"){
                 Swal.fire({
@@ -475,7 +474,7 @@ $(document).on('click','#eliminar_mapeo',function(){
                     data:{id_mapeo, movimiento},
                     url:'templates/mapeos_generales/controlador_mapeo.php',
                     success:function(response){
-                        console.log(response);
+                    
 
                         if(response == "Si"){
                             Swal.fire({
@@ -634,7 +633,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
         data:datos,
         url:'templates/mapeos_generales/controlador_sensor.php',
         success:function(response){
-            console.log(response);
+          
             let traer = JSON.parse(response);
             let template = "";
             let template2 = "";
@@ -780,7 +779,6 @@ $(document).on('change','#cambiar_posicion', function(){
         success:function(response){
             let id_mapeo_actual = $("#id_mapeo_configurar").val();
             let id_bandeja_actual = $("#id_bandeja_configurar").val();
-            console.log(response);
 
             if(response == "Si"){
                 Swal.fire({
@@ -810,7 +808,6 @@ $(document).on('click','#remover_sensor',function(response){
             success:function(response){
                 let id_mapeo_actual = $("#id_mapeo_configurar").val();
                 let id_bandeja_actual = $("#id_bandeja_configurar").val();
-                console.log(response);
     
                 if(response == "Si"){
                     Swal.fire({
@@ -878,7 +875,6 @@ $(document).on('change','#cambiar_posicion_temp',function(){
         success:function(response){
             let id_mapeo_actual = $("#id_mapeo_configurar").val();
             let id_bandeja_actual = $("#id_bandeja_configurar").val();
-            console.log(response);
 
             if(response == "Si"){
                 Swal.fire({
@@ -912,7 +908,6 @@ $(document).on('change','#cambiar_posicion_hum',function(){
         success:function(response){
             let id_mapeo_actual = $("#id_mapeo_configurar").val();
             let id_bandeja_actual = $("#id_bandeja_configurar").val();
-            console.log(response);
 
             if(response == "Si"){
                 Swal.fire({
@@ -935,8 +930,7 @@ function validar_datos_crudos(id_mapeo, movimiento){
         data:{id_mapeo,movimiento},
         url:'templates/mapeos_generales/controlador_datos_crudos.php',
         success:function(response){
-            console.log(response);
-
+          
             if(movimiento == "validar_archivo"){
                 if(response == "Cargado"){
                     $("#cargado_archivo_dc").show();
@@ -1025,7 +1019,6 @@ $("#eliminar_datos_crudos").click(function(){
                     data:{id_mapeo,movimiento},
                     url:'templates/mapeos_generales/controlador_datos_crudos.php',
                     success:function(response){
-                        console.log(response);
                         if(response == "Listo"){
                             Swal.fire({
                                 title:'Mensaje',
@@ -1059,7 +1052,7 @@ function traer_correlativo(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_consecutivo.php',
         success:function(response){
-            console.log(response);
+       
             $("#correlativo").val(response);
         }
 
@@ -1082,7 +1075,6 @@ $("#asignar_correlativo").click(function(){
         data:datos,
         url:'templates/mapeos_generales/controlador_consecutivo.php',
         success:function(response){
-            console.log(response);
 
             if(response == "Si"){
                 Swal.fire({
@@ -1198,7 +1190,6 @@ $("#creacion_temp").click(function(){
             url:'templates/mapeos_generales/controlador_informes.php',
             success:function(response){
 
-                console.log(response);
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',
@@ -1253,7 +1244,6 @@ $("#creacion_hum").click(function(){
             url:'templates/mapeos_generales/controlador_informes.php',
             success:function(response){
 
-                console.log(response);
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',
@@ -1313,7 +1303,7 @@ $(document).on('click','#eliminar_informe',function(){
                         data:{id_informe, movimiento},
                         url:'templates/mapeos_generales/controlador_informes.php',
                         success:function(response){
-                            console.log(response);
+
                             if(response == "Si"){
                                 Swal.fire({
                                     title:'Mensaje',
@@ -1341,7 +1331,7 @@ function listar_info_temp(id_informe){
         data:{id_informe,movimiento},
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
-            console.log(response);
+
             let traer = JSON.parse(response);
             let template = "";
             let url_imagen_1 = "";
@@ -1467,7 +1457,6 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-            console.log(response);
 
             listar_info_temp(response);
         }

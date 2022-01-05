@@ -29,6 +29,8 @@ $id_bodega = NULL;
 $fecha_registro = NULL;
 $estado = 1;
 
+
+
 ///Insertamos en la tabla de item para crear un id
 	$crear = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES (?, ?, ?, ?, ?, ?)");
 
@@ -66,5 +68,6 @@ $estado = 1;
 		mysqli_stmt_error($insertar);	
 
 echo("Todo salio bien ");
+
 
 ?>

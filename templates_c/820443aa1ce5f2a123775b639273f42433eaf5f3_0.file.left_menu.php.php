@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-23 13:59:00
+/* Smarty version 3.1.34-dev-7, created on 2021-12-28 23:07:59
   from '/home/god/public_html/CerNet2.0/templates/left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c480a43e66c5_85586576',
+  'unifunc' => 'content_61cb98cf0b2e60_21326954',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '820443aa1ce5f2a123775b639273f42433eaf5f3' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/left_menu.php',
-      1 => 1640267912,
+      1 => 1640732816,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c480a43e66c5_85586576 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61cb98cf0b2e60_21326954 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -271,7 +271,6 @@ function content_61c480a43e66c5_85586576 (Smarty_Internal_Template $_smarty_tpl)
     </ul>
     </li>
     </div>
-
 
 
     <div id="modulo_7">

@@ -43,21 +43,13 @@
                   <input type="text" id="nombre_ultrafreezer" class="form-control" value="{$ultrafreezer.nombre_ultrafreezer}" required="" placeholder="Nombre ultrafreezer">
                 </div>
                 <div class="col-sm-6">
-                  <label>Empresa</label>
-                  <select class="form-control" id="empresa_ultrafreezer">
-                    {if $ultrafreezer.id_empresa == ""}
-                    <option value="0">Seleccione....</option>
-                    {foreach from=$array_empresas item=empresa}
-                      <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
-                     {/foreach}
-                     {else}
-                    <option value="{$ultrafreezer.id_empresa}">{$ultrafreezer.nombre_empresa}</option>
-                     {foreach from=$array_empresas item=empresa}
-                      <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
-                     {/foreach}
-                     {/if}
-                    }
-                  </select>
+                 <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="{$ultrafreezer.id_empresa}">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$ultrafreezer.nombre_empresa}">
+                    <div>
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
                 </div>
 
               </div>

@@ -15,7 +15,6 @@ mysqli_stmt_bind_result($tipo_informe_1, $id_servicio_mapeo);
 mysqli_stmt_fetch($tipo_informe_1);
 
 
-
 $smarty->assign("id_servicio_mapeo",$id_servicio_mapeo);
 
 $mapeo = mysqli_prepare($connect,"SELECT a.id_asignado, b.numot, f.nombre,  d.nombre,  e.nombre, e.apellido  
@@ -24,7 +23,6 @@ $mapeo = mysqli_prepare($connect,"SELECT a.id_asignado, b.numot, f.nombre,  d.no
 mysqli_stmt_execute($mapeo);
 mysqli_stmt_store_result($mapeo);
 mysqli_stmt_bind_result($mapeo, $id_asignado, $numot, $item, $empresa, $usuario_nombre, $usuario_apellido);
-
 
 while($row = mysqli_stmt_fetch($mapeo)){
 	$array_mapeo[]=array(

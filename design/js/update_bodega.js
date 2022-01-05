@@ -129,7 +129,7 @@ function planos(){
 	$("#btn_editar_item_bodega").click(function(){
 
 		let nombre_bodega = $("#nombre_bodega").val();
-		let empresa_bodega = $("#empresa_bodega").val();
+		let empresa_bodega = $("#id_empresa").val();
 		let descripcion_bodega = $("#descripcion_item_bodega").val();
 		let direccion_bodega = $("#direccion_bodega").val();
 		let codigo_bodega = $("#codigo_bodega").val();
@@ -228,7 +228,7 @@ function planos(){
 $("#btn_nuevo_item_bodega").click(function(){
 
 	let nombre_bodega = $("#nombre_bodega").val();
-	let empresa_bodega = $("#empresa_bodega").val();
+	let empresa_bodega = $("#id_empresa").val();
 	let descripcion_item_bodega = $("#descripcion_item_bodega").val();
 	let direccion_bodega = $("#direccion_bodega").val();
 	let codigo_bodega = $("#codigo_bodega").val();
@@ -293,6 +293,7 @@ $("#btn_nuevo_item_bodega").click(function(){
 		url:'templates/item/nueva_bodega.php',
 		data: datos,
 		success:function(response){
+      console.log(response);
 			Swal.fire({
 				icon :'success',			
 				text: 'Bodega creada correctamente!',
@@ -303,8 +304,7 @@ $("#btn_nuevo_item_bodega").click(function(){
 				}
 
 			});
-			console.log(response);
-
+		
 		}
 	})
 
@@ -373,6 +373,7 @@ $(document).on('click','#seleccionar_empresa',function(){
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
 	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
 
 	$("#aqui_resultados_empresa").hide();
 

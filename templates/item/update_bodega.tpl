@@ -34,6 +34,7 @@
 
           </ul>
           <div class="form-wizard-content">
+           <input value='{$id_tipo}' id='id_tipo' type="hidden">
             <div id="step-12">
               <div class="form-row">
                 <div class="col-sm-6">
@@ -45,20 +46,15 @@
                 <div class="col-sm-6">
                   <div class="position-relative form-group">
                     <label>Empresa:</label>
-                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa">
+                    <input type="hidden" id="id_empresa" value="{$bodega.id_empresa}">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$bodega.nombre_empresa}">
                     <div >
                       
                       <table class="table" id="aqui_resultados_empresa">
                          
                       </table>
                     </div>
-                    <!--
-                    <select id="empresa_bodega" class="form-control">
-                      <option value="{$bodega.id_empresa}">{$bodega.nombre_empresa}</option>
-                      {foreach from=$array_empresa item=empresa}
-                      <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-                      {/foreach}
-                    </select>-->
+              
                   </div>
                 </div>
               </div>

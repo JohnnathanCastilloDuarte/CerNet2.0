@@ -4,7 +4,6 @@ include("../../config.ini.php");
 
 $tipo_item = $_GET['type'];
 
-echo "<input id='tipo_item_automovil' value='".$tipo_item."' hidden></input>";
 	//CONSULTAR EMPRESAS
 $consultar_empresa = mysqli_prepare($connect,"SELECT id_empresa, nombre FROM empresa");
 mysqli_stmt_execute($consultar_empresa);

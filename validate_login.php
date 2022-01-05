@@ -32,18 +32,24 @@ if(isset($_POST['empezar']))
   }
   
   
-  $existe_usuario="SELECT A.id_usuario, A.usuario, B.nombre, C.departamento, D.nombre FROM usuario AS A, persona AS B, departamento as C, cargo AS D WHERE D.id_departamento = C.id AND A.usuario=? AND password=? AND A.id_usuario=B.id_usuario AND B.id_cargo = D.id_cargo";
+  $existe_usuario="SELECT A.id_usuario, A.usuario, B.nombre, C.departamento, D.nombre,B.estado 
+  FROM usuario AS A, persona AS B, departamento as C, cargo AS D 
+  WHERE D.id_departamento = C.id AND A.usuario=? AND password=? AND A.id_usuario=B.id_usuario AND B.id_cargo = D.id_cargo";
   $conecto=mysqli_prepare($connect,$existe_usuario);
   mysqli_stmt_bind_param($conecto, 'ss', $user,$enc_pass);
   mysqli_stmt_execute($conecto);
   mysqli_stmt_store_result($conecto);
-  mysqli_stmt_bind_result($conecto,$id_usuario_online,$usuario_online,$nombre_usuario_online, $departamento, $cargo_usuario_online);
+  mysqli_stmt_bind_result($conecto,$id_usuario_online,$usuario_online,$nombre_usuario_online, $departamento, $cargo_usuario_online,$estado);
   mysqli_stmt_fetch($conecto);
+  
+  
   if($online=="on"){$online=1;}else{$online=0;}
 
   if(mysqli_stmt_num_rows($conecto)<1)
   {
 	  header("refresh:0; url=mi_acceso.php?error=error_0001"); 	
+  }elseif($estado != 'Activo'){
+     header("refresh:0; url=mi_acceso.php?error=error_0004"); 
   }
   else
   {

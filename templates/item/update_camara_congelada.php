@@ -8,11 +8,11 @@ if(isset($_GET['item'])){
     $smarty->assign("id_item",$id_item);
 
 	//consultar item
-	$execute = mysqli_prepare($connect,"SELECT a.nombre, a.id_empresa, b.nombre, c.id_item_camara_congelada, c.marca, c.modelo, c.ubicacion, c.valor_seteado, c.valor_maximo, c.valor_minimo FROM item as a, empresa as b, item_camara_congelada as c   WHERE a.id_empresa = b.id_empresa AND a.id_item = c.id_item AND c.id_item = ?");
+	$execute = mysqli_prepare($connect,"SELECT a.nombre, a.id_empresa, b.nombre, c.id_item_camara_congelada, c.marca, c.modelo, c.ubicacion, c.valor_seteado, c.valor_maximo, c.valor_minimo,d.nombre FROM item as a, empresa as b, item_camara_congelada as c, tipo_item as d   WHERE a.id_empresa = b.id_empresa AND d.id_item = a.id_tipo AND a.id_item = c.id_item AND c.id_item = ?");
 	mysqli_stmt_bind_param($execute, 'i', $id_item);
 	mysqli_stmt_execute($execute);
 	mysqli_stmt_store_result($execute);
-	mysqli_stmt_bind_result($execute, $nombre, $id_empresa, $empresa, $id_camara_congelada, $marca, $modelo, $ubicacion, $valor_seteado, $valor_maximo, $valor_minimo);
+	mysqli_stmt_bind_result($execute, $nombre, $id_empresa, $empresa, $id_camara_congelada, $marca, $modelo, $ubicacion, $valor_seteado, $valor_maximo, $valor_minimo, $nombre_tipo_item);
 	mysqli_stmt_fetch($execute);
 
     $array_camara_congelada[] = array(
@@ -26,7 +26,9 @@ if(isset($_GET['item'])){
         'valor_seteado'=>$valor_seteado,
         'valor_maximo'=>$valor_maximo,
         'valor_minimo'=>$valor_minimo,
-        'id_item'=>$id_item
+        'nombre_tipo_item'=> $nombre_tipo_item,
+        'id_item'=>$id_item,
+        
     );
     
 
@@ -51,12 +53,35 @@ if(isset($_GET['item'])){
     );
     
 
-
-
     $smarty->assign("array_camara_congelada",$array_camara_congelada);
 }
+//ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
+$convert = json_encode($array_camara_congelada);   
+$conv = base64_encode($convert);
+$link = 'templates/item/pdf/pdf/pdf_camara_congelada.php?&data='.$conv;
+//pdf item
+if ($_GET['pdf'] == 1) {
 
+	header('location: '.$link);
+//ediitar item
+}elseif($_GET['pdf'] == 0){
+  $smarty->display("item/update_camara_congelada.tpl");  
+//enviar pdf por correo	  
+}elseif($_GET['pdf'] == 2){
 
+	$url = $_SERVER['HTTP_HOST'];
+		
+	if($url = 'cercal.net') {
 
-$smarty->display("item/update_camara_congelada.tpl");  
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_camara_congelada.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);		
+	}else{ 	
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_camara_congelada.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
+	}
+
+}
+
 ?>

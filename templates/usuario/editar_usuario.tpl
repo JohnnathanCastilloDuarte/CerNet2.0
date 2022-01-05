@@ -1,5 +1,13 @@
+ {foreach from=$array_persona  item=persona}
+  <input type="hidden" value="{$persona.id_departamento}" id="id_departamento_editar">
+  <input type="hidden" value="{$persona.nombre_departamento}" id="nombre_departamento_editar">
+  <input type="hidden" value="{$persona.id_cargo}" id="id_cargo_editar">
+  <input type="hidden" value="{$persona.nombre_cargo}" id="nombre_cargo_editar">
+      {/foreach}
+
 <form method="post" id="formulario_actualizacion_usuario" enctype="multipart/form-data">
 	<input type="hidden" name="id_usuario" value="{$id_usuario}">
+ 
 	<div class="app-main__inner">
 		<div class="container-fluid">
 			<div class="row mb-2">
@@ -18,7 +26,7 @@
 		<div class="card">
 			<div class="card-header">
 				{foreach from=$array_persona item=persona_array}
-				<h5>Editar usuario {$persona_array.nombre} {$persona_array.apellido}</h5>
+				<h5>Editar usuario: {$persona_array.nombre_persona} {$persona_array.apellido}</h5>
 				{/foreach}
 			</div>
 		</div>
@@ -40,7 +48,7 @@
 
 						<div class="row mx-auto">
 							<div id="preview">
-								<img style="width: 350px; height:150px; text-aling:center;" src="{$imagen_encontrada}" alt="" class="d-block ui-w-30 rounded-circle"  value="{$imagen_encontrada}">
+								<img style="width: 320px; height:180px; text-aling:center;" src="{$imagen_encontrada}" alt="" class="d-block ui-w-30 rounded-circle"  value="{$imagen_encontrada}">
 
 							</div>
 							<input type="file" name="profile_image" id="file" class="form-control" >
@@ -61,7 +69,7 @@
 						<div class="row">
 							<div class="col-sm-6">
 								{$alerta_1}
-								<label>Usuario:</label>
+								<label>Nombre de usuario:</label>
 								<input type="text" name="usuario" class="form-control" value="{$persona_array.usuario}" readonly>
 
 							</div>
@@ -115,27 +123,16 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Departamento:</label>
-								<select class="form-control" name="departamento_usuario">
-									<option value="{$persona_array.departamento}">{$persona_array.departamento}</option>
-									<option value='ADMINISTRACIÓN'>ADMINISTRACIÓN</option>
-									<option value='COMERCIAL'>COMERCIAL</option>
-									<option value='CSV'>CSV</option>
-									<option value='GEP'>GEP</option>
-									<option value='MARKETING'>MARKETING</option>
-									<option value='SPOT'>SPOT</option>
-									<option value='T.I.'>T.I.</option>
+								<select class="form-control" id="departamento_usuario_editar" name="departamento_usuario">
+									
 								</select>
 							</div>
 							<div class="col-sm-6">
 								<label>Cargo:</label>
-								<select class="form-control" name="cargo_usuario">
-									<option value="{$persona_array.cargo}">{$persona_array.cargo}</option>
-									<option value="Administrativo">Administrativo</option>
-									<option value="Comercial">Comercial</option>
-									<option value="Documentador">Documentador</option>
-									<option value="Gerente general">Gerente general</option>
-									<option value="Ingeniero">Ingeniero</option>
-									<option value="T.I.">T.I.</option>
+								<select class="form-control" id="cargo_usuario_editar"  name="cargo_usuario">
+                  {foreach from=$array_persona  item=persona}
+									<option value="{$persona.id_cargo}">{$persona.nombre_cargo}</option>
+                  {/foreach}
 								</select>
 							</div>
 						</div>
@@ -152,18 +149,30 @@
 						{else}
 						{$checked4 = "checked"}
 						{/if}
-						<br>
 
 						<div class="row">
 							<div class="col-sm-6">
-								<div class="position-relative form-group"><label>Estado:</label></div>
+								<div class="position-relative form-group"><label>Estado:</label>
 								<select class="form-control" name="estado_usuario">
-									<option value="{$persona_array.estado}">{$persona_array.estado}</option>
+                   {foreach from=$array_persona  item=persona}
+                  <option value="{$persona.estado_persona}">{$persona.estado_persona}</option>
+                  {/foreach}
 									<option value="Activo">Activo</option>
 									<option value="Desvinculado">Desvinculado</option>
 									<option value="Con licencia">Con licencia</option>
 									<option value="Vacaciones">Vacaciones</option>
 								</select>
+                </div>
+              </div>
+            </div>  
+              <div class="row">
+                <div class="col-sm-12" >
+                 <div style="text-align:center;">
+                    <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" >Actualizar</button>
+                 </div> 
+               </div>
+              </div>
+            </form>	
                 <!--
 								<div class="position-relative form-group"><label>Estado:</label></div>
 							</div>
@@ -198,15 +207,9 @@
 		</div>
 	</div>
 	<br>
-	<div class="row">
-		<div class="col-sm-12" >
-			<div style="text-align:center;">
-				<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" >Actualizar</button>
-			</div>
-		</div>
-	</div>
+	
 
-</form>	
+
 <script>
 	document.getElementById("file").onchange = function(e) {
 		let reader = new FileReader();

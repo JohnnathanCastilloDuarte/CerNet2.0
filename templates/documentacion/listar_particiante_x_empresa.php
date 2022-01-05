@@ -23,12 +23,13 @@ if($selector == 1){
   }
   
 }else{
+  
   $id_usuario = $_POST['id_usuario'];
-  $consultar = mysqli_prepare($connect,"SELECT a.id_usuario, a.nombre, a.apellido, a.email, b.nombre FROM persona as a, cargo as b, usuario as c  WHERE c.id_usuario = ? AND a.id_cargo = b.id_cargo AND c.id_usuario =  a.id_usuario");
+  $consultar = mysqli_prepare($connect,"SELECT a.id_usuario, a.nombre, a.apellido, a.email, b.nombre, d.departamento FROM persona as a, cargo as b, usuario as c, departamento as d  WHERE c.id_usuario = ? AND a.id_cargo = b.id_cargo AND c.id_usuario =  a.id_usuario AND b.id_departamento = d.id");
   mysqli_stmt_bind_param($consultar, 'i', $id_usuario);
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
-  mysqli_stmt_bind_result($consultar, $id_persona, $nombre, $apellido, $email, $cargo);
+  mysqli_stmt_bind_result($consultar, $id_persona, $nombre, $apellido, $email, $cargo, $departamento);
 
 
 
@@ -38,7 +39,8 @@ if($selector == 1){
       'nombre'=>$nombre,
       'apellido'=>$apellido,
       'email'=>$email,
-      'cargo'=>$cargo
+      'cargo'=>$cargo,
+      'departamento'=>$departamento
     );
   }
 }

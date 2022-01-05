@@ -8,7 +8,7 @@ unlink($resultado);
 
 if (!file_exists($resultado)) {
    $consultar = mysqli_prepare($connect,"SELECT id FROM archivos_documentacion WHERE url = ?");
-  mysqli_stmt_bind_param($consultar, 's', $url);
+  mysqli_stmt_bind_param($consultar, 's', $resultado);
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
   mysqli_stmt_bind_result($consultar, $id_eliminar);
