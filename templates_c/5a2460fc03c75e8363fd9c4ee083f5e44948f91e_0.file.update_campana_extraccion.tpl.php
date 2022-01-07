@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-29 15:00:05
+/* Smarty version 3.1.34-dev-7, created on 2022-01-04 15:26:05
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_campana_extraccion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61cc69e56c9145_08784926',
+  'unifunc' => 'content_61d458fd282b80_90585525',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a2460fc03c75e8363fd9c4ee083f5e44948f91e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_campana_extraccion.tpl',
-      1 => 1640786396,
+      1 => 1641271964,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61cc69e56c9145_08784926 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d458fd282b80_90585525 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
       <div class="card-header">
-
+ 
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_campana']->value, 'campana');
 if ($_from !== null) {
