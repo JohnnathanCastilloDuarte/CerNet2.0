@@ -118,7 +118,24 @@ $(document).on('click','#btn_agregar_equipo',function(){
             id_asignado_campana
         }
 
+        
 
+    }
+
+    else if(pk == "flujo_laminar"){
+
+        proceso = 333;
+        let tipo_prueba = $("#tipo_prueba").val();
+        let id_asignado_campana = $("#id_asignado_flujo_laminar").val();
+     
+        datos = {
+            id_equipo,
+            proceso,
+            tipo_prueba,
+            id_asignado_campana
+        }
+
+    
     }else{
 
         let id_informe  = $("#id_informe_filtro").val();
@@ -179,6 +196,15 @@ function listar_equipos_asignados(){
 
         proceso = 44;
         let id_asignado = $("#id_asignado_campana").val();
+        datos = {
+            proceso,
+            id_asignado
+        }
+
+    }else if(pk == "flujo_laminar"){
+
+        proceso = 44;
+        let id_asignado = $("#id_asignado_flujo_laminar").val();
         datos = {
             proceso,
             id_asignado

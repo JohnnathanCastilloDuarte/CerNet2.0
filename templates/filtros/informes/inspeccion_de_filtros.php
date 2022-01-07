@@ -469,14 +469,6 @@ $pdf->writeHTMLCell(30, 5, 165, '', 'valor', 1, 1, 0, true, 'C', true);
 
 
 
-
-
-
-
-
-
-
-
 //for($i = 0; $i <= 50; $i++){
 // Largo o Ancho // Alto   //  posición
 //    $pdf->writeHTMLCell(20, 5, 15, '', 'Descripción', 1, 0, 0, true, 'C', true);
