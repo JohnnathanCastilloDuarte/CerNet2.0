@@ -67,7 +67,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12));
 
 
 $aprobaciones = array();
@@ -212,6 +212,8 @@ else
                 include("templates/item/update_incubadora.php");
               }else if($_GET["type"] == 7){
                 include("templates/item/update_automovil.php");
+              }else if($_GET["type"] == 8){
+                include("templates/item/update_sala_limpia.php");
               }else if($_GET["type"] == 11){
                 include("templates/item/update_filtro.php");
               }else if($_GET["type"] == 12){
@@ -304,9 +306,13 @@ else
                 include("templates/protocolos/datos_protocolos.php");
               }else if($_GET["type"] == 10){
                 include("templates/flujo_laminar/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 11){
+                include("templates/sala_limpia/datos_informe_mapeo.php");
               }
             }else if($_GET['page'] == 11 ){
               include("templates/flujo_laminar/gestionar_informe.php");
+            }else if($_GET['page'] == 12 ){
+              include("templates/sala_limpia/gestionar_informe.php");
             }
           }
        break;

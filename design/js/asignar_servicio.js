@@ -491,7 +491,7 @@ function listar_equipos(id_servicio){
 						});
 					}else{
 						traer.forEach((result)=>{
-				
+							console.log(result);
 							template += `
 								<tr id-servicio = "${id_servicio}">
 									<td>${result.id_item}</td>
