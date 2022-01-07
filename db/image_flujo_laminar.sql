@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-01-2022 a las 17:03:09
+-- Tiempo de generación: 07-01-2022 a las 17:02:51
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.22
 
@@ -24,14 +24,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `item_flujo_laminar`
+-- Estructura de tabla para la tabla `image_flujo_laminar`
 --
 
-CREATE TABLE `item_flujo_laminar` (
-  `id` int(11) NOT NULL,
-  `id_item` int(11) DEFAULT NULL,
-  `cantidad_filtro` int(11) DEFAULT NULL,
-  `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `image_flujo_laminar` (
+  `id_imagen` int(11) NOT NULL,
+  `id_asignado` int(11) NOT NULL,
+  `url` varchar(500) NOT NULL,
+  `tipo` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -39,20 +41,20 @@ CREATE TABLE `item_flujo_laminar` (
 --
 
 --
--- Indices de la tabla `item_flujo_laminar`
+-- Indices de la tabla `image_flujo_laminar`
 --
-ALTER TABLE `item_flujo_laminar`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `image_flujo_laminar`
+  ADD PRIMARY KEY (`id_imagen`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `item_flujo_laminar`
+-- AUTO_INCREMENT de la tabla `image_flujo_laminar`
 --
-ALTER TABLE `item_flujo_laminar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `image_flujo_laminar`
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
