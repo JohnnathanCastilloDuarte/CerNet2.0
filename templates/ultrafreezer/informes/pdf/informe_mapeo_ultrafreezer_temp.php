@@ -706,12 +706,6 @@ if($tiempo_low_t == 0){
 }else{
 $info_percent_low=number_format(($info_low/$c_hora)*100,2);
 }
-  
-  
-  
-
-  
-  
 
 
 $valor_mkt=$valor;

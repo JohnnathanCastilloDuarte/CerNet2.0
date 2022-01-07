@@ -252,6 +252,9 @@
     <li>
     <a href="index.php?module={$modulo[6]}&page={$page[10]}"><i class="metismenu-icon pe-7s-news-paper"></i>Flujo laminar</a>
     </li>
+    <li>
+    <a href="index.php?module={$modulo[6]}&page={$page[11]}"><i class="metismenu-icon pe-7s-news-paper"></i>Sala limpia</a>
+    </li>
 
 
     </ul>
