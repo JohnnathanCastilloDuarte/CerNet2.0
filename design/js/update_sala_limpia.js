@@ -15,30 +15,14 @@ $(document).ready(function(){
 function setear_campos(){
        $("#id_item_sala_limpia").val('');
        $("#id_item_2_sala_limpia").val('');
-       $("#empresa_sala_limpia").val(0);
+       $("#id_empresa").val('');
+       $("#buscador_empresa").val('');
        $("#nombre_sala_limpia").val('');
-       $("#fabricante_sala_limpia").val('');
-       $("#modelo_sala_limpia").val('');
-       $("#desc_sala_limpia").val('');
-       $("#n_serie_sala_limpia").val('');
-       $("#codigo_interno_sala_limpia").val('');
-       $("#fecha_fabricacion_sala_limpia").val('');
-       $("#direccion_sala_limpia").val('');
-       $("#ubicacion_interna_sala_limpia").val('');
-       $("#voltaje_sala_limpia").val('');
-       $("#potencia_sala_limpia").val('');
-       $("#capacidad_sala_limpia").val('');
-       $("#alto_sala_limpia").val('');
-       $("#peso_sala_limpia").val('');
-       $("#largo_sala_limpia").val('');
-       $("#ancho_sala_limpia").val('');
-       $("#valor_seteado_tem_sala_limpia").val('');
-       $("#temperatura_minima_sala_limpia").val('');
-       $("#temperatura_maxima_sala_limpia").val('');
-       $("#valor_seteado_hum_sala_limpia").val('');
-       $("#humedad_minima_sala_limpia").val('');
-       $("#humedad_maxima_sala_limpia").val('');
-       $("#id_valida").val('');
+       $("#area_sala_limpia").val('');
+       $("#codigo_sala_limpia").val('');
+       $("#area_m2_sala_limpia").val('');
+       $("#volumen_m2_sala_limpia").val('');
+       $("#estado_sala_limpia").val('');
 }
 
 (function(){
@@ -48,7 +32,7 @@ function setear_campos(){
 		
 		const datos = {
         nombre_sala_limpia     : $("#nombre_sala_limpia").val(),
-        empresa_sala_limpia    : $("#empresa_sala_limpia").val(),
+        empresa_sala_limpia    : $("#id_empresa").val(),
         area_sala_limpia       : $("#area_sala_limpia").val(),
         codigo_sala_limpia     : $("#codigo_sala_limpia").val(),
         area_m2_sala_limpia    : $("#area_m2_sala_limpia").val(),
@@ -84,6 +68,53 @@ function setear_campos(){
 
   });
 
+  //////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+  
+  let buscar = $(this).val();
+
+  
+  $.ajax({
+    type:'POST',
+    data:{buscar},
+    url:'templates/controlador_buscador_empresa.php',
+    success:function(response){
+      let trear = JSON.parse(response);
+      let template = "";
+      $("#aqui_resultados_empresa").show();
+
+      trear.forEach((valor)=>{
+        template +=
+        ` 
+          <tr>
+            <td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
+          </tr>
+          
+        `;
+      });
+
+      $("#aqui_resultados_empresa").html(template);
+
+    }
+  })
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+  let id_empresa = $(this).attr('data-id');
+  let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion');
+  $("#direccion_incubadora").val(direccion);
+  $("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+
+  $("#aqui_resultados_empresa").hide();
+
+});
+
 
   $("#btn_crear_item_sala_limpia").click(function(){
     
@@ -98,7 +129,7 @@ function setear_campos(){
     }else{ 
    const datos = {
         nombre_sala_limpia     : $("#nombre_sala_limpia").val(),
-        empresa_sala_limpia    : $("#empresa_sala_limpia").val(),
+        empresa_sala_limpia    : $("#id_empresa").val(),
         area_sala_limpia       : $("#area_sala_limpia").val(),
         codigo_sala_limpia     : $("#codigo_sala_limpia").val(),
         area_m2_sala_limpia    : $("#area_m2_sala_limpia").val(),

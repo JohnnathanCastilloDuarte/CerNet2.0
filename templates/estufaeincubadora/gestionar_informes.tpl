@@ -83,14 +83,14 @@
 										<th>Acciones</th>
 									</thead>
 									<tbody>
-									{foreach from=$array_calificacion  item = calificacion}
+									{foreach from=$array_calificacion  item=calificacion}
 										<tr>
 											<td>{$calificacion.numot}</td>
 											<td>{$calificacion.item}</td>
 											<td>{$calificacion.empresa}</td>
 											<td>{$calificacion.nombre_usuario} {$calificacion.apellido_usuario}</td>
 											<td>
-												<!--<a href="index.php?module={$modulo[9].Informes}&page={$page[1]}&type={$id_servicio_mapeo}" class="btn btn-outline-success" >Informe</a>-->
+												<a href="index.php?module={$modulo[6]}&page={$page[9]}&asignado={$calificacion.id_asignado}&type={$id_servicio_mapeo}" class="btn btn-outline-success">Informe</a>
 											</td>
 										</tr>
 										

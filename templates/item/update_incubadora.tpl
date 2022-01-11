@@ -20,16 +20,7 @@
  								<em>2</em><span>Caracteristica del equipo</span>
  							</a>
  						</li>
-						<!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
-						<li id="si_envia">
-									<a href="#step-42">
-											<em>4</em><span>Evidencia</span>
-									</a>
-								</li>-->
+
 							</ul>
 
 							<div class="form-wizard-content">

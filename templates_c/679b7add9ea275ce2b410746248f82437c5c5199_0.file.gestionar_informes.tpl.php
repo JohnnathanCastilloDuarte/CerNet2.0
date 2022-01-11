@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-20 14:56:49
+/* Smarty version 3.1.34-dev-7, created on 2022-01-11 14:56:13
   from 'C:\xampp\htdocs\CerNet2.0\templates\estufaeincubadora\gestionar_informes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c08ba1700ab0_25981923',
+  'unifunc' => 'content_61dd8c7dd46ec7_11445529',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '679b7add9ea275ce2b410746248f82437c5c5199' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\estufaeincubadora\\gestionar_informes.tpl',
-      1 => 1640008607,
+      1 => 1641909370,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c08ba1700ab0_25981923 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61dd8c7dd46ec7_11445529 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-12">
 		<div class="card">
@@ -138,10 +138,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['calificacion']->value) {
  <?php echo $_smarty_tpl->tpl_vars['calificacion']->value['apellido_usuario'];?>
 </td>
 											<td>
-												<!--<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[9]['Informes'];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
+												<a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[9];?>
+&asignado=<?php echo $_smarty_tpl->tpl_vars['calificacion']->value['id_asignado'];?>
 &type=<?php echo $_smarty_tpl->tpl_vars['id_servicio_mapeo']->value;?>
-" class="btn btn-outline-success" >Informe</a>-->
+" class="btn btn-outline-success">Informe</a>
 											</td>
 										</tr>
 										

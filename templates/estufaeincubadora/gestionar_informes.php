@@ -2,7 +2,7 @@
 
 $tipo_1 = "Distribucion termica estufa";
 
-$tipo_2 = "Calificación freezer";
+$tipo_2 = "Distribución térmica incubadora";
 
 $array_mapeo=array();
 
@@ -56,8 +56,9 @@ $calificacion = mysqli_prepare($connect,"SELECT a.id_asignado, b.numot, f.nombre
 mysqli_stmt_execute($calificacion);
 mysqli_stmt_store_result($calificacion);
 mysqli_stmt_bind_result($calificacion, $id_asignado_c, $numot_c, $item_c, $empresa_c, $usuario_nombre_c, $usuario_apellido_c);
-mysqli_stmt_fetch($calificacion);
+//mysqli_stmt_fetch($calificacion);
 
+while($row = mysqli_stmt_fetch($calificacion)){
 $array_calificacion[]=array(
 	'id_asignado'=>$id_asignado_c,
 	'numot'=>$numot_c,
@@ -65,8 +66,8 @@ $array_calificacion[]=array(
 	'empresa'=>$empresa_c,
 	'nombre_usuario'=>$usuario_nombre_c,
 	'apellido_usuario'=>$usuario_apellido_c
-); 
-
+  ); 
+}
 
 $smarty->assign("array_calificacion",$array_calificacion);
 

@@ -70,8 +70,9 @@ $("#btn_nuevo_item_incubadora").click(function(){
           if (response == "SI") {
              Swal.fire({
                title:'Mensaje',
-               text:'Se ha creado la camara fria correctamente',
+               text:'Se ha creado la incubadora correctamente',
                icon:'success',
+               showConfirmButton: false,
                timer:1500
            });
              setear_campos();
@@ -80,6 +81,7 @@ $("#btn_nuevo_item_incubadora").click(function(){
                title:'Mensaje',
                text:'Error al crear el item',
                icon:'error',
+               showConfirmButton: false,
                timer:1500
            });
           }
@@ -186,16 +188,18 @@ $("#btn_editar_item_incubadora").click(function(){
             if(response == "SI"){
                 Swal.fire({
                     title:'Mensaje',
-                    text:'Se ha editado la camara fria correctamente',
+                    text:'Se ha editado la incubadora correctamente',
                     icon:'success',
-                    timer:1700
+                    showConfirmButton: false,
+                    timer:1500
                 });
             }else{
               Swal.fire({
                     title:'Mensaje',
-                    text:'Error al editar camara fria ',
+                    text:'Error al editar incubadora ',
                     icon:'error',
-                    timer:1700
+                    showConfirmButton: false,
+                    timer:1500
                 });
             }
         }

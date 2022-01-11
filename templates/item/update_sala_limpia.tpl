@@ -21,20 +21,12 @@
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
-                  <select class="form-control" id="empresa_sala_limpia">
-                    {if $sala_limpia.id_empresa == ""}
-                    <option value="0">Seleccione....</option>
-                    {foreach from=$array_empresas item=empresa}
-                      <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
-                     {/foreach}
-                     {else}
-                    <option value="{$sala_limpia.id_empresa}">{$sala_limpia.nombre_empresa}</option>
-                     {foreach from=$array_empresas item=empresa}
-                      <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
-                     {/foreach}
-                     {/if}
-                    }
-                  </select>
+                      <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$sala_limpia.nombre_empresaluisg}">
+                      <input type="hidden" id="id_empresa" value="{$sala_limpia.id_empresa}">
+                      <div>
+                        <table class="table" id="aqui_resultados_empresa" >
+                        </table>
+                      </div> 
                 </div>
 
               </div>
