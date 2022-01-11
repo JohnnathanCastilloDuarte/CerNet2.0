@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-01-2022 a las 17:05:28
+-- Tiempo de generación: 11-01-2022 a las 21:54:46
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.3.31
 
@@ -32,9 +32,16 @@ CREATE TABLE `item_sala_limpia` (
   `id_item` int(11) DEFAULT NULL COMMENT 'id del item al que se asigna',
   `Area_sala_limpia` varchar(100) DEFAULT NULL COMMENT 'Area de la sala limpia',
   `Codigo` varchar(100) DEFAULT NULL COMMENT 'Codigo de la sala limpia\r\n',
+  `direccion` varchar(100) DEFAULT NULL COMMENT 'dirección del ítem',
+  `ubicacion_interna` varchar(100) DEFAULT NULL COMMENT 'ubicación interna del ítem',
+  `area_interna` varchar(100) DEFAULT NULL COMMENT 'Área interna del ítem',
   `Area_m2` varchar(100) DEFAULT NULL COMMENT 'Area de la sala en metros cuadrados',
   `volumen_m3` varchar(100) DEFAULT NULL COMMENT 'Volumen de la sala en metros cubicos',
   `Estado_sala` varchar(100) DEFAULT NULL COMMENT 'Estado de la sala ',
+  `especificacion_1_temp` varchar(50) DEFAULT NULL COMMENT 'especificación de temperatura 1',
+  `especificacion_2_temp` varchar(50) DEFAULT NULL COMMENT 'especificación de temperatura 2',
+  `especificacion_1_hum` varchar(50) DEFAULT NULL COMMENT 'especificación de humedad 1',
+  `especificacion_2_hum` varchar(50) DEFAULT NULL COMMENT 'especificación de humedad 2',
   `fecha_registro` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

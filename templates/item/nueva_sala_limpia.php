@@ -9,6 +9,13 @@ $codigo_sala_limpia     =  $_POST['codigo_sala_limpia'];
 $area_m2_sala_limpia    =  $_POST['area_m2_sala_limpia'];
 $volumen_m2_sala_limpia =  $_POST['volumen_m2_sala_limpia'];
 $estado_sala_limpia     =  $_POST['estado_sala_limpia'];
+$direccion_sala_limpia = $_POST['direccion_sala_limpia'];
+$ubicacion_interna_sala_limpia = $_POST['ubicacion_interna_sala_limpia'];
+$area_interna_sala_limpia = $_POST['area_interna_sala_limpia'];
+$especificacion_1_temp = $_POST['especificacion_1_temp'];
+$especificacion_2_temp = $_POST['especificacion_2_temp'];
+$especificacion_1_hum = $_POST['especificacion_1_hum'];
+$especificacion_2_hum = $_POST['especificacion_2_hum'];
 
 $id_valida               = $_POST['id_valida'];
 
@@ -28,15 +35,22 @@ $id_item_insertado  =  mysqli_stmt_insert_id($insertando_item);
 ///SE VALIDA LA CAPTURA DEL ITEM CREADO
 if($id_item_insertado > 0){
 //INSERTAMOS EN LA TABLA ITEM_FREEZER
-  $insertando_ultrafreezer = mysqli_prepare($connect,"INSERT INTO item_sala_limpia (id_item, Area_sala_limpia, Codigo, Area_m2, volumen_m3, Estado_sala)
- VALUES (?,?,?,?,?,?)");
-  mysqli_stmt_bind_param($insertando_ultrafreezer, 'isssss', 
+  $insertando_ultrafreezer = mysqli_prepare($connect,"INSERT INTO item_sala_limpia (id_item, Area_sala_limpia, Codigo, Area_m2, volumen_m3, Estado_sala, direccion,ubicacion_interna, area_interna, especificacion_1_temp, especificacion_2_temp, especificacion_1_hum, especificacion_2_hum)
+ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  mysqli_stmt_bind_param($insertando_ultrafreezer, 'issssssssssss', 
     $id_item_insertado, 
     $area_sala_limpia, 
     $codigo_sala_limpia, 
     $area_m2_sala_limpia,
     $volumen_m2_sala_limpia,
     $estado_sala_limpia,
+    $direccion_sala_limpia,
+    $ubicacion_interna_sala_limpia,
+    $area_interna_sala_limpia,
+    $especificacion_1_temp,
+    $especificacion_2_temp,
+    $especificacion_1_hum,
+    $especificacion_2_hum
   );
   
   mysqli_stmt_execute($insertando_ultrafreezer);

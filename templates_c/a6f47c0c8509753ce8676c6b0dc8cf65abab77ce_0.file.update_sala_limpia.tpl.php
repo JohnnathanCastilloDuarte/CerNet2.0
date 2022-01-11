@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-11 15:04:21
+/* Smarty version 3.1.34-dev-7, created on 2022-01-11 20:40:53
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61dd8e6500f958_52687709',
+  'unifunc' => 'content_61dddd45212d24_82030552',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6f47c0c8509753ce8676c6b0dc8cf65abab77ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_sala_limpia.tpl',
-      1 => 1641909857,
+      1 => 1641930051,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61dd8e6500f958_52687709 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61dddd45212d24_82030552 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -31,10 +31,17 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
 
     <div class="card">
       <div class="card-header">
+        <?php if ($_smarty_tpl->tpl_vars['sala_limpia']->value['id_sala_limpia'] == '') {?>
+
+        <h5>
+          Creación de item sala limpia
+        </h5>
+        <?php } else { ?>
         <h5>
           Edición del equipo <span><?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['nombre_sala_limpia'];?>
 </span>
         </h5>
+        <?php }?>
       </div>
       <div class="card-body">
           <div class="form-wizard-content">
@@ -52,7 +59,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
-                      <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['nombre_empresaluisg'];?>
+                      <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['nombre_empresa'];?>
 ">
                       <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['id_empresa'];?>
 ">
@@ -63,7 +70,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                 </div>
 
               </div>
-              <br>
+              
               <div class="form-row">
                 <div class="col-sm-6">
                   <label>Área :</label>
@@ -76,6 +83,24 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
 " required="">
                 </div>
               </div>
+              <br>
+              <div class="form-row">
+                    <div class="col-sm-4">
+                      <label>Dirección equipo:</label>
+                      <input type="text" id="direccion_sala_limpia" class="form-control" placeholder="Dirección equipo" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['direccion'];?>
+">
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Ubicación interna equipo:</label>
+                      <input type="text" id="ubicacion_interna_sala_limpia" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['ubicacion_interna'];?>
+">
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Área interna equipo:</label>
+                      <input type="text" id="area_interna_sala_limpia" class="form-control" placeholder="Área equipo" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['area_interna'];?>
+">
+                    </div>
+                  </div>
               <br>
               <div class="form-row">
                 <div class="col-sm-4">
@@ -94,6 +119,46 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                   <input type="text" id="estado_sala_limpia" class="form-control" placeholder="Estado de la sala" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['estado_sala'];?>
 ">
                 </div>
+              </div>
+              <br>
+              <div class="form-row ">
+                <div class="col-sm-3">
+                  <label>Especificación temperatura:</label>
+                </div>
+                 <div class=" form-row col-sm-9">
+                      <div class="col-sm-5">
+                           <input type="text"  class="form-control" placeholder="123" id="especificacion_1_temp" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['especificacion_1_temp'];?>
+">
+                     </div>
+                      <div class="col-sm-2" style="text-align: center;">
+                          <label>&nbsp;</label>
+                          <span>Y</span>
+                      </div>
+                     <div class="col-sm-5">
+                           <input type="text"  class="form-control" placeholder="123" id="especificacion_2_temp" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['especificacion_2_temp'];?>
+">
+                     </div>
+                 </div>
+              </div>
+              <br>
+              <div class="form-row ">
+                <div class="col-sm-3">
+                  <label>Especificación humedad: </label>
+                </div>
+                 <div class=" form-row col-sm-9">
+                      <div class="col-sm-5">
+                           <input type="text"  class="form-control" placeholder="123" id="especificacion_1_hum" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['especificacion_1_hum'];?>
+">
+                     </div>
+                      <div class="col-sm-2" style="text-align: center;">
+                          <label>&nbsp;</label>
+                          <span>Y</span>
+                      </div>
+                     <div class="col-sm-5">
+                           <input type="text"  class="form-control" placeholder="123" id="especificacion_2_hum" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['especificacion_2_hum'];?>
+">
+                     </div>
+                 </div>
               </div>
             </div>
 

@@ -23,6 +23,13 @@ function setear_campos(){
        $("#area_m2_sala_limpia").val('');
        $("#volumen_m2_sala_limpia").val('');
        $("#estado_sala_limpia").val('');
+       $("#direccion_sala_limpia").val('');
+       $("#ubicacion_interna_sala_limpia").val('');
+       $("#area_interna_incubadora").val('');
+       $("#especificacion_1_temp").val('');
+       $("#especificacion_2_temp").val('');
+       $("#especificacion_1_hum").val('');
+       $("#especificacion_2_hum").val('');
 }
 
 (function(){
@@ -31,15 +38,22 @@ function setear_campos(){
 
 		
 		const datos = {
-        nombre_sala_limpia     : $("#nombre_sala_limpia").val(),
-        empresa_sala_limpia    : $("#id_empresa").val(),
-        area_sala_limpia       : $("#area_sala_limpia").val(),
-        codigo_sala_limpia     : $("#codigo_sala_limpia").val(),
-        area_m2_sala_limpia    : $("#area_m2_sala_limpia").val(),
-        volumen_m2_sala_limpia : $("#volumen_m2_sala_limpia").val(),
-        estado_sala_limpia     : $("#estado_sala_limpia").val(),
-        id_item_sala_limpia    : $("#id_item_sala_limpia").val(),
-        id_item_2_sala_limpia  : $("#id_item_2_sala_limpia").val(),
+        nombre_sala_limpia      : $("#nombre_sala_limpia").val(),
+        empresa_sala_limpia     : $("#id_empresa").val(),
+        area_sala_limpia        : $("#area_sala_limpia").val(),
+        codigo_sala_limpia      : $("#codigo_sala_limpia").val(),
+        area_m2_sala_limpia     : $("#area_m2_sala_limpia").val(),
+        volumen_m2_sala_limpia  : $("#volumen_m2_sala_limpia").val(),
+        estado_sala_limpia      : $("#estado_sala_limpia").val(),
+        id_item_sala_limpia     : $("#id_item_sala_limpia").val(),
+        id_item_2_sala_limpia   : $("#id_item_2_sala_limpia").val(),
+        direccion_sala_limpia   : $("#direccion_sala_limpia").val(),
+        ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
+        area_interna_incubadora : $("#area_interna_incubadora").val(),
+        especificacion_1_temp   : $("#especificacion_1_temp").val(),
+        especificacion_2_temp   : $("#especificacion_2_temp").val(),
+        especificacion_1_hum    : $("#especificacion_1_hum").val(),
+        especificacion_2_hum    : $("#especificacion_2_hum").val(),
 
         id_valida              :$("#id_valida").val()
     }
@@ -107,7 +121,7 @@ $(document).on('click','#seleccionar_empresa',function(){
   let id_empresa = $(this).attr('data-id');
   let nombre_empresa = $(this).attr('data-name');
   let direccion = $(this).attr('data-direccion');
-  $("#direccion_incubadora").val(direccion);
+  $("#direccion_sala_limpia").val(direccion);
   $("#buscador_empresa").val(nombre_empresa);
   $("#id_empresa").val(id_empresa);
 
@@ -128,15 +142,22 @@ $(document).on('click','#seleccionar_empresa',function(){
            });
     }else{ 
    const datos = {
-        nombre_sala_limpia     : $("#nombre_sala_limpia").val(),
-        empresa_sala_limpia    : $("#id_empresa").val(),
-        area_sala_limpia       : $("#area_sala_limpia").val(),
-        codigo_sala_limpia     : $("#codigo_sala_limpia").val(),
-        area_m2_sala_limpia    : $("#area_m2_sala_limpia").val(),
-        volumen_m2_sala_limpia : $("#volumen_m2_sala_limpia").val(),
-        estado_sala_limpia     : $("#estado_sala_limpia").val(),
+        nombre_sala_limpia       : $("#nombre_sala_limpia").val(),
+        empresa_sala_limpia      : $("#id_empresa").val(),
+        area_sala_limpia         : $("#area_sala_limpia").val(),
+        codigo_sala_limpia       : $("#codigo_sala_limpia").val(),
+        area_m2_sala_limpia      : $("#area_m2_sala_limpia").val(),
+        volumen_m2_sala_limpia   : $("#volumen_m2_sala_limpia").val(),
+        estado_sala_limpia       : $("#estado_sala_limpia").val(),
+        direccion_sala_limpia    : $("#direccion_sala_limpia").val(),
+        ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
+        area_interna_sala_limpia : $("#area_interna_sala_limpia").val(),
+        especificacion_1_temp    : $("#especificacion_1_temp").val(),
+        especificacion_2_temp    : $("#especificacion_2_temp").val(),
+        especificacion_1_hum     : $("#especificacion_1_hum").val(),
+        especificacion_2_hum     : $("#especificacion_2_hum").val(),
 
-        id_valida              :$("#id_valida").val()
+        id_valida                :$("#id_valida").val()
       }
 
       $.ajax({
@@ -148,7 +169,7 @@ $(document).on('click','#seleccionar_empresa',function(){
          if(response == "Si"){
            Swal.fire({
              title:'Mensaje',
-             text:'Se ha creado un utrafreezer correctamente',
+             text:'Se ha creado una sala limpia correctamente',
              icon:'success',
              showConfirmButton: false,
              timer:1500
