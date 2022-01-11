@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-01-2022 a las 17:03:09
+-- Tiempo de generación: 07-01-2022 a las 17:03:58
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.22
 
@@ -24,14 +24,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `item_flujo_laminar`
+-- Estructura de tabla para la tabla `campana_extraccion_prueba_1`
 --
 
-CREATE TABLE `item_flujo_laminar` (
-  `id` int(11) NOT NULL,
-  `id_item` int(11) DEFAULT NULL,
-  `cantidad_filtro` int(11) DEFAULT NULL,
-  `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `campana_extraccion_prueba_1` (
+  `id_prueba` int(11) NOT NULL COMMENT 'id principal de la tabla',
+  `id_asignado` int(11) NOT NULL COMMENT 'id principal de la tabla item_asignado',
+  `requisito` varchar(10) NOT NULL DEFAULT 'valor',
+  `valor_obtenido` varchar(10) NOT NULL DEFAULT 'valor',
+  `veredicto` varchar(10) NOT NULL DEFAULT 'veredicto',
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -39,20 +41,20 @@ CREATE TABLE `item_flujo_laminar` (
 --
 
 --
--- Indices de la tabla `item_flujo_laminar`
+-- Indices de la tabla `campana_extraccion_prueba_1`
 --
-ALTER TABLE `item_flujo_laminar`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `campana_extraccion_prueba_1`
+  ADD PRIMARY KEY (`id_prueba`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `item_flujo_laminar`
+-- AUTO_INCREMENT de la tabla `campana_extraccion_prueba_1`
 --
-ALTER TABLE `item_flujo_laminar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `campana_extraccion_prueba_1`
+  MODIFY `id_prueba` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id principal de la tabla';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

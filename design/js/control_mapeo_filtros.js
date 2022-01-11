@@ -381,7 +381,7 @@ $(document).on('change','#select_filtro', function(){
 
 ///////////// btn de informes:
 
-$("#ir_informe_filtros").click(function(){
+$("#abrir_informe").click(function(){
 
   window.open("templates/filtros/informes/inspeccion_de_filtros.php");
 })

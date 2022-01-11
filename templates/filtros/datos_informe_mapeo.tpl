@@ -394,6 +394,7 @@
             <div class="col-sm-12" style="text-align:center;">
               <button class="btn-shadow btn-outline-2x btn btn-outline-success"  id="btn_nuevo_filtro_mapeo">Aceptar</button>
 							<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_filtro_mapeo">Actualizar</button>
+              <button class="btn-shadow btn-outline-2x btn btn-outline-warning" id="abrir_informe">Informe</button>
             </div>
           </div>
              

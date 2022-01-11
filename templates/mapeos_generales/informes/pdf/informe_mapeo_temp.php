@@ -499,34 +499,63 @@
 
 
 
-	
+	*/
 
   //OBTENER UBICACIÓN DE SENSORES Y SUS IMAGENES 
-   
-  $query_31 = mysqli_prepare($connect,"SELECT ubicacion FROM images_informe_refrigeradores WHERE id_informe = ? AND tipo_imagen = ?");
-  mysqli_stmt_bind_param($query_31, 'ii', $id_informe, $posicion_sensores_indicativo);
+  $tipo_imagen_1 = 1;
+  $img_1 = "";
+  $url_imagen_1 = "";
+
+  $tipo_imagen_2 = 2;
+  $img_2 = "";
+  $url_imagen_2 = "";
+
+  $tipo_imagen_3 = 3;
+  $img_3 = "";
+  $url_imagen_3 = "";
+
+  $query_31 = mysqli_prepare($connect,"SELECT url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = ?");
+  mysqli_stmt_bind_param($query_31, 'ii', $id_informe, $tipo_imagen_1);
   mysqli_stmt_execute($query_31);
   mysqli_stmt_store_result($query_31);
-  mysqli_stmt_bind_result($query_31, $ubicacion_posicion_sensores);
+  mysqli_stmt_bind_result($query_31, $url_imagen_1);
   mysqli_stmt_fetch($query_31);
+	
+  if(mysqli_stmt_num_rows($query_31) > 0){
+	  $img_1 = '<img src="../../'.$url_imagen_1.'">';
+  }else{
+	  $img_1 = '<img src="../../../design/images/no_imagen.png">';
+  }
 
 
 
-  $query_34 = mysqli_prepare($connect,"SELECT ubicacion FROM images_informe_refrigeradores WHERE id_informe = ? AND tipo_imagen = 2");
-  mysqli_stmt_bind_param($query_34, 'i', $id_informe);
+  $query_34 = mysqli_prepare($connect,"SELECT url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = ?");
+  mysqli_stmt_bind_param($query_34, 'ii', $id_informe, $tipo_imagen_2);
   mysqli_stmt_execute($query_34);
   mysqli_stmt_store_result($query_34);
-  mysqli_stmt_bind_result($query_34, $img_sensores_2);
+  mysqli_stmt_bind_result($query_34, $url_imagen_2);
   mysqli_stmt_fetch($query_34);
 
-  $query_35 = mysqli_prepare($connect,"SELECT ubicacion FROM images_informe_refrigeradores WHERE id_informe = ? AND tipo_imagen = 3");
-  mysqli_stmt_bind_param($query_35, 'i', $id_informe);
+  	if(mysqli_stmt_num_rows($query_34) > 0){
+		$img_2 = '<img src="../../'.$url_imagen_2.'">';
+	}else{
+		$img_2 = '<img src="../../../design/images/no_imagen.png">';
+	}
+
+
+  $query_35 = mysqli_prepare($connect,"SELECT url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = ?");
+  mysqli_stmt_bind_param($query_35, 'ii', $id_informe, $tipo_imagen_3);
   mysqli_stmt_execute($query_35);
   mysqli_stmt_store_result($query_35);
-  mysqli_stmt_bind_result($query_35, $img_sensores_3);
+  mysqli_stmt_bind_result($query_35, $url_imagen_3);
   mysqli_stmt_fetch($query_35);
   
-  */
+  	if(mysqli_stmt_num_rows($query_35) > 0){
+		$img_3 = '<img src="../../'.$url_imagen_3.'">';
+	}else{
+		$img_3 = '<img src="../../../design/images/no_imagen.png">';
+	}
+
 
 		
   /////////////////////////////////////////////////////////////INICIO INFORME////////////////////////////////////////////////////////////////
@@ -692,7 +721,7 @@ tr:nth-child(even)
  
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Ubicación de los Sensores</strong></td></tr>
-<tr><td><br><br></td></tr></table><br><br><br>
+<tr><td>$img_1 </td></tr></table><br><br><br>
 EOD;
 
 $pdf->writeHTML($html_2, true,false,false,false,'');
@@ -712,7 +741,7 @@ $pdf->writeHTMLCell(66, 5, 215, '', 'N° Certificado de Calibración', 1, 1, 0, 
 
 $contador_t = 0;
 //CONSULTA
-$query_32 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, b.nombre, a.serie, a.id_sensor  FROM sensores as a, bandeja as b, refrigerador_sensor as c WHERE c.id_sensor = a.id_sensor AND c.id_mapeo = ? AND b.id_bandeja = c.id_bandeja");
+$query_32 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, b.nombre, a.serie, a.id_sensor  FROM sensores as a, bandeja as b, mapeo_general_sensor  as c WHERE c.id_sensor = a.id_sensor AND c.id_mapeo = ? AND b.id_bandeja = c.id_bandeja");
 mysqli_stmt_bind_param($query_32, 'i', $id_mapeo);
 mysqli_stmt_execute($query_32);
 mysqli_stmt_store_result($query_32);
@@ -780,12 +809,12 @@ $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, t
 $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
 
 
-$query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.temperatura AS DECIMAL(6,2))) as Minimo, 
-                                    MAX(CAST(b.temperatura AS DECIMAL(6,2))) as Maximo,AVG(CAST(b.temperatura AS DECIMAL(6,2))) as Promedio, STD(CAST(b.temperatura AS DECIMAL(6,2))) as Desv_Estandar, 
-                                    SUM(CASE WHEN CAST(b.temperatura AS DECIMAL(6,2))>$temperatura_max THEN 1 ELSE 0 END) as tiempo_over, 
-                                    SUM(CASE WHEN CAST(b.temperatura AS DECIMAL(6,2))<$temperatura_min THEN 1 ELSE 0 END) as tiempo_low,
-                                    AVG(EXP(-83.144/(0.0083144*(CAST(b.temperatura AS DECIMAL(6,2))+273.15)))) as valor FROM sensores as a,
-                                    refrigerador_datos_crudos as b, refrigerador_sensor as c WHERE a.id_sensor = c.id_sensor AND c.id_refrigerador_sensor = b.id_refrigerador_sensor AND c.id_mapeo = ? GROUP BY a.nombre");
+$query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.temp AS DECIMAL(6,2))) as Minimo, 
+                                    MAX(CAST(b.temp AS DECIMAL(6,2))) as Maximo,AVG(CAST(b.temp AS DECIMAL(6,2))) as Promedio, STD(CAST(b.temp AS DECIMAL(6,2))) as Desv_Estandar, 
+                                    SUM(CASE WHEN CAST(b.temp AS DECIMAL(6,2))>$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_over, 
+                                    SUM(CASE WHEN CAST(b.temp AS DECIMAL(6,2))<$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_low,
+                                    AVG(EXP(-83.144/(0.0083144*(CAST(b.temp AS DECIMAL(6,2))+273.15)))) as valor FROM sensores as a,
+                                    datos_crudos_general as b, mapeo_general_sensor as c WHERE a.id_sensor = c.id_sensor AND c.id_sensor_mapeo = b.id_sensor_mapeo AND c.id_mapeo = ? GROUP BY a.nombre");
 mysqli_stmt_bind_param($query_33, 'i', $id_mapeo);
 mysqli_stmt_execute($query_33);
 mysqli_stmt_store_result($query_33);
@@ -877,7 +906,7 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
 <tr><td><br>Valores Promedio, Máximo y Mínimo</td></tr>
-<tr><td><br><br></td></tr></table><br><br><br>
+<tr><td>$img_2</td></tr></table><br><br><br>
 <table>
 
 EOD;
@@ -923,7 +952,7 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
 <tr><td><br>Datos de los sensores - Periodo representativo</td></tr>
-<tr><td><br><br></td></tr></table><br><br><br>
+<tr><td>$img_3</td></tr></table><br><br><br>
 <table>
 
 <tr><td bgcolor="#DDDDDD"><strong>Comentarios</strong></td></tr>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-02 14:47:33
+/* Smarty version 3.1.34-dev-7, created on 2022-01-04 15:11:32
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a8ce75c5f638_33275346',
+  'unifunc' => 'content_61d455949ba707_30328209',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1638393800,
+      1 => 1641300739,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a8ce75c5f638_33275346 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d455949ba707_30328209 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -419,6 +419,7 @@ function content_61a8ce75c5f638_33275346 (Smarty_Internal_Template $_smarty_tpl)
             <div class="col-sm-12" style="text-align:center;">
               <button class="btn-shadow btn-outline-2x btn btn-outline-success"  id="btn_nuevo_filtro_mapeo">Aceptar</button>
 							<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_filtro_mapeo">Actualizar</button>
+              <button class="btn-shadow btn-outline-2x btn btn-outline-warning" id="abrir_informe">Informe</button>
             </div>
           </div>
              

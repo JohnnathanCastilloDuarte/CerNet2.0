@@ -25,22 +25,13 @@
                 <input type="text" id="nombre_campana" class="form-control" placeholder="Nombre campana" value="{$campana.nombre_campana}">
               </div>
               <div class="col-sm-6">
-                <label >Empresa</label>
-                <select class="form-control" id="empresa_campana" required>
-                  {if $campana.nombre_empresa == ""}
-                  <option value="0">Seleccione....</option>
-                  {foreach from=$array_empresa item=empresa}
-                  <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-                  {/foreach}
-                  {else}
-                  <option value="{$campana.id_empresa}">{$campana.nombre_empresa}</option>
-                  <option value="0">Seleccione....</option>
-                  {foreach from=$array_empresa item=empresa}
-                  <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-                  {/foreach}
-                  {/if}
-
-                </select>
+                <label>Empresa</label>
+                <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$campana.nombre_empresa}">
+                <input type="hidden" id="id_empresa" value="{$campana.id_empresa}">
+                <div>
+                    <table class="table" id="aqui_resultados_empresa" >
+                    </table>
+                </div> 
               </div>
 
             </div>
