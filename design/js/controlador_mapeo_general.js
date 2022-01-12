@@ -7,6 +7,9 @@ $("#cargado_archivo_dc").hide();
 $("#cargar_archivo_dc").hide();
 $("#banner_cargando").hide();
 $("#edicion_informe").hide();
+$("#asignacion_sensores").hide();
+$("#lista_de_bandejas").hide();
+$("#datos_crudos_card").hide();
 
 ///////////// VARIABLES GLOBALES
 var id_asignado = $("#id_asignado").val();
@@ -97,7 +100,7 @@ function listar_bandejas(){
                 `
                 <tr>
                     <td>${valor.nombre}</td>
-                    <td><button class="btn btn-info" data-id="${valor.id_bandeja}"  data-name = "${valor.nombre}" id="btn_utilizar_bandeja">Utilizar</button>
+                    <td><button class="btn btn-info" data-id="${valor.id_bandeja}"  data-name = "${valor.nombre}" id="btn_utilizar_bandeja"><i class="pe-7s-check"></i></button>
                     </td>
                 </tr>
                 
@@ -308,7 +311,7 @@ function listar_mapeos(){
                         <td>${valor.nombre}</td>
                         <td>${valor.fecha_inicio}</td>
                         <td>${valor.fecha_fin}</td>
-                        <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="configurar_mapeo" data-name="${valor.nombre}">Configurar</button></td>
+                        <td><button class="btn btn-primary" data-id="${valor.id_mapeo}" id="configurar_mapeo" data-name="${valor.nombre}"><i class="lnr-pencil btn-icon-wrapper"></i></button></td>
                     </tr>
                 
                 `;
@@ -500,9 +503,11 @@ $(document).on('click','#configurar_mapeo',function(){
     let id_mapeo = $(this).attr('data-id');
     let nombre_mapeo = $(this).attr('data-name');
 
-    $("#nombre_mapeo_configurar").html(nombre_mapeo);
+    $("#nombre_mapeo_configurar").html("<span class='text-primary'>"+nombre_mapeo+"</span>");
     $("#id_mapeo_configurar").val(id_mapeo);
     $("#id_mapeo_datos_crudos").val(id_mapeo);
+
+    $("#lista_de_bandejas").show();
 
 
 });
@@ -512,7 +517,7 @@ $(document).on('click','#btn_utilizar_bandeja',function(){
     let id_bandeja = $(this).attr('data-id');
     let nombre_bandeja = $(this).attr('data-name');
 
-    $("#nombre_bandeja_configurar").html(nombre_bandeja);
+    $("#nombre_bandeja_configurar").html("<span class='text-primary'>"+nombre_bandeja+"</span>");
     $("#id_bandeja_configurar").val(id_bandeja);
 
     let id_mapeo = $("#id_mapeo_configurar").val();
@@ -521,6 +526,10 @@ $(document).on('click','#btn_utilizar_bandeja',function(){
     validar_datos_crudos(id_mapeo, 'validar_carga_db');
 
     listar_sensor_asignados(id_mapeo, id_bandeja);
+
+    $("#asignacion_sensores").show();
+    $("#datos_crudos_card").show();
+    
 });
 
 

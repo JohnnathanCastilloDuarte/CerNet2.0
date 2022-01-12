@@ -25,13 +25,13 @@ if(isset($_GET['item'])){
     $id_equipo = $_GET['item'];
 
     //CONSULTO LA INFORMACIÓN DEL EQUIPO
-  $sala_limpia = mysqli_prepare($connect,"SELECT b.id_item, a.id, b.nombre, a.Area_sala_limpia, a.Codigo, a.Area_m2, a.Volumen_m3, a.Estado_sala, c.id_empresa, c.nombre, a.direccion, a.ubicacion_interna, a.area_interna, a.especificacion_1_temp, a.especificacion_2_temp, a.especificacion_1_hum, a.especificacion_2_hum
-    FROM item_sala_limpia a, item b, empresa c 
-    WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND a.id_item = $id_equipo");
+  $sala_limpia = mysqli_prepare($connect,"SELECT b.id_item, a.id, b.nombre, a.Area_sala_limpia, a.Codigo, a.Area_m2, a.Volumen_m3, a.Estado_sala, c.id_empresa, c.nombre, a.direccion, a.ubicacion_interna, a.area_interna, a.especificacion_1_temp, a.especificacion_2_temp, a.especificacion_1_hum, a.especificacion_2_hum, d.nombre
+FROM item_sala_limpia a, item b, empresa c, tipo_item d 
+WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id_tipo AND a.id_item =  $id_equipo");
   mysqli_stmt_execute($sala_limpia);
   mysqli_stmt_store_result($sala_limpia);
   mysqli_stmt_bind_result($sala_limpia, $id_item, $id_sala_limpia, $nombre_sala_limpia,
-    $Area_sala_limpia, $codigo,$area_m2, $volumen_m3, $estado_sala, $id_empresa, $nombre_empresa, $direccion ,$ubicacion_interna, $area_interna, $especificacion_1_temp, $especificacion_2_temp, $especificacion_1_hum, $especificacion_2_hum, );
+    $Area_sala_limpia, $codigo,$area_m2, $volumen_m3, $estado_sala, $id_empresa, $nombre_empresa, $direccion ,$ubicacion_interna, $area_interna, $especificacion_1_temp, $especificacion_2_temp, $especificacion_1_hum, $especificacion_2_hum, $nombre_tipo_item);
 
   $array_sala_limpia = array();
 
@@ -53,7 +53,9 @@ if(isset($_GET['item'])){
         'especificacion_1_temp'=>$especificacion_1_temp,
         'especificacion_2_temp'=>$especificacion_2_temp,
         'especificacion_1_hum'=>$especificacion_1_hum,
-        'especificacion_2_hum'=>$especificacion_1_hum
+        'especificacion_2_hum'=>$especificacion_1_hum,
+        'nombre_tipo_item'=>$nombre_tipo_item
+        
     );	
   }
 
@@ -65,14 +67,24 @@ else{
 
 
   $array_sala_limpia[] = array(
-    'id_item'=>'',
+        'id_item'=>'',
         'id_sala_limpia'=>'',
         'nombre_sala_limpia'=>'',
         'Area_sala _limpia'=>'',
         'codigo'=>'',
         'area_m2'=>'',
         'volumen_m3'=>'',
-        'estado_sala'=>''
+        'estado_sala'=>'',
+        'id_empresa'=>'',
+        'nombre_empresa'=>'',
+        'direccion'=>'',
+        'ubicacion_interna'=>'',
+        'area_interna'=>'',
+        'especificacion_1_temp'=>'',
+        'especificacion_2_temp'=>'',
+        'especificacion_1_hum'=>'',
+        'especificacion_2_hum'=>''
+
 );
   $smarty->assign("array_sala_limpia",$array_sala_limpia);
 }//////// CIERRE DEL ELSE

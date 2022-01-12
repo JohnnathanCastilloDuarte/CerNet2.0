@@ -1,3 +1,4 @@
+
 <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -244,7 +245,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6" id="lista_de_bandejas">
                 <div class="card">
                     <div class="card-header">Lista de bandejas/Alturas disponibles</div>
                     <div class="card-body">
@@ -271,8 +272,8 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body" style="text-align:center;">
-                        <span class="text-muted">Mapeo a configurar: </span> <span class="text-primary" id="nombre_mapeo_configurar">----</span>
-                        <span class="text-muted">bandeja a configurar: </span> <span class="text-primary" id="nombre_bandeja_configurar">----</span>
+                        <span class="text-muted">Mapeo a configurar: </span> <span class="text-danger" id="nombre_mapeo_configurar">----</span>
+                        <span class="text-muted">bandeja a configurar: </span> <span class="text-danger" id="nombre_bandeja_configurar">----</span>
 
                         <input type="hidden" id="id_mapeo_configurar">
                         <input type="hidden" id="id_bandeja_configurar">
@@ -284,9 +285,9 @@
 
         <hr>
 
-        <div class="row">
+        <div class="row" id="asignacion_sensores">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card" >
                     <div class="card-header">
                         Asignación de sensores <input type="text" class="form-control" id="buscador_sensores" placeholder="Ingresa el nombre del sensor a buscar">
                     </div>
@@ -307,7 +308,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6" >
                 <div class="card-header">Sensores asignados</div>
                 <div class="card body">
                     <table class="table" style="text-align:center;">
@@ -332,7 +333,7 @@
 
         <div class="row">
             <div class="col-sm-3"></div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" id="datos_crudos_card">
                 <div class="card">
                     <div class="card-header">
                         Datos crudos <span class="text-muted" style="margin-left: 100px;">Estado Datos crudos</span>
@@ -369,9 +370,14 @@
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-2" style="text-align:center;">
-                <input type="text"  id="correlativo" class="form-control" placeholder="Ingresar correlativo">
-                <br>
-                <button class="btn btn-success" id="asignar_correlativo">Asignar</button>
+                <div class="form-row col-sm-12">
+                    <div class="col-sm-9">
+                        <input type="text"  id="correlativo" class="form-control" placeholder="Ingresar correlativo">
+                    </div>
+                    <div class="col-sm-3">
+                       <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
         <hr>

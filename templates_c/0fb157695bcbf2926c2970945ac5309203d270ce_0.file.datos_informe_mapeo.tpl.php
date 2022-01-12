@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-17 17:17:50
+/* Smarty version 3.1.34-dev-7, created on 2022-01-11 22:40:45
   from 'C:\xampp\htdocs\CerNet2.0\templates\mapeos_generales\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61bcb82e9b92f4_57486417',
+  'unifunc' => 'content_61ddf95d52f3c9_71880433',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0fb157695bcbf2926c2970945ac5309203d270ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\mapeos_generales\\datos_informe_mapeo.tpl',
-      1 => 1639757868,
+      1 => 1641937238,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61bcb82e9b92f4_57486417 (Smarty_Internal_Template $_smarty_tpl) {
-?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+function content_61ddf95d52f3c9_71880433 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
 			<span>Creación</span>
@@ -328,7 +329,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6" id="lista_de_bandejas">
                 <div class="card">
                     <div class="card-header">Lista de bandejas/Alturas disponibles</div>
                     <div class="card-body">
@@ -355,8 +356,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body" style="text-align:center;">
-                        <span class="text-muted">Mapeo a configurar: </span> <span class="text-primary" id="nombre_mapeo_configurar">----</span>
-                        <span class="text-muted">bandeja a configurar: </span> <span class="text-primary" id="nombre_bandeja_configurar">----</span>
+                        <span class="text-muted">Mapeo a configurar: </span> <span class="text-danger" id="nombre_mapeo_configurar">----</span>
+                        <span class="text-muted">bandeja a configurar: </span> <span class="text-danger" id="nombre_bandeja_configurar">----</span>
 
                         <input type="hidden" id="id_mapeo_configurar">
                         <input type="hidden" id="id_bandeja_configurar">
@@ -368,9 +369,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
         <hr>
 
-        <div class="row">
+        <div class="row" id="asignacion_sensores">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card" >
                     <div class="card-header">
                         Asignación de sensores <input type="text" class="form-control" id="buscador_sensores" placeholder="Ingresa el nombre del sensor a buscar">
                     </div>
@@ -391,7 +392,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6" >
                 <div class="card-header">Sensores asignados</div>
                 <div class="card body">
                     <table class="table" style="text-align:center;">
@@ -416,7 +417,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
         <div class="row">
             <div class="col-sm-3"></div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" id="datos_crudos_card">
                 <div class="card">
                     <div class="card-header">
                         Datos crudos <span class="text-muted" style="margin-left: 100px;">Estado Datos crudos</span>
@@ -453,9 +454,14 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-2" style="text-align:center;">
-                <input type="text"  id="correlativo" class="form-control" placeholder="Ingresar correlativo">
-                <br>
-                <button class="btn btn-success" id="asignar_correlativo">Asignar</button>
+                <div class="form-row col-sm-12">
+                    <div class="col-sm-9">
+                        <input type="text"  id="correlativo" class="form-control" placeholder="Ingresar correlativo">
+                    </div>
+                    <div class="col-sm-3">
+                       <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
         <hr>
