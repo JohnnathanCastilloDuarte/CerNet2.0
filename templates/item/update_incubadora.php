@@ -22,7 +22,7 @@ $array_incubadora = array();
 
 if(isset($_GET['item'])){
 	
-   	//RECUPER EL DATO DE LA URL	
+	//RECUPER EL DATO DE LA URL	
 	$id_equipo = $_GET['item'];
 
 	//CONSULTO LA INFORMACIÓN DEL EQUIPO

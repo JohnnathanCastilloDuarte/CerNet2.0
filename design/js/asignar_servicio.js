@@ -475,13 +475,15 @@ function listar_equipos(id_servicio){
 		id_empresa,
 		id_servicio
 	}
+
+
 	
 		$.post('templates/OT/listar_equipos.php', data ,function(e){
       console.log(e);
 			let traer =  JSON.parse(e);
 			let template = "";
 			let boton = "";
-				
+					
 					if(traer.length == 0){
 						Swal.fire({
 							title:'Mensaje',

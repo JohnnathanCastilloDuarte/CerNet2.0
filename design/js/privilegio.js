@@ -98,7 +98,7 @@ function leer_privilegios(id_privilegio){
       console.log(response);
       let traer = JSON.parse(response);
       let template = "";
-      let modulos = ['Modulos','Usuarios', 'Clientes', 'Items', 'Ordenes trabajo (OT)', 'Servicios', 'Informes', 'Documentación', 'Cargos'];
+      let modulos = ['Modulos','Usuarios', 'Clientes', 'Items', 'Ordenes trabajo (OT)', 'Servicios', 'Informes', 'Documentación', 'Cargos', 'Informes clientes'];
       let f = 0;
 
       let modulo1 = "";
@@ -110,6 +110,7 @@ function leer_privilegios(id_privilegio){
       let modulo7 = "";
       let modulo8 = "";
       let modulo9 = "";
+      let modulo10 = "";
 
       traer.forEach(x=>{
 
@@ -167,8 +168,11 @@ function leer_privilegios(id_privilegio){
           modulo9 = `<input type='checkbox' class='form-control' id='modulo9' name="modulo9">`;
         }
 
-
-
+        if(x.informes_clientes == 1){
+          modulo10 = `<input type='checkbox' class='form-control' id='modulo10' name="modulo10" checked>`;
+        }else{
+          modulo10 = `<input type='checkbox' class='form-control' id='modulo10' name="modulo10">`;
+        }
 
 
         template += 
@@ -209,6 +213,10 @@ function leer_privilegios(id_privilegio){
           <tr>
             <td>${modulos[8]}</td>
             <td>${modulo9}</td>
+          </tr>
+          <tr>
+            <td>${modulos[9]}</td>
+            <td>${modulo10}</td>
           </tr>
         
         `;

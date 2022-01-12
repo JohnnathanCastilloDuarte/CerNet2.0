@@ -126,6 +126,8 @@ else
         case 1:
           if($_GET["page"] == 1 && $primer_modulo == 1){
             include("templates/modulo/modulo_gestion.php");
+          }elseif ($_GET["page"] == 2 ){
+            include("templates/informes/informes_clientes.php");
           }else{
             $smarty->display("error3.tpl");
           }

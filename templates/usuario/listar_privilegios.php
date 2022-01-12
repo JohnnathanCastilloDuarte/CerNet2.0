@@ -5,11 +5,11 @@ include('../../config.ini.php');
 $id_privilegio = $_POST['id_privilegio'];
 
 
-$traer = mysqli_prepare($connect,"SELECT id_privilegio, perfil, Modulos, Usuarios, Clientes, Items, Ordenes_trabajo, Servicios, Informes, Documentacion, Cargos FROM privilegio WHERE id_privilegio = ?");
+$traer = mysqli_prepare($connect,"SELECT id_privilegio, perfil, Modulos, Usuarios, Clientes, Items, Ordenes_trabajo, Servicios, Informes, Documentacion, Cargos,informes_clientes FROM privilegio WHERE id_privilegio = ?");
 mysqli_stmt_bind_param($traer, 'i', $id_privilegio);
 mysqli_stmt_execute($traer);
 mysqli_stmt_store_result($traer);
-mysqli_stmt_bind_result($traer, $id_privilegio, $perfil, $Modulos, $Usuarios, $Clientes, $Items, $Ordenes_trabajo, $Servicios, $Informes, $Documentacion, $Cargos);
+mysqli_stmt_bind_result($traer, $id_privilegio, $perfil, $Modulos, $Usuarios, $Clientes, $Items, $Ordenes_trabajo, $Servicios, $Informes, $Documentacion, $Cargos, $informes_clientes);
 
 
 $array_privilegio = array();
@@ -27,7 +27,8 @@ while($row = mysqli_stmt_fetch($traer)){
         'servicio'=>$Servicios,
         'informe'=>$Informes,
         'documentacion'=>$Documentacion,
-        'cargo'=>$Cargos
+        'cargo'=>$Cargos,
+        'informes_clientes'=>$informes_clientes
     );
 }
 

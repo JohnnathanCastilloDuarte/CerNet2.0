@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-11 15:29:00
+/* Smarty version 3.1.34-dev-7, created on 2022-01-12 16:05:30
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61dd942cb35c69_04957941',
+  'unifunc' => 'content_61deee3aa43e28_07548402',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1641911336,
+      1 => 1641999929,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61dd942cb35c69_04957941 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61deee3aa43e28_07548402 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -29,52 +29,52 @@ function content_61dd942cb35c69_04957941 (Smarty_Internal_Template $_smarty_tpl)
     <div class="app-header__logo">
       <div class="logo-src"></div>
       <div class="header__pane ml-auto">
-      <div>
-      <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-      <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-      </button>
+          <div>
+              <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                  <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+              </button>
+          </div>
       </div>
-      </div>
-    </div>
-    <div class="app-header__mobile-menu">
+  </div>
+  <div class="app-header__mobile-menu">
     <div>
-    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-    <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-    </button>
+        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+            <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+        </button>
     </div>
-    </div>
-    <div class="app-header__menu">
+</div>
+<div class="app-header__menu">
     <span>
-    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-    <span class="btn-icon-wrapper"><i class="fa fa-ellipsis-v fa-w-6"></i></span>
-    </button>
+        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+            <span class="btn-icon-wrapper"><i class="fa fa-ellipsis-v fa-w-6"></i></span>
+        </button>
     </span>
-    </div>  
+</div>  
 
-    <!------------------------------------------------------------------INICIA MENU IZQUIERDO-------------------------------------------------------------------------------->
-    <div class="scrollbar-sidebar">
+<!------------------------------------------------------------------INICIA MENU IZQUIERDO-------------------------------------------------------------------------------->
+<div class="scrollbar-sidebar">
     <div class="app-sidebar__inner">
-    <ul class="vertical-nav-menu">
-    <li class="app-sidebar__heading">Menú</li>
-    <li>
-    <input type="hidden" id="es_local">
-    <a href="index.php">
-    <i class="metismenu-icon pe-7s-rocket"></i>Dashboard</a>			
-    </li>
-    
-    <div id="modulo_1">
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
+        <ul class="vertical-nav-menu">
+            <li class="app-sidebar__heading">Menú</li>
+            <li>
+                <input type="hidden" id="es_local">
+                <a href="index.php">
+                    <i class="metismenu-icon pe-7s-rocket"></i>Dashboard</a>			
+                </li>
+
+                <div id="modulo_1">
+                    <li>
+                        <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-server"></i>Modulos</a>
-    </li>                     
-    </div>
+                    </li>                     
+                </div>
 
     <!--<div id="modulo_2">
     <li>
     <a href="#"><i class="metismenu-icon pe-7s-user"></i>Perfil</a>
     </li>
-    </div>-->  
+</div>-->  
     <!--
     <div id="modulo_2">
     <li>
@@ -97,7 +97,7 @@ function content_61dd942cb35c69_04957941 (Smarty_Internal_Template $_smarty_tpl)
     </li>
     </ul> 
     </li>
-    </div>-->
+</div>-->
     <!--   
     <li>
     <a  href="#"> <i class="metismenu-icon pe-7s-network"></i>Control de activos<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
@@ -125,35 +125,35 @@ function content_61dd942cb35c69_04957941 (Smarty_Internal_Template $_smarty_tpl)
     </ul>
     </li>													
     </div>
-    -->
+-->
 
-    <div id="modulo_3">
+<div id="modulo_3">
     <li><a href="#" class="text-default"><i class="metismenu-icon pe-7s-user"></i>Usuarios<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-    <ul>						
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
+        <ul>						
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-add-user"></i>Nuevo Usuario</a>
-    </li>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon pe-7s-users "></i>Gestionar Usuarios</a>
-    </li>
+            </li>
     <!--
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial usuario</a>
-    </li>-->
-    <li id="rolyprivilegiopage">
+</li>-->
+<li id="rolyprivilegiopage">
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[1];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[4];?>
 "><i class="metismenu-icon pe-7s-look"></i>Rol y Privilegio</a>
-    </li>
-    </ul>
-    </li> 
-    </div>
+</li>
+</ul>
+</li> 
+</div>
 
 
 <!--
@@ -175,28 +175,28 @@ function content_61dd942cb35c69_04957941 (Smarty_Internal_Template $_smarty_tpl)
 
 
 
-    <div id="modulo_4">
+<div id="modulo_4">
     <li><a href="#"><i class="metismenu-icon pe-7s-id"></i>Clientes<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-    <ul>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
+        <ul>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon ion-android-contact"></i>Nuevo Cliente</a>
-    </li>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon ion-android-contacts"></i>Gestionar Cliente</a>
-    </li>	
+            </li>	
     <!--<li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[4];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial Cliente</a>
     </li> 
-    -->
-    </ul>
-    </li>
-    </div>
+-->
+</ul>
+</li>
+</div>
 
 
 <!--
@@ -222,41 +222,41 @@ function content_61dd942cb35c69_04957941 (Smarty_Internal_Template $_smarty_tpl)
 
 
 
-    <div id="modulo_5">
+<div id="modulo_5">
     <li><a href="#"><i class="metismenu-icon pe-7s-keypad"></i>Item<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-    <ul>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
+        <ul>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon fa-th-large"></i>Nuevo Item</a>
-    </li>
-    <li id="gestion_item">
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
+            </li>
+            <li id="gestion_item">
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon  pe-7s-plugin"></i>Gestionar Item</a>
-    </li>
+            </li>
     <!--
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[7];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial Item</a>
     </li>	
-    -->
-    </ul>
-    </li> 
-    </div>
+-->
+</ul>
+</li> 
+</div>
 
 
 
 
-    <div id="modulo_6">    
+<div id="modulo_6">    
     <li><a href="#"><i class="metismenu-icon pe-7s-global"></i>Ordenes de trabajo<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-    <ul>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
+        <ul>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-paperclip"></i>Gestionar OT</a>
-    </li>
+            </li>
     <!--
     <li>
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
@@ -267,133 +267,142 @@ function content_61dd942cb35c69_04957941 (Smarty_Internal_Template $_smarty_tpl)
     <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[5];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-graph2"></i>Historial OT</a>
-    </li>-->
-    </ul>
-    </li>
-    </div>
+</li>-->
+</ul>
+</li>
+</div>
 
 
-    <div id="modulo_7">
+<div id="modulo_7">
     <li><a href="#"><i class="metismenu-icon pe-7s-config"></i>Servicios<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-    <ul>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[8];?>
+        <ul>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[8];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-portfolio"></i>Nuevo servicio</a>
+            </li>
+        </ul>
     </li>
-    </ul>
-    </li>
-    </div>
+</div>
 
 
 
-    <div id="modulo_8">
+<div id="modulo_8">
     <li><a href="#"><i class="metismenu-icon pe-7s-copy-file"></i>Informes<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-    <ul>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+        <ul>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Mapeo generales</a>
-    </li>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Refrigeradores</a>
-    </li>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[2];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>UltraFreezer</a>
-    </li>
+            </li>
 
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[3];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Freezer</a>
-    </li>
+            </li>
 
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[4];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Estufa e incubadora</a>
-    </li>
+            </li>
 
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[5];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
-    </li>
+            </li>
 
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[6];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Filtros</a>
-    </li>
+            </li>
 
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[7];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Campana de extracción</a>
-    </li>
+            </li>
 
-  
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[10];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Flujo laminar</a>
-    </li>
-    <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[11];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Sala limpia</a>
-    </li>
-      <li>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[8];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
+            </li>
+
+
+        </ul>
     </li>
+</div>
 
-
-    </ul>
-    </li>
-    </div>
-
-    <div id="modulo_9">
+<div id="modulo_9">
     <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Documentación<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-    <ul>
-    <li>
-    
-    <?php if ($_smarty_tpl->tpl_vars['id_privilegio_actual']->value != 7) {?>
-    <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
+        <ul>
+            <li>
+
+                <?php if ($_smarty_tpl->tpl_vars['id_privilegio_actual']->value != 7) {?>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 ">Gestion documental</a>.
-    <?php }?>
-      <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
+                <?php }?>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[2];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
 ">Revisión documental</a>
-    </li>
-    </ul>  
+            </li>
+        </ul>  
     </li> 
-    </div>
-      
-    <div id="modulo_10">
-      <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Cargos<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
-        <ul>
-          <li>
-            <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[3];?>
+</div>
+
+<div id="modulo_10">
+  <li><a href="#"><i class="metismenu-icon pe-7s-box1"></i>Cargos<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+    <ul>
+      <li>
+        <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[3];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 ">Gestionar cargo</a>
-          </li>
-        </ul>  
-      </li> 
-    </div>
-      
-    </div>
-    </div>
-  </div> 
- 
+    </li>
+</ul>  
+</li> 
+</div>
 
-  
-   
+<div id="modulo_11">
+     <li><a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
+"><i class="metismenu-icon pe-7s-copy-file"></i>Informes
+     </a>                 
+</div>
+
+
+
+</div>
+</div>
+</div> 
+
+
+
+
 <!-------------------------------------------------- FIN DE MENU IZQUIERDO ------------------------------------------------------->    <?php }
 }
