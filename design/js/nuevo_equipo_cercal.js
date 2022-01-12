@@ -136,7 +136,25 @@ $(document).on('click','#btn_agregar_equipo',function(){
         }
 
     
-    }else{
+    }
+    
+    else if(pk == "salas_limpias"){
+
+        proceso = 3333;
+        let tipo_prueba = $("#tipo_prueba").val();
+        let id_asignado_salas_limpias = $("#id_asignado_sala_limpia").val();
+     
+        datos = {
+            id_equipo,
+            proceso,
+            tipo_prueba,
+            id_asignado_salas_limpias
+        }
+
+    
+    }
+
+    else{
 
         let id_informe  = $("#id_informe_filtro").val();
         proceso = 3;
@@ -157,7 +175,7 @@ $(document).on('click','#btn_agregar_equipo',function(){
         data:datos,
         url:'templates/equipos_cercal/controlador_equipos.php',
         success:function(response){
-          
+            console.log(response);
             if(response == "Existe"){
                 Swal.fire({
                     title:'Mensaje',
@@ -205,6 +223,16 @@ function listar_equipos_asignados(){
 
         proceso = 44;
         let id_asignado = $("#id_asignado_flujo_laminar").val();
+        datos = {
+            proceso,
+            id_asignado
+        }
+
+    }
+    else if(pk == "salas_limpias"){
+
+        proceso = 44;
+        let id_asignado = $("#id_asignado_sala_limpia").val();
         datos = {
             proceso,
             id_asignado
