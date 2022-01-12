@@ -9,7 +9,7 @@ class MYPDF extends TCPDF
 {
     //Page header
     public function Header() 
-	{
+	{/*
 		global $a, $nombre_informe, $numot;
 		// Set border style
 		$this->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(120, 120, 120)));
@@ -26,76 +26,20 @@ class MYPDF extends TCPDF
 		//$this->MultiCell(91, 15, 'Informe:  // REVISION: 0.0.0', 1, 'C', 0, 1, 190, 7, true, 1, true, true, 0, 'M');		
 		//$this->writeHTMLCell(70, 5, 125, 22, '<table><tr><td width="120%">Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
    
-    
-    $this->MultiCell(120, 16.5, 'Detalle del informe Cercal Group ', 1, 'C', 0, 0, 15, 30, true, 0, false, true, 16, 'M');
-    $this->Image('logo_big.png',10,8,22);
-	$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
-	$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
-    
+     */
+    // Logo
+	//$this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
+	//$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
+	//$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
+   
     }
 	
     // Page footer
    public function Footer() 
 	{
-		 /*
-	global $pais_emp;
-	switch($pais_emp)
-	{
-		CASE 'Chile':
-		$this->SetFont('helvetica', '', 6);		
-		$this->Line(10, 279, 195, 279);
-		$image_file = K_PATH_IMAGES.'../../../images/cercal_pie_pag.jpg';
-        $this->Image($image_file, 17, 282, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$this->writeHTMLCell(45, 15, 15, 280, '', 0, 0, 0, true, 'C', true);	
-		$this->writeHTMLCell(90, 15, 60, 280, '<strong>Cercal Chile</strong><br>Cercal Ingeniería SpA.<br>
-							Monseñor Sotero Sanz N° 100, Piso 9, Of. 902, Providencia, Santiago de Chile<br>Télefono:
-							 +56 2 28 11 8824 / Correo: clientes@cercal.cl / capacitaciones@cercal.cl', 0, 0, 0, true, 'L', true);	
-		$image_file2 = K_PATH_IMAGES.'../../../images/parte3.jpg';							 
-        $this->Image($image_file2, 160, 285, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);		
-		$this->writeHTMLCell(45, 15, 150, 280, '', 0, 1, 0, true, 'C', true);	
-		break;
-		
-		CASE 'Colombia':
-		$this->SetFont('helvetica', '', 6);		
-		$this->Line(10, 279, 195, 279);
-		$image_file = K_PATH_IMAGES.'../../../images/cercal_pie_pag.jpg';
-        $this->Image($image_file, 17, 282, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$this->writeHTMLCell(45, 15, 15, 280, '', 0, 0, 0, true, 'C', true);	
-		$this->writeHTMLCell(90, 15, 60, 280, '<strong>Cercal Colombia</strong><br>Cercal Ingeniería SpA<br>Avenida El Dorado No. 68 c.1, Of. 204, Bogotá, Colombia<br>Teléfono: +57 1 4322795 / Correo: contacto@cercal.cl', 0, 0, 0, true, 'L', true);							 
- 		$image_file2 = K_PATH_IMAGES.'../../../images/parte3.jpg';	      
-	    $this->Image($image_file2, 160, 285, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);		
-		$this->writeHTMLCell(45, 15, 150, 280, '', 0, 1, 0, true, 'C', true);	
-		break;	
-		
-		DEFAULT:
-		$this->SetFont('helvetica', '', 6);		
-		$this->Line(10, 279, 195, 279);
-		$image_file = K_PATH_IMAGES.'../../../images/cercal_pie_pag.jpg';
-        $this->Image($image_file, 17, 282, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$this->writeHTMLCell(45, 15, 15, 280, '', 0, 0, 0, true, 'C', true);	
-		$this->writeHTMLCell(90, 15, 60, 280, '<strong>Cercal Chile</strong><br>Cercal Ingeniería SpA.<br>
-							Monseñor Sotero Sanz N° 100, Piso 9, Of. 902, Providencia, Santiago de Chile<br>Télefono:
-							 +56 2 28 11 8824 / Correo: clientes@cercal.cl / capacitaciones@cercal.cl', 0, 0, 0, true, 'L', true);	
-		$image_file2 = K_PATH_IMAGES.'../../../images/parte3.jpg';							 
-        $this->Image($image_file2, 160, 285, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);		
-		$this->writeHTMLCell(45, 15, 150, 280, '', 0, 1, 0, true, 'C', true);	
-		break;		
+		$this->SetFont('helvetica', '', 7);		
+		$this->writeHTMLCell(45, 15, 150, 280, 'Página '.$this->getAliasNumPage(), 0, 1, 0, true, 'C', true);
 	}
-	}
-	
-		 
-		$this->SetFont('helvetica', '', 6);		
-		$this->Line(10, 279, 195, 279);
-		$image_file = K_PATH_IMAGES.'../../../design/images/cercal_pie_pag.jpg';
-        $this->Image($image_file, 17, 282, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$this->writeHTMLCell(45, 15, 15, 280, '', 0, 0, 0, true, 'C', true);	
-		$this->writeHTMLCell(90, 15, 60, 280, '<strong>Cercal Chile</strong><br>Cercal Ingeniería SpA.<br>
-							Monseñor Sotero Sanz N° 100, Piso 9, Of. 902, Providencia, Santiago de Chile<br>Télefono:
-							 +56 2 28 11 8824 / Correo: clientes@cercal.cl / capacitaciones@cercal.cl', 0, 0, 0, true, 'L', true);	
-		$image_file2 = K_PATH_IMAGES.'../../../design/images/parte3.jpg';							 
-        $this->Image($image_file2, 160, 285, 35, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);		
-		$this->writeHTMLCell(45, 15, 150, 280, '', 0, 1, 0, true, 'C', true);*/
-}
 }
 
 
@@ -120,8 +64,8 @@ $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, 49, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(35);
+$pdf->SetMargins(PDF_MARGIN_LEFT, 25, PDF_MARGIN_RIGHT);
+$pdf->SetHeaderMargin(15);
 $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
 // set auto page breaks
@@ -139,6 +83,6 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('freesans', 'R', 9);
+$pdf->SetFont('freesans', 'R', 8);
 
 ?>

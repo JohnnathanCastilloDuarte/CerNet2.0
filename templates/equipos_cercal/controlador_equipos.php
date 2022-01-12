@@ -136,6 +136,33 @@ if($proceso == 1){
         }
     }
 }
+else if($proceso == 3333){
+       
+    $id_equipo = $_POST['id_equipo'];
+    $tipo_prueba = $_POST['tipo_prueba'];
+    $id_asignado_salas = $_POST['id_asignado_salas_limpias'];
+    $camara_categoria = 14;
+
+
+    $validacion1 = mysqli_prepare($connect,"SELECT id_equipo_medicion  FROM equipos_mediciones WHERE id_asignado = ? AND id_equipo = ? AND categoria = ? AND tipo_prueba = ?");
+    mysqli_stmt_bind_param($validacion1, 'iiis', $id_asignado_salas, $id_equipo, $camara_categoria, $tipo_prueba);
+    mysqli_stmt_execute($validacion1);
+    mysqli_stmt_store_result($validacion1);
+    mysqli_stmt_bind_result($validacion1, $id_equipo_medicion);
+    mysqli_stmt_fetch($validacion1);
+   
+    if (mysqli_stmt_num_rows($validacion1) > 0){
+        echo "Existe";
+    }else{
+        $insertar = mysqli_prepare($connect,"INSERT INTO equipos_mediciones (id_equipo , id_asignado, categoria, tipo_prueba) VALUES (?,?,?,?)");
+        mysqli_stmt_bind_param($insertar, 'iiis', $id_equipo, $id_asignado_salas, $camara_categoria, $tipo_prueba);
+        mysqli_stmt_execute($insertar);
+
+        if($insertar){
+            echo "Listo";
+        }
+    }
+}
 
 else if($proceso == 4){
 
