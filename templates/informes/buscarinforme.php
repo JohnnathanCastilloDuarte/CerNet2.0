@@ -7,7 +7,7 @@ if ($_POST['accion'] == 'buscarot') {
 	
 	//consultar id_empresa
 	$idempresa = mysqli_prepare($connect,"SELECT b.id_empresa FROM persona a, empresa b
-			  WHERE a.id_usuario = 107 AND b.id_empresa = a.id_empresa");
+			  WHERE a.id_usuario = ? AND b.id_empresa = a.id_empresa");
 	mysqli_stmt_bind_param($idempresa, 'i', $id_usuario);
  	mysqli_stmt_execute($idempresa);
  	mysqli_stmt_store_result($idempresa);
