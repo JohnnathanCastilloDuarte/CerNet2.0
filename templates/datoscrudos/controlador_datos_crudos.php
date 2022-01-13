@@ -277,7 +277,10 @@ else
     mysqli_stmt_execute($insertar);
 
     $convert = json_encode($array_datos_crudos);
-    echo $convert;
+    //echo $convert;
+   // echo $id_mapeo."--".$id_mapeo."--".$id_asignado."--".$url_archivo."--".$estado."--".$id_valida;
+    echo "INSERT INTO registro_dc (id_mapeo, id_asignado, url_archivo, estado, id_usuario) VALUES ($id_mapeo,$id_asignado,$url_archivo,$estado,$id_valida)";
+    
 
 
     } 

@@ -44,22 +44,14 @@
                 </div>
                 
                 <div class="col-sm-6">
-                  <label>Empresa:</label>
-                  <select class="form-control" id="empresa_estufa">
-                    {if $estufa.id_empresa == ''}
-                    <option value="0" selected="">Seleccione</option>
-                    {foreach from=$array_empresas item=empresa}
-                    <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>  
-                    {/foreach}
-                    {else}
-                    {foreach from=$array_empresas item=empresa}
-										<option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>	
-										{/foreach}
-                    {/if}
-                  </select>
-                  
+                 <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="{$estufa.id_empresa}">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$estufa.nombre_empresa}">
+                    <div >
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
                 </div>
-
               </div>
               <br>
               <div class="form-row">
@@ -98,13 +90,17 @@
 
             <div id="step-22">
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_estufa" class="form-control" placeholder="Dirección equipo" value="{$estufa.direccion}">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_estufa" class="form-control" placeholder="Ubicación equipo" value="{$estufa.ubicacion}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_estufa" class="form-control" placeholder="Área equipo" value="{$estufa.area_interna}">
                 </div>
               </div>
               <br>

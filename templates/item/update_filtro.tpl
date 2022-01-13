@@ -60,19 +60,13 @@
             </div>
             <div class="col-sm-6">
               <div class="position-relative form-group">
-                <label>Empresa:</label>
-                <select id="empresa_filtro" class="form-control">
-                  {if $filtro.id_empresa !== '' }
-                  <option value="{$filtro.id_empresa}">{$filtro.nombre_empresa}</option>
-                  {foreach from=$array_empresa item=empresa}
-                  <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-                  {/foreach}
-                  {else}
-                  {foreach from=$array_empresa item=empresa}
-                  <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
-                  {/foreach}
-                  {/if}
-                </select>
+               <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="{$filtro.id_empresa}">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$filtro.nombre_empresa}">
+                    <div >
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
               </div>
             </div>
           </div>

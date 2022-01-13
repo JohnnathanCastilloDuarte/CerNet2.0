@@ -8,15 +8,14 @@ $tamanio = $_FILES['pdf_subiendo']['size'];
 $archivotmp = $_FILES['pdf_subiendo']['tmp_name'];
 $id_documentacion = $_POST['id_documentacion'];
 
-
-$target_dir = "templates/documentacion/pdf/";
+$target_dir = 'pdf/documentacion_'.$id_documentacion.'/';
 	if(is_dir($target_dir)===false){
 		mkdir($target_dir,0777,true);
-	}
+  }
 
 	$personalizado=$target_dir.$nombre_pdf_full;
 
-if(move_uploaded_file($archivotmp, 'pdf/'.$nombre_pdf_full)){
+if(move_uploaded_file($archivotmp, 'pdf/documentacion_'.$id_documentacion.'/'.$nombre_pdf_full)){
     $query = mysqli_prepare($connect,"SELECT id FROM archivos_documentacion WHERE id_documentacion = ?");
     mysqli_stmt_bind_param($query, 'i', $id_documentacion);
     mysqli_stmt_execute($query);

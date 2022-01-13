@@ -8,7 +8,7 @@
 			<div class="card-body">
 				{$alerta}
 				<div class="col-sm-12">
-					<div class="position-relative form-group"><label for="nombre_usuario" class=""><span class="text-danger">*</span>Usuario</label>
+					<div class="position-relative form-group"><label for="nombre_usuario" class=""><span class="text-danger">*</span>Nombre usuario</label>
 						<input name="usuario" id="usuario_principal" placeholder="Ingrese un usuario" type="text" class="form-control" required>
 					</div>
 				</div>
@@ -96,11 +96,14 @@
 							<input type="text" class="form-control" id="numero_identificacion" placeholder="# de identificación" >
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<div class="position-relative form-group">
-							<label>Departamento</label>
-							<select class="form-control" id="departamento_usuario">
-
+          <div class="col-sm-6">
+						<div class="position-relative form-group">						
+							<label>Pais:</label>
+							<select class="form-control" id="pais_usuario">
+							<option>Selecciona...</option>
+								{foreach from=$paises item=pais_actual}
+									<option value="{$pais_actual}">{$pais_actual}</option>
+								{/foreach}
 							</select>
 						</div>
 					</div>
@@ -115,29 +118,43 @@
 						</select>	
 					</div>-->
 					<div class="col-sm-6">
-						<div class="position-relative form-group">						
-							<label>Pais:</label>
-							<select class="form-control" id="pais_usuario">
-							<option>Selecciona...</option>
-								{foreach from=$paises item=pais_actual}
-									<option value="{$pais_actual}">{$pais_actual}</option>
-								{/foreach}
+						<div class="position-relative form-group">
+							<label>Departamento</label>
+							<select class="form-control" id="departamento_usuario">
+               
 							</select>
 						</div>
 					</div>
+          
+          <div class="col-sm-6">
+						<label>Cargo:</label>
+							<select class="form-control" id="cargo_usuario">
+								
+								
+							</select>
+					</div>
 				</div>
-
-				<div class="row">
-					<div class="col-sm-6">
+        	<div class="row">
+          <div class="col-sm-6">
 						<label>Empresa:</label>
 							<select class="form-control" id="empresa_usuario">
-								<option>Selecciona...</option>
+								<option>Seleccione...</option>
 								{foreach from=$empresas item=empresa}
 									<option value="{$empresa.id_empresa}">{$empresa.nombre}</option>
 								{/foreach}
 							</select>
 					</div>
+             <div class="col-sm-6">
+						<label>Tipo Usuario:</label>
+							<select class="form-control" id="privilegios">
+								<option value="0" selected>Seleccione...</option>
+								
+							</select>
+					</div>
 				</div>
+
+				
+        <!--
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="position-relative form-group"><label>Estado:</label></div>
@@ -166,11 +183,12 @@
 							<label class="custom-control-label" for="exampleCustomRadio4">Vacaciones</label>	
 						</div>
 					</div>
-				</div>
+				</div>-->
+        
 			</div>
 			<br>
 			<div class="col-sm-12">
-			<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_nuevo_usuario" name="btn_nuevo_usuario">Aceptar</button>
+			<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info btn-align-center" id="btn_nuevo_usuario" name="btn_nuevo_usuario">Aceptar</button>
 			</div>
 		</div><!--Cierre del card-body--> 
 	</div><!--Cierre del col-sm-7-->

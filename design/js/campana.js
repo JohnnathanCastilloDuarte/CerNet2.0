@@ -72,9 +72,8 @@ $("#btn_nuevo_item_campana").click(function(){
        data:datos,
        url:'templates/item/controlador_item_campana.php',
        success:function(response){
-           console.log(response);
-              if (response == "Si") {
-            Swal.fire({
+              if (response == "Si") { 
+             Swal.fire({
                 title:'Mensaje',
                 text:'Se ha creado con exito la campana',
                 icon:'success',
@@ -180,7 +179,7 @@ function traer_datos_campana(id_item_campana){
 
     })
 }
-
+//////// LISTAR EMPRESAS 
 
 $("#buscador_empresa").keydown(function(){
 	
@@ -219,8 +218,9 @@ $(document).on('click','#seleccionar_empresa',function(){
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
 	$("#buscador_empresa").val(nombre_empresa);
-    $("#id_empresa").val(id_empresa);
+  $("#id_empresa").val(id_empresa);
 
 	$("#aqui_resultados_empresa").hide();
 
-});
+})
+

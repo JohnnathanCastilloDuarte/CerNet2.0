@@ -5,9 +5,14 @@ include("../../config.ini.php");
 $id_tipo = $_GET['type'];
 $id_item = $_GET['item'];
 
+$array_datos = array();
 
-echo "<input type='hidden' id='type_campana' value='".$id_tipo."'>";
-echo "<input type='hidden' id='id_item_campana' value='".$id_item."'>";
+
+$smarty->assign("id_tipo",$id_tipo);
+$smarty->assign("id_item",$id_item);
+
+//echo "<input type='hidden' id='type_campana' value='".$id_tipo."'>";
+//echo "<input type='hidden' id='id_item_campana' value='".$id_item."'>";
 
 $empresas = mysqli_prepare($connect,"SELECT id_empresa, nombre FROM empresa");
 mysqli_stmt_execute($empresas);

@@ -46,6 +46,7 @@ function setear_campos(){
 			$("#valor_seteado_tem_freezer").val('');
 			$("#temperatura_minima_freezer").val('');
 			$("#temperatura_maxima_freezer").val('');
+      $("#area_interna_freezer").val('');
 }
 
 //// FUNCION PARA EDITAR EL FREEZER
@@ -67,7 +68,7 @@ function setear_campos(){
 			id_item_freezer : $("#id_item_freezer").val(),
 			id_item_2,
 			nombre_freezer : $("#nombre_freezer").val(),
-			empresa_freezer : $("#empresa_freezer").val(),
+			empresa_freezer : $("#id_empresa").val(),
 			fabricante_freezer : $("#fabricante_freezer").val(),
 			modelo_freezer : $("#modelo_freezer").val(),
 			desc_freezer : $("#desc_freezer").val(),
@@ -89,7 +90,8 @@ function setear_campos(){
 			valor_seteado_tem : $("#valor_seteado_tem_freezer").val(),
 			temperatura_minima : $("#temperatura_minima_freezer").val(),
 			temperatura_maxima : $("#temperatura_maxima_freezer").val(),
-			id_valida 
+      area_interna_freezer : $("#area_interna_freezer").val(),
+			id_valida : $("#id_valida").val()
 		}
 		
 		$.post('templates/item/editar_freezer.php', datos, function(response){
@@ -122,7 +124,7 @@ function setear_campos(){
 /////////Funcion apra crear freezer
 $("#btn_nuevo_item_freezer").click(function(){
 
-	let id_empresa_freezer = $("#empresa_freezer").val();
+	let id_empresa_freezer = $("#id_empresa").val();
 
 	if (id_empresa_freezer == 0) {
 		   Swal.fire({
@@ -134,7 +136,7 @@ $("#btn_nuevo_item_freezer").click(function(){
 
 	const datos = {
 		nombre_freezer : $("#nombre_freezer").val(),
-		empresa_freezer : $("#empresa_freezer").val(),
+		empresa_freezer : $("#id_empresa").val(),
 		fabricante_freezer : $("#fabricante_freezer").val(),
 		modelo_freezer : $("#modelo_freezer").val(),
 		desc_freezer : $("#desc_freezer").val(),
@@ -156,12 +158,11 @@ $("#btn_nuevo_item_freezer").click(function(){
 		valor_seteado_tem : $("#valor_seteado_tem_freezer").val(),
 		temperatura_minima : $("#temperatura_minima_freezer").val(),
 		temperatura_maxima : $("#temperatura_maxima_freezer").val(),
-		id_valida 
+    area_interna_freezer : $("#area_interna_freezer").val(),
+		id_valida : $("#id_valida").val(),
 	}
-
 	$.post('templates/item/nuevo_freezer.php',datos,function(response){
 		if(response == "Si"){
-
 			Swal.fire({
 				title:'Mensaje',
 				text:'Se ha creado el freezer correctamente',
@@ -174,7 +175,7 @@ $("#btn_nuevo_item_freezer").click(function(){
 			Swal.fire({
 				title:'Mensaje',
 				text:'No ha se podido crear el registro, contacta al administrador',
-				icon:'success',
+				icon:'error',
 				showConfirmButton: false,
 				timer:1500
 			});
@@ -182,5 +183,53 @@ $("#btn_nuevo_item_freezer").click(function(){
 
 	});
  }
+
+})
+
+//////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion');
+  console.log(direccion);
+	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+  $("#direccion_freezer").val(direccion);
+
+	$("#aqui_resultados_empresa").hide();
 
 })

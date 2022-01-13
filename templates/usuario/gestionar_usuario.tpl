@@ -46,7 +46,7 @@
 							</td>
 							<td id="nombre_usuario" data-nombre="{$table_usuario.nombre}">{$table_usuario.nombre}</td>
 							<td>{$table_usuario.apellido}</td>
-							<td>{$table_usuario.cargo}</td>
+							<td>{$table_usuario.nombre_cargo}</td>
 							<td>{$table_usuario.estado}</td>
 							<td>
 								<div class="col-sm-12" style="text-align: center;padding: 0;">

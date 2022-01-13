@@ -4,7 +4,13 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header"> 
+                 {if $camara_congelada.id_item == ""}
+                  <h5>Creacion camara congelada</h5>
+                  {else}
+                  <h5>Edición del equipo </h5>
+                  {/if}
+              </div>
                 <div class="card-body">
                     <div class="row">
                         
@@ -38,10 +44,17 @@
                     <br>
 
                     <div class="row">
-
-                        <div class="col-sm-6">
-                            <label for="">Ubicación</label>
+                        <div class="col-sm-4">
+                            <label for="">Dirección</label>
+                            <input type="text" id="direccion_camara_congelada" class="form-control" placeholder="Dirección camara congelada" value="{$camara_congelada.direccion}">
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="">Ubicación interna</label>
                             <input type="text" id="ubicacion_camara_congelada" class="form-control" placeholder="Ubicación camara congelada" value="{$camara_congelada.ubicacion}">
+                        </div>
+                      <div class="col-sm-4">
+                            <label for="">Área interna</label>
+                            <input type="text" id="area_camara_congelada" class="form-control" placeholder="Área camara congelada" value="{$camara_congelada.area_interna}">
                         </div>
                     </div>
 

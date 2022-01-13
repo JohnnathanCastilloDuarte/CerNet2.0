@@ -44,21 +44,13 @@
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
-                  <select type="text" id="id_empresa" class="form-control">
-                    {if $automovil.id_empresa ==""}
-                      <option value="0">Seleccione...</option>
-                     {foreach from=$array_empresas item=empresa}
-                    <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
-                      {/foreach}
-
-                      {else}
-                    <option selected="" value="{$automovil.id_empresa}">{$automovil.nombre_empresa}</option>
-                      {foreach from=$array_empresas item=empresa}
-                    <option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>
-                      {/foreach}
-                      {/if}
-
-                  </select>
+                  <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="{$automovil.id_empresa}">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$automovil.nombre_empresa}">
+                    <div >
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
                 </div>
 
               </div>
@@ -103,13 +95,17 @@
 
             <div id="step-22">
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_automovil" class="form-control" placeholder="Dirección equipo" value="{$automovil.direccion}">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_automovil" class="form-control" placeholder="Ubicación equipo" value="{$automovil.ubicacion}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_automovil" class="form-control" placeholder="Área equipo" value="{$automovil.area_interna}">
                 </div>
               </div>
               <br>

@@ -13,7 +13,7 @@ mysqli_stmt_bind_result($query, $url);
 mysqli_stmt_fetch($query);
 
 if(count($url) != 0){
-  echo $url;
+  echo "templates/documentacion/".$url;
 }else{
   echo "No";
 }

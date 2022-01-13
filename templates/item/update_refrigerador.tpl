@@ -42,20 +42,13 @@
 											<input type="text" id="nombre_refrigerador" class="form-control" value="{$refrigerador.nombre_refrigerador}" placeholder="Nombre refrigerador"> 
 										</div>
 										<div class="col-sm-6">
-											<label>Empresa:</label>
-											<select id="empresa_refrigerador" class="form-control">
-												{if $refrigerador.id_empresa == "" }
-												<option value="0">Seleccione....</option>
-												{foreach from=$array_empresas item=empresa}
-												<option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>							
-												{/foreach}
-												{else}
-												<option value="{$refrigerador.id_empresa}">{$refrigerador.nombre_empresa}</option>
-												{foreach from=$array_empresas item=empresa}
-												<option value="{$empresa.id_empresas}">{$empresa.nombre_empresas}</option>							
-												{/foreach}
-												{/if}
-											</select>
+											 <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="{$refrigerador.id_empresa}">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$refrigerador.nombre_empresa}">
+                    <div >
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
 										</div>
 									</div>
 									<br>
@@ -95,13 +88,17 @@
 
 								<div id="step-22">
 									<div class="form-row">
-										<div class="col-sm-6">
-											<label>Dirección equipo:</label>
+										<div class="col-sm-4">
+											<label>Dirección Empresa:</label>
 											<input type="text" id="direccion_refrigerador" class="form-control" placeholder="Dirección equipo" value="{$refrigerador.direccion}">
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-4">
 											<label>Ubicación interna equipo:</label>
 											<input type="text" id="ubicacion_interna_refrigerador" class="form-control" placeholder="Ubicación equipo" value="{$refrigerador.ubicacion}">
+										</div>
+                    <div class="col-sm-4">
+											<label>Área del equipo :</label>
+											<input type="text" id="area_refrigerador" class="form-control" placeholder="Área equipo" value="{$refrigerador.area_interna}">
 										</div>
 									</div>
 									<br>

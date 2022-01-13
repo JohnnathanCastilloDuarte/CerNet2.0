@@ -26,6 +26,13 @@ $temperatura_maxima = $_POST['temperatura_maxima'];
 
 
 $id_valida = $_POST['id_valida'];
+$area_interna_estufa = $_POST['area_interna_estufa'];
+
+if($fecha_fabricacion_estufa == "" || $fecha_fabricacion_estufa == NULL){
+   $fecha_fabricacion = "NA";
+}else{
+   $fecha_fabricacion = $_POST['fecha_fabricacion_estufa'];
+}
 
 	$update_estufa = mysqli_prepare($connect,"UPDATE item SET id_empresa = ?, nombre = ?, descripcion = ? WHERE id_item = $id_item_2");
 	mysqli_stmt_bind_param($update_estufa, 'iss', $empresa_estufa, $nombre_estufa, $desc_estufa);
@@ -35,11 +42,11 @@ $id_valida = $_POST['id_valida'];
 	if($update_estufa > 0){
 		
 		$update_estufa_2  = mysqli_prepare($connect,"UPDATE item_estufa SET fabricante = ?, modelo = ?, n_serie = ?, c_interno = ?, fecha_fabricacion = ?, direccion = ? ,
-		ubicacion = ?, voltaje = ?, potencia = ?, capacidad = ?, peso = ?, alto = ?, largo = ?, ancho = ?, valor_seteado_tem = ?, tem_min = ?, tem_max = ?, id_usuario = ?
+		ubicacion = ?, voltaje = ?, potencia = ?, capacidad = ?, peso = ?, alto = ?, largo = ?, ancho = ?, valor_seteado_tem = ?, tem_min = ?, tem_max = ?, id_usuario = ?, area_interna = ?
 																											WHERE id_estufa = $id_item_estufa");
-		mysqli_stmt_bind_param($update_estufa_2, 'sssssssssssssssssi', $fabricante_estufa, $modelo_estufa, $n_serie_estufa, $codigo_interno_estufa, $fecha_fabricacion_estufa,
+		mysqli_stmt_bind_param($update_estufa_2, 'sssssssssssssssssis', $fabricante_estufa, $modelo_estufa, $n_serie_estufa, $codigo_interno_estufa, $fecha_fabricacion,
 																										$direccion_estufa, $ubicacion_interna_estufa, $voltaje_estufa, $potencia_estufa, $capacidad_estufa, $peso_estufa, 
-																										 $alto_estufa, $largo_estufa, $ancho_estufa, $valor_seteado_tem, $temperatura_minima, $temperatura_minima, $id_valida);
+																										 $alto_estufa, $largo_estufa, $ancho_estufa, $valor_seteado_tem, $temperatura_minima, $temperatura_minima, $id_valida, $area_interna_estufa);
 		
 		mysqli_stmt_execute($update_estufa_2);
 		

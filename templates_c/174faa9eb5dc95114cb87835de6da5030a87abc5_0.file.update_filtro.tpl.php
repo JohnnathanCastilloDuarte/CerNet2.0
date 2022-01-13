@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-23 19:44:13
+/* Smarty version 3.1.34-dev-7, created on 2021-12-29 15:46:11
   from '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c4d18d11b117_36103182',
+  'unifunc' => 'content_61cc82c30aaab4_53544314',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '174faa9eb5dc95114cb87835de6da5030a87abc5' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl',
-      1 => 1640288647,
+      1 => 1640792766,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c4d18d11b117_36103182 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61cc82c30aaab4_53544314 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -92,39 +92,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
             </div>
             <div class="col-sm-6">
               <div class="position-relative form-group">
-                <label>Empresa:</label>
-                <select id="empresa_filtro" class="form-control">
-                  <?php if ($_smarty_tpl->tpl_vars['filtro']->value['id_empresa'] !== '') {?>
-                  <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_empresa'];?>
-</option>
-                  <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-                  <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresa'];?>
-</option>
-                  <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                  <?php } else { ?>
-                  <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresa']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-                  <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresa'];?>
-</option>
-                  <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                  <?php }?>
-                </select>
+               <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['id_empresa'];?>
+">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_empresa'];?>
+">
+                    <div >
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
               </div>
             </div>
           </div>

@@ -28,6 +28,13 @@ $alto_ultrafreezer      = $_POST['alto_ultrafreezer'];
 $peso_ultrafreezer      = $_POST['peso_ultrafreezer'];
 $largo_ultrafreezer     = $_POST['largo_ultrafreezer'];
 $ancho_ultrafreezer     = $_POST['ancho_ultrafreezer'];
+$area_interna_ultrafreezer = $_POST['area_interna_ultrafreezer'];
+
+if( $fecha_fabricacion == "" || $fecha_fabricacion ==NULL){
+    $fecha_fabricacion_ultrafreezer = "NA";
+}else{
+    $fecha_fabricacion_ultrafreezer = $_POST['fecha_fabricacion_ultrafreezer'];
+}
 
 $tipo_item = 4;
 $estado = 1;
@@ -48,16 +55,17 @@ $id_item_insertado  =  mysqli_stmt_insert_id($insertando_item);
 if($id_item_insertado > 0){
 //INSERTAMOS EN LA TABLA ITEM_FREEZER
   $insertando_ultrafreezer = mysqli_prepare($connect,"INSERT INTO item_ultrafreezer 
-                                                      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-  mysqli_stmt_bind_param($insertando_ultrafreezer, 'iissssssssssssssssssssis', 
+                                                      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  mysqli_stmt_bind_param($insertando_ultrafreezer, 'iisssssssssssssssssssssis', 
     $id, 
     $id_item_insertado, 
     $fabricante, 
     $modelo, 
     $n_serie, 
     $codigo_interno, 
-    $fecha_fabricacion, 
-    $direccion, 
+    $fecha_fabricacion_ultrafreezer, 
+    $direccion,
+    $area_interna_ultrafreezer,                     
     $valor_seteado_hum,
     $humedad_minima, 
     $humedad_maxima, 

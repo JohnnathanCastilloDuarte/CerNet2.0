@@ -24,10 +24,16 @@
 	$temperatura_minima_automovil = $_POST['temperatura_minima_automovil'];
 	$temperatura_maxima_automovil = $_POST['temperatura_maxima_automovil'];
 	$placa_automovil = $_POST['placa_automovil'];
+  $area_interna_automovil = $_POST['area_interna_automovil'];
+
+  if($fecha_fabricacion_automovil == "" || $fecha_fabricacion_automovil == NULL ){
+     $fecha_fabricacion = "NA";
+  }else{
+    $fecha_fabricacion = $_POST['fecha_fabricacion_automovil'];
+  }
 
 	$id_usuario = $_POST['id_valida'];
-	$id_tipo_item = $_POST['id_tipo_item'];
-
+	$id_tipo_item = 7;
 
 	///////////////// PRIMER INSERT TABLA ITEM
 
@@ -42,9 +48,11 @@
     ///////////////////// INSERTANDO EN LA TABLA ITEM_FILTRO
 
 
-    $insert_automovil = mysqli_prepare($connect,"INSERT INTO item_automovil (id_item, fabricante, modelo, n_serie, c_interno, placa, fecha_fabricacion, direccion, valor_seteado_tem,tem_min,tem_max,ubicacion,voltaje,potencia,capacidad,peso,alto,largo,ancho,id_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $insert_automovil = mysqli_prepare($connect,"INSERT INTO item_automovil (id_item, fabricante, modelo, n_serie, c_interno, 
+    placa, fecha_fabricacion, direccion, valor_seteado_tem,tem_min,tem_max,ubicacion,voltaje,
+    potencia,capacidad,peso,alto,largo,ancho,id_usuario,area_interna) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
     
-    mysqli_stmt_bind_param($insert_automovil, 'issssssssssssssssssi', 
+    mysqli_stmt_bind_param($insert_automovil, 'issssssssssssssssssis', 
     	$id_item, 
     	$fabricante_automovil, 
     	$modelo_automovil, 
@@ -65,6 +73,7 @@
     	$largo_automovil,
     	$ancho_automovil,
     	$id_usuario,
+      $fecha_fabricacion                     
     );
     
     mysqli_stmt_execute($insert_automovil);

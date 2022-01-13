@@ -204,7 +204,7 @@ $(document).on('click',"#enviar_correo_pdf",function(){
               url:'templates/item/enviarPDF.php',
               data:datos,
               success:function(response){
-               
+               console.log(response)
                 if(response == ""){
                   Swal.fire({
                     title:'Mensaje',
@@ -216,7 +216,7 @@ $(document).on('click',"#enviar_correo_pdf",function(){
                 }else{
                 	 Swal.fire({
                     title:'Mensaje',
-                    text:'Erro al enviar PDF intenta de nuevo o contancta con el administrador',
+                    text:'Erro al enviar PDF intenta de nuevo o contancta con el administrador'+response,
                     timer:1500,
                     icon:'info'
                   });

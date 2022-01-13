@@ -39,6 +39,8 @@ function setear_campos(){
        $("#humedad_minima_ultrafreezer").val('');
        $("#humedad_maxima_ultrafreezer").val('');
        $("#id_valida").val('');
+       $("#area_interna_ultrafreezer").val('');
+       $("#buscador_empresa").val();
 }
 
 (function(){
@@ -49,7 +51,7 @@ function setear_campos(){
 		const datos = {
       id_item_ultrafreezer : $("#id_item_ultrafreezer").val(),
       id_item_2_ultrafreezer : $("#id_item_2_ultrafreezer").val(),
-      empresa_ultrafreezer : $("#empresa_ultrafreezer").val(),
+      empresa_ultrafreezer : $("#id_empresa").val(),
       nombre_ultrafreezer : $("#nombre_ultrafreezer").val(),
       fabricante_ultrafreezer : $("#fabricante_ultrafreezer").val(),
       modelo_ultrafreezer : $("#modelo_ultrafreezer").val(),
@@ -72,7 +74,8 @@ function setear_campos(){
       valor_seteado_hum_ultrafreezer : $("#valor_seteado_hum_ultrafreezer").val(),
       humedad_minima_ultrafreezer : $("#humedad_minima_ultrafreezer").val(),
       humedad_maxima_ultrafreezer : $("#humedad_maxima_ultrafreezer").val(),
-      id_valida :$("#id_valida").val()
+      id_valida :$("#id_valida").val(),
+      area_interna_ultrafreezer :  $("#area_interna_ultrafreezer").val(),
     }
 
     $.post('templates/item/editar_ultrafreezer.php', datos, function(response){
@@ -97,6 +100,21 @@ function setear_campos(){
 
 
   });
+  
+
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa     = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+  let direccion      = $(this).attr('data-direccion');
+	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+  $("#direccion_ultrafreezer").val(direccion);
+
+	$("#aqui_resultados_empresa").hide();
+
+}) 
 
 
   $("#btn_crear_item_ultrafreezer").click(function(){
@@ -112,7 +130,7 @@ function setear_campos(){
     }else{ 
    const datos = {
         nombre_ultrafreezer : $("#nombre_ultrafreezer").val(),
-        empresa_ultrafreezer : $("#empresa_ultrafreezer").val(),
+        empresa_ultrafreezer : $("#id_empresa").val(),
         fabricante_ultrafreezer : $("#fabricante_ultrafreezer").val(),
         modelo_ultrafreezer : $("#modelo_ultrafreezer").val(),
         desc_ultrafreezer : $("#desc_ultrafreezer").val(),
@@ -134,6 +152,7 @@ function setear_campos(){
         valor_seteado_hum_ultrafreezer : $("#valor_seteado_hum_ultrafreezer").val(),
         humedad_minima_ultrafreezer : $("#humedad_minima_ultrafreezer").val(),
         humedad_maxima_ultrafreezer : $("#humedad_maxima_ultrafreezer").val(),
+        area_interna_ultrafreezer :  $("#area_interna_ultrafreezer").val(),
         id_valida :$("#id_valida").val()
       }
 
@@ -142,6 +161,7 @@ function setear_campos(){
        url:'templates/item/nuevo_ultrafreezer.php',
        data:datos,
        success:function(response){
+         console.log(response);
          if(response == "Si"){
            Swal.fire({
              title:'Mensaje',
@@ -172,3 +192,38 @@ function setear_campos(){
     });
 
 }())
+
+
+ //////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 

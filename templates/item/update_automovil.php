@@ -4,7 +4,6 @@ include("../../config.ini.php");
 
 $tipo_item = $_GET['type'];
 
-echo "<input id='tipo_item_automovil' value='".$tipo_item."' hidden></input>";
 	//CONSULTAR EMPRESAS
 $consultar_empresa = mysqli_prepare($connect,"SELECT id_empresa, nombre FROM empresa");
 mysqli_stmt_execute($consultar_empresa);
@@ -31,12 +30,12 @@ if (isset($_GET['item'])) {
 //CONSULTO LA INFORMACIÓN DEL EQUIPO
 $automovil = mysqli_prepare($connect,"SELECT a.id_automovil,  a.fabricante, a.modelo, a.n_serie, a.placa, a.c_interno, a.fecha_fabricacion, a.direccion, a.ubicacion, a.voltaje, 
 	a.potencia, a.capacidad, a.peso, a.alto, a.largo, a.ancho, b.nombre, b.descripcion, c.id_empresa, c.nombre,
-	a.valor_seteado_tem, a.tem_min, a.tem_max, a.valor_seteado_hum, a.hum_min, a.hum_max, d.nombre FROM item_automovil as a, item as b, empresa as c, tipo_item as d 
+	a.valor_seteado_tem, a.tem_min, a.tem_max, a.valor_seteado_hum, a.hum_min, a.hum_max, d.nombre,a.area_interna FROM item_automovil as a, item as b, empresa as c, tipo_item as d 
 	WHERE b.id_empresa = c.id_empresa AND a.id_item = b.id_item AND d.id_item = b.id_tipo AND a.id_item = $id_equipo");
    mysqli_stmt_execute($automovil);
    mysqli_stmt_store_result($automovil);
    mysqli_stmt_bind_result($automovil, $id_automovil, $fabricante, $modelo, $n_serie, $c_interno, $placa, $fecha_fabricacion, $direccion, $ubicacion, $voltaje, $potencia, $capacidad,
-	$peso, $alto, $largo, $ancho, $nombre_item, $descripcion_item, $id_empresa, $nombre_empresa, $seteado_tem, $tem_min, $tem_max, $seteado_hum, $hum_min, $hum_max,$nombre_tipo_item);
+	$peso, $alto, $largo, $ancho, $nombre_item, $descripcion_item, $id_empresa, $nombre_empresa, $seteado_tem, $tem_min, $tem_max, $seteado_hum, $hum_min, $hum_max,$nombre_tipo_item,$area_interna);
 
 
 while($row = mysqli_stmt_fetch($automovil)){
@@ -70,7 +69,8 @@ while($row = mysqli_stmt_fetch($automovil)){
 		'seteado_hum'=>$seteado_hum,
 		'hum_min'=>$hum_min,
 		'hum_max'=>$hum_max,
-		'nombre_tipo_item'=>$nombre_tipo_item
+		'nombre_tipo_item'=>$nombre_tipo_item,
+    'area_interna'=>$area_interna    
 	);
 	$smarty->assign("array_automovil",$array_automovil);	
  }
@@ -104,7 +104,8 @@ while($row = mysqli_stmt_fetch($automovil)){
 		'seteado_hum'=> '',
 		'hum_min'=> '',
 		'hum_max'=> '',
-		'nombre_tipo_item'=>''
+		'nombre_tipo_item'=>'',
+    'area_interna'=>$area_interna
 
 	);
 	$smarty->assign("array_automovil",$array_automovil);

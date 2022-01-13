@@ -32,6 +32,7 @@ function limpiar_campos_automovil(){
 		 $("#valor_seteado_tem_automovil").val();
 		 $("#temperatura_minima_automovil").val();
 		 $("#temperatura_maxima_automovil").val();
+     $("#area_interna_automovil").val('');
   
 }
 
@@ -73,6 +74,7 @@ $("#btn_editar_item_automovil").click(function(){
 		valor_seteado_tem_automovil : $("#valor_seteado_tem_automovil").val(),
 		temperatura_minima_automovil: $("#temperatura_minima_automovil").val(),
 		temperatura_maxima_automovil: $("#temperatura_maxima_automovil").val(),
+    area_interna_automovil : $("#area_interna_automovil").val(),
 		id_valida,
 		id_tipo_item,
 
@@ -131,12 +133,12 @@ $("#btn_nuevo_item_automovil").click(function(){
 		valor_seteado_tem_automovil : $("#valor_seteado_tem_automovil").val(),
 		temperatura_minima_automovil: $("#temperatura_minima_automovil").val(),
 		temperatura_maxima_automovil: $("#temperatura_maxima_automovil").val(),
+    area_interna_automovil : $("#area_interna_automovil").val(),
 		id_valida,
 		id_tipo_item
 
 	}
 	$.post('templates/item/nuevo_automovil.php', datos, function(r){
-	
       console.log(r);
 			if(r == "Si"){
 				Swal.fire({
@@ -158,3 +160,50 @@ $("#btn_nuevo_item_automovil").click(function(){
 		});
 
 });
+
+//////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion');
+  $("#direccion_automovil").val(direccion);
+	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+
+	$("#aqui_resultados_empresa").hide();
+
+})
