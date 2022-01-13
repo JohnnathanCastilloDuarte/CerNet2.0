@@ -95,13 +95,17 @@
 
             <div id="step-22">
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_automovil" class="form-control" placeholder="Dirección equipo" value="{$automovil.direccion}">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_automovil" class="form-control" placeholder="Ubicación equipo" value="{$automovil.ubicacion}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_automovil" class="form-control" placeholder="Área equipo" value="{$automovil.area_interna}">
                 </div>
               </div>
               <br>

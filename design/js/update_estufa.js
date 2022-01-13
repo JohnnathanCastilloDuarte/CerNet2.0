@@ -43,8 +43,8 @@ function setear_campos(){
       $("#valor_seteado_tem_estufa").val('');
       $("#temperatura_minima_estufa").val('');
       $("#temperatura_maxima_estufa").val('');
-      
-
+      $("#area_interna_estufa").val('');
+     
 }
 
 
@@ -76,6 +76,7 @@ function setear_campos(){
       valor_seteado_tem : $("#valor_seteado_tem_estufa").val(),
       temperatura_minima : $("#temperatura_minima_estufa").val(),
       temperatura_maxima : $("#temperatura_maxima_estufa").val(),
+      area_interna_estufa : $("#area_interna_estufa").val(),
 			id_valida
 		}
 		
@@ -118,11 +119,12 @@ $("#btn_nuevo_item_estufa").click(function(){
     valor_seteado_tem : $("#valor_seteado_tem_estufa").val(),
     temperatura_minima : $("#temperatura_minima_estufa").val(),
     temperatura_maxima : $("#temperatura_maxima_estufa").val(),
+    area_interna_estufa : $("#area_interna_estufa").val(),
     id_valida
   }
   
   $.post('templates/item/nueva_estufa.php',datos,function(response){
-      
+      console.log(response)
     if(response == "Si"){
       Swal.fire({
         title:'Mensaje',
@@ -131,9 +133,17 @@ $("#btn_nuevo_item_estufa").click(function(){
         showConfirmButton: false,
         timer:1000
       });
-      
+      setear_campos()
+    }else{
+      Swal.fire({
+        title:'Mensaje',
+        text:'No se ha creado la estufa',
+        icon:'error',
+        showConfirmButton: false,
+        timer:1000
+      });
     }
-  setear_campos()
+  
     
   });
   
@@ -159,7 +169,7 @@ $("#buscador_empresa").keydown(function(){
 				template +=
 				`	
 					<tr>
-						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
 					</tr>
 					
 				`;
@@ -177,6 +187,8 @@ $(document).on('click','#seleccionar_empresa',function(){
 
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
+  let direccion      = $(this).attr('data-direccion')
+  $("#direccion_estufa").val(direccion);
 	$("#buscador_empresa").val(nombre_empresa);
   $("#id_empresa").val(id_empresa);
 

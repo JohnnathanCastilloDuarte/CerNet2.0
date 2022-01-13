@@ -44,10 +44,17 @@
                     <br>
 
                     <div class="row">
-
-                        <div class="col-sm-6">
-                            <label for="">Ubicación</label>
+                        <div class="col-sm-4">
+                            <label for="">Dirección</label>
+                            <input type="text" id="direccion_camara_congelada" class="form-control" placeholder="Dirección camara congelada" value="{$camara_congelada.direccion}">
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="">Ubicación interna</label>
                             <input type="text" id="ubicacion_camara_congelada" class="form-control" placeholder="Ubicación camara congelada" value="{$camara_congelada.ubicacion}">
+                        </div>
+                      <div class="col-sm-4">
+                            <label for="">Área interna</label>
+                            <input type="text" id="area_camara_congelada" class="form-control" placeholder="Área camara congelada" value="{$camara_congelada.area_interna}">
                         </div>
                     </div>
 

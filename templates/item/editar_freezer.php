@@ -26,6 +26,14 @@ $humedad_maxima = $_POST['humedad_maxima'];
 $valor_seteado_tem = $_POST['valor_seteado_tem'];
 $temperatura_minima = $_POST['temperatura_minima'];
 $temperatura_maxima = $_POST['temperatura_maxima'];
+$area_interna_freezer = $_POST['area_interna_freezer'];
+
+if($fecha_fabricacion_freezer = "" || $fecha_fabricacion_freezer == NULL) {
+   
+  $fecha_fabricacion = "NA";
+}else{
+  $fecha_fabricacion = $_POST['fecha_fabricacion_freezer'];
+} 
 
 $id_valida = $_POST['id_valida'];
 
@@ -35,13 +43,17 @@ mysqli_stmt_execute($update_freezer);
 
 if($update_freezer){
 
-	$update_freezer_2  = mysqli_prepare($connect,"UPDATE item_freezer SET fabricante = ?, modelo = ?, n_serie = ?, c_interno = ?, fecha_fabricacion = ?, direccion = ? ,
-		ubicacion = ?, voltaje = ?, potencia = ?, capacidad = ?, peso = ?, alto = ?, largo = ?, ancho = ?, valor_seteado_hum = ?, hum_min = ?, hum_max = ?, valor_seteado_tem = ?, tem_min = ?, tem_max = ?, id_usuario = ?
+	$update_freezer_2  = mysqli_prepare($connect,"UPDATE item_freezer SET fabricante = ?, modelo = ?, n_serie = ?,
+    c_interno = ?, fecha_fabricacion = ?, direccion = ? ,
+		ubicacion = ?, voltaje = ?, potencia = ?, capacidad = ?, peso = ?, alto = ?, largo = ?, ancho = ?,
+    valor_seteado_hum = ?, hum_min = ?, hum_max = ?, valor_seteado_tem = ?, tem_min = ?, tem_max = ?, id_usuario = ?, 
+    area_interna = ?
 		WHERE id_freezer = $id_item_freezer");
-	mysqli_stmt_bind_param($update_freezer_2, 'ssssssssssssssssssssi', $fabricante_freezer, $modelo_freezer, $n_serie_freezer, $codigo_interno_freezer, $fecha_fabricacion_freezer,
-		$direccion_freezer, $ubicacion_interna_freezer, $voltaje_freezer, $potencia_freezer, $capacidad_freezer, $peso_freezer, 
+	mysqli_stmt_bind_param($update_freezer_2, 'ssssssssssssssssssssis', $fabricante_freezer, $modelo_freezer, $n_serie_freezer,
+    $codigo_interno_freezer, $fecha_fabricacion,$direccion_freezer, $ubicacion_interna_freezer, $voltaje_freezer, 
+    $potencia_freezer, $capacidad_freezer, $peso_freezer, 
 		$alto_freezer, $largo_freezer, $ancho_freezer, $valor_seteado_tem, $humedad_minima, $humedad_maxima, $valor_seteado_tem,
-		$temperatura_minima, $temperatura_minima, $id_valida);
+		$temperatura_minima, $temperatura_minima, $id_valida, $area_interna_freezer );
 
 	mysqli_stmt_execute($update_freezer_2);
 

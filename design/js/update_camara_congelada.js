@@ -11,10 +11,6 @@ if(id_item.length == 0){
     $("#btn_nueva_camara_congelada").hide();
 }
 
-
-
-
-
 /////////// EVENTO PARA CREAR CAMARA CONGELADA
 $("#btn_nueva_camara_congelada").click(function(){
 
@@ -26,6 +22,8 @@ $("#btn_nueva_camara_congelada").click(function(){
     let valor_seteado_camara_congelada = $("#valor_seteado_camara_congelada").val();
     let limite_maximo_camara_congelada = $("#limite_maximo_camara_congelada").val();
     let limite_minimo_camara_congelada = $("#limite_maximo_camara_congelada").val();
+    let direccion_camara_congelada = $("#direccion_camara_congelada").val();
+    let area_camara_congelada = $("#area_camara_congelada").val();
 
     const datos = {
         nombre_camara_congelada,
@@ -36,6 +34,8 @@ $("#btn_nueva_camara_congelada").click(function(){
         valor_seteado_camara_congelada,
         limite_maximo_camara_congelada,
         limite_minimo_camara_congelada,
+        direccion_camara_congelada,
+        area_camara_congelada,
         id_valida
     }
 
@@ -44,12 +44,23 @@ $("#btn_nueva_camara_congelada").click(function(){
         data:datos,
         url:'templates/item/nueva_camara_congelada.php',
         success:function(response){
-           Swal.fire({
+          console.log(response);
+          if (response == "SI") {
+             Swal.fire({
                title:'Mensaje',
                text:'Se ha creado la camara fria correctamente',
                icon:'success',
-               timer:1700
+               timer:1500
            });
+          } else {
+             Swal.fire({
+               title:'Mensaje',
+               text:'Error al crear el item',
+               icon:'Error',
+               timer:1500
+           });
+          }
+          
         }
     });
 });
@@ -77,7 +88,7 @@ $("#buscador_empresa").keydown(function(){
 				template +=
 				`	
 					<tr>
-						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
 					</tr>
 					
 				`;
@@ -95,8 +106,10 @@ $(document).on('click','#seleccionar_empresa',function(){
 
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion');
+  $("#direccion_camara_congelada").val(direccion);
 	$("#buscador_empresa").val(nombre_empresa);
-    $("#id_empresa").val(id_empresa);
+  $("#id_empresa").val(id_empresa);
 
 	$("#aqui_resultados_empresa").hide();
 
@@ -116,6 +129,8 @@ $("#btn_editar_camara_congelada").click(function(){
     let valor_seteado_camara_congelada = $("#valor_seteado_camara_congelada").val();
     let limite_maximo_camara_congelada = $("#limite_maximo_camara_congelada").val();
     let limite_minimo_camara_congelada = $("#limite_maximo_camara_congelada").val();
+    let direccion_camara_congelada     = $("#direccion_camara_congelada").val();
+    let area_camara_congelada          = $("#area_camara_congelada").val();
 
     const datos = {
         nombre_camara_congelada,
@@ -130,7 +145,7 @@ $("#btn_editar_camara_congelada").click(function(){
         id_item,
         id_camara_congelada
     }
-
+ 
     $.ajax({
         type:'POST',
         data:datos,
@@ -141,6 +156,13 @@ $("#btn_editar_camara_congelada").click(function(){
                 Swal.fire({
                     title:'Mensaje',
                     text:'Se ha editado la camara fria correctamente',
+                    icon:'success',
+                    timer:1700
+                });
+            }else{
+              Swal.fire({
+                    title:'Mensaje',
+                    text:'Error al editar camara fria ',
                     icon:'success',
                     timer:1700
                 });

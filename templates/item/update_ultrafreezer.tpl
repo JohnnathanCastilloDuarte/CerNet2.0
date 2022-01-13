@@ -90,13 +90,17 @@
 
             <div id="step-22">
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_ultrafreezer" class="form-control" placeholder="Dirección equipo" value="{$ultrafreezer.direccion}">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_ultrafreezer" class="form-control" placeholder="Ubicación equipo" value="{$ultrafreezer.ubicacion}">
+                </div>
+                 <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_ultrafreezer" class="form-control" placeholder="Área interna" value="{$ultrafreezer.area_interna}">
                 </div>
               </div>
               <br>

@@ -30,10 +30,7 @@ if(isset($_GET['item'])){
         'id_item'=>$id_item,
         
     );
-    
-
-
-
+   
     $smarty->assign("array_camara_congelada",$array_camara_congelada);
     
 }else{

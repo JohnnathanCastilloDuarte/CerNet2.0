@@ -46,6 +46,7 @@ function setear_campos(){
 			$("#valor_seteado_tem_freezer").val('');
 			$("#temperatura_minima_freezer").val('');
 			$("#temperatura_maxima_freezer").val('');
+      $("#area_interna_freezer").val('');
 }
 
 //// FUNCION PARA EDITAR EL FREEZER
@@ -89,7 +90,8 @@ function setear_campos(){
 			valor_seteado_tem : $("#valor_seteado_tem_freezer").val(),
 			temperatura_minima : $("#temperatura_minima_freezer").val(),
 			temperatura_maxima : $("#temperatura_maxima_freezer").val(),
-			id_valida 
+      area_interna_freezer : $("#area_interna_freezer").val(),
+			id_valida : $("#id_valida").val()
 		}
 		
 		$.post('templates/item/editar_freezer.php', datos, function(response){
@@ -156,12 +158,11 @@ $("#btn_nuevo_item_freezer").click(function(){
 		valor_seteado_tem : $("#valor_seteado_tem_freezer").val(),
 		temperatura_minima : $("#temperatura_minima_freezer").val(),
 		temperatura_maxima : $("#temperatura_maxima_freezer").val(),
-		id_valida 
+    area_interna_freezer : $("#area_interna_freezer").val(),
+		id_valida : $("#id_valida").val(),
 	}
-
 	$.post('templates/item/nuevo_freezer.php',datos,function(response){
 		if(response == "Si"){
-
 			Swal.fire({
 				title:'Mensaje',
 				text:'Se ha creado el freezer correctamente',
@@ -174,7 +175,7 @@ $("#btn_nuevo_item_freezer").click(function(){
 			Swal.fire({
 				title:'Mensaje',
 				text:'No ha se podido crear el registro, contacta al administrador',
-				icon:'success',
+				icon:'error',
 				showConfirmButton: false,
 				timer:1500
 			});
@@ -205,7 +206,7 @@ $("#buscador_empresa").keydown(function(){
 				template +=
 				`	
 					<tr>
-						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
 					</tr>
 					
 				`;
@@ -223,8 +224,11 @@ $(document).on('click','#seleccionar_empresa',function(){
 
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion');
+  console.log(direccion);
 	$("#buscador_empresa").val(nombre_empresa);
   $("#id_empresa").val(id_empresa);
+  $("#direccion_freezer").val(direccion);
 
 	$("#aqui_resultados_empresa").hide();
 

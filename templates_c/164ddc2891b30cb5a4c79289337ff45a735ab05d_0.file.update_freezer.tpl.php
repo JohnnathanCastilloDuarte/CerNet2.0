@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-29 14:20:20
+/* Smarty version 3.1.34-dev-7, created on 2022-01-05 16:53:51
   from '/home/god/public_html/CerNet2.0/templates/item/update_freezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61cc6ea4bbea80_12267097',
+  'unifunc' => 'content_61d5cd1f645f64_28607319',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '164ddc2891b30cb5a4c79289337ff45a735ab05d' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_freezer.tpl',
-      1 => 1640787571,
+      1 => 1641401499,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61cc6ea4bbea80_12267097 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d5cd1f645f64_28607319 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
  	<div class="col-sm-12">
  		<?php
@@ -74,7 +74,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 										</div>
 										<div class="col-sm-6">
 											<label>Empresa:</label>
-                    <input type="text" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['id_empresa'];?>
+                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['id_empresa'];?>
 ">
                     <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['nombre_empresa'];?>
 ">
@@ -127,14 +127,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 								
 								<div id="step-22">
 									<div class="form-row">
-										<div class="col-sm-6">
+										<div class="col-sm-4">
 											<label>Dirección equipo:</label>
 											<input type="text" id="direccion_freezer" class="form-control" placeholder="Dirección equipo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['direccion'];?>
 ">
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-4">
 											<label>Ubicación interna equipo:</label>
 											<input type="text" id="ubicacion_interna_freezer" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['ubicacion'];?>
+">
+										</div>
+                    <div class="col-sm-4">
+											<label>Área interna equipo:</label>
+											<input type="text" id="area_interna_freezer" class="form-control" placeholder="Area interna equipo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['area_interna'];?>
 ">
 										</div>
 									</div>

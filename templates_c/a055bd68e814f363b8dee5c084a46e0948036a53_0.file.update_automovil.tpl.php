@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-29 15:28:53
+/* Smarty version 3.1.34-dev-7, created on 2022-01-06 19:16:46
   from '/home/god/public_html/CerNet2.0/templates/item/update_automovil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61cc7eb51af7d1_18308534',
+  'unifunc' => 'content_61d7401e1f8747_28511755',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a055bd68e814f363b8dee5c084a46e0948036a53' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_automovil.tpl',
-      1 => 1640791730,
+      1 => 1641496598,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61cc7eb51af7d1_18308534 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d7401e1f8747_28511755 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
@@ -135,14 +135,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
 
             <div id="step-22">
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_automovil" class="form-control" placeholder="Dirección equipo" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['direccion'];?>
 ">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_automovil" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['ubicacion'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_automovil" class="form-control" placeholder="Área equipo" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['area_interna'];?>
 ">
                 </div>
               </div>

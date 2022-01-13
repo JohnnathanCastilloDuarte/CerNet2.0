@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-29 15:11:15
+/* Smarty version 3.1.34-dev-7, created on 2022-01-05 20:56:48
   from '/home/god/public_html/CerNet2.0/templates/item/update_ultrafreezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61cc7a936342f3_64630986',
+  'unifunc' => 'content_61d60610bfedd6_52436821',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '045654111e79c8437c83aa5e126b9320eb174266' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_ultrafreezer.tpl',
-      1 => 1640790628,
+      1 => 1641416189,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61cc7a936342f3_64630986 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d60610bfedd6_52436821 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -129,14 +129,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
 
             <div id="step-22">
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_ultrafreezer" class="form-control" placeholder="Dirección equipo" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['direccion'];?>
 ">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_ultrafreezer" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['ubicacion'];?>
+">
+                </div>
+                 <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_ultrafreezer" class="form-control" placeholder="Área interna" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['area_interna'];?>
 ">
                 </div>
               </div>

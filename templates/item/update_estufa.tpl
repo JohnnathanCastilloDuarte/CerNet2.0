@@ -52,7 +52,6 @@
                       </table>
                     </div>
                 </div>
-
               </div>
               <br>
               <div class="form-row">
@@ -91,13 +90,17 @@
 
             <div id="step-22">
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_estufa" class="form-control" placeholder="Dirección equipo" value="{$estufa.direccion}">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_estufa" class="form-control" placeholder="Ubicación equipo" value="{$estufa.ubicacion}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_estufa" class="form-control" placeholder="Área equipo" value="{$estufa.area_interna}">
                 </div>
               </div>
               <br>

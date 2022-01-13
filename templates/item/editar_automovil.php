@@ -24,12 +24,19 @@ include('../../config.ini.php');
 	$temperatura_minima_automovil = $_POST['temperatura_minima_automovil'];
 	$temperatura_maxima_automovil = $_POST['temperatura_maxima_automovil'];
 	$placa_automovil = $_POST['placa_automovil'];
+  $area_interna_automovil = $_POST['area_interna_automovil'];
 
 	$id_usuario = $_POST['id_valida'];
 	$id_tipo_item = $_POST['id_tipo_item'];
 
 	$id_item = $_POST['id_item'];
 	$id_item_automovil = $_POST['id_item_automovil'];
+
+if($fecha_fabricacion_automovil == "" || $fecha_fabricacion_automovil == NULL ){
+     $fecha_fabricacion = "NA";
+  }else{
+    $fecha_fabricacion = $_POST['fecha_fabricacion_automovil'];
+  }
 
 
 ////// ACTUALIZAR ITEM
@@ -57,16 +64,17 @@ $acualizar_automovil = mysqli_prepare($connect,"UPDATE item_automovil SET
 	 peso = ?,
 	 alto = ?,
 	 largo = ?,
-	 ancho = ?
+	 ancho = ?,
+   area_interna = ?
 	WHERE id_automovil = ?");
 
-mysqli_stmt_bind_param($acualizar_automovil, 'ssssssssssssssssssi', 
+mysqli_stmt_bind_param($acualizar_automovil, 'sssssssssssssssssssi', 
     $fabricante_automovil, 
     $modelo_automovil, 
     $n_serie_automovil, 
     $codigo_interno_automovil, 
     $placa_automovil, 
-    $fecha_fabricacion_automovil, 
+    $fecha_fabricacion, 
     $direccion_automovil, 
     $valor_seteado_tem_automovil, 
     $temperatura_minima_automovil, 
@@ -79,7 +87,9 @@ mysqli_stmt_bind_param($acualizar_automovil, 'ssssssssssssssssssi',
     $alto_automovil,
     $largo_automovil,
     $ancho_automovil,
+    $area_interna_automovil,
     $id_item,
+  
 );
 
 mysqli_stmt_execute($acualizar_automovil);

@@ -28,13 +28,13 @@ if(isset($_GET['item'])){
 	//CONSULTO LA INFORMACIÓN DEL EQUIPO
 	$refrigerador = mysqli_prepare($connect,"SELECT a.id_refrigerador,  a.fabricante, a.modelo, a.n_serie, a.c_interno, a.fecha_fabricacion, a.direccion, a.ubicacion, a.voltaje, 
 		a.potencia, a.capacidad, a.peso, a.alto, a.largo, a.ancho, b.nombre, b.descripcion, c.id_empresa, c.nombre,
-		a.valor_seteado_hum, a.hum_min, a.hum_max, a.valor_seteado_tem, a.tem_min, a.tem_max, d.nombre FROM item_refrigerador as a, item as b, empresa as c, tipo_item as d 
+		a.valor_seteado_hum, a.hum_min, a.hum_max, a.valor_seteado_tem, a.tem_min, a.tem_max, d.nombre,a.area_interna FROM item_refrigerador as a, item as b, empresa as c, tipo_item as d 
 		WHERE b.id_empresa = c.id_empresa AND a.id_item = b.id_item AND b.id_tipo = d.id_item AND a.id_item = $id_equipo");
 	mysqli_stmt_execute($refrigerador);
 	mysqli_stmt_store_result($refrigerador);
 	mysqli_stmt_bind_result($refrigerador, $id_refrigerador, $fabricante, $modelo, $n_serie, $c_interno, $fecha_fabricacion, $direccion, $ubicacion, $voltaje, $potencia, $capacidad,
 		$peso, $alto, $largo, $ancho, $nombre_item, $descripcion_item, $id_empresa, $nombre_empresa, $seteado_hum, $hum_min, $hum_max, 
-		$seteado_tem, $tem_min, $tem_max, $nombre_tipo_item);
+		$seteado_tem, $tem_min, $tem_max, $nombre_tipo_item,$area_interna);
 
 	
 
@@ -49,6 +49,7 @@ if(isset($_GET['item'])){
 			'fecha_fabricacion'=>$fecha_fabricacion,
 			'direccion'=>$direccion,
 			'ubicacion'=>$ubicacion,
+      'area_interna'=>$area_interna,
 			'voltaje'=>$voltaje,
 			'potencia'=>$potencia,
 			'capacidad'=>$capacidad,

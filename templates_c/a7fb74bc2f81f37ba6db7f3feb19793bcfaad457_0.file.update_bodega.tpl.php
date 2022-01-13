@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-30 00:22:42
+/* Smarty version 3.1.34-dev-7, created on 2022-01-05 15:44:47
   from '/home/god/public_html/CerNet2.0/templates/item/update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61ccfbd2aa3561_56874805',
+  'unifunc' => 'content_61d5bcef39f906_40121657',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a7fb74bc2f81f37ba6db7f3feb19793bcfaad457' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_bodega.tpl',
-      1 => 1640823760,
+      1 => 1641397486,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61ccfbd2aa3561_56874805 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61d5bcef39f906_40121657 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">

@@ -88,13 +88,17 @@
 
 								<div id="step-22">
 									<div class="form-row">
-										<div class="col-sm-6">
-											<label>Dirección equipo:</label>
+										<div class="col-sm-4">
+											<label>Dirección Empresa:</label>
 											<input type="text" id="direccion_refrigerador" class="form-control" placeholder="Dirección equipo" value="{$refrigerador.direccion}">
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-4">
 											<label>Ubicación interna equipo:</label>
 											<input type="text" id="ubicacion_interna_refrigerador" class="form-control" placeholder="Ubicación equipo" value="{$refrigerador.ubicacion}">
+										</div>
+                    <div class="col-sm-4">
+											<label>Área del equipo :</label>
+											<input type="text" id="area_refrigerador" class="form-control" placeholder="Área equipo" value="{$refrigerador.area_interna}">
 										</div>
 									</div>
 									<br>
