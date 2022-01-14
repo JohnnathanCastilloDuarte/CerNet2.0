@@ -39,7 +39,7 @@
 											<input type="hidden" id="id_item_freezer" value="{$freezer.id_freezer}">
 											<input type="hidden" id="id_item_2" value="{$freezer.id_item}">
 											<label>Nombre del freezer</label>
-											<input type="text" id="nombre_freezer" class="form-control" value="{$freezer.nombre_freezer}" placeholder="Nombre freezer"> 
+											<input type="text" id="nombre_freezer" class="form-control" value="{$freezer.nombre_item}" placeholder="Nombre freezer"> 
 										</div>
 										<div class="col-sm-6">
 											<label>Empresa:</label>
@@ -66,7 +66,7 @@
 									<div class="form-row">
 										<div class="col-sm-12">
 											<label>Descripcion:</label>
-											<textarea class="form-control" id="desc_freezer">{$freezer.descripcion_freezer}</textarea>
+											<textarea class="form-control" id="desc_freezer">{$freezer.descripcion}</textarea>
 										</div>
 									</div>
 									<br>
@@ -94,7 +94,7 @@
 										</div>
 										<div class="col-sm-4">
 											<label>Ubicación interna equipo:</label>
-											<input type="text" id="ubicacion_interna_freezer" class="form-control" placeholder="Ubicación equipo" value="{$freezer.ubicacion}">
+											<input type="text" id="ubicacion_interna_freezer" class="form-control" placeholder="Ubicación equipo" value="{$freezer.ubicacion_interna}">
 										</div>
                     <div class="col-sm-4">
 											<label>Área interna equipo:</label>

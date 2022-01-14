@@ -39,7 +39,7 @@
 											<input type="hidden" id="id_item_refrigerador" value="{$refrigerador.id_refrigerador}">
 											<input type="hidden" id="id_item_2" value="{$refrigerador.id_item}">
 											<label>Nombre del refrigerador</label>
-											<input type="text" id="nombre_refrigerador" class="form-control" value="{$refrigerador.nombre_refrigerador}" placeholder="Nombre refrigerador"> 
+											<input type="text" id="nombre_refrigerador" class="form-control" value="{$refrigerador.nombre_item}" placeholder="Nombre refrigerador"> 
 										</div>
 										<div class="col-sm-6">
 											 <label>Empresa:</label>
@@ -66,7 +66,7 @@
 									<div class="form-row">
 										<div class="col-sm-12">
 											<label>Descripcion:</label>
-											<textarea class="form-control" id="desc_refrigerador">{$refrigerador.descripcion_refrigerador}</textarea>
+											<textarea class="form-control" id="desc_refrigerador">{$refrigerador.descripcion}</textarea>
 										</div>
 									</div>
 									<br>
@@ -94,7 +94,7 @@
 										</div>
 										<div class="col-sm-4">
 											<label>Ubicación interna equipo:</label>
-											<input type="text" id="ubicacion_interna_refrigerador" class="form-control" placeholder="Ubicación equipo" value="{$refrigerador.ubicacion}">
+											<input type="text" id="ubicacion_interna_refrigerador" class="form-control" placeholder="Ubicación equipo" value="{$refrigerador.ubicacion_interna}">
 										</div>
                     <div class="col-sm-4">
 											<label>Área del equipo :</label>

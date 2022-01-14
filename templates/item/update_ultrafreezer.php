@@ -58,7 +58,7 @@ if(isset($_GET['item'])){
         'largo'=>$largo,
         'ancho'=>$ancho,
         'nombre_ultrafreezer'=>$nombre_item,
-        'descripcion_ultrafreezer'=>$descripcion_item,
+        'descripcion'=>$descripcion_item,
         'id_empresa'=>$id_empresa,
         'nombre_empresa'=>$nombre_empresa,
         'seteado_tem'=>$seteado_tem,

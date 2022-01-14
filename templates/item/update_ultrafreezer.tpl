@@ -68,7 +68,7 @@
               <div class="form-row">
                 <div class="col-sm-12">
                   <label>Descripción:</label>
-                  <textarea class="form-control" id="desc_ultrafreezer" placeholder="Descripción"> {$ultrafreezer.descripcion_ultrafreezer}</textarea>
+                  <textarea class="form-control" id="desc_ultrafreezer" placeholder="Descripción"> {$ultrafreezer.descripcion}</textarea>
                 </div>
               </div>
               <br>

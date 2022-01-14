@@ -49,7 +49,7 @@ function setear_campos(){
         ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
         area_interna_incubadora : $("#area_interna_incubadora").val(),
         area_m2_sala_limpia     : $("#area_m2_sala_limpia").val(),
-        volumen_m2_sala_limpia  : $("#volumen_m2_sala_limpia").val(),
+        volumen_m3_sala_limpia  : $("#volumen_m3_sala_limpia").val(),
         claudal_m3h             : $("#claudal_m3h").val(),
 
         ren_hr                  : $("#ren_hr").val(),
@@ -67,7 +67,6 @@ function setear_campos(){
         id_item_2_sala_limpia   : $("#id_item_2_sala_limpia").val(),
 
     }
-
     $.post('templates/item/editar_sala_limpia.php', datos, function(response){
       console.log(response);
      if(response == "Si"){

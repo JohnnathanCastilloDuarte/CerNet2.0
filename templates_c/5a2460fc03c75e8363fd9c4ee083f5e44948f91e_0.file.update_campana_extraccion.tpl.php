@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-04 15:26:05
+/* Smarty version 3.1.34-dev-7, created on 2022-01-14 14:55:41
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_campana_extraccion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d458fd282b80_90585525',
+  'unifunc' => 'content_61e180dd8d5c87_95979942',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a2460fc03c75e8363fd9c4ee083f5e44948f91e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_campana_extraccion.tpl',
-      1 => 1641271964,
+      1 => 1642084153,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d458fd282b80_90585525 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e180dd8d5c87_95979942 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -45,6 +45,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['campana']->value) {
            </li>
          </ul>
          <div class="form-wizard-content">
+             <input type='hidden' id='type_campana' value='<?php echo $_smarty_tpl->tpl_vars['id_tipo']->value;?>
+'>
+             <input type='hidden' id='id_item_campana' value='<?php echo $_smarty_tpl->tpl_vars['id_item']->value;?>
+'>
           <div id="step-12">
             <div class="form-row">
               <div class="col-sm-6">
@@ -53,15 +57,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['campana']->value) {
 ">
               </div>
               <div class="col-sm-6">
-                <label>Empresa</label>
-                <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['nombre_empresa'];?>
+                <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['id_empresa'];?>
 ">
-                <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['id_empresa'];?>
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['nombre_empresa'];?>
 ">
-                <div>
-                    <table class="table" id="aqui_resultados_empresa" >
-                    </table>
-                </div> 
+                    <div >
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
               </div>
 
             </div>
