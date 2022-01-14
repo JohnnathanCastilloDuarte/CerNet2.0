@@ -25,6 +25,7 @@ function setear_campos(){
      $("#valor_seteado").val('');
      $("#limite_maximo").val(''); 
      $("#limite_minimo").val('');
+     $("#buscador_empresa").val('');
 }
 
 /////////// EVENTO PARA CREAR CAMARA CONGELADA

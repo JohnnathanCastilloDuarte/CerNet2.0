@@ -1,16 +1,21 @@
 <?php
 require_once('../../../../pdf/tcpdf.php');
-$a = "a";
-$nombre_informe = "a";
-$numot = "a";
 
+$logo = "";
 //CABECERAS PERSONALIZADAS
 class MYPDF extends TCPDF 
 {
     //Page header
     public function Header() 
-	{/*
-		global $a, $nombre_informe, $numot;
+	{
+      global $logo;
+      
+      if($logo == ""){
+        $logo = "recursos/logo_big.png";
+      }
+
+      /*
+		
 		// Set border style
 		$this->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(120, 120, 120)));
         // Logo
@@ -28,7 +33,9 @@ class MYPDF extends TCPDF
    
      */
     // Logo
-	//$this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
+   
+	    $this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
+      $this->writeHTMLCell(35, 22, 155, 0, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
    

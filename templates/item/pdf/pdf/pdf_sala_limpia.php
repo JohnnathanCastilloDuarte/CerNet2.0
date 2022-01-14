@@ -4,7 +4,7 @@ require('../../../../config.ini.php');
 //$id_informe = $_GET['informe'];
 //$resultado_corresponde = "";
 //$posicion_sensores_indicativo = 1;
-
+ 
 $data = $_GET['data'];
 
 $datos = base64_decode($data) ;
@@ -27,32 +27,98 @@ foreach ($oso as $key) {
 	$tipo_campana        =$key->tipo_campana;
 	$marca   		     =$key->marca;
 	$requisito_velocidad =$key->requisito_velocidad;
-
-/*
-
-Area_sala_limpia
-codigo
-area_m2
-volumen_m3
-estado_sala
-id_empresa
-
-direccion
-ubicacion_interna
-area_interna
-especificacion_1_temp
-especificacion_2_temp
-especificacion_1_hum
-especificacion_2_hum
-nombre_item
-*/
-
+  $logo = $key->logo;
 }
 
 $pdf->AddPage('A4');
 
-$html = <<<EOD
 
+$linea = <<<EOD
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: #1a53ff;
+}
+</style>
+<br><br><br><br>
+<table >
+   <tr border="1">
+        <td class="linea" align="center"><h2><b>Especificaciones de $nombre_tipo_item - $nombre</b></h2></td>
+   </tr>
+</table>
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+
+$pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha registro:</strong>',0,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(20, 5, 175, '', '3444' ,0,1, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+$pdf->writeHTMLCell(25, 5, 20, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(60, 5, 45, '', $empresa ,0,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(25, 5, 125, '', '<strong>Nombre:</strong>' ,0,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(60, 5, 150, '', $nombre ,0,1, 0, true, 'J', true);
+
+$pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+
+
+   switch($nombre_tipo_item){
+     
+     case 'Sala Limpia':
+       
+        $pdf->writeHTMLCell(25, 5, 20, '', '<strong>Area sala limpia:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 45, '', 'Variable' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(25, 5, 125, '', '<strong>Codigo:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 150, '', 'Variable' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(25, 5, 20, '', '<strong>Dirección:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 45, '', 'Variable' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(25, 5, 125, '', '<strong>Ubicación interna:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 150, '', 'Variable' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(25, 5, 20, '', '<strong>Area interna:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 45, '', 'Variable' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(25, 5, 125, '', '<strong>Area m2:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 150, '', 'Variable' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(25, 5, 20, '', '<strong>Volumen m3:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 45, '', 'Variable' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(25, 5, 125, '', '<strong>Estado sala:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 150, '', 'Variable' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(25, 5, 20, '', '<strong>Temperatura °C:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 45, '', 'Variable' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(25, 5, 125, '', '<strong>Humedad:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 150, '', 'Variable' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+
+     break;
+   }   
+  
+  
+  
+  
+  
+  
+  
+
+/*
+
+$html = <<<EOD
+<br><br>
 <hr>
 <h2>Información del equipo $nombre</h2>
 <hr>
@@ -123,6 +189,6 @@ $html = <<<EOD
 EOD;
 
 $pdf->writeHTML($html, true, false, false, false, '');
-
-$pdf->Output('Algo.pdf', 'I');
+*/
+$pdf->Output($nombre.'.pdf', 'I');
 ?>
