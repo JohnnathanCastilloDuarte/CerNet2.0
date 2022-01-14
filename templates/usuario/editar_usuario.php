@@ -37,14 +37,14 @@ while($fila = mysqli_fetch_array($persona))
   $array_persona[]=$fila;
 }
 //consultar empresa 
-$empresas = mysqli_query($connect, "SELECT * FROM empresa");
+$empresas = mysqli_query($connect, "SELECT * FROM empresa ORDER BY nombre ASC");
 $array_empresa = array();
 while($row = mysqli_fetch_array($empresas)){
     $array_empresa[] = $row;
 }
 //consultar la empresa
 $nombre_empresa = array(); 
-$empresa = mysqli_query($connect, "SELECT * FROM empresa WHERE id_empresa = $id_empresa ");
+$empresa = mysqli_query($connect, "SELECT * FROM empresa WHERE id_empresa = $id_empresa");
 
   while($fila = mysqli_fetch_array($empresa)){
     $nombre_empresa[]=$fila;

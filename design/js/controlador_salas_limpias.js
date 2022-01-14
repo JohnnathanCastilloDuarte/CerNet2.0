@@ -641,7 +641,7 @@ $.ajax({
 ///////////// VER INFORME
 $("#ver_informe_salas_limpias").click(function(){
     let encrypt = "LF456DS4G5DS4F5SD21G4DFSGF14DS2vDF2bfg56f1d56sf15ds6f4g534G564g56f4g56df4g561G6F4D5G6DF4G564FG5DG"+id_asignado;
-    location.href = 'templates/sala_limpia/informes/informe/pdf_prueba.pdf'; 
+    location.href = 'templates/sala_limpia/informes/informe/inspeccion_de_salas.php'; 
 });
 
 

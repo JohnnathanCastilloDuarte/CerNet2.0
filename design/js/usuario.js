@@ -21,12 +21,57 @@ $("#exampleCustomRadio2").attr('disabled','disabled');
 $("#exampleCustomRadio3").attr('disabled','disabled');
 $("#exampleCustomRadio4").attr('disabled','disabled');
 $("#privilegios").attr('disabled','disabled');
+$("#buscador_empresa").attr('disabled','disabled');
 
 mostar_departamentos();
 mostrar_privilegios();
 
 validar_usuario();
 comparar_pass();
+
+ //////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+  
+  let buscar = $(this).val();
+
+  $.ajax({
+    type:'POST',
+    data:{buscar},
+    url:'templates/controlador_buscador_empresa.php',
+    success:function(response){
+      let trear = JSON.parse(response);
+      let template = "";
+      $("#aqui_resultados_empresa").show();
+
+      trear.forEach((valor)=>{
+        template +=
+        ` 
+          <tr>
+            <td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
+          </tr>
+          
+        `;
+      });
+
+      $("#aqui_resultados_empresa").html(template);
+
+    }
+  })
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+  let id_empresa = $(this).attr('data-id');
+  let nombre_empresa = $(this).attr('data-name');
+  $("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+
+  $("#aqui_resultados_empresa").hide();
+
+});
 //Validar usuario
 function validar_usuario(){
 	
@@ -99,6 +144,7 @@ function comparar_pass(){
 				$("#exampleCustomRadio3").attr('disabled','disabled');
 				$("#exampleCustomRadio4").attr('disabled','disabled');
         $("#privilegios").attr('disabled','disabled');
+        $("#buscador_empresa").attr('disabled','disabled');
 			}else{
 				alerta="<div class='alert alert-success' role='alert'>Las contraseñas  coinciden</div>";	
 				$("#coinciden_pass").html(alerta);
@@ -117,6 +163,7 @@ function comparar_pass(){
 				$("#exampleCustomRadio3").attr('disabled', false);
 				$("#exampleCustomRadio4").attr('disabled', false);
         $("#privilegios").attr('disabled',false);
+        $("#buscador_empresa").attr('disabled',false);
 			}
 			
 				
@@ -275,6 +322,8 @@ $("#departamento_usuario_editar").change(function(){
 });
 
 
+
+
 //crear nuevo usuario
 (function(){
 	$("#email_usuario").blur(function(){
@@ -323,7 +372,7 @@ $("#btn_nuevo_usuario").click(function(){
   cargo_usuario: $("#cargo_usuario").val(),
   departamento_usuario:$("#departamento_usuario").val(),
   pais_usuario: $("#pais_usuario").val(),
-  empresa_usuario: $("#empresa_usuario").val(),	
+  empresa_usuario: $("#id_empresa").val(),	
   privilegios_usuario: $("#privilegios").val(),  
   estado_usuario: estado_defecto
   }
