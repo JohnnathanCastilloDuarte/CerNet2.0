@@ -136,14 +136,14 @@
 				</div>
         	<div class="row">
           <div class="col-sm-6">
-						<label>Empresa:</label>
-							<select class="form-control" id="empresa_usuario">
-								<option>Seleccione...</option>
-								{foreach from=$empresas item=empresa}
-									<option value="{$empresa.id_empresa}">{$empresa.nombre}</option>
-								{/foreach}
-							</select>
-					</div>
+                  <label>Empresa</label>
+                      <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$sala_limpia.nombre_empresa}">
+                      <input type="hidden" id="id_empresa" >
+                      <div>
+                        <table class="table" id="aqui_resultados_empresa" >
+                        </table>
+                      </div> 
+                </div>
              <div class="col-sm-6">
 						<label>Tipo Usuario:</label>
 							<select class="form-control" id="privilegios">
