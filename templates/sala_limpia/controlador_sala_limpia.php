@@ -156,6 +156,55 @@ else if($orden == 5){
     echo $convert;
 }
 
+else if($orden == 6){
+    $id_asignado = $_POST['id_asignado'];
+    $array_resultado = array();
+    $consultar = mysqli_prepare($connect,"SELECT id_ensayo, metodo_ensayo, puntos_x_medicion, muestra_x_punto, volumen_muestra, altura_muestra FROM salas_limpias_metodo_1 WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
+    mysqli_stmt_execute($consultar);
+    mysqli_stmt_store_result($consultar);
+    mysqli_stmt_bind_result($consultar, $id_ensayo, $metodo_ensayo, $puntos_x_medicion, $muestra_x_punto, $volumen_muestra, $altura_muestras);
+
+    
+    while($row = mysqli_stmt_fetch($consultar)){
+
+        $array_resultado[] = array(
+           'id_ensayo'=>$id_ensayo,
+           'metodo_ensayo'=>$metodo_ensayo,
+           'puntos_x_medicion'=>$puntos_x_medicion,
+           'muestra_x_punto'=>$muestra_x_punto,
+           'volumen_muestra'=>$volumen_muestra,
+           'altura_muestras'=>$altura_muestras       
+        );
+    }
+
+    $convert = json_encode($array_resultado);
+    echo $convert;
+}
+
+else if($orden == 7){
+    $id_asignado = $_POST['id_asignado'];
+    $array_resultado = array();
+    $consultar = mysqli_prepare($connect,"SELECT id_ensayo, metodo_ensayo, especificacion FROM salas_limpias_metodo_2 WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
+    mysqli_stmt_execute($consultar);
+    mysqli_stmt_store_result($consultar);
+    mysqli_stmt_bind_result($consultar, $id_ensayo, $metodo_ensayo, $especificacion);
+
+    
+    while($row = mysqli_stmt_fetch($consultar)){
+
+        $array_resultado[] = array(
+           'id_ensayo'=>$id_ensayo,
+           'metodo_ensayo'=>$metodo_ensayo,
+           'especificacion'=>$especificacion
+        );
+    }
+
+    $convert = json_encode($array_resultado);
+    echo $convert;
+}
+
 
 ///////////////// VALIDACIÓN
 else if($orden == 100){
@@ -307,5 +356,100 @@ else if($orden == 500){
     }
 
 } 
+
+
+else if($orden == 600){
+
+    $id_asignado = $_POST['id_asignado'];
+    
+    
+    $validador1 = mysqli_prepare($connect,"SELECT id_ensayo FROM salas_limpias_metodo_1 WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($validador1, 'i', $id_asignado);
+    mysqli_stmt_execute($validador1);
+    mysqli_stmt_store_result($validador1);
+    mysqli_stmt_bind_result($validador1, $id_prueba);
+    mysqli_stmt_fetch($validador1);
+
+    if(mysqli_stmt_num_rows($validador1) == 0){
+
+       
+        $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_metodo_1 (id_asignado) VALUES (?)");
+        mysqli_stmt_bind_param($creando, 'i', $id_asignado);
+        mysqli_stmt_execute($creando);
+        
+    }
+
+}
+
+else if($orden == 700){
+
+    $id_asignado = $_POST['id_asignado'];
+    
+    
+    $validador1 = mysqli_prepare($connect,"SELECT id_ensayo FROM salas_limpias_metodo_2 WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($validador1, 'i', $id_asignado);
+    mysqli_stmt_execute($validador1);
+    mysqli_stmt_store_result($validador1);
+    mysqli_stmt_bind_result($validador1, $id_prueba);
+    mysqli_stmt_fetch($validador1);
+
+    if(mysqli_stmt_num_rows($validador1) == 0){
+
+       
+        $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_metodo_2 (id_asignado) VALUES (?)");
+        mysqli_stmt_bind_param($creando, 'i', $id_asignado);
+        mysqli_stmt_execute($creando);
+        
+    }
+
+}
+
+else if($orden == 800){
+
+    $id_asignado = $_POST['id_asignado'];
+    $categoria_1 = 1;
+    $categoria_2 = 2;
+    
+    $validador1 = mysqli_prepare($connect,"SELECT id_ensayo FROM salas_limpias_metodo_4 WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($validador1, 'i', $id_asignado);
+    mysqli_stmt_execute($validador1);
+    mysqli_stmt_store_result($validador1);
+    mysqli_stmt_bind_result($validador1, $id_prueba);
+    mysqli_stmt_fetch($validador1);
+
+    if(mysqli_stmt_num_rows($validador1) == 0){
+
+       
+        $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_metodo_4 (id_asignado, categoria) VALUES (?,?)");
+        mysqli_stmt_bind_param($creando, 'ii', $id_asignado, $categoria_1);
+        mysqli_stmt_execute($creando);
+        $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_metodo_4 (id_asignado, categoria) VALUES (?,?)");
+        mysqli_stmt_bind_param($creando, 'ii', $id_asignado, $categoria_2);
+        mysqli_stmt_execute($creando);
+        
+    }
+
+}
+
+else if($orden == 900){
+
+    $id_asignado = $_POST['id_asignado'];
+    
+    $validador1 = mysqli_prepare($connect,"SELECT id_ensayo FROM salas_limpias_metodo_5 WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($validador1, 'i', $id_asignado);
+    mysqli_stmt_execute($validador1);
+    mysqli_stmt_store_result($validador1);
+    mysqli_stmt_bind_result($validador1, $id_prueba);
+    mysqli_stmt_fetch($validador1);
+
+    if(mysqli_stmt_num_rows($validador1) == 0){
+
+        $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_metodo_5 (id_asignado) VALUES (?)");
+        mysqli_stmt_bind_param($creando, 'i', $id_asignado);
+        mysqli_stmt_execute($creando);
+        
+    }
+
+}
 
 ?>
