@@ -182,7 +182,7 @@ $("#buscador_empresa").keydown(function(){
 				template +=
 				`	
 					<tr>
-						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
 					</tr>
 					
 				`;
@@ -200,8 +200,11 @@ $(document).on('click','#seleccionar_empresa',function(){
 
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion');
+
 	$("#buscador_empresa").val(nombre_empresa);
   $("#id_empresa").val(id_empresa);
+  $("#ubicacion_filtro").val(direccion);
 
 	$("#aqui_resultados_empresa").hide();
 

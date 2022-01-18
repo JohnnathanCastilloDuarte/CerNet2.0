@@ -26,12 +26,12 @@ if (isset($_GET['item'])) {
 	$id_item = $_GET['item'];
   //CONSULTO LA INFORMACIÓN DEL EQUIPO
 
-	$flujo_laminar = mysqli_prepare($connect,"SELECT a.id,a.id_item,a.cantidad_filtro,b.nombre,b.id_empresa,c.nombre
-		FROM item_flujo_laminar as a, item as b, empresa as c
-		WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND a.id_item = $id_item");
+	$flujo_laminar = mysqli_prepare($connect,"SELECT a.id, a.id_item,a.cantidad_filtro, b.nombre,b.id_empresa, c.nombre,d.nombre, a.direccion, a.ubicacion_interna, a.area_interna,a.fecha_registro
+		FROM item_flujo_laminar as a, item as b, empresa as c, tipo_item d
+		WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND a.id_item = $id_item AND d.id_item = b.id_tipo");
 	mysqli_stmt_execute($flujo_laminar);
 	mysqli_stmt_store_result($flujo_laminar);
-	mysqli_stmt_bind_result($flujo_laminar, $id_flujo_laminar, $id_item, $cantidad_filtro, $nombre_item,$id_empresa_flujo, $nombre_empresa_flujo);	
+	mysqli_stmt_bind_result($flujo_laminar, $id_flujo_laminar, $id_item, $cantidad_filtro, $nombre_item,$id_empresa_flujo, $nombre_empresa_flujo,$nombre_tipo_item, $direccion,$ubicacion_interna,$area_interna,$fecha_registro);	
 
 	while($row = mysqli_stmt_fetch($flujo_laminar)){
 		$array_flujo_laminar[] = array(
@@ -39,8 +39,13 @@ if (isset($_GET['item'])) {
 			'id_item' => $id_item,
 			'cantidad_filtro'=>$cantidad_filtro,
 			'nombre_item'=> $nombre_item,
-			'nombre_empresa_flujo' => $nombre_empresa_flujo,
+			'nombre_empresa' => $nombre_empresa_flujo,
 			'id_empresa_flujo' => $id_empresa_flujo,
+			'nombre_tipo_item' => $nombre_tipo_item,
+			'direccion'=> $direccion,
+			'ubicacion_interna'=>$ubicacion_interna,
+			'area_interna'=>$area_interna,
+			'fecha_registro'=>$fecha_registro
 		);	
 
 	}
@@ -48,12 +53,48 @@ if (isset($_GET['item'])) {
 
 }else{
 	$array_flujo_laminar[] = array(
-		'id_flujo_laminar'=>'',
-		'cantidad_filtro'=>'',
+			'id_flujo_laminar'=>'',
+			'id_item' => '',
+			'cantidad_filtro'=>'',
+			'nombre_item'=> '',
+			'nombre_empresa' => '',
+			'id_empresa_flujo' => '',
+			'nombre_tipo_item' =>'',
+			'direccion'=> '',
+			'ubicacion_interna'=>'',
+			'area_interna'=>''
 	);	
 
 	$smarty->assign("array_flujo_laminar",$array_flujo_laminar);
 }
 
-$smarty->display("item/update_flujo_laminar.tpl");  
+
+
+
+	//ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
+$convert = json_encode($array_flujo_laminar);   
+$conv = base64_encode($convert);
+if ($_GET['pdf'] == 1) {
+
+	header('location: templates/item/pdf/pdf/pdf_item.php?&data='.$conv);
+
+}elseif($_GET['pdf'] == 0){
+	$smarty->display("item/update_flujo_laminar.tpl");  
+}elseif($_GET['pdf'] == 2){
+
+	$url = $_SERVER['HTTP_HOST'];
+		
+	if($url = 'cercal.net') {
+
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_item.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);		
+	}else{ 	
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_item.php';
+		$correo = $_GET['correo'];
+		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
+	}
+}
+
+
  ?>

@@ -25,37 +25,94 @@ if(isset($_GET['item'])){
     $id_equipo = $_GET['item'];
 
     //CONSULTO LA INFORMACIÓN DEL EQUIPO
-  $sala_limpia = mysqli_prepare($connect,"SELECT b.id_item, a.id, b.nombre, a.Area_sala_limpia, a.Codigo, a.Area_m2, a.Volumen_m3, a.Estado_sala, c.id_empresa, c.nombre, a.direccion, a.ubicacion_interna, a.area_interna, a.especificacion_1_temp, a.especificacion_2_temp, a.especificacion_1_hum, a.especificacion_2_hum, d.nombre, c.logo
+  $sala_limpia = mysqli_prepare($connect,"SELECT 
+   b.id_item,
+   a.id, 
+   b.nombre, 
+   a.Area_m2,
+   a.Volumen_m3, 
+   c.id_empresa, 
+   c.nombre, 
+   a.direccion, 
+   a.ubicacion_interna, 
+   a.area_interna, 
+   d.nombre, 
+   a.clasificacion_oms, 
+   a.clasificacion_iso, 
+   a.claudal_m3h, 
+   a.ren_hr, 
+   a.temperatura, 
+   a.hum_relativa, 
+   a.lux, 
+   a.ruido_dba, 
+   a.presion_sala, 
+   a.presion_versus, 
+   a.tipo_presion, 
+   a.puntos_muestreo,
+   a.fecha_registro
+
 FROM item_sala_limpia a, item b, empresa c, tipo_item d 
 WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id_tipo AND a.id_item =  $id_equipo");
   mysqli_stmt_execute($sala_limpia);
   mysqli_stmt_store_result($sala_limpia);
-  mysqli_stmt_bind_result($sala_limpia, $id_item, $id_sala_limpia, $nombre_sala_limpia,
-    $Area_sala_limpia, $codigo,$area_m2, $volumen_m3, $estado_sala, $id_empresa, $nombre_empresa, $direccion ,$ubicacion_interna, $area_interna, $especificacion_1_temp, $especificacion_2_temp, $especificacion_1_hum, $especificacion_2_hum, $nombre_tipo_item, $logo);
+  mysqli_stmt_bind_result($sala_limpia, 
+
+    
+    $id_item, 
+    $id_sala_limpia, 
+    $nombre_sala_limpia,
+    $area_m2, 
+    $volumen_m3, 
+    $id_empresa, 
+    $nombre_empresa, 
+    $direccion ,
+    $ubicacion_interna, 
+    $area_interna, 
+    $nombre_tipo_item,
+    $clasificacion_oms,
+    $clasificacion_iso,
+    $claudal_m3h,
+    $ren_hr,
+    $temperatura,
+    $hum_relativa,
+    $lux,
+    $ruido_dba,
+    $presion_sala,
+    $presion_versus,
+    $tipo_presion,
+    $puntos_muestreo,
+    $fecha_registro
+
+  );
 
   $array_sala_limpia = array();
 
   while($row = mysqli_stmt_fetch($sala_limpia)){
-      $array_sala_limpia[] = array(
+      $array_sala_limpia[] = array( 
         'id_item'=>$id_equipo,
         'id_sala_limpia'=>$id_sala_limpia,
         'nombre_sala_limpia'=>$nombre_sala_limpia,
-        'Area_sala_limpia'=>$Area_sala_limpia,
-        'codigo'=>$codigo,
         'area_m2'=>$area_m2,
         'volumen_m3'=>$volumen_m3,
-        'estado_sala'=>$estado_sala,
         'id_empresa' =>$id_empresa,
         'nombre_empresa' =>$nombre_empresa,
         'direccion'=>$direccion,
         'ubicacion_interna'=>$ubicacion_interna,
         'area_interna'=>$area_interna,
-        'especificacion_1_temp'=>$especificacion_1_temp,
-        'especificacion_2_temp'=>$especificacion_2_temp,
-        'especificacion_1_hum'=>$especificacion_1_hum,
-        'especificacion_2_hum'=>$especificacion_1_hum,
         'nombre_tipo_item'=>$nombre_tipo_item,
-        'logo'=>$logo
+        'clasificacion_oms'=>$clasificacion_oms,
+        'clasificacion_iso'=>$clasificacion_iso,
+        'claudal_m3h'=>$claudal_m3h,
+        'ren_hr'=>$ren_hr,
+        'temperatura'=>$temperatura,
+        'hum_relativa'=>$hum_relativa,
+        'lux'=>$lux,
+        'ruido_dba'=>$ruido_dba,
+        'presion_sala'=>$presion_sala,
+        'presion_versus'=>$presion_versus,
+        'tipo_presion'=>$tipo_presion,
+        'puntos_muestreo'=>$puntos_muestreo,
+        'fecha_registro'=>$fecha_registro
         
     );	
   }
@@ -71,32 +128,37 @@ else{
         'id_item'=>'',
         'id_sala_limpia'=>'',
         'nombre_sala_limpia'=>'',
-        'Area_sala _limpia'=>'',
-        'codigo'=>'',
         'area_m2'=>'',
         'volumen_m3'=>'',
-        'estado_sala'=>'',
-        'id_empresa'=>'',
-        'nombre_empresa'=>'',
+        'id_empresa' =>'',
+        'nombre_empresa' =>'',
         'direccion'=>'',
         'ubicacion_interna'=>'',
         'area_interna'=>'',
-        'especificacion_1_temp'=>'',
-        'especificacion_2_temp'=>'',
-        'especificacion_1_hum'=>'',
-        'especificacion_2_hum'=>''
+        'nombre_tipo_item'=>'',
+        'clasificacion_oms'=>'',
+        'clasificacion_iso'=>'',
+        'claudal_m3h'=>'',
+        'ren_hr'=>'',
+        'temperatura'=>'',
+        'hum_relativa'=>'',
+        'lux'=>'',
+        'ruido_dba'=>'',
+        'presion_sala'=>'',
+        'presion_versus'=>'',
+        'tipo_presion'=>'',
+        'puntos_muestreo'=>'',
 
 );
   $smarty->assign("array_sala_limpia",$array_sala_limpia);
 }//////// CIERRE DEL ELSE
-
 
 //ENCRIPTACION Y ENVIO DE LOS DATOS DEL ITEM PARA GENERAR UN PDF
 $convert = json_encode($array_sala_limpia);   
 $conv = base64_encode($convert);
 if ($_GET['pdf'] == 1) {
 
-    header('location: templates/item/pdf/pdf/pdf_sala_limpia.php?&data='.$conv);
+    header('location: templates/item/pdf/pdf/pdf_item.php?&data='.$conv);
 
 }elseif($_GET['pdf'] == 0){
     $smarty->display("item/update_sala_limpia.tpl");
@@ -106,11 +168,11 @@ if ($_GET['pdf'] == 1) {
     
   if($url = 'cercal.net') {
 
-    $link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_sala_limpia.php';
+    $link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_item.php';
     $correo = $_GET['correo'];
     header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);   
   }else{  
-    $link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_sala_limpia.php';
+    $link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_item.php';
     $correo = $_GET['correo'];
     header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
   }

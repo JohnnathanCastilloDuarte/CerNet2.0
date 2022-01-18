@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-01-2022 a las 17:06:01
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 7.4.22
+-- Tiempo de generación: 18-01-2022 a las 14:11:00
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,10 +35,12 @@ CREATE TABLE `item_campana` (
   `modelo` varchar(250) DEFAULT NULL COMMENT 'Modelo de la campana',
   `serie` varchar(250) DEFAULT NULL COMMENT 'Serie de la campana',
   `codigo` varchar(250) DEFAULT NULL COMMENT 'codigo interno de la campana',
-  `ubicado_en` varchar(300) DEFAULT NULL COMMENT 'Ubicacion interna de campana',
-  `ubicacion` varchar(300) DEFAULT NULL COMMENT 'Ubicacion de la empresa donde se encuentra la camapana',
-  `requisito_velocidad` varchar(15) NOT NULL COMMENT 'Requisito de la velocidad de la campana',
-  `fecha_fabricacion` varchar(50) DEFAULT 'Ninguno' COMMENT 'Fecha de fabricación'
+  `ubicacion_interna` varchar(300) DEFAULT NULL COMMENT 'Ubicacion interna de campana',
+  `area_interna` varchar(100) DEFAULT NULL,
+  `direccion` varchar(300) DEFAULT NULL COMMENT 'Ubicacion de la empresa donde se encuentra la camapana',
+  `requisito_velocidad` varchar(15) DEFAULT NULL COMMENT 'Requisito de la velocidad de la campana',
+  `fecha_fabricacion` varchar(50) DEFAULT 'Ninguno' COMMENT 'Fecha de fabricación',
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

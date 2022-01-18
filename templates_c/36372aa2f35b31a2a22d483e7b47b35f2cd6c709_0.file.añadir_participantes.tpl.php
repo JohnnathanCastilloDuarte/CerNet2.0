@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-02 21:23:25
+/* Smarty version 3.1.34-dev-7, created on 2022-01-14 02:02:03
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\añadir_participantes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a92b3d71ad68_10914510',
+  'unifunc' => 'content_61e0cb8b0a9ee1_39291868',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36372aa2f35b31a2a22d483e7b47b35f2cd6c709' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\añadir_participantes.tpl',
-      1 => 1638464252,
+      1 => 1642084096,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a92b3d71ad68_10914510 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e0cb8b0a9ee1_39291868 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab1">
@@ -110,6 +110,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                       <div class="col-sm-6">
                         <label>Cargo</label>
                         <input type="text" id="cargo_participante_documentacion" class="form-control">
+                      </div>
+                      <div class="col-sm-6">
+                       <label>Departamento</label> 
+                        <input type="text" id="departamento_participante_documentacion" class="form-control">
                       </div>
                     </div>
                     <br>

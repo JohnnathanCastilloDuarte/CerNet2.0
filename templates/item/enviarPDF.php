@@ -34,7 +34,7 @@
     		break;
     	//Incubadora			
     	case 6:
-
+              header('location: update_incubadora.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);
     	
     		break;
     	//Automovil	
@@ -46,12 +46,15 @@
     	//Sala limpia		
     	case 8:
 
+              header('location: update_sala_limpia.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);  
     	
     		break;							
     	//HVAC		
     	case 10:
 
-    	
+    	      //header('location: update_h.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);  
+              echo "Sin acceso"; 
+
     		break;
     	//Filtro		
     	case 11:
@@ -67,9 +70,10 @@
     	//Flujo laminal		
     	case 13:
 
+                header('location: update_flujo_laminar.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);  
     	
     		break;			
-        
+        //Camara congelada
       case 14:
 
     	      header('location: update_camara_congelada.php?item='.$id_item.'&pdf='.$pdf.'&correo='.$correo);

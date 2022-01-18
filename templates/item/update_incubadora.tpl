@@ -30,7 +30,7 @@
 											<input type="hidden" id="id_item_incubadora" value="{$incubadora.id_incubadora}">
 											<input type="hidden" id="id_item_2" value="{$incubadora.id_item}">
 											<label>Nombre del incubadora</label>
-											<input type="text" id="nombre_incubadora" class="form-control" value="{$incubadora.nombre_incubadora}" placeholder="Nombre incubadora"> 
+											<input type="text" id="nombre_incubadora" class="form-control" value="{$incubadora.nombre_item}" placeholder="Nombre incubadora"> 
 										</div>
 										<div class="col-sm-6">
 											<label>Empresa</label>

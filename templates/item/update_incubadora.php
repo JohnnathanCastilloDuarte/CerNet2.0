@@ -26,12 +26,15 @@ if(isset($_GET['item'])){
 	$id_equipo = $_GET['item'];
 
 	//CONSULTO LA INFORMACIÓN DEL EQUIPO
-	$incubadora = mysqli_prepare($connect,"SELECT a.id_incubadora,a.id_item,a.fabricante,a.modelo,a.n_serie,a.fecha_fabricacion,a.direccion,a.ubicacion_interna,a.area_interna,a.valor_seteado,a.limite_maximo,a.limite_minimo,a.id_usuario, b.nombre, b.descripcion, c.nombre,c.id_empresa
-	FROM item_incubadora a, item b, empresa c
-	WHERE a.id_item = b.id_item AND c.id_empresa = b.id_empresa AND a.id_item = $id_equipo");
+	$incubadora = mysqli_prepare($connect,"SELECT a.id_incubadora,a.id_item,a.fabricante,
+		a.modelo,a.n_serie,a.fecha_fabricacion,a.direccion,a.ubicacion_interna,a.area_interna,
+		a.valor_seteado,a.limite_maximo,a.limite_minimo,a.id_usuario, b.nombre, b.descripcion, 
+		c.nombre,c.id_empresa, a.fecha_registro, d.nombre
+	FROM item_incubadora a, item b, empresa c, tipo_item d
+	WHERE a.id_item = b.id_item AND c.id_empresa = b.id_empresa AND a.id_item = $id_equipo AND d.id_item = b.id_tipo");
 	mysqli_stmt_execute($incubadora);
 	mysqli_stmt_store_result($incubadora);
-	mysqli_stmt_bind_result($incubadora, $id_incubadora,$id_item,$fabricante,$modelo,$n_serie,$fecha_fabricacion,$direccion,$ubicacion_interna,$area_interna,$valor_seteado,$limite_maximo,$limite_minimo,$id_usuario,$nombre_item,$descripcion,$nombre_empresa,$id_empresa);
+	mysqli_stmt_bind_result($incubadora, $id_incubadora,$id_item,$fabricante,$modelo,$n_serie,$fecha_fabricacion,$direccion,$ubicacion_interna,$area_interna,$valor_seteado,$limite_maximo,$limite_minimo,$id_usuario,$nombre_item,$descripcion,$nombre_empresa,$id_empresa,$fecha_registro,$nombre_tipo_item);
 
 	while($row = mysqli_stmt_fetch($incubadora)){
 		$array_incubadora[] = array(
@@ -48,19 +51,22 @@ if(isset($_GET['item'])){
 			'limite_maximo'=>$limite_maximo,
 			'limite_minimo'=>$limite_minimo,
 			'id_usuario'=>$id_usuario,
-			'nombre_incubadora'=>$nombre_item,
+			'nombre_item'=>$nombre_item,
 			'descripcion'=>$descripcion,
 			'nombre_empresa'=>$nombre_empresa,
-			'id_empresa'=>$id_empresa
+			'id_empresa'=>$id_empresa,
+			'fecha_registro'=>$fecha_registro,
+			'nombre_tipo_item'=>$nombre_tipo_item
 		);	
 	}
 	$smarty->assign("array_incubadora",$array_incubadora);
 	
-}////////// FIN DEL IF PRINCIPAL 
+}
+//////////FIN DEL IF PRINCIPAL 
 else{
 	
 	$array_incubadora[] = array(
-		'id_incubadoras'=>'',
+			'id_incubadoras'=>'',
 			'id_item'=>'',
 			'fabricante'=>'',
 			'modelo'=>'',
@@ -87,7 +93,7 @@ $convert = json_encode($array_incubadora);
 $conv = base64_encode($convert);
 if ($_GET['pdf'] == 1) {
 
-	header('location: templates/item/pdf/pdf/pdf_incubadora.php?&data='.$conv);
+	header('location: templates/item/pdf/pdf/pdf_item.php?&data='.$conv);
 
 }elseif($_GET['pdf'] == 0){
 	$smarty->display("item/update_incubadora.tpl");
@@ -97,11 +103,11 @@ if ($_GET['pdf'] == 1) {
 		
 	if($url = 'cercal.net') {
 
-		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_automovil.php';
+		$link2  = 'https://cercal.net/CerNet2.0/templates/item/pdf/pdf/pdf_item.php';
 		$correo = $_GET['correo'];
 		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);		
 	}else{ 	
-		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_automovil.php';
+		$link2  = 'https://localhost/CerNet2.0/templates/item/pdf/pdf/pdf_item.php';
 		$correo = $_GET['correo'];
 		header('location: ../documentacion/enviarPDF_correo.php?correo='.$correo."&link=".$link2."&conv=".$conv);
 	}

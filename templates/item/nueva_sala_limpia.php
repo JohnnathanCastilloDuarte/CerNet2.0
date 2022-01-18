@@ -2,23 +2,26 @@
 
 include('../../config.ini.php');
 
-$nombre_sala_limpia     =  $_POST['nombre_sala_limpia'];
-$empresa_sala_limpia    =  $_POST['empresa_sala_limpia'];
-$area_sala_limpia       =  $_POST['area_sala_limpia'];
-$codigo_sala_limpia     =  $_POST['codigo_sala_limpia'];
-$area_m2_sala_limpia    =  $_POST['area_m2_sala_limpia'];
-$volumen_m2_sala_limpia =  $_POST['volumen_m2_sala_limpia'];
-$estado_sala_limpia     =  $_POST['estado_sala_limpia'];
+$nombre_sala_limpia = $_POST['nombre_sala_limpia'];
+$empresa_sala_limpia = $_POST['empresa_sala_limpia'];
+$clasificacion_oms = $_POST['clasificacion_oms'];
+$clasificacion_iso = $_POST['clasificacion_iso'];
 $direccion_sala_limpia = $_POST['direccion_sala_limpia'];
 $ubicacion_interna_sala_limpia = $_POST['ubicacion_interna_sala_limpia'];
 $area_interna_sala_limpia = $_POST['area_interna_sala_limpia'];
-$especificacion_1_temp = $_POST['especificacion_1_temp'];
-$especificacion_2_temp = $_POST['especificacion_2_temp'];
-$especificacion_1_hum = $_POST['especificacion_1_hum'];
-$especificacion_2_hum = $_POST['especificacion_2_hum'];
-
-$id_valida               = $_POST['id_valida'];
-
+$area_m2_sala_limpia = $_POST['area_m2_sala_limpia'];
+$volumen_m3_sala_limpia = $_POST['volumen_m3_sala_limpia'];
+$claudal_m3h = $_POST['claudal_m3h'];
+$ren_hr = $_POST['ren_hr'];
+$temperatura = $_POST['temperatura'];
+$hum_relativa = $_POST['hum_relativa'];
+$lux = $_POST['lux'];
+$ruido_dba = $_POST['ruido_dba'];
+$presion_sala = $_POST['presion_sala'];
+$presion_versus = $_POST['presion_versus'];
+$tipo_presion = $_POST['tipo_presion'];
+$puntos_muestreo = $_POST['puntos_muestreo'];
+$id_valida = $_POST['id_valida'];
 
 $tipo_item = 8;
 $estado = 1;
@@ -35,22 +38,45 @@ $id_item_insertado  =  mysqli_stmt_insert_id($insertando_item);
 ///SE VALIDA LA CAPTURA DEL ITEM CREADO
 if($id_item_insertado > 0){
 //INSERTAMOS EN LA TABLA ITEM_FREEZER
-  $insertando_ultrafreezer = mysqli_prepare($connect,"INSERT INTO item_sala_limpia (id_item, Area_sala_limpia, Codigo, Area_m2, volumen_m3, Estado_sala, direccion,ubicacion_interna, area_interna, especificacion_1_temp, especificacion_2_temp, especificacion_1_hum, especificacion_2_hum)
- VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-  mysqli_stmt_bind_param($insertando_ultrafreezer, 'issssssssssss', 
+  $insertando_ultrafreezer = mysqli_prepare($connect,"INSERT INTO item_sala_limpia (
+    id_item,
+    clasificacion_oms,
+    clasificacion_iso, 
+    direccion,
+    ubicacion_interna, 
+    area_interna,
+    Area_m2, 
+    volumen_m3, 
+    claudal_m3h,  
+    ren_hr, 
+    temperatura, 
+    hum_relativa, 
+    lux,
+    ruido_dba,
+    presion_sala,
+    presion_versus,
+    tipo_presion,
+    puntos_muestreo)
+ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  mysqli_stmt_bind_param($insertando_ultrafreezer, 'isssssssssssssssss', 
     $id_item_insertado, 
-    $area_sala_limpia, 
-    $codigo_sala_limpia, 
-    $area_m2_sala_limpia,
-    $volumen_m2_sala_limpia,
-    $estado_sala_limpia,
+    $clasificacion_oms, 
+    $clasificacion_oms, 
     $direccion_sala_limpia,
     $ubicacion_interna_sala_limpia,
     $area_interna_sala_limpia,
-    $especificacion_1_temp,
-    $especificacion_2_temp,
-    $especificacion_1_hum,
-    $especificacion_2_hum
+    $area_m2_sala_limpia,
+    $volumen_m3_sala_limpia,
+    $claudal_m3h,
+    $ren_hr,
+    $temperatura,
+    $hum_relativa,
+    $lux,
+    $ruido_dba,
+    $presion_sala,
+    $presion_versus,
+    $tipo_presion,
+    $puntos_muestreo
   );
   
   mysqli_stmt_execute($insertando_ultrafreezer);

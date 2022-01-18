@@ -40,7 +40,7 @@
                   <input type="hidden" id="id_item_2_estufa" value="{$estufa.id_item}">
                   <input type="hidden" id="id_empresa_estufa" value="{$estufa.id_empresa}">
                   <label>Nombre del Estufa</label>
-                  <input type="text" id="nombre_estufa" class="form-control" value="{$estufa.nombre_estufa}" placeholder = "Nombre estufa">
+                  <input type="text" id="nombre_estufa" class="form-control" value="{$estufa.nombre}" placeholder = "Nombre estufa">
                 </div>
                 
                 <div class="col-sm-6">
@@ -68,7 +68,7 @@
               <div class="form-row">
                 <div class="col-sm-12">
                   <label>Descripcion:</label>
-                  <textarea class="form-control" id="desc_estufa">{$estufa.descripcion_estufa}</textarea>
+                  <textarea class="form-control" id="desc_estufa">{$estufa.descripcion}</textarea>
                 </div>
               </div>
               <br>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
-                  <input type="text" id="ubicacion_interna_estufa" class="form-control" placeholder="Ubicación equipo" value="{$estufa.ubicacion}">
+                  <input type="text" id="ubicacion_interna_estufa" class="form-control" placeholder="Ubicación equipo" value="{$estufa.ubicacion_interna}">
                 </div>
                 <div class="col-sm-4">
                   <label>Área interna equipo:</label>

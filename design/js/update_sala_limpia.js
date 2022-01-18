@@ -13,23 +13,26 @@ $(document).ready(function(){
 
 
 function setear_campos(){
-       $("#id_item_sala_limpia").val('');
-       $("#id_item_2_sala_limpia").val('');
-       $("#id_empresa").val('');
-       $("#buscador_empresa").val('');
-       $("#nombre_sala_limpia").val('');
-       $("#area_sala_limpia").val('');
-       $("#codigo_sala_limpia").val('');
-       $("#area_m2_sala_limpia").val('');
-       $("#volumen_m2_sala_limpia").val('');
-       $("#estado_sala_limpia").val('');
-       $("#direccion_sala_limpia").val('');
-       $("#ubicacion_interna_sala_limpia").val('');
-       $("#area_interna_incubadora").val('');
-       $("#especificacion_1_temp").val('');
-       $("#especificacion_2_temp").val('');
-       $("#especificacion_1_hum").val('');
-       $("#especificacion_2_hum").val('');
+      $("#nombre_sala_limpia").val('')
+      $("#id_empresa").val('')
+      $("#clasificacion_oms").val('')
+      $("#clasificacion_iso").val('')
+      $("#direccion_sala_limpia").val('')
+      $("#ubicacion_interna_sala_limpia").val('')
+      $("#area_interna_sala_limpia").val('')
+      $("#area_m2_sala_limpia").val('')
+      $("#volumen_m3_sala_limpia").val('')
+      $("#claudal_m3h").val('')
+      $("#ren_hr").val('')
+      $("#temperatura").val('')
+      $("#hum_relativa").val('')
+      $("#lux").val('')
+      $("#ruido_dba").val('')
+      $("#presion_sala").val('')
+      $("#presion_versus").val('')
+      $("#tipo_presion").val('')
+      $("#puntos_muestreo").val('')
+      $("#buscador_empresa").val('')
 }
 
 (function(){
@@ -40,24 +43,30 @@ function setear_campos(){
 		const datos = {
         nombre_sala_limpia      : $("#nombre_sala_limpia").val(),
         empresa_sala_limpia     : $("#id_empresa").val(),
-        area_sala_limpia        : $("#area_sala_limpia").val(),
-        codigo_sala_limpia      : $("#codigo_sala_limpia").val(),
-        area_m2_sala_limpia     : $("#area_m2_sala_limpia").val(),
-        volumen_m2_sala_limpia  : $("#volumen_m2_sala_limpia").val(),
-        estado_sala_limpia      : $("#estado_sala_limpia").val(),
-        id_item_sala_limpia     : $("#id_item_sala_limpia").val(),
-        id_item_2_sala_limpia   : $("#id_item_2_sala_limpia").val(),
+        clasificacion_oms       : $("#clasificacion_oms").val(),
+        clasificacion_iso       : $("#clasificacion_iso").val(),
         direccion_sala_limpia   : $("#direccion_sala_limpia").val(),
         ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
         area_interna_incubadora : $("#area_interna_incubadora").val(),
-        especificacion_1_temp   : $("#especificacion_1_temp").val(),
-        especificacion_2_temp   : $("#especificacion_2_temp").val(),
-        especificacion_1_hum    : $("#especificacion_1_hum").val(),
-        especificacion_2_hum    : $("#especificacion_2_hum").val(),
+        area_m2_sala_limpia     : $("#area_m2_sala_limpia").val(),
+        volumen_m3_sala_limpia  : $("#volumen_m3_sala_limpia").val(),
+        claudal_m3h             : $("#claudal_m3h").val(),
 
-        id_valida              :$("#id_valida").val()
+        ren_hr                  : $("#ren_hr").val(),
+        temperatura             : $("#temperatura").val(),
+        hum_relativa            : $("#hum_relativa").val(),
+        lux                     : $("#lux").val(),
+        ruido_dba               : $("#ruido_dba").val(),
+        presion_sala            : $("#presion_sala").val(),
+        presion_versus          : $("#presion_versus").val(),
+        tipo_presion            : $("#tipo_presion").val(),
+        puntos_muestreo         : $("#puntos_muestreo").val(),
+
+
+        id_item_sala_limpia     : $("#id_item_sala_limpia").val(),
+        id_item_2_sala_limpia   : $("#id_item_2_sala_limpia").val(),
+
     }
-
     $.post('templates/item/editar_sala_limpia.php', datos, function(response){
       console.log(response);
      if(response == "Si"){
@@ -142,20 +151,26 @@ $(document).on('click','#seleccionar_empresa',function(){
            });
     }else{ 
    const datos = {
-        nombre_sala_limpia       : $("#nombre_sala_limpia").val(),
-        empresa_sala_limpia      : $("#id_empresa").val(),
-        area_sala_limpia         : $("#area_sala_limpia").val(),
-        codigo_sala_limpia       : $("#codigo_sala_limpia").val(),
-        area_m2_sala_limpia      : $("#area_m2_sala_limpia").val(),
-        volumen_m2_sala_limpia   : $("#volumen_m2_sala_limpia").val(),
-        estado_sala_limpia       : $("#estado_sala_limpia").val(),
-        direccion_sala_limpia    : $("#direccion_sala_limpia").val(),
+        nombre_sala_limpia      : $("#nombre_sala_limpia").val(),
+        empresa_sala_limpia     : $("#id_empresa").val(),
+        clasificacion_oms       : $("#clasificacion_oms").val(),
+        clasificacion_iso       : $("#clasificacion_iso").val(),
+        direccion_sala_limpia   : $("#direccion_sala_limpia").val(),
         ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
-        area_interna_sala_limpia : $("#area_interna_sala_limpia").val(),
-        especificacion_1_temp    : $("#especificacion_1_temp").val(),
-        especificacion_2_temp    : $("#especificacion_2_temp").val(),
-        especificacion_1_hum     : $("#especificacion_1_hum").val(),
-        especificacion_2_hum     : $("#especificacion_2_hum").val(),
+        area_interna_sala_limpia: $("#area_interna_sala_limpia").val(),
+        area_m2_sala_limpia     : $("#area_m2_sala_limpia").val(),
+        volumen_m3_sala_limpia  : $("#volumen_m3_sala_limpia").val(),
+        claudal_m3h             : $("#claudal_m3h").val(),
+
+        ren_hr                  : $("#ren_hr").val(),
+        temperatura             : $("#temperatura").val(),
+        hum_relativa            : $("#hum_relativa").val(),
+        lux                     : $("#lux").val(),
+        ruido_dba               : $("#ruido_dba").val(),
+        presion_sala            : $("#presion_sala").val(),
+        presion_versus          : $("#presion_versus").val(),
+        tipo_presion            : $("#tipo_presion").val(),
+        puntos_muestreo         : $("#puntos_muestreo").val(),
 
         id_valida                :$("#id_valida").val()
       }

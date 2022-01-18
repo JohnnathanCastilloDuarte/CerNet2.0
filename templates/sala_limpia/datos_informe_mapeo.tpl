@@ -56,6 +56,30 @@
                                 </a>
                             </div>
                             <div class="card-body collapse in show" id="collapseOne2">
+                                <div class="row">
+                                    <input type="text" name="id_ensayo_p11" id="id_ensayo_p11">
+                                    <div class="col-sm-2">
+                                        <label>Metodo de ensayo</label>
+                                        <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label>N° Puntos por Medición</label>
+                                        <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label>N° Muestras por Punto</label>
+                                        <input type="text" id="ensayo_p13" name="ensayo_p13" class="form-control">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Volumen por Muestras (L)</label>
+                                        <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Altura toma de Muestras (m)</label>
+                                        <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control">
+                                    </div>
+                                </div>
+                                <hr>
                                 <table class="table" style="text-align: center;">
                                 <thead>
                                     <th>Tamaños (µm)</th>
@@ -75,15 +99,33 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <a data-toggle="collapse" data-target="#collapseOne3"  aria-controls="collapseOne3">
-                                    Prueba de Difencial de Presión
-                                </a>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a data-toggle="collapse" data-target="#collapseOne3"  aria-controls="collapseOne3">
+                                            Prueba de Difencial de Presión
+                                        </a> 
+                                    </div>
+                                </div>
                                 
                             </div>
+
                             <div class="card-body collapse" id="collapseOne3">
-                            <table class="table" id="tabla_prueba_3">
-                                    
-                            </table>
+
+                                <div class="row">
+                                    <input type="text" name="id_ensayo_p21" id="id_ensayo_p21">
+                                    <div class="col-sm-6">
+                                        <label>Método de Ensayo:</label>
+                                        <input type="text" name="ensayo_p21" id="ensayo_p21" class="form-control">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Especificacion de sala:</label>
+                                        <input type="text" name="ensayo_p22" id="ensayo_p22" class="form-control">
+                                    </div>
+                                </div>
+                            
+                                <table class="table" id="tabla_prueba_3">
+                                        
+                                </table>
                             </div>
                         </div>
                         

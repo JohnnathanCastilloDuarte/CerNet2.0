@@ -45,7 +45,7 @@ $("#btn_nueva_camara_congelada").click(function(){
         url:'templates/item/nueva_camara_congelada.php',
         success:function(response){
           console.log(response);
-          if (response == "SI") {
+          if (response == "Si") {
              Swal.fire({
                title:'Mensaje',
                text:'Se ha creado la camara fria correctamente',
