@@ -27,7 +27,7 @@ foreach ($oso as $key) {
 	$tipo_campana        =$key->tipo_campana;
 	$marca   		     =$key->marca;
 	$requisito_velocidad =$key->requisito_velocidad;
-  $logo = $key->logo;
+  	$logo = $key->logo;
 }
 
 $pdf->AddPage('A4');

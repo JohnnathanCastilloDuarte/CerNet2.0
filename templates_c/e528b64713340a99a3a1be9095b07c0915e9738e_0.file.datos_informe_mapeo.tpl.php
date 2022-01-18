@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-12 21:27:36
+/* Smarty version 3.1.34-dev-7, created on 2022-01-17 23:29:36
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61df39b812b693_94629230',
+  'unifunc' => 'content_61e5edd0d55f49_14079070',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1642019253,
+      1 => 1642458575,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61df39b812b693_94629230 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e5edd0d55f49_14079070 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <div class="row">
@@ -99,12 +99,40 @@ function content_61df39b812b693_94629230 (Smarty_Internal_Template $_smarty_tpl)
 
                         <div class="card">
                             <div class="card-header">
-                                <a data-toggle="collapse" data-target="#collapseOne3"  aria-controls="collapseOne3">
-                                    Prueba de Difencial de Presión
-                                </a>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a data-toggle="collapse" data-target="#collapseOne3"  aria-controls="collapseOne3">
+                                            Prueba de Difencial de Presión
+                                        </a> 
+                                    </div>
+                                </div>
                                 
                             </div>
+
                             <div class="card-body collapse" id="collapseOne3">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label>Metodo de ensayo</label>
+                                    <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>N° Puntos por Medición</label>
+                                    <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>N° Muestras por Punto</label>
+                                    <input type="text" id="ensayo_p13" name="ensayo_p13" class="form-control">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Volumen por Muestras (L)</label>
+                                    <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Altura toma de Muestras (m)</label>
+                                    <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control">
+                                </div>
+                            </div>
+                            <hr>
                             <table class="table" id="tabla_prueba_3">
                                     
                             </table>

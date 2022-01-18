@@ -26,8 +26,6 @@ if(isset($_GET['item'])){
 
     //CONSULTO LA INFORMACIÓN DEL EQUIPO
   $sala_limpia = mysqli_prepare($connect,"SELECT 
-
-
    b.id_item,
    a.id, 
    b.nombre, 

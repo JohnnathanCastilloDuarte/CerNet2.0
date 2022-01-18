@@ -90,6 +90,6 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('freesans', 'R', 8);
+$pdf->SetFont('freesans', 'R', 7);
 
 ?>

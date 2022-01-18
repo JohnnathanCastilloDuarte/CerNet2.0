@@ -27,7 +27,13 @@ echo '<input type="hidden" value='.$nombre_archivo.' id="doc">';
 </head>
 <body>
 
-  <embed  src="../<?php echo $url; ?>" width="100%" height="100%">
-  
+  <embed  src="../<?php echo $url; ?>" width="100%" height="100%" id="espacio_clic">
+  <script>
+   $("#espacio_clic").click(function(){
+    var rect = element.getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left);
+   });
+ </script>
  </body>
+ 
 </html>
