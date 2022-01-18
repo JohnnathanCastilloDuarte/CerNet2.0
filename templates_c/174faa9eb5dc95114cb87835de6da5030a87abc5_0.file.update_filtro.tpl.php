@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-29 15:46:11
+/* Smarty version 3.1.34-dev-7, created on 2022-01-14 13:37:09
   from '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61cc82c30aaab4_53544314',
+  'unifunc' => 'content_61e17c85106966_37624956',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '174faa9eb5dc95114cb87835de6da5030a87abc5' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl',
-      1 => 1640792766,
+      1 => 1642167418,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61cc82c30aaab4_53544314 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e17c85106966_37624956 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -82,8 +82,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
               <div class="position-relative form-group">               
                 <label>Nombre: </label>
                 <select class="form-control" id="nombre_filtro">
-                   <option value="<?php echo $_smarty_tpl->tpl_vars['nombre_item']->value;?>
-" selected=""><?php echo $_smarty_tpl->tpl_vars['nombre_item']->value;?>
+                   <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_filtro'];?>
+" selected=""><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_filtro'];?>
 </option>
                    <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
                    <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
