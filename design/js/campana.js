@@ -32,6 +32,8 @@ function setear_campos(){
    let serie_campana = $("#serie_campana").val('');
    let fecha_fabricacion_campana = $("#fecha_fabricacion_campana").val('');
    let velocidad_aire_campana = $("#velocidad_aire_campana").val('');
+    $("#area_interna").val('');
+   
 }
 
 
@@ -42,6 +44,7 @@ $("#btn_nuevo_item_campana").click(function(){
    let empresa_campana = $("#id_empresa").val();
    let ubicacion_campana = $("#ubicacion_campana").val();
    let direccion_campana = $("#direccion_campana").val();
+   let area_interna  = $("#area_interna").val();
    let tipo_campana = $("#tipo_campana").val();
    let marca_campana = $("#marca_campana").val();
    let modelo_campana = $("#modelo_campana").val();
@@ -59,6 +62,7 @@ $("#btn_nuevo_item_campana").click(function(){
     tipo_campana,
     marca_campana,
     modelo_campana,
+    area_interna,
     codigo_interno_campana,
     serie_campana,
     fecha_fabricacion_campana,
@@ -108,6 +112,7 @@ $("#btn_editar_item_campana").click(function(){
    let serie_campana = $("#serie_campana").val();
    let fecha_fabricacion_campana = $("#fecha_fabricacion_campana").val();
    let velocidad_aire_campana = $("#velocidad_aire_campana").val();
+   let area_interna  = $("#area_interna").val();
    //let tipo_controlador = "Actualizar";
    
    const datos = {
@@ -116,6 +121,7 @@ $("#btn_editar_item_campana").click(function(){
     ubicacion_campana,
     direccion_campana,
     tipo_campana,
+    area_interna,
     marca_campana,
     modelo_campana,
     codigo_interno_campana,
@@ -199,7 +205,7 @@ $("#buscador_empresa").keydown(function(){
 				template +=
 				`	
 					<tr>
-						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
 					</tr>
 					
 				`;
@@ -217,8 +223,10 @@ $(document).on('click','#seleccionar_empresa',function(){
 
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion')
 	$("#buscador_empresa").val(nombre_empresa);
   $("#id_empresa").val(id_empresa);
+  $("#direccion_campana").val(direccion);
 
 	$("#aqui_resultados_empresa").hide();
 

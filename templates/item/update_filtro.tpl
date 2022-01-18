@@ -18,31 +18,7 @@
 
 <div class="card">
   <div class="card-body">
-    <div id="smartwizard2" class="forms-wizard-alt">
-        <ul class="forms-wizard">
-            <li>
-                <a href="#step-12">
-                    <em>1</em><span>Identificación</span>
-                </a>
-            </li>
-          <!--
-            <li>
-                <a href="#step-22">
-                    <em>2</em><span>Infraestructura</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-32">
-                    <em>3</em><span>Equipos</span>
-                </a>
-            </li>
-          <li id="si_envia">
-                <a href="#step-42">
-                    <em>4</em><span>Evidencia</span>
-                </a>
-            </li>-->
-
-      </ul>
+        
       <div class="form-wizard-content">
        {foreach from=$array_filtro item=filtro}
         <input type="hidden" id="id_filtro" value = "{$filtro.id_filtro}">
@@ -52,9 +28,15 @@
               <div class="position-relative form-group">               
                 <label>Nombre: </label>
                 <select class="form-control" id="nombre_filtro">
-                   <option value="{$nombre_item}" selected="">{$nombre_item}</option>
+                  {if $filtro.nombre_item == ""}
+                   <option value="Seleccione...">Seleccione...</option>
+                   <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
+                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option>
+                   {else}
+                   <option value="{$filtro.nombre_item}" selected="">{$filtro.nombre_item}</option>
                    <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
                    <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   {/if}
                 </select>
               </div>
             </div>
@@ -100,12 +82,12 @@
           <div class="form-row">
             <div class="col-sm-4">
               <label>Dirección: </label>
-              <input type="text" class="form-control" id="ubicacion_filtro" value="{$filtro.ubicacion}" required="" placeholder="Dirección de filtro">
+              <input type="text" class="form-control" id="ubicacion_filtro" value="{$filtro.direccion}" required="" placeholder="Dirección de filtro">
             </div>
             <div class="col-sm-4">
               <label>Ubicado en: </label>      
               <select class="form-control" id="ubicado_en_filtro">
-              {if $filtro.ubicado_en ==''}
+              {if $filtro.ubicacion_interna ==''}
                 <option value="0">Seleccione...</option>
                 <option value="UMA">UMA</option>
                 <option value="Sala">Sala</option>
@@ -113,7 +95,7 @@
                 <option value="VIN">VIN</option>
                 <option value="COP">COP</option>
               {else}
-                <option value="{$filtro.ubicado_en}">{$filtro.ubicado_en}</option>
+                <option value="{$filtro.ubicacion_interna}">{$filtro.ubicacion_interna}</option>
                 <option value="UMA">UMA</option>
                 <option value="Sala">Sala</option>
                 <option value="VEX">VEX</option>
@@ -124,7 +106,7 @@
              </div>
              <div class="col-sm-4">
               <label>Lugar: </label>
-               <input type="text" class="form-control" id="lugar_filtro" value="{$filtro.lugar_filtro}" required="" placeholder="Lugar filtro">
+               <input type="text" class="form-control" id="lugar_filtro" value="{$filtro.area_interna}" required="" placeholder="Lugar filtro">
              </div>
           </div>
           
@@ -154,7 +136,7 @@
         
       </div><!--CIERRE DEL CONTENIDO DEL WIZARD-->  
         
-    </div><!--TITULOS DEL WIZARD-->
+    <!--TITULOS DEL WIZARD-->
   </div><!--CIERRE DEL CARDBODY--> 
  </div><!--CIERRE DEL CARD--> 
 <script src="design/js/filtros.js"></script>

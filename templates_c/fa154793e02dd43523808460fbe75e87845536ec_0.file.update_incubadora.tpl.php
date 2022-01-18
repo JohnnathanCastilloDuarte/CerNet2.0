@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-07 23:30:08
+/* Smarty version 3.1.34-dev-7, created on 2022-01-17 15:27:01
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_incubadora.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d8bef0510c86_06473819',
+  'unifunc' => 'content_61e57cb5189f62_49923985',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fa154793e02dd43523808460fbe75e87845536ec' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_incubadora.tpl',
-      1 => 1641594607,
+      1 => 1642429327,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d8bef0510c86_06473819 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e57cb5189f62_49923985 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
  	<div class="col-sm-12">
  		<?php
@@ -48,16 +48,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['incubadora']->value) {
  								<em>2</em><span>Caracteristica del equipo</span>
  							</a>
  						</li>
-						<!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
-						<li id="si_envia">
-									<a href="#step-42">
-											<em>4</em><span>Evidencia</span>
-									</a>
-								</li>-->
+
 							</ul>
 
 							<div class="form-wizard-content">
@@ -69,7 +60,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['incubadora']->value) {
 											<input type="hidden" id="id_item_2" value="<?php echo $_smarty_tpl->tpl_vars['incubadora']->value['id_item'];?>
 ">
 											<label>Nombre del incubadora</label>
-											<input type="text" id="nombre_incubadora" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['incubadora']->value['nombre_incubadora'];?>
+											<input type="text" id="nombre_incubadora" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['incubadora']->value['nombre_item'];?>
 " placeholder="Nombre incubadora"> 
 										</div>
 										<div class="col-sm-6">

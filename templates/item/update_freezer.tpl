@@ -43,12 +43,12 @@
 										</div>
 										<div class="col-sm-6">
 											<label>Empresa:</label>
-                    <input type="hidden" id="id_empresa" value="{$freezer.id_empresa}">
-                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$freezer.nombre_empresa}">
-                    <div >
-                      <table class="table" id="aqui_resultados_empresa">
-                      </table>
-                    </div>
+							                    <input type="hidden" id="id_empresa" value="{$freezer.id_empresa}">
+							                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$freezer.nombre_empresa}">
+							                    <div >
+							                      <table class="table" id="aqui_resultados_empresa">
+							                      </table>
+							                    </div>
 										</div>
 									</div>
 									<br>

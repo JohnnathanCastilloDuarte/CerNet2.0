@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-14 18:26:40
+/* Smarty version 3.1.34-dev-7, created on 2022-01-17 16:43:17
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_freezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e1b250c9ab71_08463023',
+  'unifunc' => 'content_61e58e952ff3b4_56948238',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ec2d4ad6c00524fd9ee1c4ee25aee70a51f8d444' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_freezer.tpl',
-      1 => 1642181198,
+      1 => 1642183248,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e1b250c9ab71_08463023 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e58e952ff3b4_56948238 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
  	<div class="col-sm-12">
  		<?php
@@ -101,7 +101,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 									<div class="form-row">
 										<div class="col-sm-12">
 											<label>Descripcion:</label>
-											<textarea class="form-control" id="desc_freezer"><?php echo $_smarty_tpl->tpl_vars['freezer']->value['descripcion_freezer'];?>
+											<textarea class="form-control" id="desc_freezer"><?php echo $_smarty_tpl->tpl_vars['freezer']->value['descripcion'];?>
 </textarea>
 										</div>
 									</div>

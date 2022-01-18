@@ -5,6 +5,9 @@ $nombre_flujo     = $_POST['nombre_flujo'];
 $id_empresa_flujo = $_POST['id_empresa_flujo'];
 $cantidad_filtros = $_POST['cantidad_filtros'];
 $id_valida        = $_POST['id_valida'];
+$direccion_flujo  = $_POST['direccion_flujo'];
+$ubicacion_interna  = $_POST['ubicacion_interna'];
+$area_interna  = $_POST['area_interna'];
 
 $tipo_item = "13";
 $estado = 1;
@@ -18,9 +21,9 @@ $id_item_insertado  =  mysqli_stmt_insert_id($insertando_item);
 echo mysqli_stmt_error($insertando_item);
 
 if ($insertando_item) {
-	$insertando_flujo_laminar = mysqli_prepare($connect,"INSERT INTO item_flujo_laminar (cantidad_filtro, id_item) VALUES (?,?)");
+	$insertando_flujo_laminar = mysqli_prepare($connect,"INSERT INTO item_flujo_laminar (cantidad_filtro, id_item, direccion, ubicacion_interna, area_interna) VALUES (?,?,?,?,?)");
   
-  mysqli_stmt_bind_param($insertando_flujo_laminar, 'ii', $cantidad_filtros,$id_item_insertado);
+  mysqli_stmt_bind_param($insertando_flujo_laminar, 'iisss', $cantidad_filtros,$id_item_insertado,$direccion_flujo,$ubicacion_interna,$area_interna);
   
   mysqli_stmt_execute($insertando_flujo_laminar);
   

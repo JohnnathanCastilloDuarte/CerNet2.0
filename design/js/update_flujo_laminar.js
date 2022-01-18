@@ -1,5 +1,5 @@
 var nombre_flujo_laminar = $("#nombre_flujo_laminar").val();
-var id_empresa_flujo = $("#empresa_flujo_laminar").val();
+var id_empresa_flujo = $("#id_empresa").val();
 var cantidad_filtros = $("#ubicacion_flujo_laminar").val();
 var id_item_flujo_laminar = $("#id_item_flujo_laminar").val();
 var id_valida = $("#id_valida").val();
@@ -22,8 +22,11 @@ if (id_item_flujo_laminar.length == 0 ) {
 $("#btn_crear_flujo_laminar").click(function(){
 	const datos = {
 		nombre_flujo     : $("#nombre_flujo_laminar").val(),
-		id_empresa_flujo : $("#empresa_flujo_laminar").val(),
+		id_empresa_flujo : $("#id_empresa").val(),
 		cantidad_filtros : $("#cantidad_filtros").val(),
+		direccion_flujo  :  $("#direccion_flujo").val(),
+		ubicacion_interna : $("#ubicacion_interna").val(),
+		area_interna 	 : $("#area_interna").val(),
 		id_valida,
 	}
 
@@ -55,7 +58,7 @@ $("#btn_crear_flujo_laminar").click(function(){
 $("#btn_actualizar_flujo_laminar").click(function(){
 	const datos = {
 		nombre_flujo     : $("#nombre_flujo_laminar").val(),
-		id_empresa_flujo : $("#empresa_flujo_laminar").val(),
+		id_empresa_flujo : $("#id_empresa").val(),
 		cantidad_filtros : $("#cantidad_filtros").val(),
 		id_item_flujo_laminar : id_item_flujo_laminar,
 		id_valida : id_valida,
@@ -86,3 +89,52 @@ $("#btn_actualizar_flujo_laminar").click(function(){
 			}
 		});
 });
+
+
+/////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+  	let direccion = $(this).attr('data-direccion');
+  console.log(direccion);
+	$("#buscador_empresa").val(nombre_empresa);
+ 	$("#id_empresa").val(id_empresa);
+    $("#direccion_flujo").val(direccion);
+
+	$("#aqui_resultados_empresa").hide();
+
+})

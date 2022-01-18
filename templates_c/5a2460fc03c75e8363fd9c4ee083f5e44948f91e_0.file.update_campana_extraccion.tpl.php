@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-14 14:55:41
+/* Smarty version 3.1.34-dev-7, created on 2022-01-17 17:51:13
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_campana_extraccion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e180dd8d5c87_95979942',
+  'unifunc' => 'content_61e59e81695189_32351484',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a2460fc03c75e8363fd9c4ee083f5e44948f91e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_campana_extraccion.tpl',
-      1 => 1642084153,
+      1 => 1642437495,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e180dd8d5c87_95979942 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e59e81695189_32351484 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -36,14 +36,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['campana']->value) {
         </h5>
       </div>
       <div class="card-body">
-        <div id="smartwizard2" class="forms-wizard-alt">
-          <ul class="forms-wizard">
-            <li>
-              <a href="#step-12">
-               <em>1</em><span>Identificación del equipo</span>
-             </a>
-           </li>
-         </ul>
+          
          <div class="form-wizard-content">
              <input type='hidden' id='type_campana' value='<?php echo $_smarty_tpl->tpl_vars['id_tipo']->value;?>
 '>
@@ -53,7 +46,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['campana']->value) {
             <div class="form-row">
               <div class="col-sm-6">
                 <label>Nombre:</label>
-                <input type="text" id="nombre_campana" class="form-control" placeholder="Nombre campana" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['nombre_campana'];?>
+                <input type="text" id="nombre_campana" class="form-control" placeholder="Nombre campana" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['nombre_item'];?>
 ">
               </div>
               <div class="col-sm-6">
@@ -71,14 +64,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['campana']->value) {
             </div>
             <br>
             <div class="form-row">
-              <div class="col-sm-6">
-                <label>Ubicación del equipo:</label>
-                <input type="text" id="ubicacion_campana" class="form-control" placeholder="ubicacion del equipo en el lugar empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['ubicado_en'];?>
+              <div class="col-sm-4">
+                <label>Dirección:</label>
+                <input type="text" id="direccion_campana" class="form-control" placeholder="Direccion campana" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['direccion'];?>
 ">
               </div>
-              <div class="col-sm-6">
-                <label>Dirección:</label>
-                <input type="text" id="direccion_campana" class="form-control" placeholder="Direccion campana" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['ubicacion'];?>
+              <div class="col-sm-4">
+                <label>Ubicación del equipo:</label>
+                <input type="text" id="ubicacion_campana" class="form-control" placeholder="ubicacion del equipo en el lugar empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['ubicacion_interna'];?>
+">
+              </div>
+              <div class="col-sm-4"> 
+                <label>Área interna:</label>
+                <input type="text" id="area_interna" class="form-control" placeholder="ubicacion del equipo en el lugar empresa" value="<?php echo $_smarty_tpl->tpl_vars['campana']->value['area_interna'];?>
 ">
               </div>
             </div>
@@ -128,8 +126,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['campana']->value) {
             </div>
           </div>
         </div>
-        <!---Cierre del content-->
-      </div>
+  
       <!--Cierre del wizard-->
       <div class="divider"></div>
 

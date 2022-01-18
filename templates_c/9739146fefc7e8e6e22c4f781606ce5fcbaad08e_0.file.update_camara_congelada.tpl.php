@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-09 15:01:39
+/* Smarty version 3.1.34-dev-7, created on 2022-01-17 23:18:41
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_camara_congelada.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61b20c433fa057_46172841',
+  'unifunc' => 'content_61e5eb41232898_76116289',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9739146fefc7e8e6e22c4f781606ce5fcbaad08e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_camara_congelada.tpl',
-      1 => 1639058494,
+      1 => 1642457919,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b20c433fa057_46172841 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e5eb41232898_76116289 (Smarty_Internal_Template $_smarty_tpl) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_camara_congelada']->value, 'camara_congelada');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['camara_congelada']->value) {
@@ -32,18 +32,24 @@ foreach ($_from as $_smarty_tpl->tpl_vars['camara_congelada']->value) {
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header"> 
+                 <?php if ($_smarty_tpl->tpl_vars['camara_congelada']->value['id_item'] == '') {?>
+                  <h5>Creacion camara congelada</h5>
+                  <?php } else { ?>
+                  <h5>Edición del equipo </h5>
+                  <?php }?>
+              </div>
                 <div class="card-body">
                     <div class="row">
                         
                         <div class="col-sm-6">
                             <label>Nombre camara congelada</label>
-                            <input type="text" id="nombre_camara_congelada" class="form-control" placeholder="Nombre camara congelada"  value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['nombre'];?>
+                            <input type="text" id="nombre_camara_congelada" class="form-control" placeholder="Nombre camara congelada"  value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['nombre_item'];?>
 ">
                         </div>
                         <div class="col-sm-6">
                         <label>Empresa</label>
-                        <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['empresa'];?>
+                        <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['nombre_empresa'];?>
 ">
                         <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['id_empresa'];?>
 ">
@@ -71,10 +77,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['camara_congelada']->value) {
                     <br>
 
                     <div class="row">
-
-                        <div class="col-sm-6">
-                            <label for="">Ubicación</label>
-                            <input type="text" id="ubicacion_camara_congelada" class="form-control" placeholder="Ubicación camara congelada" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['ubicacion'];?>
+                        <div class="col-sm-4">
+                            <label for="">Dirección</label>
+                            <input type="text" id="direccion_camara_congelada" class="form-control" placeholder="Dirección camara congelada" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['direccion'];?>
+">
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="">Ubicación interna</label>
+                            <input type="text" id="ubicacion_camara_congelada" class="form-control" placeholder="Ubicación camara congelada" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['ubicacion_interna'];?>
+">
+                        </div>
+                      <div class="col-sm-4">
+                            <label for="">Área interna</label>
+                            <input type="text" id="area_camara_congelada" class="form-control" placeholder="Área camara congelada" value="<?php echo $_smarty_tpl->tpl_vars['camara_congelada']->value['area_interna'];?>
 ">
                         </div>
                     </div>

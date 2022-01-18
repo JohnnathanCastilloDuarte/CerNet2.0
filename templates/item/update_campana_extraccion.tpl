@@ -9,14 +9,7 @@
         </h5>
       </div>
       <div class="card-body">
-        <div id="smartwizard2" class="forms-wizard-alt">
-          <ul class="forms-wizard">
-            <li>
-              <a href="#step-12">
-               <em>1</em><span>Identificación del equipo</span>
-             </a>
-           </li>
-         </ul>
+          
          <div class="form-wizard-content">
              <input type='hidden' id='type_campana' value='{$id_tipo}'>
              <input type='hidden' id='id_item_campana' value='{$id_item}'>
@@ -24,7 +17,7 @@
             <div class="form-row">
               <div class="col-sm-6">
                 <label>Nombre:</label>
-                <input type="text" id="nombre_campana" class="form-control" placeholder="Nombre campana" value="{$campana.nombre_campana}">
+                <input type="text" id="nombre_campana" class="form-control" placeholder="Nombre campana" value="{$campana.nombre_item}">
               </div>
               <div class="col-sm-6">
                 <label>Empresa:</label>
@@ -39,13 +32,17 @@
             </div>
             <br>
             <div class="form-row">
-              <div class="col-sm-6">
-                <label>Ubicación del equipo:</label>
-                <input type="text" id="ubicacion_campana" class="form-control" placeholder="ubicacion del equipo en el lugar empresa" value="{$campana.ubicado_en}">
-              </div>
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <label>Dirección:</label>
-                <input type="text" id="direccion_campana" class="form-control" placeholder="Direccion campana" value="{$campana.ubicacion}">
+                <input type="text" id="direccion_campana" class="form-control" placeholder="Direccion campana" value="{$campana.direccion}">
+              </div>
+              <div class="col-sm-4">
+                <label>Ubicación del equipo:</label>
+                <input type="text" id="ubicacion_campana" class="form-control" placeholder="ubicacion del equipo en el lugar empresa" value="{$campana.ubicacion_interna}">
+              </div>
+              <div class="col-sm-4"> 
+                <label>Área interna:</label>
+                <input type="text" id="area_interna" class="form-control" placeholder="ubicacion del equipo en el lugar empresa" value="{$campana.area_interna}">
               </div>
             </div>
             <br>
@@ -74,7 +71,7 @@
                 <input type="text" id="serie_campana" class="form-control" placeholder="N° Serie" value="{$campana.n_serie}">
               </div>
               <div class="col-sm-4">
-                <label>Año fabricación</label>
+                <label>Fecha fabricación</label>
                 <input type="date" id="fecha_fabricacion_campana" class="form-control" placeholder="" value="{$campana.fecha_fabricacion}">
               </div>
             </div>
@@ -87,8 +84,7 @@
             </div>
           </div>
         </div>
-        <!---Cierre del content-->
-      </div>
+  
       <!--Cierre del wizard-->
       <div class="divider"></div>
 

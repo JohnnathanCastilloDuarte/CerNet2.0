@@ -73,12 +73,307 @@ $pdf->writeHTMLCell(60, 5, 55, '', $area_interna ,0,0, 0, true, 'J', true);
 
 
 
-
-
    switch($nombre_tipo_item){
 
    	 case 'Bodega':
    	 	# code...
+   	 break;
+   	 case 'HVAC':
+   	 	# code...
+   	 break;
+   	 case 'Camara Congelada':
+
+   	 		foreach ($oso as $camara) {
+   	    	//caracteristicas del equipo filtro
+
+   	 			$marca = $camara->marca;
+				$modelo = $camara->modelo;
+				$valor_seteado = $camara->valor_seteado;
+				$valor_maximo = $camara->valor_maximo;
+				$valor_minimo = $camara->valor_minimo;
+
+   			}
+
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Modelo: </strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $modelo ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+        	
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Marca:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $marca ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Valor seteado :</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $valor_seteado ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Valor maximo:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $valor_maximo ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Valor minimo:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 156, '', $valor_minimo ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+   	 	
+   	 break;
+   	 case 'Flujo Laminar':
+   	 		foreach ($oso as $campana) {
+   	    	//caracteristicas del equipo filtro
+   	 			$ubicacion_interna = $ubicacion_interna;
+				$area_interna = $area_interna;
+
+   			}
+
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Ubicación interna: </strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $ubicacion_interna ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+        	
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Área interna:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $area_interna ,0,0, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+   	 	
+   	 break;
+   	 case 'Campana de Extracción':
+
+   	 		foreach ($oso as $campana) {
+   	    	//caracteristicas del equipo filtro
+
+	 	     	$tipo_campana = $campana->tipo_campana;
+				$modelo = $campana->modelo;
+				$n_serie = $campana->n_serie;
+				$codigo = $campana->codigo;
+				$ubicacion_interna = $campana->ubicacion_interna;
+				$area_interna = $campana->area_interna;
+				$direccion = $campana->direccion;
+				$requisito_velocidad = $campana->requisito_velocidad;
+				$descripcion = $campana->descripcion;
+				$estado = $campana->estado;
+				$fecha_fabricacion = $campana->fecha_fabricacion;
+				$marca = $campana->marca;
+
+   			}
+
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Modelo: </strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $modelo ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+        	
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Marca:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $marca ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Tipo campana :</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $tipo_campana ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Código interno:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $codigo ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>N° Serie:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 156, '', $n_serie ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Año fabricación:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $fecha_fabricacion ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Requisito velocidad de aire:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 158, '', $requisito_velocidad ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+   	 	
+   	 break;
+	case 'Filtro':
+
+			 foreach ($oso as $filtro) {
+   	    	//caracteristicas del equipo filtro
+
+	 	     	$fabricante = $filtro->fabricante;
+				$modelo = $filtro->modelo;
+				$serie = $filtro->serie;
+				$cantidad_filtros = $filtro->cantidad_filtros;
+				$direccion = $filtro->direccion;
+				$ubicacion_interna = $filtro->ubicacion_interna;
+				$area_interna = $filtro->area_interna;
+				$dimenciones = $filtro->tipo_filtro;
+				$penetracion_filtro = $filtro->penetracion_filtro;
+
+   			}
+
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Modelo/marca: </strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $modelo ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+        	
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>N° Serie:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $serie ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Cantidad de filtros :</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $cantidad_filtros ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Dimenciones:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $dimenciones ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Limite de penetración:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 156, '', $penetracion_filtro ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+	   	 	
+     break;
+   	 case 'Automovil':
+
+   	 		foreach ($oso as $item) {
+   	    	//caracteristicas del equipo sala_limpia
+				$fabricante = $item->fabricante;
+				$modelo = $item->modelo;
+				$n_serie = $item->n_serie;
+				$c_interno = $item->c_interno;
+				$placa = $item->placa;
+				$fecha_fabricacion = $item->fecha_fabricacion;
+				$direccion = $item->direccion;
+				$ubicacion = $item->ubicacion;
+				$voltaje = $item->voltaje;
+				$potencia = $item->potencia;
+				$capacidad = $item->capacidad;
+				$peso = $item->peso;
+				$alto = $item->alto;
+				$largo = $item->largo;
+				$ancho = $item->ancho;
+				$descripcion_automovil = $item->descripcion_automovil;
+				$seteado_tem = $item->seteado_tem;
+				$tem_min = $item->tem_min;
+				$tem_max = $item->tem_max;
+				$seteado_hum = $item->seteado_hum;
+				$hum_min = $item->hum_min;
+				$hum_max = $item->hum_max;
+				$area_interna = $item->area_interna;
+   			}
+
+   		$pdf->writeHTMLCell(35, 5, 125, '', '<strong>fabricante/marca: </strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $fabricante ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+        	
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Modelo:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $modelo ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>N° Serie :</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $n_serie ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Codigo interno:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $c_interno ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Fecha fabricación:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $fecha_fabricacion ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Voltaje:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $voltaje ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Potencia:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $potencia ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>capacidad:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $capacidad ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Peso:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $peso ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Alto:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $alto ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Largo:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $largo ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Ancho:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $ancho ,0,0, 0, true, 'J', true);
+	    $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Valor seteado tempera-tura:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 160, '', $seteado_tem ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Temperatura minima:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $tem_min ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>temperatura maxima:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $seteado_tem ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Placa / Patente :</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $tem_min ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>temperatura maxima:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $seteado_tem ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>descripción:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $descripcion ,0,0, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+   	 break;
+	 case 'Incubadora':
+
+	 	     foreach ($oso as $incubadora) {
+   	    	//caracteristicas del equipo incubadora
+
+	 	     	$fabricante = $incubadora->fabricante;
+				$modelo = $incubadora->modelo;
+				$n_serie = $incubadora->n_serie;
+				$fecha_fabricacion = $incubadora->fecha_fabricacion;
+				$direccion = $incubadora->direccion;
+				$ubicacion_interna = $incubadora->ubicacion_interna;
+				$area_interna = $incubadora->area_interna;
+				$valor_seteado = $incubadora->valor_seteado;
+				$limite_maximo = $incubadora->limite_maximo;
+				$limite_minimo = $incubadora->limite_minimo;
+				$descripcion = $incubadora->descripcion;
+				$fecha_registro = $incubadora->fecha_registro;
+
+   			}
+
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>fabricante/marca: </strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $fabricante ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+        	
+
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Modelo:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $modelo ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>N° Serie :</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $n_serie ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Fecha fabricación:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $fecha_fabricacion ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Valor seteado :</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $valor_seteado ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Limite máximo(°C):</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $limite_maximo ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(35, 5, 125, '', '<strong>Limite minimo (°C):</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 155, '', $limite_minimo ,0,1, 0, true, 'J', true);
+
+        $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+       
+        $pdf->writeHTMLCell(35, 5, 20, '', '<strong>Descripción:</strong>' ,0,0, 0, true, 'J', true);
+        $pdf->writeHTMLCell(60, 5, 55, '', $descripcion ,0,0, 0, true, 'J', true);
+        
    	 break;
 
      case 'Sala Limpia':
@@ -276,8 +571,8 @@ $pdf->writeHTMLCell(60, 5, 55, '', $area_interna ,0,0, 0, true, 'J', true);
 	
      	}else{
 
-     		$pdf->writeHTMLCell(35, 5, 20, '', '<strong>dessssssscripción:</strong>' ,0,0, 0, true, 'J', true);
-     		echo "string";
+     		$pdf->writeHTMLCell(35, 5, 20, '', '<strong>error:</strong>' ,0,0, 0, true, 'J', true);
+     	
      	}
    	 break;
 

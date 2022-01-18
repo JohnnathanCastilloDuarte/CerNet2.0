@@ -40,7 +40,7 @@
               <div class="form-row">
                 <div class="col-sm-6">  
                   <label>Nombre del vehículo</label>
-                  <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_automovil}" placeholder="Nombre vehículo">
+                  <input type="text" id="nombre_automovil" class="form-control" value="{$automovil.nombre_item}" placeholder="Nombre vehículo">
                 </div>
                 <div class="col-sm-6">
                   <label>Empresa</label>
@@ -73,7 +73,7 @@
               <div class="form-row">
                 <div class="col-sm-12">
                   <label>Descripción:</label>
-                  <textarea class="form-control" id="desc_automovil" placeholder="Descripción">{$automovil.descripcion_automovil}</textarea>
+                  <textarea class="form-control" id="desc_automovil" placeholder="Descripción">{$automovil.descripcion}</textarea>
                 </div>
               </div>
               <br>

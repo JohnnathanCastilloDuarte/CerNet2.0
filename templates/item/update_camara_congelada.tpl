@@ -16,11 +16,11 @@
                         
                         <div class="col-sm-6">
                             <label>Nombre camara congelada</label>
-                            <input type="text" id="nombre_camara_congelada" class="form-control" placeholder="Nombre camara congelada"  value="{$camara_congelada.nombre}">
+                            <input type="text" id="nombre_camara_congelada" class="form-control" placeholder="Nombre camara congelada"  value="{$camara_congelada.nombre_item}">
                         </div>
                         <div class="col-sm-6">
                         <label>Empresa</label>
-                        <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$camara_congelada.empresa}">
+                        <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$camara_congelada.nombre_empresa}">
                         <input type="hidden" id="id_empresa" value="{$camara_congelada.id_empresa}">
                         <div>
                                 <table class="table" id="aqui_resultados_empresa" >
@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label for="">Ubicación interna</label>
-                            <input type="text" id="ubicacion_camara_congelada" class="form-control" placeholder="Ubicación camara congelada" value="{$camara_congelada.ubicacion}">
+                            <input type="text" id="ubicacion_camara_congelada" class="form-control" placeholder="Ubicación camara congelada" value="{$camara_congelada.ubicacion_interna}">
                         </div>
                       <div class="col-sm-4">
                             <label for="">Área interna</label>
