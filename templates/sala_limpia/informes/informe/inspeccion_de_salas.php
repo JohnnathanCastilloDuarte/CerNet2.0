@@ -8,6 +8,24 @@ $clave = $_GET['clave'];
 $id_asignado = substr($clave, 97);
 
 
+/////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.Area_sala_limpia,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item");
+mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
+mysqli_stmt_execute($consulta_informacion_informe);
+mysqli_stmt_store_result($consulta_informacion_informe);
+mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala);
+mysqli_stmt_fetch($consulta_informacion_informe);
+
+
+/// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
+
+$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
+mysqli_stmt_execute($consulta_empresa);
+mysqli_stmt_store_result($consulta_empresa);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion);
+mysqli_stmt_fetch($consulta_empresa);
+
 
 
 $pdf->AddPage('A4');
@@ -32,23 +50,23 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(50, 5, 40, '', 'SCL3444-DOC4774-CLI18-SLA' ,1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(10, 5, 105, '', '3444' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(13, 5, 105, '', $numot ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 175, '', '3444' ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(75, 5, 40, '', 'CLINICA ALEMANA DE SANTIAGO ' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(75, 5, 40, '', $empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', 'Ronny Cardenas' ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Dirección:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(155, 5, 40, '', 'Avenida Vitacura, 5951, Santiago, Chile' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(155, 5, 40, '', $direccion ,1,0, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
@@ -94,12 +112,12 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Estado de Sala</strong></h5></td>
             </tr>
             <tr>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
+               <td>$nombre_sala</td>
+               <td>$area_sala</td>
+               <td>$codigo_sala</td>
+               <td>$area_m2</td>
+               <td>$volumen_m3</td>
+               <td>$estado_sala</td>
             </tr>
          </table>
       </tr>
@@ -366,6 +384,15 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
+
+$metodo_1 = mysqli_prepare($connect,"SELECT metodo_ensayo, puntos_x_medicion, muestra_x_punto, volumen_muestra, altura_muestra FROM salas_limpias_metodo_1 WHERE id_asignado = ?");
+mysqli_stmt_bind_param($metodo_1, 'i', $id_asignado);
+mysqli_stmt_execute($metodo_1);
+mysqli_stmt_store_result($metodo_1);
+mysqli_stmt_bind_result($metodo_1, $metodo_ensayo, $puntos_x_medicion, $muestra_x_punto, $volumen_muestra, $altura_muestra);
+mysqli_stmt_fetch($metodo_1);
+
+
 $prueba = <<<EOD
    <style>
    table 
@@ -406,12 +433,11 @@ $prueba = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Altura toma de Muestras (m)</strong></h5></td>
             </tr>
             <tr>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
+               <td>$metodo_ensayo</td>
+               <td>$puntos_x_medicion</td>
+               <td>$muestra_x_punto</td>
+               <td>$volumen_muestra</td>
+               <td>$altura_muestra</td>
             </tr>
          </table>
       </tr>
@@ -600,12 +626,17 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-
+$metodo_2 = mysqli_prepare($connect,"SELECT metodo_ensayo, especificacion FROM salas_limpias_metodo_2 WHERE id_asignado = ?");
+mysqli_stmt_bind_param($metodo_2, 'i', $id_asignado);
+mysqli_stmt_execute($metodo_2);
+mysqli_stmt_store_result($metodo_2);
+mysqli_stmt_bind_result($metodo_2, $metodo_ensayo, $especificacion);
+mysqli_stmt_fetch($metodo_2);
 
 $pdf->writeHTMLCell(30, 5, 15, '', '<strong>Método de ensayo:</strong>' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(60, 5, 45, '', 'UNE-EN ISO 14.644-3:2006,Punto 4.2.3' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(60, 5, 45, '', $metodo_ensayo ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 110, '', '<strong>Especificación de la sala:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(45, 5, 150, '', 'Clase D (OMS) / ISO 8' ,1,1  , 0, true, 'J', true);
+$pdf->writeHTMLCell(45, 5, 150, '', $especificacion ,1,1  , 0, true, 'J', true);
 
 
 
@@ -735,10 +766,19 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
+$metodo_3 = mysqli_prepare($connect,"SELECT metodo_ensayo, n_muestras, altura_muestra FROM salas_limpias_metodo_4 WHERE id_asignado = ? AND categoria = 1");
+mysqli_stmt_bind_param($metodo_3, 'i', $id_asignado);
+mysqli_stmt_execute($metodo_3);
+mysqli_stmt_store_result($metodo_3);
+mysqli_stmt_bind_result($metodo_3, $metodo_ensayo, $n_muestras, $altura_muestra);
+mysqli_stmt_fetch($metodo_3);
+
 $pdf->writeHTMLCell(30, 5, 15, '', '<strong>Método de ensayo:</strong>' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(60, 5, 45, '', 'UNE-EN ISO 14.644-3:2006,Punto 4.2.3' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(40, 5, 110, '', '<strong>Especificación de la sala:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(45, 5, 150, '', 'Clase D (OMS) / ISO 8' ,1,1  , 0, true, 'J', true);
+$pdf->writeHTMLCell(50, 5, 45, '', $metodo_ensayo ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(25, 5, 105, '', '<strong>N° de muestras:</strong>',0,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(15, 5, 130, '', $n_muestras ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(40, 5, 145, '', '<strong>Altura toma de Muestras:</strong>',0,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(10, 5, 185, '',  $altura_muestra ,1,1  , 0, true, 'J', true);
 
 $linea = <<<EOD
 <style>
@@ -938,12 +978,20 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+
+$metodo_4 = mysqli_prepare($connect,"SELECT metodo_ensayo, n_muestras, altura_muestra FROM salas_limpias_metodo_4 WHERE id_asignado = ? AND categoria = 2");
+mysqli_stmt_bind_param($metodo_4, 'i', $id_asignado);
+mysqli_stmt_execute($metodo_4);
+mysqli_stmt_store_result($metodo_4);
+mysqli_stmt_bind_result($metodo_4, $metodo_ensayo, $n_muestras, $altura_muestra);
+mysqli_stmt_fetch($metodo_4);
+
 $pdf->writeHTMLCell(30, 5, 15, '', '<strong>Método de ensayo:</strong>' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(50, 5, 45, '', 'UNE-EN ISO 14.644-3:2006,Punto 4.2.3' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(50, 5, 45, '',  $metodo_ensayo ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(25, 5, 105, '', '<strong>N° de muestras:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(15, 5, 130, '', '25' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(15, 5, 130, '', $n_muestras ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 145, '', '<strong>Altura toma de Muestras:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(10, 5, 185, '', '25' ,1,1  , 0, true, 'J', true);
+$pdf->writeHTMLCell(10, 5, 185, '', $altura_muestra ,1,1  , 0, true, 'J', true);
 
 $linea = <<<EOD
 <style>
@@ -1143,12 +1191,19 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+$metodo_5 = mysqli_prepare($connect,"SELECT metodo_ensayo, n_rejillas, n_extractores FROM salas_limpias_metodo_5 WHERE id_asignado = ?");
+mysqli_stmt_bind_param($metodo_5, 'i', $id_asignado);
+mysqli_stmt_execute($metodo_5);
+mysqli_stmt_store_result($metodo_5);
+mysqli_stmt_bind_result($metodo_5, $metodo_ensayo, $n_rejillas, $n_extractores);
+mysqli_stmt_fetch($metodo_5);
+
 $pdf->writeHTMLCell(30, 5, 15, '', '<strong>Método de ensayo:</strong>' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(50, 5, 45, '', 'UNE-EN ISO 14.644-3:2006,Punto 4.2.3' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(50, 5, 45, '', $metodo_ensayo ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 105, '', '<strong>N° de Rejillas de Inyección:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(10, 5, 145, '', '25' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(10, 5, 145, '', $n_rejillas ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 155, '', '<strong>N° de Extractores:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(10, 5, 185, '', '25' ,1,1  , 0, true, 'J', true);
+$pdf->writeHTMLCell(10, 5, 185, '', $n_extractores ,1,1  , 0, true, 'J', true);
 
 
 
