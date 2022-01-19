@@ -32,16 +32,21 @@ include('../../config.ini.php');
     $id_item =  mysqli_stmt_insert_id($insertando_item);
     
 
+    echo mysqli_stmt_error($insertando_item);
+
     if($insertando_item){
 
          $insertando_campana = mysqli_prepare($connect,"INSERT INTO item_campana(id_item, tipo, marca, modelo, serie, codigo, ubicacion_interna,area_interna, direccion, requisito_velocidad, fecha_fabricacion) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
         mysqli_stmt_bind_param($insertando_campana, 'issssssssss', $id_item, $tipo_campana, $marca_campana, $modelo_campana, $serie_campana, $codigo_interno_campana, $ubicacion_campana, $area_interna, $direccion_campana, $velocidad_aire_campana, $fecha_fabricacion);
         mysqli_stmt_execute($insertando_campana);
-
+        
+       // echo "INSERT INTO item_campana(id_item, tipo, marca, modelo, serie, codigo, ubicacion_interna,area_interna, direccion, requisito_velocidad, fecha_fabricacion) VALUES ($id_item, $tipo_campana, $marca_campana, $modelo_campana, $serie_campana, $codigo_interno_campana, $ubicacion_campana, $area_interna, $direccion_campana, $velocidad_aire_campana, $fecha_fabricacion)";
+      
         if($insertando_campana){
             echo "Si";
         }else{
             echo "No";
+          echo mysqli_stmt_error($insertando_campana);
         }
     }
 

@@ -52,9 +52,15 @@
               <div class="position-relative form-group">               
                 <label>Nombre: </label>
                 <select class="form-control" id="nombre_filtro">
-                   <option value="{$filtro.nombre_filtro}" selected="">{$filtro.nombre_filtro}</option>
-                   <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
+                  {if $filtro.nombre_item == ""}
+                   <option value="0" selected>Seleccione...</option>
+                   <option value="Filtro Absoluto HEPA H13 ">Filtro Absoluto HEPA H13</option>
                    <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                  {else}
+                   <option value="{$filtro.nombre_item}" selected="">{$filtro.nombre_item}</option>
+                   <option value="Filtro Absoluto HEPA H13">Filtro Absoluto HEPA H13</option>
+                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                  {/if}
                 </select>
               </div>
             </div>
@@ -100,12 +106,12 @@
           <div class="form-row">
             <div class="col-sm-4">
               <label>Dirección: </label>
-              <input type="text" class="form-control" id="ubicacion_filtro" value="{$filtro.ubicacion}" required="" placeholder="Dirección de filtro">
+              <input type="text" class="form-control" id="ubicacion_filtro" value="{$filtro.direccion}" required="" placeholder="Dirección de filtro">
             </div>
             <div class="col-sm-4">
               <label>Ubicado en: </label>      
               <select class="form-control" id="ubicado_en_filtro">
-              {if $filtro.ubicado_en ==''}
+              {if $filtro.ubicacion_interna ==''}
                 <option value="0">Seleccione...</option>
                 <option value="UMA">UMA</option>
                 <option value="Sala">Sala</option>
@@ -113,7 +119,7 @@
                 <option value="VIN">VIN</option>
                 <option value="COP">COP</option>
               {else}
-                <option value="{$filtro.ubicado_en}">{$filtro.ubicado_en}</option>
+                <option value="{$filtro.ubicacion_interna}">{$filtro.ubicacion_interna}</option>
                 <option value="UMA">UMA</option>
                 <option value="Sala">Sala</option>
                 <option value="VEX">VEX</option>
@@ -124,7 +130,7 @@
              </div>
              <div class="col-sm-4">
               <label>Lugar: </label>
-               <input type="text" class="form-control" id="lugar_filtro" value="{$filtro.lugar_filtro}" required="" placeholder="Lugar filtro">
+               <input type="text" class="form-control" id="lugar_filtro" value="{$filtro.area_interna}" required="" placeholder="Lugar filtro">
              </div>
           </div>
           
@@ -137,7 +143,7 @@
             </div>
             <div class="col-sm-6">
               <label>Limite de penetración: </label>
-              <input type="text" class="form-control" id="penetracion_filtro" value="{$filtro.penetracion_filtro}" required="" placeholder=" limite de penetración">
+              <input type="text" class="form-control" id="penetracion_filtro" value="0,001" placeholder=" limite de penetración">
             </div>
           </div>
           {/foreach}

@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
-                  <input type="text" id="ubicacion_interna_automovil" class="form-control" placeholder="Ubicación equipo" value="{$automovil.ubicacion}">
+                  <input type="text" id="ubicacion_interna_automovil" class="form-control" placeholder="Ubicación equipo" value="{$automovil.ubicacion_interna}">
                 </div>
                 <div class="col-sm-4">
                   <label>Área interna equipo:</label>

@@ -76,7 +76,7 @@ $("#btn_nuevo_item_campana").click(function(){
        data:datos,
        url:'templates/item/controlador_item_campana.php',
        success:function(response){
-              if (response == "Si") { 
+              if (response == "Si") {               
              Swal.fire({
                 title:'Mensaje',
                 text:'Se ha creado con exito la campana',

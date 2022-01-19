@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-14 13:37:09
+/* Smarty version 3.1.34-dev-7, created on 2022-01-19 12:31:20
   from '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e17c85106966_37624956',
+  'unifunc' => 'content_61e804986b61a2_68969009',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '174faa9eb5dc95114cb87835de6da5030a87abc5' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl',
-      1 => 1642167418,
+      1 => 1642595478,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e17c85106966_37624956 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e804986b61a2_68969009 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -82,11 +82,17 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
               <div class="position-relative form-group">               
                 <label>Nombre: </label>
                 <select class="form-control" id="nombre_filtro">
-                   <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_filtro'];?>
-" selected=""><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_filtro'];?>
-</option>
-                   <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
+                  <?php if ($_smarty_tpl->tpl_vars['filtro']->value['nombre_item'] == '') {?>
+                   <option value="0" selected>Seleccione...</option>
+                   <option value="Filtro Absoluto HEPA H13 ">Filtro Absoluto HEPA H13</option>
                    <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                  <?php } else { ?>
+                   <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
+" selected=""><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
+</option>
+                   <option value="Filtro Absoluto HEPA H13">Filtro Absoluto HEPA H13</option>
+                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                  <?php }?>
                 </select>
               </div>
             </div>
@@ -138,13 +144,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
           <div class="form-row">
             <div class="col-sm-4">
               <label>Dirección: </label>
-              <input type="text" class="form-control" id="ubicacion_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicacion'];?>
+              <input type="text" class="form-control" id="ubicacion_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['direccion'];?>
 " required="" placeholder="Dirección de filtro">
             </div>
             <div class="col-sm-4">
               <label>Ubicado en: </label>      
               <select class="form-control" id="ubicado_en_filtro">
-              <?php if ($_smarty_tpl->tpl_vars['filtro']->value['ubicado_en'] == '') {?>
+              <?php if ($_smarty_tpl->tpl_vars['filtro']->value['ubicacion_interna'] == '') {?>
                 <option value="0">Seleccione...</option>
                 <option value="UMA">UMA</option>
                 <option value="Sala">Sala</option>
@@ -152,8 +158,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
                 <option value="VIN">VIN</option>
                 <option value="COP">COP</option>
               <?php } else { ?>
-                <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicado_en'];?>
-"><?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicado_en'];?>
+                <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicacion_interna'];?>
+"><?php echo $_smarty_tpl->tpl_vars['filtro']->value['ubicacion_interna'];?>
 </option>
                 <option value="UMA">UMA</option>
                 <option value="Sala">Sala</option>
@@ -165,7 +171,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
              </div>
              <div class="col-sm-4">
               <label>Lugar: </label>
-               <input type="text" class="form-control" id="lugar_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['lugar_filtro'];?>
+               <input type="text" class="form-control" id="lugar_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['area_interna'];?>
 " required="" placeholder="Lugar filtro">
              </div>
           </div>
@@ -180,8 +186,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
             </div>
             <div class="col-sm-6">
               <label>Limite de penetración: </label>
-              <input type="text" class="form-control" id="penetracion_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['penetracion_filtro'];?>
-" required="" placeholder=" limite de penetración">
+              <input type="text" class="form-control" id="penetracion_filtro" value="0,001" placeholder=" limite de penetración">
             </div>
           </div>
           <?php

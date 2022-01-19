@@ -120,7 +120,7 @@
 								<input type="text" name="telefono_usuario" class="form-control" value="{$persona_array.telefono}">
 							</div>
 						</div>
-						<div class="row">
+						<!--<div class="row">
 							<div class="col-sm-6">
 								<label>Departamento:</label>
 								<select class="form-control" id="departamento_usuario_editar" name="departamento_usuario">
@@ -135,7 +135,25 @@
                   {/foreach}
 								</select>
 							</div>
-						</div>
+						</div>-->
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="position-relative form-group">
+                  <label>Departamento</label>
+                  <select class="form-control" id="departamento_usuario_editar">
+
+                  </select>
+                </div>
+              </div>
+          
+              <div class="col-sm-6">
+                <label>Tipo Usuario:</label>
+                  <select class="form-control" id="privilegios_usuario" name="privilegios_usuario">
+                    <option value="0" selected>Seleccione...</option>
+
+                  </select>
+				  	  </div>
+				  </div>
 
 						{if $persona_array.estado == "Activo"}
 						{$checked1="checked"}

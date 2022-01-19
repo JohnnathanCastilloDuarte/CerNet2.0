@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-03 18:24:35
+/* Smarty version 3.1.34-dev-7, created on 2022-01-18 17:44:21
   from '/home/god/public_html/CerNet2.0/templates/usuario/editar_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d33f636184d0_39979356',
+  'unifunc' => 'content_61e6fc755c3973_52622330',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '662880736cc6bf049b8ae36d3893077380c5985a' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/usuario/editar_usuario.tpl',
-      1 => 1641234269,
+      1 => 1642527844,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d33f636184d0_39979356 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e6fc755c3973_52622330 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_persona']->value, 'persona');
 if ($_from !== null) {
@@ -212,7 +212,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 ">
 							</div>
 						</div>
-						<div class="row">
+						<!--<div class="row">
 							<div class="col-sm-6">
 								<label>Departamento:</label>
 								<select class="form-control" id="departamento_usuario_editar" name="departamento_usuario">
@@ -236,7 +236,25 @@ foreach ($_from as $_smarty_tpl->tpl_vars['persona']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 								</select>
 							</div>
-						</div>
+						</div>-->
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="position-relative form-group">
+                  <label>Departamento</label>
+                  <select class="form-control" id="departamento_usuario_editar">
+
+                  </select>
+                </div>
+              </div>
+          
+              <div class="col-sm-6">
+                <label>Tipo Usuario:</label>
+                  <select class="form-control" id="privilegios_usuario" name="privilegios_usuario">
+                    <option value="0" selected>Seleccione...</option>
+
+                  </select>
+				  	  </div>
+				  </div>
 
 						<?php if ($_smarty_tpl->tpl_vars['persona_array']->value['estado'] == "Activo") {?>
 						<?php $_smarty_tpl->_assignInScope('checked1', "checked");?>

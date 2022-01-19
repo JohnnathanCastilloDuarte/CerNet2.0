@@ -194,6 +194,29 @@ function mostrar_privilegios(){
      }
    });
 }
+mostrar_privilegios();
+function mostrar_privilegios(){
+   let tipo_mostrar = 'privilegios';
+   $.ajax({
+     type:'POST',
+     data:{tipo_mostrar},
+     url:'templates/usuario/mostrar_departamentos_usuario.php',
+     success:function(e){
+       let traer = JSON.parse(e);
+       let template = "";
+       
+       traer.forEach((valor)=>{
+				template +=
+				`	
+					<option value="${valor.id_privilegio}">${valor.nombre_privilegio}</option>
+					
+				`;
+			});
+
+			$("#privilegios_usuario").html(template);
+     }
+   });
+}
 
 //mostrar departamentos
 function mostar_departamentos(){
@@ -254,7 +277,7 @@ function mostar_departamentos_editar(){
    let id_departamento_editar = $("#id_departamento_editar").val();
    let nombre_departamento = $("#nombre_departamento_editar").val();
   // let nombre_cargo = $("#nombre_cargo_editar").val();
-//   let id_cargo_editar = $("#id_cargo_editar").val();
+  //  let id_cargo_editar = $("#id_cargo_editar").val();
    $.ajax({
      type:'POST',
      data:{tipo_mostrar},
@@ -300,22 +323,23 @@ $("#departamento_usuario_editar").change(function(){
       success:function(e){
        let traer = JSON.parse(e);
        let template = "";
-      
+       
+       
         template +=
           `	
-					<option value="${id_cargo_editar}" selected>${nombre_cargo}</option>
+					<option value="0" selected>Seleccione...</option>
 					
 				`;
        traer.forEach((valor)=>{
 				template +=
 				`	
-					<option value="${valor.cargo}">${valor.nombre_cargo}</option>
+					<option value="${valor.id_cargo}">${valor.nombre_cargo}</option>
 					
 				`;
 			});
 
 			$("#cargo_usuario_editar").html(template);
-        console.log(222);
+       
      }
    });
 

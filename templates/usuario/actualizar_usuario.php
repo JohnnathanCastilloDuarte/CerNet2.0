@@ -72,11 +72,18 @@ mysqli_stmt_fetch($buscando);
 
 /////// actualizando persona
 $actualizando_p = mysqli_prepare($connect,"UPDATE persona SET nombre = ?, apellido = ?, 
-telefono = ?, id_cargo = ?, estado= ?, pais = ?, 
+telefono = ?, id_cargo, estado= ?, pais = ?, 
 numero_identificacion = ?, id_empresa = ?, imagen_usuario = ? 
 WHERE id_persona = ?");
 mysqli_stmt_bind_param($actualizando_p, 'sssssssisi', $nombre_usuario, $apellido_usuario, 
-                       $telefono_usuario, $cargo_usuario, $estado_usuario, $pais_usuario, $identificacion_usuario, $id_empresa, $personalizado, $id_persona);
+                       $telefono_usuario, $cargo_usuario, $estado_usuario, $pais_usuario, 
+                       $identificacion_usuario, $id_empresa, $personalizado, $id_persona);
+mysqli_stmt_execute($actualizando_p);
+mysqli_stmt_error($actualizando_p);
+
+$actualizando_p = mysqli_prepare($connect,"UPDATE usuario SET  id_privilegio = ?
+WHERE id_persona = ?");
+mysqli_stmt_bind_param($actualizando_p, 'ii',$pri,  $id_persona);
 mysqli_stmt_execute($actualizando_p);
 mysqli_stmt_error($actualizando_p);
 
