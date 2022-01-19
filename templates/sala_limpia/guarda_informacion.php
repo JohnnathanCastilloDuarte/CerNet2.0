@@ -1,7 +1,7 @@
 <?php 
 include('../../config.ini.php');
 
-
+/*
 ////////// PRIMER PRUEBA
 
 $id_prueba_1 = $_POST['id_prueba_1'];
@@ -106,5 +106,87 @@ $actualizando5 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_6 SET medi
 mysqli_stmt_bind_param($actualizando5, 'ssssi', $medicion_1_p9, $medicion_2_p9, $medicion_3_p9, $medicion_4_p9, $id_prueba_9);
 mysqli_stmt_execute($actualizando5);
 
+
+
+
+
+
+
+
+
+/////// GUARDA ENSAYOS
+
+$id_ensayo_p11 = $_POST["id_ensayo_p11"];
+$ensayo_p11 = $_POST["ensayo_p11"];
+$ensayo_p12 = $_POST["ensayo_p12"];
+$ensayo_p13 = $_POST["ensayo_p13"];
+$ensayo_p14 = $_POST["ensayo_p14"];
+$ensayo_p15 = $_POST["ensayo_p15"];
+
+
+
+$actualizando6 = mysqli_prepare($connect, "UPDATE salas_limpias_metodo_1 SET metodo_ensayo= ? ,puntos_x_medicion= ? ,muestra_x_punto= ? ,volumen_muestra= ? ,altura_muestra= ? WHERE id_ensayo = ?");
+mysqli_stmt_bind_param($actualizando6, 'sssssi', $ensayo_p11, $ensayo_p12, $ensayo_p13, $ensayo_p14, $ensayo_p15, $id_ensayo_p11);
+mysqli_stmt_execute($actualizando6);
+
+echo mysqli_stmt_error($actualizando6);
+
+
+
+$id_ensayo_p21 = $_POST["id_ensayo_p21"];
+$ensayo_p21 = $_POST["ensayo_p21"];
+$ensayo_p22 = $_POST["ensayo_p22"];
+
+$actualizando7 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_2 SET metodo_ensayo= ?,especificacion= ? WHERE id_ensayo = ?");
+mysqli_stmt_bind_param($actualizando7, 'ssi', $ensayo_p21, $ensayo_p22, $id_ensayo_p21);
+mysqli_stmt_execute($actualizando7);
+
+
+
+$id_ensayo_p31 = $_POST["id_ensayo_p31"];
+$ensayo_p31 = $_POST["ensayo_p31"];
+$ensayo_p32 = $_POST["ensayo_p32"];
+$ensayo_p33 = $_POST["ensayo_p33"];
+
+$actualizando8 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_4 SET metodo_ensayo= ?,n_muestras= ?,altura_muestra= ? WHERE id_ensayo = ?");
+mysqli_stmt_bind_param($actualizando8, 'sssi', $ensayo_p31, $ensayo_p32, $ensayo_p33, $id_ensayo_p31);
+mysqli_stmt_execute($actualizando8);
+
+echo mysqli_stmt_error($actualizando8);
+
+
+$id_ensayo_p41 = $_POST["id_ensayo_p41"];
+$ensayo_p41 = $_POST["ensayo_p41"];
+$ensayo_p42 = $_POST["ensayo_p42"];
+$ensayo_p43 = $_POST["ensayo_p43"];
+
+$actualizando9 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_4 SET metodo_ensayo= ?,n_muestras= ?,altura_muestra= ? WHERE id_ensayo = ?");
+mysqli_stmt_bind_param($actualizando9, 'sssi', $ensayo_p41, $ensayo_p42, $ensayo_p43, $id_ensayo_p41);
+mysqli_stmt_execute($actualizando9);
+
+echo mysqli_stmt_error($actualizando9);
+
+
+
+
+$id_ensayo_p51 = $_POST["id_ensayo_p51"];
+$ensayo_p51 = $_POST["ensayo_p51"];
+$ensayo_p52 = $_POST["ensayo_p52"];
+$ensayo_p53 = $_POST["ensayo_p53"];
+
+$actualizando10 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_5 SET metodo_ensayo= ?,n_rejillas= ?,n_extractores= ? WHERE id_ensayo = ?");
+mysqli_stmt_bind_param($actualizando10, 'sssi', $ensayo_p51, $ensayo_p52, $ensayo_p53, $id_ensayo_p51);
+mysqli_stmt_execute($actualizando10);
+*/
+
+
+$id_informe = $_POST['id_informe'];
+$conclusion_informe = $_POST['conclusion_informe'];
+$solicitante = $_POST['solicitante'];
+$nombre_informe = $_POST['nombre_informe'];
+
+$actualizando10 = mysqli_prepare($connect,"UPDATE salas_limpias_informe SET nombre_informe= ?, solicita= ?,conclusion= ? WHERE id_informe = ?");
+mysqli_stmt_bind_param($actualizando10, 'sssi', $nombre_informe, $solicitante, $conclusion_informe, $id_informe);
+mysqli_stmt_execute($actualizando10);
 mysqli_close($connect);
 ?>

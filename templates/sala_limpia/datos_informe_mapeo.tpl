@@ -34,6 +34,30 @@
                                     </a>
                                 </div>
                                 <div class="card-body collapse in show" id="collapseOne1">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <input type="hidden" name="id_ensayo_p11" id="id_ensayo_p11">
+                                            <label>Metodo de ensayo</label>
+                                            <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label>N° Puntos por Medición</label>
+                                            <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label>N° Muestras por Punto</label>
+                                            <input type="text" id="ensayo_p13" name="ensayo_p13" class="form-control">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label>Volumen por Muestras (L)</label>
+                                            <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label>Altura toma de Muestras (m)</label>
+                                            <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control">
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <table class="table" style="text-align: center;">
                                     <thead>
                                         <th>Tamaños (µm)</th>
@@ -56,30 +80,7 @@
                                 </a>
                             </div>
                             <div class="card-body collapse in show" id="collapseOne2">
-                                <div class="row">
-                                    <input type="text" name="id_ensayo_p11" id="id_ensayo_p11">
-                                    <div class="col-sm-2">
-                                        <label>Metodo de ensayo</label>
-                                        <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label>N° Puntos por Medición</label>
-                                        <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label>N° Muestras por Punto</label>
-                                        <input type="text" id="ensayo_p13" name="ensayo_p13" class="form-control">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Volumen por Muestras (L)</label>
-                                        <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Altura toma de Muestras (m)</label>
-                                        <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control">
-                                    </div>
-                                </div>
-                                <hr>
+                               
                                 <table class="table" style="text-align: center;">
                                 <thead>
                                     <th>Tamaños (µm)</th>
@@ -112,8 +113,9 @@
                             <div class="card-body collapse" id="collapseOne3">
 
                                 <div class="row">
-                                    <input type="text" name="id_ensayo_p21" id="id_ensayo_p21">
+                                   
                                     <div class="col-sm-6">
+                                        <input type="hidden" name="id_ensayo_p21" id="id_ensayo_p21">
                                         <label>Método de Ensayo:</label>
                                         <input type="text" name="ensayo_p21" id="ensayo_p21" class="form-control">
                                     </div>
@@ -122,6 +124,7 @@
                                         <input type="text" name="ensayo_p22" id="ensayo_p22" class="form-control">
                                     </div>
                                 </div>
+                                <hr>
                             
                                 <table class="table" id="tabla_prueba_3">
                                         
@@ -139,6 +142,24 @@
                                 <input type="hidden" name="id_prueba_4" id="id_prueba_4">
                             </div>
                             <div class="card-body collapse" id="collapseOne4">
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <input type="hidden" name="id_ensayo_p31" id="id_ensayo_p31">
+                                        <label>Método de Ensayo:</label>
+                                        <input type="text" name="ensayo_p31" id="ensayo_p31" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>N° de muestras:</label>
+                                        <input type="text" name="ensayo_p32" id="ensayo_p32" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Altura toma de muestras:</label>
+                                        <input type="text" name="ensayo_p33" id="ensayo_p33" class="form-control">
+                                    </div>
+                                </div>
+                                <hr>
+
                                 <div class="row" id="medicion_temp">
                                 </div>
                             </div>
@@ -167,6 +188,22 @@
                                 </a>
                             </div>
                             <div class="card-body collapse" id="collapseOne6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <input type="hidden" name="id_ensayo_p41" id="id_ensayo_p41">
+                                        <label>Método de Ensayo:</label>
+                                        <input type="text" name="ensayo_p41" id="ensayo_p41" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>N° de muestras:</label>
+                                        <input type="text" name="ensayo_p42" id="ensayo_p42" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Altura toma de muestras:</label>
+                                        <input type="text" name="ensayo_p43" id="ensayo_p43" class="form-control">
+                                    </div>
+                                </div>
+                                <hr>
                                 <div class="row" id="medicion_lux">
                                 </div>
                             </div>
@@ -195,6 +232,22 @@
                                 </a>
                             </div>
                             <div class="card-body collapse" id="collapseOne12"> 
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="">Metodo de ensayo:</label>
+                                        <input type="hidden" id="id_ensayo_p51" name="id_ensayo_p51">
+                                        <input type="text" name="ensayo_p51" id="ensayo_p51" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="">N° de rejillas de inyección:</label>
+                                        <input type="text" name="ensayo_p52" id="ensayo_p51" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="">N° de Extractores:</label>
+                                        <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
+                                    </div>
+                                </div>
                         
                                 <table class="table">
                                     <thead>
@@ -291,17 +344,22 @@
                             <div class="card-body collapse" id="collapseOne15">  
                               <div class="row">
                                   <div class="col-sm-6">
+                                      <input type="hidden" name="id_informe" id="id_informe">
                                      <label for="">Conclusiones:</label>
-                                     <textarea class="form-control" id="conclusion_informe"></textarea> 
+                                     <textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea> 
                                   </div>
                                   <div class="col-sm-6">
-                                    <label for="">Responsable:</label>
-                                    <select class="form-control">
-                                        <option value="0">Seleccione:</option>
-                                        <option value="rquevedo@cercal.cl">Raúl Quevedo Silva</option> 
-                                    </select> 
+                                    <label for="">Solicita:</label>
+                                    <input type="text" name="solicitante" id="solicitante" class="form-control">
                                  </div>
-                              </div>  
+                              </div>
+                              
+                              <div class="row">
+                                  <div class="col-sm-6">
+                                      <label for="">Nombre informe:</label>
+                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
+                                  </div>
+                              </div>
                             </div>
                         </div>
                         <br>

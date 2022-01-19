@@ -12,6 +12,7 @@ validacion_salas_limpias(600);
 validacion_salas_limpias(700);
 validacion_salas_limpias(800);
 validacion_salas_limpias(900);
+validacion_salas_limpias(1000);
 
 function listar_resultados_prueba(orden){
 
@@ -434,7 +435,7 @@ function listar_resultados_prueba(orden){
         })
     }
 
-    else if(orden == 6){
+    else if(orden == 7){
 
 
         $.ajax({
@@ -451,6 +452,86 @@ function listar_resultados_prueba(orden){
                     $("#id_ensayo_p21").val(valor.id_ensayo);
                     $("#ensayo_p21").val(valor.metodo_ensayo);
                     $("#ensayo_p22").val(valor.especificacion);
+                });
+            }
+        })
+    }
+
+    else if(orden == 8){
+
+
+        $.ajax({
+            type:'POST',
+            data:{id_asignado, orden},
+            url:'templates/sala_limpia/controlador_sala_limpia.php',
+            success:function(response){
+                console.log(response);
+                let traer = JSON.parse(response);
+                let template = "";
+                let contador = 0;
+                
+                traer.forEach((valor)=>{
+                    if(valor.categoria == 1){
+                        $("#id_ensayo_p31").val(valor.id_ensayo);
+                        $("#ensayo_p31").val(valor.metodo_ensayo);
+                        $("#ensayo_p32").val(valor.n_muestras);
+                        $("#ensayo_p33").val(valor.altura_muestra);
+                    }else{
+                        $("#id_ensayo_p41").val(valor.id_ensayo);
+                        $("#ensayo_p41").val(valor.metodo_ensayo);
+                        $("#ensayo_p42").val(valor.n_muestras);
+                        $("#ensayo_p43").val(valor.altura_muestra);
+                    }
+                   
+                });
+            }
+        })
+    }
+
+    else if(orden == 9){
+
+
+        $.ajax({
+            type:'POST',
+            data:{id_asignado, orden},
+            url:'templates/sala_limpia/controlador_sala_limpia.php',
+            success:function(response){
+                console.log(response);
+                let traer = JSON.parse(response);
+                let template = "";
+                let contador = 0;
+                
+                traer.forEach((valor)=>{
+                   
+                    $("#id_ensayo_p51").val(valor.id_ensayo);
+                    $("#ensayo_p51").val(valor.metodo_ensayo);
+                    $("#ensayo_p52").val(valor.n_rejillas);
+                    $("#ensayo_p53").val(valor.n_extractores);
+                         
+                });
+            }
+        })
+    }
+
+    else if(orden == 10){
+
+
+        $.ajax({
+            type:'POST',
+            data:{id_asignado, orden},
+            url:'templates/sala_limpia/controlador_sala_limpia.php',
+            success:function(response){
+                console.log(response);
+                let traer = JSON.parse(response);
+                let template = "";
+                let contador = 0;
+                
+                traer.forEach((valor)=>{
+                    $("#id_informe").val(valor.id_informe);
+                    $("#conclusion_informe").val(valor.nombre_informe);
+                    $("#solicitante").val(valor.solicitante);
+                    $("#nombre_informe").val(valor.nombre_informe);
+                         
                 });
             }
         })
@@ -547,7 +628,7 @@ function validacion_salas_limpias(orden){
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
                 
-               console.log(response);
+                listar_resultados_prueba(8);
             }
         });
     }
@@ -559,7 +640,19 @@ function validacion_salas_limpias(orden){
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
                 
-               console.log(response);
+                listar_resultados_prueba(9);
+            }
+        });
+    }
+
+    else if(orden == 1000){
+        $.ajax({
+            type:'POST',
+            data:{id_asignado, orden},
+            url:'templates/sala_limpia/controlador_sala_limpia.php',
+            success:function(response){
+                
+                listar_resultados_prueba(10);
             }
         });
     }
@@ -584,7 +677,7 @@ $("#formulario_salas").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-
+        console.log(response);
         Swal.fire({
             title:'Mensaje',
             text:'Se ha modificado la información de la Sala limpia',
@@ -596,6 +689,11 @@ $("#formulario_salas").submit(function(e){
         listar_resultados_prueba(3);
         listar_resultados_prueba(4);
         listar_resultados_prueba(5);
+        listar_resultados_prueba(6);
+        listar_resultados_prueba(7);
+        listar_resultados_prueba(8);
+        listar_resultados_prueba(9);
+        listar_resultados_prueba(10);
         
       }
     });  
