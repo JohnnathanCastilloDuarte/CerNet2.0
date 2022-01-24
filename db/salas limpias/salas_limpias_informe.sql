@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2022 a las 14:43:52
+-- Tiempo de generación: 19-01-2022 a las 14:50:50
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.22
 
@@ -33,7 +33,7 @@ CREATE TABLE `salas_limpias_informe` (
   `id_asignado` int(11) NOT NULL,
   `solicita` varchar(500) NOT NULL DEFAULT 'Usuario solicitante',
   `responsable` varchar(500) DEFAULT NULL,
-  `conclusion` text NOT NULL DEFAULT 'Conclusion',
+  `conclusion` text DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
