@@ -293,7 +293,7 @@
                       <label>Concentración de partículas en aerosol (mg/litro):</label>
                     </div>
                     <div class="col-sm-6" style="text-align:center;">
-                      <div class="col-sm-6">
+                      <div class="col-sm-12 ">
                         <input type="number" value="22.9" class="form-control" id="concentracion_particulas_filtro" name="concentracion_particulas_filtro">
                       </div>
                     </div>

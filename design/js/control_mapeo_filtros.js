@@ -357,8 +357,6 @@ function cargar_posiciones_vacias(cantidad){
   }
    
 }
-
-
 $(document).on('change','#select_filtro', function(){
 
   let quien = $(this).val();
@@ -375,15 +373,13 @@ $(document).on('change','#select_filtro', function(){
   
 });
 
-
-
-
-
 ///////////// btn de informes:
 
 $("#abrir_informe").click(function(){
-
-  window.open("templates/filtros/informes/inspeccion_de_filtros.php");
+  
+   let encrypt = "LF456DS4G5DS4F5SD21G4DFSGF14DS2vDF2bfg56f1d56sf15ds6f4g534G564g56f4g56df4g561G6F4D5G6DF4G564FG5DG"+id_asignado_filtro;
+   //window.open("templates/filtros/informes/informe/inspeccion_de_filtros.php");
+   location.href = 'templates/filtros/informes/informe/inspeccion_de_filtros.php?clave='+encrypt; 
 })
 
 
