@@ -298,12 +298,13 @@
                                                             <i class="icon text-success ion-ios-analytics"></i>
                                                         </span>
                                                     </button>
+                                                  
                                                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-xl rm-pointers dropdown-menu dropdown-menu-right">
                                                         <div class="dropdown-menu-header">
                                                             <div class="dropdown-menu-header-inner bg-premium-dark">
                                                                 <div class="menu-header-image" style="background-image: url('assets/images/dropdown-header/abstract4.jpg');"></div>
                                                                 <div class="menu-header-content text-white">
-                                                                    <h5 class="menu-header-title">Users Online
+                                                                    <h5 class="menu-header-title">Sensores
                                                                     </h5>
                                                                     <h6 class="menu-header-subtitle">Recent Account Activity Overview
                                                                     </h6>

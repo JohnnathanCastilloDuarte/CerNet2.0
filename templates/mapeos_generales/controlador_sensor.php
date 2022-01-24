@@ -7,20 +7,30 @@ if($movimiento == "buscar"){
 
     $buscar = $_POST['buscar'];
     $array_sensores = array();
+    $id_mapeo = $_POST['id_mapeo'];
+  
+  
+    $buscar_r = mysqli_prepare($connect,"SELECT DATE_FORMAT(fecha_inicio, '%Y/%m/%d'), DATE_FORMAT(fecha_fin, '%Y/%m/%d') FROM mapeo_general WHERE id_mapeo = ?");
+    mysqli_stmt_bind_param($buscar_r, 'i', $id_mapeo);
+    mysqli_stmt_execute($buscar_r);
+    mysqli_stmt_store_result($buscar_r);
+    mysqli_stmt_bind_result($buscar_r, $fecha_inicio, $fecha_fin);
+    mysqli_stmt_fetch($buscar_r);
 
-
-    $buscando = mysqli_prepare($connect, "SELECT a.id_sensor, a.nombre, b.certificado FROM sensores as a, sensores_certificados as b WHERE a.id_sensor = b.id_sensor AND a.nombre  LIKE  CONCAT('%',?,'%')");
-    mysqli_stmt_bind_param($buscando, 's', $buscar);
+ 
+    $buscando = mysqli_prepare($connect, "SELECT a.id_sensor, a.nombre, b.certificado, b.fecha_vencimiento FROM sensores as a, sensores_certificados as b WHERE a.id_sensor = b.id_sensor AND a.nombre  LIKE  CONCAT('%',?,'%') AND b.fecha_vencimiento > ?");
+    mysqli_stmt_bind_param($buscando, 'ss', $buscar, $fecha_inicio);
     mysqli_stmt_execute($buscando);
     mysqli_stmt_store_result($buscando);
-    mysqli_stmt_bind_result($buscando, $id_sensor, $nombre, $certificado);
+    mysqli_stmt_bind_result($buscando, $id_sensor, $nombre, $certificado, $fecha_vencimiento);
 
     while($row = mysqli_stmt_fetch($buscando)){
 
         $array_sensores[] = array(
             'id_sensor'=>$id_sensor,
             'nombre'=>$nombre,
-            'certificado'=>$certificado
+            'certificado'=>$certificado,
+            'fecha_vencimiento'=>$fecha_vencimiento
         );
     }
 
@@ -64,20 +74,28 @@ if($movimiento == "buscar"){
     $array_sensores = array();
 
 
-    $buscando = mysqli_prepare($connect, "SELECT c.id_sensor_mapeo, c.posicion, a.nombre, c.posicion_tem, c.posicion_hum FROM sensores as a, mapeo_general_sensor c WHERE c.id_sensor = a.id_sensor AND c.id_mapeo = ? AND c.id_bandeja = ?  ORDER BY  c.posicion ASC");
+    $buscando = mysqli_prepare($connect, "SELECT c.id_sensor_mapeo, c.posicion, a.nombre, c.posicion_tem, c.posicion_hum FROM sensores as a, mapeo_general_sensor c  WHERE c.id_sensor = a.id_sensor AND c.id_mapeo = ? AND c.id_bandeja = ? ORDER BY  c.posicion ASC");
     mysqli_stmt_bind_param($buscando, 'ii', $id_mapeo, $id_bandeja);
     mysqli_stmt_execute($buscando);
     mysqli_stmt_store_result($buscando);
     mysqli_stmt_bind_result($buscando, $id_sensor_mapeo, $posicion, $nombre, $posicion_tem, $posicion_hum);
 
     while($row = mysqli_stmt_fetch($buscando)){
+      
+        $registros_query = mysqli_prepare($connect,"SELECT count(id_dato_crudo) FROM datos_crudos_general WHERE id_sensor_mapeo = ?");
+        mysqli_stmt_bind_param($registros_query, 'i', $id_sensor_mapeo);
+        mysqli_stmt_execute($registros_query);
+        mysqli_stmt_store_result($registros_query);
+        mysqli_stmt_bind_result($registros_query, $registros);
+        mysqli_stmt_fetch($registros_query);
 
         $array_sensores[] = array(
             'id_sensor_mapeo'=>$id_sensor_mapeo,
             'nombre'=>$nombre,
             'posicion'=>$posicion,
             'posicion_tem'=>$posicion_tem,
-            'posicion_hum'=>$posicion_hum
+            'posicion_hum'=>$posicion_hum,
+            'registros'=>$registros
 
         );
     }

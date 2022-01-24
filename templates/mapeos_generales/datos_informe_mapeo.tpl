@@ -17,10 +17,8 @@
 		</a>
 	</li>
 </ul>
-
 <!---VARIABLES NECESARIAS-->
 <input type="hidden" id="id_asignado" value="{$id_asignado}">
-
 
 <div class="tab-content">
     <div class="tab-pane tabs-animation fade show active" id="creacion" role="tabpanel">
@@ -56,7 +54,8 @@
                     </div>
                 </div>
             </div>
-
+          
+           
             <div class="col-sm-7">
                 <div class="card">
                     <div class="card-header">
@@ -286,7 +285,7 @@
         <hr>
 
         <div class="row" id="asignacion_sensores">
-            <div class="col-sm-6">
+            <div class="col-sm-12" >
                 <div class="card" >
                     <div class="card-header">
                         Asignación de sensores <input type="text" class="form-control" id="buscador_sensores" placeholder="Ingresa el nombre del sensor a buscar">
@@ -296,6 +295,7 @@
                             <thead>
                                 <th>Nombre sensor</th>
                                 <th>Certificado</th>
+                                <th>Fecha vencimiento</th>
                                 <th>Asignar</th>
                             </thead>
                             <tbody id="resultado_sensores">
@@ -306,18 +306,22 @@
                         </table>
                     </div>
                 </div>
-            </div>
+          </div>
+        </div>
 
-            <div class="col-sm-6" >
+        <hr>
+      
+        <div class="row" id="mostrar_sensores">
+           <div class="col-sm-12" >
                 <div class="card-header">Sensores asignados</div>
-                <div class="card body">
+                <div class="card body" id="from_termocupla">
                     <table class="table" style="text-align:center;">
                         <thead>
                             <th>Sensor</th>
                             <th>Posición</th>
                             <th>Remover</th>
                         </thead>
-                        <tbody id="listar_sensores_asignados">
+                        <tbody id="listar_sensores_asignados_termocupla">
                         </tbody>
                     </table>
 
@@ -326,17 +330,31 @@
                     <button class="btn btn-danger" id="cargar_archivo_dc">Cargar archivo</button>
 
                 </div>
+              <div class="card body" id="from_sensores">
+                    <table class="table" style="text-align:center;">
+                        <thead>
+                            <th>Sensor</th>
+                            <th>Posición</th>
+                            <th>Cantidad registros</th>
+                            <th>Opciones</th>
+                            
+                        </thead>
+                        <tbody id="listar_sensores_asignados_sensores">
+                        </tbody>
+                    </table>
+
+                    <hr>
+               </div>
             </div>
         </div>
+      
+      <hr>
 
-        <hr>
-
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6" id="datos_crudos_card">
-                <div class="card">
+        <div class="row" id="mostrar_dato_crudo">
+            <div class="col-sm-12" id="datos_crudos_card">
+                <div class="card" id="datos_crudos_termocupla">
                     <div class="card-header">
-                        Datos crudos <span class="text-muted" style="margin-left: 100px;">Estado Datos crudos</span>
+                        <span>Datos crudos </span><span class="text-danger">X</span>
                     </div>
                     <div class="card-body" style="text-align: center;">
                         <form id="formulario_sensores_generales" enctype="multipart/form-data" method="post">
@@ -362,8 +380,34 @@
 
                     </div>
                 </div>
+                <div class="row justify-content-center align-item-center ">
+                    <div class="card col-sm-6 shadow-lg p-3 mb-5 bg-white rounded"  id="datos_crudos_sensores" style="position: absolute;top: -700px;" >
+                        <div class="card-header ">
+                             <div class="col-sm-11"> Subir datos crudos </div>
+
+                            <div style=""><span class="btn btn-danger float-right" id="cerrar_dato">X</span></div>
+                        </div>
+                        <div class="card-body">
+                          <form id="form_cargar_archivos" enctype="multipart/form-data" method="post">
+                            <div class="row" id="configurar_sensor_aqui">
+
+                            </div>
+                            <br>  
+                            <div class="row" style="text-align: center;">
+                              <div class="col-sm-12">
+                                <button class="btn btn-primary">
+                                  Enviar
+                                </button>
+                              </div>
+                            </div>
+                          </form>  
+                        </div>
+                    </div>
+                </div>
+          
             </div>
         </div>
+  <hr>
     </div> <!--Cierre de content de asignación--->
 
     <div class="tab-pane tabs-animation fade show" id="informes_1_general" role="tabpanel">
@@ -423,6 +467,9 @@
             </div>
 
         </div>
+      
+
+
         <br>
         <div class="row">
             <div class="col-sm-12">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-19 18:47:13
+/* Smarty version 3.1.34-dev-7, created on 2022-01-19 16:37:47
   from '/home/god/public_html/CerNet2.0/templates/main_footer.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6197f1319a0bc9_99822088',
+  'unifunc' => 'content_61e83e5b678310_02017500',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '819161b9538c29caebb60ab70f6eee440af5e4dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/main_footer.php',
-      1 => 1637347602,
+      1 => 1642610245,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6197f1319a0bc9_99822088 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e83e5b678310_02017500 (Smarty_Internal_Template $_smarty_tpl) {
 ?>  <?php echo '<script'; ?>
  type="text/javascript" src="design/js/privilegiosall.js"><?php echo '</script'; ?>
 >
@@ -59,6 +59,9 @@ function content_6197f1319a0bc9_99822088 (Smarty_Internal_Template $_smarty_tpl)
 >
  <?php echo '<script'; ?>
  type="text/javascript" src="design/js/function.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="design/js/controlador_subir_sensores.js"><?php echo '</script'; ?>
 >
 <!--  <?php echo '<script'; ?>
  type="text/javascript" src="design/js/backtrack.js"><?php echo '</script'; ?>

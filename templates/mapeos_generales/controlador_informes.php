@@ -73,7 +73,7 @@ if($movimiento == "Leer"){
             }
         }
      
-        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-TEM-'.$consecutivo;
+        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-TEM-'.$consecutivo;
 
         $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
         mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
@@ -130,7 +130,7 @@ if($movimiento == "Leer"){
             }
         }
      
-        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-HUM-'.$consecutivo;
+        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-HUM-'.$consecutivo;
 
         $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
         mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);

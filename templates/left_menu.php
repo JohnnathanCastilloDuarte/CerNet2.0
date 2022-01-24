@@ -285,11 +285,12 @@
 </ul>  
 </li> 
 </div>
-
+<!--
 <div id="modulo_11">
      <li><a href="index.php?module={$modulo[0]}&page={$page[1]}"><i class="metismenu-icon pe-7s-copy-file"></i>Informes
      </a>                 
 </div>
+-->
 
 
 

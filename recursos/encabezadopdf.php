@@ -16,19 +16,19 @@ class MYPDF extends TCPDF
         // Logo
 		$this->writeHTMLCell(35, 22, 17, 11, '<img src="design/images/cercal2.jpg" width="150">', 0, 0, 0, true, 'C', true);
         // Set font
-        $this->SetFont('helvetica', 'B', 10);
+        $this->SetFont('helvetica', 'B', 9);
         // Title
 		//$this->writeHTMLCell(50, 20, 15, 7, '', 1, 0, 0, true, 'C', true);
     	$this->SetFont('helvetica', 'B', 9);	
 		//	$this->MultiCell(60, 20, $a, 1, 'C', 0, 0, 65, 7, true, 0,true, true, 20, 'M');
-		$this->SetFont('helvetica', 'B', 10);
+		$this->SetFont('helvetica', 'B', 9);
 	//	$this->writeHTMLCell(70, 15, 125, 7, 'Informe: '.$nombre_informe.' <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 		//$this->MultiCell(91, 15, 'Informe:  // REVISION: 0.0.0', 1, 'C', 0, 1, 190, 7, true, 1, true, true, 0, 'M');		
 		//$this->writeHTMLCell(70, 5, 125, 22, '<table><tr><td width="120%">Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
    
     
     $this->MultiCell(120, 16.5, $a, 1, 'C', 0, 0, 15, 30, true, 0, false, true, 16, 'M');
-		$this->writeHTMLCell(60, 12, 135, 30, 'Informe: '.$nombre_informe.' <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
+		$this->writeHTMLCell(60, 12, 135, 30, 'Informe: '.$nombre_informe.' <br>'.$numot, 1, 0, 0, true, 'C', true);
 		$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
     
     }

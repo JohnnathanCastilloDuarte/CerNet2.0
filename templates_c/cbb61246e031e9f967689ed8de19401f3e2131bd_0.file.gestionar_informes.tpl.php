@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-03 00:49:00
+/* Smarty version 3.1.34-dev-7, created on 2022-01-19 15:58:45
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/gestionar_informes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d247fc4e64d7_53529955',
+  'unifunc' => 'content_61e83535b9cde4_64142843',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbb61246e031e9f967689ed8de19401f3e2131bd' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/gestionar_informes.tpl',
-      1 => 1640732816,
+      1 => 1642605610,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d247fc4e64d7_53529955 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e83535b9cde4_64142843 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
     <div class="col-sm-12">
         <div class="card">

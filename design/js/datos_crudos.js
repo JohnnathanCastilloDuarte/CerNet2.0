@@ -184,16 +184,18 @@ $("#tipo_archivo_dc").change(function(){
         $("#tipo_termocupla").hide();
         $("#tipo_sensor").hide();
         $("#resultados_tipo_termocupla").hide();
-    }else if(valor == 1){
+    }else if(valor == 2){
+        $("#tipo_termocupla").show();
+        $("#tipo_sensor").hide();
+        $("#resultados_tipo_termocupla").show()
+    }else{
         $("#tipo_termocupla").hide();
         $("#tipo_sensor").show();
         $("#resultados_tipo_termocupla").hide();
+        cargar_sensores_masivos(id_mapeo);
       
-    }else{
-        $("#tipo_termocupla").show();
-        $("#tipo_sensor").hide();
-        $("#resultados_tipo_termocupla").show();
-    }
+    } 
+    
 });
 
 
@@ -322,3 +324,16 @@ $(document).on('click','#elimar_registro_dc',function(){
         }
     });        
 });
+
+
+function cargar_sensores_masivos(id_mapeo){
+  
+  $.ajax({
+    type:'POST',
+    data:{id_mapeo},
+    url:'buscar_sensores_masivo.php',
+    success:function(response){
+      console.log(response);
+    }
+  })
+}

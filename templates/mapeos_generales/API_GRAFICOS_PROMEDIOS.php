@@ -20,7 +20,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
   if(mysqli_stmt_num_rows($validador) > 0){
    ?>  
         
->
+
 </div>
       <script>
          $(document).ready(function(){
@@ -61,7 +61,6 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       $count_sensores++;
     } 
 
-   
     ?> 
   <div class="row"  style="text-align: center;">
   <div class="col-sm-2">
@@ -104,8 +103,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
            
     <?php 
  
-    
-   echo "['Time','Promedio', 'Minimo', 'Maximo',";
+      echo "['Time','Promedio', 'Minimo', 'Maximo'";
     /*for($f = 0; $f < $count_sensores; $f++){
 
          echo "'".$array_sensor[$f][0]."',";
@@ -123,12 +121,13 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
 
       if($tipo_grafi == "TEMP"){
    
-        $query_31 = mysqli_prepare($connect,"SELECT round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");
+         $query_31 = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = 4 GROUP BY a.time ORDER BY a.time ASC");
         mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
         mysqli_stmt_execute($query_31);
         mysqli_stmt_store_result($query_31);
-        mysqli_stmt_bind_result($query_31, $promedio, $min, $max);	
+        mysqli_stmt_bind_result($query_31, $time, $promedio, $min, $max);	
         $colum = mysqli_stmt_num_rows($consultar_data);	
+        
       }else{
         $query_31 = mysqli_prepare($connect,"SELECT AVG(a.hum) AS promedio, MIN(a.hum) as minimo, MAX(a.hum) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");
         mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
@@ -137,22 +136,23 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
         mysqli_stmt_bind_result($query_31, $promedio, $min, $max);	
         $colum = mysqli_stmt_num_rows($consultar_data);	
       }  
-
-
-      for($j=1;$j<=$colum;$j++){
-        mysqli_stmt_fetch($consultar_data);
-        echo "['".$time."',";
-
-        for($g=1;$g<$count_sensores;$g++){
+  
+      for($j=1;$j<=$count_sensores;$j++){
+        mysqli_stmt_fetch($query_31);
+        echo "['".$time."',".$promedio.",".$min.",".$max;
+        /*
+        for($g=1;$g<=;$g++){
           mysqli_stmt_fetch($query_31);
-
-            if($g == $count_sensores){
+          
+            
+            if($g == $colum){
               echo $promedio.",".$min.",".$max;
             }else{
               echo $promedio.",".$min.",".$max.",";
-            }	
-        }
-        if($j == $colum){
+            }	*/
+        
+        //}
+        if($j == $count_sensores){
           echo "]";
         }else{
           echo "],";

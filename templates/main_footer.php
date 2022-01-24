@@ -11,6 +11,7 @@
   <script type="text/javascript" src="design/Chartjs/dist/Chart.bundle.js"></script>
   <script type="text/javascript" src="design/assets/scripts/main.js"></script>
  <script type="text/javascript" src="design/js/function.js"></script>
+<script src="design/js/controlador_subir_sensores.js"></script>
 <!--  <script type="text/javascript" src="design/js/backtrack.js"></script>-->
 
 <!--

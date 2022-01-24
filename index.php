@@ -310,7 +310,11 @@ else
                 include("templates/flujo_laminar/datos_informe_mapeo.php");
               }else if($_GET["type"] == 11){
                 include("templates/sala_limpia/datos_informe_mapeo.php");
+              }else if($_GET["type"] == 12){
+               include("templates/mapeos_generales/datos_informe_mapeo.php");
               }
+              
+     
             }else if($_GET['page'] == 11 ){
               include("templates/flujo_laminar/gestionar_informe.php");
             }else if($_GET['page'] == 12 ){

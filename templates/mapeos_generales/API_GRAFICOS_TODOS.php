@@ -38,13 +38,12 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
   $colum = "";
   
   echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
-
   $consultar = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo FROM sensores AS a, mapeo_general_sensor AS b  WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ?");
   mysqli_stmt_bind_param($consultar, 'i', $id_mapeo);  
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
   mysqli_stmt_bind_result($consultar, $sensor, $id_sensor);
-  
+    
   if(mysqli_stmt_num_rows($consultar) > 0){
     
  
@@ -55,6 +54,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       $array_id_sensor[] = array($id_sensor);
       $count_sensores++;
     } 
+    
 
     ?> 
     <div class="row"  style="text-align: center;">
@@ -99,16 +99,25 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
 
     <?php 
     echo "['Time',";
-    for($f = 0; $f < $count_sensores; $f++){
-      echo "'".$array_sensor[$f][0]."',";
+    for($f = 1; $f<$count_sensores; $f++){
+      
+            
+      if(($f + 1)  == $count_sensores){
+       echo "'".$array_sensor[$f][0]."'";
+      }else{
+        echo "'".$array_sensor[$f][0]."',";
+      }
+      
     }
     echo "],";
-
-    $consultar_data = mysqli_prepare($connect,"SELECT DISTINCT time FROM datos_crudos_general WHERE id_sensor_mapeo = ?");
+  
+      $consultar_data = mysqli_prepare($connect,"SELECT DISTINCT time FROM datos_crudos_general WHERE id_sensor_mapeo = ?");
       mysqli_stmt_bind_param($consultar_data, 'i', $array_id_sensor[0][0]);
       mysqli_stmt_execute($consultar_data);
       mysqli_stmt_store_result($consultar_data);
       mysqli_stmt_bind_result($consultar_data, $time);
+    
+      
 
       if($tipo_grafi == "TEMP"){
         $query_31 = mysqli_prepare($connect,"SELECT a.temp FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ?   ORDER BY a.time ASC, a.id_sensor_mapeo ASC");
@@ -123,24 +132,26 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
         mysqli_stmt_execute($query_31);
         mysqli_stmt_store_result($query_31);
         mysqli_stmt_bind_result($query_31, $datos);	
+        
         $colum = mysqli_stmt_num_rows($consultar_data);	
       }
+      
 
-    
-
-
+ 
       for($j=1;$j<=$colum;$j++){
         mysqli_stmt_fetch($consultar_data);
-        echo "['".$time."',";
-
-        for($g=1;$g<=$count_sensores;$g++){
-          mysqli_stmt_fetch($query_31);
-
-            if($g == $count_sensores){
-              echo $datos;
+         echo "['".$time."',";
+       
+         for($g=1;$g<$count_sensores;$g++){
+          
+            mysqli_stmt_fetch($query_31);
+            
+           if($g == $count_sensores){
+              echo  number_format($datos,2);
             }else{
-              echo $datos.",";
+              echo  number_format($datos,2).",";
             }	
+        
         }
         if($j == $colum){
           echo "]";
@@ -165,8 +176,8 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       var options = {
     curveType: 'function',
     legend: { position: 'bottom' },
-    hAxis : { textStyle : { fontSize: 15} }, 
-    vAxis : { textStyle : { fontSize: 20},
+    hAxis : { textStyle : { fontSize: 7} }, 
+    vAxis : { textStyle : { fontSize: 7},
     viewWindow: {
         min: lim_min,
         max: lim_max

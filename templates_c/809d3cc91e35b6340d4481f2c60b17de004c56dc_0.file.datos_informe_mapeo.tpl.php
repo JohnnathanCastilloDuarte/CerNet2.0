@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-27 20:55:50
+/* Smarty version 3.1.34-dev-7, created on 2022-01-20 14:37:00
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61ca2856cc5607_34266300',
+  'unifunc' => 'content_61e9738c5aaf67_94114402',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '809d3cc91e35b6340d4481f2c60b17de004c56dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl',
-      1 => 1640110094,
+      1 => 1642689416,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61ca2856cc5607_34266300 (Smarty_Internal_Template $_smarty_tpl) {
-?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+function content_61e9738c5aaf67_94114402 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
 	<li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
 			<span>Creación</span>
@@ -39,11 +40,9 @@ function content_61ca2856cc5607_34266300 (Smarty_Internal_Template $_smarty_tpl)
 		</a>
 	</li>
 </ul>
-
 <!---VARIABLES NECESARIAS-->
 <input type="hidden" id="id_asignado" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado']->value;?>
 ">
-
 
 <div class="tab-content">
     <div class="tab-pane tabs-animation fade show active" id="creacion" role="tabpanel">
@@ -79,7 +78,8 @@ function content_61ca2856cc5607_34266300 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </div>
-
+          
+           
             <div class="col-sm-7">
                 <div class="card">
                     <div class="card-header">
@@ -328,7 +328,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6" id="lista_de_bandejas">
                 <div class="card">
                     <div class="card-header">Lista de bandejas/Alturas disponibles</div>
                     <div class="card-body">
@@ -355,8 +355,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body" style="text-align:center;">
-                        <span class="text-muted">Mapeo a configurar: </span> <span class="text-primary" id="nombre_mapeo_configurar">----</span>
-                        <span class="text-muted">bandeja a configurar: </span> <span class="text-primary" id="nombre_bandeja_configurar">----</span>
+                        <span class="text-muted">Mapeo a configurar: </span> <span class="text-danger" id="nombre_mapeo_configurar">----</span>
+                        <span class="text-muted">bandeja a configurar: </span> <span class="text-danger" id="nombre_bandeja_configurar">----</span>
 
                         <input type="hidden" id="id_mapeo_configurar">
                         <input type="hidden" id="id_bandeja_configurar">
@@ -368,9 +368,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
         <hr>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
+        <div class="row" id="asignacion_sensores">
+            <div class="col-sm-12" >
+                <div class="card" >
                     <div class="card-header">
                         Asignación de sensores <input type="text" class="form-control" id="buscador_sensores" placeholder="Ingresa el nombre del sensor a buscar">
                     </div>
@@ -379,6 +379,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                             <thead>
                                 <th>Nombre sensor</th>
                                 <th>Certificado</th>
+                                <th>Fecha vencimiento</th>
                                 <th>Asignar</th>
                             </thead>
                             <tbody id="resultado_sensores">
@@ -389,18 +390,22 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                         </table>
                     </div>
                 </div>
-            </div>
+          </div>
+        </div>
 
-            <div class="col-sm-6">
+        <hr>
+      
+        <div class="row" id="mostrar_sensores">
+           <div class="col-sm-12" >
                 <div class="card-header">Sensores asignados</div>
-                <div class="card body">
+                <div class="card body" id="from_termocupla">
                     <table class="table" style="text-align:center;">
                         <thead>
                             <th>Sensor</th>
                             <th>Posición</th>
                             <th>Remover</th>
                         </thead>
-                        <tbody id="listar_sensores_asignados">
+                        <tbody id="listar_sensores_asignados_termocupla">
                         </tbody>
                     </table>
 
@@ -409,17 +414,31 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                     <button class="btn btn-danger" id="cargar_archivo_dc">Cargar archivo</button>
 
                 </div>
+              <div class="card body" id="from_sensores">
+                    <table class="table" style="text-align:center;">
+                        <thead>
+                            <th>Sensor</th>
+                            <th>Posición</th>
+                            <th>Cantidad registros</th>
+                            <th>Opciones</th>
+                            
+                        </thead>
+                        <tbody id="listar_sensores_asignados_sensores">
+                        </tbody>
+                    </table>
+
+                    <hr>
+               </div>
             </div>
         </div>
+      
+      <hr>
 
-        <hr>
-
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <div class="card">
+        <div class="row" id="mostrar_dato_crudo">
+            <div class="col-sm-12" id="datos_crudos_card">
+                <div class="card" id="datos_crudos_termocupla">
                     <div class="card-header">
-                        Datos crudos <span class="text-muted" style="margin-left: 100px;">Estado Datos crudos</span>
+                        <span>Datos crudos </span><span class="text-danger">X</span>
                     </div>
                     <div class="card-body" style="text-align: center;">
                         <form id="formulario_sensores_generales" enctype="multipart/form-data" method="post">
@@ -445,17 +464,48 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
                     </div>
                 </div>
+                <div class="row justify-content-center align-item-center ">
+                    <div class="card col-sm-6 shadow-lg p-3 mb-5 bg-white rounded"  id="datos_crudos_sensores" style="position: absolute;top: -700px;" >
+                        <div class="card-header ">
+                             <div class="col-sm-11"> Subir datos crudos </div>
+
+                            <div style=""><span class="btn btn-danger float-right" id="cerrar_dato">X</span></div>
+                        </div>
+                        <div class="card-body">
+                          <form id="form_cargar_archivos" enctype="multipart/form-data" method="post">
+                            <div class="row" id="configurar_sensor_aqui">
+
+                            </div>
+                            <br>  
+                            <div class="row" style="text-align: center;">
+                              <div class="col-sm-12">
+                                <button class="btn btn-primary">
+                                  Enviar
+                                </button>
+                              </div>
+                            </div>
+                          </form>  
+                        </div>
+                    </div>
+                </div>
+          
             </div>
         </div>
+  <hr>
     </div> <!--Cierre de content de asignación--->
 
     <div class="tab-pane tabs-animation fade show" id="informes_1_general" role="tabpanel">
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-2" style="text-align:center;">
-                <input type="text"  id="correlativo" class="form-control" placeholder="Ingresar correlativo">
-                <br>
-                <button class="btn btn-success" id="asignar_correlativo">Asignar</button>
+                <div class="form-row col-sm-12">
+                    <div class="col-sm-9">
+                        <input type="text"  id="correlativo" class="form-control" placeholder="Ingresar correlativo">
+                    </div>
+                    <div class="col-sm-3">
+                       <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
         <hr>
@@ -501,6 +551,9 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
             </div>
 
         </div>
+      
+
+
         <br>
         <div class="row">
             <div class="col-sm-12">

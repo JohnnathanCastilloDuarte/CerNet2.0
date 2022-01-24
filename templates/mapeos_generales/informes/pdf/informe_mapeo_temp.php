@@ -6,7 +6,7 @@
         $posicion_sensores_indicativo = 1;
 
 		$a = "PRUEBA DE DISTRIBUCIÓN TERMICA";
-		
+
 		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////
 
 		// 1-CONSULTAR LA INFORMACIÓN LA CUAL SE IMPRIMIRA EN LAS CABECERAS Y EL NOMBRE DEL INFORME
@@ -17,6 +17,7 @@
 		mysqli_stmt_store_result($query_1);
 		mysqli_stmt_bind_result($query_1, $dato_1, $id_asignado, $id_mapeo, $observacion, $comentarios, $concepto);
 		mysqli_stmt_fetch($query_1);
+   
 		$nombre_informe = $dato_1;
 
 
@@ -809,16 +810,19 @@ $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, t
 $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
 
 
+/*
+ SUM(CASE WHEN CAST(b.temp AS DECIMAL(6,2))>$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_over, 
+                                    SUM(CASE WHEN CAST(b.temp AS DECIMAL(6,2))<$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_low,
+*/
+$contador_for_table = 1;
 $query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.temp AS DECIMAL(6,2))) as Minimo, 
                                     MAX(CAST(b.temp AS DECIMAL(6,2))) as Maximo,AVG(CAST(b.temp AS DECIMAL(6,2))) as Promedio, STD(CAST(b.temp AS DECIMAL(6,2))) as Desv_Estandar, 
-                                    SUM(CASE WHEN CAST(b.temp AS DECIMAL(6,2))>$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_over, 
-                                    SUM(CASE WHEN CAST(b.temp AS DECIMAL(6,2))<$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_low,
                                     AVG(EXP(-83.144/(0.0083144*(CAST(b.temp AS DECIMAL(6,2))+273.15)))) as valor FROM sensores as a,
                                     datos_crudos_general as b, mapeo_general_sensor as c WHERE a.id_sensor = c.id_sensor AND c.id_sensor_mapeo = b.id_sensor_mapeo AND c.id_mapeo = ? GROUP BY a.nombre");
 mysqli_stmt_bind_param($query_33, 'i', $id_mapeo);
 mysqli_stmt_execute($query_33);
 mysqli_stmt_store_result($query_33);
-mysqli_stmt_bind_result($query_33, $nombre_sensor_t_2, $minimo_t, $maximo_t, $promedio_t, $desviacion_t, $tiempo_over_t, $tiempo_low_t, $valor);
+mysqli_stmt_bind_result($query_33, $nombre_sensor_t_2, $minimo_t, $maximo_t, $promedio_t, $desviacion_t,$valor);
 
 while($row = mysqli_stmt_fetch($query_33)){
 
@@ -847,25 +851,54 @@ $info_percent_low="100.00";
 }	
 $mkt=number_format(-1*(83.144/0.0083144)/(log($valor_mkt))-273.15,2);	
   
-$pdf->writeHTMLCell(25, 10, 15, '', $nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
+if($contador_for_table == 35){
+  $pdf->AddPage('A4');
+  
+  $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 40, '', $info_min, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 55, '', $info_max, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(20, 10, 70, '', $info_prom, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(20, 10, 90, '', $info_desv, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 10, 110, '', $mkt, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 110, '', 'MKT (°C)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(25, 10, 125, '', $info_over, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(10, 10, 150, '',  $info_percent_over, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(10, 10, 150, '', '%', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(25, 10, 160, '', $info_low, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(10, 10, 185, '', $info_percent_low, 1, 1, 0, true, 'C', true);    
+  $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
+}  
+  
+  
+$pdf->writeHTMLCell(25, 6, 15, '', $nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(15, 6, 40, '', $info_min, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(15, 6, 55, '', $info_max, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(20, 6, 70, '', $info_prom, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(20, 6, 90, '', $info_desv, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(15, 6, 110, '', $mkt, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(25, 6, 125, '', $info_over, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(10, 6, 150, '',  $info_percent_over, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(25, 6, 160, '', $info_low, 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(10, 6, 185, '', $info_percent_low, 1, 1, 0, true, 'C', true); 
+  
+  
+  
+  $contador_for_table++;
 }
 
 

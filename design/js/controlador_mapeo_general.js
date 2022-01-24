@@ -10,10 +10,25 @@ $("#edicion_informe").hide();
 $("#asignacion_sensores").hide();
 $("#lista_de_bandejas").hide();
 $("#datos_crudos_card").hide();
+$("#mostrar_dato_crudo").hide();
 
 ///////////// VARIABLES GLOBALES
 var id_asignado = $("#id_asignado").val();
 var id_usuario  = $("#id_valida").val();
+var id_type = $("#id_type").val();
+
+
+if(id_type==12){
+  $("#from_termocupla").hide();
+  $("#from_sensores").show();
+  $("#datos_crudos_termocupla").hide();
+  $("#datos_crudos_sensores").show();
+}else{
+   $("#from_termocupla").show();
+  $("#from_sensores").hide();
+  $("#datos_crudos_sensores").hide();
+  $("#datos_crudos_termocupla").show();
+}
 
 
 /////// FUNCIONES
@@ -538,6 +553,7 @@ $("#buscador_sensores").keyup(function(){
 
     let buscar = $(this).val();
     let movimiento = "buscar";
+   let id_mapeo = $("#id_mapeo_configurar").val();
 
     if(buscar.length != 0){
         $("#titulo_predeterminado_sensor").hide();
@@ -547,9 +563,10 @@ $("#buscador_sensores").keyup(function(){
 
     $.ajax({
         type:'POST',
-        data:{buscar,movimiento},
+        data:{buscar,movimiento,id_mapeo},
         url:'templates/mapeos_generales/controlador_sensor.php',
         success:function(response){
+            console.log(response)
             let traer = JSON.parse(response);
             let template = "";
 
@@ -560,6 +577,7 @@ $("#buscador_sensores").keyup(function(){
                         <tr>
                             <td>${valor.nombre}</td>
                             <td>${valor.certificado}</td>
+                            <td>${valor.fecha_vencimiento}</td>
                             <td><button class="btn btn-primary" id="agregar_sensor" data-id="${valor.id_sensor}">Agregar</button></td>
                         </tr>
                 
@@ -642,7 +660,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
         data:datos,
         url:'templates/mapeos_generales/controlador_sensor.php',
         success:function(response){
-          
+            console.log(response);
             let traer = JSON.parse(response);
             let template = "";
             let template2 = "";
@@ -650,6 +668,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
             let hum = "";
             let val_temp = "";
             let val_hum = "";
+            let template3 = "";
 
             traer.forEach((valor)=>{
 
@@ -697,6 +716,44 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                                 <option value="20">20</option>
                             </select></td>
                         <td><button class="btn btn-danger" id="remover_sensor" data-id="${valor.id_sensor_mapeo}">X</button></td>    
+                    </tr>
+                    
+                `;
+              
+              template3 += 
+                `
+                    <tr>
+                        <td>${valor.nombre}</td>
+                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion">
+                                <option value="${valor.posicion}">${valor.posicion}</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select></td>     
+                       
+                        <td>Registros: ${valor.registros}</td> 
+                        <td>
+                             <button class="btn btn-danger" id="remover_sensor" data-id="${valor.id_sensor_mapeo}">X</button>    
+                             <button class="btn btn-primary" id="configurar_sensor" data-id="${valor.id_sensor_mapeo}" data-name="${valor.nombre}" data-position ="${valor.posicion}">Asignar</button>
+                        </td>
+                        
                     </tr>
                     
                 `;
@@ -759,12 +816,12 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
 
             });
 
-            $("#listar_sensores_asignados").html(template);
+            $("#listar_sensores_asignados_termocupla").html(template);
+            $("#listar_sensores_asignados_sensores").html(template3);
             $("#sensores_asignado_dc").html(template2);
         }
     }); 
     
-
 }
 
 
@@ -1042,12 +1099,6 @@ $("#eliminar_datos_crudos").click(function(){
                 });    
             });
 });
-
-
-
-
-
-
 
 //////////////////////////////////////////////////////////////// EVENTOS PARA LOS INFORMES  
 traer_correlativo();
@@ -1438,7 +1489,6 @@ function listar_info_temp(id_informe){
     })
 }
 
-
 ///////// VER GRAFICOS DE CERNET 
 $(document).on('click','#ver_grafico_todos_promedio',function(){
     let id_mapeo = $("#id_mapeo_informe").val();
@@ -1501,7 +1551,6 @@ $(document).on('click','#ver_informe',function(){
 
 });
 
-
 /////////// ELIMINAR IMAGEN
 
 $(document).on('click','#eliminar_imagen',function(){
@@ -1519,6 +1568,81 @@ $(document).on('click','#eliminar_imagen',function(){
         })
 });
 
+
+$(document).on('click','#configurar_sensor',function(){
+    
+  let id_sensor_mapeo = $(this).attr('data-id');
+  let template = "";
+  let sensor = $(this).attr('data-name');
+  
+  $("#mostrar_dato_crudo").show();
+  
+  template +=
+  `
+  <div class="col-sm-6">
+     <b>Sensor : ${sensor}</b>
+     <input type="hidden" name="id_mapeo_sensor" value="${id_sensor_mapeo}">
+  </div>
+  <div class="col-sm-6">
+     archivo : <input type="file" name="archivo_sensor" class="form-control">
+  </div>
+  `;
+  $("#configurar_sensor_aqui").html(template);  
+});
+
+/////ocultar template
+
+$("#cerrar_dato").click(function(){
+   $("#mostrar_dato_crudo").hide();
+});
+
+
+//////////////////////////envio_ejemplo
+$(document).on('click','#envio_ejemplo',function(){
+    
+  let id_sensor_mapeo = $(this).attr('data-id');
+  let template = "";
+  let sensor = $(this).attr('data-name');
+  
+   $("#boton").click();
+  //$("#mostrar_sensores").hide();
+  //$("#mostrar_dato_crudo").show();
+  
+  template +=
+  `
+     1
+  `;
+  $("#dropdown").html(template);  
+});
+
+
+$("#form_cargar_archivos").submit(function(e){
+    e.preventDefault();
+    let id_mapeo_actual = $("#id_mapeo_configurar").val();
+    let id_bandeja_actual = $("#id_bandeja_configurar").val();
+  
+  $.ajax({
+        url: 'templates/mapeos_generales/cargar_data_cruda_sensor.php',
+        type: 'POST',
+        dataType: 'html',
+        data: new FormData(this),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success:function(response){
+           console.log(response);
+          listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
+          Swal.fire({
+            title:'Mensaje',
+            icon:'success',
+            text:'Se ha configurado correctamente el sensor',
+            timer:1700
+          });
+          $("#datos_crudos_sensores").hide();
+        }
+    });
+    
+});
 
 
 

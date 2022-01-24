@@ -654,6 +654,7 @@ $("#formulario_flujo_laminar").submit(function(e){
       processData: false,
       success:function(response) {
         console.log(response);
+        
       } 
     });  
     

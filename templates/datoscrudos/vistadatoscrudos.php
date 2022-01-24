@@ -43,7 +43,8 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 							<select name="" id="tipo_archivo_dc" class="form-control">
 								<option value="0">Seleccione</option>
 								<!--<option value="1">Sensor</option>-->
-								<option value="2">Termocupla</option>			
+								<option value="2">Recolección</option>		
+                <option value="3">Individual</option>		
 							</select>
 						</div>	
 					</div>
@@ -115,7 +116,14 @@ echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
 
 			<div class="card" id="tipo_sensor">
 				<div class="card-header">Tipo sensor</div>
-				<div class="card-body"></div>
+				<div class="card-body" id="listar_sensores_masivo">
+            <table>
+                <thead>
+                      <th>Sensor</th>
+                      <th>Archivo</th>
+              </thead>
+            </table>
+        </div>
 			</div>
 		</div>
 	</div>
