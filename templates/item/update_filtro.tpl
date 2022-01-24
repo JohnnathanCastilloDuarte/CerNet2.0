@@ -17,33 +17,8 @@
 <br>
 
 <div class="card">
-  <div class="card-body">
-    <div id="smartwizard2" class="forms-wizard-alt">
-        <ul class="forms-wizard">
-            <li>
-                <a href="#step-12">
-                    <em>1</em><span>Identificación</span>
-                </a>
-            </li>
-          <!--
-            <li>
-                <a href="#step-22">
-                    <em>2</em><span>Infraestructura</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-32">
-                    <em>3</em><span>Equipos</span>
-                </a>
-            </li>
-          <li id="si_envia">
-                <a href="#step-42">
-                    <em>4</em><span>Evidencia</span>
-                </a>
-            </li>-->
+  <div class="card-body">      
 
-      </ul>
-      <div class="form-wizard-content">
        {foreach from=$array_filtro item=filtro}
         <input type="hidden" id="id_filtro" value = "{$filtro.id_filtro}">
         <div id="step-12">
@@ -141,24 +116,29 @@
               <label>Dimensiones: </label>
               <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo_filtro}" required="" placeholder="Dimensiones del filtro">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
               <label>Limite de penetración: </label>
-              <input type="text" class="form-control" id="penetracion_filtro" value="0,001" placeholder=" limite de penetración">
+              <input type="text" class="form-control" id="penetracion_filtro" {if $filtro.penetracion_filtro == "" } value="0,001" {else} value="{$filtro.penetracion_filtro}" {/if} placeholder=" limite de penetración">
             </div>
+            <div class="col-sm-3">
+              <label>Eficiencia: </label>
+              <input type="text" class="form-control" id="eficiencia" {if $filtro.eficiencia == ""} value="99,99 % (0,3um)" {else} value="{$filtro.eficiencia}" {/if} placeholder="Eficiencia">
+            </div>
+
           </div>
           {/foreach}
+          </div>
           <br>
           
-          <div class="form-row">
+          <div class="form-row"> 
             <div class="col-sm-12" style="text-align:center;" id="tipo_botton_filtros">
               <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_filtro">Actualizar</button>
               <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_filtro">Crear</button>
             </div>
           </div>
           
-        </div><!--CIERRE DE LA PRIMERA TARJETA--> 
         
-      </div><!--CIERRE DEL CONTENIDO DEL WIZARD-->  
+
         
     </div><!--TITULOS DEL WIZARD-->
   </div><!--CIERRE DEL CARDBODY--> 

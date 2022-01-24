@@ -50,6 +50,7 @@ $("#btn_crear_item_filtro").click(function(){
   let tipo_filtro = $("#tipo_filtro").val();
   let penetracion_filtro = $("#penetracion_filtro").val();
   let id_tipo_filtro = $("#id_tipo_filtro").val();
+  let eficiencia = $("#eficiencia").val();
   
   const datos = {
     nombre_filtro,
@@ -63,6 +64,7 @@ $("#btn_crear_item_filtro").click(function(){
     lugar_filtro,
     tipo_filtro,
     penetracion_filtro,
+    eficiencia,
     id_tipo_filtro,
     id_valida_filtro
   }
@@ -114,6 +116,7 @@ $("#btn_editar_item_filtro").click(function(){
   let tipo_filtro = $("#tipo_filtro").val();
   let penetracion_filtro = $("#penetracion_filtro").val();
   let id_tipo_filtro = $("#id_tipo_filtro").val();
+  let eficiencia = $("#eficiencia").val();
 
   const datos = {
     nombre_filtro,
@@ -130,6 +133,7 @@ $("#btn_editar_item_filtro").click(function(){
     id_tipo_filtro,
     id_valida_filtro,
     id_item_filtro,
+    eficiencia,
     id_filtro
   }
   
@@ -139,6 +143,7 @@ $("#btn_editar_item_filtro").click(function(){
     url:'templates/item/editar_filtro.php',
     data:datos,
     success:function(response){
+      console.log(response);
       if(response == "Si"){   
         Swal.fire({
           title:'Mensaje',

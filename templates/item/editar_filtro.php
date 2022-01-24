@@ -18,6 +18,7 @@ $id_tipo_filtro = $_POST['id_tipo_filtro'];
 $id_usuario = $_POST['id_valida_filtro'];
 $id_item = $_POST['id_item_filtro'];
 $id_filtro = $_POST['id_filtro'];
+$eficiencia = $_POST['eficiencia'];
 
 
 $tipo  = substr($nombre_filtro, -3);
@@ -40,10 +41,11 @@ $actualiza_filtro = mysqli_prepare($connect,"UPDATE item_filtro SET
 	filtro_dimension = ?, 
 	tipo_filtro = ?, 
 	lugar_filtro = ?, 
-	limite_penetracion = ? 
+	limite_penetracion = ? ,
+	eficiencia = ?
 	WHERE id_filtro = ?");
 
-mysqli_stmt_bind_param($actualiza_filtro, 'sssisssssii', 
+mysqli_stmt_bind_param($actualiza_filtro, 'sssisssssssi', 
 	$marca_filtro, 
 	$modelo_filtro, 
 	$serie_filtro, 
@@ -54,7 +56,9 @@ mysqli_stmt_bind_param($actualiza_filtro, 'sssisssssii',
 	$tipo, 
 	$lugar_filtro, 
 	$penetracion_filtro,
-	$id_filtro);
+	$eficiencia,
+	$id_filtro
+	);
 
 
 mysqli_stmt_execute($actualiza_filtro);
@@ -63,6 +67,7 @@ if($actualiza_filtro){
 	echo "Si";
 }else{
 	echo "No";
+
 }
 
 mysqli_stmt_close($connect);
