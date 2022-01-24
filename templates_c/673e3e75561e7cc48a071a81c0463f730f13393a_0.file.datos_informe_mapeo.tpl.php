@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-04 15:11:32
+/* Smarty version 3.1.34-dev-7, created on 2022-01-19 15:26:10
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d455949ba707_30328209',
+  'unifunc' => 'content_61e81f82c61b30_41204970',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1641300739,
+      1 => 1642602292,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d455949ba707_30328209 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e81f82c61b30_41204970 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -317,7 +317,7 @@ function content_61d455949ba707_30328209 (Smarty_Internal_Template $_smarty_tpl)
                       <label>Concentración de partículas en aerosol (mg/litro):</label>
                     </div>
                     <div class="col-sm-6" style="text-align:center;">
-                      <div class="col-sm-6">
+                      <div class="col-sm-12 ">
                         <input type="number" value="22.9" class="form-control" id="concentracion_particulas_filtro" name="concentracion_particulas_filtro">
                       </div>
                     </div>

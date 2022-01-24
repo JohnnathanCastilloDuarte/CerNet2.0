@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-17 17:26:12
+/* Smarty version 3.1.34-dev-7, created on 2022-01-21 17:46:35
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e598a42cf4a6_83106760',
+  'unifunc' => 'content_61eae36baf2e79_47867196',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c798156d5910274ad976197bf01b6d0c0875244d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_filtro.tpl',
-      1 => 1642436771,
+      1 => 1642783594,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e598a42cf4a6_83106760 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61eae36baf2e79_47867196 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -42,10 +42,8 @@ function content_61e598a42cf4a6_83106760 (Smarty_Internal_Template $_smarty_tpl)
 <br>
 
 <div class="card">
-  <div class="card-body">
- 
-        
-      <div class="form-wizard-content">
+  <div class="card-body">      
+
        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_filtro']->value, 'filtro');
 if ($_from !== null) {
@@ -60,16 +58,16 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
                 <label>Nombre: </label>
                 <select class="form-control" id="nombre_filtro">
                   <?php if ($_smarty_tpl->tpl_vars['filtro']->value['nombre_item'] == '') {?>
-                   <option value="Seleccione...">Seleccione...</option>
-                   <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option>
-                   <?php } else { ?>
+                   <option value="0" selected>Seleccione...</option>
+                   <option value="Filtro Absoluto HEPA H13 ">Filtro Absoluto HEPA H13</option>
+                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                  <?php } else { ?>
                    <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
 " selected=""><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
 </option>
-                   <option value="Filtro Absoluto HEPA-OQ ">Filtro Absoluto HEPA-OQ </option>
+                   <option value="Filtro Absoluto HEPA H13">Filtro Absoluto HEPA H13</option>
                    <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
-                   <?php }?>
+                  <?php }?>
                 </select>
               </div>
             </div>
@@ -161,30 +159,36 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
               <input type="text" class="form-control" id="tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['tipo_filtro'];?>
 " required="" placeholder="Dimensiones del filtro">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
               <label>Limite de penetración: </label>
-              <input type="text" class="form-control" id="penetracion_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['penetracion_filtro'];?>
-" required="" placeholder=" limite de penetración">
+              <input type="text" class="form-control" id="penetracion_filtro" <?php if ($_smarty_tpl->tpl_vars['filtro']->value['penetracion_filtro'] == '') {?> value="0,001" <?php } else { ?> value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['penetracion_filtro'];?>
+" <?php }?> placeholder=" limite de penetración">
             </div>
+            <div class="col-sm-3">
+              <label>Eficiencia: </label>
+              <input type="text" class="form-control" id="eficiencia" <?php if ($_smarty_tpl->tpl_vars['filtro']->value['eficiencia'] == '') {?> value="99,99 % (0,3um)" <?php } else { ?> value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['eficiencia'];?>
+" <?php }?> placeholder="Eficiencia">
+            </div>
+
           </div>
           <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+          </div>
           <br>
           
-          <div class="form-row">
+          <div class="form-row"> 
             <div class="col-sm-12" style="text-align:center;" id="tipo_botton_filtros">
               <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_filtro">Actualizar</button>
               <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_filtro">Crear</button>
             </div>
           </div>
           
-        </div><!--CIERRE DE LA PRIMERA TARJETA--> 
         
-      </div><!--CIERRE DEL CONTENIDO DEL WIZARD-->  
+
         
-    <!--TITULOS DEL WIZARD-->
+    </div><!--TITULOS DEL WIZARD-->
   </div><!--CIERRE DEL CARDBODY--> 
  </div><!--CIERRE DEL CARD--> 
 <?php echo '<script'; ?>
