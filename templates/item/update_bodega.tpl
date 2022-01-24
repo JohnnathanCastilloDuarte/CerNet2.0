@@ -152,19 +152,118 @@
                 </div>
               </div>
 
+
+
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Marca:</label>
+                    <input type="text" id="marca_bodega" class="form-control" placeholder="Marca bodega" value="{$bodega.marca}">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Modelo:</label>
+                  <input type="text" id="modelo_bodega" class="form-control" placeholder="Modelo bodega" value="{$bodega.modelo}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Orientación principal:</label>
+                  <input type="text" id="orientacion_principal" class="form-control" placeholder="Orientación principal" value="{$bodega.orientacion_principal}">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Orientación recepción:</label>
+                    <input type="text" id="orientacion_recepcion" class="form-control" placeholder="Orientación recepción" value="{$bodega.orientacion_recepcion}">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Orientación despacho:</label>
+                  <input type="text" id="orientacion_despacho" class="form-control" placeholder="Orientación despacho" value="{$bodega.orientacion_despacho}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Número puertas:</label>
+                  <input type="text" id="num_puertas" class="form-control" placeholder="Numero puertas" value="{$bodega.num_puertas}">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Salida emergencia:</label>
+                    <input type="text" id="salida_emergencia" class="form-control" placeholder="Salida emergencia" value="{$bodega.salida_emergencia}">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Cantidad rack:</label>
+                  <input type="text" id="cantidad_rack" class="form-control" placeholder="Cantidad rack" value="{$bodega.cantidad_rack}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Número estantes:</label>
+                  <input type="text" id="num_estantes" class="form-control" placeholder="Número estantes" value="{$bodega.num_estantes}">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Altura maxima rack:</label>
+                    <input type="text" id="altura_max_rack" class="form-control" placeholder="Altura maxima rack" value="{$bodega.altura_max_rack}">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Sistema extraccion:</label>
+                  <input type="text" id="sistema_extraccion" class="form-control" placeholder="Sistema extracción" value="{$bodega.sistema_extraccion}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Cielo pasa lus:</label>
+                  <input type="text" id="cielo_lus" class="form-control" placeholder="Clielo pasa lus" value="{$bodega.cielo_lus}">
+                </div>
+              </div>
+
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Temperatura maxima:</label>
+                    <input type="text" id="temp_max" class="form-control" placeholder="Temperatura maxima" value="{$bodega.temp_max}">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Temperatura minima:</label>
+                  <input type="text" id="temp_min" class="form-control" placeholder="Temperatura minima" value="{$bodega.temp_min}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Altura de la bodega:</label>
+                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="{$bodega.altura}">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Cantidad iluminarias:</label>
+                    <input type="text" id="cantidad_iluminarias" class="form-control" placeholder="Cantidad iluminarias" value="{$bodega.cantidad_iluminarias}">
+                  </div>
+                </div>
+                <div class="col-sm-4">
                   <div class="position-relative form-group">
                     <label>Volumen de la bodega:</label>
                     <input type="text" id="volume_bodega" class="form-control" placeholder="Volumen bodega" value="{$bodega.volumen}">
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <label>Altura de la bodega:</label>
-                  <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="{$bodega.altura}">
+                <div class="col-sm-4">
+                  <label>Humedad relativa maxima:</label>
+                 <input type="text" id="hr_max" class="form-control" placeholder="Humedad Maxima" value="{$bodega.hr_max}">
                 </div>
               </div>
-
+               <div class="form-row">
+                  <div class="col-sm-4">
+                    <label>Humedad relativa minima:</label>
+                    <input type="text" id="hr_min" class="form-control" placeholder="Humedad Minima" value="{$bodega.hr_min}">
+                  </div>
+               </div> 
               {section name=f loop=$explode_muro} {if $explode_muro[f] eq "Muro de hormigón"} {$hormigon = "checked"} {elseif $explode_muro[f] eq "Muro de isopol"} {$isopol = "checked"} {elseif $explode_muro[f] eq "Muro de ladrillo"} {$ladrillo = "checked"} {elseif
               $explode_muro[f] eq "Muro de madera"} {$madera = "checked"} {elseif $explode_muro[f] eq "otro muro"} {$otro_muro = "checked"} {elseif $explode_muro[f] eq "- "} {$otro_muro_e = $explode_muro[i] } {/if} {/section}
 
