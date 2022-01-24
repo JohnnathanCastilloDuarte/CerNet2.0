@@ -22,11 +22,12 @@ mysqli_stmt_fetch($consulta_informacion_informe);
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, /*e.solicita,*/ d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6 FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, /*$solicita,*/ $direccion, $insp1, $insp2, $insp3, $insp3, $insp4, $insp5, $insp6);
 mysqli_stmt_fetch($consulta_empresa);
 
 $pdf->AddPage('A4');
@@ -171,12 +172,14 @@ $linea = <<<EOD
    border: 1px solid #BBBBBB;
    padding: 3px;
    vertical-align: middle;
+   text-align:center;
    }
 
    tr:nth-child(even) 
    {
       background-color: #f2f2f2;
    }
+
 </style>
 
 <table >
@@ -198,19 +201,18 @@ $linea = <<<EOD
             </tr>
             <tr>
                <td bgcolor="#DDDDDD"><h5>Prueba de Integridad de Filtro N°1</h5></td>
-               <td>$area_sala</td>
-               <td>$codigo_sala</td>
-               <td>$area_m2</td>
+               <td> < = 0,001 %</td>
+               <td> < 0.001 %</td>
+               <td>CUMPLE</td>
             </tr>
          </table>
       </tr> 
    </table>
 
 
-
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
+
 
 $linea = <<<EOD
 
@@ -231,8 +233,8 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(165, 5, 15, '', 'Los resultados obtenidos en el presente informe, se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al
-momento de la inspección' ,0,1, 0, true, 'J', true);
+$pdf->writeHTMLCell(165, 5, 15, '', 'De acuerdo a los resultados obtenidos a las muestras inspeccionadas, los filtros HEPA indicados en la ubicación del encabezado,
+CUMPLE con los parámetros establecidos en la normativa vigente.' ,0,1, 0, true, 'J', true);
 
 $linea = <<<EOD
 
@@ -250,8 +252,8 @@ $linea = <<<EOD
         <td class="linea" align="center"><b>Fecha de Medición</b></td>
    </tr>
    <tr>
-        <td>De acuerdo con la UNE-EN ISO 14644-1 Anexo B, el intervalo de tiempo máximo entre verificaciones es de 12 meses.</td>
-        <td align="center">fecha</td>
+        <td style="text-align:center;">La vigencia de Certificación es de 12 meses.</td>
+        <td align="center">$fecha_registro</td>
    </tr>    
 </table>
 
@@ -300,7 +302,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>MEDICIÓN DE PARTÍCULAS EN SUSPENSIÓN</b></td>
+        <td class="linea" align="center"><h2><b>MEDICIÓN DE INSPECCION INTEGRIDAD DE FILTRO</b></h2></td>
    </tr>
 </table>
 
@@ -308,18 +310,17 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
+   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(13, 5, 105, '', $numot ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
 
-$metodo_1 = mysqli_prepare($connect,"SELECT metodo_ensayo, puntos_x_medicion, muestra_x_punto, volumen_muestra, altura_muestra FROM salas_limpias_metodo_1 WHERE id_asignado = ?");
-mysqli_stmt_bind_param($metodo_1, 'i', $id_asignado);
-mysqli_stmt_execute($metodo_1);
-mysqli_stmt_store_result($metodo_1);
-mysqli_stmt_bind_result($metodo_1, $metodo_ensayo, $puntos_x_medicion, $muestra_x_punto, $volumen_muestra, $altura_muestra);
-mysqli_stmt_fetch($metodo_1);
+   $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
-
-$prueba = <<<EOD
-   <style>
-   table 
+   $info_equipo = <<<EOD
+   <style> 
    {
    border-collapse: collapse;
    width: 90%;
@@ -339,36 +340,103 @@ $prueba = <<<EOD
    border: 1px solid #BBBBBB;
    padding: 3px;
    vertical-align: middle;
+   text-align: center;
    }
 
    tr:nth-child(even) 
    {
       background-color: #f2f2f2;
    }
+
    </style>
    <table>
       <tr>
          <table>
             <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Método de Ensayo</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>N° Puntos por Medición</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>N° Muestras por Punto</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Volumen por Muestras (L)</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Altura toma de Muestras (m)</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Descripción</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Modelo</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Serie</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Lugar</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Ubicado en</strong></h5></td>
             </tr>
             <tr>
-               <td>$metodo_ensayo</td>
-               <td>$puntos_x_medicion</td>
-               <td>$muestra_x_punto</td>
-               <td>$volumen_muestra</td>
-               <td>$altura_muestra</td>
+               <td>$descripcion</td>
+               <td>$marca</td>
+               <td>$modelo</td>
+               <td>$n_serie</td>
+               <td>$ubicacion</td>
+               <td>$ubicado_en</td>
+            </tr>
+         </table>
+      </tr>
+      <br>
+      <tr>
+         <table>
+            <tr>
+               <td bgcolor="#DDDDDD"><h5><strong>Tipo de Filtro y Dimensiones</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>
+            </tr>
+            <tr>
+               <td>$tipo_filtro</td>
+               <td>$cantidad_filtro</td>
+               <td>$limite_penetracion</td>
+               <td>$eficiencia</td>
             </tr>
          </table>
       </tr>
    </table>
+   
 EOD;  
-$pdf->writeHTML($prueba, true, false, false, false, '');
+$pdf->writeHTML($info_equipo, true, false, false, false, '');
 
+$linea = <<<EOD
+
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: #1a53ff;
+}
+</style>
+<br><br>
+<table>
+   <tr border="1">
+        <td class="linea" align="center"><h2><b>INSPECCIÓN VISUAL</b></h2></td>
+   </tr>
+</table>
+
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+   $pdf->writeHTMLCell(70, 5, 15, '', 'Equipo en buenas condiciones de operación:',1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(10, 5, 85, '', $insp1 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(70, 5, 115, '','Filtro presenta reparaciones:' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(10, 5, 185, '', $insp2,1,1, 0, true, 'J', true);
+
+   $pdf->writeHTMLCell(70, 5, 15, '', 'Filtro presenta rotura:',1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(10, 5, 85, '', $insp3 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(70, 5, 115, '','Filtro presenta rotura en sellos perimetrales:' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(10, 5, 185, '', $insp4,1,1, 0, true, 'J', true);
+
+   $pdf->writeHTMLCell(70, 5, 15, '', 'Filtros instalados correctamente:',1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(10, 5, 85, '', $insp5,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(70, 5, 115, '','Presenta colmatación:' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(10, 5, 185, '', $insp6,1,1, 0, true, 'J', true);
+
+
+
+$metodo_1 = mysqli_prepare($connect,"SELECT metodo_ensayo, puntos_x_medicion, muestra_x_punto, volumen_muestra, altura_muestra FROM salas_limpias_metodo_1 WHERE id_asignado = ?");
+mysqli_stmt_bind_param($metodo_1, 'i', $id_asignado);
+mysqli_stmt_execute($metodo_1);
+mysqli_stmt_store_result($metodo_1);
+mysqli_stmt_bind_result($metodo_1, $metodo_ensayo, $puntos_x_medicion, $muestra_x_punto, $volumen_muestra, $altura_muestra);
+mysqli_stmt_fetch($metodo_1);
 
 
 

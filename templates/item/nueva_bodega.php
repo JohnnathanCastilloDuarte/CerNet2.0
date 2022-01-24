@@ -25,6 +25,23 @@ $planos = $_POST['planos'];
 $analisis_riesgo = $_POST['analisis_riesgo'];
 $fichas_estabilidad = $_POST['fichas_estabilidad'];
 
+$marca_bodega = $_POST['marca_bodega'];
+$modelo_bodega = $_POST['modelo_bodega'];
+$orientacion_principal = $_POST['orientacion_principal'];
+$orientacion_recepcion = $_POST['orientacion_recepcion'];
+$orientacion_despacho = $_POST['orientacion_despacho'];
+$num_puertas = $_POST['num_puertas'];
+$salida_emergencia = $_POST['salida_emergencia'];
+$cantidad_rack = $_POST['cantidad_rack'];
+$num_estantes = $_POST['num_estantes'];
+$altura_max_rack = $_POST['altura_max_rack'];
+$sistema_extraccion = $_POST['sistema_extraccion'];
+$cielo_lus = $_POST['cielo_lus'];
+$temp_max = $_POST['temp_max'];
+$temp_min = $_POST['temp_min'];
+$cantidad_iluminarias = $_POST['cantidad_iluminarias'];
+$hr_max = $_POST['hr_max'];
+$hr_min = $_POST['hr_min'];
 $id_bodega = NULL;
 $fecha_registro = NULL;
 $estado = 1;
@@ -41,9 +58,9 @@ $estado = 1;
 	$recupera = mysqli_stmt_insert_id($crear);
 
 ///inseta los demas datos en la tabla de item_bodega para 
-	$insertar = mysqli_prepare($connect, "INSERT INTO item_bodega VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	$insertar = mysqli_prepare($connect, "INSERT INTO item_bodega VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-		mysqli_stmt_bind_param($insertar, 'iisssiiiiissssssssis', 
+		mysqli_stmt_bind_param($insertar, 'iisssiiiiissssssssissssssssssssssssss', 
 			$id_bodega, 
 			$recupera, 
 			$direccion_bodega, 
@@ -63,6 +80,25 @@ $estado = 1;
 			$analisis_riesgo,
 			$fichas_estabilidad,
 			$id_usuario,
+
+			$marca_bodega,
+			$modelo_bodega,
+			$orientacion_principal,
+			$orientacion_recepcion,
+			$orientacion_despacho,
+			$num_puertas,
+			$salida_emergencia,
+			$cantidad_rack,
+			$num_estantes,
+			$altura_max_rack,
+			$sistema_extraccion,
+			$cielo_lus,
+			$temp_max,
+			$temp_min,
+			$cantidad_iluminarias,
+			$hr_max,
+			$hr_min,
+
 			$fecha_registro);
 		mysqli_stmt_execute($insertar);
 		mysqli_stmt_error($insertar);	
