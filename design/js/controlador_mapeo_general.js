@@ -566,7 +566,7 @@ $("#buscador_sensores").keyup(function(){
         data:{buscar,movimiento,id_mapeo},
         url:'templates/mapeos_generales/controlador_sensor.php',
         success:function(response){
-            console.log(response)
+            
             let traer = JSON.parse(response);
             let template = "";
 
@@ -660,7 +660,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
         data:datos,
         url:'templates/mapeos_generales/controlador_sensor.php',
         success:function(response){
-            console.log(response);
+          
             let traer = JSON.parse(response);
             let template = "";
             let template2 = "";
@@ -1204,7 +1204,7 @@ function listar_informes_x_prueba(id_mapeo){
                             <td>${valor.tipo}</td>
                             <td>${valor.fecha_registro}</td>
                             <td>
-                                <button class="btn btn-info" id="editar_informe" data-id="${valor.id_informe}">Editar</button>
+                                <button class="btn btn-info" id="editar_informe" data-id="${valor.id_informe}" data-name="${valor.tipo}">Editar</button>
                                 <button class="btn btn-info" id="ver_informe" data-id="${valor.id_informe}">Ver</button>
                                 <button class="btn btn-danger" id="eliminar_informe" data-id="${valor.id_informe}">Eliminar</button>
                             </td>
@@ -1327,12 +1327,122 @@ $("#creacion_hum").click(function(){
     }    
 });
 
+$("#creacion_ar").click(function(){
+
+    let id_mapeo = $("#id_mapeo_informe").val();
+    let movimiento = "crear_ar";
+
+    if(id_mapeo.length == 0){
+        Swal.fire({
+            title:'Mensaje',
+            text:'Debes seleccionar una prueba',
+            icon:'info',
+            timer:1500
+        });
+    
+    }else{
+
+        const datos = {
+            id_mapeo,
+            movimiento,
+            id_asignado,
+            id_usuario
+        }
+
+        $.ajax({
+            type:'POST',
+            data:datos,
+            url:'templates/mapeos_generales/controlador_informes.php',
+            success:function(response){
+                
+                if(response == "Existe"){
+                    Swal.fire({
+                        title:'Mensaje',
+                        text:'ya existe un informe para esta prueba',
+                        icon:'warning',
+                        timer:1500
+                    });
+                }else{
+                    Swal.fire({
+                        title:'Mensaje',
+                        text:'Se ha creado el informe correctamente',
+                        icon:'success',
+                        timer:1700
+                    });
+                }
+                listar_informes_x_prueba(id_mapeo);
+            }
+
+            
+        });
+    }    
+   
+});
+
+$("#creacion_base").click(function(){
+
+    let id_mapeo = $("#id_mapeo_informe").val();
+    let movimiento = "crear_ar";
+
+    if(id_mapeo.length == 0){
+        Swal.fire({
+            title:'Mensaje',
+            text:'Debes seleccionar una prueba',
+            icon:'info',
+            timer:1500
+        });
+    
+    }else{
+
+        const datos = {
+            id_mapeo,
+            movimiento,
+            id_asignado,
+            id_usuario
+        }
+
+        $.ajax({
+            type:'POST',
+            data:datos,
+            url:'templates/mapeos_generales/controlador_informes.php',
+            success:function(response){
+                
+                if(response == "Existe"){
+                    Swal.fire({
+                        title:'Mensaje',
+                        text:'ya existe un informe para esta prueba',
+                        icon:'warning',
+                        timer:1500
+                    });
+                }else{
+                    Swal.fire({
+                        title:'Mensaje',
+                        text:'Se ha creado el informe correctamente',
+                        icon:'success',
+                        timer:1700
+                    });
+                }
+                listar_informes_x_prueba(id_mapeo);
+            }
+
+            
+        });
+    }    
+   
+});
+
 
 $(document).on('click','#editar_informe',function(){
         $("#edicion_informe").show();
         $("#card_informes").hide();
         let id_informe = $(this).attr('data-id');
-        listar_info_temp(id_informe);
+        let nombre = $(this).attr('data-name');
+        if(nombre == "TEMP"){
+           listar_info_temp(id_informe, 'TEMP');
+        }else{
+           listar_info_temp(id_informe, 'AR');
+        }
+       
 });
 
 $("#close_edicion").click(function(){
@@ -1382,16 +1492,22 @@ $(document).on('click','#eliminar_informe',function(){
 
 
 
-function listar_info_temp(id_informe){
-
-    let movimiento = "Consultar_temp";
+function listar_info_temp(id_informe, extra){
+  
+    let movimiento = "";
+    console.log(id_informe);
+    if(extra == "AR"){
+       movimiento = "Consultar_ar";
+     }else{
+       movimiento = "Consultar_temp";
+     }
 
     $.ajax({
         type:'POST',
         data:{id_informe,movimiento},
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
-
+            console.log(response);
             let traer = JSON.parse(response);
             let template = "";
             let url_imagen_1 = "";
@@ -1400,9 +1516,94 @@ function listar_info_temp(id_informe){
             let btn_file_1 = "";
             let btn_file_2 = "";
             let btn_file_3 = "";
+            let templatear = "";
+            let contador = 1;
+            let template2 = "";
+            let template3 = "";
 
             traer.forEach((valor)=>{
               
+               if(valor.tipo_informe == "AR"){
+                    
+                  if(contador == 1){
+                    template += 
+                      
+                      `
+                       <form id="formulario_informe" enctype="multipart/form-data" method="post">
+                        <input type="hidden" value="AR" name="AR">
+                        <input type="hidden" value="${id_informe}" name="id_informe">
+                        <table class="table">
+                        <thead>
+                          <th>Etapa/SubEtapa bajo análisis</th>
+                          <th>Relevancia</th>
+                          <th>Descripción del Riesgo Identificado</th>
+                          <th>Probabilidad (A,M,B)</th>
+                          <th>Impacto (A,M,B)</th>
+                          <th>Clase</th>
+                          <th>Probabilidad de detección (A,M,B)</th>
+                          <th>Prioridad (A,M,B)</th>
+                          <th>Medidas / Accionesa tomar</th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                              <td><input type="text" name="valor_etapa[]" value="${valor.etapa}" class="form-control">
+                                <input type="hidden" name="id_informe_actual[]" value="${valor.id_riesgo}"></td>
+                              <td><input type="text" name="valor_relevancia[]" value="${valor.relevancia}" class="form-control"></td>
+                              <td><input type="text" name="valor_descripcion[]" value="${valor.descripcion}" class="form-control"></td>
+                              <td><input type="text" name="valor_probabilidad[]" value="${valor.probabilidad}" class="form-control"></td>
+                              <td><input type="text" name="valor_impacto[]" value="${valor.impacto}" class="form-control"></td>
+                              <td><input type="text" name="valor_clase[]" value="${valor.clase}" class="form-control"></td>
+                              <td><input type="text" name="valor_deteccion[]" value="${valor.deteccion}" class="form-control"></td>
+                              <td><input type="text" name="valor_prioridad[]" value="${valor.prioridad}" class="form-control"></td>
+                              <td><input type="text" name="valor_medidas[]" value="${valor.medidas}" class="form-control"></td>
+                          </tr>
+
+                      `;
+                  }else if(contador <= 9){
+                      template2 += `
+                          <tr>
+                              <td><input type="text" name="valor_etapa[]" value="${valor.etapa}" class="form-control">
+                              <input type="hidden" name="id_informe_actual[]" value="${valor.id_riesgo}"></td>
+                              <td><input type="text" name="valor_relevancia[]" value="${valor.relevancia}" class="form-control"></td>
+                              <td><input type="text" name="valor_descripcion[]" value="${valor.descripcion}" class="form-control"></td>
+                              <td><input type="text" name="valor_probabilidad[]" value="${valor.probabilidad}" class="form-control"></td>
+                              <td><input type="text" name="valor_impacto[]" value="${valor.impacto}" class="form-control"></td>
+                              <td><input type="text" name="valor_clase[]" value="${valor.clase}" class="form-control"></td>
+                              <td><input type="text" name="valor_deteccion[]" value="${valor.deteccion}" class="form-control"></td>
+                              <td><input type="text" name="valor_prioridad[]" value="${valor.prioridad}" class="form-control"></td>
+                              <td><input type="text" name="valor_medidas[]" value="${valor.medidas}" class="form-control"></td>
+                          </tr>
+                          
+                       `; 
+                  }else{
+                    template3 += `
+                          <tr>
+                              <td><input type="text" name="valor_etapa[]" value="${valor.etapa}" class="form-control"> 
+                              <input type="hidden" name="id_informe_actual[]" value="${valor.id_riesgo}"></td>
+                              <td><input type="text" name="valor_relevancia[]" value="${valor.relevancia}" class="form-control"></td>
+                              <td><input type="text" name="valor_descripcion[]" value="${valor.descripcion}" class="form-control"></td>
+                              <td><input type="text" name="valor_probabilidad[]" value="${valor.probabilidad}" class="form-control"></td>
+                              <td><input type="text" name="valor_impacto[]" value="${valor.impacto}" class="form-control"></td>
+                              <td><input type="text" name="valor_clase[]" value="${valor.clase}" class="form-control"></td>
+                              <td><input type="text" name="valor_deteccion[]" value="${valor.deteccion}" class="form-control"></td>
+                              <td><input type="text" name="valor_prioridad[]" value="${valor.prioridad}" class="form-control"></td>
+                              <td><input type="text" name="valor_medidas[]" value="${valor.medidas}" class="form-control"></td>
+                          </tr>
+                          </tbody>
+                          </table>
+                          <div class="row" style="text-align:center;">
+                              <div class="col-sm-12">
+                                  <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
+                              </div>
+                          </div>
+                        </form>
+                       `; 
+                    
+                  }
+                  contador++;
+                 
+                }else{
+                                 
                 if(valor.url1 == null){
                     url_imagen_1 = "design/images/no_imagen.png";
                     btn_file_1 = "<input type='file' name='imagen_tipo_1' class='form-control'>";
@@ -1424,12 +1625,21 @@ function listar_info_temp(id_informe){
                     url_imagen_3 = "templates/mapeos_generales/"+valor.url3;
                     btn_file_3 = "<span class='text-success'>Imagen Cargada</span>";
                 }
-
-
+                
+              
+               
+                  
                 template += 
                 `
                 <form id="formulario_informe" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="id_informe_actual" value="${valor.id_informe}">
+                    <div class="row">
+                      <div class="col-sm-6">
+                          <label>Solicitante: </label>
+                          <input type="text" class="form-control" placeholder="Solicitante" value="${valor.solicitante}" name="solicitante">  
+                      </div>
+  
+                    </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Comentarios:</label>
@@ -1472,19 +1682,21 @@ function listar_info_temp(id_informe){
                     </div> 
                     
                     <hr>
-
+                     
                     <div class="row" style="text-align:center;">
-                        <div class="col-sm-12">
-                            <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
-                        </div>
+                      <div class="col-sm-12">
+                          <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
+                      </div>
                     </div>
 
-                </form>    
+                </form>
                    
                 `;
+                 
+              }
             });
 
-            $("#editar_informe_row").html(template);
+            $("#editar_informe_row").html(template+template2+template3);
         }
     })
 }
@@ -1516,8 +1728,16 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-
-            listar_info_temp(response);
+          console.log(response);
+            let traer = JSON.parse(response);
+          
+              traer.forEach((valor)=>{
+                console.log(traer.id_informe);
+                  listar_info_temp(traer.id_informe, traer.valor);
+              });
+             
+         
+           
         }
     });
     
@@ -1537,13 +1757,17 @@ $(document).on('click','#ver_informe',function(){
       },
       url: 'templates/mapeos_generales/controlador_informes.php',
       success: function(response) {
+     
         if (response == "TEMP") {
           window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_temp.php?informe=' + id_informe);
           //window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
         } else if (response == "HUM") {
           window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_hr.php?informe=' + id_informe);
-        } else if (response == "info Base") {
-          window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_base.php?informe=' + id_informe);
+        } else if (response == "BASE") {
+          window.open('templates/mapeos_generales/informes/pdf/informe_inb.php.php?informe=' + id_informe);
+        
+        } else if (response == "AR"){
+          window.open('templates/mapeos_generales/informes/pdf/informe_ar.php?informe=' + id_informe);
         }
       }
     });
@@ -1630,7 +1854,7 @@ $("#form_cargar_archivos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-           console.log(response);
+          
           listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
           Swal.fire({
             title:'Mensaje',

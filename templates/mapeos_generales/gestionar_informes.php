@@ -28,7 +28,9 @@ $mapeo = mysqli_prepare($connect,"SELECT a.id_asignado, b.numot, f.nombre,  d.no
 	mysqli_stmt_store_result($mapeo);
 	mysqli_stmt_bind_result($mapeo, $id_asignado, $numot, $item, $empresa, $usuario_nombre, $usuario_apellido);
 
-
+  echo "SELECT a.id_asignado, b.numot, f.nombre,  d.nombre,  e.nombre, e.apellido  
+	FROM item_asignado as a, numot as b, servicio as c, empresa as d, persona as e, item as f 
+	WHERE c.id_servicio_tipo =  $id_servicio_mapeo AND  c.id_numot = b.id_numot AND  a.id_item = f.id_item  AND b.id_empresa = d.id_empresa AND a.id_usuario = e.id_usuario AND f.id_tipo = 1";
 while($row = mysqli_stmt_fetch($mapeo)){
 	$array_mapeo[]=array(
 		'id_asignado'=>$id_asignado,

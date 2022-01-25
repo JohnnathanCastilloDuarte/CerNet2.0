@@ -22,7 +22,7 @@ listar_servicios();
 				url: 'templates/OT/buscador_tipo_servicio.php',
 				success: function(e)
 				{
-					//console.log(e);
+		
 					if(e != ""){
 						
 					$("#resultados_tipo_servicios").hide();	
@@ -184,7 +184,7 @@ function servicios_asignados(){
 	}
 	
 		$.post('templates/OT/asignar_servicio.php', datos, function(e){
-			console.log(e);
+		
 			if(e == "Asignado"){
 				Swal.fire({
 					position:'center',
@@ -318,7 +318,7 @@ function listar_servicios(){
 			let template = "";
 			
 			traer.forEach((result)=>{
-				console.log(result.id_servicio);
+			
 				template += 
 					`<div class="col-sm-6 mb-2" style="text-align:center;">
 						<div class="card">
@@ -379,7 +379,7 @@ function listar_servicios(){
 		}
 
 	$.post('templates/OT/asignando_equipo.php',datos,function(e){
-		console.log(e);
+		
 		if(e=="Existe"){
 			Swal.fire({
 				position:'center',
@@ -443,7 +443,7 @@ function listar_servicios(){
 			data : {id_asignado, id_valida},
 			url : 'templates/OT/estado_des-asignado_item.php',
 			success: function(e){
-				console.log(e);
+			
 				if(e == "asignado"){
 					Swal.fire({
 						position: 'center',
@@ -475,11 +475,9 @@ function listar_equipos(id_servicio){
 		id_empresa,
 		id_servicio
 	}
-
-
 	
 		$.post('templates/OT/listar_equipos.php', data ,function(e){
-      console.log(e);
+      
 			let traer =  JSON.parse(e);
 			let template = "";
 			let boton = "";
@@ -493,7 +491,7 @@ function listar_equipos(id_servicio){
 						});
 					}else{
 						traer.forEach((result)=>{
-							console.log(result);
+					
 							template += `
 								<tr id-servicio = "${id_servicio}">
 									<td>${result.id_item}</td>

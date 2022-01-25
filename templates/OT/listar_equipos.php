@@ -23,7 +23,7 @@
 	mysqli_stmt_store_result($equipos);
 	mysqli_stmt_bind_result($equipos, $id_item, $nombre_item, $desc_item);
 
-
+//echo "SELECT id_item, nombre, descripcion FROM item  WHERE id_tipo = $tipo_item AND id_empresa = $id_empresa";
 
 	$json = array();
 

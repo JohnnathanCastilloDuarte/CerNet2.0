@@ -4,7 +4,8 @@ include("../../config.ini.php");
 
 $ot = 'OT'.$_POST['ot'];
 
-$consultar = mysqli_prepare($connect,"SELECT a.id_numot, a.numot ,a.id_usuario_asignado, c.nombre, c.apellido, a.id_empresa, a.fecha_creacion, a.fecha_asignacion, b.nombre FROM numot as a, empresa as b, persona as c WHERE a.id_empresa = b.id_empresa AND numot = ? AND a.id_usuario_asignado = c.id_usuario");
+$consultar = mysqli_prepare($connect,"SELECT a.id_numot, a.numot ,a.id_usuario_asignado, c.nombre, c.apellido, a.id_empresa, a.fecha_creacion, a.fecha_asignacion,
+b.nombre FROM numot as a, empresa as b, persona as c WHERE a.id_empresa = b.id_empresa AND numot = ? AND a.id_usuario_asignado = c.id_usuario");
 mysqli_stmt_bind_param($consultar , 's', $ot);
 mysqli_stmt_execute($consultar);
 mysqli_stmt_store_result($consultar);
