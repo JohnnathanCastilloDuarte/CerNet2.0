@@ -29,15 +29,36 @@ $fichas_estabilidad = $_POST['fichas_estabilidad'];
 $id_item = $_POST['id_item'];
 $id_valida = $_POST['id_valida'];
 
+$marca_bodega = $_POST['marca_bodega'];
+$modelo_bodega = $_POST['modelo_bodega'];
+$orientacion_principal = $_POST['orientacion_principal'];
+$orientacion_recepcion = $_POST['orientacion_recepcion'];
+$orientacion_despacho = $_POST['orientacion_despacho'];
+$num_puertas = $_POST['num_puertas'];
+$salida_emergencia = $_POST['salida_emergencia'];
+$cantidad_rack = $_POST['cantidad_rack'];
+$num_estantes = $_POST['num_estantes'];
+$altura_max_rack = $_POST['altura_max_rack'];
+$sistema_extraccion = $_POST['sistema_extraccion'];
+$cielo_lus = $_POST['cielo_lus'];
+$temp_max = $_POST['temp_max'];
+$temp_min = $_POST['temp_min'];
+$cantidad_iluminarias = $_POST['cantidad_iluminarias'];
+$hr_max = $_POST['hr_max'];
+$hr_min = $_POST['hr_min'];
+
 
 $actualizar = mysqli_prepare($connect, "UPDATE item_bodega SET   direccion = ? , codigo_interno = ?, productos_almacena = ?, largo = ?, ancho = ?, 
 	superficie = ?, volumen = ?, altura = ?, tipo_muro = ?, tipo_cielo = ?, s_climatizacion = ?, s_monitoreo = ?, s_alarma = ?, planos = ?,
-	analisis_riesgo = ?, ficha_estabilidad = ?, id_usuario = ? WHERE id_item = ?");
+	analisis_riesgo = ?, ficha_estabilidad = ?, id_usuario = ?, marca_bodega = ?, modelo_bodega = ?, orientacion_principal = ?, orientacion_recepcion = ?, orientacion_despacho = ?, num_puertas = ?, salida_emergencia = ?, cantidad_rack = ?, num_estantes = ?, altura_max_rack = ?, sistema_extraccion = ?, cielo_lus = ?, temp_max = ?, temp_min = ?, cantidad_iluminarias = ?, hr_max = ?, hr_min = ? WHERE id_item = ?");
 
-mysqli_stmt_bind_param($actualizar, 'sssiiiiissssssssii', $direccion_bodega, $codigo_bodega, $combina_productos, $largo_bodega, $ancho_bodega, $superficie_bodega, $volume_bodega,
-	$altura_bodega, $combina_muro, $combina_cielo, $array_climatizacion, $s_m_t, $s_m_t_a, $array_planos, $analisis_riesgo,
-	$fichas_estabilidad,$id_valida, $id_item);
+mysqli_stmt_bind_param($actualizar, 'sssiiiiissssssssisssssssssssssssssi', $direccion_bodega, $codigo_bodega, $combina_productos, $largo_bodega, $ancho_bodega, $superficie_bodega, $volume_bodega, $altura_bodega, $combina_muro, $combina_cielo, $array_climatizacion, $s_m_t, $s_m_t_a, $array_planos, $analisis_riesgo, $fichas_estabilidad, $id_valida, $marca_bodega, $modelo_bodega, $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max ,$temp_min, $cantidad_iluminarias, $hr_max, $hr_min, $id_item);
 mysqli_stmt_execute($actualizar);
+ 
+
+/* echo "UPDATE item_bodega SET   direccion = $direccion_bodega , codigo_interno = $codigo_bodega, productos_almacena = $combina_productos, largo = $largo_bodega, ancho = $ancho_bodega, 
+	superficie = $superficie_bodega, volumen = $volume_bodega, altura = $altura_bodega, tipo_muro = $combina_muro, tipo_cielo = $combina_cielo, s_climatizacion = $array_climatizacion, s_monitoreo = $s_m_t, s_alarma = $s_m_t_a, planos = $array_planos,
+	analisis_riesgo = $analisis_riesgo, ficha_estabilidad = $, id_usuario = ? marca_bodega = ?, modelo_bodega = ?, orientacion_principal = ?, orientacion_recepcion = ?, orientacion_despacho = ?, num_puertas = ?, salida_emergencia = ?, cantidad_rack = ?, num_estantes = ?, altura_max_rack = ?, sistema_extraccion = ?, cielo_lus = ?, temp_max = ?, temp_min = ?, cantidad_iluminarias = ?, hr_max = ?, hr_min = ? WHERE id_item = ?";*/
 
 
 if($actualizar){
@@ -50,6 +71,7 @@ if($actualizar){
 		echo "Si";
 	}else{
 		echo "no";
+		 mysqli_stmt_error($actualizar);
 
 	}
 

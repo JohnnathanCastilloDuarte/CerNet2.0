@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-13 15:29:48
+/* Smarty version 3.1.34-dev-7, created on 2022-01-24 17:47:06
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e0375cdbc7d0_97844476',
+  'unifunc' => 'content_61eed80a064702_53216639',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10cd508aa62a2b747cc0b00d78a3d76fc3305eb7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_bodega.tpl',
-      1 => 1642084153,
+      1 => 1643042820,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e0375cdbc7d0_97844476 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61eed80a064702_53216639 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -207,21 +207,137 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                 </div>
               </div>
 
+
+
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Marca:</label>
+                    <input type="text" id="marca_bodega" class="form-control" placeholder="Marca bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['marca'];?>
+">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Modelo:</label>
+                  <input type="text" id="modelo_bodega" class="form-control" placeholder="Modelo bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['modelo'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Orientación principal:</label>
+                  <input type="text" id="orientacion_principal" class="form-control" placeholder="Orientación principal" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['orientacion_principal'];?>
+">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Orientación recepción:</label>
+                    <input type="text" id="orientacion_recepcion" class="form-control" placeholder="Orientación recepción" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['orientacion_recepcion'];?>
+">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Orientación despacho:</label>
+                  <input type="text" id="orientacion_despacho" class="form-control" placeholder="Orientación despacho" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['orientacion_despacho'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Número puertas:</label>
+                  <input type="text" id="num_puertas" class="form-control" placeholder="Numero puertas" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['num_puertas'];?>
+">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Salida emergencia:</label>
+                    <input type="text" id="salida_emergencia" class="form-control" placeholder="Salida emergencia" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['salida_emergencia'];?>
+">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Cantidad rack:</label>
+                  <input type="text" id="cantidad_rack" class="form-control" placeholder="Cantidad rack" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cantidad_rack'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Número estantes:</label>
+                  <input type="text" id="num_estantes" class="form-control" placeholder="Número estantes" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['num_estantes'];?>
+">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Altura maxima rack:</label>
+                    <input type="text" id="altura_max_rack" class="form-control" placeholder="Altura maxima rack" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['altura_max_rack'];?>
+">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Sistema extraccion:</label>
+                  <input type="text" id="sistema_extraccion" class="form-control" placeholder="Sistema extracción" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['sistema_extraccion'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Cielo pasa lus:</label>
+                  <input type="text" id="cielo_lus" class="form-control" placeholder="Clielo pasa lus" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cielo_lus'];?>
+">
+                </div>
+              </div>
+
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Temperatura maxima:</label>
+                    <input type="text" id="temp_max" class="form-control" placeholder="Temperatura maxima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['temp_max'];?>
+">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Temperatura minima:</label>
+                  <input type="text" id="temp_min" class="form-control" placeholder="Temperatura minima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['temp_min'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Altura de la bodega:</label>
+                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['altura'];?>
+">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <div class="position-relative form-group">
+                    <label>Cantidad iluminarias:</label>
+                    <input type="text" id="cantidad_iluminarias" class="form-control" placeholder="Cantidad iluminarias" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cantidad_iluminarias'];?>
+">
+                  </div>
+                </div>
+                <div class="col-sm-4">
                   <div class="position-relative form-group">
                     <label>Volumen de la bodega:</label>
                     <input type="text" id="volume_bodega" class="form-control" placeholder="Volumen bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['volumen'];?>
 ">
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <label>Altura de la bodega:</label>
-                  <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['altura'];?>
+                <div class="col-sm-4">
+                  <label>Humedad relativa maxima:</label>
+                 <input type="text" id="hr_max" class="form-control" placeholder="Humedad Maxima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['hr_max'];?>
 ">
                 </div>
               </div>
-
+               <div class="form-row">
+                  <div class="col-sm-4">
+                    <label>Humedad relativa minima:</label>
+                    <input type="text" id="hr_min" class="form-control" placeholder="Humedad Minima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['hr_min'];?>
+">
+                  </div>
+               </div> 
               <?php
 $__section_f_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_muro']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_f_1_total = $__section_f_1_loop;

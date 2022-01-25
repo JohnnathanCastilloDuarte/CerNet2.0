@@ -144,6 +144,28 @@ function planos(){
 		let superficie_bodega = $("#superficie_bodega").val();
 		let volume_bodega = $("#volume_bodega").val();
 		let altura_bodega = $("#altura_bodega").val();
+
+
+		let marca_bodega = $("#marca_bodega").val();
+		let modelo_bodega = $("#modelo_bodega").val();
+		let orientacion_principal = $("#orientacion_principal").val();
+		let orientacion_recepcion = $("#orientacion_recepcion").val();
+		let orientacion_despacho = $("#orientacion_despacho").val();
+		let num_puertas = $("#num_puertas").val();
+		let salida_emergencia = $("#salida_emergencia").val();
+		let cantidad_rack = $("#cantidad_rack").val();
+		let num_estantes = $("#num_estantes").val();
+		let altura_max_rack = $("#altura_max_rack").val();
+		let sistema_extraccion = $("#sistema_extraccion").val();
+		let cielo_lus = $("#cielo_lus").val();
+		let temp_max = $("#temp_max").val();
+		let temp_min = $("#temp_min").val();
+		let cantidad_iluminarias = $("#cantidad_iluminarias").val();
+		let hr_max = $("#hr_max").val();
+		let hr_min = $("#hr_min").val();	
+
+
+
 		var muro = $("input:checkbox[id=tipo_muro]:checked").map(function(){
 			return this.value;
 		}).get();
@@ -203,17 +225,36 @@ function planos(){
 			analisis_riesgo,
 			fichas_estabilidad,
 			id_item,
-			id_valida
+			id_valida,
+
+			marca_bodega,
+			modelo_bodega,
+			orientacion_principal,
+			orientacion_recepcion,
+			orientacion_despacho,
+			num_puertas,
+			salida_emergencia,
+			cantidad_rack,
+			num_estantes,
+			altura_max_rack,
+			sistema_extraccion,
+			cielo_lus,
+			temp_max,
+			temp_min,
+			cantidad_iluminarias,
+			hr_max,
+			hr_min
 		}
 		
 		$.post('templates/item/editar_bodega.php', datos, function(e){
+				console.log(e);
 			if(e == "Si"){
 				Swal.fire({
 					position:'center',
 					icon:'success',
 					title:'La bodega ha sido actualizada',
 					showConfirmButton: false,
-					timer:1000
+					timer:1500
 				});
 			}
 		});
@@ -234,6 +275,24 @@ $("#btn_nuevo_item_bodega").click(function(){
 	let codigo_bodega = $("#codigo_bodega").val();
 	let productos = $("#productos").val();
 	let id_tipo = $("#id_tipo").val();
+
+	let marca_bodega = $("#marca_bodega").val();
+	let modelo_bodega = $("#modelo_bodega").val();
+	let orientacion_principal = $("#orientacion_principal").val();
+	let orientacion_recepcion = $("#orientacion_recepcion").val();
+	let orientacion_despacho = $("#orientacion_despacho").val();
+	let num_puertas = $("#num_puertas").val();
+	let salida_emergencia = $("#salida_emergencia").val();
+	let cantidad_rack = $("#cantidad_rack").val();
+	let num_estantes = $("#num_estantes").val();
+	let altura_max_rack = $("#altura_max_rack").val();
+	let sistema_extraccion = $("#sistema_extraccion").val();
+	let cielo_lus = $("#cielo_lus").val();
+	let temp_max = $("#temp_max").val();
+	let temp_min = $("#temp_min").val();
+	let cantidad_iluminarias = $("#cantidad_iluminarias").val();
+	let hr_max = $("#hr_max").val();
+	let hr_min = $("#hr_min").val();
 
 	if(productos == "Otros"){
 		productos = $("#productos_bodega").val();
@@ -285,7 +344,25 @@ $("#btn_nuevo_item_bodega").click(function(){
 		analisis_riesgo,
 		fichas_estabilidad,
 		id_tipo,
-		id_valida
+		id_valida,
+
+		marca_bodega,
+		modelo_bodega,
+		orientacion_principal,
+		orientacion_recepcion,
+		orientacion_despacho,
+		num_puertas,
+		salida_emergencia,
+		cantidad_rack,
+		num_estantes,
+		altura_max_rack,
+		sistema_extraccion,
+		cielo_lus,
+		temp_max,
+		temp_min,
+		cantidad_iluminarias,
+		hr_max,
+		hr_min
 	}  
 
 	$.ajax({
@@ -349,12 +426,12 @@ $("#buscador_empresa").keydown(function(){
 			let trear = JSON.parse(response);
 			let template = "";
 			$("#aqui_resultados_empresa").show();
-
+			console.log(trear);
 			trear.forEach((valor)=>{
 				template +=
 				`	
 					<tr>
-						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}">${valor.nombre}</button></td>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-direccion="${valor.direccion}" data-name="${valor.nombre}">${valor.nombre}</button></td>
 					</tr>
 					
 				`;
@@ -372,9 +449,10 @@ $(document).on('click','#seleccionar_empresa',function(){
 
 	let id_empresa = $(this).attr('data-id');
 	let nombre_empresa = $(this).attr('data-name');
+	let direccion = $(this).attr('data-direccion');
 	$("#buscador_empresa").val(nombre_empresa);
-  $("#id_empresa").val(id_empresa);
-
+  	$("#id_empresa").val(id_empresa);
+  	$("#direccion_bodega").val(direccion);
 	$("#aqui_resultados_empresa").hide();
 
 })
