@@ -3,6 +3,7 @@ include('../../config.ini.php');
 
 
     $id_inspeccion = $_POST['id_inspeccion'];
+    $id_asignado_campana = $_POST['id_asignado_campana'];
     $inspeccion_visual_1 = $_POST['inspeccion_visual_1'];
     $inspeccion_visual_2 = $_POST['inspeccion_visual_2'];
     $inspeccion_visual_3 = $_POST['inspeccion_visual_3'];
@@ -14,11 +15,18 @@ include('../../config.ini.php');
     $veredicto = $_POST['veredicto'];
     $si = 0;
 
-    $actualizar_1 = mysqli_prepare($connect,"UPDATE campana_extraccion_inspeccion SET insp_1 = ?, insp_2 = ?, insp_3 = ?, insp_4 = ?, insp_5 = ? WHERE id_inspeccion = ?");
+    /*$actualizar_1 = mysqli_prepare($connect,"UPDATE campana_extraccion_inspeccion SET insp_1 = ?, insp_2 = ?, insp_3 = ?, insp_4 = ?, insp_5 = ? WHERE id_inspeccion = ?");
     mysqli_stmt_bind_param($actualizar_1, 'sssssi', $inspeccion_visual_1, $inspeccion_visual_2, $inspeccion_visual_3, $inspeccion_visual_4, $inspeccion_visual_5, $id_inspeccion);
-    mysqli_stmt_execute($actualizar_1);
+    mysqli_stmt_execute($actualizar_1);*/
 
-    if($actualizar_1){
+      $insert_inspeccion = mysqli_prepare($connect,"INSERT INTO campana_extraccion_inspeccion (id_asignado, insp_1, insp_2, insp_3, insp_4, insp_5) VALUES (?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($insert_inspeccion, 'isssss', $id_asignado_campana, $inspeccion_visual_1, $inspeccion_visual_2, $inspeccion_visual_3, $inspeccion_visual_4, $inspeccion_visual_5);
+    mysqli_stmt_execute($insert_inspeccion);
+  echo mysqli_stmt_error($insert_inspeccion);
+
+    //echo $id_asignado;
+
+    if($insert_inspeccion){
         
         for($i = 0; $i < count($id_prueba_1); $i++){
             
@@ -39,7 +47,7 @@ include('../../config.ini.php');
         
 
     }else{
-        echo "Error ".mysqli_stmt_error($actualizar_1);
+        echo "Error ".mysqli_stmt_error($insert_inspeccion);
     }
 
 

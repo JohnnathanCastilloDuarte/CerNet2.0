@@ -1,4 +1,3 @@
-<input type="hidden" value="{$id_asignado_filtro}" id="id_asignado_campana">
 
 <div class="row">
   <div class="col-sm-3" style="text-align:center;">
@@ -66,6 +65,7 @@
               <div id="cuerpo_mapeo_freezer">
 
               <input type="hidden" id="id_inspeccion" name="id_inspeccion">
+              <input type="text" value="{$id_asignado_filtro}" id="id_asignado_campana" name="id_asignado_campana">
 
                <div class="card">
                 <div class="card-header">
@@ -188,8 +188,9 @@
 
               <br>
               <button class="btn btn-info">Guardar</button>
-              <br>
+             
               </form>
+              
               
               <!--
               <div class="card">
@@ -241,6 +242,7 @@
           </div>
     </div>
   </div>
+  <button class="btn btn-warning" id="abrir_informe">Informe</button>
 
     <div class="tab-pane tabs-animation fade show" id="pruebas" role="tabpanel">
       <form id="formulario_2_campana_extraccion">
