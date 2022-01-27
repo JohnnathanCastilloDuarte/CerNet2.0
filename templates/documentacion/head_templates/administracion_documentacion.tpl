@@ -52,7 +52,7 @@
     
   </div>
 </div>
-
+<hr>
 <div class="row" id="row_rechazos">
   <input type="hidden" id="id_documentacion_rechazos">
   <div class="col-sm-3"></div>
@@ -60,21 +60,13 @@
     <div class="card">
       <div class="card-header">
         Rechazos documentación
+        <button class="btn btn-danger" style="margin-left: auto;border-radius: 20px;" id="cerrar_tarjeta_rechazos">X</button>
       </div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <label>Documentación</label>
-            <select id="aqui_documentos_inspector" class="form-control">
-              
-            </select>           
-          </div>
-
-          <div class="col-sm-6">
+        <div class="row" id="enunciado_rechazo">
+            <div class="col-sm-12">
               <label>Motivo rechazo</label>
-              <select class="form-control" id="motivo_rechazo">
-                
-              </select>
+              <textarea id="motivo_rechazo" style="width:100%">Escribe...</textarea>
           </div>
         </div>
 
@@ -95,10 +87,9 @@
               <div class="card-body">
                 <table class='table' style="text-align: center;">
                   <thead>
-                    <th>Documento</th>
-                    <th>Motivo</th>
-                    <th>Fecha</th>
                     <th>Quien rechaza</th>
+                    <th>Motivo</th>
+                    <th>Fecha</th> 
                   </thead>
                   <tbody id="aqui_todos_rechazos">
 

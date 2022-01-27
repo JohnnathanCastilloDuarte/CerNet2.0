@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-27 15:47:32
+/* Smarty version 3.1.34-dev-7, created on 2022-01-25 18:35:27
   from 'C:\xampp\htdocs\CerNet2.0\templates\header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_617958744f4b12_81629191',
+  'unifunc' => 'content_61f034df11eaf0_51210299',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ffba896e21398cf47a641a98b731b5ddc0ba9f3b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\header.php',
-      1 => 1635342451,
+      1 => 1643030810,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_617958744f4b12_81629191 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61f034df11eaf0_51210299 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
@@ -184,6 +184,7 @@ function content_617958744f4b12_81629191 (Smarty_Internal_Template $_smarty_tpl)
         <div class="app-header-right">
             <div class="header-dots">
                 <div class="dropdown">
+                  
                     <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
                         <span class="icon-wrapper icon-wrapper-alt rounded-circle">
                             <span class="icon-wrapper-bg bg-danger"></span>
@@ -191,6 +192,7 @@ function content_617958744f4b12_81629191 (Smarty_Internal_Template $_smarty_tpl)
                             <span class="badge badge-dot badge-dot-sm badge-danger"></span>
                         </span>
                     </button>
+                  
                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu rm-pointers dropdown-menu dropdown-menu-right" style="width:800px;">
                         <div class="dropdown-menu-header mb-0">
                             <div class="dropdown-menu-header-inner bg-deep-blue">
@@ -357,55 +359,48 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 <i class="icon text-success ion-ios-analytics"></i>
                             </span>
                         </button>
+                      <form method="post" id="subir_sensores" enctype="multipart/form-data">
                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-xl rm-pointers dropdown-menu dropdown-menu-right">
                             <div class="dropdown-menu-header">
                                 <div class="dropdown-menu-header-inner bg-premium-dark">
                                     <div class="menu-header-image" style="background-image: url('assets/images/dropdown-header/abstract4.jpg');"></div>
                                     <div class="menu-header-content text-white">
-                                        <h5 class="menu-header-title">Users Online
+                                        <h5 class="menu-header-title">Gestionar Sensores
                                         </h5>
-                                        <h6 class="menu-header-subtitle">Recent Account Activity Overview
-                                        </h6>
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-chart">
-                                <div class="widget-chart-content">
-                                    <div class="icon-wrapper rounded-circle">
-                                        <div class="icon-wrapper-bg opacity-9 bg-focus">
+                         
+                                <div class="widget-content">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Carga archivo csv
                                         </div>
-                                        <i class="lnr-users text-white">
-                                        </i>
-                                    </div>
-                                    <div class="widget-numbers">
-                                        <span>344k</span>
-                                    </div>
-                                    <div class="widget-subheading pt-2">
-                                        Profile views since last login
-                                    </div>
-                                    <div class="widget-description text-danger">
-                                        <span class="pr-1">
-                                            <span>176%</span>
-                                        </span>
-                                        <i class="fa fa-arrow-left"></i>
-                                    </div>
+                                        <div class="card-body">
+                                          <input type="file" name="archivo_sensor" class="form-control">
+                                        </div>
+                                   </div>
+                                  <div class="card">
+                                        <div class="card-body overflow-auto" id="mostrar_resultados" style="text-align: center;">
+                                          
+                                        </div>
+                                   </div>
                                 </div>
-                                <div class="widget-chart-wrapper">
-                                    <div id="dashboard-sparkline-carousel-3-pop"></div>
-                                </div>
-                            </div>
+                               
+                           
                             <ul class="nav flex-column">
                                 <li class="nav-item-divider mt-0 nav-item">
                                 </li>
                                 <li class="nav-item-btn text-center nav-item">
-                                    <button class="btn-shine btn-wide btn-pill btn btn-warning btn-sm">
+                                    <button class="btn-shine btn-wide btn-pill btn btn-success btn-sm">
                                         <i class="fa fa-cog fa-spin mr-2">
                                         </i>
-                                        View Details
+                                       Subir
                                     </button>
                                 </li>
                             </ul>
                         </div>
+                      </form>
                     </div>
                 </div>
                 <!------------------------------------------------------------------------- DATOS DE USUARIO LOGEADO --------------------------------------------------------------------------------------->                      

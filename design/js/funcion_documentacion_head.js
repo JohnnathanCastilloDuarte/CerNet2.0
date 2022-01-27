@@ -151,7 +151,7 @@ function listar_documentacion_head(estado_ver){
           if(x.estado == 0){
             boton_ver = `<a class="btn btn-info" onclick="window.open('https://${x.url}')"><i class="fa fa-eye" aria-hidden="true"></i</a>`;
           }else{
-            boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
+            boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}"  data-id='${x.id_documentacion}'><i class="fa fa-eye" aria-hidden="true"></i</button>`;
           }
 
 
@@ -203,33 +203,44 @@ function listar_documentacion_head(estado_ver){
         }///////////// CIERRE DE LA ESTRUCTURA 1 - csv head spot
         else{
          
-          if(x.tipo_validador == 0){
+          if(x.tipo_validador == 0 && x.estado != 4){
             option_estado = `
             <select class="form-control" id="aprobacion_head" data-id='${x.id_documentacion}' data-participante = '${x.id_participante}'>
               <option value="0">Seleccione...</option>
               <option value="Revisado">Aprobado</option>
               <option value="error">Rechazado</option>
             </select>`;
-          }else{
+          }else if(x.estado != 4){
             option_estado =`<span class="badge badge-muted">Faltantes aprobación ${x.faltantes}</span>`;
+          }else{
+            option_estado =`<button class="btn btn-danger" data-id='${x.id_documentacion}' id="ver_rechazos_rechazados"><span class="badge badge-white">Documento rechazado</span></button>`;
           }
 
-          boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
+          boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}" data-id="${x.id_documentacion}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
 
           if(x.estado == 2){
-            estado = '<span class="badge badge-success">Documentación cargada</span>';
-            escritura_estado = "Documentación cargada";
+            estado = '<span class="badge badge-success">En espera de firmas</span>';
+            escritura_estado = "En espera de firmas";
           }else if(x.estado == 3){
-            estado = '<span class="badge badge-success">Aprobaste</span>';
+            estado = '<span class="badge badge-success">Aprobado</span>';
             escritura_estado = "En espera del siguiente aprobador";
+          }else if(x.estado == 4){
+            estado = '<span class="badge badge-success">Documento Rechazo</span>';
+            escritura_estado = "Documento rechazado";
           }
 
-          if(x.faltantes > 0){
-            color_fila = "#eee563";
+          if(x.estado == 4){
+            color_fila = "#ff4036";
           }else{
-            color_fila = "#94ff94";
-          }
+            if(x.faltantes > 0){
+              color_fila = "#eee563";
+            }else{
+              color_fila = "#94ff94";
+            }
+          }         
         }  
+
+        console.log(x.estado);
         
         template += 
            `
@@ -259,6 +270,21 @@ function listar_documentacion_head(estado_ver){
   })
   
 }
+
+
+$(document).on('click','#ver_rechazos_rechazados',function(){
+  let id_documentacion = $(this).attr('data-id');
+  $("#id_documentacion_rechazos").val(id_documentacion);
+  $("#row_rechazos").show();
+  $("#enunciado_rechazo").hide();
+  $("#guarda_rechazo").hide();
+  traer_rechazos()
+});
+
+$("#cerrar_tarjeta_rechazos").click(function(){
+  $("#row_rechazos").hide();
+
+});
 
 
 
@@ -386,8 +412,6 @@ $(document).on('change','#aprobacion_head',function(){
       });
     }else{
       $("#row_rechazos").show();
-      motivos_rechazos();
-      documentacion_inspector();
       traer_rechazos();
     }
  
@@ -404,6 +428,8 @@ $(document).on('click','#ver_documentacion_aprobacion',function(){
   
     //$("#aprobacion_head").show();
     let nombre_archivo = $(this).attr('data-name');
+    let id_documentacion_ff = $(this).attr('data-id');
+    //window.open('informe_firmantes_final2.php?nombre='+nombre_archivo+'&id='+id_documentacion_ff, nombre_archivo); 
     window.open('templates/documentacion/head_templates/visor_archivo.php?nombre='+nombre_archivo, nombre_archivo); 
 });
 /*
@@ -435,6 +461,8 @@ $(document).on('click','#ver_cronograma',function(){
 
 
 ///////////// LISTAR RECHAZOS
+
+/*
 function documentacion_inspector(){
 
   let tipo = 1;
@@ -458,8 +486,8 @@ function documentacion_inspector(){
       $("#aqui_documentos_inspector").html("<option value='0'>Seleccione</option>"+template);
     }
   })
-}
-
+}*/
+/*
 function motivos_rechazos(){
 
   let tipo = 2;
@@ -483,21 +511,21 @@ function motivos_rechazos(){
       $("#motivo_rechazo").html("<option value='0'>Seleccione</option>"+template);
     }
   })
-}
+}*/
 
 
 //////////// evento para guardar el rechazo
 
 $("#guarda_rechazo").click(function(){
-
-    let documento = $("#aqui_documentos_inspector").val();
+    alert("Click");
+    //let documento = $("#aqui_documentos_inspector").val();
     let motivo = $("#motivo_rechazo").val();
     let id_documentacion = $("#id_documentacion_rechazos").val();
 
     let tipo = 3;
 
     const datos = {
-      documento,
+      //documento,
       motivo,
       id_documentacion,
       id_valida,
@@ -528,6 +556,7 @@ $("#guarda_rechazo").click(function(){
           });
         }
         traer_rechazos();
+        listar_documentacion_head(0);
       }
       
     });  
@@ -551,7 +580,7 @@ function traer_rechazos(){
     data:datos,
     url:'templates/documentacion/controla_rechazos.php',
     success:function(response){
-
+      console.log(response);
       let traer = JSON.parse(response);
       let template = "";
 
@@ -560,10 +589,10 @@ function traer_rechazos(){
         template += 
         `
           <tr>
-            <td>${valor.documento}</td>
+            <td>${valor.nombres} ${valor.apellidos}</td>
+            <td>${valor.cargo}</td>
             <td>${valor.rechazo}</td>
             <td>${valor.fecha_rechazo}</td>
-            <td>${valor.nombres} ${valor.apellidos}</td>
           </tr>
         `;
       });

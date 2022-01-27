@@ -7,13 +7,28 @@ require_once('pdf/tcpdf.php');
 $key_encritp = $_GET['key'];
 $key = base64_decode($key_encritp);
 
+$consultar_quien_falta = mysqli_prepare($connect,"SELECT COUNT(id) FROM participante_documentacion WHERE id_documentacion = ? AND fecha_firma is NULL;");
+mysqli_stmt_bind_param($consultar_quien_falta, 'i', $key);
+mysqli_stmt_execute($consultar_quien_falta);
+mysqli_stmt_store_result($consultar_quien_falta);
+mysqli_stmt_bind_result($consultar_quien_falta, $cuantos);
+mysqli_stmt_fetch($consultar_quien_falta);
+
+if($cuantos != 0){
+    $tipo_originalidad = "<span style='color:red;'>Copia Controlada</span>";
+}else{
+    $tipo_originalidad = "<span>Documento Original</span>";
+}
+
+
+
 //CABECERAS PERSONALIZADAS
 class MYPDF extends TCPDF 
 {
     //Page header
     public function Header() 
 	{
-    global $key;
+    global $key, $tipo_originalidad;
 		// Set border style
 		$this->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(120, 120, 120)));
         // Logo
@@ -34,7 +49,7 @@ class MYPDF extends TCPDF
 		$this->writeHTMLCell(100, 6, 60, 30, '<br>SISTEMA DE GESTIÓN DE CALIDAD', 1, 0, 0, true, 'C', true);
 		$this->writeHTMLCell(100, 10.5, 60, 36, 'Sistema de firmas digital<br> Cercal Group', 1, 1, 0, true, 'C', true);
     
-		$this->writeHTMLCell(45, 16.5, 15, 30, '<img src="design/assets/images/logo_big.png" width="100"><br><b>Original</b>', 1, 1, 0, true, 'C', true);
+		$this->writeHTMLCell(45, 16.5, 15, 30, '<img src="design/assets/images/logo_big.png" width="100"><br><b>'.$tipo_originalidad.'</b>', 1, 1, 0, true, 'C', true);
     $this->writeHTMLCell(37, 16.5, 160, 30, 'Proceso documental # '.$key, 1, 0, 0, true, 'C', true);
     }
 	
@@ -86,13 +101,11 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // set font
 $pdf->SetFont('freesans', 'R', 9);
 
-
-
-$query = mysqli_prepare($connect,"SELECT a.nombre, c.nombre FROM empresa as a, numot as b, documentacion as c WHERE a.id_empresa = b.id_empresa AND c.id_numot = b.id_numot AND c.id = ?");
+$query = mysqli_prepare($connect,"SELECT a.nombre, c.nombre, d.url FROM empresa as a, numot as b, documentacion as c, archivos_documentacion as d WHERE a.id_empresa = b.id_empresa AND c.id_numot = b.id_numot AND c.id = ? AND c.id = d.id_documentacion;");
 mysqli_stmt_bind_param($query, 'i', $key);
 mysqli_stmt_execute($query);
 mysqli_stmt_store_result($query);
-mysqli_stmt_bind_result($query, $empresa, $proyecto);
+mysqli_stmt_bind_result($query, $empresa, $proyecto, $url);
 mysqli_stmt_fetch($query);
 
 $pdf->AddPage('A4');
@@ -131,7 +144,7 @@ mysqli_stmt_bind_result($consultar_2,  $fecha_registro, $nombre, $apellido, $car
 while($row = mysqli_stmt_fetch($consultar_2)){
 
 
-    if($tipo == 1){
+    if($tipo == 1){     
         $que_hace = "Elaborado por";
     }else if($tipo == 2){
         $que_hace = "Revisado por";
@@ -164,7 +177,13 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
 
 }/////// CIERRE DEL WHILE
+/*
 
-
-$pdf->Output('Algo.pdf', 'I');
+*/
+$filename = $_SERVER['DOCUMENT_ROOT'].'CerNet2.0/templates/documentacion/pdf_final/informe_final'.$key.'.pdf';
+$pdf->Output($filename, 'f');
+$pdf = new PDFMerger;
+$pdf->addPDF('templates/documentacion/pdf_final/informe_final'.$key.'.pdf', '1')
+    ->addPDF('templates/documentacion/'.$url,'all')
+    ->merge('browser', 'informe_final.pdf');
 ?>
