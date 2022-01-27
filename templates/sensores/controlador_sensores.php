@@ -55,60 +55,65 @@ else
       while(($column=fgetcsv($abrir_archivo,10000,";","\t"))!==false){
         
         if($contador > 0){
-          
-          
-            $validador_supra = mysqli_prepare($connect,"SELECT id_certificado FROM sensores_certificados WHERE certificado = ?");
-            mysqli_stmt_bind_param($validador_supra, 's', $column[3]);
-            mysqli_stmt_execute($validador_supra);
-            mysqli_stmt_store_result($validador_supra);
-            mysqli_stmt_bind_result($validador_supra, $id_certificado);
-            mysqli_stmt_fetch($validador_supra);
-          
-            if(mysqli_stmt_num_rows($validador_supra) == 0){
-              
-            
-            
-              $validar1 = mysqli_prepare($connect,"SELECT id_sensor FROM sensores WHERE nombre = ?");
-              mysqli_stmt_bind_param($validar1, 's', $column[0]);
-              mysqli_stmt_execute($validar1);
-              mysqli_stmt_store_result($validar1);
-              mysqli_stmt_bind_result($validar1, $id_sensor);
-              mysqli_stmt_fetch($validar1);
+           
+            if($colum[0] != ""){    
+              $validador_supra = mysqli_prepare($connect,"SELECT id_certificado FROM sensores_certificados WHERE certificado = ?");
 
-              if(mysqli_stmt_num_rows($validar1) == 0){
+              //$validador_supra = mysqli_prepare($connect,"SELECT a.id_certificado 
+              //FROM sensores_certificados a, sensores b WHERE a.id_sensor = b.id_sensor AND b.nombre = ?");
+
+              mysqli_stmt_bind_param($validador_supra, 's', $column[3]);
+              mysqli_stmt_execute($validador_supra);
+              mysqli_stmt_store_result($validador_supra);
+              mysqli_stmt_bind_result($validador_supra, $id_certificado);
+              mysqli_stmt_fetch($validador_supra);
+
+              if(mysqli_stmt_num_rows($validador_supra) == 0){
 
 
-                  $insertar = mysqli_prepare($connect,"INSERT INTO sensores (nombre, serie, tipo, pais) VALUES (?, ?, ?, ?)");
-                  mysqli_stmt_bind_param($insertar, 'ssss', $column[0], $column[1], $column[2], $column[8]);
-                  mysqli_stmt_execute($insertar);
 
-                  $id = mysqli_stmt_insert_id($insertar);
+                $validar1 = mysqli_prepare($connect,"SELECT id_sensor FROM sensores WHERE nombre = ?");
+                mysqli_stmt_bind_param($validar1, 's', $column[0]);
+                mysqli_stmt_execute($validar1);
+                mysqli_stmt_store_result($validar1);
+                mysqli_stmt_bind_result($validar1, $id_sensor);
+                mysqli_stmt_fetch($validar1);
 
-                  $certificado = mysqli_prepare($connect,"INSERT INTO sensores_certificados (id_sensor, certificado, fecha_emision, fecha_vencimiento, pais, estado) VALUES (?, ?, ?, ?, ?, ?)");
-                  mysqli_stmt_bind_param($certificado, 'isssss', $id, $column[3], $column[4], $column[5], $column[8], $column[7]);
-                  mysqli_stmt_execute($certificado);
+                if(mysqli_stmt_num_rows($validar1) == 0){
 
-                  if($certificado){
-                    $aciertos++;
-                  }
 
-              }else{
+                    $insertar = mysqli_prepare($connect,"INSERT INTO sensores (nombre, serie, tipo, pais) VALUES (?, ?, ?, ?)");
+                    mysqli_stmt_bind_param($insertar, 'ssss', $column[0], $column[1], $column[2], $column[8]);
+                    mysqli_stmt_execute($insertar);
+
+                    $id = mysqli_stmt_insert_id($insertar);
+
                     $certificado = mysqli_prepare($connect,"INSERT INTO sensores_certificados (id_sensor, certificado, fecha_emision, fecha_vencimiento, pais, estado) VALUES (?, ?, ?, ?, ?, ?)");
-                    mysqli_stmt_bind_param($certificado, 'isssss', $id_sensor, $column[3], $column[4], $column[5], $column[8], $column[7]);
+                    mysqli_stmt_bind_param($certificado, 'isssss', $id, $column[3], $column[4], $column[5], $column[8], $column[7]);
                     mysqli_stmt_execute($certificado);
+
                     if($certificado){
                       $aciertos++;
                     }
-              }
-            }else{
-              echo "El certificado $column[3] ya se encuentra asociado<br>";
-            }  
-          
-        }
-        
-        $contador++;
+
+                }else{
+                      $certificado = mysqli_prepare($connect,"INSERT INTO sensores_certificados (id_sensor, certificado, fecha_emision, fecha_vencimiento, pais, estado) VALUES (?, ?, ?, ?, ?, ?)");
+                      mysqli_stmt_bind_param($certificado, 'isssss', $id_sensor, $column[3], $column[4], $column[5], $column[8], $column[7]);
+                      mysqli_stmt_execute($certificado);
+                      if($certificado){
+                        $aciertos++;
+                      }
+                }
+              }else{
+                echo "El certificado $column[3] ya se encuentra asociado<br>";
+              }  
+
+          }
+
+          $contador++;
+        }///////////// CIERRE IF CATALIZADOR  
       }
-      
+     
       echo "<span class='text-success'>Se ha insertado $aciertos sensores de $contador encontrados </span>";
 
     }

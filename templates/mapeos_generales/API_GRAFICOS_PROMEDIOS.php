@@ -103,7 +103,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
            
     <?php 
  
-      echo "['Time','Promedio', 'Minimo', 'Maximo'";
+      echo "['Time','Promedio', 'Mínimo', 'Máximo'";
     /*for($f = 0; $f < $count_sensores; $f++){
 
          echo "'".$array_sensor[$f][0]."',";
@@ -118,7 +118,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       mysqli_stmt_execute($consultar_data);
       mysqli_stmt_store_result($consultar_data);
       mysqli_stmt_bind_result($consultar_data, $time);
-
+    
       if($tipo_grafi == "TEMP"){
    
          $query_31 = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = 4 GROUP BY a.time ORDER BY a.time ASC");
@@ -136,10 +136,15 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
         mysqli_stmt_bind_result($query_31, $promedio, $min, $max);	
         $colum = mysqli_stmt_num_rows($consultar_data);	
       }  
-  
-      for($j=1;$j<=$count_sensores;$j++){
-        mysqli_stmt_fetch($query_31);
-        echo "['".$time."',".$promedio.",".$min.",".$max;
+     
+     // for($j=0;$j<$colum;$j++){
+        $j = 1;
+        while($row = mysqli_stmt_fetch($query_31)){
+          $promedio = str_replace(",",".",$promedio);
+          $min = str_replace(",",".",$min);
+          $max = str_replace(",",".",$max);
+      
+        echo "['".$time."',".$promedio.",".$min.",".$max."],";
         /*
         for($g=1;$g<=;$g++){
           mysqli_stmt_fetch($query_31);
@@ -149,14 +154,16 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
               echo $promedio.",".$min.",".$max;
             }else{
               echo $promedio.",".$min.",".$max.",";
-            }	*/
+            }	
         
         //}
-        if($j == $count_sensores){
+        if($j == $colum){
           echo "]";
         }else{
           echo "],";
-        } 
+        } */
+          
+          $j++;
       }
     ?>
     ]);
@@ -169,15 +176,15 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
    if(lim_min.length == 0){
       var options = {
       curveType: 'function',
-      legend: { position: 'bottom' },
-      hAxis : { textStyle : { fontSize: 15} }, 
+      legend: { position: 'rigth' },
+      hAxis : { textStyle : { fontSize: 20} }, 
       vAxis : { textStyle : { fontSize: 20}},
       };
     }else{
       var options = {
     curveType: 'function',
     legend: { position: 'bottom' },
-    hAxis : { textStyle : { fontSize: 15} }, 
+    hAxis : { textStyle : { fontSize: 20} }, 
     vAxis : { textStyle : { fontSize: 20},
     viewWindow: {
         min: lim_min,
@@ -212,6 +219,8 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
     </script>
     <textarea id="aqui_algo"></textarea>
     <h2 style="font-family: Quincy;margin-left: 33%;margin-top: 05%;position: absolute;">Grafico valores promedio, mínima y máxima</h2>
+    <h3 style="rotate: -91deg;margin-top: 330px;position: absolute;margin-left: 321px;"> Temperatura (°C)  </h3>
+    <h3 style="margin-top: 556px;position: absolute;margin-left: 1123px;"> Tiempo</h3>
     <div id="curve_chart" style="width: 1000px; height: 700px; margin-left:300px;"></div>
     <br>
     <!--

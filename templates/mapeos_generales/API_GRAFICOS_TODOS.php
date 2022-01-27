@@ -168,16 +168,16 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
    if(lim_min.length == 0){
       var options = {
       curveType: 'function',
-      legend: { position: 'bottom' },
-      hAxis : { textStyle : { fontSize: 15} }, 
+      legend: { position: 'rigth' },
+      hAxis : { textStyle : { fontSize: 20} }, 
       vAxis : { textStyle : { fontSize: 20}},
       };
     }else{
       var options = {
     curveType: 'function',
-    legend: { position: 'bottom' },
-    hAxis : { textStyle : { fontSize: 7} }, 
-    vAxis : { textStyle : { fontSize: 7},
+    legend: { position: 'rigth' },
+    hAxis : { textStyle : { fontSize: 20} }, 
+    vAxis : { textStyle : { fontSize: 20},
     viewWindow: {
         min: lim_min,
         max: lim_max
@@ -238,8 +238,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
     <?php  
     
     }////////// FIN DEL IF
-  else{
-      
+  else{      
     echo '<h5 class="text-danger">No se han cargado datos crudos para este mapeo</h5>';
   }
 }/////////CIERRE DE LA FUNCIÓN

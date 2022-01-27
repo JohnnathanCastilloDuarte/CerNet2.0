@@ -163,6 +163,9 @@ function planos(){
 		let cantidad_iluminarias = $("#cantidad_iluminarias").val();
 		let hr_max = $("#hr_max").val();
 		let hr_min = $("#hr_min").val();	
+    let cantidad_ventana = $("#cantidad_ventana").val();
+    let valor_seteado_temp = $("#valor_seteado_temp").val();
+    let valor_seteado_hum = $("#valor_seteado_hum").val();
 
 
 
@@ -243,7 +246,11 @@ function planos(){
 			temp_min,
 			cantidad_iluminarias,
 			hr_max,
-			hr_min
+			hr_min,
+      cantidad_ventana,
+      valor_seteado_temp,
+      valor_seteado_hum
+      
 		}
 		
 		$.post('templates/item/editar_bodega.php', datos, function(e){
@@ -293,6 +300,9 @@ $("#btn_nuevo_item_bodega").click(function(){
 	let cantidad_iluminarias = $("#cantidad_iluminarias").val();
 	let hr_max = $("#hr_max").val();
 	let hr_min = $("#hr_min").val();
+  let cantidad_ventana = $("#cantidad_ventana").val();
+  let valor_seteado_temp = $("#valor_seteado_temp").val();
+  let valor_seteado_hum = $("#valor_seteado_hum").val();
 
 	if(productos == "Otros"){
 		productos = $("#productos_bodega").val();
@@ -362,7 +372,10 @@ $("#btn_nuevo_item_bodega").click(function(){
 		temp_min,
 		cantidad_iluminarias,
 		hr_max,
-		hr_min
+		hr_min,
+    cantidad_ventana,
+    valor_seteado_temp,
+    valor_seteado_hum
 	}  
 
 	$.ajax({

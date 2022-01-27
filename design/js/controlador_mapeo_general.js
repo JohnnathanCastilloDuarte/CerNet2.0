@@ -48,7 +48,7 @@ $("#btn_nueva_altura_bandeja").click(function(){
 
     let nombre_bandeja = $("#bandeja_general").val();
     let movimiento = "Crear";
-
+    
     const datos = {
         nombre_bandeja,
         id_asignado,
@@ -1382,7 +1382,7 @@ $("#creacion_ar").click(function(){
 $("#creacion_base").click(function(){
 
     let id_mapeo = $("#id_mapeo_informe").val();
-    let movimiento = "crear_ar";
+    let movimiento = "crear_base";
 
     if(id_mapeo.length == 0){
         Swal.fire({
@@ -1437,10 +1437,12 @@ $(document).on('click','#editar_informe',function(){
         $("#card_informes").hide();
         let id_informe = $(this).attr('data-id');
         let nombre = $(this).attr('data-name');
-        if(nombre == "TEMP"){
+        if(nombre == "TEMP" || nombre == "HUM"){
            listar_info_temp(id_informe, 'TEMP');
-        }else{
+        }else if(nombre == 'AR'){
            listar_info_temp(id_informe, 'AR');
+        }else if(nombre == 'BASE'){
+          listar_info_temp(id_informe, 'BASE');
         }
        
 });
@@ -1495,13 +1497,16 @@ $(document).on('click','#eliminar_informe',function(){
 function listar_info_temp(id_informe, extra){
   
     let movimiento = "";
-    console.log(id_informe);
+    
     if(extra == "AR"){
        movimiento = "Consultar_ar";
-     }else{
+     }else if(extra == 'TEMP' || extra == 'HUM'){
        movimiento = "Consultar_temp";
+     }else if(extra == 'BASE'){
+       movimiento = "Consultar_base";
      }
-
+  
+ 
     $.ajax({
         type:'POST',
         data:{id_informe,movimiento},
@@ -1657,14 +1662,14 @@ function listar_info_temp(id_informe, extra){
 
                         <div class="col-sm-4">
                             <label>Ubicación de sensores</label><br>
-                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url1}" id="eliminar_imagen"><span style="color: white;">X</span></a>
+                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url1}" id="eliminar_imagen" data-name="${valor.tipo_informe}"><span style="color: white;">X</span></a>
                             <img src="${url_imagen_1}" style="width: 100%;">
                             ${btn_file_1}
                         </div>
 
                         <div class="col-sm-4">
                             <label>Valores promedio, mínima y maxíma</label><br>
-                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url2}" id="eliminar_imagen"><span style="color: white;">X</span></a>
+                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url2}" id="eliminar_imagen" data-name="${valor.tipo_informe}"><span style="color: white;">X</span></a>
                             <button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;" data-type="${valor.tipo_informe}">
                             <img src="design/images/grafico.jpg" style="width: 100%;"></button>
                             <img src="${url_imagen_2}" style="width: 100%;">
@@ -1673,7 +1678,7 @@ function listar_info_temp(id_informe, extra){
 
                         <div class="col-sm-4">
                             <label>Periodo representativo</label><br>
-                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url3}" id="eliminar_imagen"><span style="color: white;">X</span></a>
+                            <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url3}" id="eliminar_imagen" data-name="${valor.tipo_informe}"><span style="color: white;">X</span></a>
                             <button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;"  data-type="${valor.tipo_informe}">
                             <img src="design/images/grafico.jpg" style="width: 100%;"></button>
                             <img src="${url_imagen_3}" style="width: 100%;">
@@ -1728,13 +1733,21 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-          console.log(response);
+            /*
             let traer = JSON.parse(response);
           
               traer.forEach((valor)=>{
                 console.log(traer.id_informe);
-                  listar_info_temp(traer.id_informe, traer.valor);
-              });
+                  listar_info_temp(valor.id_informe, valor.valor);
+              });*/
+            Swal.fire({
+              title:'Mensaje',
+              text:'Se ha actualizado correctamente',
+              icon:'success',
+              timer:1700
+            });
+            $("#edicion_informe").hide();
+            $("#card_informes").show();
              
          
            
@@ -1764,7 +1777,7 @@ $(document).on('click','#ver_informe',function(){
         } else if (response == "HUM") {
           window.open('templates/mapeos_generales/informes/pdf/informe_mapeo_hr.php?informe=' + id_informe);
         } else if (response == "BASE") {
-          window.open('templates/mapeos_generales/informes/pdf/informe_inb.php.php?informe=' + id_informe);
+          window.open('templates/mapeos_generales/informes/pdf/informe_inb.php?informe=' + id_informe);
         
         } else if (response == "AR"){
           window.open('templates/mapeos_generales/informes/pdf/informe_ar.php?informe=' + id_informe);
@@ -1781,13 +1794,15 @@ $(document).on('click','#eliminar_imagen',function(){
 
         let id = $(this).attr('data-id');
         let url = $(this).attr('data-url');
+        let tipo = $(this).attr('data-name');
 
         $.ajax({
             type:'POST',
             data:{id, url},
             url:'templates/mapeos_generales/eliminar_imagenes.php',
             success:function(response){
-                listar_info_temp(id);
+                 console.log(response);
+                listar_info_temp(id,tipo);
             }
         })
 });

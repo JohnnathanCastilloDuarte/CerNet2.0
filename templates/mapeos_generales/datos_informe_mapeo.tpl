@@ -379,7 +379,7 @@
 
           </div>
         </div>
-        <div class="row justify-content-center align-item-center ">
+        <div class="row justify-content-center align-item-center " id="id_contenedor">
           <div class="card col-sm-6 shadow-lg p-3 mb-5 bg-white rounded" id="datos_crudos_sensores" style="position: absolute;top: -700px;">
             <div class="card-header ">
               <div class="col-sm-11"> Subir datos crudos </div>

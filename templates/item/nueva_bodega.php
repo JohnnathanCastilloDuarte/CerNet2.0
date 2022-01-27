@@ -42,6 +42,9 @@ $temp_min = $_POST['temp_min'];
 $cantidad_iluminarias = $_POST['cantidad_iluminarias'];
 $hr_max = $_POST['hr_max'];
 $hr_min = $_POST['hr_min'];
+$cantidad_ventana = $_POST['cantidad_ventana'];
+$valor_seteado_temp = $_POST['valor_seteado_temp'];
+$valor_seteado_hum = $_POST['valor_seteado_hum'];
 $id_bodega = NULL;
 $fecha_registro = NULL;
 $estado = 1;
@@ -58,9 +61,9 @@ $estado = 1;
 	$recupera = mysqli_stmt_insert_id($crear);
 
 ///inseta los demas datos en la tabla de item_bodega para 
-	$insertar = mysqli_prepare($connect, "INSERT INTO item_bodega VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	$insertar = mysqli_prepare($connect, "INSERT INTO item_bodega VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-		mysqli_stmt_bind_param($insertar, 'iisssiiiiissssssssissssssssssssssssss', 
+		mysqli_stmt_bind_param($insertar, 'iisssiiiiissssssssisssssssssssssssssssss', 
 			$id_bodega, 
 			$recupera, 
 			$direccion_bodega, 
@@ -98,6 +101,9 @@ $estado = 1;
 			$cantidad_iluminarias,
 			$hr_max,
 			$hr_min,
+      $valor_seteado_temp,
+      $valor_seteado_hum,                     
+      $cantidad_ventana,
 
 			$fecha_registro);
 		mysqli_stmt_execute($insertar);

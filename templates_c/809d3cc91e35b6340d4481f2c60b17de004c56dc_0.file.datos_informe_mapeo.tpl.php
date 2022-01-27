@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-25 12:56:48
+/* Smarty version 3.1.34-dev-7, created on 2022-01-25 23:33:23
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61eff3901a0ce2_19613221',
+  'unifunc' => 'content_61f088c3e7c625_53711794',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '809d3cc91e35b6340d4481f2c60b17de004c56dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl',
-      1 => 1643115399,
+      1 => 1643153600,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61eff3901a0ce2_19613221 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61f088c3e7c625_53711794 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -463,7 +463,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
           </div>
         </div>
-        <div class="row justify-content-center align-item-center ">
+        <div class="row justify-content-center align-item-center " id="id_contenedor">
           <div class="card col-sm-6 shadow-lg p-3 mb-5 bg-white rounded" id="datos_crudos_sensores" style="position: absolute;top: -700px;">
             <div class="card-header ">
               <div class="col-sm-11"> Subir datos crudos </div>

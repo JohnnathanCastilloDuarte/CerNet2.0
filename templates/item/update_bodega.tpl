@@ -234,10 +234,10 @@
                   <label>Temperatura minima:</label>
                   <input type="text" id="temp_min" class="form-control" placeholder="Temperatura minima" value="{$bodega.temp_min}">
                 </div>
-                <div class="col-sm-4">
-                  <label>Altura de la bodega:</label>
-                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="{$bodega.altura}">
-                </div>
+                 <div class="col-sm-4">
+                    <label>Valor seteado temperatura:</label>
+                    <input type="text" id="valor_seteado_temp" class="form-control" placeholder="Valo seteado temperatura" value="{$bodega.valor_seteado_temp}">
+                  </div>
               </div>
 
               <div class="form-row">
@@ -263,6 +263,21 @@
                     <label>Humedad relativa minima:</label>
                     <input type="text" id="hr_min" class="form-control" placeholder="Humedad Minima" value="{$bodega.hr_min}">
                   </div>
+                  <div class="col-sm-4">
+                    <label>Valor seteado Humedad:</label>
+                    <input type="text" id="valor_seteado_hum" class="form-control" placeholder="Valor seteado" value="{$bodega.valor_seteado_hum}">
+                  </div>
+                 <div class="col-sm-4">
+                    <label>Cantidad Ventanas:</label>
+                    <input type="text" id="cantidad_ventana" class="form-control" placeholder="Cantidad ventanas" value="{$bodega.cantidad_ventana}">
+                  </div>
+               </div> 
+              
+              <div class="form-row">
+                 <div class="col-sm-4">
+                  <label>Altura de la bodega:</label>
+                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="{$bodega.altura}">
+                </div>
                </div> 
               {section name=f loop=$explode_muro} {if $explode_muro[f] eq "Muro de hormigón"} {$hormigon = "checked"} {elseif $explode_muro[f] eq "Muro de isopol"} {$isopol = "checked"} {elseif $explode_muro[f] eq "Muro de ladrillo"} {$ladrillo = "checked"} {elseif
               $explode_muro[f] eq "Muro de madera"} {$madera = "checked"} {elseif $explode_muro[f] eq "otro muro"} {$otro_muro = "checked"} {elseif $explode_muro[f] eq "- "} {$otro_muro_e = $explode_muro[i] } {/if} {/section}
