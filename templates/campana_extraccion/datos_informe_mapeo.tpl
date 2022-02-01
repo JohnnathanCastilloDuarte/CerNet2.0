@@ -59,13 +59,20 @@
 
         <div class="tab-content">
           <div class="tab-pane tabs-animation fade show active" id="inspeccion" role="tabpanel">
+            <input type="hidden" name="" id="id_informe_campana" value="{$id_informe}">
             <form id="formulario_1_campana_extraccion" Method="post">
             <div class="card-body">
 
-              <div id="cuerpo_mapeo_freezer">
+              <div id="cuerpo_mapeo_campana">
+                <div class="col-sm-6">
+                  <label>Nombre informe</label>
+                  <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
 
+                </div>
+                
+              <br>
               <input type="hidden" id="id_inspeccion" name="id_inspeccion">
-              <input type="text" value="{$id_asignado_filtro}" id="id_asignado_campana" name="id_asignado_campana">
+              <input type="hidden" value="{$id_asignado_filtro}" id="id_asignado_campana" name="id_asignado_campana">
 
                <div class="card">
                 <div class="card-header">
@@ -241,8 +248,10 @@
 
           </div>
     </div>
+
+
   </div>
-  <button class="btn btn-warning" id="abrir_informe">Informe</button>
+
 
     <div class="tab-pane tabs-animation fade show" id="pruebas" role="tabpanel">
       <form id="formulario_2_campana_extraccion">
@@ -410,6 +419,8 @@
                      <th>1</th>
                      <th>2</th>
                      <th>3</th>
+                     <th>4</th>
+                     <th>5</th>
                      <th>Promedio</th>
                    </thead>
                    <tbody id="pb_dsn594">
@@ -638,10 +649,14 @@
           </div>
         </div>  
      </div> 
+
      
  
     </div>
+
 </div>
+<br>  
+<button class="btn btn-warning" id="abrir_informe">Informe</button>
 <br>
 
 <!--

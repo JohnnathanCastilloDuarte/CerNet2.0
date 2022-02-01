@@ -3,7 +3,7 @@
 include("../../config.ini.php");
 $tipo_item = $_GET['type'];
 $smarty->assign("id_tipo_filtro",$tipo_item);
-$$array_filtro = array();
+$array_filtro = array();
 
 
    //consultar empresas
@@ -64,6 +64,9 @@ if(isset($_GET['item'])){
     'eficiencia' => $eficiencia
   );
 
+foreach ($variable as $key => $value) {
+  # code...
+}
   
   $smarty->assign("array_filtro",$array_filtro);
 

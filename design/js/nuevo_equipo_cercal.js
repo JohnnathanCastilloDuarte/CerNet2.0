@@ -1,14 +1,12 @@
-
 $("#crear_nuevo_equipo").click(function(){
     window.open("templates/equipos_cercal/creacion_equipos.php");
 });
 
 
-
 //////////// BOTON PARA CREAR EL NUEVO EQUIPO
 $("#btn_crear_equipo_cercal").click(function(){
 
-    alert("Click");
+   
 
     let nombre_equipo_cercal = $("#nombre_equipo_cercal").val();
     let marca_equipo_cercal = $("#marca_equipo_cercal").val();
@@ -98,6 +96,7 @@ function trayendo_equipo(){
 $(document).on('click','#btn_agregar_equipo',function(){
 
     let id_equipo = $(this).attr('data-id');
+    let id_informe  = $("#id_informe_filtro").val();
     let activador = "";
     let datos = "";
     let proceso = 0;
@@ -110,15 +109,15 @@ $(document).on('click','#btn_agregar_equipo',function(){
         proceso = 33;
         let tipo_prueba = $("#tipo_prueba").val();
         let id_asignado_campana = $("#id_asignado_campana").val();
+        let id_informe = $("#id_informe_campana").val();
      
         datos = {
             id_equipo,
             proceso,
             tipo_prueba,
-            id_asignado_campana
+            id_asignado_campana,
+            id_informe
         }
-
-        
 
     }
 
@@ -255,7 +254,7 @@ function listar_equipos_asignados(){
         data:datos,
         url:'templates/equipos_cercal/controlador_equipos.php',
         success:function(response){
-
+            console.log(response);
             let traer = JSON.parse(response);
             let template = "";
 

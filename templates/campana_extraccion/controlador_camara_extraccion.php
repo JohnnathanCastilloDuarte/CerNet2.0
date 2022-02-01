@@ -7,12 +7,21 @@
        
         $id_asignado = $_POST['id_asignado'];
         $array_pruebas = array();
+        $array_pruebas2 = array();
 
         $consultar1 = mysqli_prepare($connect,"SELECT id_inspeccion, insp_1, insp_2, insp_3, insp_4, insp_5 FROM campana_extraccion_inspeccion WHERE id_asignado = ?");
         mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
         mysqli_stmt_execute($consultar1);
         mysqli_stmt_store_result($consultar1);
-        mysqli_stmt_bind_result($consultar1, $id_inspeccion, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5);
+        mysqli_stmt_bind_result($consultar1, $id_informe, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5);
+
+        $consultar2 = mysqli_prepare($connect,"SELECT id_informe, conclucion, nombre_informe, usuario_responsable FROM informe_campana WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar2, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar2);
+        mysqli_stmt_store_result($consultar2);
+        mysqli_stmt_bind_result($consultar2, $id_informe, $conclucion, $nombre_informe, $usuario_responsable);
+
+
 
         while($row = mysqli_stmt_fetch($consultar1)){
 
@@ -23,13 +32,19 @@
                 'insp_2'=>$insp_2,
                 'insp_3'=>$insp_3,
                 'insp_4'=>$insp_4,
-                'insp_5'=>$insp_5
+                'insp_5'=>$insp_5,
+                'id_informe'=>$id_informe,
+                'conclucion'=>$conclucion,
+                'nombre_informe'=>$nombre_informe,
+                'usuario_responsable'=>$usuario_responsable
 
             );
         }
 
         $convert = json_encode($array_pruebas);
+
         echo $convert;
+
    
    
     }else if($movimiento == "Listar_2"){
@@ -122,11 +137,11 @@
         $array_pruebas = array();
 
  
-        $consultar1 = mysqli_prepare($connect,"SELECT id_prueba, punto_1, punto_2, punto_3, punto_promedio, categoria FROM campana_extraccion_prueba_4 WHERE id_asignado = ?");
+        $consultar1 = mysqli_prepare($connect,"SELECT id_prueba, punto_1, punto_2, punto_3, punto_4, punto_5, punto_promedio, categoria FROM campana_extraccion_prueba_4 WHERE id_asignado = ?");
         mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
         mysqli_stmt_execute($consultar1);
         mysqli_stmt_store_result($consultar1);
-        mysqli_stmt_bind_result($consultar1, $id_prueba, $punto_1, $punto_2, $punto_3, $punto_promedio, $categoria);
+        mysqli_stmt_bind_result($consultar1, $id_prueba, $punto_1, $punto_2, $punto_3, $punto_4, $punto_5, $punto_promedio, $categoria);
 
         while($row = mysqli_stmt_fetch($consultar1)){
             $array_pruebas[] = array(
@@ -134,6 +149,8 @@
                 'punto_1'=>$punto_1,
                 'punto_2'=>$punto_2,
                 'punto_3'=>$punto_3,
+                'punto_4'=>$punto_4,
+                'punto_5'=>$punto_5,
                 'punto_promedio'=>$punto_promedio,
                 'categoria'=>$categoria
             );

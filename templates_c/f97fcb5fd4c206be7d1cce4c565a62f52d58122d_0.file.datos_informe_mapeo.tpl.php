@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-26 20:47:09
+/* Smarty version 3.1.34-dev-7, created on 2022-02-01 15:16:53
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61f1a53dcec0b0_48041774',
+  'unifunc' => 'content_61f940d5bec335_21173886',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1643226428,
+      1 => 1643725012,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f1a53dcec0b0_48041774 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61f940d5bec335_21173886 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-3" style="text-align:center;">
@@ -82,13 +82,21 @@ function content_61f1a53dcec0b0_48041774 (Smarty_Internal_Template $_smarty_tpl)
 
         <div class="tab-content">
           <div class="tab-pane tabs-animation fade show active" id="inspeccion" role="tabpanel">
+            <input type="hidden" name="" id="id_informe_campana" value="<?php echo $_smarty_tpl->tpl_vars['id_informe']->value;?>
+">
             <form id="formulario_1_campana_extraccion" Method="post">
             <div class="card-body">
 
-              <div id="cuerpo_mapeo_freezer">
+              <div id="cuerpo_mapeo_campana">
+                <div class="col-sm-6">
+                  <label>Nombre informe</label>
+                  <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
 
+                </div>
+                
+              <br>
               <input type="hidden" id="id_inspeccion" name="id_inspeccion">
-              <input type="text" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
+              <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_campana" name="id_asignado_campana">
 
                <div class="card">
@@ -265,8 +273,10 @@ function content_61f1a53dcec0b0_48041774 (Smarty_Internal_Template $_smarty_tpl)
 
           </div>
     </div>
+
+
   </div>
-  <button class="btn btn-warning" id="abrir_informe">Informe</button>
+
 
     <div class="tab-pane tabs-animation fade show" id="pruebas" role="tabpanel">
       <form id="formulario_2_campana_extraccion">
@@ -434,6 +444,8 @@ function content_61f1a53dcec0b0_48041774 (Smarty_Internal_Template $_smarty_tpl)
                      <th>1</th>
                      <th>2</th>
                      <th>3</th>
+                     <th>4</th>
+                     <th>5</th>
                      <th>Promedio</th>
                    </thead>
                    <tbody id="pb_dsn594">
@@ -663,10 +675,14 @@ function content_61f1a53dcec0b0_48041774 (Smarty_Internal_Template $_smarty_tpl)
           </div>
         </div>  
      </div> 
+
      
  
     </div>
+
 </div>
+<br>  
+<button class="btn btn-warning" id="abrir_informe">Informe</button>
 <br>
 
 <!--
