@@ -26,14 +26,13 @@ var id_gestionar = "";
 	
 	$("#btn_buscar_num_ot").click(function(){
 			var ot = $("#num_ot").val();
-					
+      
 				if(ot){
 					$.ajax({
 						type:'POST',
 						data: { ot },
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
-							
 							if(r=="null"){
 		
 									Swal.fire({
@@ -44,7 +43,7 @@ var id_gestionar = "";
 										timer:2000
 									});
 
-                				$("#sin_ot").show();
+                $("#sin_ot").show();
 								$("#btn_nueva_ot").show();
 								$("#btn_gestionar_ot_2").hide();
 								$("#btn_gestionar_ot_1").hide();
@@ -137,14 +136,16 @@ var id_gestionar = "";
 			num_ot : $("#num_ot").val(),
 			empresa : $("#empresa_ot_n").val(),
 			c_informes : $("#cantidad_informes_ot_n").val(),
-			u_asignado : $("#usuario_asignado_ot_n").val(),
+			u_asignado : $("#id_usuario").val(),
 			f_creacion : $("#fecha_creacion_ot_n").val(),
 			f_asignacion : $("#fecha_asignacion_ot_n").val(),
 			u_creador : $("#id_valida").val(),
-			id_valida : $("#id_valida").val()
+			id_valida : $("#id_valida").val(),
+      id_empresa: $("#id_empresa").val()
 		}
 		
 		$.post('templates/OT/nuevo_ot.php',recojo, function(e){
+      console.log(e);
 			let ultimo_id = JSON.parse(e);
 			let  final = ultimo_id.id_ultimo;	
 			$("#id_ot_oculto").val(final);

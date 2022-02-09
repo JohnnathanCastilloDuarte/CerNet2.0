@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-26 14:44:23
+/* Smarty version 3.1.34-dev-7, created on 2022-02-08 16:44:46
   from '/home/god/public_html/CerNet2.0/templates/item/update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61f15e47b6bdb3_86669563',
+  'unifunc' => 'content_62029dfe4c57f8_00757230',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a7fb74bc2f81f37ba6db7f3feb19793bcfaad457' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_bodega.tpl',
-      1 => 1643208257,
+      1 => 1644338627,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f15e47b6bdb3_86669563 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62029dfe4c57f8_00757230 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -111,13 +111,18 @@ foreach ($_from as $_smarty_tpl->tpl_vars['bodega']->value) {
 ">
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                   <label>Codigo interno / N° Serie:</label>
                   <input type="text" id="codigo_bodega" class="form-control" placeholder="Codigo bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['codigo_interno'];?>
 ">
                 </div>
+                 <div class="col-sm-3">
+                  <label>Clasificación item:</label>
+                  <input type="text" id="clasificacion_item" class="form-control" placeholder="Clasificación item" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['clasificacion_item'];?>
+">
+                </div>
               </div>
-
+<!--
               <?php
 $__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_producto']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_total = $__section_i_0_loop;
@@ -129,56 +134,13 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 }
 }
 ?>
-
+-->
               <div class="form-row">
-                <div class="col-sm-6">
-                  <div class="position-relative form-group">
-                    <label>Productos que almacena:</label>
-                    <br>
-                    <input type="checkbox" name="alimentos" id="productos" value="Alimentos" <?php echo $_smarty_tpl->tpl_vars['alimentos']->value;?>
->
-                    <label>Alimentos</label>
-                    <br>
-                    <input type="checkbox" name="cosmetios" id="productos" value="Cosméticos" <?php echo $_smarty_tpl->tpl_vars['cosmeticos']->value;?>
->
-                    <label>Cosméticos</label>
-                    <br>
-                    <input type="checkbox" name="dispocitivosmedicos" id="productos" value="Dispositivos Médicos" <?php echo $_smarty_tpl->tpl_vars['dispositivos_medicos']->value;?>
->
-                    <label>Dispositivos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="farmaceuticos" id="productos" value="Farmacéuticos" <?php echo $_smarty_tpl->tpl_vars['farmaceutico']->value;?>
->
-                    <label>Farmacéuticos</label>
-                    <br>
-                    <input type="checkbox" name="insumosmedicos" id="productos" value="Insumos Médicos" <?php echo $_smarty_tpl->tpl_vars['insumos_medicos']->value;?>
->
-                    <label>Insumos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="materiasprimas" id="productos" value="Materias Primas" <?php echo $_smarty_tpl->tpl_vars['materias_primas']->value;?>
->
-                    <label>Materias Primas</label>
-                    <br>
-                    <input type="checkbox" name="sustanciaspeligrosas" id="productos" value="Sustancias Peligrosas" <?php echo $_smarty_tpl->tpl_vars['sustancias_peligrosas']->value;?>
->
-                    <label>Insumos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="otros" value="Otros" id="productos" <?php echo $_smarty_tpl->tpl_vars['otros']->value;?>
->
-                    <label>Otros</label>
-                    <br>
-                  </div>
-                </div>
-              </div>
-
-              <div id="otros_productos">
-                <div class="form-row">
-                  <div class="col-sm-12">
-                    <label>Descripción de productos que almacena</label>
-                    <textarea id="productos_bodega" class="form-control" placeholder="Describa los productos que almacena"><?php echo $_smarty_tpl->tpl_vars['otros_e']->value;?>
+                <div class="col-sm-12">
+                     <label>Productos que almacena:</label>
+                    <textarea id="productos_bodega" class="form-control" placeholder="Describa los productos que almacena"><?php echo $_smarty_tpl->tpl_vars['bodega']->value['productos'];?>
 </textarea>
                   </div>
-                </div>
               </div>
             </div>
             <!--Cierre del step 12-->

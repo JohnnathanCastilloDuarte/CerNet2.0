@@ -68,6 +68,8 @@
 							<div class="col-sm-5"></div>
 							<div class="col-sm-4"><button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_empresa_cliente">Actualizar</button></div>
 						</div>
+                <hr>
+      <label>Logo:</label>
 					</div>
 					{/foreach}
 				</div>

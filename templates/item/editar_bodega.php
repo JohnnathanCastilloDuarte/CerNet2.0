@@ -7,8 +7,8 @@ $descripcion_bodega = $_POST['descripcion_bodega'];
 $direccion_bodega = $_POST['direccion_bodega'];
 $codigo_bodega = $_POST['codigo_bodega'];
 $array_productos = $_POST['array_productos'];
-$productos_bodega = $_POST['productos_bodega'];
-$combina_productos = $array_productos.', '.$productos_bodega;
+$combina_productos = $_POST['productos_bodega'];
+//$combina_productos = $array_productos.', '.$productos_bodega;
 $largo_bodega = $_POST['largo_bodega'];
 $ancho_bodega = $_POST['ancho_bodega'];
 $superficie_bodega = $_POST['superficie_bodega'];
@@ -28,6 +28,7 @@ $analisis_riesgo = $_POST['analisis_riesgo'];
 $fichas_estabilidad = $_POST['fichas_estabilidad'];
 $id_item = $_POST['id_item'];
 $id_valida = $_POST['id_valida'];
+$clasificacion_item = $_POST['clasificacion_item'];
 
 $marca_bodega = $_POST['marca_bodega'];
 $modelo_bodega = $_POST['modelo_bodega'];
@@ -70,8 +71,8 @@ mysqli_stmt_execute($actualizar);
 
 if($actualizar){
 
-	$actualizar_nombre = mysqli_prepare($connect,"UPDATE item SET id_empresa = ?, nombre = ?, descripcion = ? WHERE id_item = ?");
-	mysqli_stmt_bind_param($actualizar_nombre, 'issi', $empresa_bodega, $nombre_bodega, $descripcion_bodega, $id_item);
+	$actualizar_nombre = mysqli_prepare($connect,"UPDATE item SET id_empresa = ?, nombre = ?, descripcion = ?, clasificacion_item = ? WHERE id_item = ?");
+	mysqli_stmt_bind_param($actualizar_nombre, 'isssi', $empresa_bodega, $nombre_bodega, $descripcion_bodega, $clasificacion_item, $id_item);
 	mysqli_stmt_execute($actualizar_nombre);
 
 	if($actualizar_nombre){

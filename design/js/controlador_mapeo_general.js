@@ -7,6 +7,7 @@ $("#cargado_archivo_dc").hide();
 $("#cargar_archivo_dc").hide();
 $("#banner_cargando").hide();
 $("#edicion_informe").hide();
+$("#edicion_informe_base").hide();
 $("#asignacion_sensores").hide();
 $("#lista_de_bandejas").hide();
 $("#datos_crudos_card").hide();
@@ -1112,8 +1113,12 @@ function traer_correlativo(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_consecutivo.php',
         success:function(response){
-       
-            $("#correlativo").val(response);
+          let traer = JSON.parse(response);
+            traer.forEach((valor)=>{
+                $("#correlativo").val(valor.correlativo);
+                $("#responsable_informe").val(valor.usuario);
+            })
+            
         }
 
     });    
@@ -1123,11 +1128,13 @@ function traer_correlativo(){
 $("#asignar_correlativo").click(function(){
 
     let correlativo = $("#correlativo").val();
+    let responsable = $("#responsable_informe").val();
     let movimiento = "guardar";
     const datos = {
         id_asignado,
         correlativo,
-        movimiento
+        movimiento,
+        responsable
     }
 
     $.ajax({
@@ -1144,6 +1151,13 @@ $("#asignar_correlativo").click(function(){
                     timer:1700
                 });
                 traer_correlativo();
+            }else{
+              Swal.fire({
+                    title:'Mensaje',
+                    text:'El nombre del usuario no es correcto',
+                    icon:'warning',
+                    timer:1700
+                });
             }
         }
     })
@@ -1433,15 +1447,27 @@ $("#creacion_base").click(function(){
 
 
 $(document).on('click','#editar_informe',function(){
-        $("#edicion_informe").show();
-        $("#card_informes").hide();
+
         let id_informe = $(this).attr('data-id');
         let nombre = $(this).attr('data-name');
         if(nombre == "TEMP" || nombre == "HUM"){
+          
+           $("#edicion_informe").show();
+           $("#card_informes").hide();
+           $("#edicion_informe").hide();
            listar_info_temp(id_informe, 'TEMP');
+          
         }else if(nombre == 'AR'){
-           listar_info_temp(id_informe, 'AR');
+          
+            $("#edicion_informe").show();
+            $("#card_informes").hide();
+            $("#edicion_informe").hide();
+            listar_info_temp(id_informe, 'AR');
         }else if(nombre == 'BASE'){
+          
+          $("#edicion_informe").show();
+          $("#edicion_informe").hide();
+          $("#card_informes").hide();
           listar_info_temp(id_informe, 'BASE');
         }
        
@@ -1449,6 +1475,11 @@ $(document).on('click','#editar_informe',function(){
 
 $("#close_edicion").click(function(){
     $("#edicion_informe").hide();
+    $("#card_informes").show();
+});
+
+$("#close_edicion_base").click(function(){
+    $("#edicion_informe_base").hide();
     $("#card_informes").show();
 });
 
@@ -1499,10 +1530,16 @@ function listar_info_temp(id_informe, extra){
     let movimiento = "";
     
     if(extra == "AR"){
+       $("#edicion_informe").show();
+       $("#edicion_informe_base").hide();
        movimiento = "Consultar_ar";
      }else if(extra == 'TEMP' || extra == 'HUM'){
+       $("#edicion_informe").show();
+       $("#edicion_informe_base").hide();
        movimiento = "Consultar_temp";
      }else if(extra == 'BASE'){
+       $("#edicion_informe").hide();
+       $("#edicion_informe_base").show();
        movimiento = "Consultar_base";
      }
   
@@ -1607,7 +1644,7 @@ function listar_info_temp(id_informe, extra){
                   }
                   contador++;
                  
-                }else{
+                }else if(valor.tipo_informe == "TEMP" || valor.tipo_informe == "HUM"){
                                  
                 if(valor.url1 == null){
                     url_imagen_1 = "design/images/no_imagen.png";
@@ -1636,6 +1673,13 @@ function listar_info_temp(id_informe, extra){
                   
                 template += 
                 `
+                <div class="row">
+                  <div class="col-sm-5">
+                      <button class="btn btn-info" id="ver_dc_todos" data-id="${valor.id_informe}" data-name="${valor.tipo_informe}">Datos crudos (Todos los sensores)</button>
+                    
+                  </div>
+                </div>
+                <hr>
                 <form id="formulario_informe" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="id_informe_actual" value="${valor.id_informe}">
                     <div class="row">
@@ -1699,9 +1743,27 @@ function listar_info_temp(id_informe, extra){
                 `;
                  
               }
+              //Muestra informe Base
+              else{
+                $("#acta_inspeccion").val(valor.acta_inspeccion);
+                $("#conclusiones_informe_base").val(valor.comentario);
+                template += 
+                  `
+                    <input type="hidden" value="BASE" name="BASE" >
+                    <input type="hidden" name="id_informe_actual" value="${valor.id_informe}" id="id_base">
+                   <div class="row">
+                      <div class="col-sm-12">
+                          <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
+                      </div>
+                    </div> 
+                  `;
+                listar_imagenes_base(valor.id_informe);
+                listar_observaciones_inb(valor.id_informe);
+              }
             });
 
             $("#editar_informe_row").html(template+template2+template3);
+           $("#btn_informe_base").html(template);
         }
     })
 }
@@ -1733,6 +1795,7 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
+          console.log(response);
             /*
             let traer = JSON.parse(response);
           
@@ -1742,14 +1805,15 @@ $(document).on('submit','#formulario_informe',function(e){
               });*/
             Swal.fire({
               title:'Mensaje',
-              text:'Se ha actualizado correctamente',
+              text:'Se ha actualizado correctamentes',
               icon:'success',
               timer:1700
             });
             $("#edicion_informe").hide();
+            $("#edicion_informe_base").hide();
             $("#card_informes").show();
-             
-         
+             //listar_observaciones_inb(response);
+          
            
         }
     });
@@ -1869,20 +1933,95 @@ $("#form_cargar_archivos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-          
-          listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
+          console.log(response);
+         listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
           Swal.fire({
             title:'Mensaje',
             icon:'success',
-            text:'Se ha configurado correctamente el sensor',
+            text:'Se ha configurado correctamente el sensor.',
             timer:1700
           });
-          $("#datos_crudos_sensores").hide();
+          $("#mostrar_dato_crudo").hide();
         }
     });
     
 });
 
 
+
+function listar_imagenes_base(id_informe){
+    let movimiento = "Listar_imagenes";
+  $.ajax({
+    type:'POST',
+    url:'templates/mapeos_generales/controlador_inb.php',
+    data:{movimiento, id_informe},
+    success:function(response){
+        console.log(response);
+      
+        
+    }
+  });
+  
+}
+
+function listar_observaciones_inb(id_informe){
+  let movimiento = "Listar_observaciones";
+  $.ajax({
+    type:'POST',
+    url:'templates/mapeos_generales/controlador_inb.php',
+    data:{movimiento, id_informe},
+    success:function(response){
+      
+      
+      let traer = JSON.parse(response);
+      let template = "";
+      let contador = 5;
+      
+      traer.forEach((valor)=>{
+        
+          template += 
+            
+            `
+              <tr>
+                  <td>7.${contador}</td>
+                  <td>${valor.observacion}</td>
+                  <td><button class="btn btn-danger" id="eliminar_observacion" data-id="${valor.id_observacion}" data-name="${id_informe}"">X</button> </td>
+              </tr>
+            `;
+          contador++;
+      });
+      
+      $("#lista_observaciones_informe_base").html(template);
+    }
+  })
+}
+
+$(document).on('click','#eliminar_observacion', function(){
+    
+  let id_observacion = $(this).attr('data-id');
+  let movimiento = "Eliminar_observacion";
+  let id_informe = $(this).attr('data-name');
+  
+  $.ajax({
+    type:'POST',
+    url:'templates/mapeos_generales/controlador_inb.php',
+    data:{movimiento, id_observacion},
+    success:function(response){
+      console.log(response);
+      listar_observaciones_inb(id_informe);
+    }
+  });
+});
+
+
+
+
+//////////////////// CODIGO LOGICA PARA BOTONES DE DATOS CRUDOS
+$(document).on('click','#ver_dc_todos', function(){
+    let id_informe  = $(this).attr('data-id');
+    let complemento = "FJANFNFIAOFNASLJNGJNSANFLSGGG5G4S84SSDGASIHGJLSFGD484512FSGFSGDG";
+    let tipo = $(this).attr('data-name');
+    window.open('templates/mapeos_generales/datos_crudos_excel.php?key='+complemento+id_informe+'&tipo='+tipo);
+});
 
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-02 13:37:35
+/* Smarty version 3.1.34-dev-7, created on 2022-01-27 21:01:15
   from '/home/god/public_html/CerNet2.0/templates/documentacion/head_templates/administracion_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a8cc1f9910e1_98734730',
+  'unifunc' => 'content_61f3081b213b74_18082346',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dd287fffe76997700eb273716c1ef55c8685ee01' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/documentacion/head_templates/administracion_documentacion.tpl',
-      1 => 1638451557,
+      1 => 1643317213,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a8cc1f9910e1_98734730 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61f3081b213b74_18082346 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -75,7 +75,7 @@ function content_61a8cc1f9910e1_98734730 (Smarty_Internal_Template $_smarty_tpl)
     
   </div>
 </div>
-
+<hr>
 <div class="row" id="row_rechazos">
   <input type="hidden" id="id_documentacion_rechazos">
   <div class="col-sm-3"></div>
@@ -83,21 +83,13 @@ function content_61a8cc1f9910e1_98734730 (Smarty_Internal_Template $_smarty_tpl)
     <div class="card">
       <div class="card-header">
         Rechazos documentación
+        <button class="btn btn-danger" style="margin-left: auto;border-radius: 20px;" id="cerrar_tarjeta_rechazos">X</button>
       </div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <label>Documentación</label>
-            <select id="aqui_documentos_inspector" class="form-control">
-              
-            </select>           
-          </div>
-
-          <div class="col-sm-6">
+        <div class="row" id="enunciado_rechazo">
+            <div class="col-sm-12">
               <label>Motivo rechazo</label>
-              <select class="form-control" id="motivo_rechazo">
-                
-              </select>
+              <textarea id="motivo_rechazo" style="width:100%">Escribe...</textarea>
           </div>
         </div>
 
@@ -118,10 +110,9 @@ function content_61a8cc1f9910e1_98734730 (Smarty_Internal_Template $_smarty_tpl)
               <div class="card-body">
                 <table class='table' style="text-align: center;">
                   <thead>
-                    <th>Documento</th>
-                    <th>Motivo</th>
-                    <th>Fecha</th>
                     <th>Quien rechaza</th>
+                    <th>Motivo</th>
+                    <th>Fecha</th> 
                   </thead>
                   <tbody id="aqui_todos_rechazos">
 

@@ -425,6 +425,31 @@ else if($movimiento == "Consultar_ar"){
   echo $convert;
     
 }
+
+else if($movimiento == "Consultar_base"){
+ 
+    $id_informe = $_POST['id_informe'];
+    $array_informes=array();
+    $tipo = "BASE";
+ 
+    $consultar_base = mysqli_prepare($connect,"SELECT comentario, acta_inspeccion FROM informes_general WHERE id_informe = ? AND tipo = ?");
+    mysqli_stmt_bind_param($consultar_base, 'is', $id_informe, $tipo);
+    mysqli_stmt_execute($consultar_base);
+    mysqli_stmt_store_result($consultar_base);
+    mysqli_stmt_bind_result($consultar_base, $comentario, $acta_inspeccion);
+    mysqli_stmt_fetch($consultar_base);
+  
+    $array_informes[]=array('id_informe'=>$id_informe,'comentario'=>$comentario, 'tipo_informe'=>$tipo, 'acta_inspeccion'=>$acta_inspeccion);
+    
+  
+    
+    
+    $convert = json_encode($array_informes);
+    echo $convert;
+    
+}
+
+
 else if($movimiento == "redireccion_informes"){
 
     $id_informe = $_POST['id_informe'];

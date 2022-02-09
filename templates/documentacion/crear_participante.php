@@ -5,7 +5,7 @@ $seleccion = $_POST['seleccion'];
 
 
 if($seleccion == 1){
- 
+
   $nombres = $_POST['nombres'];
   $apellidos = $_POST['apellidos'];
   $rol = $_POST['rol'];
@@ -19,7 +19,8 @@ if($seleccion == 1){
   $inicial_usuario = substr($nombres,0,1);
   $final_usuario = "";
   $n = strpos($apellidos," "); 
- 
+
+  
   
   if($n != ""){
      $final_usuario = substr($apellidos,0, $n);
@@ -48,7 +49,7 @@ if($seleccion == 1){
 
   $id_privilegio = 6;
   $id_rol = 5;
-  $password = md5(123);
+  $password = md5('C3rC4L_Cl1EnT3');
   
   $insert_1 = mysqli_prepare($connect,"INSERT INTO usuario (usuario, password, id_privilegio, id_rol) VALUES (?,?,?,?)");
   mysqli_stmt_bind_param($insert_1, 'ssii', $usuario, $password, $id_privilegio, $id_rol);
@@ -70,6 +71,7 @@ if($seleccion == 1){
   mysqli_stmt_bind_result($consultar_depto, $id_departamento);
   mysqli_stmt_fetch($consultar_depto);
   
+
   if(mysqli_stmt_num_rows($consultar_depto) == 0){
     $crear_depto = mysqli_prepare($connect,"INSERT INTO departamento (departamento) VALUES (?)");
     mysqli_stmt_bind_param($crear_depto, 's', $departamento);
@@ -85,13 +87,15 @@ if($seleccion == 1){
   mysqli_stmt_fetch($consultar_cargo);
   
   if(mysqli_stmt_num_rows($consultar_cargo) == 0){
+    
     $creando_cargo = mysqli_prepare($connect,"INSERT INTO cargo (nombre, id_departamento) VALUES (?,?)");
-    mysqli_stmt_bind_param($creando_cargo, 'i', $cargo);
+    mysqli_stmt_bind_param($creando_cargo, 'si', $cargo, $id_departamento);
     mysqli_stmt_execute($creando_cargo);
     $id_cargo = mysqli_stmt_insert_id($creando_cargo);
   }
   
   
+
 
   $insert_2 = mysqli_prepare($connect, "INSERT INTO persona (id_usuario, nombre, apellido, email, id_empresa, id_cargo) VALUES (?,?,?,?,?,?)");
   mysqli_stmt_bind_param($insert_2, 'isssii', $id, $nombres, $apellidos, $email, $empresa, $id_cargo);

@@ -19,14 +19,14 @@
 		mysqli_stmt_bind_result($query_1, $dato_1, $id_asignado, $id_mapeo, $observacion, $comentarios, $concepto, $solicitante, $fecha_registro);
 		mysqli_stmt_fetch($query_1);
    
-		$nombre_informe = $dato_1;
+		$nombre_informe = substr($dato_1, 0, -3);
+    $fecha_emicion = substr($fecha_registro,0, -8);
 
-
-		$query_2 = mysqli_prepare($connect,"SELECT id_servicio, id_item FROM item_asignado WHERE id_asignado = ?");
+		$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
 		mysqli_stmt_bind_param($query_2, 'i', $id_asignado);
 		mysqli_stmt_execute($query_2);
 		mysqli_stmt_store_result($query_2);
-		mysqli_stmt_bind_result($query_2, $id_servicio, $id_item);
+		mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo);
 		mysqli_stmt_fetch($query_2);
 	
 
@@ -45,6 +45,7 @@
 		mysqli_stmt_fetch($query_4);
 		
 		$numot = $dato_2;
+    $num_nummot = substr($dato_2, 2);
 
 		$query_5 = mysqli_prepare($connect,"SELECT nombre, direccion FROM empresa WHERE id_empresa = ?");
 		mysqli_stmt_bind_param($query_5, 'i', $id_empresa);
@@ -129,9 +130,15 @@
 				break;
 		} 
 
-  
-    $valor_seteado_hum = number_format($$valor_seteado_hum, 2);
+      if(is_numeric($valor_seteado_hum)){
+        $valor_seteado_hum = number_format($valor_seteado_hum, 2);
+        
+      }else{
+        $valor_seteado_hum = $valor_seteado_hum;
+      }
 
+       //$valor_seteado_hum = number_format($valor_seteado_hum, 2);
+    
 
 		$fechas_mapeo = mysqli_prepare($connect,"SELECT nombre, fecha_inicio, fecha_fin, intervalo FROM mapeo_general WHERE id_mapeo = ? ");
 		mysqli_stmt_bind_param($fechas_mapeo, 'i', $id_mapeo);
@@ -140,7 +147,7 @@
 		mysqli_stmt_bind_result($fechas_mapeo, $nombre_prueba, $fecha_inicio, $fecha_fin, $intervalo);
 		mysqli_stmt_fetch($fechas_mapeo);
 
-   $a = $nombre_prueba." - ".$nombre_empresa;
+   $a =  mb_strtoupper($nombre_prueba." - ".$nombre_empresa);
 
 	
     $mediciones = mysqli_prepare($connect,"SELECT DATEDIFF(fecha_fin, fecha_inicio) FROM mapeo_general WHERE id_mapeo = ?");
@@ -153,8 +160,7 @@
   
 
 		//CALCULO DE TIEMPO ACUMULADO AL LIMITE MAXIMO 
-echo "SELECT DISTINCT MAX(hum) as maximo, a.time FROM datos_crudos_general as a, mapeo_general_sensor as b 
-																				WHERE a.hum >= $max_hr AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = $id_mapeo GROUP BY a.time";
+
 		$limite_maximo = mysqli_prepare($connect,"SELECT DISTINCT MAX(hum) as maximo, a.time FROM datos_crudos_general as a, mapeo_general_sensor as b 
 																				WHERE a.hum >= ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? GROUP BY a.time");
 		mysqli_stmt_bind_param($limite_maximo, 'ii', $max_hr, $id_mapeo);
@@ -442,6 +448,11 @@ echo "SELECT DISTINCT MAX(hum) as maximo, a.time FROM datos_crudos_general as a,
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		$pdf->AddPage('A4');
+//Hora sin decimal
+$c_hora_sin = round($c_hora, 0, PHP_ROUND_HALF_ODD);
+
+$c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
+
 
 $html = <<<EOD
 
@@ -481,12 +492,12 @@ text-align:left;
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>INSPECCIÓN DE MAPEO TÉRMICO</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="15%" ><strong>Informe:</strong></td><td width="45%">$nombre_informe</td>
-<td width="15%"><strong>O.T. N°</strong></td><td width="25%">$numot</td></tr>
+<td width="15%"><strong>O.T. N°</strong></td><td width="25%">$num_nummot</td></tr>
 <tr><td width="15%"><strong>Solicitante:</strong></td><td>$nombre_empresa</td>
 		<td>Dirección:</td><td>$ubicacion</td></tr>
 
 		<tr><td width="15%"><strong>Atención:</strong></td><td>$solicitante</td>
-		<td>Fecha de emisión:</td><td>$fecha_registro</td></tr>
+		<td>Fecha de emisión:</td><td>$fecha_emicion</td></tr>
 		</table><br><br>
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>1. Identificación del Equipo o Muestra</strong></H3></td></tr>
@@ -505,11 +516,11 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>2. Resumen de las Mediciones</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">$nombre_prueba POR UN PERIODO DE $c_hora ($c_dia Dias)</td></tr>
+		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">$nombre_prueba por un periodo de  $c_hora horas durante ($c_dia Dias)</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de inicio</td><td width="70%">$fecha_inicio</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de término</td><td width="70%">$fecha_fin</td></tr>
-		<tr><td width="30%" class="enunciado">Cantidad de mediciones</td><td width="70%">$total_mediciones</td></tr>
-		<tr><td width="30%" class="enunciado">Tiempo total de mediciones (Horas)</td><td width="70%">$c_hora</td></tr>
+		<tr><td width="30%" class="enunciado">Cantidad de mediciones</td><td width="70%">$c_total_medicion</td></tr>
+		<tr><td width="30%" class="enunciado">Tiempo total de mediciones (Horas)</td><td width="70%">$c_hora_sin</td></tr>
 		<tr><td width="30%" class="enunciado">Tiempo total de mediciones (dias)</td><td width="70%">$c_dia</td></tr>
 		<tr><td width="30%" class="enunciado">Tiempo acumulado superior al límite máximo (hrs.)</td><td width="70%">$registros_over</td></tr>
 		<tr><td width="30%" class="enunciado">% Superior al límite máximo</td><td width="70%">$max_percent%</td></tr>
@@ -540,11 +551,11 @@ text-align:left;
 
 		<tr><td width="30%" class="enunciado">Dif. Máx. entre sensores %HR</td><td width="10%"> $dif_max_resta</td><td width="10%">a las:</td>
 		<td width="20%" class="enunciado">$dif_max_time</td><td width="7%">entre</td><td width="10%">$dif_max_sensor</td><td width="3%">y</td>
-		<td width="10%" class="enunciado">$dif_min_sensor</td></tr>
+		<td width="10%" >$dif_min_sensor</td></tr>
 
 		<tr><td width="30%" class="enunciado">Dif. Mín. entre sensores %HR</td><td width="10%">$dif_max_resta_2</td><td width="10%">a las:</td>
 		<td width="20%" class="enunciado">$dif_max_time_2</td><td width="7%">entre</td><td width="10%">$dif_max_sensor_2</td><td width="3%">y</td>
-		<td width="10%" class="enunciado">$dif_min_sensor_2</td></tr>
+		<td width="10%" >$dif_min_sensor_2</td></tr>
 
 		<tr><td width="30%" class="enunciado">Sensor con promedio más alto %HR</td><td width="10%">$max_avg</td><td width="10%">en:</td><td width="50%">$max_avg_sensor, ubicado en: $max_avg_posicion</td></tr>
 
@@ -562,6 +573,7 @@ EOD;
 
 $pdf->writeHTML($html, true, false, false, false, '');
 
+$pdf->AddPage('A4');
 $html_2 = <<<EOD
 <style>
 table 
@@ -603,8 +615,8 @@ tr:nth-child(even)
 EOD;
 
 $pdf->writeHTML($html_2, true,false,false,false,'');
-
 $pdf->AddPage('A4');
+
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(170, 170, 170)));
 //TITULOS
 $pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
@@ -815,7 +827,7 @@ tr:nth-child(even)
 </style>
 
 <table>
-<tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
+<tr><td bgcolor="#DDDDDD"><strong>Gráficos de Promedio Maximo y Minimo</strong></td></tr>
 <tr><td><br>Valores Promedio, Máximo y Mínimo</td></tr>
 <tr><td>$img_2</td></tr></table><br><br><br>
 <table>
@@ -874,7 +886,7 @@ tr:nth-child(even)
 <br><br><br><br><br>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
-<tr><td height="90"><br><br><br>Ing. Raúl Quevedo Silva<br>COO - Chief Operation Officer - Cercal Group Spa.</td><td height="50"></td></tr>
+<tr><td height="90"><br><br><br>Ing. $nombres $apellidos<br> $cargo - Cercal Group Spa.</td><td height="50"></td></tr>
 </table>
 
 EOD;

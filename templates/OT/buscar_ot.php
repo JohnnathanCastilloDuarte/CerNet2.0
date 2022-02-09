@@ -11,7 +11,6 @@ mysqli_stmt_execute($consultar);
 mysqli_stmt_store_result($consultar);
 mysqli_stmt_bind_result($consultar, $id_numot, $num_ot, $id_usuario_asignado, $nombre, $apellido,  $id_empresa, $fecha_creacion, $fecha_asignacion, $empresa);
 
-
 if($consultar != null){
 	$json = array();
 	while($row = mysqli_stmt_fetch($consultar)){

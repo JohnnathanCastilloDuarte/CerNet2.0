@@ -4,7 +4,7 @@ require('../../../../config.ini.php');
 $id_informe = $_GET['informe'];
 
 $informes_generales = mysqli_prepare($connect,"SELECT a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
-g.direccion, a.solicitante, b.intervalo
+g.direccion, a.solicitante, b.intervalo, a.comentario, a.acta_inspeccion, f.clasificacion_item
 FROM informes_general a,mapeo_general b,item_asignado c, servicio d, numot e,item f,empresa g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -17,13 +17,14 @@ mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
 mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
-$nombre_empresa_g, $direccion_empresa_g, $solicitante, $intervalo);
+$nombre_empresa_g, $direccion_empresa_g, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item);
 
 mysqli_stmt_fetch($informes_generales);
 
 $nombre_informe = $nombre_informe_g;
 $numot = $num_ot_g;
-$a = $nombre_mapeo_g." INFORME BASE";
+$a = mb_strtoupper($nombre_mapeo_g)."  ".$nombre_empresa_g;
+
 
 
 switch ($id_tipo_item_g) {
@@ -47,6 +48,8 @@ switch ($id_tipo_item_g) {
 
   
 }
+//quitarle la hora  a la fecha 
+$fecha_inicio_g_sin_hora = substr($fecha_inicio_g, 0, -8);
 
 // set font
 $pdf->SetFont('freesans', 'R', 8.2);
@@ -89,14 +92,14 @@ tr:nth-child(even)
 <tr><td width="13%" align="right">Solicitante:</td><td width="87%" align="left">$nombre_empresa_g</td></tr>
 <tr><td width="13%" align="right">Dirección:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
 <tr><td width="13%" align="right">Atención:</td><td width="87%" align="left">$solicitante</td></tr>
-<tr><td width="13%" align="right">Fecha Emisión:</td><td width="87%" align="left">$fecha_inicio_g</td></tr>
+<tr><td width="13%" align="right">Fecha Emisión:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>1.0 ANTECEDENTES DE LA INSPECCION</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="25%" align="right">Lugar:</td><td align="left" width="75%">$ubicacion_equipo</td></tr>
 <tr><td width="25%" align="right">Fecha de medición:</td><td align="left" width="75%">$fecha_inicio_g - $fecha_fin_g</td></tr>
-<tr><td width="25%" align="right">Acta de inspección:</td><td align="left" width="75%">$no_acta</td></tr>
+<tr><td width="25%" align="right">Acta de inspección:</td><td align="left" width="75%">$acta_inspeccion</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>2.0 IDENTIFICACIÓN DE EQUIPO Y/O ÁREA</strong></H3></td></tr></table><br><br>
@@ -129,7 +132,7 @@ tr:nth-child(even)
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>4.0 ANTECEDENTES PROPORCIONADOS POR EL SOLICITANTE</strong></H3></td></tr></table><br><br>
 <table>
-<tr><td width="25%" align="right">Plano de la Bodega y N° rev.:</td><td align="left" width="75%">$planos</td></tr>
+<tr><td width="25%" align="right">Plano de la $clasificacion_item y N° rev.:</td><td align="left" width="75%">$planos</td></tr>
 
 <tr><td width="25%" align="right">Especificación de temperatura:</td>
 <td align="left" width="75%">Mínima $min_temp °C- Máxima $max_temp °C</td></tr>
@@ -144,7 +147,7 @@ tr:nth-child(even)
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>5.0 ANÁLISIS DE RIESGOS - INFORMACIÓN BASE</strong></H3></td></tr></table><br><br>
 <table>
 
-<tr><td width="25%" align="right">Orientación principal de la bodega:</td><td align="left" width="75%">$orientacion_principal</td></tr>
+<tr><td width="25%" align="right">Orientación principal de la $clasificacion_item:</td><td align="left" width="75%">$orientacion_principal</td></tr>
 <tr><td width="25%" align="right">Orientación de recepción:</td><td align="left" width="75%">$orientacion_rececpion</td></tr>
 <tr><td width="25%" align="right">Orientación de despacho:</td><td align="left" width="75%">$orientacion_despacho</td></tr>
 <tr><td width="25%" align="right">Número de puertas:</td><td align="left" width="75%">$num_puertas</td></tr>
@@ -159,7 +162,7 @@ tr:nth-child(even)
 <tr><td width="25%" align="right">Cantidad de luminarias:</td><td align="left" width="75%">$cantidad_luminarias</td></tr>
 <tr><td width="25%" align="right">Tipo de pared:</td><td align="left" width="75%">$tipo_muro</td></tr>
 <tr><td width="25%" align="right">Tipo de cielo:</td><td align="left" width="75%">$tipo_cielo</td></tr>
-<tr><td width="25%" align="right">Dimensiones de la bodega:</td>
+<tr><td width="25%" align="right">Dimensiones de la $clasificacion_item:</td>
 <td align="left" width="75%">Altura $altura mts / Superficie: $superficie m2 / Volumen: $volumen m3<br>
 														Largo: $largo mts. / Ancho: $ancho mts.</td></tr>
 </table><br><br>
@@ -239,15 +242,15 @@ del área del almacenamiento:</SPAN>
 <UL>
 <LI CLASS="biglist">Largo y ancho: se recomienda la utilización de una “rejilla” a lo largo y ancho del
 plano, para la distribución de los sensores tomando entre 5- 10 metros de distancia
-lineal entre cada sensor. Si son bodegas con mayores longitudes de
+lineal entre cada sensor. Si son $clasificacion_item s con mayores longitudes de
 almacenamiento pueden colocarse los sensores a una distancia lineal de 20 o 30
 metros entre ellos.</LI>
 
-<LI CLASS="biglist">Altura: según la altura de la bodega los sensores deben instalarse de la siguiente
+<LI CLASS="biglist">Altura: según la altura de la $clasificacion_item los sensores deben instalarse de la siguiente
 manera. Para alturas máximas de 3,6 metros o menos considerar tres alturas, uno
 a nivel del suelo, nivel medio a 1,2 metros y nivel alto a 3 metros. Para alturas
 superiores a los 3,6 metros considerar un nivel bajo al suelo, nivel medio (múltiplos)
-y nivel alto. Por ejemplo, para una bodega de 6 metros se recomienda colocar a
+y nivel alto. Por ejemplo, para una $clasificacion_item de 6 metros se recomienda colocar a
 nivel bajo 0,3 metros; nivel medio 1 a 1,8 metros; medio 2 a 3,6 metros; alto a 5,4
 metros.</LI>
 
@@ -293,15 +296,15 @@ registro sanitario, según corresponda según lo señalado a continuación:
 <H3>6.3 METODOLOGÍA</H3>
 <SPAN STYLE="text-align: justify;">Proceso:</span>
 <UL>
-<LI CLASS="biglist">Se realiza una inspección visual de la bodega donde se determinan las áreas
+<LI CLASS="biglist">Se realiza una inspección visual de la $clasificacion_item donde se determinan las áreas
 críticas que pueden afectar las temperaturas de los productos almacenados.</LI>
 
 <LI CLASS="biglist">Se realiza análisis de riesgo para determinar áreas críticas.</LI>
 
-<LI CLASS="biglist">La bodega se encuentra al momento de la instalación de sensores con $carga_bod% de
+<LI CLASS="biglist">La $clasificacion_item se encuentra al momento de la instalación de sensores con $carga_bod% de
 carga aproximadamente.</LI>
 
-<LI CLASS="biglist">Por altura de la bodega y los estantes instalados en ella se consideran $alturas_generales niveles de
+<LI CLASS="biglist">Por altura de la $clasificacion_item y los estantes instalados en ella se consideran $alturas_generales niveles de
 ubicación de sensores, a fin de evaluar el gradiente de temperatura, $zona_alt_a $zona_alt_m7 $zona_alt_m6 $zona_alt_m5 $zona_alt_m4 
 $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b.</LI>
 
@@ -334,7 +337,7 @@ estar fuera de los criterios de aceptación especificados para la droguería.</S
 
 <SPAN STYLE="text-align: justify;">Un punto frío se refiere a las temperaturas más bajas registradas en el área durante el
 período de estudio, pero estas temperaturas más bajas se mantienen dentro de lo
-especificado en el rango de temperatura de la bodega, con un rango de temperatura
+especificado en el rango de temperatura de la $clasificacion_item, con un rango de temperatura
 especificado por cliente de +$min_temp °C a +$max_temp °C.</SPAN><BR><BR>
 
 <SPAN STYLE="text-align: justify;">Un punto caliente se refiere a las temperaturas más altas registradas en el área durante
@@ -598,7 +601,7 @@ mysqli_stmt_fetch($query_promedios_general);
 
 $colum = mysqli_stmt_num_rows($query_promedios);
 
-$pdf->writeHTMLCell(70, 7.4*($colum+1), 15, '', 'Temperatura promedio en Bodega durante período de estudio', 1, 0, 0, true, 'C', false);
+$pdf->writeHTMLCell(70, 7.4*($colum+1), 15, '', 'Temperatura promedio en $clasificacion_item durante período de estudio', 1, 0, 0, true, 'C', false);
 
 while($row = mysqli_stmt_fetch($query_promedios)){
   $pdf->writeHTMLCell(50, 8, 85, '', 'T° promedio Zona '.$posiciones, 1, 0, 0, true, 'C', true);
@@ -774,11 +777,6 @@ while($row = mysqli_stmt_fetch($buscar_informes_final)){
     $pdf->writeHTMLCell(180, 5, 15, '', 'Zona '.$posiciones. ': Ver resultados en informe '.$informed, 1, 1, 0, true, 'C', true);
 }
 
-
-
-
-
-
 $pdf->AddPage();
 
 $txt = <<<EOD
@@ -899,16 +897,16 @@ tr:nth-child(even)
 <br><br>
 <table>
 <tr><td width="5%">7.1</td>
-<td width="95%" class="justificado">La bodega al momento de la instalación de los sensores de mapeo térmico por
+<td width="95%" class="justificado">La $clasificacion_item al momento de la instalación de los sensores de mapeo térmico por
 personal de CERCAL INGENIERIA SPA, se encontraba con $carga_bod% de carga
 aproximadamente.</td></tr>
 </table>
 <br><br>
 <table>
 <tr><td width="5%">7.2</td>
-<td width="95%" class="justificado">Por la altura de la bodega se consideran $alturas_generales niveles de ubicación de sensores, con el
+<td width="95%" class="justificado">Por la altura de la $clasificacion_item se consideran $alturas_generales niveles de ubicación de sensores, con el
 fin de determinar el gradiente de temperatura: $zona_alt_a $zona_alt_m7 $zona_alt_m6 $zona_alt_m5 $zona_alt_m4 
-$zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b, ubicados en bodega de almacenamiento de $descrip_material.</td></tr>
+$zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b, ubicados en $clasificacion_item de almacenamiento de $descrip_material.</td></tr>
 </table>
 <br><br>
 <table>
@@ -922,15 +920,80 @@ $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b, ubicados en bodega de almacen
 informativo.</td></tr>
 </table>
 <br><br>
-<table>
-<tr><td width="5%">7.5</td>
-<td width="95%" class="justificado">El análisis de riesgo que acompaña el presente informe puede ser complementado o
-actualizado por parte de $empresa de acuerdo con los resultados obtenidos.</td></tr>
-</table>
-<br><br>
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
+
+$listar_observaciones = mysqli_prepare($connect,"SELECT  observacion  FROM `observaciones_inb` WHERE id_informe = ?");
+mysqli_stmt_bind_param($listar_observaciones, 'i',  $id_informe);
+mysqli_stmt_execute($listar_observaciones);
+mysqli_stmt_store_result($listar_observaciones);
+mysqli_stmt_bind_result($listar_observaciones, $observacion);
+
+$cont = 5;
+while($row = mysqli_stmt_fetch($listar_observaciones)){
+   
+$txt = <<<EOD
+<style>
+table 
+{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th 
+{
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  padding: 3px;
+  vertical-align: middle;
+}
+.justificado
+{
+  text-align: justify;	
+}
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+
+.biglist
+{
+ list-style-type: disc;
+ text-align: justify;
+}
+
+.smallist
+{
+ list-style-type: circle;
+ text-align: justify; 
+}
+
+.titlelist
+{
+ list-style-type: none;
+ text-align: justify; 
+}
+</style>
+
+<table>
+<tr><td width="5%">7.$cont</td>
+<td width="95%" class="justificado">$observacion.</td></tr>
+</table>
+<br><br>
+
+EOD;
+$pdf->writeHTML($txt, true, false, false, false, '');  
+  $cont++;
+}
+
 
 /*$select_vacio=mysqli_query($connect,"SELECT no_reporte, observacion FROM reportes 
 						    WHERE num_ot='$num_ot' AND equipo_bodega='$no_equipo' AND no_reporte='$codigo_informe' AND id_servicio='$servicio'");
@@ -1134,7 +1197,7 @@ acuerdo con los cambios que realice el $cargo.</td></tr>
 <br><br>
 <table>
 <tr><td width="5%">8.4</td>
-<td width="95%" class="justificado">$conclusion_8_4</td></tr>
+<td width="95%" class="justificado">$comentario</td></tr>
 </table>
 <br><br>
 
@@ -1356,6 +1419,14 @@ list($img_ancho4, $img_alto4, $type, $attr) = getimagesize($foto4);
 if($img_ancho4>$img_alto4){$img_med4="width=300";}else{$img_med4="height=250";}
 
 /*FOTOS DE LA BODEGA*/
+
+
+
+$pdf->writeHTML($txt, true, false, false, false, '');
+
+
+
+$clasificacion_item_mayus = mb_strtoupper($clasificacion_item);
 $txt = <<<EOD
 
 <style>
@@ -1410,16 +1481,115 @@ tr:nth-child(even)
 
 </style>
 
-<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>Anexo N° 1: FOTOGRAFÍAS DE LA BODEGA</strong></H3></td></tr></TABLE>
+<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>Anexo N° 1: FOTOGRAFÍAS DE LA $clasificacion_item_mayus</strong></H3></td></tr></TABLE>
 <br><br>
 
-<table>
-<tr><td width="320"><img src="$foto1" width="250"></td><td width="320"><img src="$foto2" width="250"></td></tr>
-<tr><td width="320"><img src="$foto3" width="250"></td><td width="320"><img src="$foto4" width="250"></td></tr>
-</table>
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
+
+$imagenes_informes = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 11");
+mysqli_stmt_bind_param($imagenes_informes, 'i',  $id_informe);
+mysqli_stmt_execute($imagenes_informes);
+mysqli_stmt_store_result($imagenes_informes);
+mysqli_stmt_bind_result($imagenes_informes, $url1);
+mysqli_stmt_fetch($imagenes_informes);
+
+$imagenes_informes2 = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 22");
+mysqli_stmt_bind_param($imagenes_informes2, 'i',  $id_informe);
+mysqli_stmt_execute($imagenes_informes2);
+mysqli_stmt_store_result($imagenes_informes2);
+mysqli_stmt_bind_result($imagenes_informes2, $url2);
+mysqli_stmt_fetch($imagenes_informes2);
+
+$imagenes_informe3 = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 33");
+mysqli_stmt_bind_param($imagenes_informe3, 'i',  $id_informe);
+mysqli_stmt_execute($imagenes_informe3);
+mysqli_stmt_store_result($imagenes_informe3);
+mysqli_stmt_bind_result($imagenes_informe3, $url3);
+mysqli_stmt_fetch($imagenes_informe3);
+
+$imagenes_informe4 = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 44");
+mysqli_stmt_bind_param($imagenes_informe4, 'i',  $id_informe);
+mysqli_stmt_execute($imagenes_informe4);
+mysqli_stmt_store_result($imagenes_informe4);
+mysqli_stmt_bind_result($imagenes_informe4, $url4);
+mysqli_stmt_fetch($imagenes_informe4);
+
+
+$txt = <<<EOD
+
+<style>
+table 
+{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th 
+{
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+  vertical-align: middle;
+}
+.justificado
+{
+  text-align: justify;	
+}
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+
+.biglist
+{
+ list-style-type: disc;
+ text-align: justify;
+}
+
+.smallist
+{
+ list-style-type: circle;
+ text-align: justify; 
+}
+
+.titlelist
+{
+ list-style-type: none;
+ text-align: justify; 
+}
+
+
+</style>
+
+<table>
+<tr>
+    <td width="320"><img src="../../$url1" width="250"></td>
+    <td width="320"><img src="../../$url2" width="250"></td>
+</tr>
+<br>
+<tr>
+    <td width="320"><img src="../../$url3" width="250"></td>
+    <td width="320"><img src="../../$url4" width="250"></td>
+</tr>
+
+</table>
+
+EOD;
+$pdf->writeHTML($txt, true, false, false, false, '');
+
+
+
+  
 
 
 $pdf->Output($nombre_informe_g.'.pdf', 'I');

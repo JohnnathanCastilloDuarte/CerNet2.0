@@ -9,6 +9,7 @@ $codigo_bodega = $_POST['codigo_bodega'];
 $productos = $_POST['productos'];
 $id_tipo = $_POST['id_tipo'];
 $id_usuario = $_POST['id_valida'];
+$clasificacion_item = $_POST['clasificacion_item'];
 
 $largo_bodega = $_POST['largo_bodega'];
 $ancho_bodega = $_POST['ancho_bodega'];
@@ -52,9 +53,11 @@ $estado = 1;
 
 
 ///Insertamos en la tabla de item para crear un id
-	$crear = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES (?, ?, ?, ?, ?, ?)");
+	$crear = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) 
+  VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-		mysqli_stmt_bind_param($crear, 'iissii', $id_empresa, $id_tipo, $nombre, $descripcion_item_bodega, $estado, $id_usuario);
+		mysqli_stmt_bind_param($crear, 'iissiis', $id_empresa, $id_tipo, $nombre, 
+                           $descripcion_item_bodega, $estado, $id_usuario, $clasificacion_item);
 		mysqli_stmt_execute($crear);
 		mysqli_stmt_error($crear);
 //recuperamos el id de la tambla item que acabamos de crear

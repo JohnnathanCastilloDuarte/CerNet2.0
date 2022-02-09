@@ -22,11 +22,11 @@
 		$nombre_informe = $dato_1;
 
 
-		$query_2 = mysqli_prepare($connect,"SELECT id_servicio, id_item FROM item_asignado WHERE id_asignado = ?");
+		$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
 		mysqli_stmt_bind_param($query_2, 'i', $id_asignado);
 		mysqli_stmt_execute($query_2);
 		mysqli_stmt_store_result($query_2);
-		mysqli_stmt_bind_result($query_2, $id_servicio, $id_item);
+		mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo);
 		mysqli_stmt_fetch($query_2);
 	
 
@@ -137,7 +137,7 @@
 		mysqli_stmt_bind_result($fechas_mapeo, $nombre_prueba, $fecha_inicio, $fecha_fin, $intervalo);
 		mysqli_stmt_fetch($fechas_mapeo);
 
-   $a = $nombre_prueba." - ".$nombre_empresa;
+   $a = mb_strtoupper($nombre_prueba." - ".$nombre_empresa);
 
 	
     $mediciones = mysqli_prepare($connect,"SELECT DATEDIFF(fecha_fin, fecha_inicio) FROM mapeo_general WHERE id_mapeo = ?");
@@ -520,7 +520,7 @@
 	  $img_1 = '<img src="../../../design/images/no_imagen.png">';
   }
 
-
+  $num_ot = substr($numot,2);
 
   $query_34 = mysqli_prepare($connect,"SELECT url FROM imagenes_general_informe WHERE id_informe = ? AND tipo = ?");
   mysqli_stmt_bind_param($query_34, 'ii', $id_informe, $tipo_imagen_2);
@@ -549,7 +549,9 @@
 		$img_3 = '<img src="../../../design/images/no_imagen.png">';
 	}
 
+//nombre prueba minuscula
 
+$nombre_prueba_minuscula = mb_strtolower($nombre_prueba) ;
 		
   /////////////////////////////////////////////////////////////INICIO INFORME////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -591,10 +593,10 @@ text-align:left;
 }
 </style>
 
-<table><tr><td bgcolor="#DDDDDD"><H3><strong>INSPECCIÓN DE MAPEO TÉRMICO</strong></H3></td></tr></table><br><br>
+<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE MAPEO TÉRMICO</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="15%" ><strong>Informe:</strong></td><td width="45%">$nombre_informe</td>
-<td width="15%"><strong>O.T. N°</strong></td><td width="25%">$numot</td></tr>
+<td width="15%"><strong>O.T. N°</strong></td><td width="25%">$num_ot</td></tr>
 <tr><td width="15%"><strong>Solicitante:</strong></td><td>$nombre_empresa</td>
 		<td>Dirección:</td><td>$ubicacion</td></tr>
 
@@ -604,7 +606,7 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>1. Identificación del Equipo o Muestra</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Descripción:</td><td width="70%">$nombre_item de almacenamiento de $descripcion_item</td></tr>
+		<tr><td width="30%" class="enunciado">Descripción:</td><td width="70%">Almacenamiento de $descripcion_item</td></tr>
 		<tr><td width="30%" class="enunciado">Marca:</td><td width="70%">$marca</td></tr>
 		<tr><td width="30%" class="enunciado">Modelo:</td><td width="70%">$modelo</td></tr>
 		<tr><td width="30%" class="enunciado">N° de serie / Código interno</td><td width="70%">$codigo_interno</td></tr>
@@ -618,7 +620,7 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>2. Resumen de las Mediciones</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">$nombre_prueba POR UN PERIODO DE $c_hora HRS.($c_dia Dias)</td></tr>
+		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">$nombre_prueba por un período de $c_hora horas durante $c_dia Dias</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de inicio</td><td width="70%">$fecha_inicio</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de término</td><td width="70%">$fecha_fin</td></tr>
 		<tr><td width="30%" class="enunciado">Cantidad de mediciones</td><td width="70%">$total_mediciones</td></tr>
@@ -989,7 +991,7 @@ tr:nth-child(even)
 <br><br><br><br><br>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
-<tr><td height="90"><br><br><br>Ing. Raúl Quevedo Silva<br>COO - Chief Operation Officer - Cercal Group Spa.</td><td height="50"></td></tr>
+<tr><td height="90"><br><br><br>Ing. $nombres $apellidos<br> $cargo - Cercal Group Spa.</td><td height="50"></td></tr>
 </table>
 
 EOD;

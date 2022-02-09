@@ -1,45 +1,36 @@
 
 	
-	$("#btn_editar_cliente_empresa").click(function(){
-			
-		 let razon_social        = $("div #razon_social").val();
-
-		 let id_empresa         = $("#id_empresa").val();
-     let n_tributario       = $("#n_tributario").val();    
-     let direccion_empresa  = $("#direccion_empresa").val(); 
-     let pais_empresa       = $("#pais_empresa").val();
-     let ciudad_empresa     = $("#ciudad_empresa").val();
-     let sigla_pais         = $("#sigla_pais").val();
-     let sigla_empresa      = $("#sigla_empresa").val();
-     let tipo_sede          = $("#tipo_sede").val();
-     let giro_empresa       = $("#giro_empresa").val();
+$("#formulario_para_editar").submit(function(evento){
   
-    console.log(id_empresa)
-		const varios = {
-			id_empresa, 
-			n_tributario, 
-			razon_social,   
-			direccion_empresa, 
-			pais_empresa, 
-			ciudad_empresa, 
-			sigla_pais, 
-			sigla_empresa, 
-			tipo_sede, 
-			giro_empresa, 
-		} 
-
-		$.post('templates/cliente/edit_empresa_cliente.php', varios , function(e){
-			if(e=="Si"){
-					Swal.fire({
+       evento.preventDefault();
+   var formData = new FormData(document.getElementById("formulario_para_editar"));
+  
+    $.ajax({
+      type:'POST',
+      url:'templates/cliente/edit_empresa_cliente.php',
+      data:formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success:function(response){ 
+        console.log(response);
+        if(response == "Creado"){
+          Swal.fire({
  							position: 'center',
  							icon: 'success',
-  						title: 'El cliente '+razon_social+' ha sido modificado!',
+  						title: 'El cliente  ha sido modificado!',
   						showConfirmButton: false,
   						timer: 1000
-							});
-			}
-		});
-	});
+							});  
+          
+        }
+      }
+    }) 
+  });
+
+
+
+  
 
 
 

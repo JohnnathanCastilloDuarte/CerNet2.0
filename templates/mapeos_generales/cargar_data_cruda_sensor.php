@@ -13,9 +13,24 @@ mysqli_stmt_bind_result($consultando, $fecha_inicio, $fecha_fin, $intervalo);
 mysqli_stmt_fetch($consultando);
 
 
-$directorio_carga="mapeo_termico/";
-$nombre_archivo_n = "data_cruda".$incrementador.".csv";
+$directorio_carga="datos_crudos/mapeo_termico_#_".$id_mapeo_sensor."/";
+$nombre_archivo_n = "data_cruda.csv";
 $personalizado = $directorio_carga.$nombre_archivo_n;
+
+$incremet = 1;
+$i = 0;
+do {
+   if(file_exists($personalizado)){
+     $nombre_archivo_n = "data_cruda_".$incremet.".csv";
+     $personalizado = $directorio_carga.$nombre_archivo_n;
+     echo "intento ".$personalizado;
+     $incremet++;
+   }else{
+     $i=2;
+   }
+} while ($i == 0);
+
+echo "Final ".$personalizado;
 
 if(is_dir($directorio_carga)===false)
 {
@@ -96,11 +111,11 @@ else
         
             
             if(($fecha_suma>=$fecha_inicio) && ($fecha_suma<=$fecha_fin)){
-            
-                $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
+                
+               $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
                 mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $column[2], $column[3]);
                 mysqli_stmt_execute($insertando);
-                $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));  
+                $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));
                 $z_1=2; 
             } 
         }
