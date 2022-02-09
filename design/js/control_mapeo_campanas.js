@@ -5,7 +5,7 @@ $("#ir_informe_campanas").click(function(){
   window.open("templates/campana_extraccion/informes/inspeccion_de_campanas.php");
 });
 
-
+consultando_ot();
 listar_datos_full(1);
 listar_datos_full(2);
 listar_datos_full(3);
@@ -15,17 +15,15 @@ listar_datos_full(6);
 
 function listar_datos_full(numeral){
     let movimiento = "Listar_"+numeral;
-
     if(numeral == 1){
       $.ajax({
         type:'POST',
         data:{id_asignado,movimiento},
         url:'templates/campana_extraccion/controlador_camara_extraccion.php',
         success:function(response){
-          
+          console.log(response);
           let traer = JSON.parse(response);
           let template = "";
-  
           traer.forEach((valor)=>{
   
              $("#valor_insp_1").val(valor.insp_1);
@@ -39,6 +37,7 @@ function listar_datos_full(numeral){
              $("#valor_insp_5").val(valor.insp_5);
              $("#valor_insp_5").text(valor.insp_5);
              $("#id_inspeccion").val(valor.id_inspeccion);
+             $("#id_informe_campana").val(valor.id_informe);
             
           });
   
@@ -214,7 +213,9 @@ function listar_datos_full(numeral){
                 <td><input type="text" class="form-control" name="prueba_53_medicion_1[]" value="${valor.punto_1}"></td>
                 <td><input type="text" class="form-control" name="prueba_53_medicion_2[]" value="${valor.punto_2}"></td>
                 <td><input type="text" class="form-control" name="prueba_53_medicion_3[]" value="${valor.punto_3}"></td>
-                <td><input type="text" class="form-control" name="prueba_53_medicion_4[]" value="${valor.punto_promedio}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_4[]" value="${valor.punto_4}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_5[]" value="${valor.punto_5}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_6[]" value="${valor.punto_promedio}"></td>
               </tr>
               `;
               validador3++;
@@ -329,6 +330,29 @@ function validador_de_pruebas(validator){
      
     }
   })
+}
+
+///////////// CONSULTAR DATOS DE LA OT
+function consultando_ot(){
+  
+  $.ajax({
+    type:'POST',
+    url:'templates/campana_extraccion/datos_ot.php',
+    data:{id_asignado},
+    success:function(response){
+       console.log(response); 
+      let traer = JSON.parse(response);
+      
+      traer.forEach((x)=>{
+        $("#ot_campana_label").text(x.ot);
+        $("#cliente_campana_label").text(x.cliente);   
+
+        $("#nombre_informe").val(x.sigla_pais+x.num_ot+"-"+'DOC123-CLI108-CE'); 
+      })
+          
+      
+    }
+  });
 }
 
 
@@ -539,4 +563,13 @@ $("#formulario_evidencias_graficas_campana").submit(function(e){
       }
     }
   }); 
+});
+
+
+$("#abrir_informe").click(function(){
+  
+   let encrypt = "LF456DS4G5DS4F5SD21G4DFSGF14DS2vDF2bfg56f1d56sf15ds6f4g534G564g56f4g56df4g561G6F4D5G6DF4G564FG5DG"+id_asignado;
+   //window.open("templates/filtros/informes/informe/inspeccion_de_filtros.php");
+   location.href = 'templates/campana_extraccion/informes/informes/inspeccion_de_campanas.php?clave='+encrypt; 
+
 });

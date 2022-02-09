@@ -34,6 +34,8 @@ $prueba_53_medicion_1 = $_POST['prueba_53_medicion_1'];
 $prueba_53_medicion_2 = $_POST['prueba_53_medicion_2'];
 $prueba_53_medicion_3 = $_POST['prueba_53_medicion_3'];
 $prueba_53_medicion_4 = $_POST['prueba_53_medicion_4'];
+$prueba_53_medicion_5 = $_POST['prueba_53_medicion_5'];
+$prueba_53_medicion_6 = $_POST['prueba_53_medicion_6'];
 
 
 $id_prueba_5 = $_POST['id_prueba_5'];
@@ -112,8 +114,10 @@ if($si == count($prueba_3_id)){
 
                 for($i = 0; $i < count($prueba_53_id); $i++){
 
-                    $actualizar_5 = mysqli_prepare($connect,"UPDATE campana_extraccion_prueba_4 SET punto_1 = ?, punto_2 = ?, punto_3 = ?, punto_promedio = ? WHERE id_prueba = ?");
-                    mysqli_stmt_bind_param($actualizar_5, 'ssssi', $prueba_53_medicion_1[$i], $prueba_53_medicion_2[$i], $prueba_53_medicion_3[$i], $prueba_53_medicion_4[$i], $prueba_53_id[$i]);
+                    $actualizar_5 = mysqli_prepare($connect,"UPDATE campana_extraccion_prueba_4 
+                        SET punto_1 = ?, punto_2 = ?, punto_3 = ?, punto_promedio = ?, punto_4 = ?, punto_5= ? 
+                        WHERE id_prueba = ?");
+                    mysqli_stmt_bind_param($actualizar_5, 'ssssssi', $prueba_53_medicion_1[$i], $prueba_53_medicion_2[$i], $prueba_53_medicion_3[$i], $prueba_53_medicion_6[$i], $prueba_53_medicion_4[$i], $prueba_53_medicion_5[$i], $prueba_53_id[$i]);
                     mysqli_stmt_execute($actualizar_5);
 
                     if($actualizar_5){

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-17 22:56:17
+/* Smarty version 3.1.34-dev-7, created on 2022-02-09 14:34:11
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_flujo_laminar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e5e601527404_88244737',
+  'unifunc' => 'content_6203c2d3c0ae35_29468887',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f498032172dc7242f53cbb6ae83f2578b844d41' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_flujo_laminar.tpl',
-      1 => 1642456576,
+      1 => 1644413647,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e5e601527404_88244737 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6203c2d3c0ae35_29468887 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -47,7 +47,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
             </div>
             <div class="col-sm-6">
               <label>Empresa:</label>
-              <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['id_empresa'];?>
+              <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['id_empresa_flujo'];?>
 ">
               <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['nombre_empresa'];?>
 ">
@@ -69,22 +69,68 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
 ">
             </div>
             <div class="col-sm-6">
-              <label>Dirección</label>
+              <label>Dirección:</label>
               <input class="form-control" type="text" name="" id="direccion_flujo" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['direccion'];?>
 " placeholder="Dirección">
             </div>
           </div>
-          <br>
           <div class="form-row">
             <div class="col-sm-6">
-              <label>Ubicación interna</label>
+              <label>Ubicación interna:</label>
               <input type="text" id="ubicacion_interna" class="form-control" placeholder="Ubicación interna" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['ubicacion_interna'];?>
 ">
             </div>
             <div class="col-sm-6">
-              <label>Área interna</label>
+              <label>Área interna:</label>
               <input class="form-control" type="text" name="" id="area_interna" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['area_interna'];?>
 " placeholder="Área interna">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-4">
+              <label>Tipo cabina:</label>
+              <input type="text" id="tipo_cabina" class="form-control" placeholder="Tipo cabina" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_cabina'];?>
+">
+            </div>
+            <div class="col-sm-4">
+              <label>Marca:</label>
+              <input class="form-control" type="text" name="" id="marca" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['marca'];?>
+" placeholder="Marca">
+            </div>
+            <div class="col-sm-4">
+              <label>Modelo:</label>
+              <input class="form-control" type="text" name="" id="modelo" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['modelo'];?>
+" placeholder="Modelo">
+            </div>
+          </div>
+           <div class="form-row">
+            <div class="col-sm-4">
+              <label>N serie:</label>
+              <input type="text" id="n_serie" class="form-control" placeholder="Numero de serie" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['serie'];?>
+">
+            </div>
+            <div class="col-sm-4">
+              <label>Código:</label>
+              <input class="form-control" type="text" name="" id="codigo" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['codigo'];?>
+" placeholder="Código">
+            </div>
+             <div class="col-sm-4">
+              <label>Tipo dimenciones:</label>
+              <input type="text" id="tipo_dimeciones" class="form-control" placeholder="Tipo dimenciones" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_dimenciones'];?>
+">
+            </div>
+          </div> 
+          <div class="form-row">
+           
+            <div class="col-sm-4">
+              <label>Limite penetración:</label>
+              <input class="form-control" type="text" name="" id="limite_penetracion" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['limite_penetracion'];?>
+" placeholder="Limite penetracion">
+            </div>
+            <div class="col-sm-4">
+              <label>Eficiencia:</label>
+              <input class="form-control" type="text" name="" id="eficiencia" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['eficiencia'];?>
+" placeholder="Eficiencia">
             </div>
           </div>
 

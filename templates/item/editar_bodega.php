@@ -56,10 +56,6 @@ mysqli_stmt_bind_param($actualizar, 'sssiiiiissssssssisssssssssssssssssi', $dire
 mysqli_stmt_execute($actualizar);
  
 
-/* echo "UPDATE item_bodega SET   direccion = $direccion_bodega , codigo_interno = $codigo_bodega, productos_almacena = $combina_productos, largo = $largo_bodega, ancho = $ancho_bodega, 
-	superficie = $superficie_bodega, volumen = $volume_bodega, altura = $altura_bodega, tipo_muro = $combina_muro, tipo_cielo = $combina_cielo, s_climatizacion = $array_climatizacion, s_monitoreo = $s_m_t, s_alarma = $s_m_t_a, planos = $array_planos,
-	analisis_riesgo = $analisis_riesgo, ficha_estabilidad = $, id_usuario = ? marca_bodega = ?, modelo_bodega = ?, orientacion_principal = ?, orientacion_recepcion = ?, orientacion_despacho = ?, num_puertas = ?, salida_emergencia = ?, cantidad_rack = ?, num_estantes = ?, altura_max_rack = ?, sistema_extraccion = ?, cielo_lus = ?, temp_max = ?, temp_min = ?, cantidad_iluminarias = ?, hr_max = ?, hr_min = ? WHERE id_item = ?";*/
-
 
 if($actualizar){
 

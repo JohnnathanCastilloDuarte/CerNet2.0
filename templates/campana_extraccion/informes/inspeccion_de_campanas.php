@@ -1,6 +1,7 @@
 <?php 
-require('../../../recursos/encabezadopdf.php');
-require('../../../config.ini.php');
+require('../../../../recursos/itemencabezadopdf.php');
+require('../../../../config.ini.php');
+
 
 $pdf->AddPage('A4');
 

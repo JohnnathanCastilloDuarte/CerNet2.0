@@ -86,7 +86,16 @@ if($proceso == 1){
     $id_equipo = $_POST['id_equipo'];
     $tipo_prueba = $_POST['tipo_prueba'];
     $id_asignado_campana = $_POST['id_asignado_campana'];
+    $id_informe = $_POST['id_informe'];
     $camara_categoria = 12;
+
+    //buscador de informe
+    $validacion1 = mysqli_prepare($connect,"SELECT id_equipo_medicion  FROM equipos_mediciones WHERE id_asignado = ? AND id_equipo = ? AND categoria = ? AND tipo_prueba = ?");
+    mysqli_stmt_bind_param($validacion1, 'iiis', $id_asignado_campana, $id_equipo, $camara_categoria, $tipo_prueba);
+    mysqli_stmt_execute($validacion1);
+    mysqli_stmt_store_result($validacion1);
+    mysqli_stmt_bind_result($validacion1, $id_equipo_medicion);
+    mysqli_stmt_fetch($validacion1);
 
 
     $validacion1 = mysqli_prepare($connect,"SELECT id_equipo_medicion  FROM equipos_mediciones WHERE id_asignado = ? AND id_equipo = ? AND categoria = ? AND tipo_prueba = ?");
@@ -99,12 +108,13 @@ if($proceso == 1){
     if (mysqli_stmt_num_rows($validacion1) > 0){
         echo "Existe";
     }else{
-        $insertar = mysqli_prepare($connect,"INSERT INTO equipos_mediciones (id_equipo , id_asignado, categoria, tipo_prueba) VALUES (?,?,?,?)");
-        mysqli_stmt_bind_param($insertar, 'iiis', $id_equipo, $id_asignado_campana, $camara_categoria, $tipo_prueba);
+        $insertar = mysqli_prepare($connect,"INSERT INTO equipos_mediciones (id_equipo , id_asignado, categoria, tipo_prueba, id_informe) VALUES (?,?,?,?,?)");
+        mysqli_stmt_bind_param($insertar, 'iiisi', $id_equipo, $id_asignado_campana, $camara_categoria, $tipo_prueba, $id_informe);
         mysqli_stmt_execute($insertar);
 
         if($insertar){
             echo "Listo";
+
         }
     }
 

@@ -18,7 +18,7 @@
             </div>
             <div class="col-sm-6">
               <label>Empresa:</label>
-              <input type="hidden" id="id_empresa" value="{$flujo_laminar.id_empresa}">
+              <input type="hidden" id="id_empresa" value="{$flujo_laminar.id_empresa_flujo}">
               <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$flujo_laminar.nombre_empresa}">
               <div >
                 <table class="table" id="aqui_resultados_empresa">
@@ -37,19 +37,57 @@
               <input type="text" id="cantidad_filtros" class="form-control" placeholder="Cantidad de filtros" value="{$flujo_laminar.cantidad_filtro}">
             </div>
             <div class="col-sm-6">
-              <label>Dirección</label>
+              <label>Dirección:</label>
               <input class="form-control" type="text" name="" id="direccion_flujo" value="{$flujo_laminar.direccion}" placeholder="Dirección">
             </div>
           </div>
-          <br>
           <div class="form-row">
             <div class="col-sm-6">
-              <label>Ubicación interna</label>
+              <label>Ubicación interna:</label>
               <input type="text" id="ubicacion_interna" class="form-control" placeholder="Ubicación interna" value="{$flujo_laminar.ubicacion_interna}">
             </div>
             <div class="col-sm-6">
-              <label>Área interna</label>
+              <label>Área interna:</label>
               <input class="form-control" type="text" name="" id="area_interna" value="{$flujo_laminar.area_interna}" placeholder="Área interna">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-4">
+              <label>Tipo cabina:</label>
+              <input type="text" id="tipo_cabina" class="form-control" placeholder="Tipo cabina" value="{$flujo_laminar.tipo_cabina}">
+            </div>
+            <div class="col-sm-4">
+              <label>Marca:</label>
+              <input class="form-control" type="text" name="" id="marca" value="{$flujo_laminar.marca}" placeholder="Marca">
+            </div>
+            <div class="col-sm-4">
+              <label>Modelo:</label>
+              <input class="form-control" type="text" name="" id="modelo" value="{$flujo_laminar.modelo}" placeholder="Modelo">
+            </div>
+          </div>
+           <div class="form-row">
+            <div class="col-sm-4">
+              <label>N serie:</label>
+              <input type="text" id="n_serie" class="form-control" placeholder="Numero de serie" value="{$flujo_laminar.serie}">
+            </div>
+            <div class="col-sm-4">
+              <label>Código:</label>
+              <input class="form-control" type="text" name="" id="codigo" value="{$flujo_laminar.codigo}" placeholder="Código">
+            </div>
+             <div class="col-sm-4">
+              <label>Tipo dimenciones:</label>
+              <input type="text" id="tipo_dimeciones" class="form-control" placeholder="Tipo dimenciones" value="{$flujo_laminar.tipo_dimenciones}">
+            </div>
+          </div> 
+          <div class="form-row">
+           
+            <div class="col-sm-4">
+              <label>Limite penetración:</label>
+              <input class="form-control" type="text" name="" id="limite_penetracion" value="{$flujo_laminar.limite_penetracion}" placeholder="Limite penetracion">
+            </div>
+            <div class="col-sm-4">
+              <label>Eficiencia:</label>
+              <input class="form-control" type="text" name="" id="eficiencia" value="{$flujo_laminar.eficiencia}" placeholder="Eficiencia">
             </div>
           </div>
 
