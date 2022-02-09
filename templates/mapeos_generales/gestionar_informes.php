@@ -21,16 +21,17 @@ mysqli_stmt_fetch($tipo_informe_1);
 
 $smarty->assign("id_servicio_mapeo",$id_servicio_mapeo);
 
-$mapeo = mysqli_prepare($connect,"SELECT a.id_asignado, b.numot, f.nombre,  d.nombre,  e.nombre, e.apellido  
-	FROM item_asignado as a, numot as b, servicio as c, empresa as d, persona as e, item as f 
-	WHERE c.id_servicio_tipo =  $id_servicio_mapeo AND  c.id_numot = b.id_numot AND  a.id_item = f.id_item  AND b.id_empresa = d.id_empresa AND a.id_usuario = e.id_usuario AND f.id_tipo = 1");
+
+
+  $mapeo = mysqli_prepare($connect,"SELECT a.id_asignado, c.numot, d.nombre,  e.nombre,  f.nombre, f.apellido 
+  FROM item_asignado as a, servicio  as b, numot as c, item as d, empresa as e, persona as f WHERE a.id_servicio = b.id_servicio 
+  AND b.id_numot = c.id_numot AND a.id_item = d.id_item AND c.id_empresa = e.id_empresa AND b.id_servicio_tipo = $id_servicio_mapeo AND d.id_tipo = 1 
+  AND f.id_usuario = a.id_usuario");
 	mysqli_stmt_execute($mapeo);
 	mysqli_stmt_store_result($mapeo);
 	mysqli_stmt_bind_result($mapeo, $id_asignado, $numot, $item, $empresa, $usuario_nombre, $usuario_apellido);
 
-  echo "SELECT a.id_asignado, b.numot, f.nombre,  d.nombre,  e.nombre, e.apellido  
-	FROM item_asignado as a, numot as b, servicio as c, empresa as d, persona as e, item as f 
-	WHERE c.id_servicio_tipo =  $id_servicio_mapeo AND  c.id_numot = b.id_numot AND  a.id_item = f.id_item  AND b.id_empresa = d.id_empresa AND a.id_usuario = e.id_usuario AND f.id_tipo = 1";
+
 while($row = mysqli_stmt_fetch($mapeo)){
 	$array_mapeo[]=array(
 		'id_asignado'=>$id_asignado,

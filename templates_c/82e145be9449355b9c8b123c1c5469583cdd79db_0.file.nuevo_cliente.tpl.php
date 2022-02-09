@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-01 18:48:10
+/* Smarty version 3.1.34-dev-7, created on 2022-02-08 17:34:17
   from '/home/god/public_html/CerNet2.0/templates/cliente/nuevo_cliente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61a7c36ad2f551_49414231',
+  'unifunc' => 'content_6202a999ef43c8_30035514',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '82e145be9449355b9c8b123c1c5469583cdd79db' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/cliente/nuevo_cliente.tpl',
-      1 => 1634879506,
+      1 => 1644341651,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61a7c36ad2f551_49414231 (Smarty_Internal_Template $_smarty_tpl) {
-?><form method="post" id="form_creacion_cliente">
+function content_6202a999ef43c8_30035514 (Smarty_Internal_Template $_smarty_tpl) {
+?><form method="post" id="form_creacion_cliente" enctype="multipart/form-data">
 <div class="app-main__inner">
 	<div class="card">
 			<div class="card-header">
@@ -109,12 +109,21 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 " required="">
 				</div>
 			</div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="">Logo:</label>
+          <input type="file" class="form-control" name="logo_empresa"/>
+        </div>
+      </div>
 			<br>
 			<div class="row">
 				<div class="col-sm-5"></div>
 				<div class="col-sm-4"><button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_nuevo_cliente">Aceptar</button></div>
-
 			</div>
+      
+      
+      
 				
 		</div>	
 	</div>

@@ -30,7 +30,11 @@
 
 	//consultar item
  	$execute = mysqli_prepare($connect,"SELECT d.id_bodega, a.nombre, b.descripcion, b.nombre, c.nombre, c.id_empresa, d.direccion, d.codigo_interno, d.productos_almacena, d.largo, d.ancho, d.superficie, 
- 		d.volumen, d.altura, d.tipo_muro, d.tipo_cielo, d.s_climatizacion, d.s_monitoreo, d.s_alarma, d.planos, d.analisis_riesgo, d.ficha_estabilidad , d.marca_bodega, d.modelo_bodega, d.orientacion_principal, d.orientacion_recepcion, d.orientacion_despacho, d.num_puertas, d.salida_emergencia, d.cantidad_rack, d.num_estantes, d.altura_max_rack, d.sistema_extraccion, d.cielo_lus, d.temp_max, d.temp_min, d.cantidad_iluminarias, d.hr_max, d.hr_min FROM tipo_item as a, item as b, empresa as c, item_bodega as d  
+ 		d.volumen, d.altura, d.tipo_muro, d.tipo_cielo, d.s_climatizacion, d.s_monitoreo, d.s_alarma, d.planos, d.analisis_riesgo, 
+    d.ficha_estabilidad , d.marca_bodega, d.modelo_bodega, d.orientacion_principal, d.orientacion_recepcion, d.orientacion_despacho, d.num_puertas, 
+    d.salida_emergencia, d.cantidad_rack, d.num_estantes, d.altura_max_rack, d.sistema_extraccion, d.cielo_lus, d.temp_max, d.temp_min, 
+    d.cantidad_iluminarias, d.hr_max, d.hr_min, d.cantidad_ventana, d.valor_seteado_temp, d.valor_seteado_hum, b.clasificacion_item
+    FROM tipo_item as a, item as b, empresa as c, item_bodega as d  
  		WHERE a.id_item = b.id_tipo AND b.id_empresa = c.id_empresa AND d.id_item = b.id_item AND b.id_item  = ?");
 
 
@@ -38,7 +42,9 @@
  	mysqli_stmt_execute($execute);
  	mysqli_stmt_store_result($execute);
  	mysqli_stmt_bind_result($execute, $id_bodega, $nombre_tipo_item, $descripcion_bodega, $nombre_item, $nombre_empresa, $id_empresa, $direccion, $codigo_iterno, $producto, $largo, $ancho, $superficie, $volumen, $altura, $tipo_muro,
- 		$tipo_cielo, $climatizacion, $monitoreo, $alarma, $planos, $analisis_riesgo, $ficha_estabilidad, $marca_bodega, $modelo_bodega, $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max, $temp_min, $cantidad_iluminarias, $hr_max, $hr_min,);
+ 		$tipo_cielo, $climatizacion, $monitoreo, $alarma, $planos, $analisis_riesgo, $ficha_estabilidad, $marca_bodega, $modelo_bodega, 
+     $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, 
+    $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max, $temp_min, $cantidad_iluminarias, $hr_max, $hr_min, $cantidad_ventana, $valor_seteado_temp, $valor_seteado_hum, $clasificacion_item);
  	mysqli_stmt_fetch($execute);	
 
 
@@ -82,7 +88,11 @@
 		'temp_min'=>$temp_min,
 		'cantidad_iluminarias'=>$cantidad_iluminarias,
 		'hr_max'=>$hr_max,
-		'hr_min'=>$hr_min
+		'hr_min'=>$hr_min,
+    'cantidad_ventana'=>$cantidad_ventana,
+    'valor_seteado_temp'=>$valor_seteado_temp,
+    'valor_seteado_hum'=>$valor_seteado_hum,
+    'clasificacion_item'=>$clasificacion_item,
  	);
 
  	$explode_producto = explode(", ", $producto);

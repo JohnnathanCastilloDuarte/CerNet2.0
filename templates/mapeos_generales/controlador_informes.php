@@ -142,7 +142,66 @@ if($movimiento == "Leer"){
             echo "No";
         }
     }
+}  
+  
 
+else if($movimiento == "crear_base"){
+
+$id_mapeo = $_POST['id_mapeo'];
+$id_asignado = $_POST['id_asignado'];
+$id_usuario = $_POST['id_usuario'];
+$tipo = "BASE";
+$consecutivo = "";
+
+$consulta_empresa = mysqli_prepare($connect,"SELECT a.sigla_empresa, a.sigla_pais, b.correlativo FROM empresa as a, item_asignado as b, item as c WHERE a.id_empresa = c.id_empresa AND c.id_item = b.id_item AND b.id_asignado  = ?");
+mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
+mysqli_stmt_execute($consulta_empresa);
+mysqli_stmt_store_result($consulta_empresa);
+mysqli_stmt_bind_result($consulta_empresa, $sigla_empresa, $sigla_pais, $correlativo);
+mysqli_stmt_fetch($consulta_empresa);
+
+$consultar_informe = mysqli_prepare($connect, "SELECT id_informe FROM informes_general WHERE id_mapeo = ? AND id_asignado = ? AND tipo = ?");
+mysqli_stmt_bind_param($consultar_informe, 'iis', $id_mapeo, $id_asignado, $tipo);
+mysqli_stmt_execute($consultar_informe);
+mysqli_stmt_store_result($consultar_informe);
+mysqli_stmt_bind_result($consultar_informe, $id_informe);
+mysqli_stmt_fetch($consultar_informe);
+
+if(mysqli_stmt_num_rows($consultar_informe) > 0){
+    echo "Existe";
+}else{
+
+    $consultar_consecutivo = mysqli_prepare($connect, "SELECT temp_hum FROM informes_general WHERE id_asignado = ? AND tipo = ?");
+    mysqli_stmt_bind_param($consultar_consecutivo , 'is', $id_asignado, $tipo);
+    mysqli_stmt_execute($consultar_consecutivo);
+    mysqli_stmt_store_result($consultar_consecutivo);
+    mysqli_stmt_bind_result($consultar_consecutivo , $temp_hum);
+    mysqli_stmt_fetch($consultar_consecutivo);
+
+    if(mysqli_stmt_num_rows($consultar_consecutivo) == 0){
+        $consecutivo = "01";
+    }else{
+        if($temp_hum <= 9){
+            $consecutivo = "0".$temp_hum;
+        }else{
+            $consecutivo = $temp_hum;
+        }
+    }
+
+    $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-HUM-'.$consecutivo;
+
+    $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
+    mysqli_stmt_execute($insertando_informe);
+
+    if($insertando_informe){
+        echo "Listo";
+    }else{
+        echo "No";
+    }
+}
+  
+  
     
 }else if($movimiento == "crear_ar"){
 
@@ -366,6 +425,31 @@ else if($movimiento == "Consultar_ar"){
   echo $convert;
     
 }
+
+else if($movimiento == "Consultar_base"){
+ 
+    $id_informe = $_POST['id_informe'];
+    $array_informes=array();
+    $tipo = "BASE";
+ 
+    $consultar_base = mysqli_prepare($connect,"SELECT comentario, acta_inspeccion FROM informes_general WHERE id_informe = ? AND tipo = ?");
+    mysqli_stmt_bind_param($consultar_base, 'is', $id_informe, $tipo);
+    mysqli_stmt_execute($consultar_base);
+    mysqli_stmt_store_result($consultar_base);
+    mysqli_stmt_bind_result($consultar_base, $comentario, $acta_inspeccion);
+    mysqli_stmt_fetch($consultar_base);
+  
+    $array_informes[]=array('id_informe'=>$id_informe,'comentario'=>$comentario, 'tipo_informe'=>$tipo, 'acta_inspeccion'=>$acta_inspeccion);
+    
+  
+    
+    
+    $convert = json_encode($array_informes);
+    echo $convert;
+    
+}
+
+
 else if($movimiento == "redireccion_informes"){
 
     $id_informe = $_POST['id_informe'];

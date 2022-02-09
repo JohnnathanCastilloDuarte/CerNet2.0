@@ -8,6 +8,8 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
 
   include("../../config.ini.php"); 
   
+  
+  
   ///////////////////////////////////////////// VALIDO LA EXISTENCIA DE LA IMAGEN PARA EVITAR EL APROBAR DEL MISMO
  
   $validador = mysqli_prepare($connect,"SELECT a.id_imagen FROM imagenes_general_informe as a, informes_general as b WHERE a.id_informe = b.id_informe AND b.id_mapeo = ? AND a.tipo = 2");
@@ -37,27 +39,67 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
   $datos = "";
   $colum = "";
   
-  echo "<input type='hidden' value='$id_mapeo' id='id_mapeo'/>";
-  $consultar = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo FROM sensores AS a, mapeo_general_sensor AS b  WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ?");
-  mysqli_stmt_bind_param($consultar, 'i', $id_mapeo);  
+ ?> 
+<input type='hidden' value='<?php echo $id_mapeo; ?>' id='id_mapeo'/>
+<input type="hidden" value='<?php echo $tipo_grafi;?>' id="tipo_Grafico">
+<div class="row">
+  <div class="col-sm-2" style="text-align: center;">
+    <label>Alturas:</label>
+    <select class="form-control" id="Seleccionador_de_alturas">
+        <option>Seleccione...</option>  
+      <?php
+
+        $consultar_alturas = mysqli_prepare($connect,"SELECT  DISTINCT  a.nombre, a.id_bandeja FROM bandeja as a, mapeo_general_sensor as b WHERE b.id_bandeja = a.id_bandeja AND b.id_mapeo = ?");
+        mysqli_stmt_bind_param($consultar_alturas, 'i', $id_mapeo);
+        mysqli_stmt_execute($consultar_alturas);
+        mysqli_stmt_store_result($consultar_alturas);
+        mysqli_stmt_bind_result($consultar_alturas, $nombre_altura, $id_altura);
+  
+        while($row = mysqli_stmt_fetch($consultar_alturas)){
+          
+          echo "<option value='$id_altura'>$nombre_altura</option>";
+        }
+      ?>
+    </select>
+  </div>
+</div>
+<hr>
+<script>
+  $("#Seleccionador_de_alturas").change(function(){
+      let altura = $(this).val();
+      let id_mapeo = $("#id_mapeo").val();
+      let tipo_grafico = $("#tipo_Grafico").val();
+    location.href = 'https://cercal.net/CerNet2.0/templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_grafico+'&altura='+altura;
+  });
+</script>
+<?php
+
+  
+ if(isset($_GET['altura'])){
+   
+  $altura = $_GET['altura']; 
+  
+
+  $consultar = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
+FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = ? AND b.id_bandeja = c.id_bandeja");
+  mysqli_stmt_bind_param($consultar, 'ii', $id_mapeo, $altura);  
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
-  mysqli_stmt_bind_result($consultar, $sensor, $id_sensor);
+  mysqli_stmt_bind_result($consultar, $sensor, $id_sensor, $nombre_altura_titulo);
     
   if(mysqli_stmt_num_rows($consultar) > 0){
     
- 
   
+    
 
     while($row = mysqli_stmt_fetch($consultar)){  
+   
       $array_sensor[] = array($sensor);
       $array_id_sensor[] = array($id_sensor);
       $count_sensores++;
-    } 
-    
-
-    ?> 
-    <div class="row"  style="text-align: center;">
+    }
+ ?> 
+ <div class="row"  style="text-align: center;">
   <div class="col-sm-2">
     <div class="card">
       <div class="card-header">Rangos de grafica</div>
@@ -91,13 +133,15 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       location.reload();
     });
 
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['corechart'], 'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'});
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
     var data = google.visualization.arrayToDataTable([
 
     <?php 
+    
+
     echo "['Time',";
     for($f = 1; $f<$count_sensores; $f++){
       
@@ -120,15 +164,17 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       
 
       if($tipo_grafi == "TEMP"){
-        $query_31 = mysqli_prepare($connect,"SELECT a.temp FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ?   ORDER BY a.time ASC, a.id_sensor_mapeo ASC");
-        mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
+
+        $query_31 = mysqli_prepare($connect,"SELECT a.temp, b.posicion, LENGTH(b.posicion) as longitud FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE
+        a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ?  AND b.id_bandeja = ? ORDER BY longitud ASC, b.posicion ASC");
+        mysqli_stmt_bind_param($query_31, 'ii',  $id_mapeo, $altura);
         mysqli_stmt_execute($query_31);
         mysqli_stmt_store_result($query_31);
-        mysqli_stmt_bind_result($query_31, $datos);	
+        mysqli_stmt_bind_result($query_31, $datos, $posicion, $longitud);	
         $colum = mysqli_stmt_num_rows($consultar_data);	
       }else{
-        $query_31 = mysqli_prepare($connect,"SELECT a.hum FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ?   ORDER BY a.time ASC, a.id_sensor_mapeo ASC");
-        mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
+        $query_31 = mysqli_prepare($connect,"SELECT a.hum FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ?  AND b.id_bandeja = ?  ORDER BY a.time ASC, a.id_sensor_mapeo ASC");
+        mysqli_stmt_bind_param($query_31, 'ii',  $id_mapeo, $altura);
         mysqli_stmt_execute($query_31);
         mysqli_stmt_store_result($query_31);
         mysqli_stmt_bind_result($query_31, $datos);	
@@ -138,13 +184,13 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       
 
  
-      for($j=1;$j<=$colum;$j++){
-        mysqli_stmt_fetch($consultar_data);
+      for($j=1;$j<$colum;$j++){
+        mysqli_stmt_fetch($query_31);
          echo "['".$time."',";
        
          for($g=1;$g<$count_sensores;$g++){
           
-            mysqli_stmt_fetch($query_31);
+            mysqli_stmt_fetch($consultar_data);
             
            if($g == $count_sensores){
               echo  number_format($datos,2);
@@ -168,20 +214,20 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
    if(lim_min.length == 0){
       var options = {
       curveType: 'function',
-      legend: { position: 'bottom' },
-      hAxis : { textStyle : { fontSize: 15} }, 
-      vAxis : { textStyle : { fontSize: 20}},
+      legend: { position: 'rigth' },
+      hAxis : { textStyle : { fontSize: 20} }, 
+      vAxis : { textStyle : { fontSize: 20}}
       };
     }else{
       var options = {
-    curveType: 'function',
-    legend: { position: 'bottom' },
-    hAxis : { textStyle : { fontSize: 7} }, 
-    vAxis : { textStyle : { fontSize: 7},
-    viewWindow: {
-        min: lim_min,
-        max: lim_max
-    }, },
+    animation:{
+    duration: 1000,
+    easing: 'out',
+  },  curveType: 'function'
+     , smoothline: 'true'
+     , width: 875
+     , height: 400
+     , legend: {position: 'none'}
     };
     }
 
@@ -190,7 +236,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
 
     // Wait for the chart to finish drawing before calling the getImageURI() method.
     google.visualization.events.addListener(chart, 'ready', function () {
-      chart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+      //chart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
       console.log(chart_div.innerHTML);
     });
       
@@ -203,15 +249,9 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
     chart.draw(data, options);
     }
     </script>
-    <textarea id="aqui_algo"></textarea>
-    <h2 style="font-family: Quincy;margin-left: 40%;margin-top: 05%;position: absolute;">Grafico de todos los sensores</h2>
-    <div id="curve_chart" style="width: 1000px; height: 700px; margin-left:300px;"></div>
-    <br>
-    <div style="margin-left:700px;">
-      <button class="btn btn-success" id="aprobar_grafico_1">
-        Aprobar Grafico
-      </button>  
-    </div>
+    <h3 style="font-family: Quincy;margin-left: 35%;margin-top: 05%;position: absolute;">Grafico de todos los sensores para altura <?php echo $nombre_altura_titulo; ?></h3>
+    <div id="curve_chart" style="width: 2000px; height: 700px; margin-left:300px;"></div>
+
     <script>
       $("#aprobar_grafico_1").click(function(){
         let base_64 = $("#aqui_algo").val();
@@ -236,11 +276,14 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
       });
     </script>
     <?php  
-    
+    }
+    else{
+      echo '';
+  
+    }
     }////////// FIN DEL IF
-  else{
-      
-    echo '<h5 class="text-danger">No se han cargado datos crudos para este mapeo</h5>';
+  else{      
+    echo '<h5 class="text-danger">Debes seleccionar una altura para continuar</h5>';
   }
 }/////////CIERRE DE LA FUNCIÓN
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-19 12:31:20
+/* Smarty version 3.1.34-dev-7, created on 2022-01-31 22:51:17
   from '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e804986b61a2_68969009',
+  'unifunc' => 'content_61f867e580dcd6_27967562',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '174faa9eb5dc95114cb87835de6da5030a87abc5' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl',
-      1 => 1642595478,
+      1 => 1643030826,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e804986b61a2_68969009 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61f867e580dcd6_27967562 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -42,33 +42,8 @@ function content_61e804986b61a2_68969009 (Smarty_Internal_Template $_smarty_tpl)
 <br>
 
 <div class="card">
-  <div class="card-body">
-    <div id="smartwizard2" class="forms-wizard-alt">
-        <ul class="forms-wizard">
-            <li>
-                <a href="#step-12">
-                    <em>1</em><span>Identificación</span>
-                </a>
-            </li>
-          <!--
-            <li>
-                <a href="#step-22">
-                    <em>2</em><span>Infraestructura</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-32">
-                    <em>3</em><span>Equipos</span>
-                </a>
-            </li>
-          <li id="si_envia">
-                <a href="#step-42">
-                    <em>4</em><span>Evidencia</span>
-                </a>
-            </li>-->
+  <div class="card-body">      
 
-      </ul>
-      <div class="form-wizard-content">
        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_filtro']->value, 'filtro');
 if ($_from !== null) {
@@ -184,27 +159,34 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
               <input type="text" class="form-control" id="tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['tipo_filtro'];?>
 " required="" placeholder="Dimensiones del filtro">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
               <label>Limite de penetración: </label>
-              <input type="text" class="form-control" id="penetracion_filtro" value="0,001" placeholder=" limite de penetración">
+              <input type="text" class="form-control" id="penetracion_filtro" <?php if ($_smarty_tpl->tpl_vars['filtro']->value['penetracion_filtro'] == '') {?> value="0,001" <?php } else { ?> value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['penetracion_filtro'];?>
+" <?php }?> placeholder=" limite de penetración">
             </div>
+            <div class="col-sm-3">
+              <label>Eficiencia: </label>
+              <input type="text" class="form-control" id="eficiencia" <?php if ($_smarty_tpl->tpl_vars['filtro']->value['eficiencia'] == '') {?> value="99,99 % (0,3um)" <?php } else { ?> value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['eficiencia'];?>
+" <?php }?> placeholder="Eficiencia">
+            </div>
+
           </div>
           <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+          </div>
           <br>
           
-          <div class="form-row">
+          <div class="form-row"> 
             <div class="col-sm-12" style="text-align:center;" id="tipo_botton_filtros">
               <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_filtro">Actualizar</button>
               <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_filtro">Crear</button>
             </div>
           </div>
           
-        </div><!--CIERRE DE LA PRIMERA TARJETA--> 
         
-      </div><!--CIERRE DEL CONTENIDO DEL WIZARD-->  
+
         
     </div><!--TITULOS DEL WIZARD-->
   </div><!--CIERRE DEL CARDBODY--> 

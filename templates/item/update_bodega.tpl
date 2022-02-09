@@ -77,56 +77,25 @@
                     <input id="direccion_bodega" type="text" class="form-control" placeholder="Dirección de la bodega" value="{$bodega.direccion}">
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                   <label>Codigo interno / N° Serie:</label>
                   <input type="text" id="codigo_bodega" class="form-control" placeholder="Codigo bodega" value="{$bodega.codigo_interno}">
                 </div>
+                 <div class="col-sm-3">
+                  <label>Clasificación item:</label>
+                  <input type="text" id="clasificacion_item" class="form-control" placeholder="Clasificación item" value="{$bodega.clasificacion_item}">
+                </div>
               </div>
-
+<!--
               {section name=i loop=$explode_producto} {if $explode_producto[i] eq "Alimentos"} {$alimentos="checked"} {elseif $explode_producto[i] eq "Cosméticos"} {$cosmeticos="checked"} {elseif $explode_producto[i] eq "Dispositivos Médicos"} {$dispositivos_medicos="checked"}
               {elseif $explode_producto[i] eq "Farmacéuticos"} {$farmaceutico="checked"} {elseif $explode_producto[i] eq "Insumos Médicos"} {$insumos_medicos="checked"} {elseif $explode_producto[i] eq "Materias Primas"} {$materias_primas="checked"} {elseif
               $explode_producto[i] eq "Sustancias Peligrosas"} {$sustancias_peligrosas="checked"} {elseif $explode_producto[i] eq "Otros"} {$otros="checked"} {else} {$otros_e=$explode_producto[i]} {/if} {/section}
-
+-->
               <div class="form-row">
-                <div class="col-sm-6">
-                  <div class="position-relative form-group">
-                    <label>Productos que almacena:</label>
-                    <br>
-                    <input type="checkbox" name="alimentos" id="productos" value="Alimentos" {$alimentos}>
-                    <label>Alimentos</label>
-                    <br>
-                    <input type="checkbox" name="cosmetios" id="productos" value="Cosméticos" {$cosmeticos}>
-                    <label>Cosméticos</label>
-                    <br>
-                    <input type="checkbox" name="dispocitivosmedicos" id="productos" value="Dispositivos Médicos" {$dispositivos_medicos}>
-                    <label>Dispositivos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="farmaceuticos" id="productos" value="Farmacéuticos" {$farmaceutico}>
-                    <label>Farmacéuticos</label>
-                    <br>
-                    <input type="checkbox" name="insumosmedicos" id="productos" value="Insumos Médicos" {$insumos_medicos}>
-                    <label>Insumos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="materiasprimas" id="productos" value="Materias Primas" {$materias_primas}>
-                    <label>Materias Primas</label>
-                    <br>
-                    <input type="checkbox" name="sustanciaspeligrosas" id="productos" value="Sustancias Peligrosas" {$sustancias_peligrosas}>
-                    <label>Insumos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="otros" value="Otros" id="productos" {$otros}>
-                    <label>Otros</label>
-                    <br>
+                <div class="col-sm-12">
+                     <label>Productos que almacena:</label>
+                    <textarea id="productos_bodega" class="form-control" placeholder="Describa los productos que almacena">{$bodega.productos}</textarea>
                   </div>
-                </div>
-              </div>
-
-              <div id="otros_productos">
-                <div class="form-row">
-                  <div class="col-sm-12">
-                    <label>Descripción de productos que almacena</label>
-                    <textarea id="productos_bodega" class="form-control" placeholder="Describa los productos que almacena">{$otros_e}</textarea>
-                  </div>
-                </div>
               </div>
             </div>
             <!--Cierre del step 12-->
@@ -234,10 +203,10 @@
                   <label>Temperatura minima:</label>
                   <input type="text" id="temp_min" class="form-control" placeholder="Temperatura minima" value="{$bodega.temp_min}">
                 </div>
-                <div class="col-sm-4">
-                  <label>Altura de la bodega:</label>
-                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="{$bodega.altura}">
-                </div>
+                 <div class="col-sm-4">
+                    <label>Valor seteado temperatura:</label>
+                    <input type="text" id="valor_seteado_temp" class="form-control" placeholder="Valo seteado temperatura" value="{$bodega.valor_seteado_temp}">
+                  </div>
               </div>
 
               <div class="form-row">
@@ -263,6 +232,21 @@
                     <label>Humedad relativa minima:</label>
                     <input type="text" id="hr_min" class="form-control" placeholder="Humedad Minima" value="{$bodega.hr_min}">
                   </div>
+                  <div class="col-sm-4">
+                    <label>Valor seteado Humedad:</label>
+                    <input type="text" id="valor_seteado_hum" class="form-control" placeholder="Valor seteado" value="{$bodega.valor_seteado_hum}">
+                  </div>
+                 <div class="col-sm-4">
+                    <label>Cantidad Ventanas:</label>
+                    <input type="text" id="cantidad_ventana" class="form-control" placeholder="Cantidad ventanas" value="{$bodega.cantidad_ventana}">
+                  </div>
+               </div> 
+              
+              <div class="form-row">
+                 <div class="col-sm-4">
+                  <label>Altura de la bodega:</label>
+                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="{$bodega.altura}">
+                </div>
                </div> 
               {section name=f loop=$explode_muro} {if $explode_muro[f] eq "Muro de hormigón"} {$hormigon = "checked"} {elseif $explode_muro[f] eq "Muro de isopol"} {$isopol = "checked"} {elseif $explode_muro[f] eq "Muro de ladrillo"} {$ladrillo = "checked"} {elseif
               $explode_muro[f] eq "Muro de madera"} {$madera = "checked"} {elseif $explode_muro[f] eq "otro muro"} {$otro_muro = "checked"} {elseif $explode_muro[f] eq "- "} {$otro_muro_e = $explode_muro[i] } {/if} {/section}

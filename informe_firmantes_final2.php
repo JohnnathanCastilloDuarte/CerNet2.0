@@ -22,6 +22,7 @@ if($cuantos != 0){
 
 
 
+
 //CABECERAS PERSONALIZADAS
 class MYPDF extends TCPDF 
 {
@@ -151,12 +152,19 @@ while($row = mysqli_stmt_fetch($consultar_2)){
     }else{
         $que_hace = "Aprobado por";
     }
+  /*
+    if($contador == 4){
+        $pdf->AddPage('A4');
 
-    $pdf->writeHTMLCell(60, 5, 10, '', '<srtong>'.$que_hace.'</srtong>', 1, 0, 0, true, 'C', true);
+    }*/
+     
+  
 
-    $pdf->writeHTMLCell(70, 5, 70, '', '<srtong>Fecha</srtong>', 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(60, 5, 10, '', '<srtong>'.$que_hace.'</srtong>', 1, 0, 0, true, 'C', true);
 
-    $pdf->writeHTMLCell(60, 5, 140, '', '<srtong>Firma</srtong>', 1, 1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(70, 5, 70, '', '<srtong>Fecha</srtong>', 1, 0, 0, true, 'C', true);
+
+      $pdf->writeHTMLCell(60, 5, 140, '', '<srtong>Firma</srtong>', 1, 1, 0, true, 'C', true);
 
 
       $firma_que = "Token";
@@ -166,24 +174,70 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
       $pdf->writeHTMLCell(60, 30, 140, '', '<p><img src="templates/documentacion/head_templates/'.$qr.'" border="0" height="80" width="80" align="middle" /></p>', 1, 1, 0, true, 'C', true);
     
-  
 
-    if($contador == 4){
+      if($contador == 3)
+        
+      {
         $pdf->AddPage('A4');
-    }
-
+          
+      }
+   
     $contador++;
      $sumale++;
-
 
 }/////// CIERRE DEL WHILE
 /*
 
 */
+
+function numeroPaginasPdf($archivoPDF)
+
+{
+
+	$stream = fopen($archivoPDF, "r");
+
+	$content = fread ($stream, filesize($archivoPDF));
+
+ 
+
+	if(!$stream || !$content)
+
+		return 0;
+
+ 
+
+	$count = 0;
+
+ 
+
+	$regex  = "/\/Count\s+(\d+)/";
+
+	$regex2 = "/\/Page\W*(\d+)/";
+
+	$regex3 = "/\/N\s+(\d+)/";
+
+ 
+
+	if(preg_match_all($regex, $content, $matches))
+
+		$count = max($matches);
+
+ 
+
+	return $count[0];
+
+}
+
+ 
+
+$cantidad =  numeroPaginasPdf('templates/documentacion/pdf_final/informe_final'.$key.'.pdf');
+
+
+
 $filename = $_SERVER['DOCUMENT_ROOT'].'CerNet2.0/templates/documentacion/pdf_final/informe_final'.$key.'.pdf';
 $pdf->Output($filename, 'f');
 $pdf = new PDFMerger;
-$pdf->addPDF('templates/documentacion/pdf_final/informe_final'.$key.'.pdf', '1')
+$pdf->addPDF('templates/documentacion/pdf_final/informe_final'.$key.'.pdf', '1-'.$cantidad)
     ->addPDF('templates/documentacion/'.$url,'all')
     ->merge('browser', 'informe_final.pdf');
 ?>

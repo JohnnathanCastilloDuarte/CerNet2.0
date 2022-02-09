@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-25 12:56:48
+/* Smarty version 3.1.34-dev-7, created on 2022-02-08 17:16:14
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61eff3901a0ce2_19613221',
+  'unifunc' => 'content_6202a55eb51896_04715528',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '809d3cc91e35b6340d4481f2c60b17de004c56dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl',
-      1 => 1643115399,
+      1 => 1644340173,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61eff3901a0ce2_19613221 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6202a55eb51896_04715528 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -463,7 +463,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
           </div>
         </div>
-        <div class="row justify-content-center align-item-center ">
+        <div class="row justify-content-center align-item-center " id="id_contenedor">
           <div class="card col-sm-6 shadow-lg p-3 mb-5 bg-white rounded" id="datos_crudos_sensores" style="position: absolute;top: -700px;">
             <div class="card-header ">
               <div class="col-sm-11"> Subir datos crudos </div>
@@ -495,16 +495,19 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
   <!--Cierre de content de asignación--->
 
   <div class="tab-pane tabs-animation fade show" id="informes_1_general" role="tabpanel">
-    <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-2" style="text-align:center;">
-        <div class="form-row col-sm-12">
-          <div class="col-sm-9">
+    <div class="row" tyle="text-align:center;">
+      <div class="col-sm-12">
+        <div class="form-row">
+          <div class="col-sm-4">
             <input type="text" id="correlativo" class="form-control" placeholder="Ingresar correlativo">
+          </div>
+           <div class="col-sm-5">
+            <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar el responsable">
           </div>
           <div class="col-sm-3">
             <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
           </div>
+          
         </div>
       </div>
     </div>
@@ -582,6 +585,70 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
           <div class="card-body" id="editar_informe_row">
             
                      
+          </div>
+        </div>
+        
+        <div class="card" id="edicion_informe_base">
+          <div class="card-header">Edición de informe <button id="close_edicion_base" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
+          <div class="card-body">
+            <form id="formulario_informe" enctype="multipart/form-data" method="post">
+              
+              <div class="row">
+                <div class="col-sm-6">
+                    <label>Acta de inspección:</label>
+                    <input type="text" class="form-control" name="acta_inspeccion" placeholder="N°123" id="acta_inspeccion">
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Conclusiones:</label>
+                <textarea id="conclusiones_informe_base"  name="conclusiones_informe_base" style="width: 100%;" class="form-control"></textarea>
+              </div>
+              <div class="col-sm-6">
+                <label>Observaciones:</label>
+                <textarea id="observaciones_informe_base"  name="observaciones_informe_base"style="width: 100%;" class="form-control"></textarea>
+              </div>
+            </div>
+           
+            <hr>
+            
+            <div class="row">
+              <div class="col-sm-3">
+                <label>Cargar imagen equipo 1</label>
+                <input type="file" name="imagen_base_equipo_1" class="form-control">  
+              </div> 
+              <div class="col-sm-3">
+                <label>Cargar imagen equipo 2</label>
+                <input type="file" name="imagen_base_equipo_2" class="form-control">  
+              </div>
+              <div class="col-sm-3">
+                <label>Cargar imagen equipo 3</label>
+                <input type="file" name="imagen_base_equipo_3" class="form-control">  
+              </div>
+              <div class="col-sm-3">
+                <label>Cargar imagen equipo 4</label>
+                <input type="file" name="imagen_base_equipo_4" class="form-control">  
+              </div> 
+            </div>
+               <hr>
+            <div class="row"  style="text-align:center;" id="btn_informe_base">
+            
+            </div>
+            </form>
+            <hr>
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table" style="text-align:center;">
+                  <thead>
+                     <th>Numeral</th>
+                    <th>Observaciones</th>
+                    <th>Eliminar</th>
+                  </thead>
+                  <tbody id="lista_observaciones_informe_base"></tbody>
+                </table>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>

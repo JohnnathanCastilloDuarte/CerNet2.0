@@ -7,7 +7,7 @@
 	$colum = "";
 	$de = "";
 
-  echo "Holaaa";
+ 
 
 	$query_1 = mysqli_prepare($connect,"SELECT id_mapeo, id_asignado FROM informe_refrigerador WHERE id_informe_refrigerador  = ?");
 	mysqli_stmt_bind_param($query_1, 'i', $id_informe);
@@ -15,8 +15,7 @@
 	mysqli_stmt_store_result($query_1);
 	mysqli_stmt_bind_result($query_1, $id_mapeo, $id_asignado);
 	mysqli_stmt_fetch($query_1);
-	
-  echo "id_mapeo".$id_mapeo;
+
 	$query_2 = mysqli_prepare($connect,"SELECT  b.nombre, b.id_sensor, a.id_refrigerador_sensor FROM refrigerador_sensor as a, sensores as b WHERE a.id_mapeo = 	? 		AND a.id_asignado = ? 	AND a.id_sensor = b.id_sensor");
 	mysqli_stmt_bind_param($query_2, 'ii', $id_mapeo, $id_asignado);
 	mysqli_stmt_execute($query_2);

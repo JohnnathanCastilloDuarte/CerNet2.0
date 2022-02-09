@@ -447,6 +447,10 @@ let seleccion = 2;
                   <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
               </td>
               <td><button class="btn btn-danger" id="eliminar_participante_interno" data-id="${x.id_participante}" data-document = "${id_documentacion}" title="Eliminar">X</button></td>
@@ -570,7 +574,7 @@ if(validar == 2){
     url:'templates/documentacion/crear_participante.php',
     data: datos,
     success:function(response){
-     
+     console.log(response);
       if(response == "Creado"){
         Swal.fire({
           title:'Mensaje',
@@ -748,6 +752,7 @@ $(document).on('click','#email_participante_externo',function(){
             url:'templates/documentacion/enviar_correo.php',
             data:datos,
             success:function(x){
+              console.log(x);
             }
           });
         }
@@ -801,12 +806,13 @@ $(document).on('click','#eliminar_participante_interno',function(){
 //////// ENVIAR EMAIL DE AVISO AL PARTICIPANTE (PENDIENTE REVISAR FUNCIONALIDAD)
 $(document).on('click','#email_participante_interno',function(){
   let id_participante = $(this).attr('data-id'); 
+  let movimiento = "Notificar";
   $.ajax({
     type:'POST',
     url:'templates/documentacion/validar_correo.php',
     data:{id_participante},
     success:function(email){
-      
+      console.log(email);
       Swal.fire({
         title:'Mensaje',
         text:'Se enviara la invitación a colaborar al correo '+email,
@@ -819,13 +825,15 @@ $(document).on('click','#email_participante_interno',function(){
         if(x.value){
           const datos = {
             email,
-            id_participante
+            id_participante,
+            movimiento
           }
           $.ajax({
             type:'POST',
             url:'templates/documentacion/enviar_correo.php',
             data:datos,
             success:function(x){
+              console.log(x);
                           }
           });
         }

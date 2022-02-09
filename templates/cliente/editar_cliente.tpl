@@ -1,4 +1,5 @@
 <div class="app-main__inner">
+<form method="post" id="formulario_para_editar" enctype="multipart/form-data">
 	{foreach from=$empresa_array item=empresa}
 
 	<div class="card">
@@ -68,17 +69,33 @@
 				<input type="text" name="giro_empresa" class="form-control" placeholder="Giro" value="{$empresa.giro}" id="giro_empresa">
 			</div>
 		</div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <label>Logo:</label>
+        <input type="file" class="form-control" name="logo_empresa">
+      </div>
+      <div class="col-sm-6">
+        {if $empresa.logo == 'No' || $empresa.logo == 'design/images/no_imagen.png'}
+        <img src="design/images/no_imagen.png" style="width: 70%;height: 85%;">
+        
+        {else }
+        <label>Logo actual:</label>
+        <img src="templates/cliente/{$empresa.logo}" style="width: 70%;height: 85%;">
+        {/if}
+      </div>
+    </div>  
 		<br>
 		<div class="row">
 			<div class="col-sm-5"></div>
 			<div class="col-sm-4"><button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" name="update" id="btn_editar_cliente_empresa">Actualizar</button></div>
 		</div>
+      
+<input name='id_empresa'  type="hidden" value="{$id_empresa}" >
+    
 	</div>
 	{/foreach}
-
+    </form>
 </div>
 
-<script type="text/javascript" src="design/js/empresa_cliente.js">
-	
-	alert("hola");
-</script>
+<script type="text/javascript" src="design/js/empresa_cliente.js"></script>

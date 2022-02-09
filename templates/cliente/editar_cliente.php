@@ -21,9 +21,9 @@ $smarty->assign('paises', array('Afganistán','Albania','Alemania','Andorra','An
 //recibo al ID de la empresa
 $empresa = $_GET['empresa'];
 
-echo "<input value='".$empresa."' id='id_empresa' hidden>";
 
-
+	$smarty->assign('id_empresa',$empresa);
+/*
 if(isset($_POST['update'])){
 
 //cargo los datos enviado por metodo post
@@ -99,7 +99,7 @@ if(isset($_POST['update'])){
 	}
 	
 }	
-
+*/
 
 $consultando = mysqli_query($connect,"SELECT * FROM empresa WHERE id_empresa = $empresa");
 	$empresa_array =array();

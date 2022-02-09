@@ -1,4 +1,4 @@
-<form method="post" id="form_creacion_cliente">
+<form method="post" id="form_creacion_cliente" enctype="multipart/form-data">
 <div class="app-main__inner">
 	<div class="card">
 			<div class="card-header">
@@ -67,12 +67,21 @@
 					<input type="text" name="giro_empresa" id="giro_empresa" class="form-control" placeholder="Giro" value="{$giro_empresa}" required="">
 				</div>
 			</div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="">Logo:</label>
+          <input type="file" class="form-control" name="logo_empresa"/>
+        </div>
+      </div>
 			<br>
 			<div class="row">
 				<div class="col-sm-5"></div>
 				<div class="col-sm-4"><button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_nuevo_cliente">Aceptar</button></div>
-
 			</div>
+      
+      
+      
 				
 		</div>	
 	</div>

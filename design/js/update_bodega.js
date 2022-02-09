@@ -3,7 +3,6 @@ var id_valida = $("#id_valida").val();
 
 
 $("#otro_tipo_muro_bodega").hide();
-$("#otros_productos").hide();
 $("#otro_tipo_cielo_bodega").hide();
 $("#si_envia").hide();
 $("#step-42").hide();
@@ -34,10 +33,6 @@ function conocer_active_boton()
 $(document).ready(function(){
 	let otro = $("input:checkbox[name=otros]:checked").val();
 	let muro = $("input:checkbox[name=tipo_muro_bodega_5]:checked").val();	
-	
-	if(otro=="Otros"){
-		$("#otros_productos").show();
-	}
 	
 	if(muro=="otro muro"){
 		$("#otro_tipo_muro_bodega").show();
@@ -133,10 +128,6 @@ function planos(){
 		let descripcion_bodega = $("#descripcion_item_bodega").val();
 		let direccion_bodega = $("#direccion_bodega").val();
 		let codigo_bodega = $("#codigo_bodega").val();
-		var productos = $('input:checkbox[id=productos]:checked').map(function(){
-			return this.value;
-		}).get();
-		var array_productos = productos.join(', ');
 		
 		let productos_bodega = $("#productos_bodega").val();
 		let largo_bodega = $("#largo_bodega").val();
@@ -145,7 +136,7 @@ function planos(){
 		let volume_bodega = $("#volume_bodega").val();
 		let altura_bodega = $("#altura_bodega").val();
 
-
+    let clasificacion_item = $("#clasificacion_item").val();
 		let marca_bodega = $("#marca_bodega").val();
 		let modelo_bodega = $("#modelo_bodega").val();
 		let orientacion_principal = $("#orientacion_principal").val();
@@ -163,6 +154,9 @@ function planos(){
 		let cantidad_iluminarias = $("#cantidad_iluminarias").val();
 		let hr_max = $("#hr_max").val();
 		let hr_min = $("#hr_min").val();	
+    let cantidad_ventana = $("#cantidad_ventana").val();
+    let valor_seteado_temp = $("#valor_seteado_temp").val();
+    let valor_seteado_hum = $("#valor_seteado_hum").val();
 
 
 
@@ -207,7 +201,6 @@ function planos(){
 			descripcion_bodega,
 			direccion_bodega,
 			codigo_bodega,
-			array_productos,
 			productos_bodega,
 			largo_bodega,
 			ancho_bodega,
@@ -226,6 +219,7 @@ function planos(){
 			fichas_estabilidad,
 			id_item,
 			id_valida,
+      clasificacion_item,
 
 			marca_bodega,
 			modelo_bodega,
@@ -243,7 +237,11 @@ function planos(){
 			temp_min,
 			cantidad_iluminarias,
 			hr_max,
-			hr_min
+			hr_min,
+      cantidad_ventana,
+      valor_seteado_temp,
+      valor_seteado_hum
+      
 		}
 		
 		$.post('templates/item/editar_bodega.php', datos, function(e){
@@ -273,9 +271,10 @@ $("#btn_nuevo_item_bodega").click(function(){
 	let descripcion_item_bodega = $("#descripcion_item_bodega").val();
 	let direccion_bodega = $("#direccion_bodega").val();
 	let codigo_bodega = $("#codigo_bodega").val();
-	let productos = $("#productos").val();
+	let productos = $("#productos_bodega").val();
 	let id_tipo = $("#id_tipo").val();
 
+  let clasificacion_item = $("#clasificacion_item").val();
 	let marca_bodega = $("#marca_bodega").val();
 	let modelo_bodega = $("#modelo_bodega").val();
 	let orientacion_principal = $("#orientacion_principal").val();
@@ -293,11 +292,11 @@ $("#btn_nuevo_item_bodega").click(function(){
 	let cantidad_iluminarias = $("#cantidad_iluminarias").val();
 	let hr_max = $("#hr_max").val();
 	let hr_min = $("#hr_min").val();
+  let cantidad_ventana = $("#cantidad_ventana").val();
+  let valor_seteado_temp = $("#valor_seteado_temp").val();
+  let valor_seteado_hum = $("#valor_seteado_hum").val();
 
-	if(productos == "Otros"){
-		productos = $("#productos_bodega").val();
-	}  
-
+	
 
 	let largo_bodega = $("#largo_bodega").val();
 	let ancho_bodega = $("#ancho_bodega").val();
@@ -362,7 +361,10 @@ $("#btn_nuevo_item_bodega").click(function(){
 		temp_min,
 		cantidad_iluminarias,
 		hr_max,
-		hr_min
+		hr_min,
+    cantidad_ventana,
+    valor_seteado_temp,
+    valor_seteado_hum
 	}  
 
 	$.ajax({
