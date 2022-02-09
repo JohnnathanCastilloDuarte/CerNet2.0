@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-06 18:17:04
+/* Smarty version 3.1.34-dev-7, created on 2022-02-08 14:35:00
   from 'C:\xampp\htdocs\CerNet2.0\templates\flujo_laminar\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d7241000e601_56589344',
+  'unifunc' => 'content_62027184ad8c38_59196136',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbd95b35928c4d4fe0f59c22d8d1eadcf582bf48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\flujo_laminar\\datos_informe_mapeo.tpl',
-      1 => 1641489420,
+      1 => 1643930885,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d7241000e601_56589344 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62027184ad8c38_59196136 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
@@ -344,6 +344,7 @@ function content_61d7241000e601_56589344 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
                 </form>
+                <button class="btn btn-warning" id="abrir_informe">Informe</button>
             </div>
             
             <div class="tab-pane tabs-animation fade" id="equipos" role="tabpanel">

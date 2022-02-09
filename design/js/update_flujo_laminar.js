@@ -26,7 +26,15 @@ $("#btn_crear_flujo_laminar").click(function(){
 		cantidad_filtros : $("#cantidad_filtros").val(),
 		direccion_flujo  :  $("#direccion_flujo").val(),
 		ubicacion_interna : $("#ubicacion_interna").val(),
-		area_interna 	 : $("#area_interna").val(),
+		area_interna 	  : $("#area_interna").val(),
+		tipo_cabina 	  : $("#tipo_cabina").val(),
+		marca 			  : $("#marca").val(),
+		modelo 			  : $("#modelo").val(),
+		n_serie 		  : $("#n_serie").val(),
+		codigo 			  : $("#codigo").val(),
+		tipo_dimeciones   : $("#tipo_dimeciones").val(),
+		limite_penetracion : $("#limite_penetracion").val(),
+		eficiencia 		  : $("#eficiencia").val(),
 		id_valida,
 	}
 
@@ -61,6 +69,14 @@ $("#btn_actualizar_flujo_laminar").click(function(){
 		id_empresa_flujo : $("#id_empresa").val(),
 		cantidad_filtros : $("#cantidad_filtros").val(),
 		id_item_flujo_laminar : id_item_flujo_laminar,
+		tipo_cabina 	  : $("#tipo_cabina").val(),
+		marca 			  : $("#marca").val(),
+		modelo 			  : $("#modelo").val(),
+		n_serie 		  : $("#n_serie").val(),
+		codigo 			  : $("#codigo").val(),
+		tipo_dimeciones   : $("#tipo_dimeciones").val(),
+		limite_penetracion : $("#limite_penetracion").val(),
+		eficiencia 		  : $("#eficiencia").val(),
 		id_valida : id_valida,
 	}
 

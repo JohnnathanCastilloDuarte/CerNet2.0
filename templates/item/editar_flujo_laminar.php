@@ -7,6 +7,14 @@
   $id_empresa_flujo      = $_POST['id_empresa_flujo'];
   $cantidad_filtros      = $_POST['cantidad_filtros'];
   $id_valida             = $_POST['id_valida'];
+  $tipo_cabina = $_POST['tipo_cabina'];     
+  $marca = $_POST['marca'];         
+  $modelo = $_POST['modelo'];        
+  $n_serie = $_POST['n_serie'];       
+  $codigo = $_POST['codigo'];        
+  $tipo_dimeciones = $_POST['tipo_dimeciones'];   
+  $limite_penetracion = $_POST['limite_penetracion']; 
+  $eficiencia = $_POST['eficiencia'];      
 
 
 
@@ -24,8 +32,8 @@
         mysqli_stmt_bind_result($consultar_id_flujo, $id_item_flujo);
         mysqli_stmt_fetch($consultar_id_flujo);
 
-        $actualizar_flujo_laminar = mysqli_prepare($connect, "UPDATE item_flujo_laminar SET cantidad_filtro = ? WHERE id = ?");
-        mysqli_stmt_bind_param($actualizar_flujo_laminar, 'ii', $cantidad_filtros, $id_item_flujo);
+        $actualizar_flujo_laminar = mysqli_prepare($connect, "UPDATE item_flujo_laminar SET cantidad_filtro = ?, tipo_cabina = ?, marca = ?, modelo = ?, serie = ?, codigo = ?, tipo_dimenciones = ?, limite_penetracion = ?, eficiencia = ? WHERE id = ?");
+        mysqli_stmt_bind_param($actualizar_flujo_laminar, 'issssssssi', $cantidad_filtros, $tipo_cabina, $marca, $modelo, $n_serie, $codigo, $tipo_dimeciones, $limite_penetracion, $eficiencia ,$id_item_flujo);
         mysqli_stmt_execute($actualizar_flujo_laminar);
 
 
