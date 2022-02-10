@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-24 17:47:06
+/* Smarty version 3.1.34-dev-7, created on 2022-02-09 16:23:06
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61eed80a064702_53216639',
+  'unifunc' => 'content_6203dc5a54e209_83225138',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10cd508aa62a2b747cc0b00d78a3d76fc3305eb7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_bodega.tpl',
-      1 => 1643042820,
+      1 => 1644420169,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61eed80a064702_53216639 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6203dc5a54e209_83225138 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -111,13 +111,18 @@ foreach ($_from as $_smarty_tpl->tpl_vars['bodega']->value) {
 ">
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                   <label>Codigo interno / N° Serie:</label>
                   <input type="text" id="codigo_bodega" class="form-control" placeholder="Codigo bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['codigo_interno'];?>
 ">
                 </div>
+                 <div class="col-sm-3">
+                  <label>Clasificación item:</label>
+                  <input type="text" id="clasificacion_item" class="form-control" placeholder="Clasificación item" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['clasificacion_item'];?>
+">
+                </div>
               </div>
-
+<!--
               <?php
 $__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_producto']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_total = $__section_i_0_loop;
@@ -129,56 +134,13 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 }
 }
 ?>
-
+-->
               <div class="form-row">
-                <div class="col-sm-6">
-                  <div class="position-relative form-group">
-                    <label>Productos que almacena:</label>
-                    <br>
-                    <input type="checkbox" name="alimentos" id="productos" value="Alimentos" <?php echo $_smarty_tpl->tpl_vars['alimentos']->value;?>
->
-                    <label>Alimentos</label>
-                    <br>
-                    <input type="checkbox" name="cosmetios" id="productos" value="Cosméticos" <?php echo $_smarty_tpl->tpl_vars['cosmeticos']->value;?>
->
-                    <label>Cosméticos</label>
-                    <br>
-                    <input type="checkbox" name="dispocitivosmedicos" id="productos" value="Dispositivos Médicos" <?php echo $_smarty_tpl->tpl_vars['dispositivos_medicos']->value;?>
->
-                    <label>Dispositivos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="farmaceuticos" id="productos" value="Farmacéuticos" <?php echo $_smarty_tpl->tpl_vars['farmaceutico']->value;?>
->
-                    <label>Farmacéuticos</label>
-                    <br>
-                    <input type="checkbox" name="insumosmedicos" id="productos" value="Insumos Médicos" <?php echo $_smarty_tpl->tpl_vars['insumos_medicos']->value;?>
->
-                    <label>Insumos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="materiasprimas" id="productos" value="Materias Primas" <?php echo $_smarty_tpl->tpl_vars['materias_primas']->value;?>
->
-                    <label>Materias Primas</label>
-                    <br>
-                    <input type="checkbox" name="sustanciaspeligrosas" id="productos" value="Sustancias Peligrosas" <?php echo $_smarty_tpl->tpl_vars['sustancias_peligrosas']->value;?>
->
-                    <label>Insumos Médicos</label>
-                    <br>
-                    <input type="checkbox" name="otros" value="Otros" id="productos" <?php echo $_smarty_tpl->tpl_vars['otros']->value;?>
->
-                    <label>Otros</label>
-                    <br>
-                  </div>
-                </div>
-              </div>
-
-              <div id="otros_productos">
-                <div class="form-row">
-                  <div class="col-sm-12">
-                    <label>Descripción de productos que almacena</label>
-                    <textarea id="productos_bodega" class="form-control" placeholder="Describa los productos que almacena"><?php echo $_smarty_tpl->tpl_vars['otros_e']->value;?>
+                <div class="col-sm-12">
+                     <label>Productos que almacena:</label>
+                    <textarea id="productos_bodega" class="form-control" placeholder="Describa los productos que almacena"><?php echo $_smarty_tpl->tpl_vars['bodega']->value['productos'];?>
 </textarea>
                   </div>
-                </div>
               </div>
             </div>
             <!--Cierre del step 12-->
@@ -303,11 +265,11 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                   <input type="text" id="temp_min" class="form-control" placeholder="Temperatura minima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['temp_min'];?>
 ">
                 </div>
-                <div class="col-sm-4">
-                  <label>Altura de la bodega:</label>
-                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['altura'];?>
+                 <div class="col-sm-4">
+                    <label>Valor seteado temperatura:</label>
+                    <input type="text" id="valor_seteado_temp" class="form-control" placeholder="Valo seteado temperatura" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['valor_seteado_temp'];?>
 ">
-                </div>
+                  </div>
               </div>
 
               <div class="form-row">
@@ -337,6 +299,24 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                     <input type="text" id="hr_min" class="form-control" placeholder="Humedad Minima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['hr_min'];?>
 ">
                   </div>
+                  <div class="col-sm-4">
+                    <label>Valor seteado Humedad:</label>
+                    <input type="text" id="valor_seteado_hum" class="form-control" placeholder="Valor seteado" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['valor_seteado_hum'];?>
+">
+                  </div>
+                 <div class="col-sm-4">
+                    <label>Cantidad Ventanas:</label>
+                    <input type="text" id="cantidad_ventana" class="form-control" placeholder="Cantidad ventanas" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cantidad_ventana'];?>
+">
+                  </div>
+               </div> 
+              
+              <div class="form-row">
+                 <div class="col-sm-4">
+                  <label>Altura de la bodega:</label>
+                   <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['altura'];?>
+">
+                </div>
                </div> 
               <?php
 $__section_f_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_muro']->value) ? count($_loop) : max(0, (int) $_loop));

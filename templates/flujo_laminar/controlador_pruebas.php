@@ -15,6 +15,7 @@ if($movimiento == "opcion_1"){
     mysqli_stmt_store_result($consultar);
     mysqli_stmt_bind_result($consultar, $id_inspeccion, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5, $insp_6);
 
+
     while($row = mysqli_stmt_fetch($consultar)){
         $array_prueba[]=array(
             'id_inspeccion'=>$id_inspeccion,
@@ -190,6 +191,63 @@ else if($movimiento == "opcion_7"){
     echo $convert;
 }
 
+else if($movimiento == "opcion_8"){
+
+    $id_asignado = $_POST['id_asignado'];
+    $array_prueba = array();
+
+    $consultar = mysqli_prepare($connect,"SELECT id_informe, conclusion, solicitante, nombre_informe, usuario_responsable FROM informe_flujo_laminar WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
+    mysqli_stmt_execute($consultar);
+    mysqli_stmt_store_result($consultar);
+    mysqli_stmt_bind_result($consultar, $id_informe, $conclusion, $solicitante, $nombre_informe, $usuario_responsable);
+
+    while($row = mysqli_stmt_fetch($consultar)){
+        $array_prueba[]=array(
+            'id_informe'=>$id_informe,
+            'conclusion'=>$conclusion,
+            'solicitante'=>$solicitante,
+            'nombre_informe'=>$nombre_informe,
+            'usuario_responsable'=>$usuario_responsable
+
+        );
+    }
+
+    $convert = json_encode($array_prueba);
+    echo $convert;
+}
+
+
+else if($movimiento == "opcion_9"){
+
+    $id_asignado = $_POST['id_asignado'];
+    $array_prueba = array();
+
+    $consultar = mysqli_prepare($connect,"SELECT  a.id_numot, c.numot, d.nombre, d.sigla_empresa, d.sigla_pais, d.direccion
+    FROM servicio a, item_asignado b, numot c, empresa d WHERE b.id_asignado = ? AND b.id_servicio = a.id_servicio AND c.id_numot = a.id_numot AND c.id_empresa = d.id_empresa");
+    mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
+    mysqli_stmt_execute($consultar);
+     mysqli_stmt_store_result($consultar);
+    mysqli_stmt_bind_result($consultar, $id_numot, $nombre_ot, $nombre_empresa, $sigla_empresa, $sigla_pais, $direccion_empresa);
+
+
+    while($row = mysqli_stmt_fetch($consultar)){
+        $array_prueba[]=array(
+            'id_numot' => $id_numot, 
+            'nombre_ot' => $nombre_ot, 
+            'numero_ot' => substr($nombre_ot,2),
+            'nombre_empresa' => $nombre_empresa, 
+            'sigla_empresa' => $sigla_empresa, 
+            'sigla_pais' => $sigla_pais, 
+            'direccion_empresa' => $direccion_empresa
+
+        );
+    }
+
+    $convert = json_encode($array_prueba);
+    echo $convert;
+}
+
 /////////// VALIDADOR
 else if($movimiento == "Validador_1"){
 
@@ -206,6 +264,7 @@ else if($movimiento == "Validador_1"){
             $creando = mysqli_prepare($connect,"INSERT INTO flujo_laminar_inspeccion_visual (id_asignado) VALUES (?)");
             mysqli_stmt_bind_param($creando, 'i', $id_asignado);
             mysqli_stmt_execute($creando);
+
         }
     }
 
@@ -401,6 +460,33 @@ else if($movimiento == "Validador_9"){
     }
 
     echo "Listo9";
+
+}
+
+else if($movimiento == "Validador_10"){
+
+    $id_asignado = $_POST['id_asignado'];
+    $nombre_informe = $_POST['nombre_informe'];
+    $solicitante = $_POST['solicitante'];
+    $conclusion = $_POST['conclusion'];
+
+    $validar1 = mysqli_prepare($connect,"SELECT id_informe FROM informe_flujo_laminar WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($validar1, 'i', $id_asignado);
+    mysqli_stmt_execute($validar1);
+    mysqli_stmt_fetch($validar1);
+
+    if(mysqli_stmt_num_rows($validar1) == 0){
+        for($i = 0; $i<1; $i++){
+           
+            $creando = mysqli_prepare($connect,"INSERT INTO informe_flujo_laminar (id_asignado, conclusion, solicitante, nombre_informe) VALUES (?,?,?,?)");
+            mysqli_stmt_bind_param($creando, 'isss', $id_asignado, $conclusion, $solicitante, $nombre_informe/*, $usuario_responsable*/);
+            mysqli_stmt_execute($creando);
+
+            
+        }
+    }
+
+    echo "Listo10";
 
 }
 

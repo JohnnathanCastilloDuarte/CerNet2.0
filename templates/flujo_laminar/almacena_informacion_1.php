@@ -1,6 +1,30 @@
 <?php 
 include('../../config.ini.php');
 
+///////PRUEBA 0 
+
+if (isset($_POST['accion'])) {
+    
+    $id_informe = $_POST['id_informe'];
+    $conclusion = $_POST['conclusion'];
+    $solicitante = $_POST['solicitante'];
+    $nombre_informe = $_POST['nombre_informe'];
+
+    $actualizar0 = mysqli_prepare($connect,"UPDATE informe_flujo_laminar SET conclusion= ?, solicitante= ?, nombre_informe = ? WHERE  id_informe = ?");
+    mysqli_stmt_bind_param($actualizar0, 'sssi', $conclusion, $solicitante, $nombre_informe, $id_informe);
+    mysqli_stmt_execute($actualizar0);
+
+
+    if(!$actualizar0){
+        echo "Existe un error en la prueba 0 ".$id_informe."-".$conclusion."-".$solicitante."-".$nombre_informe;
+
+    }else{
+        'todo_ok';
+    }
+
+}else { 
+
+
 /////// PRUEBA 1
 
 $id_inspeccion = $_POST['id_inspeccion'];
@@ -12,9 +36,12 @@ $valor_inspeccion_visual5 = $_POST['valor_inspeccion_visual5'];
 $valor_inspeccion_visual6 = $_POST['valor_inspeccion_visual6'];
 
 
+
 $actualizar1 = mysqli_prepare($connect,"UPDATE flujo_laminar_inspeccion_visual SET insp_1= ? ,insp_2= ?, insp_3 = ? ,insp_4= ?, insp_5= ?, insp_6= ? WHERE  id_inspeccion = ?");
 mysqli_stmt_bind_param($actualizar1, 'ssssssi', $valor_inspeccion_visual1, $valor_inspeccion_visual2, $valor_inspeccion_visual3, $valor_inspeccion_visual4, $valor_inspeccion_visual5, $valor_inspeccion_visual6, $id_inspeccion);
 mysqli_stmt_execute($actualizar1);
+
+
 
 if(!$actualizar1){
     echo "Existe un error en la prueba 1 ".mysqli_stmt_error($actualizar1);
@@ -110,15 +137,21 @@ for($i = 0; $i < count($id_prueba_4); $i++){
 
 
 
-//////7 PRUEBA 5
+////// PRUEBA 5
 $id_prueba_5 = $_POST['id_prueba_5'];
+$id_prueba_P5 = $_POST['id_prueba_P5'];
 $resultado_P5 = $_POST['resultado_P5'];
 $cumple_P5 = $_POST['cumple_P5'];
+$cumple_P5a = $_POST['cumple_P5a'];
+
+
+//$totalFilas = count($id_prueba_5) + count($id_prueba_P5);
+
+
 
 for($i = 0; $i < count($id_prueba_5); $i++){
 
-
-
+    
     $actualizar6 = mysqli_prepare($connect,"UPDATE flujo_laminar_prueba_5 SET resultado= ?, cumple= ? WHERE  id_prueba = ?");
     mysqli_stmt_bind_param($actualizar6, 'ssi', $resultado_P5[$i], $cumple_P5[$i], $id_prueba_5[$i]);
     mysqli_stmt_execute($actualizar6);
@@ -126,6 +159,23 @@ for($i = 0; $i < count($id_prueba_5); $i++){
     if(!$actualizar6){
         echo "Existe un error actualizando prueba 5 ".mysqli_stmt_error($actualizar6);
     }
+
+   
+}
+
+for($i = 0; $i < count($id_prueba_P5); $i++){
+
+     
+    $actualizar66 = mysqli_prepare($connect,"UPDATE flujo_laminar_prueba_5 SET  cumple= ? WHERE  id_prueba = ?");
+    mysqli_stmt_bind_param($actualizar66, 'si', $cumple_P5a[$i], $id_prueba_P5[$i]);
+    mysqli_stmt_execute($actualizar66);
+    
+    if(!$actualizar66){
+        echo "Existe un error actualizando prueba 5 ".mysqli_stmt_error($actualizar6);
+    }
+
+    
+    //echo $i."-UPDATE flujo_laminar_prueba_5 SET  cumple= $cumple_P5[$i] WHERE  id_prueba = $id_prueba_P5[$i]/";
 }
 
 
@@ -147,4 +197,6 @@ if(!$actualizar7){
     echo "Existe un error actaliznado prueba 7 ".mysqli_stmt_error($actualizar7);
 }
 
+
+}
 ?>

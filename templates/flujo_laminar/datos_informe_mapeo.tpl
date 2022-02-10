@@ -1,13 +1,32 @@
 <input type="hidden" value="{$id_asignado_flujo_laminar}" id="id_asignado_flujo_laminar">
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class="card">
+            <div class="card-header">
+                <h6>Información del mapeo</h6>
+            </div>
             <div class="card-body">
-                Información del equipo
+                <div class="col-sm-12">
+                    <input type="hidden" name="" id="id_informe">
+                    <label>Nombre informe</label>
+                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe">
+                </div>
+                <div class="col-sm-12">
+                    <label>Solicitante</label>
+                    <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
+                </div>
+                <div class="col-sm-12">
+                    <label>Conclusión</label>
+                    <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                  <button class="btn btn-sm btn-info float-center" id="actualizar_mapeo">Actualizar</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-8">
         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link  active" id="tab-0" data-toggle="tab" href="#pruebas">
