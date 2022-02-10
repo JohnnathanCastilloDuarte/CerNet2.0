@@ -372,7 +372,7 @@ $("#btn_nuevo_item_bodega").click(function(){
 		url:'templates/item/nueva_bodega.php',
 		data: datos,
 		success:function(response){
-      console.log(response);
+      	console.log(response);
 			Swal.fire({
 				icon :'success',			
 				text: 'Bodega creada correctamente!',
