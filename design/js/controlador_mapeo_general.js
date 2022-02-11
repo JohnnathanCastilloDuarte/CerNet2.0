@@ -1772,13 +1772,14 @@ function listar_info_temp(id_informe, extra){
 $(document).on('click','#ver_grafico_todos_promedio',function(){
     let id_mapeo = $("#id_mapeo_informe").val();
     let tipo_informe = $(this).attr('data-type');
-    window.open('templates/mapeos_generales/API_GRAFICOS_PROMEDIOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
+    //window.open('templates/mapeos_generales/API_GRAFICOS_PROMEDIOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
+    window.open('templates/API_Graficos/graficos.php?id_mapeo='+id_mapeo+'&type='+tipo_informe+'&promedio=FDSJHGBJKDSHGKJASDBGSHF7283589320483798ghjvdsygvdfbshkjfhsdui8y8394hBJVJFYEG7G3');
 });
 
 $(document).on('click','#ver_grafico_todos_todos',function(){
     let id_mapeo = $("#id_mapeo_informe").val();
     let tipo_informe = $(this).attr('data-type');
-    window.open('templates/mapeos_generales/API_GRAFICOS_TODOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
+    window.open('templates/API_Graficos/graficos.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
 
 });
 

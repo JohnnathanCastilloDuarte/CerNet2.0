@@ -53,62 +53,59 @@ $estado = 1;
 
 
 ///Insertamos en la tabla de item para crear un id
-	$crear = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) 
-  VALUES (?, ?, ?, ?, ?, ?, ?)");
+$crear = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario, clasificacion_item) 
+VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-		mysqli_stmt_bind_param($crear, 'iissiis', $id_empresa, $id_tipo, $nombre, 
-                           $descripcion_item_bodega, $estado, $id_usuario, $clasificacion_item);
-		mysqli_stmt_execute($crear);
-		mysqli_stmt_error($crear);
+mysqli_stmt_bind_param($crear, 'iissiis', $id_empresa, $id_tipo, $nombre, 
+$descripcion_item_bodega, $estado, $id_usuario, $clasificacion_item);
+mysqli_stmt_execute($crear);
+mysqli_stmt_error($crear);
 //recuperamos el id de la tambla item que acabamos de crear
-	$recupera = mysqli_stmt_insert_id($crear);
+$recupera = mysqli_stmt_insert_id($crear);
 
 ///inseta los demas datos en la tabla de item_bodega para 
-	$insertar = mysqli_prepare($connect, "INSERT INTO item_bodega VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-		mysqli_stmt_bind_param($insertar, 'iisssiiiiissssssssisssssssssssssssssssss', 
-			$id_bodega, 
-			$recupera, 
-			$direccion_bodega, 
-			$codigo_bodega, 
-			$productos, 
-			$largo_bodega, 
-			$ancho_bodega,
-			$superficie_bodega,
-			$volume_bodega,
-			$altura_bodega,
-			$tipo_muro,
-			$tipo_cielo,
-			$climatizacion,
-			$s_m_t,
-			$s_m_t_a,
-			$planos,
-			$analisis_riesgo,
-			$fichas_estabilidad,
-			$id_usuario,
-
-			$marca_bodega,
-			$modelo_bodega,
-			$orientacion_principal,
-			$orientacion_recepcion,
-			$orientacion_despacho,
-			$num_puertas,
-			$salida_emergencia,
-			$cantidad_rack,
-			$num_estantes,
-			$altura_max_rack,
-			$sistema_extraccion,
-			$cielo_lus,
-			$temp_max,
-			$temp_min,
-			$cantidad_iluminarias,
-			$hr_max,
-			$hr_min,
-      $valor_seteado_temp,
-      $valor_seteado_hum,                     
-      $cantidad_ventana,
-
-			$fecha_registro);
+$insertar = mysqli_prepare($connect, "INSERT INTO item_bodega VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+mysqli_stmt_bind_param($insertar, 'iisssiiiiissssssssisssssssssssssssssssss', 
+$id_bodega, 
+$recupera, 
+$direccion_bodega, 
+$codigo_bodega, 
+$productos, 
+$largo_bodega, 
+$ancho_bodega,
+$superficie_bodega,
+$volume_bodega,
+$altura_bodega,
+$tipo_muro,
+$tipo_cielo,
+$climatizacion,
+$s_m_t,
+$s_m_t_a,
+$planos,
+$analisis_riesgo,
+$fichas_estabilidad,
+$id_usuario,
+$marca_bodega,
+$modelo_bodega,
+$orientacion_principal,
+$orientacion_recepcion,
+$orientacion_despacho,
+$num_puertas,
+$salida_emergencia,
+$cantidad_rack,
+$num_estantes,
+$altura_max_rack,
+$sistema_extraccion,
+$cielo_lus,
+$temp_max,
+$temp_min,
+$cantidad_iluminarias,
+$hr_max,
+$hr_min,
+$valor_seteado_temp,
+$valor_seteado_hum,                     
+$cantidad_ventana,
+$fecha_registro);
 		mysqli_stmt_execute($insertar);
 		mysqli_stmt_error($insertar);	
 

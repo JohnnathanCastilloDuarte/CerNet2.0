@@ -11,7 +11,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
    ///////////////////////////////////////////// VALIDO LA EXISTENCIA DE LA IMAGEN PARA EVITAR EL APROBAR DEL MISMO
  
   
- $validador = mysqli_prepare($connect,"SELECT a.id_imagen FROM imagenes_general_informe as a, informes_general as b WHERE a.id_informe = b.id_informe AND b.id_mapeo = ? AND a.tipo = 1");
+  $validador = mysqli_prepare($connect,"SELECT a.id_imagen FROM imagenes_general_informe as a, informes_general as b WHERE a.id_informe = b.id_informe AND b.id_mapeo = ? AND a.tipo = 1");
   mysqli_stmt_bind_param($validador, 'i', $id_mapeo);
   mysqli_stmt_execute($validador);
   mysqli_stmt_store_result($validador);
@@ -121,7 +121,7 @@ function API_GRAFICOS($id_mapeo, $tipo_grafi){
     
       if($tipo_grafi == "TEMP"){
    
-         $query_31 = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = 4 GROUP BY a.time ORDER BY a.time ASC");
+         $query_31 = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");
         mysqli_stmt_bind_param($query_31, 'i',  $id_mapeo);
         mysqli_stmt_execute($query_31);
         mysqli_stmt_store_result($query_31);
