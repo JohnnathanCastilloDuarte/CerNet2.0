@@ -59,16 +59,27 @@
 
         <div class="tab-content">
           <div class="tab-pane tabs-animation fade show active" id="inspeccion" role="tabpanel">
-            <input type="hidden" name="" id="id_informe_campana" value="{$id_informe}">
+            
             <form id="formulario_1_campana_extraccion" Method="post">
             <div class="card-body">
-
+              <input type="hidden" name="id_informe" id="id_informe_campana" value="">
               <div id="cuerpo_mapeo_campana">
-                <div class="col-sm-6">
-                  <label>Nombre informe</label>
-                  <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
-
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>Nombre informe</label>
+                    <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Solicitante</label>
+                    <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Quien solicita" value="{$solicitante}">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                  <label>Conclusión</label>
+                  <textarea class="form-control" name="conclusion" id="conclusion" value="{$conclusion}"></textarea>
                 </div>
+              </div>
                 
               <br>
               <input type="hidden" id="id_inspeccion" name="id_inspeccion">

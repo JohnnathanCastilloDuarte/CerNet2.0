@@ -9,107 +9,89 @@ require('../../../config.ini.php');
 
 $pdf->AddPage('A4');
 
-$html = <<<EOD
+$info_equipo = <<<EOD
+   <style> 
+   {
+   border-collapse: collapse;
+   width: 90%;
+   text-align: center;
+   vertical-align: middle;
+   }
 
-<hr>
-<h2>Información del equipo $nombre_ultrafreezer</h2>
-<hr>
-<br>
-<table border="0" style="padding: 5px 5px 15px 5px;">
-  <tr>
-    <th style="font-weight: bold">Nombre:</th>
-    <th>$nombre_ultrafreezer</th>
-    <th style="width: 125px;"></th>
-    <th style="font-weight: bold">Tipo de equipo:</th>
-    <th>$nombre_tipo_item</th>
-  </tr>
-  <br>
-  <tr>
-    <th style="font-weight: bold">Fabricante/marca:</th>
-    <th>$fabricante</th>
-    <th style="width: 125px;"></th>
-    <th style="font-weight: bold">Modelo:</th>
-    <th>$modelo</th>
-  </tr>
-  <br>
-  <tr>
-    <th style="font-weight: bold">N° serie:</th>
-    <th>$n_serie</th>
-    <th style="width: 125px;"></th>
-    <th style="font-weight: bold">Codigo interno:</th>
-    <th>$c_interno</th>
-  </tr>
-  <br>
-  <tr>
-    <th style="font-weight: bold">Año de fabricación:</th>
-    <th>$fecha_fabricacion</th>
-    <th style="width: 125px;"></th>
-    <th style="font-weight: bold">Empresa:</th>
-    <th>$empresa</th>
-  </tr>
-</table>
-<table border="0" style="padding: 5px 5px 15px 5px;" >
-    <tr>
-      <th style="font-weight: bold">Descripción:</th>
-    
-    </tr> 
-     <tr>
-    <th style="width:250px; height: 100px ;" border="1">$descripcion_ultrafreezer</th>
-    </tr> 
-</table>
-<br>
-<hr>
-<h2>Caracteristicas del equipo</h2>
-<hr>
-<table border="0" style="padding: 5px 5px 20px 5px;">
-  <tr>
-    <th style="width: 90px;font-weight: bold" >Direccion</th>
-    <th style="width: 190px;">$direccion</th>
-    <th style="width: 76px;"></th>
-    <th style="width: 90px;font-weight: bold">Ubicación interna</th>
-    <th style="width: 190px;">$ubicacion</th>
-  </tr>
-</table>
+   th 
+   {
+   background-color: #3138AA;
+   color: #FFFFFF;
+   vertical-align: middle;
+   }
 
-<table border="0" style="padding: 5px 5px 5px 5px;">
-  <tr>
-    <th style="width: 142px; font-weight: bold">Voltaje:</th>
-    <th style="width: 70px;">$voltaje</th>
-    <th style="width: 142px; font-weight: bold">Potencia:</th>
-    <th style="width: 70px;">$potencia</th>
-    <th style="width: 142px; font-weight: bold">Capacidad:</th>
-    <th style="width: 70px;">$capacidad</th>
-  </tr>
-  <tr>
-    <th style="width: 142px; font-weight: bold">Alto:</th>
-    <th style="width: 70px;">$alto</th>
-    <th style="width: 142px; font-weight: bold">Largo:</th>
-    <th style="width: 70px;">$largo</th>
-    <th style="width: 142px; font-weight: bold">Ancho:</th>
-    <th style="width: 70px;">$ancho</th>
-  </tr>
-  <tr>
-    <th style="width: 142px; font-weight: bold">Valor seteado humedad:</th>
-    <th style="width: 70px;">$seteado_hum</th>
-    <th style="width: 142px; font-weight: bold">Humedad minima:</th>
-    <th style="width: 70px;">$hum_min</th>
-    <th style="width: 142px; font-weight: bold">Humedad maxima:</th>
-    <th style="width: 70px;">$hum_max</th>
-  </tr>
-  <tr>
-    <th style="width: 142px; font-weight: bold">Valor seteado temperatura:</th>
-    <th style="width: 70px;">$seteado_tem</th>
-    <th style="width: 142px; font-weight: bold">Temperatura minima:</th>
-    <th style="width: 70px;">$tem_min</th>
-    <th style="width: 142px; font-weight: bold">Temperatura maxima:</th>
-    <th style="width: 70px;">$tem_max</th>
-  </tr>
-  <tr>
-    <th style=" font-weight: bold">peso</th>
-    <th>$peso</th>
-  </tr>
-</table>
+   th, td 
+   {
+   border: 1px solid #BBBBBB;
+   padding: 3px;
+   vertical-align: middle;
+   text-align: center;
+   height:15px;
+   font-size:11px;
+   padding:auto auto auto auto;
+   }
 
+   tr:nth-child(even) 
+   {
+      background-color: #f2f2f2;
+   }
+
+
+   </style>
+
+   <table>
+      <tr>
+         <table>
+            <tr>
+               <td bgcolor="#DDDDDD"><h5><strong>Tipo de Cabina</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Modelo</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Serie</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
+            </tr>
+            <tr>
+               <td>$tipo_cabina</td>
+               <td>$marca</td>
+               <td>$modelo</td>
+               <td>$serie</td>
+               <td>$codigo</td>
+            </tr>
+         </table>
+         <table>
+           <tr>
+             <td  bgcolor="#DDDDDD"><h5><strong>Ubicado en </strong></h5></td>
+           </tr>
+           <tr>
+             <td>$ubicacion_interna</td>
+           </tr>
+         </table>
+         <table>
+            <tr>
+               <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Tipo y Dimensiones de Filtros Interiores</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
+            </tr>
+            <tr>
+               <td>$cantidad_filtro</td>
+               <td>$tipo_dimenciones</td>
+               <td>$limite_penetracion</td>
+               <td>$eficiencia</td>
+            </tr>
+         </table>    
+      </tr>
+      <br>
+   </table>
+   
+EOD;  
+$pdf->writeHTML($info_equipo, true, false, false, false, '');
+
+$
 
 EOD;
 

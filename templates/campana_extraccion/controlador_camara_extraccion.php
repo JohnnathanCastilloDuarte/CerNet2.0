@@ -13,13 +13,9 @@
         mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
         mysqli_stmt_execute($consultar1);
         mysqli_stmt_store_result($consultar1);
-        mysqli_stmt_bind_result($consultar1, $id_informe, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5);
+        mysqli_stmt_bind_result($consultar1, $id_inspeccion, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5);
 
-        $consultar2 = mysqli_prepare($connect,"SELECT id_informe, conclucion, nombre_informe, usuario_responsable FROM informe_campana WHERE id_asignado = ?");
-        mysqli_stmt_bind_param($consultar2, 'i', $id_asignado);
-        mysqli_stmt_execute($consultar2);
-        mysqli_stmt_store_result($consultar2);
-        mysqli_stmt_bind_result($consultar2, $id_informe, $conclucion, $nombre_informe, $usuario_responsable);
+
 
 
 
@@ -33,9 +29,6 @@
                 'insp_3'=>$insp_3,
                 'insp_4'=>$insp_4,
                 'insp_5'=>$insp_5,
-                'id_informe'=>$id_informe,
-                'conclucion'=>$conclucion,
-                'nombre_informe'=>$nombre_informe,
                 'usuario_responsable'=>$usuario_responsable
 
             );
@@ -192,7 +185,39 @@
 
 
 
-    }else if($movimiento == "Validador_creator"){
+    }else if($movimiento == "Listar_7"){
+
+        $id_asignado = $_POST['id_asignado'];
+        $array_pruebas = array();
+
+       $consultar1 = mysqli_prepare($connect,"SELECT id_informe, conclusion, solicitante, nombre_informe, usuario_responsable FROM informe_campana WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+        mysqli_stmt_execute($consultar1);
+        mysqli_stmt_store_result($consultar1);
+        mysqli_stmt_bind_result($consultar1, $id_informe, $conclusion, $solicitante, $nombre_informe, $usuario_responsable);
+
+        while($row = mysqli_stmt_fetch($consultar1)){
+            $array_pruebas[] = array(
+                'id_informe'=>$id_informe,
+                'conclusion'=>$conclusion,
+                'solicitante'=>$solicitante,
+                'nombre_informe'=>$nombre_informe,
+                'usuario_responsable'=>$usuario_responsable
+            );
+        }
+
+        $convert = json_encode($array_pruebas);
+
+        echo $convert;
+
+
+    }
+
+
+
+
+
+    else if($movimiento == "Validador_creator"){
 
         $id_asignado = $_POST['id_asignado'];
         $validator = $_POST['validator'];

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-07 15:47:06
+/* Smarty version 3.1.34-dev-7, created on 2022-02-11 14:42:31
   from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\gestionar_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_615efa5a283038_02815278',
+  'unifunc' => 'content_620667c73a72e5_35379466',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '42a94ce66846eb50f25955359b925468128b7a03' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\gestionar_usuario.tpl',
-      1 => 1633614423,
+      1 => 1642084153,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615efa5a283038_02815278 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620667c73a72e5_35379466 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-main__inner">
 	<div class="card">
 			<div class="card-header">
@@ -78,7 +78,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['table_usuario']->value) {
 </td>
 							<td><?php echo $_smarty_tpl->tpl_vars['table_usuario']->value['apellido'];?>
 </td>
-							<td><?php echo $_smarty_tpl->tpl_vars['table_usuario']->value['cargo'];?>
+							<td><?php echo $_smarty_tpl->tpl_vars['table_usuario']->value['nombre_cargo'];?>
 </td>
 							<td><?php echo $_smarty_tpl->tpl_vars['table_usuario']->value['estado'];?>
 </td>
