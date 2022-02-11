@@ -117,8 +117,6 @@ $cumple_P5 = $_POST['cumple_P5'];
 
 for($i = 0; $i < count($id_prueba_5); $i++){
 
-
-
     $actualizar6 = mysqli_prepare($connect,"UPDATE flujo_laminar_prueba_5 SET resultado= ?, cumple= ? WHERE  id_prueba = ?");
     mysqli_stmt_bind_param($actualizar6, 'ssi', $resultado_P5[$i], $cumple_P5[$i], $id_prueba_5[$i]);
     mysqli_stmt_execute($actualizar6);
