@@ -403,10 +403,7 @@ else if($movimiento == "Consultar_base"){
     mysqli_stmt_fetch($consultar_base);
   
     $array_informes[]=array('id_informe'=>$id_informe,'comentario'=>$comentario, 'tipo_informe'=>$tipo, 'acta_inspeccion'=>$acta_inspeccion);
-    
-  
-    
-    
+
     $convert = json_encode($array_informes);
     echo $convert;
     
