@@ -463,6 +463,29 @@ else if($movimiento == "redireccion_informes"){
 
     echo $tipo;
     
+}else if($movimiento == "mostrar_imagenes"){
+
+    $id_informe = $_POST['id_informe'];
+    $array_imagenes = array();
+
+    $buscando_imagenes = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ?");
+    mysqli_stmt_bind_param($buscando_imagenes, 'i', $id_informe);
+    mysqli_stmt_execute($buscando_imagenes);
+    mysqli_stmt_store_result($buscando_imagenes);
+    mysqli_stmt_bind_result($buscando_imagenes, $id_imagen, $tipo, $url);
+    
+    while($row = mysqli_stmt_fetch($buscando_imagenes)){
+
+        $array_imagenes[] = array(
+            'id_imagen'=>$id_imagen,
+            'tipo'=>$tipo,
+            'url'=>$url
+        );
+    }
+
+    $convert = json_encode($array_imagenes);
+    echo $convert;
+
 }
 
 mysqli_close($connect);

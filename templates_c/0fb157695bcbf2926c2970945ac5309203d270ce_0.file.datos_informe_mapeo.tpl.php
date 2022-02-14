@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-09 17:29:15
+/* Smarty version 3.1.34-dev-7, created on 2022-02-14 16:24:36
   from 'C:\xampp\htdocs\CerNet2.0\templates\mapeos_generales\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6203ebdb388a08_46765972',
+  'unifunc' => 'content_620a74342c5fe3_07602881',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0fb157695bcbf2926c2970945ac5309203d270ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\mapeos_generales\\datos_informe_mapeo.tpl',
-      1 => 1644418327,
+      1 => 1644852273,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6203ebdb388a08_46765972 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620a74342c5fe3_07602881 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -586,6 +586,32 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
             
                      
           </div>
+          <hr>
+          <div class="card-body" id="edicion_imagenes">
+            <form id="formulario_para_imagenes" enctype="multipart/form-data" method="post">
+              <div class="row" style="text-align: center;">
+                <div class="col-sm-4">
+                    <label>Ubicación de sensores</label><br>
+                    <input type='file' name='imagen_tipo_1' class='form-control'>
+                </div>
+
+                <div class="col-sm-4">
+                    <label>Valores promedio, mínima y maxíma</label><br>
+                    <input type='file' name='imagen_tipo_2' class='form-control'>
+                </div>
+
+                <div class="col-sm-4">
+                    <label>Periodo representativo</label><br>
+                    <input type='file' name='imagen_tipo_3' class='form-control'>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-12" style="text-align: center;">
+                  <button class="btn btn-info" id="actualizar_imagenes">subir</button>
+                </div>
+              </div>  
+            </form>
         </div>
         
         <div class="card" id="edicion_informe_base">

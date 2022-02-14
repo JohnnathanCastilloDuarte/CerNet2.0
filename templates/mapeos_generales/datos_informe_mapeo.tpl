@@ -502,6 +502,32 @@
             
                      
           </div>
+          <hr>
+          <div class="card-body" id="edicion_imagenes">
+            <form id="formulario_para_imagenes" enctype="multipart/form-data" method="post">
+              <div class="row" style="text-align: center;">
+                <div class="col-sm-4">
+                    <label>Ubicación de sensores</label><br>
+                    <input type='file' name='imagen_tipo_1' class='form-control'>
+                </div>
+
+                <div class="col-sm-4">
+                    <label>Valores promedio, mínima y maxíma</label><br>
+                    <input type='file' name='imagen_tipo_2' class='form-control'>
+                </div>
+
+                <div class="col-sm-4">
+                    <label>Periodo representativo</label><br>
+                    <input type='file' name='imagen_tipo_3' class='form-control'>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-12" style="text-align: center;">
+                  <button class="btn btn-info" id="actualizar_imagenes">subir</button>
+                </div>
+              </div>  
+            </form>
         </div>
         
         <div class="card" id="edicion_informe_base">

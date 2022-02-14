@@ -1528,7 +1528,7 @@ $(document).on('click','#eliminar_informe',function(){
 function listar_info_temp(id_informe, extra){
   
     let movimiento = "";
-    
+    mostrar_imagenes(id_informe);
     if(extra == "AR"){
        $("#edicion_informe").show();
        $("#edicion_informe_base").hide();
@@ -1701,7 +1701,7 @@ function listar_info_temp(id_informe, extra){
                     </div>    
                     
                     <hr>
-
+                    <!--
                     <div class="row" style="text-align: center;">
 
                         <div class="col-sm-4">
@@ -1728,9 +1728,9 @@ function listar_info_temp(id_informe, extra){
                             <img src="${url_imagen_3}" style="width: 100%;">
                             ${btn_file_3}
                         </div>
-                    </div> 
+                    </div> -->
                     
-                    <hr>
+                
                      
                     <div class="row" style="text-align:center;">
                       <div class="col-sm-12">
@@ -1767,6 +1767,22 @@ function listar_info_temp(id_informe, extra){
         }
     })
 }
+
+
+function mostrar_imagenes(id_informe){
+    let movimiento = "mostrar_imagenes";
+
+    $.ajax({
+        type:'POST',
+        data:{id_informe,movimiento},
+        url:'templates/mapeos_generales/controlador_informes.php',
+        success:function(response){
+            console.log(response);
+        }
+    });
+}
+
+
 
 ///////// VER GRAFICOS DE CERNET 
 $(document).on('click','#ver_grafico_todos_promedio',function(){
@@ -1814,12 +1830,35 @@ $(document).on('submit','#formulario_informe',function(e){
             $("#edicion_informe_base").hide();
             $("#card_informes").show();
              //listar_observaciones_inb(response);
-          
-           
+ 
         }
     });
     
 });
+
+
+
+/////////////////// FORMULARIO QUE SE ENCARGA DE SUBIR LAS IMAGENES
+$("#formulario_para_imagenes").submit(function(evt){
+
+    evt.preventDefault();
+    $.ajax({
+        url: 'templates/mapeos_generales/cargar_data_informes.php',
+        type: 'POST',
+        dataType: 'html',
+        data: new FormData(this),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success:function(response){
+          console.log(response);
+        }
+    });
+
+
+});
+
+
 
 /////////////////// VER INFORME
 $(document).on('click','#ver_informe',function(){
