@@ -131,7 +131,7 @@
           </a>
         </div>
          <div class="card-body collapse" id="collapseOne44" >
-            <input type="text" name="id_informe_filtro" id="id_informe_filtro">
+            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
 
             <div class="row">
               <div class="col-sm-6">

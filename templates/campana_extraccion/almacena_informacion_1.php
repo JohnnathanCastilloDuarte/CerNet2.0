@@ -23,23 +23,23 @@ include('../../config.ini.php');
     $si = 0;
 
 
-    $consulta = mysqli_prepare($connect,"SELECT id_informe FROM campana_extraccion_inspeccion WHERE id_asignado = ?");
+    $consulta = mysqli_prepare($connect,"SELECT id_inspeccion FROM campana_extraccion_inspeccion WHERE id_asignado = ?");
     mysqli_stmt_bind_param($consulta, 's', $tipo_1);
     mysqli_stmt_execute($consulta);
     mysqli_stmt_store_result($consulta);
-    mysqli_stmt_bind_result($consulta, $id_informe);
+    mysqli_stmt_bind_result($consulta, $id_inspeccion);
     mysqli_stmt_fetch($consulta);
 
 
-    if ($id_informe == '') {
+    if ($id_inspeccion == '') {
 
      $insert_inspeccion = mysqli_prepare($connect,"INSERT INTO campana_extraccion_inspeccion (id_asignado, insp_1, insp_2, insp_3, insp_4, insp_5) VALUES (?,?,?,?,?,?)");
     mysqli_stmt_bind_param($insert_inspeccion, 'isssss', $id_asignado_campana, $inspeccion_visual_1, $inspeccion_visual_2, $inspeccion_visual_3, $inspeccion_visual_4, $inspeccion_visual_5);
     mysqli_stmt_execute($insert_inspeccion);
   echo mysqli_stmt_error($insert_inspeccion);
 
-  $insert_inspeccion = mysqli_prepare($connect,"INSERT INTO informe_campana ( id_asignado, conclusion, solicitante, nombre_informe, usuario_responsable) VALUES (?,?,?,?,?)");
-    mysqli_stmt_bind_param($insert_inspeccion, 'isss', $id_asignado_campana, $conclusion, $solicitante, $nombre_informe, $usuario_responsable);
+  $insert_inspeccion = mysqli_prepare($connect,"INSERT INTO informe_campana ( id_asignado, conclusion, solicitante, nombre_informe) VALUES (?,?,?,?)");
+    mysqli_stmt_bind_param($insert_inspeccion, 'isss', $id_asignado_campana, $conclusion, $solicitante, $nombre_informe);
     mysqli_stmt_execute($insert_inspeccion);
   echo mysqli_stmt_error($insert_inspeccion);
 

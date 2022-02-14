@@ -508,11 +508,16 @@ function listar_inspeccion_visual(numeral){
                 
                 traer.forEach((valor)=>{
 
-                    $("#id_informe").val(`${valor.id_informe}`);
+
+                    if (valor.nombre_informe != '') {
+
                     $("#nombre_informe").val(`${valor.nombre_informe}`);
+                    }
+                    $("#id_informe").val(`${valor.id_informe}`);
                     $("#solicitante").val(`${valor.solicitante}`);
                     $("#conclusion").val(`${valor.conclusion}`);
-            
+                
+                  
                 });
                 
             }
@@ -534,7 +539,7 @@ function listar_inspeccion_visual(numeral){
 
                     $("#nombre_informe").val(`${valor.sigla_pais}-${valor.numero_ot}-${valor.sigla_empresa}-2022-TEMP-00`);
                            
-        
+                
                 });
                 
             }
@@ -542,8 +547,6 @@ function listar_inspeccion_visual(numeral){
     }
     
 }
-
-
 
 function validador(numeral){
 
