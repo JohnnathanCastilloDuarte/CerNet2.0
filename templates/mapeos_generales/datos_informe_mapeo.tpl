@@ -504,7 +504,10 @@
           </div>
           <hr>
           <div class="card-body" id="edicion_imagenes">
+
             <form id="formulario_para_imagenes" enctype="multipart/form-data" method="post">
+              <input type="hidden" name="id_informe_imagenes" id="id_informe_imagenes">
+              <input type="hidden" name="tipo_informe" id="tipo_informe">
               <div class="row" style="text-align: center;">
                 <div class="col-sm-4">
                     <label>Ubicación de sensores</label><br>
@@ -512,12 +515,12 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label>Valores promedio, mínima y maxíma</label><br>
+                    <label>Valores promedio, mínima y maxíma</label><button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;"><img src="design/images/grafico.jpg" style="width: 100%;"></button><br>
                     <input type='file' name='imagen_tipo_2' class='form-control'>
                 </div>
 
                 <div class="col-sm-4">
-                    <label>Periodo representativo</label><br>
+                    <label>Periodo representativo</label><button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;" ><img src="design/images/grafico.jpg" style="width: 100%;"></button><br>
                     <input type='file' name='imagen_tipo_3' class='form-control'>
                 </div>
               </div>
@@ -528,6 +531,12 @@
                 </div>
               </div>  
             </form>
+
+            <hr>
+
+            <div class="row" id="aqui_imagenes_informe">
+              
+            </div>
         </div>
         
         <div class="card" id="edicion_informe_base">

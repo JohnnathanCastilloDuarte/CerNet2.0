@@ -1449,22 +1449,23 @@ $("#creacion_base").click(function(){
 $(document).on('click','#editar_informe',function(){
 
         let id_informe = $(this).attr('data-id');
+        $("#id_informe_imagenes").val(id_informe);
         let nombre = $(this).attr('data-name');
         if(nombre == "TEMP" || nombre == "HUM"){
-          
+           $("#edicion_imagenes").show();
            $("#edicion_informe").show();
            $("#card_informes").hide();
            $("#edicion_informe").hide();
            listar_info_temp(id_informe, 'TEMP');
           
         }else if(nombre == 'AR'){
-          
+            $("#edicion_imagenes").hidde();
             $("#edicion_informe").show();
             $("#card_informes").hide();
             $("#edicion_informe").hide();
             listar_info_temp(id_informe, 'AR');
         }else if(nombre == 'BASE'){
-          
+          $("#edicion_imagenes").hidde();
           $("#edicion_informe").show();
           $("#edicion_informe").hide();
           $("#card_informes").hide();
@@ -1564,7 +1565,7 @@ function listar_info_temp(id_informe, extra){
             let template3 = "";
 
             traer.forEach((valor)=>{
-              
+              $("#tipo_informe").val(valor.tipo_informe);
                if(valor.tipo_informe == "AR"){
                     
                   if(contador == 1){
@@ -1778,6 +1779,30 @@ function mostrar_imagenes(id_informe){
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
             console.log(response);
+            let traer = JSON.parse(response);
+            let template = "";
+            let enunciado = "";
+            traer.forEach((valor)=>{
+                if(valor.tipo == 1){
+                    enunciado = "Ubicación de sensores";
+                }else if(valor.tipo == 2){
+                    enunciado = "Valores promedio, mínima y maxíma";
+                }else{
+                    enunciado = "Periodo representativo";
+                }
+                template += 
+                `
+                <div class="col-sm-4">
+                    <label>${enunciado}</label><br>
+                    <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url}" id="eliminar_imagen" data-name="${valor.tipo}"><span style="color: white;">X</span></a>
+                    <img src="templates/mapeos_generales/${valor.url}" style="width: 100%;">
+                </div>
+                
+                `;
+
+            });
+
+            $("#aqui_imagenes_informe").html(template);
         }
     });
 }
@@ -1787,14 +1812,14 @@ function mostrar_imagenes(id_informe){
 ///////// VER GRAFICOS DE CERNET 
 $(document).on('click','#ver_grafico_todos_promedio',function(){
     let id_mapeo = $("#id_mapeo_informe").val();
-    let tipo_informe = $(this).attr('data-type');
+    let tipo_informe = $("#tipo_informe").val();
     //window.open('templates/mapeos_generales/API_GRAFICOS_PROMEDIOS.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
     window.open('templates/API_Graficos/graficos.php?id_mapeo='+id_mapeo+'&type='+tipo_informe+'&promedio=FDSJHGBJKDSHGKJASDBGSHF7283589320483798ghjvdsygvdfbshkjfhsdui8y8394hBJVJFYEG7G3');
 });
 
 $(document).on('click','#ver_grafico_todos_todos',function(){
     let id_mapeo = $("#id_mapeo_informe").val();
-    let tipo_informe = $(this).attr('data-type');
+    let tipo_informe = $("#tipo_informe").val();
     window.open('templates/API_Graficos/graficos.php?id_mapeo='+id_mapeo+'&type='+tipo_informe);
 
 });
@@ -1843,7 +1868,7 @@ $("#formulario_para_imagenes").submit(function(evt){
 
     evt.preventDefault();
     $.ajax({
-        url: 'templates/mapeos_generales/cargar_data_informes.php',
+        url: 'templates/mapeos_generales/cargar_data_imagenes.php',
         type: 'POST',
         dataType: 'html',
         data: new FormData(this),
@@ -1852,6 +1877,7 @@ $("#formulario_para_imagenes").submit(function(evt){
         processData: false,
         success:function(response){
           console.log(response);
+          mostrar_imagenes(response);
         }
     });
 
@@ -1905,8 +1931,9 @@ $(document).on('click','#eliminar_imagen',function(){
             data:{id, url},
             url:'templates/mapeos_generales/eliminar_imagenes.php',
             success:function(response){
-                 console.log(response);
+
                 listar_info_temp(id,tipo);
+                mostrar_imagenes(id);
             }
         })
 });

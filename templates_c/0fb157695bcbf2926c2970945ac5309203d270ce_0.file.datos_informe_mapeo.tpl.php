@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-14 16:24:36
+/* Smarty version 3.1.34-dev-7, created on 2022-02-14 18:37:31
   from 'C:\xampp\htdocs\CerNet2.0\templates\mapeos_generales\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620a74342c5fe3_07602881',
+  'unifunc' => 'content_620a935b5c9107_36198052',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0fb157695bcbf2926c2970945ac5309203d270ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\mapeos_generales\\datos_informe_mapeo.tpl',
-      1 => 1644852273,
+      1 => 1644860249,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620a74342c5fe3_07602881 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620a935b5c9107_36198052 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -588,7 +588,10 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
           </div>
           <hr>
           <div class="card-body" id="edicion_imagenes">
+
             <form id="formulario_para_imagenes" enctype="multipart/form-data" method="post">
+              <input type="hidden" name="id_informe_imagenes" id="id_informe_imagenes">
+              <input type="hidden" name="tipo_informe" id="tipo_informe">
               <div class="row" style="text-align: center;">
                 <div class="col-sm-4">
                     <label>Ubicación de sensores</label><br>
@@ -596,12 +599,12 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                 </div>
 
                 <div class="col-sm-4">
-                    <label>Valores promedio, mínima y maxíma</label><br>
+                    <label>Valores promedio, mínima y maxíma</label><button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;"><img src="design/images/grafico.jpg" style="width: 100%;"></button><br>
                     <input type='file' name='imagen_tipo_2' class='form-control'>
                 </div>
 
                 <div class="col-sm-4">
-                    <label>Periodo representativo</label><br>
+                    <label>Periodo representativo</label><button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;" ><img src="design/images/grafico.jpg" style="width: 100%;"></button><br>
                     <input type='file' name='imagen_tipo_3' class='form-control'>
                 </div>
               </div>
@@ -612,6 +615,12 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                 </div>
               </div>  
             </form>
+
+            <hr>
+
+            <div class="row" id="aqui_imagenes_informe">
+              
+            </div>
         </div>
         
         <div class="card" id="edicion_informe_base">

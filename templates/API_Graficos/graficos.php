@@ -9,20 +9,29 @@ echo "<input type='hidden' id='tipo_Grafico' value='$tipo_grafico'>";
 
 
 
-
-
 $tipo_medicion = "";
 
 
 if($tipo_grafico == "TEMP"){
     if(isset($_GET['promedio'])){
-        
         $tipo_medicion="Max, Min, Prom Temperatura";
-        $traer_data_cruda = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
+        $traer_data_cruda = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
         mysqli_stmt_bind_param($traer_data_cruda, 'i', $id_mapeo);
         mysqli_stmt_execute($traer_data_cruda);
         mysqli_stmt_store_result($traer_data_cruda);
-        mysqli_stmt_bind_result($traer_data_cruda, $fecha, $dato_avg,  $dato_min, $dato_max);
+        mysqli_stmt_bind_result($traer_data_cruda, $fecha, $dato_avg);
+
+        $traer_data_cruda2 = mysqli_prepare($connect,"SELECT a.time,  MIN(a.temp) as minimo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
+        mysqli_stmt_bind_param($traer_data_cruda2, 'i', $id_mapeo);
+        mysqli_stmt_execute($traer_data_cruda2);
+        mysqli_stmt_store_result($traer_data_cruda2);
+        mysqli_stmt_bind_result($traer_data_cruda2, $fecha2, $dato_min);
+
+        $traer_data_cruda3 = mysqli_prepare($connect,"SELECT a.time, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
+        mysqli_stmt_bind_param($traer_data_cruda3, 'i', $id_mapeo);
+        mysqli_stmt_execute($traer_data_cruda3);
+        mysqli_stmt_store_result($traer_data_cruda3);
+        mysqli_stmt_bind_result($traer_data_cruda3, $fecha3, $dato_max);
     }else{
         
         $tipo_medicion="Temperatura";
@@ -44,11 +53,23 @@ if($tipo_grafico == "TEMP"){
 }else{
     if(isset($_GET['promedio'])){
         $tipo_medicion="Max, Min, Prom Humedad";
-        $traer_data_cruda = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.hum),2) AS promedio, MIN(a.hum) as minimo, MAX(a.hum) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
+        $traer_data_cruda = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.hum),2) AS promedio FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
         mysqli_stmt_bind_param($traer_data_cruda, 'i', $id_mapeo);
         mysqli_stmt_execute($traer_data_cruda);
         mysqli_stmt_store_result($traer_data_cruda);
-        mysqli_stmt_bind_result($traer_data_cruda, $fecha, $dato_avg,  $dato_min, $dato_max);
+        mysqli_stmt_bind_result($traer_data_cruda, $fecha, $dato_avg);
+
+        $traer_data_cruda2 = mysqli_prepare($connect,"SELECT a.time, MIN(a.hum) as minimo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
+        mysqli_stmt_bind_param($traer_data_cruda2, 'i', $id_mapeo);
+        mysqli_stmt_execute($traer_data_cruda2);
+        mysqli_stmt_store_result($traer_data_cruda2);
+        mysqli_stmt_bind_result($traer_data_cruda2, $fecha2, $dato_min);
+
+        $traer_data_cruda3 = mysqli_prepare($connect,"SELECT a.time, MAX(a.hum) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");  
+        mysqli_stmt_bind_param($traer_data_cruda3, 'i', $id_mapeo);
+        mysqli_stmt_execute($traer_data_cruda3);
+        mysqli_stmt_store_result($traer_data_cruda3);
+        mysqli_stmt_bind_result($traer_data_cruda3, $fecha3, $dato_max);
     }else{
         $tipo_medicion="Humedad";
         if($altura == "todas"){
@@ -158,6 +179,11 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
         <div class="card">
             <div class="card-header"></div>
             <div class="card-body">
+                <?php 
+                    if(!isset($_GET['promedio'])){
+
+                   
+                ?>
                 <div class="row">
                     <div class="col-sm-12">
                         <span class="text-success" id="recordar_altura">Recuerda seleccionar una altura observar la grafica</span>
@@ -185,6 +211,7 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
                        </select>
                     </div>
                 </div>
+                <?php  } ?>
             </div>
         </div>
     </div>
@@ -197,7 +224,7 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
 </div>
 
     <script>
-    
+    $(".highcharts-credits").addClass('display','none');
     $("#seleccionar_altura").change(function(){
     
         
@@ -214,7 +241,7 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
 
 
     <?php
-    if(isset($_GET['altura'])){
+    if(isset($_GET['altura']) or isset($_GET['promedio'])){
     ?>
                     
         
@@ -333,7 +360,7 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
 
                             case 1:
                                 for($g = 1; $g<=mysqli_stmt_num_rows($consultar_fechas); $g++){
-                                    mysqli_stmt_fetch($traer_data_cruda);
+                                    mysqli_stmt_fetch($traer_data_cruda3);
                                     if($g==mysqli_stmt_num_rows($consultar_fechas)){
                                         echo number_format($dato_max,2);
                                     }else{
@@ -345,7 +372,7 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
                             case 2:
 
                                 for($g = 1; $g<=mysqli_stmt_num_rows($consultar_fechas); $g++){
-                                    mysqli_stmt_fetch($traer_data_cruda);
+                                    mysqli_stmt_fetch($traer_data_cruda2);
                                     if($g==mysqli_stmt_num_rows($consultar_fechas)){
                                         echo number_format($dato_min,2);
                                     }else{

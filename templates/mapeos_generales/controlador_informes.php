@@ -467,8 +467,8 @@ else if($movimiento == "redireccion_informes"){
 
     $id_informe = $_POST['id_informe'];
     $array_imagenes = array();
-
-    $buscando_imagenes = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ?");
+    
+    $buscando_imagenes = mysqli_prepare($connect,"SELECT id_imagen, tipo, url FROM imagenes_general_informe WHERE id_informe = ? ORDER BY tipo ASC");
     mysqli_stmt_bind_param($buscando_imagenes, 'i', $id_informe);
     mysqli_stmt_execute($buscando_imagenes);
     mysqli_stmt_store_result($buscando_imagenes);
@@ -479,7 +479,8 @@ else if($movimiento == "redireccion_informes"){
         $array_imagenes[] = array(
             'id_imagen'=>$id_imagen,
             'tipo'=>$tipo,
-            'url'=>$url
+            'url'=>$url,
+            'id_informe'=>$id_informe
         );
     }
 
