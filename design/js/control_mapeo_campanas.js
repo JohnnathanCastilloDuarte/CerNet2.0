@@ -12,6 +12,7 @@ listar_datos_full(3);
 listar_datos_full(4);
 listar_datos_full(5);
 listar_datos_full(6);
+listar_datos_full(7);
 
 function listar_datos_full(numeral){
     let movimiento = "Listar_"+numeral;
@@ -299,6 +300,34 @@ function listar_datos_full(numeral){
 
     }
 
+    else if(numeral == 7){
+      
+      $.ajax({
+        type:'POST',
+        data:{id_asignado,movimiento},
+        url:'templates/campana_extraccion/controlador_camara_extraccion.php',
+        success:function(response){
+          console.log(response);
+          let traer = JSON.parse(response);
+          
+          traer.forEach((valor)=>{
+
+           $("#id_informe_campana").val(`${valor.id_informe}`);
+           $("#nombre_informe").val(`${valor.nombre_informe}`);
+           $("#solicitante").val(`${valor.solicitante}`);
+           $("#conclusion").val(`${valor.conclusion}`);
+
+
+
+          });
+      
+        }
+      });
+
+     
+
+    }
+
 
     
 }
@@ -570,6 +599,7 @@ $("#abrir_informe").click(function(){
   
    let encrypt = "LF456DS4G5DS4F5SD21G4DFSGF14DS2vDF2bfg56f1d56sf15ds6f4g534G564g56f4g56df4g561G6F4D5G6DF4G564FG5DG"+id_asignado;
    //window.open("templates/filtros/informes/informe/inspeccion_de_filtros.php");
-   location.href = 'templates/campana_extraccion/informes/informes/inspeccion_de_campanas.php?clave='+encrypt; 
+    window.open('templates/campana_extraccion/informes/informes/inspeccion_de_campanas.php?clave='+encrypt);
+   
 
 });

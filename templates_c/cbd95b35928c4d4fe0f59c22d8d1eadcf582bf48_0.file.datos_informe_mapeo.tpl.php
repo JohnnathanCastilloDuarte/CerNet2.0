@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-08 14:35:00
+/* Smarty version 3.1.34-dev-7, created on 2022-02-10 18:37:07
   from 'C:\xampp\htdocs\CerNet2.0\templates\flujo_laminar\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62027184ad8c38_59196136',
+  'unifunc' => 'content_62054d43bb6ac0_69362977',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbd95b35928c4d4fe0f59c22d8d1eadcf582bf48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\flujo_laminar\\datos_informe_mapeo.tpl',
-      1 => 1643930885,
+      1 => 1644514624,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,37 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62027184ad8c38_59196136 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62054d43bb6ac0_69362977 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class="card">
+            <div class="card-header">
+                <h6>Información del mapeo</h6>
+            </div>
             <div class="card-body">
-                Información del equipo
+                <div class="col-sm-12">
+                    <input type="hidden" name="" id="id_informe">
+                    <label>Nombre informe</label>
+                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe">
+                </div>
+                <div class="col-sm-12">
+                    <label>Solicitante</label>
+                    <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
+                </div>
+                <div class="col-sm-12">
+                    <label>Conclusión</label>
+                    <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                  <button class="btn btn-sm btn-info float-center" id="actualizar_mapeo">Actualizar</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-8">
         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link  active" id="tab-0" data-toggle="tab" href="#pruebas">

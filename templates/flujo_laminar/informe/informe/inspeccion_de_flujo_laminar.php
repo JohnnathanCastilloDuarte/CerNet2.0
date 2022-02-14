@@ -39,14 +39,14 @@ mysqli_stmt_fetch($inspeccion_visual);
 
 //info_ informes
 
-$inspeccion_visual = mysqli_prepare($connect,"SELECT conclucion, nombre_informe, usuario_responsable, fecha_registro
-  FROM informe_campana
+$inspeccion_visual = mysqli_prepare($connect,"SELECT conclusion, solicitante, nombre_informe, usuario_responsable, fecha_registro
+  FROM informe_flujo_laminar
   WHERE id_asignado = ? ");
 
 mysqli_stmt_bind_param($inspeccion_visual, 'i', $id_asignado);
 mysqli_stmt_execute($inspeccion_visual);
 mysqli_stmt_store_result($inspeccion_visual);
-mysqli_stmt_bind_result($inspeccion_visual, $conclucion, $nombre_informe, $usuario_responsable, $fecha_registro_informe);
+mysqli_stmt_bind_result($inspeccion_visual, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_registro_informe);
 mysqli_stmt_fetch($inspeccion_visual);
 
 //informacion de la empresa
@@ -64,11 +64,6 @@ $num_ot = substr($ot,2);
 
 
 
-
-/*echo "SELECT id_inspeccion, insp_1, insp_2, insp_3, insp_4, insp_5
-  FROM campana_extraccion_inspeccion
-  WHERE c.id_asignado = $id_asignado";
-*/
 $linea = <<<EOD
 
 <style>
@@ -101,7 +96,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $nombre_empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -347,8 +342,7 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
-$pdf->writeHTMLCell(180, 5, 15, '', 'De acuerdo a los resultados obtenidos a la muestra inspeccionada, el Equipo indicado en la ubicación del encabezado,
-CUMPLE con los parámetros establecidos en la normativa vigente.', 0, 1, 0, true, 'J', true);
+$pdf->writeHTMLCell(180, 5, 15, '', $conclusion, 0, 1, 0, true, 'J', true);
 
 $linea = <<<EOD
 
@@ -437,7 +431,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $nombre_empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -520,7 +514,7 @@ $info_equipo = <<<EOD
                <td>$cantidad_filtro</td>
                <td>$tipo_dimenciones</td>
                <td>$limite_penetracion</td>
-               <td>$Eficiencia</td>
+               <td>$eficiencia</td>
             </tr>
          </table>    
       </tr>
@@ -629,13 +623,15 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$campana_extraccion_equipo1 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo  FROM  equipos_mediciones a, equipos_cercal b 
-WHERE  a.id_equipo = b.id_equipo_cercal AND  a.id_asignado = ?");
+$equipos_flujo1 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision 
+FROM equipos_mediciones a, equipos_cercal b , certificado_equipo c 
+WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND  a.tipo_prueba = 'Prueba integridad filtros'");
 
-mysqli_stmt_bind_param($campana_extraccion_equipo1, 'i', $id_asignado);
-mysqli_stmt_execute($campana_extraccion_equipo1);
-mysqli_stmt_store_result($campana_extraccion_equipo1);
-mysqli_stmt_bind_result($campana_extraccion_equipo1, $marca1, $modelo1, $n_serie1);
+
+mysqli_stmt_bind_param($equipos_flujo1, 'i', $id_asignado);
+mysqli_stmt_execute($equipos_flujo1);
+mysqli_stmt_store_result($equipos_flujo1);
+mysqli_stmt_bind_result($equipos_flujo1, $marca1, $modelo1, $n_serie1, $certificado_calibracion1, $ultima_calibracion1);
 
 
 $pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
@@ -645,13 +641,13 @@ $pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true
 $pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
-while ($row = mysqli_stmt_fetch($campana_extraccion_equipo1)) {
+while ($row = mysqli_stmt_fetch($equipos_flujo1)) {
 
 $pdf->writeHTMLCell(30, 5, 15, '', $marca1, 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 45, '', $modelo1, 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 75, '', $n_serie1, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', '-', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', '-', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion1, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion1, 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true);
 }
 
@@ -691,7 +687,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $nombre_empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -748,7 +744,7 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
             </tr>
             <tr>
-               <td>$tipo_campana</td>
+               <td>$tipo_cabina</td>
                <td>$marca</td>
                <td>$modelo</td>
                <td>$serie</td>
@@ -760,7 +756,7 @@ $info_equipo = <<<EOD
              <td  bgcolor="#DDDDDD"><h5><strong>Ubicado en </strong></h5></td>
            </tr>
            <tr>
-             <td>-</td>
+             <td>$ubicacion_interna</td>
            </tr>
          </table>
          <table>
@@ -771,10 +767,10 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
             </tr>
             <tr>
-               <td>$tipo_campana</td>
-               <td>$marca</td>
-               <td>$modelo</td>
-               <td>$serie</td>
+               <td>$tipo_cabina</td>
+               <td>$tipo_dimenciones</td>
+               <td>$limite_penetracion</td>
+               <td>$eficiencia</td>
             </tr>
          </table>    
       </tr>
@@ -811,6 +807,16 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+  $queryPrueba1 = mysqli_prepare($connect,"SELECT medicion_1, medicion_2, medicion_3, medicion_4, medicion_5, medicion_6
+  FROM flujo_laminar_prueba_3
+  WHERE id_asignado = ? ");
+
+mysqli_stmt_bind_param($queryPrueba1, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba1);
+mysqli_stmt_store_result($queryPrueba1);
+mysqli_stmt_bind_result($queryPrueba1, $medicion_1, $medicion_2, $medicion_3, $medicion_4, $medicion_5, $medicion_6);
+
+
 
  $pdf->writeHTMLCell(26, 5, 15, '', 'N° de Filtro', 1, 0, 0, true, 'C', true);
  $pdf->writeHTMLCell(25, 5, 41, '', 'Medición 1(m/s)', 1, 0, 0, true, 'C', true);
@@ -820,9 +826,17 @@ $pdf->writeHTML($linea, true, false, false, false, '');
  $pdf->writeHTMLCell(26, 5, 142, '', 'Medición 5(m/s)', 1, 0, 0, true, 'C', true);
  $pdf->writeHTMLCell(27, 5, 168, '', 'Medición 6(m/s)', 1, 1, 0, true, 'C', true); 
 
-for ($i=1; $i < 10 ; $i++) { 
-  
+ $i2 = 1;
+ while ($row = mysqli_stmt_fetch($queryPrueba1)) {
+ $pdf->writeHTMLCell(26, 5, 15, '', 'N° de Filtro'.$i2, 1, 0, 0, true, 'C', true);
+ $pdf->writeHTMLCell(25, 5, 41, '', $medicion_1, 1, 0, 0, true, 'C', true);
+ $pdf->writeHTMLCell(25, 5, 66, '', $medicion_2, 1, 0, 0, true, 'C', true);
+ $pdf->writeHTMLCell(25, 5, 91, '', $medicion_3, 1, 0, 0, true, 'C', true);
+ $pdf->writeHTMLCell(26, 5, 116, '', $medicion_4, 1, 0, 0, true, 'C', true);
+ $pdf->writeHTMLCell(26, 5, 142, '', $medicion_5, 1, 0, 0, true, 'C', true);
+ $pdf->writeHTMLCell(27, 5, 168, '', $medicion_6, 1, 1, 0, true, 'C', true);
 
+ $i2++;
 }
 $txt = <<<EOD
 <br>
@@ -879,13 +893,14 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$campana_extraccion_equipo2 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo  FROM  equipos_mediciones a, equipos_cercal b 
-WHERE  a.id_equipo = b.id_equipo_cercal AND  a.id_asignado = ? AND categoria = 12");
+$equipos_flujo2 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision 
+FROM equipos_mediciones a, equipos_cercal b , certificado_equipo c 
+WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND a.tipo_prueba = 'Prueba de velocidad de aire'");
 
-mysqli_stmt_bind_param($campana_extraccion_equipo2, 'i', $id_asignado);
-mysqli_stmt_execute($campana_extraccion_equipo2);
-mysqli_stmt_store_result($campana_extraccion_equipo2);
-mysqli_stmt_bind_result($campana_extraccion_equipo2, $marca2, $modelo2, $n_serie2);
+mysqli_stmt_bind_param($equipos_flujo2, 'i', $id_asignado);
+mysqli_stmt_execute($equipos_flujo2);
+mysqli_stmt_store_result($equipos_flujo2);
+mysqli_stmt_bind_result($equipos_flujo2, $marca2, $modelo2, $n_serie2, $certificado_calibracion2, $ultima_calibracion2);
 
 $pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
@@ -896,13 +911,13 @@ $pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
 $e= 2;
 
-while ($row = mysqli_stmt_fetch($campana_extraccion_equipo2)) {
+while ($row = mysqli_stmt_fetch($equipos_flujo2)) {
 
     $pdf->writeHTMLCell(30, 5, 15, '', $marca2, 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(30, 5, 45, '', $modelo2, 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(30, 5, 75, '', $n_serie2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 105, '', '-', 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 135, '', '-', 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion2, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion2, 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true); 
 }
 
@@ -940,7 +955,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $nombre_empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -997,7 +1012,7 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
             </tr>
             <tr>
-               <td>$tipo_campana</td>
+               <td>$tipo_cabina</td>
                <td>$marca</td>
                <td>$modelo</td>
                <td>$serie</td>
@@ -1123,13 +1138,14 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$campana_extraccion_equipo3 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo  FROM  equipos_mediciones a, equipos_cercal b 
-WHERE  a.id_equipo = b.id_equipo_cercal AND  a.id_asignado = ? AND categoria = 12");
+$equipos_flujo3 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision 
+FROM equipos_mediciones a, equipos_cercal b , certificado_equipo c 
+WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND a.tipo_prueba = 'Prueba de conteo de particulas'");
 
-mysqli_stmt_bind_param($campana_extraccion_equipo3, 'i', $id_asignado);
-mysqli_stmt_execute($campana_extraccion_equipo3);
-mysqli_stmt_store_result($campana_extraccion_equipo3);
-mysqli_stmt_bind_result($campana_extraccion_equipo3, $marca3, $modelo3, $n_serie3);
+mysqli_stmt_bind_param($equipos_flujo3, 'i', $id_asignado);
+mysqli_stmt_execute($equipos_flujo3);
+mysqli_stmt_store_result($equipos_flujo3);
+mysqli_stmt_bind_result($equipos_flujo3, $marca3, $modelo3, $n_serie3, $certificado_calibracion3, $ultima_calibracion3);
 
 
 $pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
@@ -1139,14 +1155,13 @@ $pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true
 $pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
-$e= 1;
-while ($row = mysqli_stmt_fetch($campana_extraccion_equipo3)) {
+while ($row = mysqli_stmt_fetch($equipos_flujo3)) {
 
     $pdf->writeHTMLCell(30, 5, 15, '', $marca3, 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(30, 5, 45, '', $modelo3, 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(30, 5, 75, '', $n_serie3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 105, '', '-', 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 135, '', '-', 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion3, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion3, 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true); 
     
 }
@@ -1184,7 +1199,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $nombre_empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -1241,7 +1256,7 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
             </tr>
             <tr>
-               <td>$tipo_campana</td>
+               <td>$tipo_cabina</td>
                <td>$marca</td>
                <td>$modelo</td>
                <td>$serie</td>
@@ -1275,6 +1290,15 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+$queryPrueba4 = mysqli_prepare($connect,"SELECT punto_1, punto_2, punto_3, promedio
+  FROM flujo_laminar_prueba_4
+  WHERE id_asignado = ? AND categoria = 1");
+
+mysqli_stmt_bind_param($queryPrueba4, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba4);
+mysqli_stmt_store_result($queryPrueba4);
+mysqli_stmt_bind_result($queryPrueba4, $punto_1, $punto_2, $punto_3, $promedio);
+
 $array_titulos3 = array('Temperatura,°C', 'Humedad Relativa, %');
 
 $pdf->writeHTMLCell(36, 5, 15, '', 'punto de muestreo', 1, 0, 0, true, 'C', true);
@@ -1282,6 +1306,16 @@ $pdf->writeHTMLCell(36, 5, 51, '', '1', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 87, '', '2', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 123, '', '3', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 159, '', 'Promedio', 1, 1, 0, true, 'C', true);
+
+$i3=0;
+ while ($row = mysqli_stmt_fetch($queryPrueba4)) {
+$pdf->writeHTMLCell(36, 5, 15, '', $array_titulos3[$i3], 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 51, '', $punto_1, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 87, '', $punto_2, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 123, '', $punto_3, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 159, '', $promedio, 1, 1, 0, true, 'C', true);
+$i3++;
+}
 
 $imagen1 = <<<EOD
 <style>
@@ -1319,11 +1353,36 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+$queryPrueba4_1 = mysqli_prepare($connect,"SELECT punto_1, punto_2, punto_3, promedio
+  FROM flujo_laminar_prueba_4
+  WHERE id_asignado = ? AND categoria = 2");
+
+$array_titulos4 = array('Equipo (dB-A Lento)', 'Sala (dB-A Lento)');
+
+mysqli_stmt_bind_param($queryPrueba4_1, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba4_1);
+mysqli_stmt_store_result($queryPrueba4_1);
+mysqli_stmt_bind_result($queryPrueba4_1, $punto_1, $punto_2, $punto_3, $promedio);
+
+
 $pdf->writeHTMLCell(36, 5, 15, '', 'punto de muestreo', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 51, '', '1', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 87, '', '2', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 123, '', '3', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(36, 5, 159, '', 'Promedio', 1, 1, 0, true, 'C', true);
+
+$i4 = 0;
+ while ($row = mysqli_stmt_fetch($queryPrueba4_1)) {
+
+$pdf->writeHTMLCell(36, 5, 15, '', $array_titulos4[$i4], 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 51, '', $punto_1, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 87, '', $punto_2, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 123, '', $punto_3, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(36, 5, 159, '', $promedio, 1, 1, 0, true, 'C', true);
+
+$i4++;
+
+}
 
 $imagen1 = <<<EOD
 <style>
@@ -1361,12 +1420,33 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+$equipos_flujo4 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision 
+FROM equipos_mediciones a, equipos_cercal b , certificado_equipo c 
+WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND a.tipo_prueba = 'Prueba sonora'");
+
+mysqli_stmt_bind_param($equipos_flujo4, 'i', $id_asignado);
+mysqli_stmt_execute($equipos_flujo4);
+mysqli_stmt_store_result($equipos_flujo4);
+mysqli_stmt_bind_result($equipos_flujo4, $marca4, $modelo4, $n_serie4, $certificado_calibracion4, $ultima_calibracion4);
+
+
+
 $pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+
+
+while ($row = mysqli_stmt_fetch($equipos_flujo4)) {
+$pdf->writeHTMLCell(30, 5, 15, '', $marca4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 45, '', $modelo4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 75, '', $n_serie4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 165, '', '-' , 1, 1, 0, true, 'C', true);
+}
 
 $pdf->AddPage('A4');
 
@@ -1400,7 +1480,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $nombre_empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -1457,7 +1537,7 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
             </tr>
             <tr>
-               <td>$tipo_campana</td>
+               <td>$tipo_cabina</td>
                <td>$marca</td>
                <td>$modelo</td>
                <td>$serie</td>
@@ -1507,6 +1587,16 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+$queryPrueba5 = mysqli_prepare($connect,"SELECT resultado, cumple
+  FROM flujo_laminar_prueba_5
+  WHERE id_asignado = ? AND categoria = 1 ");
+
+mysqli_stmt_bind_param($queryPrueba5, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba5);
+mysqli_stmt_store_result($queryPrueba5);
+mysqli_stmt_bind_result($queryPrueba5, $resultado_1, $cumple_1);
+
+
 $array_titulos5 = array('Ubicación de Prueba', 'Dirección del Flujo Especificado','Visualización de Flujo Reverso','Visualización de Vórtices','Cumple Especificaciones');
 
 $pdf->writeHTMLCell(60, 5, 15, '', 'condiciones', 1, 0, 0, true, 'C', true);
@@ -1515,8 +1605,9 @@ $pdf->writeHTMLCell(60, 5, 135, '', 'Cumple', 1, 1, 0, true, 'C', true);
 
 $i6 = 0;
 
-for ($i=0; $i6 < 5; $i6++) { 
-  if ($i6 < 4) {
+while ($row = mysqli_stmt_fetch($queryPrueba5)) {
+
+    if ($i6 < 4) {
       
     $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos5[$i6], 1, 0, 0, true, 'C', true);
     $pdf->writeHTMLCell(60, 5, 75, '', $resultado_1, 1, 0, 0, true, 'C', true);
@@ -1525,7 +1616,10 @@ for ($i=0; $i6 < 5; $i6++) {
       $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos5[$i6], 1, 0, 0, true, 'C', true);
       $pdf->writeHTMLCell(120, 5, 75, '', $cumple_1, 1, 1, 0, true, 'C', true);
    }
+   $i6++;
 }
+
+
 
 $linea = <<<EOD
 <br><br>
@@ -1545,13 +1639,13 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$campana_extraccion_prueba_5_1 = mysqli_prepare($connect,"SELECT resultado, cumple  FROM campana_extraccion_prueba_5
+$queryPrueba5_1 = mysqli_prepare($connect,"SELECT resultado, cumple  FROM flujo_laminar_prueba_5
   WHERE id_asignado = ? AND categoria = 2");
 
-mysqli_stmt_bind_param($campana_extraccion_prueba_5_1, 'i', $id_asignado);
-mysqli_stmt_execute($campana_extraccion_prueba_5_1);
-mysqli_stmt_store_result($campana_extraccion_prueba_5_1);
-mysqli_stmt_bind_result($campana_extraccion_prueba_5_1, $resultado_2, $cumple_2);
+mysqli_stmt_bind_param($queryPrueba5_1, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba5_1);
+mysqli_stmt_store_result($queryPrueba5_1);
+mysqli_stmt_bind_result($queryPrueba5_1, $resultado_2, $cumple_2);
 
 $pdf->writeHTMLCell(60, 5, 15, '', 'Condiciones', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 5, 75, '', 'Resultado', 1, 0, 0, true, 'C', true);
@@ -1562,8 +1656,9 @@ $array_titulos6 = array('Ubicación de Prueba', 'Visualización de Flujo Unidire
 
 $i7 = 0;
 
-for ($i7=0; $i7 < 7; $i7++) { 
-   if ($i7 < 5) {
+while ($row = mysqli_stmt_fetch($queryPrueba5_1)) {
+
+    if ($i7 < 5) {
 
         $pdf->writeHTMLCell(60, 5, 15, '', $array_titulos6[$i7], 1, 0, 0, true, 'C', true);
         $pdf->writeHTMLCell(60, 5, 75, '', $resultado_2, 1, 0, 0, true, 'C', true);
@@ -1574,7 +1669,7 @@ for ($i7=0; $i7 < 7; $i7++) {
         $pdf->writeHTMLCell(120, 5, 75, '', $cumple_2, 1, 1, 0, true, 'C', true);
 
         }
-    
+   $i7++;
 }
 
 $linea = <<<EOD
@@ -1595,6 +1690,14 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+$queryPrueba6 = mysqli_prepare($connect,"SELECT punto_1, punto_2, punto_3, punto_4, punto_5, promedio  FROM flujo_laminar_prueba_6
+  WHERE id_asignado = ? ");
+
+mysqli_stmt_bind_param($queryPrueba6, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba6);
+mysqli_stmt_store_result($queryPrueba6);
+mysqli_stmt_bind_result($queryPrueba6, $punto_1, $punto_2, $punto_3, $punto_4, $punto_5, $promedio);
+
 $pdf->writeHTMLCell(27, 5, 15, '', 'Punto de muestro', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(25, 5, 42, '', '1', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(25, 5, 67, '', '2', 1, 0, 0, true, 'C', true);
@@ -1605,16 +1708,14 @@ $pdf->writeHTMLCell(28, 5, 167, '', 'Promedio', 1, 1, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(27, 5, 15, '', 'Lux', 1, 0, 0, true, 'C', true);
 
-//while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_4_2)) {
+while ($row = mysqli_stmt_fetch($queryPrueba6)) {
  
-for ($i=0; $i < 1; $i++) { 
- 
-$pdf->writeHTMLCell(25, 5, 42, '', $punto_1_2, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(25, 5, 67, '', $punto_2_2, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(25, 5, 92, '', $punto_3_2, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(25, 5, 117, '', $punto_4_2, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(25, 5, 142, '', $punto_5_2, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(28, 5, 167, '', $punto_promedio_2, 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(25, 5, 42, '', $punto_1, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(25, 5, 67, '', $punto_2, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(25, 5, 92, '', $punto_3, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(25, 5, 117, '', $punto_4, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(25, 5, 142, '', $punto_5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(28, 5, 167, '', $promedio, 1, 1, 0, true, 'C', true);
 
 }
 //}
@@ -1649,7 +1750,7 @@ $linea = <<<EOD
 <br><br>
 <table >
    <tr border="1">
-        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipos Utilizado en la Medición</h2></td>
    </tr>
 </table>
 <br>
@@ -1658,13 +1759,14 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$campana_extraccion_equipo1 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo  FROM  equipos_mediciones a, equipos_cercal b 
-WHERE  a.id_equipo = b.id_equipo_cercal AND  a.id_asignado = ?");
+$equipos_flujo5 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision 
+FROM equipos_mediciones a, equipos_cercal b , certificado_equipo c 
+WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND a.tipo_prueba ='Prueba nivel de iluminación'");
 
-mysqli_stmt_bind_param($campana_extraccion_equipo1, 'i', $id_asignado);
-mysqli_stmt_execute($campana_extraccion_equipo1);
-mysqli_stmt_store_result($campana_extraccion_equipo1);
-mysqli_stmt_bind_result($campana_extraccion_equipo1, $marca1, $modelo1, $n_serie1);
+mysqli_stmt_bind_param($equipos_flujo5, 'i', $id_asignado);
+mysqli_stmt_execute($equipos_flujo5);
+mysqli_stmt_store_result($equipos_flujo5);
+mysqli_stmt_bind_result($equipos_flujo5, $marca5, $modelo5, $n_serie5, $certificado_calibracion5, $ultima_calibracion5);
 
 
 $pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
@@ -1674,13 +1776,14 @@ $pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true
 $pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
-
-$pdf->writeHTMLCell(30, 5, 15, '', '', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', '', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', '', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', '', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', '', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '', 1, 1, 0, true, 'C', true);
+while ($row = mysqli_stmt_fetch($equipos_flujo5)) {
+$pdf->writeHTMLCell(30, 5, 15, '', $marca5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 45, '', $modelo5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 75, '', $n_serie5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true);
+}
 
 $pdf->AddPage('A4');
 
@@ -1714,7 +1817,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $nombre_empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -1771,7 +1874,7 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
             </tr>
             <tr>
-               <td>$tipo_campana</td>
+               <td>$tipo_cabina</td>
                <td>$marca</td>
                <td>$modelo</td>
                <td>$serie</td>
@@ -1785,6 +1888,55 @@ $info_equipo = <<<EOD
    
 EOD;  
 $pdf->writeHTML($info_equipo, true, false, false, false, '');
+
+$imagenFrontal = mysqli_prepare($connect,"SELECT url, nombre 
+  FROM image_flujo_laminar
+  WHERE id_asignado = ? AND tipo = 2");
+
+mysqli_stmt_bind_param($imagenFrontal, 'i', $id_asignado);
+mysqli_stmt_execute($imagenFrontal);
+mysqli_stmt_store_result($imagenFrontal);
+mysqli_stmt_bind_result($imagenFrontal, $url1, $nombre_imagen1);
+mysqli_stmt_fetch($imagenFrontal);
+
+$imagenPlaca = mysqli_prepare($connect,"SELECT url, nombre 
+  FROM image_flujo_laminar
+  WHERE id_asignado = ? AND tipo = 3");
+
+mysqli_stmt_bind_param($imagenPlaca, 'i', $id_asignado);
+mysqli_stmt_execute($imagenPlaca);
+mysqli_stmt_store_result($imagenPlaca);
+mysqli_stmt_bind_result($imagenPlaca, $url2, $nombre_imagen2);
+mysqli_stmt_fetch($imagenPlaca);
+
+$imagenAreatrabajo = mysqli_prepare($connect,"SELECT url, nombre 
+  FROM image_flujo_laminar
+  WHERE id_asignado = ? AND tipo = 4");
+
+mysqli_stmt_bind_param($imagenAreatrabajo, 'i', $id_asignado);
+mysqli_stmt_execute($imagenAreatrabajo);
+mysqli_stmt_store_result($imagenAreatrabajo);
+mysqli_stmt_bind_result($imagenAreatrabajo, $url3, $nombre_imagen3);
+mysqli_stmt_fetch($imagenAreatrabajo);
+
+if ($url1 == '' || $url1 == NULL) {
+  $image_frontal = '../../../../images/no_imagen.png';
+}else{
+  $image_frontal = '../../'.$url1.$nombre_imagen1;
+}
+if ($url2 == '' || $url2 == NULL) {
+  $imagenPlaca = '../../../../images/no_imagen.png';
+}else{
+  $imagenPlaca = '../../'.$url2.$nombre_imagen2;
+}
+if ($url3 == '' || $url3 == NULL) {
+  $imagenAreatrabajo = '../../../../images/no_imagen.png';
+}else{
+  $imagenAreatrabajo = '../../'.$url3.$nombre_imagen3;
+}
+
+
+
 
 $linea13 = <<<EOD
 
@@ -1804,9 +1956,22 @@ $linea13 = <<<EOD
         <td class="linea" align="center"><h2><b>Imagen Frontal</b></h2></td>  
         <td class="linea" align="center"><h2><b>Imagen de Placa</b></h2></td>  
    </tr>
+   <br>
    <tr>
-        <td class="imagen" border="0"></td>
-        <td class="imagen" border="0"></td>
+        <td class="imagen" border="0">
+          <table border="0" style="width:310px;">
+            <tr>
+              <td> <img src="$image_frontal" style="width:305px;"></td>
+            </tr>
+          </table>
+        </td>
+        <td class="imagen" border="0">
+          <table border="0" style="width:310px;">
+            <tr>
+              <td> <img src="$imagenPlaca" style="width:305px;"></td>
+            </tr>
+          </table>
+        </td>
    </tr>
 </table>
 <br>
@@ -1814,24 +1979,22 @@ $linea13 = <<<EOD
 <table border="0">
     <tr>
         <td class="linea" align="center"><h2><b>Imagen Área de Trabajo</b></h2></td> 
-    </tr>    
+    </tr>  
+    <br>  
     <tr>
-        <td style="width: 70px;"></td>
-        <td class="imagen" style="width: 498px;" border="0"></td>
-        <td style="width: 70px;"></td>
+        <td style="width: 170px;"></td>
+        <td class="imagen" style="width: 298px;" border="0">
+          <img src="$imagenPlaca" style="width:305px;">
+        </td>
+        <td style="width: 170px;"></td>
     </tr>
 </table>
+<img src='descarga.png'>
 EOD;
 
 
 
 $pdf->writeHTML($linea13, true, false, false, false, '');
-
-
-
-
-
-
 
 
 $pdf->Output('Algo.pdf', 'I');

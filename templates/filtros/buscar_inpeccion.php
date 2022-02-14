@@ -28,11 +28,11 @@ switch ($tipo) {
         $array_datos1 = array();
         //echo "SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5 FROM informe_filtro as a WHERE  a.id_asignado =".$id_asignado_filtro;
         
-        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5, a.insp6 FROM informe_filtro as a WHERE  a.id_asignado = ?");
+        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5, a.insp6, a.nombre_informe, a.solicitante FROM informe_filtro as a WHERE  a.id_asignado = ?");
         mysqli_stmt_bind_param($consultar, 'i', $id_asignado_filtro);
         mysqli_stmt_execute($consultar);
         mysqli_stmt_store_result($consultar);
-        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5, $insp6);
+        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5, $insp6, $nombre_informe, $solicitante);
         
         while($row = mysqli_stmt_fetch($consultar)){
 
@@ -40,6 +40,8 @@ switch ($tipo) {
                 'id_informe'=>$id_informe,
                 'concepto'=>$concepto,
                 'conclusion'=>$conclusion,
+                'nombre_informe'=>$nombre_informe,
+                'solicitante'=>$solicitante,
                 'insp1'=>$insp1,
                 'insp2'=>$insp2,
                 'insp3'=>$insp3,
@@ -49,6 +51,7 @@ switch ($tipo) {
 
             );
         }
+
 
         $convert = json_encode($array_datos1);
         echo $convert;

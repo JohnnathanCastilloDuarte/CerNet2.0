@@ -22,16 +22,17 @@ mysqli_stmt_fetch($consulta_informacion_informe);
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion  FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e 
+   WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
 
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion);
 mysqli_stmt_fetch($consulta_empresa);
 
 
-
+$num_numot = substr($numot,2);
 $pdf->AddPage('A4');
 
 $linea = <<<EOD
@@ -56,7 +57,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(13, 5, 105, '', $numot ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(13, 5, 105, '', $num_numot ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
 
@@ -65,7 +66,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
@@ -97,6 +98,9 @@ $info_equipo = <<<EOD
    padding: 3px;
    vertical-align: middle;
    text-align: center;
+   height:15px;
+   font-size:11px;
+   padding:auto auto auto auto;
    }
 
    tr:nth-child(even) 
@@ -104,15 +108,17 @@ $info_equipo = <<<EOD
       background-color: #f2f2f2;
    }
 
+
    </style>
+
    <table>
       <tr>
          <table>
             <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Descripción</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:150px; "><h5><strong>Descripción</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Modelo</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Serie</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:85px;"><h5><strong>Modelo</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:83px;"><h5><strong>Serie</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Lugar</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Ubicado en</strong></h5></td>
             </tr>
@@ -125,15 +131,13 @@ $info_equipo = <<<EOD
                <td>$ubicado_en</td>
             </tr>
          </table>
-      </tr>
-      <br>
-      <tr>
-         <table>
+           <br><br> 
+         <table>  
             <tr>
                <td bgcolor="#DDDDDD"><h5><strong>Tipo de Filtro y Dimensiones</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
             </tr>
             <tr>
                <td>$tipo_filtro</td>
@@ -141,12 +145,16 @@ $info_equipo = <<<EOD
                <td>$limite_penetracion</td>
                <td>$eficiencia</td>
             </tr>
-         </table>
+         </table>    
       </tr>
+      <br>
    </table>
+
    
 EOD;  
 $pdf->writeHTML($info_equipo, true, false, false, false, '');
+
+
 
 $linea = <<<EOD
 <style>
@@ -174,7 +182,10 @@ $linea = <<<EOD
    border: 1px solid #BBBBBB;
    padding: 3px;
    vertical-align: middle;
-   text-align:center;
+   text-align: center;
+   height:15px;
+   font-size:11px;
+   padding:auto auto auto auto;
    }
 
    tr:nth-child(even) 
@@ -186,7 +197,7 @@ $linea = <<<EOD
 
 <table >
    <tr border="1">
-        <td class="linea" align="center"><h2><b>RESULTADO DE MEDICIONES - NORMA: UNE-EN ISO 14.644-3:2015</b></h2></td>
+        <td class="linea" align="center"><h3><b>RESULTADO DE MEDICIONES - NORMA: UNE-EN ISO 14.644-3:2015</b></h3></td>
    </tr>
 </table>
 <br><br>
@@ -228,7 +239,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Conclusión</b></td>
+        <td class="linea" align="center"><h2>Conclusión</h2></td>
    </tr>
 </table>
 
@@ -250,8 +261,8 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Duración de Certificado</b></td>
-        <td class="linea" align="center"><b>Fecha de Medición</b></td>
+        <td class="linea" align="center"><h3>Duración de Certificado</h3></td>
+        <td class="linea" align="center"><h3>Fecha de Medición</h3></td>
    </tr>
    <tr>
         <td style="text-align:center;">La vigencia de Certificación es de 12 meses.</td>
@@ -274,9 +285,9 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Responsable</b></td>
-        <td class="linea" align="center"><b>Código QR de Verificación</b></td>
-        <td class="linea" align="center"><b>Firma</b></td>
+        <td class="linea" align="center"><h3>Responsable</h3></td>
+        <td class="linea" align="center"><h3>Código QR de Verificación</h3></td>
+        <td class="linea" align="center"><h3>Firma</h3></td>
    </tr>
    <tr>
        <td align="center">Ing. Raúl Quevedo Silva<br>Gerente de Operaciones</td>
@@ -343,6 +354,9 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    padding: 3px;
    vertical-align: middle;
    text-align: center;
+   height:15px;
+   font-size:11px;
+   padding:auto auto auto auto;
    }
 
    tr:nth-child(even) 
@@ -350,15 +364,17 @@ $pdf->writeHTML($linea, true, false, false, false, '');
       background-color: #f2f2f2;
    }
 
+
    </style>
+
    <table>
       <tr>
          <table>
             <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Descripción</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:150px; "><h5><strong>Descripción</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Modelo</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Serie</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:85px;"><h5><strong>Modelo</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:83px;"><h5><strong>Serie</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Lugar</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Ubicado en</strong></h5></td>
             </tr>
@@ -371,15 +387,13 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td>$ubicado_en</td>
             </tr>
          </table>
-      </tr>
-      <br>
-      <tr>
-         <table>
+           <br><br> 
+         <table>  
             <tr>
                <td bgcolor="#DDDDDD"><h5><strong>Tipo de Filtro y Dimensiones</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
             </tr>
             <tr>
                <td>$tipo_filtro</td>
@@ -387,9 +401,11 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td>$limite_penetracion</td>
                <td>$eficiencia</td>
             </tr>
-         </table>
+         </table>    
       </tr>
+      <br>
    </table>
+
    
 EOD;  
 $pdf->writeHTML($info_equipo, true, false, false, false, '');
@@ -524,6 +540,9 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    padding: 3px;
    vertical-align: middle;
    text-align: center;
+   height:15px;
+   font-size:11px;
+   padding:auto auto auto auto;
    }
 
    tr:nth-child(even) 
@@ -531,15 +550,17 @@ $pdf->writeHTML($linea, true, false, false, false, '');
       background-color: #f2f2f2;
    }
 
+
    </style>
+
    <table>
       <tr>
          <table>
             <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Descripción</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:150px; "><h5><strong>Descripción</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Modelo</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Serie</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:85px;"><h5><strong>Modelo</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:83px;"><h5><strong>Serie</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Lugar</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Ubicado en</strong></h5></td>
             </tr>
@@ -552,15 +573,13 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td>$ubicado_en</td>
             </tr>
          </table>
-      </tr>
-      <br>
-      <tr>
-         <table>
+           <br><br> 
+         <table>  
             <tr>
                <td bgcolor="#DDDDDD"><h5><strong>Tipo de Filtro y Dimensiones</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
                <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>
+               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
             </tr>
             <tr>
                <td>$tipo_filtro</td>
@@ -568,9 +587,11 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td>$limite_penetracion</td>
                <td>$eficiencia</td>
             </tr>
-         </table>
+         </table>    
       </tr>
+      <br>
    </table>
+
    
 EOD;  
 $pdf->writeHTML($info_equipo, true, false, false, false, '');

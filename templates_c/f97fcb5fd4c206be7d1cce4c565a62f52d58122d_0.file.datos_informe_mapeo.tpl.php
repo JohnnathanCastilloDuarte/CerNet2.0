@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-01 15:16:53
+/* Smarty version 3.1.34-dev-7, created on 2022-02-11 16:14:19
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61f940d5bec335_21173886',
+  'unifunc' => 'content_62067d4b520731_73585237',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1643725012,
+      1 => 1644592457,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f940d5bec335_21173886 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62067d4b520731_73585237 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-3" style="text-align:center;">
@@ -82,17 +82,29 @@ function content_61f940d5bec335_21173886 (Smarty_Internal_Template $_smarty_tpl)
 
         <div class="tab-content">
           <div class="tab-pane tabs-animation fade show active" id="inspeccion" role="tabpanel">
-            <input type="hidden" name="" id="id_informe_campana" value="<?php echo $_smarty_tpl->tpl_vars['id_informe']->value;?>
-">
+            
             <form id="formulario_1_campana_extraccion" Method="post">
             <div class="card-body">
-
+              <input type="hidden" name="id_informe" id="id_informe_campana" value="">
               <div id="cuerpo_mapeo_campana">
-                <div class="col-sm-6">
-                  <label>Nombre informe</label>
-                  <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
-
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>Nombre informe</label>
+                    <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Solicitante</label>
+                    <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Quien solicita" value="<?php echo $_smarty_tpl->tpl_vars['solicitante']->value;?>
+">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                  <label>Conclusión</label>
+                  <textarea class="form-control" name="conclusion" id="conclusion" value="<?php echo $_smarty_tpl->tpl_vars['conclusion']->value;?>
+"></textarea>
                 </div>
+              </div>
                 
               <br>
               <input type="hidden" id="id_inspeccion" name="id_inspeccion">

@@ -17,20 +17,22 @@ if($tipo == "Guardar"){
   $detalles_mediciones_array_d = $_POST['detalles_mediciones_array_d'];
   $detalles_mediciones_array_dd = $_POST['detalles_mediciones_array_dd'];
   $valor_obtenido_filtros = $_POST['valor_obtenido_filtros'];
+
+  $nombre_informe = $_POST['nombre_informe'];
+  $solicitante = $_POST['solicitante'];
+  $conclusion = $_POST['conclusion'];
   $veredicto = "";
 
 
-  $insertar_primera_parte = mysqli_prepare($connect,"INSERT INTO informe_filtro (insp1, insp2, insp3, insp4, insp5, insp6, id_asignado) VALUES
-   (?,?,?,?,?,?,?)");
-  mysqli_stmt_bind_param($insertar_primera_parte, 'ssssssi', $inspeccion_visual_array[0], $inspeccion_visual_array[1], $inspeccion_visual_array[2],
-   $inspeccion_visual_array[3], $inspeccion_visual_array[4], $inspeccion_visual_array[5], $id_asignado_filtro);
+  $insertar_primera_parte = mysqli_prepare($connect,"INSERT INTO informe_filtro (nombre_informe, solicitante, conclusion, insp1, insp2, insp3, insp4, insp5, insp6, id_asignado) VALUES
+   (?,?,?,?,?,?,?,?,?,?)");
+  mysqli_stmt_bind_param($insertar_primera_parte, 'sssssssssi',$nombre_informe, $solicitante, $conclusion, $inspeccion_visual_array[0], $inspeccion_visual_array[1], $inspeccion_visual_array[2], $inspeccion_visual_array[3], $inspeccion_visual_array[4], $inspeccion_visual_array[5], $id_asignado_filtro);
   mysqli_stmt_execute($insertar_primera_parte);
   echo mysqli_stmt_error($insertar_primera_parte);
   $id_informe = mysqli_stmt_insert_id($insertar_primera_parte);
 
   
   
-
 
   $buscando_dato = mysqli_prepare($connect,"SELECT limite_penetracion FROM item_asignado as a, item_filtro as b WHERE a.id_asignado = ? AND a.id_item = b.id_item");
   mysqli_stmt_bind_param($buscando_dato, 'i', $id_asignado_filtro);
@@ -97,15 +99,20 @@ if($tipo == "Guardar"){
   $detalles_mediciones_array_d = $_POST['detalles_mediciones_array_d'];
   $detalles_mediciones_array_dd = $_POST['detalles_mediciones_array_dd'];
   $valor_obtenido_filtros = $_POST['valor_obtenido_filtros'];
+
+  $nombre_informe = $_POST['nombre_informe'];
+  $solicitante = $_POST['solicitante'];
+  $conclusion = $_POST['conclusion'];
   $veredicto = "";
   $id_informe_filtro = $_POST['id_informe'];
   $id_medicion_1_array = $_POST['id_medicion_1_array'];
   $id_medicion_2_array = $_POST['id_medicion_2_array'];
 
 
-  $update_primera_parte = mysqli_prepare($connect,"UPDATE  informe_filtro  SET  insp1 = ?, insp2 = ?, insp3 = ?, insp4 = ?, insp5 = ?, insp6 = ? WHERE id_informe = ?");
-  mysqli_stmt_bind_param($update_primera_parte, 'ssssssi', $inspeccion_visual_array[0], $inspeccion_visual_array[1], $inspeccion_visual_array[2],
-    $inspeccion_visual_array[3], $inspeccion_visual_array[4], $inspeccion_visual_array[5], $id_informe_filtro);
+  $update_primera_parte = mysqli_prepare($connect,"UPDATE  informe_filtro  
+    SET  nombre_informe = ?, conclusion = ?, solicitante = ?, insp1 = ?, insp2 = ?, insp3 = ?, insp4 = ?, insp5 = ?, insp6 = ? 
+    WHERE id_informe = ?");
+  mysqli_stmt_bind_param($update_primera_parte, 'sssssssssi',$nombre_informe, $conclusion, $solicitante, $inspeccion_visual_array[0], $inspeccion_visual_array[1], $inspeccion_visual_array[2], $inspeccion_visual_array[3], $inspeccion_visual_array[4], $inspeccion_visual_array[5], $id_informe_filtro);
   mysqli_stmt_execute($update_primera_parte);
   echo mysqli_stmt_error($update_primera_parte);
   $id_informe = mysqli_stmt_insert_id($update_primera_parte);

@@ -103,8 +103,27 @@
 
   
   <div class="col-sm-9">
+    <div class="card">
       <div id="accordion">
      <!-- <form id="form_filtro_1" enctype="multipart/form-data" method="post">--> 
+
+        <div class="row col-sm-12">
+          <div class="col-sm-6">
+            <label>Nombre informe:</label>
+            <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre del informe">
+          </div>
+          <div class="col-sm-6">
+            <label>Solicitante:</label>
+            <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Nombre quien solicita">
+          </div>
+          <div class="col-sm-12">
+            <label>Conclusión</label>
+           <textarea name="conclusion" id="conclusion" class="form-control" placeholder="Conclusión"></textarea>
+          </div>
+
+        </div>
+
+        <br>
        <div class="card">
         <div class="card-header">
           <a data-toggle="collapse" data-target="#collapseOne44"  aria-controls="collapseOne44">
@@ -112,7 +131,7 @@
           </a>
         </div>
          <div class="card-body collapse" id="collapseOne44" >
-            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
+            <input type="text" name="id_informe_filtro" id="id_informe_filtro">
 
             <div class="row">
               <div class="col-sm-6">
@@ -399,7 +418,8 @@
           </div>
              
        </div><!--CIERRE DEL DIV ACORDION-->
-    <!--  </form> -->    
+       <div><br></div>
+     </div>    <!-- cierre de la card -->
   </div><!--cierre del div col sm 9-->
 </div> 
 
