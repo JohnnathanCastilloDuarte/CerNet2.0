@@ -325,8 +325,7 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
-$pdf->writeHTMLCell(180, 5, 15, '', 'De acuerdo a los resultados obtenidos a la muestra inspeccionada, el Equipo indicado en la ubicación del encabezado, CUMPLE
-con los parámetros establecidos en la normativa vigente.', 0, 1, 0, true, 'J', true);
+$pdf->writeHTMLCell(180, 5, 15, '', $conclusion, 0, 1, 0, true, 'J', true);
 
 $linea = <<<EOD
 
@@ -1293,6 +1292,27 @@ mysqli_stmt_store_result($imagenes_campana3);
 mysqli_stmt_bind_result($imagenes_campana3, $tipo3, $url3, $nombre3);
 mysqli_stmt_fetch($imagenes_campana3);
 
+
+
+
+if ($url == '') {
+    $url_1 = '../../../../images/no_imagen.png';    
+}else{
+     $url_1 = '../../'.$url.'/'.$nombre; 
+}
+
+if ($url2 == '') {
+    $url_2 = '../../../../images/no_imagen.png';    
+}else{
+     $url_2 = '../../'.$url2.'/'.$nombre; 
+}
+
+if ($url3 == '') {
+    $url_3 = '../../../../images/no_imagen.png';    
+}else{
+     $url_3 = '../../'.$url3.'/'.$nombre; 
+}
+
 $linea13 = <<<EOD
 
 <style>
@@ -1312,8 +1332,8 @@ $linea13 = <<<EOD
         <td class="linea" align="center"><h2><b>Imagen de Placa</b></h2></td>  
    </tr>
    <tr>
-        <td class="imagen" border="0"><img src="../../$url/$nombre"></td>
-        <td class="imagen" border="0"><img src="../../$url2/$nombre2"></td>
+        <td class="imagen" border="0"><img src="$url_1"></td>
+        <td class="imagen" border="0"><img src="$url_2"></td>
    </tr>
 </table>
 <br>
@@ -1323,9 +1343,9 @@ $linea13 = <<<EOD
         <td class="linea" align="center"><b>Imagen Área de Trabajo</b></td> 
     </tr>    
     <tr>
-        <td style="width: 70px;">--</td>
-        <td class="imagen" style="width: 498px;" border="0"><img src="../../$url3/$nombre3"></td>
-        <td style="width: 70px;">--</td>
+        <td style="width: 70px;"></td>
+        <td class="imagen" style="width: 498px;" border="0"><img src="$url_3"></td>
+        <td style="width: 70px;"></td>
     </tr>
 </table>
 EOD;

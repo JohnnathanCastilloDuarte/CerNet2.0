@@ -432,7 +432,6 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
     console.log(document.getElementsByName("inspeccion_visual[]")[i].value);
   }
   
-  
   var detalles_medicion_campos_a = document.getElementsByName("cumplimiento_filtro_a[]").length;
   for(i=0;i<detalles_medicion_campos_a;i++){
     detalles_mediciones_array_a[i] = document.getElementsByName("cumplimiento_filtro_a[]")[i].value;
@@ -479,9 +478,9 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
   }
 
   let tipo = "Guardar";
-  let nombre_informe = $("#nombre_informe");
-  let solicitante = $("#solicitante");
-  let conclusion = $("#conclusion");
+  let nombre_informe = $("#nombre_informe").val();
+  let solicitante = $("#solicitante").val();
+  let conclusion = $("#conclusion").val();
 
 const datos ={
   inspeccion_visual_array,
@@ -513,14 +512,22 @@ $.ajax({
         title:'Mensaje',
         text:'Se ha creado la información con exito',
         icon:'success',
-        timer:2000
+        timer:1500
       });
+    recargar();
     }
+
   }
 });
-  
 
 });
+
+function recargar(){
+
+  setTimeout(function(){
+  location.reload();
+},1500);
+}
 
 
 $("#btn_actualizar_filtro_mapeo").click(function(){
@@ -649,5 +656,6 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
       }
     }
   });
+
 });
 

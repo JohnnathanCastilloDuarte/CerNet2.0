@@ -246,8 +246,7 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(165, 5, 15, '', 'De acuerdo a los resultados obtenidos a las muestras inspeccionadas, los filtros HEPA indicados en la ubicación del encabezado,
-CUMPLE con los parámetros establecidos en la normativa vigente.' ,0,1, 0, true, 'J', true);
+$pdf->writeHTMLCell(165, 5, 15, '', $conclusion ,0,1, 0, true, 'J', true);
 
 $linea = <<<EOD
 

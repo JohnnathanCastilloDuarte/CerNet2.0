@@ -6,13 +6,17 @@ $("#ir_informe_campanas").click(function(){
 });
 
 consultando_ot();
-listar_datos_full(1);
-listar_datos_full(2);
-listar_datos_full(3);
-listar_datos_full(4);
-listar_datos_full(5);
-listar_datos_full(6);
-listar_datos_full(7);
+
+validador_de_pruebas(1);
+validador_de_pruebas(2);
+validador_de_pruebas(3);
+validador_de_pruebas(4);
+validador_de_pruebas(5);
+validador_de_pruebas(6);
+validador_de_pruebas(7);
+validador_de_pruebas(8);
+
+
 
 function listar_datos_full(numeral){
     let movimiento = "Listar_"+numeral;
@@ -22,7 +26,7 @@ function listar_datos_full(numeral){
         data:{id_asignado,movimiento},
         url:'templates/campana_extraccion/controlador_camara_extraccion.php',
         success:function(response){
-          console.log(response);
+          //console.log(response);
           let traer = JSON.parse(response);
           let template = "";
           traer.forEach((valor)=>{
@@ -163,7 +167,7 @@ function listar_datos_full(numeral){
         data:{id_asignado,movimiento},
         url:'templates/campana_extraccion/controlador_camara_extraccion.php',
         success:function(response){
-          console.log(response);
+          //console.log(response);
           let traer = JSON.parse(response);
           let template1 = "";
           let template2 = "";
@@ -242,7 +246,7 @@ function listar_datos_full(numeral){
         data:{id_asignado,movimiento},
         url:'templates/campana_extraccion/controlador_camara_extraccion.php',
         success:function(response){
-          console.log(response);
+          //console.log(response);
           let traer = JSON.parse(response);
           let template1 = "";
           let template2 = "";
@@ -307,7 +311,7 @@ function listar_datos_full(numeral){
         data:{id_asignado,movimiento},
         url:'templates/campana_extraccion/controlador_camara_extraccion.php',
         success:function(response){
-          console.log(response);
+          //console.log(response);
           let traer = JSON.parse(response);
           
           traer.forEach((valor)=>{
@@ -316,7 +320,6 @@ function listar_datos_full(numeral){
            $("#nombre_informe").val(`${valor.nombre_informe}`);
            $("#solicitante").val(`${valor.solicitante}`);
            $("#conclusion").val(`${valor.conclusion}`);
-
 
 
           });
@@ -331,7 +334,7 @@ function listar_datos_full(numeral){
 
     
 }
-
+/*a
 validador_de_pruebas(1);
 validador_de_pruebas(2);
 validador_de_pruebas(3);
@@ -339,7 +342,15 @@ validador_de_pruebas(4);
 validador_de_pruebas(5);
 validador_de_pruebas(6);
 validador_de_pruebas(7);
-validador_de_pruebas(8);
+validador_de_pruebas(8);*/
+
+listar_datos_full(1);
+listar_datos_full(2);
+listar_datos_full(3);
+listar_datos_full(4);
+listar_datos_full(5);
+listar_datos_full(6);
+listar_datos_full(7);
 
 function validador_de_pruebas(validator){
 
@@ -369,7 +380,7 @@ function consultando_ot(){
     url:'templates/campana_extraccion/datos_ot.php',
     data:{id_asignado},
     success:function(response){
-       console.log(response); 
+       //console.log(response); 
       let traer = JSON.parse(response);
       
       traer.forEach((x)=>{
@@ -393,7 +404,6 @@ $("#formulario_1_campana_extraccion").submit(function(e){
     
     var formData = new FormData(document.getElementById("formulario_1_campana_extraccion"));
     
-
     $.ajax({
       url: 'templates/campana_extraccion/almacena_informacion_1.php',
       type: 'POST',
@@ -403,7 +413,7 @@ $("#formulario_1_campana_extraccion").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        console.log(response);
+        //console.log(response);
 
         if(response == "Listo"){
           Swal.fire({
@@ -435,7 +445,7 @@ $("#formulario_2_campana_extraccion").submit(function(e){
     contentType: false,
     processData: false,
     success:function(response) {
-      console.log(response);
+      //console.log(response);
 
       if(response == "Listo"){
         Swal.fire({
@@ -466,7 +476,7 @@ function listar_imagenes(){
     data:{id_asignado, movimiento},
     url:'templates/campana_extraccion/controlador_imagenes.php',
     success:function(response){
-      console.log(response);
+      //console.log(response);
 
       let traer = JSON.parse(response);
       let template1 = "";
@@ -580,7 +590,7 @@ $("#formulario_evidencias_graficas_campana").submit(function(e){
     contentType: false,
     processData: false,
     success:function(response) {
-      console.log(response);
+      //console.log(response);
       if(response == "Movido"){
         Swal.fire({
           title:'Mensaje',
