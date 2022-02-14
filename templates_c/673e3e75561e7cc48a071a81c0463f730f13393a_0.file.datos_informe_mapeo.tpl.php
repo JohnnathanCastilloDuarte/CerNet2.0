@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-11 23:21:27
+/* Smarty version 3.1.34-dev-7, created on 2022-02-14 15:13:03
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6206e1679830d1_17199920',
+  'unifunc' => 'content_620a636f393500_73297148',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1644618086,
+      1 => 1644847980,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6206e1679830d1_17199920 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620a636f393500_73297148 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -138,7 +138,7 @@ function content_6206e1679830d1_17199920 (Smarty_Internal_Template $_smarty_tpl)
           </div>
           <div class="col-sm-6">
             <label>Solicitante:</label>
-            <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre quien solicita">
+            <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Nombre quien solicita">
           </div>
           <div class="col-sm-12">
             <label>Conclusión</label>
@@ -155,7 +155,7 @@ function content_6206e1679830d1_17199920 (Smarty_Internal_Template $_smarty_tpl)
           </a>
         </div>
          <div class="card-body collapse" id="collapseOne44" >
-            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
+            <input type="text" name="id_informe_filtro" id="id_informe_filtro">
 
             <div class="row">
               <div class="col-sm-6">

@@ -22,16 +22,17 @@ mysqli_stmt_fetch($consulta_informacion_informe);
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion  FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e 
+   WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
 
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion);
 mysqli_stmt_fetch($consulta_empresa);
 
 
-
+$num_numot = substr($numot,2);
 $pdf->AddPage('A4');
 
 $linea = <<<EOD
@@ -56,7 +57,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(13, 5, 105, '', $numot ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(13, 5, 105, '', $num_numot ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
 
@@ -65,7 +66,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(75, 5, 40, '', $empresa ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicita ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 

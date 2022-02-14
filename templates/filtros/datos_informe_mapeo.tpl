@@ -114,7 +114,7 @@
           </div>
           <div class="col-sm-6">
             <label>Solicitante:</label>
-            <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre quien solicita">
+            <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Nombre quien solicita">
           </div>
           <div class="col-sm-12">
             <label>Conclusión</label>
@@ -131,7 +131,7 @@
           </a>
         </div>
          <div class="card-body collapse" id="collapseOne44" >
-            <input type="hidden" name="id_informe_filtro" id="id_informe_filtro">
+            <input type="text" name="id_informe_filtro" id="id_informe_filtro">
 
             <div class="row">
               <div class="col-sm-6">

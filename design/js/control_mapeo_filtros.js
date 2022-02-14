@@ -119,10 +119,9 @@ $(document).ready(function(){
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
+          console.log(response);
           let traer = JSON.parse(response);
-          
-         
-
+        
           traer.forEach((x)=>{
             $("#id_informe_filtro").val(x.id_informe);
             $("#insp1_traido_db").text(x.insp1);
@@ -137,6 +136,9 @@ $(document).ready(function(){
             $("#insp5_traido_db").val(x.insp5);
             $("#insp6_traido_db").text(x.insp6);
             $("#insp6_traido_db").val(x.insp6);
+            $('#nombre_informe').val(x.nombre_informe);
+            $('#solicitante').val(x.solicitante);
+            $('#conclusion').val(x.conclusion);
           })
         }
       });
@@ -477,6 +479,9 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
   }
 
   let tipo = "Guardar";
+  let nombre_informe = $("#nombre_informe");
+  let solicitante = $("#solicitante");
+  let conclusion = $("#conclusion");
 
 const datos ={
   inspeccion_visual_array,
@@ -490,7 +495,10 @@ const datos ={
   detalles_mediciones_array_dd,
   valor_obtenido_filtros,
   tipo,
-  id_asignado_filtro
+  id_asignado_filtro,
+  nombre_informe,
+  solicitante,
+  conclusion
 }
 
 
@@ -599,6 +607,9 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
 
 
   let id_informe  = $("#id_informe_filtro").val();
+  let nombre_informe = $("#nombre_informe").val();
+  let solicitante = $("#solicitante").val();
+  let conclusion = $("#conclusion").val();
 
   let tipo = "actualizar";
 
@@ -617,7 +628,10 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     id_asignado_filtro,
     id_informe,
     id_medicion_1_array,
-    id_medicion_2_array
+    id_medicion_2_array,
+    nombre_informe,
+    solicitante,
+    conclusion
   }
 
   $.ajax({
