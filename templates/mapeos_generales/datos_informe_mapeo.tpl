@@ -540,7 +540,7 @@
         </div>
         
         <div class="card" id="edicion_informe_base">
-          <div class="card-header">Edición de informe <button id="close_edicion_base" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
+    
           <div class="card-body">
             <form id="formulario_informe" enctype="multipart/form-data" method="post">
               

@@ -1459,15 +1459,18 @@ $(document).on('click','#editar_informe',function(){
            listar_info_temp(id_informe, 'TEMP');
           
         }else if(nombre == 'AR'){
-            $("#edicion_imagenes").hidde();
+            $("#edicion_imagenes").hide();
             $("#edicion_informe").show();
             $("#card_informes").hide();
             $("#edicion_informe").hide();
             listar_info_temp(id_informe, 'AR');
+
         }else if(nombre == 'BASE'){
-          $("#edicion_imagenes").hidde();
+            alert("Ho.a");
+          $("#edicion_informe_base").show();  
+          $("#edicion_imagenes").hide();
           $("#edicion_informe").show();
-          $("#edicion_informe").hide();
+          $("#editar_informe_row").hide();
           $("#card_informes").hide();
           listar_info_temp(id_informe, 'BASE');
         }
@@ -1539,7 +1542,8 @@ function listar_info_temp(id_informe, extra){
        $("#edicion_informe_base").hide();
        movimiento = "Consultar_temp";
      }else if(extra == 'BASE'){
-       $("#edicion_informe").hide();
+       $("#edicion_informe").show();
+       $("#editar_informe_row").hide();
        $("#edicion_informe_base").show();
        movimiento = "Consultar_base";
      }
@@ -1550,7 +1554,7 @@ function listar_info_temp(id_informe, extra){
         data:{id_informe,movimiento},
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
-            console.log(response);
+          
             let traer = JSON.parse(response);
             let template = "";
             let url_imagen_1 = "";
@@ -1778,7 +1782,7 @@ function mostrar_imagenes(id_informe){
         data:{id_informe,movimiento},
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
-            console.log(response);
+            
             let traer = JSON.parse(response);
             let template = "";
             let enunciado = "";
@@ -1837,14 +1841,7 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-          console.log(response);
-            /*
-            let traer = JSON.parse(response);
-          
-              traer.forEach((valor)=>{
-                console.log(traer.id_informe);
-                  listar_info_temp(valor.id_informe, valor.valor);
-              });*/
+        
             Swal.fire({
               title:'Mensaje',
               text:'Se ha actualizado correctamentes',
@@ -1876,7 +1873,7 @@ $("#formulario_para_imagenes").submit(function(evt){
         contentType: false,
         processData: false,
         success:function(response){
-          console.log(response);
+
           mostrar_imagenes(response);
         }
     });
@@ -2000,7 +1997,7 @@ $("#form_cargar_archivos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-          console.log(response);
+       
          listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
           Swal.fire({
             title:'Mensaje',
@@ -2023,7 +2020,7 @@ function listar_imagenes_base(id_informe){
     url:'templates/mapeos_generales/controlador_inb.php',
     data:{movimiento, id_informe},
     success:function(response){
-        console.log(response);
+        
       
         
     }
@@ -2074,7 +2071,7 @@ $(document).on('click','#eliminar_observacion', function(){
     url:'templates/mapeos_generales/controlador_inb.php',
     data:{movimiento, id_observacion},
     success:function(response){
-      console.log(response);
+      
       listar_observaciones_inb(id_informe);
     }
   });

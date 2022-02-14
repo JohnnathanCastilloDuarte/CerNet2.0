@@ -63,17 +63,8 @@ if($movimiento == "Leer"){
         mysqli_stmt_bind_result($consultar_consecutivo , $temp_hum);
         mysqli_stmt_fetch($consultar_consecutivo);
 
-        if(mysqli_stmt_num_rows($consultar_consecutivo) == 0){
-            $consecutivo = "01";
-        }else{
-            if($temp_hum <= 9){
-                $consecutivo = "0".$temp_hum;
-            }else{
-                $consecutivo = $temp_hum;
-            }
-        }
-     
-        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-TEM-'.$consecutivo;
+
+        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-TEM';
 
         $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
         mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
@@ -120,17 +111,7 @@ if($movimiento == "Leer"){
         mysqli_stmt_bind_result($consultar_consecutivo , $temp_hum);
         mysqli_stmt_fetch($consultar_consecutivo);
 
-        if(mysqli_stmt_num_rows($consultar_consecutivo) == 0){
-            $consecutivo = "01";
-        }else{
-            if($temp_hum <= 9){
-                $consecutivo = "0".$temp_hum;
-            }else{
-                $consecutivo = $temp_hum;
-            }
-        }
-     
-        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-HUM-'.$consecutivo;
+        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-HUM';
 
         $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
         mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
@@ -178,17 +159,7 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
     mysqli_stmt_bind_result($consultar_consecutivo , $temp_hum);
     mysqli_stmt_fetch($consultar_consecutivo);
 
-    if(mysqli_stmt_num_rows($consultar_consecutivo) == 0){
-        $consecutivo = "01";
-    }else{
-        if($temp_hum <= 9){
-            $consecutivo = "0".$temp_hum;
-        }else{
-            $consecutivo = $temp_hum;
-        }
-    }
-
-    $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-HUM-'.$consecutivo;
+    $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-HUM';
 
     $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
     mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
@@ -236,17 +207,9 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
         mysqli_stmt_bind_result($consultar_consecutivo , $temp_hum);
         mysqli_stmt_fetch($consultar_consecutivo);
 
-        if(mysqli_stmt_num_rows($consultar_consecutivo) == 0){
-            $consecutivo = "01";
-        }else{
-            if($temp_hum <= 9){
-                $consecutivo = "0".$temp_hum;
-            }else{
-                $consecutivo = $temp_hum;
-            }
-        }
+
      
-        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-AR-'.$consecutivo;
+        $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-AR';
 
         $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
         mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
