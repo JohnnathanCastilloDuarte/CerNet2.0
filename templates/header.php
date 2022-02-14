@@ -33,17 +33,17 @@
         <div class="app-header__content">
             <div class="app-header-left">
                 <!------------------------------------------------------------------------- BUSCADOR --------------------------------------------------------------------------------------->
-                <div class="search-wrapper">
+               <!--  <div class="search-wrapper">
                  <div class="input-holder">
                      <input type="text" class="search-input" placeholder="Digita para buscar">
                      <button class="search-icon" id="buscar_general"><span></span></button>
                  </div>
                  <button class="close"></button>
-             </div>
+             </div> -->
 
              <!---------------------------------------------------------------------- FIN DE BUSCADOR -------------------------------------------------------------------------------->     
              <!------------------------------------------------------------------------- MEGA MENÚ --------------------------------------------------------------------------------------->                  
-             <ul class="header-megamenu nav">              
+             <!-- <ul class="header-megamenu nav">              
                 <li class="nav-item">
                     <a href="javascript:void(0);" data-placement="bottom" rel="popover-focus" data-offset="300" data-toggle="popover-custom" class="nav-link">
                         <i class="nav-link-icon pe-7s-gift"> </i>
@@ -154,7 +154,7 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
             <!------------------------------------------------------------------------- FIN DE MEGA MENU --------------------------------------------------------------------------------------->                         
         </div>
         <!------------------------------------------------------------------------- NOTIFICACIONES --------------------------------------------------------------------------------------->               
@@ -162,13 +162,13 @@
             <div class="header-dots">
                 <div class="dropdown">
                   
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
+                    <!-- <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
                         <span class="icon-wrapper icon-wrapper-alt rounded-circle">
                             <span class="icon-wrapper-bg bg-danger"></span>
                             <i class="icon text-danger icon-anim-pulse ion-android-notifications"></i>
                             <span class="badge badge-dot badge-dot-sm badge-danger"></span>
                         </span>
-                    </button>
+                    </button> -->
                   
                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu rm-pointers dropdown-menu dropdown-menu-right" style="width:800px;">
                         <div class="dropdown-menu-header mb-0">

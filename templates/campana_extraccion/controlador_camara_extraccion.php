@@ -16,9 +16,6 @@
         mysqli_stmt_bind_result($consultar1, $id_inspeccion, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5);
 
 
-
-
-
         while($row = mysqli_stmt_fetch($consultar1)){
 
             $array_pruebas[]=array
@@ -353,9 +350,10 @@
             if(mysqli_stmt_num_rows($consultar6) > 0){
                 echo "Ok pruebas_4_4";
             }else{
+                $valor= 'valor';
                 for($i == 1; $i < 1; $i++){
-                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_4 (id_asignado, categoria) VALUES (?,?)");
-                    mysqli_stmt_bind_param($insertando, 'ii', $id_asignado, $categoria_3);
+                    $insertando = mysqli_prepare($connect,"INSERT INTO campana_extraccion_prueba_4 (id_asignado, categoria, punto_4, punto_5) VALUES (?,?,?,?)");
+                    mysqli_stmt_bind_param($insertando, 'iiss', $id_asignado, $categoria_3, $valor, $valor);
                     mysqli_stmt_execute($insertando);
                 }
             }
