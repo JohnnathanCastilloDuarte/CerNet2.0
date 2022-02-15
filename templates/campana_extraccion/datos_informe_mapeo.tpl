@@ -444,7 +444,7 @@
           </div>
         </div><!-- FIN CARD 5-->
         <br>
-        <button class="btn btn-info">Grabar</button>
+        <button class="btn btn-info">Guardar</button>
         </div>
        
       </form>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-18 18:44:26
+/* Smarty version 3.1.34-dev-7, created on 2022-02-15 15:32:56
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e6fc7a3ffe41_55105159',
+  'unifunc' => 'content_620bb99826aed6_67330351',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1642527864,
+      1 => 1644935575,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e6fc7a3ffe41_55105159 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620bb99826aed6_67330351 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <div class="row">
@@ -400,8 +400,9 @@ function content_61e6fc7a3ffe41_55105159 (Smarty_Internal_Template $_smarty_tpl)
                 
                 <div class="row" style="text-align: center;">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary" id="ver_informe_salas_limpias">Informe</button>
+                        <button class="btn btn-warning" id="ver_informe_salas_limpias">Informe</button>
                     </div>
+                    
                 </div>
             </div>
 

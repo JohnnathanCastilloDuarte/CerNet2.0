@@ -49,7 +49,9 @@ if(isset($_GET['item'])){
    a.presion_versus, 
    a.tipo_presion, 
    a.puntos_muestreo,
-   a.fecha_registro
+   a.fecha_registro,
+   a.codigo,
+   a.estado_sala
 
 FROM item_sala_limpia a, item b, empresa c, tipo_item d 
 WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id_tipo AND a.id_item =  $id_equipo");
@@ -81,7 +83,9 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
     $presion_versus,
     $tipo_presion,
     $puntos_muestreo,
-    $fecha_registro
+    $fecha_registro,
+    $codigo,
+    $estado_sala
 
   );
 
@@ -112,7 +116,9 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
         'presion_versus'=>$presion_versus,
         'tipo_presion'=>$tipo_presion,
         'puntos_muestreo'=>$puntos_muestreo,
-        'fecha_registro'=>$fecha_registro
+        'fecha_registro'=>$fecha_registro,
+        'codigo'=>$codigo,
+        'estado_sala'=>$estado_sala
         
     );	
   }
@@ -148,6 +154,8 @@ else{
         'presion_versus'=>'',
         'tipo_presion'=>'',
         'puntos_muestreo'=>'',
+        'codigo'=>'',
+        'estado_sala'=>''
 
 );
   $smarty->assign("array_sala_limpia",$array_sala_limpia);

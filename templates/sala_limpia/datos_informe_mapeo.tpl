@@ -376,8 +376,9 @@
                 
                 <div class="row" style="text-align: center;">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary" id="ver_informe_salas_limpias">Informe</button>
+                        <button class="btn btn-warning" id="ver_informe_salas_limpias">Informe</button>
                     </div>
+                    
                 </div>
             </div>
 
