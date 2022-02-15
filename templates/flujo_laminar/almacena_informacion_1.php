@@ -35,7 +35,7 @@ $valor_inspeccion_visual4 = $_POST['valor_inspeccion_visual4'];
 $valor_inspeccion_visual5 = $_POST['valor_inspeccion_visual5'];
 $valor_inspeccion_visual6 = $_POST['valor_inspeccion_visual6'];
 
-
+ 
 
 $actualizar1 = mysqli_prepare($connect,"UPDATE flujo_laminar_inspeccion_visual SET insp_1= ? ,insp_2= ?, insp_3 = ? ,insp_4= ?, insp_5= ?, insp_6= ? WHERE  id_inspeccion = ?");
 mysqli_stmt_bind_param($actualizar1, 'ssssssi', $valor_inspeccion_visual1, $valor_inspeccion_visual2, $valor_inspeccion_visual3, $valor_inspeccion_visual4, $valor_inspeccion_visual5, $valor_inspeccion_visual6, $id_inspeccion);

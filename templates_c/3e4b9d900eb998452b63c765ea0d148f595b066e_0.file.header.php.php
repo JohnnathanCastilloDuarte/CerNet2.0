@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-19 21:41:41
+/* Smarty version 3.1.34-dev-7, created on 2022-02-14 21:30:56
   from '/home/god/public_html/CerNet2.0/templates/header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e88595544383_62433209',
+  'unifunc' => 'content_620aca10240a11_68467936',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3e4b9d900eb998452b63c765ea0d148f595b066e' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/header.php',
-      1 => 1642628497,
+      1 => 1644873979,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e88595544383_62433209 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620aca10240a11_68467936 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
@@ -56,17 +56,17 @@ function content_61e88595544383_62433209 (Smarty_Internal_Template $_smarty_tpl)
         <div class="app-header__content">
             <div class="app-header-left">
                 <!------------------------------------------------------------------------- BUSCADOR --------------------------------------------------------------------------------------->
-                <div class="search-wrapper">
+               <!--  <div class="search-wrapper">
                  <div class="input-holder">
                      <input type="text" class="search-input" placeholder="Digita para buscar">
                      <button class="search-icon" id="buscar_general"><span></span></button>
                  </div>
                  <button class="close"></button>
-             </div>
+             </div> -->
 
              <!---------------------------------------------------------------------- FIN DE BUSCADOR -------------------------------------------------------------------------------->     
              <!------------------------------------------------------------------------- MEGA MENÚ --------------------------------------------------------------------------------------->                  
-             <ul class="header-megamenu nav">              
+             <!-- <ul class="header-megamenu nav">              
                 <li class="nav-item">
                     <a href="javascript:void(0);" data-placement="bottom" rel="popover-focus" data-offset="300" data-toggle="popover-custom" class="nav-link">
                         <i class="nav-link-icon pe-7s-gift"> </i>
@@ -177,7 +177,7 @@ function content_61e88595544383_62433209 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
             <!------------------------------------------------------------------------- FIN DE MEGA MENU --------------------------------------------------------------------------------------->                         
         </div>
         <!------------------------------------------------------------------------- NOTIFICACIONES --------------------------------------------------------------------------------------->               
@@ -185,13 +185,13 @@ function content_61e88595544383_62433209 (Smarty_Internal_Template $_smarty_tpl)
             <div class="header-dots">
                 <div class="dropdown">
                   
-                    <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
+                    <!-- <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
                         <span class="icon-wrapper icon-wrapper-alt rounded-circle">
                             <span class="icon-wrapper-bg bg-danger"></span>
                             <i class="icon text-danger icon-anim-pulse ion-android-notifications"></i>
                             <span class="badge badge-dot badge-dot-sm badge-danger"></span>
                         </span>
-                    </button>
+                    </button> -->
                   
                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu rm-pointers dropdown-menu dropdown-menu-right" style="width:800px;">
                         <div class="dropdown-menu-header mb-0">

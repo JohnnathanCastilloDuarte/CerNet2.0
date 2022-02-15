@@ -314,7 +314,7 @@ else
                include("templates/mapeos_generales/datos_informe_mapeo.php");
               }
               
-     
+      
             }else if($_GET['page'] == 11 ){
               include("templates/flujo_laminar/gestionar_informe.php");
             }else if($_GET['page'] == 12 ){

@@ -7,9 +7,9 @@ $nombre_imagen = $_FILES["imagen"]["name"];
 $i = 1;
 $ruta = "imagenes/".$tipo_imagen."/";
 $id_insertado = "";
-
+ 
 do {
-    /////////// VALIDACIÓN
+    /////////// VALIDACIï¿½N
     $consultar = mysqli_prepare($connect,"SELECT id_imagen FROM image_flujo_laminar WHERE nombre = ? AND tipo = ? AND id_asignado = ?");
     mysqli_stmt_bind_param($consultar, 'sii', $nombre_imagen, $tipo_imagen, $id_asignado);
     mysqli_stmt_execute($consultar);

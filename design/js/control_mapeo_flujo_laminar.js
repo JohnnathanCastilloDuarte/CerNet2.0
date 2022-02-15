@@ -14,7 +14,7 @@ validador(8);
 validador(9);
 validador(10);
 validador(11);//info_ot
-
+ 
 
 //Actualizar datos del informe-luis
 $("#actualizar_mapeo").click(function(){

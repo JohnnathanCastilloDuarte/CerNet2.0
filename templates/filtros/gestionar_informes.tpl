@@ -21,7 +21,7 @@
 										Terminados: <span class="badge badge-pill badge-danger" id="mapeo_filtros_terminados">-</span>
 									</div>
 								</div>
-							</div>
+							</div> 
 							<div class="card-body">
 								<table class="table">
 									<thead>

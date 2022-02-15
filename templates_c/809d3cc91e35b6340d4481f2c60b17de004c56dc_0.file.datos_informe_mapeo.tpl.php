@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-08 17:16:14
+/* Smarty version 3.1.34-dev-7, created on 2022-02-15 15:14:21
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6202a55eb51896_04715528',
+  'unifunc' => 'content_620bc34d667e38_70356760',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '809d3cc91e35b6340d4481f2c60b17de004c56dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl',
-      1 => 1644340173,
+      1 => 1644937975,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6202a55eb51896_04715528 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620bc34d667e38_70356760 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -99,7 +99,7 @@ function content_6202a55eb51896_04715528 (Smarty_Internal_Template $_smarty_tpl)
           <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane tabs-animation fade show active" id="crear_mapeo_general" role="tabpanel">
-                <div class="row">
+                <div class="row" style="text-align:center;">
                   <div class="col-sm-12">
                     <label for="">Nombre prueba:</label>
                     <input type="text" name="" id="nombre_prueba" class="form-control" placeholder="Ingrese el nombre de la prueba">
@@ -113,11 +113,11 @@ function content_6202a55eb51896_04715528 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-3">
+                  <div class="col-sm-6">
                     <label>Fecha:</label>
                     <input type="date" class="form-control" id="fecha_inicio_mapeo_general">
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <label>H:</label>
                     <select class="form-control" id="hora_inicio_mapeo_general">
                                             <?php
@@ -139,7 +139,7 @@ $_smarty_tpl->tpl_vars['hora']->first = $_smarty_tpl->tpl_vars['hora']->iteratio
 ?>
                                         </select>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <label>M:</label>
                     <select class="form-control" id="minuto_inicio_mapeo_general">
                                             <?php
@@ -161,7 +161,7 @@ $_smarty_tpl->tpl_vars['minuto']->first = $_smarty_tpl->tpl_vars['minuto']->iter
 ?>
                                         </select>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <label>S:</label>
                     <select class="form-control" id="segundo_inicio_mapeo_general">
                                             <?php
@@ -192,11 +192,11 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-3">
+                  <div class="col-sm-6">
                     <label>Fecha:</label>
                     <input type="date" class="form-control" id="fecha_fin_mapeo_general">
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <label>H:</label>
                     <select class="form-control" id="hora_fin_mapeo_general">
                                             <?php
@@ -218,7 +218,7 @@ $_smarty_tpl->tpl_vars['hora']->first = $_smarty_tpl->tpl_vars['hora']->iteratio
 ?>
                                         </select>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <label>M:</label>
                     <select class="form-control" id="minuto_fin_mapeo_general">
                                             <?php
@@ -240,7 +240,7 @@ $_smarty_tpl->tpl_vars['minuto']->first = $_smarty_tpl->tpl_vars['minuto']->iter
 ?>
                                         </select>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <label>S:</label>
                     <select class="form-control" id="segundo_fin_mapeo_general">
                                             <?php
@@ -501,40 +501,19 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
           <div class="col-sm-4">
             <input type="text" id="correlativo" class="form-control" placeholder="Ingresar correlativo">
           </div>
-           <div class="col-sm-5">
+          <div class="col-sm-5">
             <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar el responsable">
           </div>
           <div class="col-sm-3">
             <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
           </div>
-          
+
         </div>
       </div>
     </div>
     <hr>
     <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-header">
-            Seleccion de pruebas
-          </div>
-          <div class="card-body">
-            <table class="table" style="text-align:center;">
-              <thead>
-                <th>Nombre</th>
-                <th>Inicio</th>
-                <th>Fin</th>
-                <th>Acciones</th>
-              </thead>
-              <tbody id="traer_mapeos_informe">
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <div class="card">
           <div class="card-header">Creación de informes para prueba <span class="text-primary" id="nombre_prueba_creacion_informe"></span></div>
           <div class="card-body">
@@ -555,10 +534,30 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
           </div>
         </div>
       </div>
-
     </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            Seleccion de pruebas
+          </div>
+          <div class="card-body">
+            <table class="table" style="text-align:center;">
+              <thead>
+                <th>Nombre</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Acciones</th>
+              </thead>
+              <tbody id="traer_mapeos_informe">
 
-
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <br>
     <div class="row">
@@ -583,86 +582,125 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
         <div class="card" id="edicion_informe">
           <div class="card-header">Edición de informe <button id="close_edicion" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
           <div class="card-body" id="editar_informe_row">
-            
-                     
+
+
           </div>
-        </div>
-        
-        <div class="card" id="edicion_informe_base">
-          <div class="card-header">Edición de informe <button id="close_edicion_base" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
-          <div class="card-body">
-            <form id="formulario_informe" enctype="multipart/form-data" method="post">
-              
-              <div class="row">
-                <div class="col-sm-6">
-                    <label>Acta de inspección:</label>
-                    <input type="text" class="form-control" name="acta_inspeccion" placeholder="N°123" id="acta_inspeccion">
+          <hr>
+          <div class="card-body" id="edicion_imagenes">
+
+            <form id="formulario_para_imagenes" enctype="multipart/form-data" method="post">
+              <input type="hidden" name="id_informe_imagenes" id="id_informe_imagenes">
+              <input type="hidden" name="tipo_informe" id="tipo_informe">
+              <div class="row" style="text-align: center;">
+                <div class="col-sm-4">
+                  <label>Ubicación de sensores</label><br>
+                  <input type='file' name='imagen_tipo_1' class='form-control' id='imagen_tipo_1'>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Valores promedio, mínima y maxíma</label><button id="ver_grafico_todos_promedio" class="btn btn-success" style="width: 10%;padding: 0;"><img src="design/images/grafico.jpg" style="width: 100%;"></button><br>
+                  <input type='file' name='imagen_tipo_2' class='form-control' id='imagen_tipo_2'>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Periodo representativo</label><button id="ver_grafico_todos_todos" class="btn btn-success" style="width: 10%;padding: 0;"><img src="design/images/grafico.jpg" style="width: 100%;"></button><br>
+                  <input type='file' name='imagen_tipo_3' class='form-control' id='imagen_tipo_3'>
                 </div>
               </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <label>Conclusiones:</label>
-                <textarea id="conclusiones_informe_base"  name="conclusiones_informe_base" style="width: 100%;" class="form-control"></textarea>
+              <br>
+              <div class="row">
+                <div class="col-sm-12" style="text-align: center;">
+                  <button class="btn btn-info" id="actualizar_imagenes">subir</button>
+                </div>
               </div>
-              <div class="col-sm-6">
-                <label>Observaciones:</label>
-                <textarea id="observaciones_informe_base"  name="observaciones_informe_base"style="width: 100%;" class="form-control"></textarea>
-              </div>
-            </div>
-           
-            <hr>
-            
-            <div class="row">
-              <div class="col-sm-3">
-                <label>Cargar imagen equipo 1</label>
-                <input type="file" name="imagen_base_equipo_1" class="form-control">  
-              </div> 
-              <div class="col-sm-3">
-                <label>Cargar imagen equipo 2</label>
-                <input type="file" name="imagen_base_equipo_2" class="form-control">  
-              </div>
-              <div class="col-sm-3">
-                <label>Cargar imagen equipo 3</label>
-                <input type="file" name="imagen_base_equipo_3" class="form-control">  
-              </div>
-              <div class="col-sm-3">
-                <label>Cargar imagen equipo 4</label>
-                <input type="file" name="imagen_base_equipo_4" class="form-control">  
-              </div> 
-            </div>
-               <hr>
-            <div class="row"  style="text-align:center;" id="btn_informe_base">
-            
-            </div>
             </form>
+
             <hr>
-            <div class="row">
-              <div class="col-sm-12">
-                <table class="table" style="text-align:center;">
-                  <thead>
-                     <th>Numeral</th>
-                    <th>Observaciones</th>
-                    <th>Eliminar</th>
-                  </thead>
-                  <tbody id="lista_observaciones_informe_base"></tbody>
-                </table>
-              </div>
+
+            <div class="row" id="aqui_imagenes_informe">
+
             </div>
-            
+          </div>
+
+          <div class="card" id="edicion_informe_base">
+
+            <div class="card-body">
+              <form id="formulario_informe" enctype="multipart/form-data" method="post">
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>Acta de inspección:</label>
+                    <input type="text" class="form-control" name="acta_inspeccion" placeholder="N°123" id="acta_inspeccion">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>Conclusiones:</label>
+                    <textarea id="conclusiones_informe_base" name="conclusiones_informe_base" style="width: 100%;" class="form-control"></textarea>
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Observaciones:</label>
+                    <textarea id="observaciones_informe_base" name="observaciones_informe_base" style="width: 100%;" class="form-control"></textarea>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label>Cargar imagen equipo 1</label>
+                    <input type="file" name="imagen_base_equipo_1" class="form-control">
+                  </div>
+                  <div class="col-sm-3">
+                    <label>Cargar imagen equipo 2</label>
+                    <input type="file" name="imagen_base_equipo_2" class="form-control">
+                  </div>
+                  <div class="col-sm-3">
+                    <label>Cargar imagen equipo 3</label>
+                    <input type="file" name="imagen_base_equipo_3" class="form-control">
+                  </div>
+                  <div class="col-sm-3">
+                    <label>Cargar imagen equipo 4</label>
+                    <input type="file" name="imagen_base_equipo_4" class="form-control">
+                  </div>
+                </div>
+                <hr>
+                <div style="text-align:center;" id="btn_informe_base">
+
+                </div>
+              </form>
+              <hr>
+              <div class="row" id="traer_imagenes_base">
+
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-12">
+                  <table class="table" style="text-align:center;">
+                    <thead>
+                      <th>Numeral</th>
+                      <th>Observaciones</th>
+                      <th>Eliminar</th>
+                    </thead>
+                    <tbody id="lista_observaciones_informe_base"></tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
+
     </div>
+    <!---FINAL DEL CONTENT PARA INFORMES--->
 
   </div>
-  <!---FINAL DEL CONTENT PARA INFORMES--->
-
-</div>
 
 
 
 
-<?php echo '<script'; ?>
+  <?php echo '<script'; ?>
  type="text/javascript" src="design/js/controlador_mapeo_general.js"><?php echo '</script'; ?>
 ><?php }
 }

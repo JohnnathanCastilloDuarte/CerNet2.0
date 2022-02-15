@@ -15,7 +15,7 @@ if($movimiento == "opcion_1"){
     mysqli_stmt_store_result($consultar);
     mysqli_stmt_bind_result($consultar, $id_inspeccion, $insp_1, $insp_2, $insp_3, $insp_4, $insp_5, $insp_6);
 
-
+ 
     while($row = mysqli_stmt_fetch($consultar)){
         $array_prueba[]=array(
             'id_inspeccion'=>$id_inspeccion,

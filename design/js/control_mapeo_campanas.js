@@ -17,7 +17,7 @@ validador_de_pruebas(7);
 validador_de_pruebas(8);
 
 
-
+ 
 function listar_datos_full(numeral){
     let movimiento = "Listar_"+numeral;
     if(numeral == 1){

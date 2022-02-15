@@ -6,8 +6,7 @@
         $posicion_sensores_indicativo = 1;
 
     //$a = "PRUEBA DE MAPEO TÉRMICO A DROGUERÍA MATHIESEN ( PERÍODO VERANO )";
-		$a = "PRUEBA DE DISTRIBUCIÓN TERMICA";
-
+	
 		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////
 
 		// 1-CONSULTAR LA INFORMACIÓN LA CUAL SE IMPRIMIRA EN LAS CABECERAS Y EL NOMBRE DEL INFORME
@@ -147,7 +146,7 @@
 		mysqli_stmt_bind_result($fechas_mapeo, $nombre_prueba, $fecha_inicio, $fecha_fin, $intervalo);
 		mysqli_stmt_fetch($fechas_mapeo);
 
-   $a =  mb_strtoupper($nombre_prueba." - ".$nombre_empresa);
+   $a =  mb_strtoupper("PRUEBA DE HUMEDAD RELATIVA A ".$nombre_empresa);
 
 	
     $mediciones = mysqli_prepare($connect,"SELECT DATEDIFF(fecha_fin, fecha_inicio) FROM mapeo_general WHERE id_mapeo = ?");
@@ -408,7 +407,7 @@
   mysqli_stmt_fetch($query_31);
 	
   if(mysqli_stmt_num_rows($query_31) > 0){
-	  $img_1 = '<img src="../../'.$url_imagen_1.'">';
+	  $img_1 = '<img src="../../'.$url_imagen_1.'" width="250px">';
   }else{
 	  $img_1 = '<img src="../../../design/images/no_imagen.png">';
   }
@@ -423,7 +422,7 @@
   mysqli_stmt_fetch($query_34);
 
   	if(mysqli_stmt_num_rows($query_34) > 0){
-		$img_2 = '<img src="../../'.$url_imagen_2.'">';
+		$img_2 = '<img src="../../'.$url_imagen_2.'"  width="600px">';
 	}else{
 		$img_2 = '<img src="../../../design/images/no_imagen.png">';
 	}
@@ -434,13 +433,7 @@
   mysqli_stmt_execute($query_35);
   mysqli_stmt_store_result($query_35);
   mysqli_stmt_bind_result($query_35, $url_imagen_3);
-  mysqli_stmt_fetch($query_35);
-  
-  	if(mysqli_stmt_num_rows($query_35) > 0){
-		$img_3 = '<img src="../../'.$url_imagen_3.'">';
-	}else{
-		$img_3 = '<img src="../../../design/images/no_imagen.png">';
-	}
+
 
 
 		
@@ -489,7 +482,7 @@ text-align:left;
 }
 </style>
 
-<table><tr><td bgcolor="#DDDDDD"><H3><strong>INSPECCIÓN DE MAPEO TÉRMICO</strong></H3></td></tr></table><br><br>
+<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE HUMEDAD RELATIVA</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="15%" ><strong>Informe:</strong></td><td width="45%">$nombre_informe</td>
 <td width="15%"><strong>O.T. N°</strong></td><td width="25%">$num_nummot</td></tr>
@@ -502,7 +495,7 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>1. Identificación del Equipo o Muestra</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Descripción:</td><td width="70%">$nombre_item de almacenamiento de $descripcion_item</td></tr>
+		<tr><td width="30%" class="enunciado">Descripción:</td><td width="70%">Almacenamiento de $descripcion_item</td></tr>
 		<tr><td width="30%" class="enunciado">Marca:</td><td width="70%">$marca</td></tr>
 		<tr><td width="30%" class="enunciado">Modelo:</td><td width="70%">$modelo</td></tr>
 		<tr><td width="30%" class="enunciado">N° de serie / Código interno</td><td width="70%">$codigo_interno</td></tr>
@@ -516,7 +509,7 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>2. Resumen de las Mediciones</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">$nombre_prueba por un periodo de  $c_hora horas durante ($c_dia Dias)</td></tr>
+		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">Prueba de humedad relativa por un periodo de  $c_hora horas durante ($c_dia Dias)</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de inicio</td><td width="70%">$fecha_inicio</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de término</td><td width="70%">$fecha_fin</td></tr>
 		<tr><td width="30%" class="enunciado">Cantidad de mediciones</td><td width="70%">$c_total_medicion</td></tr>
@@ -611,11 +604,11 @@ tr:nth-child(even)
  
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Ubicación de los Sensores</strong></td></tr>
-<tr><td>$img_1 </td></tr></table><br><br><br>
+<tr><td><br><br>$img_1 </td></tr></table><br><br><br>
 EOD;
 
 $pdf->writeHTML($html_2, true,false,false,false,'');
-$pdf->AddPage('A4');
+
 
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(170, 170, 170)));
 //TITULOS
@@ -647,7 +640,7 @@ while($row = mysqli_stmt_fetch($query_32)){
   mysqli_stmt_bind_result($query_34, $certificado_sensor_t);
   mysqli_stmt_fetch($query_34);
 
-    if($contador_t == 31 OR $contador_t == 61 ){
+    if($contador_t == 26 OR $contador_t == 61 ){
 
        $pdf->AddPage('A4');
        //TITULOS
@@ -704,10 +697,12 @@ $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
  SUM(CASE WHEN CAST(b.hum)>$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_over, 
                                     SUM(CASE WHEN CAST(b.hum)<$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_low,
 */
+
+
 $contador_for_table = 1;
-$query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.hum)) as Minimo, 
-                                    MAX(CAST(b.hum)) as Maximo,AVG(CAST(b.hum)) as Promedio, STD(CAST(b.hum)) as Desv_Estandar, 
-                                    AVG(EXP(-83.144/(0.0083144*(CAST(b.hum)+273.15)))) as valor FROM sensores as a,
+$query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.hum AS DECIMAL(6,2))) as Minimo, 
+                                    MAX(CAST(b.hum AS DECIMAL(6,2))) as Maximo,AVG(CAST(b.hum AS DECIMAL(6,2))) as Promedio, STD(CAST(b.hum AS DECIMAL(6,2))) as Desv_Estandar, 
+                                    AVG(EXP(-83.144/(0.0083144*(CAST(b.hum AS DECIMAL(6,2))+273.15)))) as valor FROM sensores as a,
                                     datos_crudos_general as b, mapeo_general_sensor as c WHERE a.id_sensor = c.id_sensor AND c.id_sensor_mapeo = b.id_sensor_mapeo AND c.id_mapeo = ? GROUP BY a.nombre");
 mysqli_stmt_bind_param($query_33, 'i', $id_mapeo);
 mysqli_stmt_execute($query_33);
@@ -837,10 +832,6 @@ EOD;
 $pdf->writeHTML($txt, true, false, false, false, '');
 
 
-
-
-$pdf->AddPage('A4');
-
 $txt= <<<EOD
 
 <style>
@@ -874,16 +865,103 @@ tr:nth-child(even)
 
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
-<tr><td><br>Datos de los sensores - Periodo representativo</td></tr>
-<tr><td>$img_3</td></tr></table><br><br><br>
-<table>
+<tr><td><br>Datos de los sensores - Periodo representativo</td></tr></table>
 
+EOD;
+
+$pdf->writeHTML($txt, true, false, false, false, '');
+
+
+for($i = 0; $i<mysqli_stmt_num_rows($query_35);$i++){
+mysqli_stmt_fetch($query_35);
+if($url_imagen_3 != ""){
+  $img_3 = '<img src="../../'.$url_imagen_3.'"  width="600px">';
+}else{
+  $img_3 = '<img src="../../../../design/images/no_imagen.png" width="250px">';
+}  
+  
+if($i == 1 or $i == 3){
+  $pdf->AddPage();
+}  
+  
+$txt= <<<EOD
+<style>
+table 
+{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th 
+{
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+</style>
+<table>
+  <tr><td><br><br><br>$img_3</td></tr>
+</table>
+<hr>
+EOD;
+$pdf->writeHTML($txt, true, false, false, false, '');
+}
+
+$pdf->AddPage();
+
+$txt= <<<EOD
+
+
+<style>
+table 
+{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th 
+{
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+</style>
+
+<table>
 <tr><td bgcolor="#DDDDDD"><strong>Comentarios</strong></td></tr>
 <tr><td>$comentarios</td></tr>
 <tr><td bgcolor="#DDDDDD"><strong>Observación</strong></td></tr>
 <tr><td>$observacion</td></tr>
 </table>
-<br><br><br><br><br>
+<br><br><br>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
 <tr><td height="90"><br><br><br>Ing. $nombres $apellidos<br> $cargo - Cercal Group Spa.</td><td height="50"></td></tr>
@@ -892,6 +970,7 @@ tr:nth-child(even)
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
+
 
 		$pdf->Output($nombre_informe.'.pdf', 'I');
 ?>

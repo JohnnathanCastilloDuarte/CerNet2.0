@@ -25,6 +25,13 @@ $nombre_informe = $nombre_informe_g;
 $numot = $num_ot_g;
 $a = mb_strtoupper($nombre_mapeo_g)."  ".$nombre_empresa_g;
 
+$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
+mysqli_stmt_bind_param($query_2, 'i', $id_asignado);
+mysqli_stmt_execute($query_2);
+mysqli_stmt_store_result($query_2);
+mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo);
+mysqli_stmt_fetch($query_2);
+
 
 
 switch ($id_tipo_item_g) {
@@ -1303,7 +1310,7 @@ $ax=mysqli_fetch_array($firma);
 $firma_final=$ax["firma"];
 if(mysqli_num_rows($firma)==0)
 {
-  $firma_final="Ing. Rául Quevedo Silva<br>COO - Chief Operation Officer - Cercal Group Spa.";  
+  $firma_final="Ing. $nombres $apellidos<br> $cargo - Cercal Group Spa.";  
 }
 
 $txt = <<<EOD
@@ -1495,12 +1502,24 @@ mysqli_stmt_store_result($imagenes_informes);
 mysqli_stmt_bind_result($imagenes_informes, $url1);
 mysqli_stmt_fetch($imagenes_informes);
 
+if(mysqli_stmt_num_rows($imagenes_informes) > 0){
+  $img_1 = '<img src="../../'.$url1.'" width="250px">';
+}else{
+  $img_1 = '<img src="../../../../design/images/no_imagen.png" width="200px">';
+}
+
 $imagenes_informes2 = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 22");
 mysqli_stmt_bind_param($imagenes_informes2, 'i',  $id_informe);
 mysqli_stmt_execute($imagenes_informes2);
 mysqli_stmt_store_result($imagenes_informes2);
 mysqli_stmt_bind_result($imagenes_informes2, $url2);
 mysqli_stmt_fetch($imagenes_informes2);
+
+if(mysqli_stmt_num_rows($imagenes_informes2) > 0){
+  $img_2 = '<img src="../../'.$url2.'" width="250px">';
+}else{
+  $img_2 = '<img src="../../../../design/images/no_imagen.png" width="200px">';
+}
 
 $imagenes_informe3 = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 33");
 mysqli_stmt_bind_param($imagenes_informe3, 'i',  $id_informe);
@@ -1509,12 +1528,24 @@ mysqli_stmt_store_result($imagenes_informe3);
 mysqli_stmt_bind_result($imagenes_informe3, $url3);
 mysqli_stmt_fetch($imagenes_informe3);
 
+if(mysqli_stmt_num_rows($imagenes_informe3) > 0){
+  $img_3 = '<img src="../../'.$url3.'" width="250px" >';
+}else{
+  $img_3 = '<img src="../../../../design/images/no_imagen.png" width="200px">';
+}
+
 $imagenes_informe4 = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 44");
 mysqli_stmt_bind_param($imagenes_informe4, 'i',  $id_informe);
 mysqli_stmt_execute($imagenes_informe4);
 mysqli_stmt_store_result($imagenes_informe4);
 mysqli_stmt_bind_result($imagenes_informe4, $url4);
 mysqli_stmt_fetch($imagenes_informe4);
+
+if(mysqli_stmt_num_rows($imagenes_informe4) > 0){
+  $img_4 = '<img src="../../'.$url4.'" width="250px">';
+}else{
+  $img_4 = '<img src="../../../../design/images/no_imagen.png" width="200px">';
+}
 
 
 $txt = <<<EOD
@@ -1573,13 +1604,13 @@ tr:nth-child(even)
 
 <table>
 <tr>
-    <td width="320"><img src="../../$url1" width="250"></td>
-    <td width="320"><img src="../../$url2" width="250"></td>
+    <td width="320"><br><br>$img_1</td>
+    <td width="320"><br>$img_2</td>
 </tr>
 <br>
 <tr>
-    <td width="320"><img src="../../$url3" width="250"></td>
-    <td width="320"><img src="../../$url4" width="250"></td>
+    <td width="320">$img_3</td>
+    <td width="320">$img_4</td>
 </tr>
 
 </table>

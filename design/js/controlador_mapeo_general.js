@@ -1463,10 +1463,10 @@ $(document).on('click','#editar_informe',function(){
             $("#edicion_informe").show();
             $("#card_informes").hide();
             $("#edicion_informe").hide();
+            $("#editar_informe_row").show();
             listar_info_temp(id_informe, 'AR');
 
         }else if(nombre == 'BASE'){
-            alert("Ho.a");
           $("#edicion_informe_base").show();  
           $("#edicion_imagenes").hide();
           $("#edicion_informe").show();
@@ -1754,13 +1754,14 @@ function listar_info_temp(id_informe, extra){
                 $("#conclusiones_informe_base").val(valor.comentario);
                 template += 
                   `
-                    <input type="hidden" value="BASE" name="BASE" >
-                    <input type="hidden" name="id_informe_actual" value="${valor.id_informe}" id="id_base">
                    <div class="row">
                       <div class="col-sm-12">
-                          <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
-                      </div>
-                    </div> 
+                        <input type="hidden" value="BASE" name="BASE" >
+                        <input type="hidden" name="id_informe_actual" value="${valor.id_informe}" id="id_base">
+                        <button class="btn btn-info" id="actualizar_informe">Actualizar</button>
+                     </div>
+                   </div>
+
                   `;
                 listar_imagenes_base(valor.id_informe);
                 listar_observaciones_inb(valor.id_informe);
@@ -1782,11 +1783,16 @@ function mostrar_imagenes(id_informe){
         data:{id_informe,movimiento},
         url:'templates/mapeos_generales/controlador_informes.php',
         success:function(response){
-            
+  
             let traer = JSON.parse(response);
             let template = "";
             let enunciado = "";
+            let template2 = "";
+          
             traer.forEach((valor)=>{
+              
+              if(valor.tipo < 11){
+             
                 if(valor.tipo == 1){
                     enunciado = "Ubicación de sensores";
                 }else if(valor.tipo == 2){
@@ -1803,10 +1809,21 @@ function mostrar_imagenes(id_informe){
                 </div>
                 
                 `;
+              }else{
+                template2 += 
+                  `
+                     <div class="col-sm-4">
+                      <a class="btn btn-danger" data-id="${valor.id_informe}" data-url="${valor.url}" id="eliminar_imagen" data-name="${valor.tipo}"><span style="color: white;">X</span></a>
+                      <img src="templates/mapeos_generales/${valor.url}" style="width: 100%;">
+                     </div>
+
+                  `;
+              }
 
             });
 
             $("#aqui_imagenes_informe").html(template);
+           $("#traer_imagenes_base").html(template2);
         }
     });
 }
@@ -1873,8 +1890,10 @@ $("#formulario_para_imagenes").submit(function(evt){
         contentType: false,
         processData: false,
         success:function(response){
-
           mostrar_imagenes(response);
+          $("#imagen_tipo_1").val('');
+           $("#imagen_tipo_2").val('');
+           $("#imagen_tipo_3").val('');
         }
     });
 

@@ -41,12 +41,26 @@ if($tipo_grafico == "TEMP"){
             mysqli_stmt_execute($traer_data_cruda);
             mysqli_stmt_store_result($traer_data_cruda);
             mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion);
+          
+            $consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
+            FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja");
+            mysqli_stmt_bind_param($consultar_sensores, 'i', $id_mapeo);  
+            mysqli_stmt_execute($consultar_sensores);
+            mysqli_stmt_store_result($consultar_sensores);
+            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);
         }else{
             $traer_data_cruda = mysqli_prepare($connect,"SELECT a.temp , LENGTH(b.posicion) as longitud, b.posicion from datos_crudos_general as a, mapeo_general_sensor as b, informes_general as c, bandeja as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = c.id_mapeo AND b.id_mapeo = ? AND b.id_bandeja = d.id_bandeja AND d.id_bandeja = ? ORDER BY longitud ASC, b.posicion ASC");  
             mysqli_stmt_bind_param($traer_data_cruda, 'ii', $id_mapeo, $altura);
             mysqli_stmt_execute($traer_data_cruda);
             mysqli_stmt_store_result($traer_data_cruda);
             mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion);
+          
+            $consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
+            FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja AND c.id_bandeja = ?");
+            mysqli_stmt_bind_param($consultar_sensores, 'ii', $id_mapeo, $altura);  
+            mysqli_stmt_execute($consultar_sensores);
+            mysqli_stmt_store_result($consultar_sensores);
+            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);
         }
        
     }
@@ -78,12 +92,26 @@ if($tipo_grafico == "TEMP"){
             mysqli_stmt_execute($traer_data_cruda);
             mysqli_stmt_store_result($traer_data_cruda);
             mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion);
+          
+            $consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
+            FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja");
+            mysqli_stmt_bind_param($consultar_sensores, 'i', $id_mapeo);  
+            mysqli_stmt_execute($consultar_sensores);
+            mysqli_stmt_store_result($consultar_sensores);
+            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);
         }else{
             $traer_data_cruda = mysqli_prepare($connect,"SELECT a.hum , LENGTH(b.posicion) as longitud, b.posicion from datos_crudos_general as a, mapeo_general_sensor as b, informes_general as c, bandeja as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = c.id_mapeo AND b.id_mapeo = ? AND b.id_bandeja = d.id_bandeja AND d.id_bandeja = ? ORDER BY longitud ASC, b.posicion ASC");  
             mysqli_stmt_bind_param($traer_data_cruda, 'ii', $id_mapeo, $altura);
             mysqli_stmt_execute($traer_data_cruda);
             mysqli_stmt_store_result($traer_data_cruda);
             mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion);
+          
+            $consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
+            FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja AND c.id_bandeja = ?");
+            mysqli_stmt_bind_param($consultar_sensores, 'ii', $id_mapeo, $altura);  
+            mysqli_stmt_execute($consultar_sensores);
+            mysqli_stmt_store_result($consultar_sensores);
+            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);
         }
         
     }
@@ -96,12 +124,7 @@ mysqli_stmt_store_result($consultar_fechas);
 mysqli_stmt_bind_result($consultar_fechas, $time);
 
 
-$consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
-FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja;");
-mysqli_stmt_bind_param($consultar_sensores, 'i', $id_mapeo);  
-mysqli_stmt_execute($consultar_sensores);
-mysqli_stmt_store_result($consultar_sensores);
-mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);
+
 
 
 
@@ -234,7 +257,7 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
     if(altura == "Seleccion altura"){
         alert("Debes seleccionar una altura")
     }else{
-        location.href='https://localhost/CerNet2.0/templates/API_Graficos/graficos.php?id_mapeo='+id_mapeo+'&type='+tipo_grafico+'&altura='+altura;
+        location.href='https://cercal.net/CerNet2.0/templates/API_Graficos/graficos.php?id_mapeo='+id_mapeo+'&type='+tipo_grafico+'&altura='+altura;
     }
   
     });
@@ -244,7 +267,30 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
     if(isset($_GET['altura']) or isset($_GET['promedio'])){
     ?>
                     
-        
+        Highcharts.setOptions({
+            colors: [' #330000', 
+                     '#CCCC00', 
+                     '#CC9900',
+                     '#CC6600',
+                     '#CC3300',
+                     '#64E572',
+                     '#FF9655',
+                     '#FFF263',
+                     '#6AF9C4',
+                     '#CC0000',
+                     '#660000',
+                     '#669900',
+                     '#66CC00',
+                     '#66FF00',
+                     '#00FF00',
+                     '#FF0000',
+                     '#009900',
+                     '#006600',
+                     '#003300',
+                     '#990000']
+                     
+                     
+        });
         Highcharts.chart('container', {
 
             title: {
@@ -396,9 +442,11 @@ mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura
             responsive: {
                 rules: [{
                     condition: {
-                    maxWidth: 500
+                    maxWidth: 600
                     },
                     chartOptions: {
+                         
+                         column: { colorByPoint: true },
                         legend: {
                             layout: 'horizontal',
                             align: 'center',

@@ -15,7 +15,7 @@ if($movimiento == "Leer"){
     mysqli_stmt_bind_result($consultar, $id_imagen, $url, $tipo, $nombre);
 
     while($row = mysqli_stmt_fetch($consultar)){
-
+ 
         $array_imagen[]=array(
             'id_imagen'=>$id_imagen,
             'url'=>$url,

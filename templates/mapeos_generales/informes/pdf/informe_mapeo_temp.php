@@ -3,10 +3,7 @@
 		require('../../../../config.ini.php');
 		$id_informe = $_GET['informe'];
 		$resultado_corresponde = "";
-        $posicion_sensores_indicativo = 1;
-
-    //$a = "PRUEBA DE MAPEO TÉRMICO A DROGUERÍA MATHIESEN ( PERÍODO VERANO )";
-		$a = "PRUEBA DE DISTRIBUCIÓN TERMICA";
+    $posicion_sensores_indicativo = 1;
 
 		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////
 
@@ -137,7 +134,7 @@
 		mysqli_stmt_bind_result($fechas_mapeo, $nombre_prueba, $fecha_inicio, $fecha_fin, $intervalo);
 		mysqli_stmt_fetch($fechas_mapeo);
 
-   $a = mb_strtoupper($nombre_prueba." - ".$nombre_empresa);
+   $a = mb_strtoupper( "PRUEBA DE TEMPERATURA A ".$nombre_empresa);
 
 	
     $mediciones = mysqli_prepare($connect,"SELECT DATEDIFF(fecha_fin, fecha_inicio) FROM mapeo_general WHERE id_mapeo = ?");
@@ -146,7 +143,7 @@
     mysqli_stmt_store_result($mediciones);
     mysqli_stmt_bind_result($mediciones, $c_dia);
     mysqli_stmt_fetch($mediciones);
-    $c_hora = number_format(($c_dia * 24),2);
+    $c_hora = number_format(($c_dia * 24),0);
   
 
 		//CALCULO DE TIEMPO ACUMULADO AL LIMITE MAXIMO 
@@ -372,7 +369,7 @@
   mysqli_stmt_bind_result($query_8, $d_1);
   mysqli_stmt_fetch($query_8);
  
-  $total_mediciones = number_format($d_1,2);
+  $total_mediciones = number_format($d_1,0);
 
 		/*
 
@@ -515,7 +512,7 @@
   mysqli_stmt_fetch($query_31);
 	
   if(mysqli_stmt_num_rows($query_31) > 0){
-	  $img_1 = '<img src="../../'.$url_imagen_1.'">';
+	  $img_1 = '<img src="../../'.$url_imagen_1.'" width="220px">';
   }else{
 	  $img_1 = '<img src="../../../design/images/no_imagen.png">';
   }
@@ -530,7 +527,7 @@
   mysqli_stmt_fetch($query_34);
 
   	if(mysqli_stmt_num_rows($query_34) > 0){
-		$img_2 = '<img src="../../'.$url_imagen_2.'">';
+		$img_2 = '<img src="../../'.$url_imagen_2.'"  width="600px">';
 	}else{
 		$img_2 = '<img src="../../../design/images/no_imagen.png">';
 	}
@@ -541,14 +538,8 @@
   mysqli_stmt_execute($query_35);
   mysqli_stmt_store_result($query_35);
   mysqli_stmt_bind_result($query_35, $url_imagen_3);
-  mysqli_stmt_fetch($query_35);
+ 
   
-  	if(mysqli_stmt_num_rows($query_35) > 0){
-		$img_3 = '<img src="../../'.$url_imagen_3.'">';
-	}else{
-		$img_3 = '<img src="../../../design/images/no_imagen.png">';
-	}
-
 //nombre prueba minuscula
 
 $nombre_prueba_minuscula = mb_strtolower($nombre_prueba) ;
@@ -556,7 +547,7 @@ $nombre_prueba_minuscula = mb_strtolower($nombre_prueba) ;
   /////////////////////////////////////////////////////////////INICIO INFORME////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		$pdf->AddPage('A4');
+$pdf->AddPage('A4');
 
 $html = <<<EOD
 
@@ -593,7 +584,7 @@ text-align:left;
 }
 </style>
 
-<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE MAPEO TÉRMICO</strong></H3></td></tr></table><br><br>
+<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE TEMPERATURA</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="15%" ><strong>Informe:</strong></td><td width="45%">$nombre_informe</td>
 <td width="15%"><strong>O.T. N°</strong></td><td width="25%">$num_ot</td></tr>
@@ -716,12 +707,11 @@ tr:nth-child(even)
  
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Ubicación de los Sensores</strong></td></tr>
-<tr><td><br>$img_1 </td></tr></table><br><br><br>
+<tr><td><br><br>$img_1 </td></tr></table><br><br><br>
 EOD;
 
 $pdf->writeHTML($html_2, true,false,false,false,'');
 
-$pdf->AddPage('A4');
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(170, 170, 170)));
 //TITULOS
 $pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
@@ -752,7 +742,7 @@ while($row = mysqli_stmt_fetch($query_32)){
   mysqli_stmt_bind_result($query_34, $certificado_sensor_t);
   mysqli_stmt_fetch($query_34);
 
-    if($contador_t == 31 OR $contador_t == 61 ){
+    if($contador_t == 27 OR $contador_t == 63 ){
 
        $pdf->AddPage('A4');
        //TITULOS
@@ -934,17 +924,13 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
 <tr><td><br>Valores Promedio, Máximo y Mínimo</td></tr>
-<tr><td>$img_2</td></tr></table><br><br><br>
+<tr><td><br><br>$img_2</td></tr></table><br><br><br>
 <table>
 
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
 
-
-
-
-$pdf->AddPage('A4');
 
 $txt= <<<EOD
 
@@ -979,16 +965,103 @@ tr:nth-child(even)
 
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Todos los Sensores</strong></td></tr>
-<tr><td><br>Datos de los sensores - Periodo representativo</td></tr>
-<tr><td>$img_3</td></tr></table><br><br><br>
-<table>
+<tr><td><br>Datos de los sensores - Periodo representativo</td></tr></table>
 
+EOD;
+
+$pdf->writeHTML($txt, true, false, false, false, '');
+
+
+for($i = 0; $i<mysqli_stmt_num_rows($query_35);$i++){
+mysqli_stmt_fetch($query_35);
+if($url_imagen_3 != ""){
+  $img_3 = '<img src="../../'.$url_imagen_3.'"  width="600px">';
+}else{
+  $img_3 = '<img src="../../../../design/images/no_imagen.png" width="250px">';
+}  
+  
+if($i == 1 or $i == 3){
+  $pdf->AddPage();
+}  
+  
+$txt= <<<EOD
+<style>
+table 
+{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th 
+{
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+</style>
+<table>
+  <tr><td><br><br><br>$img_3</td></tr>
+</table>
+<hr>
+EOD;
+$pdf->writeHTML($txt, true, false, false, false, '');
+}
+
+$pdf->AddPage();
+
+$txt= <<<EOD
+
+
+<style>
+table 
+{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th 
+{
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+</style>
+
+<table>
 <tr><td bgcolor="#DDDDDD"><strong>Comentarios</strong></td></tr>
 <tr><td>$comentarios</td></tr>
 <tr><td bgcolor="#DDDDDD"><strong>Observación</strong></td></tr>
 <tr><td>$observacion</td></tr>
 </table>
-<br><br><br><br><br>
+<br><br><br>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
 <tr><td height="90"><br><br><br>Ing. $nombres $apellidos<br> $cargo - Cercal Group Spa.</td><td height="50"></td></tr>
