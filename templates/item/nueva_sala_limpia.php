@@ -22,6 +22,8 @@ $presion_versus = $_POST['presion_versus'];
 $tipo_presion = $_POST['tipo_presion'];
 $puntos_muestreo = $_POST['puntos_muestreo'];
 $id_valida = $_POST['id_valida'];
+$codigo = $_POST['codigo'];                 
+$estado_sala = $_POST['estado_sala'];             
 
 $tipo_item = 8;
 $estado = 1;
@@ -56,9 +58,12 @@ if($id_item_insertado > 0){
     presion_sala,
     presion_versus,
     tipo_presion,
-    puntos_muestreo)
- VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-  mysqli_stmt_bind_param($insertando_ultrafreezer, 'isssssssssssssssss', 
+    puntos_muestreo,
+    codigo,
+    estado_sala
+    )
+ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  mysqli_stmt_bind_param($insertando_ultrafreezer, 'isssssssssssssssssss', 
     $id_item_insertado, 
     $clasificacion_oms, 
     $clasificacion_oms, 
@@ -76,7 +81,9 @@ if($id_item_insertado > 0){
     $presion_sala,
     $presion_versus,
     $tipo_presion,
-    $puntos_muestreo
+    $puntos_muestreo,
+    $codigo,
+    $estado_sala
   );
   
   mysqli_stmt_execute($insertando_ultrafreezer);

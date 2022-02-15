@@ -9,24 +9,25 @@ $id_asignado = substr($clave, 97);
 
 
 /////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
-$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.Area_sala_limpia,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item");
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala, b.direccion FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item");
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
-mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala);
+mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala, $direccion_item);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
+/*echo "SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala, b.direccion FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = $id_asignado AND c.id_item = b.id_item AND b.id_item = c.id_item";*/
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion, e.conclusion FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion, $conclusion);
 mysqli_stmt_fetch($consulta_empresa);
 
-
+$num_ot = substr($numot, 2);
 
 $pdf->AddPage('A4');
 
@@ -42,7 +43,7 @@ $linea = <<<EOD
 <br><br><br><br>
 <table >
    <tr border="1">
-        <td class="linea" align="center"><b> CERTIFICADO INSPECCIÓN DE SALA LIMPIA</b></td>
+        <td class="linea" align="center"><h2> CERTIFICADO INSPECCIÓN DE SALA LIMPIA</h2></td>
    </tr>
 </table>
 
@@ -52,7 +53,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(13, 5, 105, '', $numot ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(13, 5, 105, '', $num_ot ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
 
@@ -66,14 +67,13 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Dirección:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(155, 5, 40, '', $direccion ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(155, 5, 40, '', $direccion_item ,1,0, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
 $info_equipo = <<<EOD
    <style>
-   table 
    {
    border-collapse: collapse;
    width: 90%;
@@ -93,12 +93,17 @@ $info_equipo = <<<EOD
    border: 1px solid #BBBBBB;
    padding: 3px;
    vertical-align: middle;
+   text-align: center;
+   height:15px;
+   font-size:11px;
+   padding:auto auto auto auto;
    }
 
    tr:nth-child(even) 
    {
       background-color: #f2f2f2;
    }
+
    </style>
    <table>
       <tr>
@@ -142,7 +147,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Partículas en Suspensión</b></td>
+        <td class="linea" align="center"><h2>Prueba de Partículas en Suspensión</h2></td>
    </tr>
 </table>
 
@@ -306,15 +311,14 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Conclusión</b></td>
+        <td class="linea" align="center"><h2>Conclusión</h2></td>
    </tr>
 </table>
 
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(165, 5, 15, '', 'Los resultados obtenidos en el presente informe, se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al
-momento de la inspección' ,0,1, 0, true, 'J', true);
+$pdf->writeHTMLCell(165, 5, 15, '', $conclusion ,0,1, 0, true, 'J', true);
 
 $linea = <<<EOD
 
@@ -328,7 +332,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Duración de Certificado</b></td>
+        <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
    </tr>
 </table>
 
@@ -350,7 +354,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Responsable</b></td>
+        <td class="linea" align="center"><h2>Responsable</h2></td>
    </tr>
 </table>
 
@@ -376,7 +380,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>MEDICIÓN DE PARTÍCULAS EN SUSPENSIÓN</b></td>
+        <td class="linea" align="center"><h2>MEDICIÓN DE PARTÍCULAS EN SUSPENSIÓN</h2></td>
    </tr>
 </table>
 
@@ -395,7 +399,6 @@ mysqli_stmt_fetch($metodo_1);
 
 $prueba = <<<EOD
    <style>
-   table 
    {
    border-collapse: collapse;
    width: 90%;
@@ -415,12 +418,17 @@ $prueba = <<<EOD
    border: 1px solid #BBBBBB;
    padding: 3px;
    vertical-align: middle;
+   text-align: center;
+   height:15px;
+   font-size:11px;
+   padding:auto auto auto auto;
    }
 
    tr:nth-child(even) 
    {
       background-color: #f2f2f2;
    }
+
    </style>
    <table>
       <tr>
@@ -460,7 +468,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Imagen de la Medición y Registro de Conteo de Partículas</b></td>
+        <td class="linea" align="center"><h3>Imagen de la Medición y Registro de Conteo de Partículas</h3></td>
    </tr>
 </table>
 
@@ -572,7 +580,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Equipo Utilizado en la Medición</b></td>
+        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
 
@@ -619,7 +627,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>MEDICIÓN DE PRESIÓN DIFERENCIAL</b></td>
+        <td class="linea" align="center"><h2>MEDICIÓN DE PRESIÓN DIFERENCIAL</h2></td>
    </tr>
 </table>
 
@@ -651,7 +659,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Imagen de la médición</b></td>
+        <td class="linea" align="center"><h2>Imagen de la médición</h2></td>
    </tr>
 </table>
 
@@ -671,7 +679,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Medición - Prueba de Presión Diferencial, Pa</b></td>
+        <td class="linea" align="center"><h2>Medición - Prueba de Presión Diferencial, Pa</h2></td>
    </tr>
 </table>
 
@@ -710,7 +718,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Equipo Utilizado en la Medición</b></td>
+        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
 
@@ -759,7 +767,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Medición - Prueba de Temperatura y Humedad</b></td>
+        <td class="linea" align="center"><h2>Medición - Prueba de Temperatura y Humedad</h2></td>
    </tr>
 </table>
 EOD;  
@@ -791,7 +799,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Imagen de la Médición</b></td>
+        <td class="linea" align="center"><h2>Imagen de la Médición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -809,7 +817,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Medición de Temperatura °C</b></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de Temperatura °C</h2></td>
    </tr>
 </table>
 EOD;  
@@ -865,7 +873,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Medición de Humedad Relativa, HR%</b></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de Humedad Relativa, HR%</h2></td>
    </tr>
 </table>
 EOD;  
@@ -922,7 +930,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Equipo Utilizado en la Medición</b></td>
+        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -972,7 +980,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Medición de iluminación y ruido</b></td>
+        <td class="linea" align="center"><h2>Medición de iluminación y ruido</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1004,7 +1012,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Imagen de la Medición</b></td>
+        <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1022,7 +1030,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Medición de luminancia, Lux</b></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de luminancia, Lux</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1078,7 +1086,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Medición de Ruido, dBA</b></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de Ruido, dBA</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1135,7 +1143,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Equipo Utilizado en la Medición</b></td>
+        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1185,7 +1193,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>MEDICIÓN DE CAUDAL DE AIRE, Cálculo de Renovación Aire/Hora</b></td>
+        <td class="linea" align="center"><h2>MEDICIÓN DE CAUDAL DE AIRE, Cálculo de Renovación Aire/Hora</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1223,7 +1231,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Imagen de la Medición</b></td>
+        <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1240,7 +1248,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Resultado - Prueba de Medición de Caudal de Inyección de Aire, m³/h</b></td>
+        <td class="linea" align="center"><h2>Resultado - Prueba de Medición de Caudal de Inyección de Aire, m³/h </h2></td>
    </tr>
 </table>
 EOD;  
@@ -1311,7 +1319,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Resultado - Prueba de Medición de Caudal de Inyección de Aire, m³/h</b></td>
+        <td class="linea" align="center"><h2>Resultado - Prueba de Medición de Caudal de Inyección de Aire, m³/h</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1383,8 +1391,8 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Resultado Final - Cálculo de Renovación de Aire/Hora
-        </b></td>
+        <td class="linea" align="center"><h2>Resultado Final - Cálculo de Renovación de Aire/Hora
+        </h2></td>
    </tr>
 </table>
 EOD;  
@@ -1424,7 +1432,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Equipo Utilizado en la Medición</b></td>
+        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1458,10 +1466,5 @@ while($row = mysqli_stmt_fetch($query7)){
 }
 
 
-
-
-
-
-
-$pdf->Output('Inspección salas limpias.pdf', 'I');
+$pdf->Output($nombre_informe, 'I');
 ?>

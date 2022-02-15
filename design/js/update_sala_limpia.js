@@ -33,6 +33,8 @@ function setear_campos(){
       $("#tipo_presion").val('')
       $("#puntos_muestreo").val('')
       $("#buscador_empresa").val('')
+      $("#codigo").val('')
+      $("#estado_sala").val('')
 }
 
 (function(){
@@ -61,6 +63,8 @@ function setear_campos(){
         presion_versus          : $("#presion_versus").val(),
         tipo_presion            : $("#tipo_presion").val(),
         puntos_muestreo         : $("#puntos_muestreo").val(),
+        codigo                  : $("#codigo").val(),
+        estado_sala             : $("#estado_sala").val(),
 
 
         id_item_sala_limpia     : $("#id_item_sala_limpia").val(),
@@ -171,6 +175,8 @@ $(document).on('click','#seleccionar_empresa',function(){
         presion_versus          : $("#presion_versus").val(),
         tipo_presion            : $("#tipo_presion").val(),
         puntos_muestreo         : $("#puntos_muestreo").val(),
+        codigo                  : $("#codigo").val(),
+        estado_sala             : $("#estado_sala").val(),
 
         id_valida                :$("#id_valida").val()
       }

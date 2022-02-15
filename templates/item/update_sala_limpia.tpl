@@ -127,7 +127,17 @@
                 <input type="text" id="puntos_muestreo" class="form-control" placeholder="Puntos muestreo normal" value="{$sala_limpia.puntos_muestreo}">
               </div>
             </div>
-
+            <br>
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label>Código:</label>
+                <input type="text" id="codigo" class="form-control" placeholder="Código" value="{$sala_limpia.codigo}" required="">
+              </div>
+              <div class="col-sm-4">
+                <label>Estado sala:</label>
+                <input type="text" id="estado_sala" class="form-control" placeholder="Estado sala" value="{$sala_limpia.estado_sala}">
+              </div>
+            </div>
 
           </div>
 

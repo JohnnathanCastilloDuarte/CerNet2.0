@@ -20,6 +20,8 @@ $presion_sala = $_POST['presion_sala'];
 $presion_versus = $_POST['presion_versus'];
 $tipo_presion = $_POST['tipo_presion'];
 $puntos_muestreo = $_POST['puntos_muestreo'];
+$codigo = $_POST['codigo'];
+$estado_sala = $_POST['estado_sala'];
 
 $id_item_sala_limpia     = $_POST['id_item_sala_limpia'];
 $id_item_2_sala_limpia   = $_POST['id_item_2_sala_limpia'];
@@ -49,10 +51,13 @@ if($update_sala_limpia){
 		presion_sala = ?,
 		presion_versus = ?,
 		tipo_presion = ?,
-		puntos_muestreo = ?
+		puntos_muestreo = ?,
+		codigo = ?,
+		estado_sala = ?
+
 
 		WHERE id = $id_item_sala_limpia");
-	mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssss', 
+	mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssssss', 
 		$area_m2_sala_limpia, 
 		$volumen_m3_sala_limpia, 
 		$direccion_sala_limpia, 
@@ -69,7 +74,9 @@ if($update_sala_limpia){
 		$presion_sala,
 		$presion_versus,
 		$tipo_presion,
-		$puntos_muestreo
+		$puntos_muestreo,
+		$codigo,
+		$estado_sala
 	);
 		
 

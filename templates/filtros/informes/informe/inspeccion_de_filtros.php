@@ -15,7 +15,7 @@ $consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.descripcion, a
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
-mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $marca, $modelo, $ubicacion, 
+mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $marca, $modelo, $direccion, 
    $ubicado_en, $tipo_filtro, $cantidad_filtro, $limite_penetracion, $eficiencia, $n_serie);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
@@ -28,7 +28,7 @@ $consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, D
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion_empresa, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion);
 mysqli_stmt_fetch($consulta_empresa);
 
 

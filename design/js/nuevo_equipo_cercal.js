@@ -2,7 +2,7 @@ $("#crear_nuevo_equipo").click(function(){
     window.open("templates/equipos_cercal/creacion_equipos.php");
 });
 
-
+listar_equipos_asignados()
 //////////// BOTON PARA CREAR EL NUEVO EQUIPO
 $("#btn_crear_equipo_cercal").click(function(){
 
