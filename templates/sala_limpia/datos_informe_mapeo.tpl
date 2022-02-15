@@ -248,7 +248,7 @@
                                         <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
                                     </div>
                                 </div>
-                        
+                        <br>
                                 <table class="table">
                                     <thead>
                                         <th>Inyección (m³/h)</th>

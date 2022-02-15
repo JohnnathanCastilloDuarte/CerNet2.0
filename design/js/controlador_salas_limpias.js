@@ -142,19 +142,19 @@ function listar_resultados_prueba(orden){
                                         </tr>
                                     </tbody>
                                 </table>
+                                    <div class="row" style="text-align:center;">
+                                        <div class="col-sm-4">
+                                            <label>Promedio, C°: <input type="text" name="promedio_p4" class="form-control" value="${valor.promedio}"></label>  
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Especificación Cliente ,°C: <input type="text" name="especificacion_p4" class="form-control" value=""></label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Cumple: <input type="text" name="cumple_p4" class="form-control" value="${valor.cumple}"></label>
+                                        </div>
+                                    </div>
                             </div>
 
-                            <div class="row" style="text-align:center;">
-                                <div class="col-sm-4">
-                                    <label>Promedio, C°: <input type="text" name="promedio_p4" class="form-control" value="${valor.promedio}"></label>  
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Especificación Cliente ,°C: <input type="text" name="especificacion_p4" class="form-control" value=""></label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Cumple: <input type="text" name="cumple_p4" class="form-control" value="${valor.cumple}"></label>
-                                </div>
-                            </div>
                         `;
                     }
                     else if(valor.categoria == 2){
@@ -181,8 +181,6 @@ function listar_resultados_prueba(orden){
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-
                             <div class="row" style="text-align:center;">
                                 <div class="col-sm-4">
                                     <label>Promedio, HR%: <input type="text" name="promedio_p5" class="form-control" value="${valor.promedio}"></label>  
@@ -194,6 +192,8 @@ function listar_resultados_prueba(orden){
                                     <label>Cumple: <input type="text" name="cumple_p5" class="form-control" value="${valor.cumple}"></label>
                                 </div>
                             </div>
+                            </div>
+
                         `;
                     }
 
@@ -221,19 +221,19 @@ function listar_resultados_prueba(orden){
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="row" style="text-align:center;">
+                                    <div class="col-sm-4">
+                                        <label>Promedio, Lux: <input type="text" name="promedio_p6" class="form-control" value="${valor.promedio}"></label>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Especificación Cliente ,Lux: <input type="text" name="especificacion_p6" class="form-control" value=""></label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Cumple: <input type="text" name="cumple_p6" class="form-control" value="${valor.cumple}"></label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="row" style="text-align:center;">
-                                <div class="col-sm-4">
-                                    <label>Promedio, Lux: <input type="text" name="promedio_p6" class="form-control" value="${valor.promedio}"></label>  
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Especificación Cliente ,Lux: <input type="text" name="especificacion_p6" class="form-control" value=""></label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Cumple: <input type="text" name="cumple_p6" class="form-control" value="${valor.cumple}"></label>
-                                </div>
-                            </div>
                         `;
                     }
 
@@ -261,8 +261,6 @@ function listar_resultados_prueba(orden){
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-
                             <div class="row" style="text-align:center;">
                                 <div class="col-sm-4">
                                     <label>Promedio, dBA: <input type="text" name="promedio_p7" class="form-control" value="${valor.promedio}"></label>  
@@ -274,6 +272,8 @@ function listar_resultados_prueba(orden){
                                     <label>Cumple: <input type="text" name="cumple_p7" class="form-control" value="${valor.cumple}"></label>
                                 </div>
                             </div>
+                            </div>
+
                         `;
                     }
 

@@ -1,7 +1,7 @@
 <?php 
 include('../../config.ini.php');
 
-/*
+
 ////////// PRIMER PRUEBA
 
 $id_prueba_1 = $_POST['id_prueba_1'];
@@ -177,7 +177,7 @@ $ensayo_p53 = $_POST["ensayo_p53"];
 $actualizando10 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_5 SET metodo_ensayo= ?,n_rejillas= ?,n_extractores= ? WHERE id_ensayo = ?");
 mysqli_stmt_bind_param($actualizando10, 'sssi', $ensayo_p51, $ensayo_p52, $ensayo_p53, $id_ensayo_p51);
 mysqli_stmt_execute($actualizando10);
-*/
+
 
 
 $id_informe = $_POST['id_informe'];
