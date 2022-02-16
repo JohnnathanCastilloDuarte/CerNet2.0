@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-14 20:25:03
+/* Smarty version 3.1.34-dev-7, created on 2022-02-16 21:33:04
   from 'C:\xampp\htdocs\CerNet2.0\templates\header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620aac8f1dfa28_89155806',
+  'unifunc' => 'content_620d5f800fdad3_05045976',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ffba896e21398cf47a641a98b731b5ddc0ba9f3b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\header.php',
-      1 => 1644866702,
+      1 => 1645043582,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620aac8f1dfa28_89155806 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620d5f800fdad3_05045976 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
-            <div class="logo-src"></div>
+           <a href="index.php"><div class="logo-src"></div></a> 
             <div class="header__pane ml-auto">
                 <div>
                     <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -356,7 +356,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <button type="button" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false" class="p-0 btn btn-link dd-chart-btn">
                             <span class="icon-wrapper icon-wrapper-alt rounded-circle">
                                 <span class="icon-wrapper-bg bg-success"></span>
-                                <i class="icon text-success ion-ios-analytics"></i>
+                               <!--  <i class="icon text-success ion-ios-analytics"></i> -->
+                                      <i><img src="design/images/sensor.png" width="30px;"></i>  
                             </span>
                         </button>
                       <form method="post" id="subir_sensores" enctype="multipart/form-data">
@@ -417,8 +418,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                        <?php $_smarty_tpl->_assignInScope('imagen', 'design/assets/images/user.png');?>
                                        <?php }?> 
 
-                                        <img width="42" class="rounded-circle" src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
-" alt=""> 
+                                        <img width="37" class="rounded-circle" style=" border: 0.1px solid #a5a5a5;" src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
+" alt="">
                                       
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
@@ -436,7 +437,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 &user=<?php echo $_smarty_tpl->tpl_vars['mi_id']->value;?>
 ">
                                                                 
-                                                                <img width="42" class="rounded-circle" src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
+                                                                <img width="37" class="rounded-circle" style=" border: 1px solid #a5a5a5;" src="<?php echo $_smarty_tpl->tpl_vars['imagen']->value;?>
 " alt=""> 
 
                                                             </a>	
@@ -458,7 +459,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="scroll-area-xs" style="height:100px;">
+                                    <!-- <div class="scroll-area-xs" style="height:100px;">
                                         <div class="scrollbar-container ps">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item-header nav-item">Actividades
@@ -488,7 +489,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                                 Open Messages
                                             </button>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                         </div>

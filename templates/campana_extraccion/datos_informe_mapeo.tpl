@@ -205,55 +205,12 @@
               </div><!--CARD 2-->
 
               <br>
+              <div style="text-align: center;">
               <button class="btn btn-info">Guardar</button>
              
               </form>
-              
-              
-              <!--
-              <div class="card">
-                <div class="card-header">
-                  <a data-toggle="collapse" data-target="#collapseOne551"  aria-controls="collapseOne551">
-                    Conclusión y adicionales
-                  </a>
-                </div>
-                <div class="card-body collapse" id="collapseOne551">
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <label>Cantidad de filtros: </label>
-                    </div>
-                    <div class="col-sm-12">
-                      <textarea class="form-control" id="conclusion" required=""></textarea>
-                    </div>
-
-                    <div class="col-sm-6">
-                      <label>Duración de Certificado: </label>
-                      <input type="text" class="form-control" id="duracio_certificado" required="">
-                    </div>
-                    <div class="col-sm-6">
-                     <label>Fecha de medición: </label>
-                     <input type="date" class="form-control" id="fecha_medicion" required="">
-                   </div>
-
-                   <div class="col-sm-6">
-                    <label>Responsable: </label>
-                    <input type="text" class="form-control" id="resposable" required="">
-                  </div>
-                  <div class="col-sm-6">
-                    <label>Firma: </label>
-                    <input type="text" class="form-control" id="firma" required="">
-                  </div>
-
-                  <div class="col-sm-12">
-                    <label>Código QR de Verificación: </label>
-                    <input type="text" class="form-control" id="codigo_qr" required="">
-                  </div>
-                </div>
-                <br>
-
-
+              <button class="btn btn-warning text-light" id="abrir_informe">Informes</button>
               </div>
-            </div>CARD 3-->
 
             <br>
 

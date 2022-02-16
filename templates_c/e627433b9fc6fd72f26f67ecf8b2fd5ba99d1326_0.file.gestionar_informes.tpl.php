@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-20 15:11:40
+/* Smarty version 3.1.34-dev-7, created on 2022-02-16 17:33:57
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\gestionar_informes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c08f1c6ecb31_09377867',
+  'unifunc' => 'content_620d277553baf6_16334197',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e627433b9fc6fd72f26f67ecf8b2fd5ba99d1326' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\gestionar_informes.tpl',
-      1 => 1640009498,
+      1 => 1644941388,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c08f1c6ecb31_09377867 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620d277553baf6_16334197 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-12">
 		<div class="card">
@@ -44,7 +44,7 @@ function content_61c08f1c6ecb31_09377867 (Smarty_Internal_Template $_smarty_tpl)
 										Terminados: <span class="badge badge-pill badge-danger" id="mapeo_filtros_terminados">-</span>
 									</div>
 								</div>
-							</div>
+							</div> 
 							<div class="card-body">
 								<table class="table">
 									<thead>

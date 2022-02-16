@@ -1,3 +1,4 @@
+
  {foreach from=$array_persona  item=persona}
   <input type="hidden" value="{$persona.id_departamento}" id="id_departamento_editar">
   <input type="hidden" value="{$persona.nombre_departamento}" id="nombre_departamento_editar">
@@ -88,7 +89,7 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Nombres:</label>
-								<input type="text" name="nombre_usuario" class="form-control" value="{$persona_array.nombre}">
+								<input type="text" name="nombre_usuario" class="form-control" value="{$persona_array.nombre_persona}">
 							</div>
 							<div class="col-sm-6">
 								<label>Apellidos:</label>

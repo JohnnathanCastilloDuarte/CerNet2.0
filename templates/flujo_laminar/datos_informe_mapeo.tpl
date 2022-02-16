@@ -336,10 +336,11 @@
                 <div class="row" style="text-align:center;">
                     <div class="col-sm-12">
                             <button class="btn btn-info">Guardar</button>
-                    </div>
-                </div>
+                   
                 </form>
-                <button class="btn btn-warning" id="abrir_informe">Informe</button>
+                <button class="btn btn-warning text-light" id="abrir_informe">Informe</button>
+                 </div>
+                </div>
             </div>
             
             <div class="tab-pane tabs-animation fade" id="equipos" role="tabpanel">

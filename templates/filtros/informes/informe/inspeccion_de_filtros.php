@@ -766,5 +766,5 @@ while($row = mysqli_stmt_fetch($consultar_imagenes)){
    }     
 
 
-$pdf->Output('Inspección salas limpias.pdf', 'I');
+$pdf->Output($nombre_informe, 'I');
 ?>

@@ -9,7 +9,7 @@ $pais_usuario = $_POST['pais_usuario'];
 $email_usuario = $_POST['email_usuario'];
 $telefono_usuario = $_POST['telefono_usuario'];
 $departamento_usuario = $_POST['departamento_usuario'];
-$cargo_usuario = $_POST['cargo_usuario'];
+$id_privilegio = $_POST['privilegios_usuario'];
 $estado_usuario = $_POST['estado_usuario'];
 $usuario = $_POST['usuario'];
 $id_empresa = $_POST['empresa_usuario'];
@@ -72,18 +72,18 @@ mysqli_stmt_fetch($buscando);
 
 /////// actualizando persona
 $actualizando_p = mysqli_prepare($connect,"UPDATE persona SET nombre = ?, apellido = ?, 
-telefono = ?, id_cargo, estado= ?, pais = ?, 
+telefono = ?, estado= ?, pais = ?, 
 numero_identificacion = ?, id_empresa = ?, imagen_usuario = ? 
 WHERE id_persona = ?");
-mysqli_stmt_bind_param($actualizando_p, 'sssssssisi', $nombre_usuario, $apellido_usuario, 
-                       $telefono_usuario, $cargo_usuario, $estado_usuario, $pais_usuario, 
+mysqli_stmt_bind_param($actualizando_p, 'ssssssisi', $nombre_usuario, $apellido_usuario, 
+                       $telefono_usuario, $estado_usuario, $pais_usuario, 
                        $identificacion_usuario, $id_empresa, $personalizado, $id_persona);
 mysqli_stmt_execute($actualizando_p);
 mysqli_stmt_error($actualizando_p);
 
 $actualizando_p = mysqli_prepare($connect,"UPDATE usuario SET  id_privilegio = ?
-WHERE id_persona = ?");
-mysqli_stmt_bind_param($actualizando_p, 'ii',$pri,  $id_persona);
+WHERE id_usuario = ?");
+mysqli_stmt_bind_param($actualizando_p, 'ii',$id_privilegio,  $id_usuario);
 mysqli_stmt_execute($actualizando_p);
 mysqli_stmt_error($actualizando_p);
 

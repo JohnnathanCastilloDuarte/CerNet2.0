@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-25 20:19:50
+/* Smarty version 3.1.34-dev-7, created on 2022-02-16 20:35:42
   from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\editar_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61f04d567dbfa5_19802386',
+  'unifunc' => 'content_620d520ed704e1_14758809',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '652b8ed9cf71c8b8e7bd33e3ac2c617cd5dacdbe' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\editar_usuario.tpl',
-      1 => 1642600530,
+      1 => 1645040141,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f04d567dbfa5_19802386 (Smarty_Internal_Template $_smarty_tpl) {
-?> <?php
+function content_620d520ed704e1_14758809 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+ <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_persona']->value, 'persona');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['persona']->value) {
@@ -164,7 +165,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Nombres:</label>
-								<input type="text" name="nombre_usuario" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['nombre'];?>
+								<input type="text" name="nombre_usuario" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['persona_array']->value['nombre_persona'];?>
 ">
 							</div>
 							<div class="col-sm-6">
