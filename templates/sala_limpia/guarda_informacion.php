@@ -47,15 +47,26 @@ for($i=0; $i < count($id_prueba_3); $i++){
 }
 
 ///////// TERCERA PRUEBA
-$array_ids = array($_POST['id_prueba_4'], $_POST['id_prueba_5'], $_POST['id_prueba_6'], $_POST['id_prueba_7']);
-$array_n1 = array($_POST['n1_p4'], $_POST['n1_p5'], $_POST['n1_p6'], $_POST['n1_p7']);
-$array_n2 = array($_POST['n2_p4'], $_POST['n2_p5'], $_POST['n2_p6'], $_POST['n2_p7']);
-$array_n3 = array($_POST['n3_p4'], $_POST['n3_p5'], $_POST['n3_p6'], $_POST['n3_p7']);
-$array_n4 = array($_POST['n4_p4'], $_POST['n4_p5'], $_POST['n4_p6'], $_POST['n4_p7']);
-$array_n5 = array($_POST['n5_p4'], $_POST['n5_p5'], $_POST['n5_p6'], $_POST['n5_p7']);
-$array_promedio = array($_POST['promedio_p4'], $_POST['promedio_p5'], $_POST['promedio_p6'], $_POST['promedio_p7']);
-$array_especificaciones = array($_POST['especificacion_p4'],$_POST['especificacion_p5'],$_POST['especificacion_p6'],$_POST['especificacion_p7']);
-$array_cumple = array($_POST['cumple_p4'],$_POST['cumple_p5'],$_POST['cumple_p6'],$_POST['cumple_p7']);
+$array_ids = array($_POST['id_prueba_4'], $_POST['id_prueba_5'], $_POST['id_prueba_6']);
+$array_n1 = array($_POST['n1_p4'], $_POST['n1_p5'], $_POST['n1_p6']);
+$array_n2 = array($_POST['n2_p4'], $_POST['n2_p5'], $_POST['n2_p6']);
+$array_n3 = array($_POST['n3_p4'], $_POST['n3_p5'], $_POST['n3_p6']);
+$array_n4 = array($_POST['n4_p4'], $_POST['n4_p5'], $_POST['n4_p6']);
+$array_n5 = array($_POST['n5_p4'], $_POST['n5_p5'], $_POST['n5_p6']);
+$array_promedio = array($_POST['promedio_p4'], $_POST['promedio_p5'], $_POST['promedio_p6']);
+$array_especificaciones = array($_POST['especificacion_p4'],$_POST['especificacion_p5'],$_POST['especificacion_p6']);
+$array_cumple = array($_POST['cumple_p4'],$_POST['cumple_p5'],$_POST['cumple_p6']);
+
+
+$array_ids_7 = ($_POST['id_prueba_7']);
+$array_n1_7 = ($_POST['n1_p7']);
+$array_n2_7 = ($_POST['n2_p7']);
+$array_n3_7 = ($_POST['n3_p7']);
+$array_n4_7 = ($_POST['n4_p7']);
+$array_n5_7 = ($_POST['n5_p7']);
+$array_promedio_7 = ($_POST['promedio_p7']);
+$array_especificaciones_7 = ($_POST['especificacion_p7']);
+$array_cumple_7 = ($_POST['cumple_p7']);
 
 
 
@@ -67,6 +78,15 @@ for($i=0;$i<count($array_ids);$i++){
     echo mysqli_stmt_error($actualizando3);
 }
 
+
+for ($i=0; $i < count($_POST['id_prueba_7']) ; $i++) { 
+     $actualizando3 = mysqli_prepare($connect, "UPDATE salas_limpias_prueba_4 SET n1=?, n2=?, n3=?, n4=?, n5=?,promedio=?, cumple=? WHERE id_prueba = ?");
+    mysqli_stmt_bind_param($actualizando3,'sssssssi', $array_n1_7[$i], $array_n2_7[$i], $array_n3_7[$i], $array_n4_7[$i], $array_n5_7[$i], $array_promedio_7[$i], $array_cumple_7[$i], $array_ids_7[$i]);
+    mysqli_stmt_execute($actualizando3);
+    echo mysqli_stmt_error($actualizando3);
+
+
+}
 
 ///////// CUARTO PRUEBA
 $id_prueba_8 = $_POST['id_prueba_8'];
@@ -102,14 +122,16 @@ $medicion_2_p9 = $_POST['medicion_2_p9'];
 $medicion_3_p9 = $_POST['medicion_3_p9'];
 $medicion_4_p9 = $_POST['medicion_4_p9'];
 
-$actualizando5 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_6 SET medicion_1=?,medicion_2=?,medicion_3=?,medicion_4=? WHERE id_prueba = ?");
-mysqli_stmt_bind_param($actualizando5, 'ssssi', $medicion_1_p9, $medicion_2_p9, $medicion_3_p9, $medicion_4_p9, $id_prueba_9);
-mysqli_stmt_execute($actualizando5);
+//echo "hola".count($id_prueba_9);
 
+for ($i=0; $i < count($id_prueba_9); $i++) { 
 
-
-
-
+    $actualizando5 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_6 SET medicion_1=?,medicion_2=?,medicion_3=?,medicion_4=? WHERE id_prueba = ?");
+    mysqli_stmt_bind_param($actualizando5, 'ssssi', $medicion_1_p9[$i], $medicion_2_p9[$i], $medicion_3_p9[$i], $medicion_4_p9[$i], $id_prueba_9[$i]);
+    mysqli_stmt_execute($actualizando5);
+    
+    echo "hola".$id_prueba_9[$i];
+}
 
 
 

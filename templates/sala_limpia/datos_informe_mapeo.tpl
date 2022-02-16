@@ -241,7 +241,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="">N° de rejillas de inyección:</label>
-                                        <input type="text" name="ensayo_p52" id="ensayo_p51" class="form-control">
+                                        <input type="text" name="ensayo_p52" id="ensayo_p52" class="form-control">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="">N° de Extractores:</label>
@@ -366,17 +366,27 @@
                         <div class="row" style="text-align: center;">
                             <div class="col-sm-12">
                                 <button class="btn btn-info">Guardar</button>
-                            </div>
+                          
+                </form>
+                
+
+
+
+                      <button class="btn btn-warning text-light" id="ver_informe_salas_limpias">Informe</button>
+
+  </div>
                         </div>
                         
                         <hr>
 
                     </div>
-                </form>
-                
+
+
+
+
                 <div class="row" style="text-align: center;">
                     <div class="col-sm-12">
-                        <button class="btn btn-warning" id="ver_informe_salas_limpias">Informe</button>
+                      
                     </div>
                     
                 </div>

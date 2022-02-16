@@ -140,19 +140,12 @@ function listar_resultados_prueba(orden){
                                             <td><input type="text" name="n4_p4" class="form-control" value="${valor.n4}"></td>
                                             <td><input type="text" name="n5_p4" class="form-control" value="${valor.n5}"></td>
                                         </tr>
+                                        <tr>
+                                            <td>Promedio, C°:</td>
+                                            <td><input type="text" name="promedio_p4" class="form-control" value="${valor.promedio}"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
-                                    <div class="row" style="text-align:center;">
-                                        <div class="col-sm-4">
-                                            <label>Promedio, C°: <input type="text" name="promedio_p4" class="form-control" value="${valor.promedio}"></label>  
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Especificación Cliente ,°C: <input type="text" name="especificacion_p4" class="form-control" value=""></label>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Cumple: <input type="text" name="cumple_p4" class="form-control" value="${valor.cumple}"></label>
-                                        </div>
-                                    </div>
                             </div>
 
                         `;
@@ -179,19 +172,13 @@ function listar_resultados_prueba(orden){
                                             <td><input type="text" name="n4_p5" class="form-control" value="${valor.n4}"></td>
                                             <td><input type="text" name="n5_p5" class="form-control" value="${valor.n5}"></td>
                                         </tr>
+                                        <tr>
+                                            <td>Promedio, HR%:</td>
+                                            <td><input type="text" name="promedio_p5" class="form-control" value="${valor.promedio}"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
-                            <div class="row" style="text-align:center;">
-                                <div class="col-sm-4">
-                                    <label>Promedio, HR%: <input type="text" name="promedio_p5" class="form-control" value="${valor.promedio}"></label>  
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Especificación Cliente ,HR%: <input type="text" name="especificacion_p5" class="form-control" value=""></label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Cumple: <input type="text" name="cumple_p5" class="form-control" value="${valor.cumple}"></label>
-                                </div>
-                            </div>
+                       
                             </div>
 
                         `;
@@ -238,6 +225,7 @@ function listar_resultados_prueba(orden){
                     }
 
                     else if(valor.categoria == 4){
+
                         template4+=
                         `
                             <div class="col-sm-12">
@@ -252,26 +240,20 @@ function listar_resultados_prueba(orden){
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Resultado, dBA<input type="hidden" name="id_prueba_7" value="${valor.id_prueba}"></td>
-                                            <td><input type="text" name="n1_p7" class="form-control" value="${valor.n1}"></td>
-                                            <td><input type="text" name="n2_p7" class="form-control" value="${valor.n2}"></td>
-                                            <td><input type="text" name="n3_p7" class="form-control" value="${valor.n3}"></td>
-                                            <td><input type="text" name="n4_p7" class="form-control" value="${valor.n4}"></td>
-                                            <td><input type="text" name="n5_p7" class="form-control" value="${valor.n5}"></td>
+                                            <td>Resultado, dBA<input type="hidden" name="id_prueba_7[]" value="${valor.id_prueba}"></td>
+                                            <td><input type="text" name="n1_p7[]" class="form-control" value="${valor.n1}"></td>
+                                            <td><input type="text" name="n2_p7[]" class="form-control" value="${valor.n2}"></td>
+                                            <td><input type="text" name="n3_p7[]" class="form-control" value="${valor.n3}"></td>
+                                            <td><input type="text" name="n4_p7[]" class="form-control" value="${valor.n4}"></td>
+                                            <td><input type="text" name="n5_p7[]" class="form-control" value="${valor.n5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Promedio, dBA</td> 
+                                            <td><input type="text" name="promedio_p7[]" class="form-control" value="${valor.promedio}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            <div class="row" style="text-align:center;">
-                                <div class="col-sm-4">
-                                    <label>Promedio, dBA: <input type="text" name="promedio_p7" class="form-control" value="${valor.promedio}"></label>  
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Especificación Cliente ,dBA: <input type="text" name="especificacion_p7" class="form-control" value=""></label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Cumple: <input type="text" name="cumple_p7" class="form-control" value="${valor.cumple}"></label>
-                                </div>
-                            </div>
+                          
                             </div>
 
                         `;
@@ -394,11 +376,12 @@ function listar_resultados_prueba(orden){
                   ` 
                     <tr>
                         
-                        <td><input type="text" name="medicion_1_p9" class="form-control" value="${valor.medicion_1}">
-                        <input type="hidden" name="id_prueba_9" value="${valor.id_prueba}"></td>
-                        <td><input type="text" name="medicion_2_p9" class="form-control" value="${valor.medicion_2}"></td>
-                        <td><input type="text" name="medicion_3_p9" class="form-control" value="${valor.medicion_3}"></td>
-                        <td><input type="text" name="medicion_4_p9" class="form-control" value="${valor.medicion_4}"></td>
+                        
+                        <td><input type="hidden" name="id_prueba_9[]" value="${valor.id_prueba}">
+                        <input type="text" name="medicion_1_p9[]" class="form-control" value="${valor.medicion_1}"></td>
+                        <td><input type="text" name="medicion_2_p9[]" class="form-control" value="${valor.medicion_2}"></td>
+                        <td><input type="text" name="medicion_3_p9[]" class="form-control" value="${valor.medicion_3}"></td>
+                        <td><input type="text" name="medicion_4_p9[]" class="form-control" value="${valor.medicion_4}"></td>
                     <tr>
                   `;
                   contador++;
