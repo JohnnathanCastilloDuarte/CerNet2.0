@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 });
 
-
+ 
 function setear_campos(){
       $("#nombre_sala_limpia").val('')
       $("#id_empresa").val('')

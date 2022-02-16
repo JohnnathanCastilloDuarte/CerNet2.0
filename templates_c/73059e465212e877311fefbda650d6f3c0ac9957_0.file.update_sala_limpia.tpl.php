@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-19 12:27:17
+/* Smarty version 3.1.34-dev-7, created on 2022-02-15 17:17:26
   from '/home/god/public_html/CerNet2.0/templates/item/update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e803a5561e77_89168614',
+  'unifunc' => 'content_620be0264747f6_03448596',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '73059e465212e877311fefbda650d6f3c0ac9957' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_sala_limpia.tpl',
-      1 => 1642595195,
+      1 => 1644941499,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e803a5561e77_89168614 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620be0264747f6_03448596 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -177,7 +177,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
 ">
               </div>
             </div>
-
+            <br>
+            <div class="form-row">
+              <div class="col-sm-4">
+                <label>Código:</label>
+                <input type="text" id="codigo" class="form-control" placeholder="Código" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['codigo'];?>
+" required="">
+              </div>
+              <div class="col-sm-4">
+                <label>Estado sala:</label>
+                <input type="text" id="estado_sala" class="form-control" placeholder="Estado sala" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['estado_sala'];?>
+">
+              </div>
+            </div>
 
           </div>
 
