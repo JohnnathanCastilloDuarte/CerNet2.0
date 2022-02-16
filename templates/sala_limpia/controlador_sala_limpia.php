@@ -6,7 +6,7 @@ $orden = $_POST['orden'];
 
 if($orden == 1){
     $id_asignado = $_POST['id_asignado'];
-    $array_resultado = array();
+    $array_resultado = array(); 
 
     $consultar = mysqli_prepare($connect,"SELECT id_prueba, medida_promedio, desviacion_estandar, maximo, promedios, cumple, categoria FROM salas_limpias_prueba_1 WHERE id_asignado = ?");
     mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
@@ -281,7 +281,7 @@ else if($orden == 10){
 }
 
 
-///////////////// VALIDACIÓN
+///////////////// VALIDACIï¿½N
 else if($orden == 100){
 
     $id_asignado = $_POST['id_asignado'];

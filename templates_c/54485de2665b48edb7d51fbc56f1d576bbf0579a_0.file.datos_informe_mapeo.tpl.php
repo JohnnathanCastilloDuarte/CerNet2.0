@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-15 17:16:27
+/* Smarty version 3.1.34-dev-7, created on 2022-02-16 15:07:40
   from '/home/god/public_html/CerNet2.0/templates/sala_limpia/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620bdfebabf900_31062798',
+  'unifunc' => 'content_620d133ccc3f65_66369094',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54485de2665b48edb7d51fbc56f1d576bbf0579a' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/sala_limpia/datos_informe_mapeo.tpl',
-      1 => 1644945375,
+      1 => 1645023981,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620bdfebabf900_31062798 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620d133ccc3f65_66369094 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <div class="row">
@@ -265,7 +265,7 @@ function content_620bdfebabf900_31062798 (Smarty_Internal_Template $_smarty_tpl)
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="">N° de rejillas de inyección:</label>
-                                        <input type="text" name="ensayo_p52" id="ensayo_p51" class="form-control">
+                                        <input type="text" name="ensayo_p52" id="ensayo_p52" class="form-control">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="">N° de Extractores:</label>
@@ -390,17 +390,27 @@ function content_620bdfebabf900_31062798 (Smarty_Internal_Template $_smarty_tpl)
                         <div class="row" style="text-align: center;">
                             <div class="col-sm-12">
                                 <button class="btn btn-info">Guardar</button>
-                            </div>
+                          
+                </form>
+                
+
+
+
+                      <button class="btn btn-warning text-light" id="ver_informe_salas_limpias">Informe</button>
+
+  </div>
                         </div>
                         
                         <hr>
 
                     </div>
-                </form>
-                
+
+
+
+
                 <div class="row" style="text-align: center;">
                     <div class="col-sm-12">
-                        <button class="btn btn-warning" id="ver_informe_salas_limpias">Informe</button>
+                      
                     </div>
                     
                 </div>
