@@ -12,7 +12,7 @@ $cumple_p1 = $_POST['cumple_p1'];
 $promedios_p1 = $_POST['promedios_p1'];
 $contador = 0;
 
-
+ 
 for($i = 0; $i < count($id_prueba_1); $i++){
     
     if($i > 1){
