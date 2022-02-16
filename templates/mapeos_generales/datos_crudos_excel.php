@@ -38,13 +38,13 @@ $cantidad_sensores = mysqli_stmt_num_rows($consulta_1);
 echo "</tr>";
   
   
-$traer_data_cruda = mysqli_prepare($connect,"SELECT a.temp, LENGTH(b.posicion) as longitud, b.posicion  from datos_crudos_general as a, 
-mapeo_general_sensor as b, informes_general as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = c.id_mapeo AND c.id_informe = ?
-ORDER BY longitud ASC, b.posicion ASC");  
+$traer_data_cruda = mysqli_prepare($connect,"SELECT a.temp, LENGTH(b.posicion) as longitud, b.posicion, a.time  from datos_crudos_general as a, 
+mapeo_general_sensor as b, informes_general as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = c.id_mapeo AND c.id_informe = ? 
+ORDER BY a.time ASC, longitud ASC, b.posicion ASC");  
 mysqli_stmt_bind_param($traer_data_cruda, 'i', $id_informe);
 mysqli_stmt_execute($traer_data_cruda);
 mysqli_stmt_store_result($traer_data_cruda);
-mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion);
+mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion, $fehca);
   
 $traer_fechas = mysqli_prepare($connect,"SELECT DISTINCT a.time  FROM datos_crudos_general as a, mapeo_general_sensor as b, informes_general as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo 
 AND b.id_mapeo = c.id_mapeo AND c.id_informe = ?  ORDER BY time ASC");

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-14 17:15:07
+/* Smarty version 3.1.34-dev-7, created on 2022-02-16 17:00:43
   from '/home/god/public_html/CerNet2.0/templates/campana_extraccion/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620a8e1b0bfa29_18510818',
+  'unifunc' => 'content_620d2dbb2c4ab0_42449361',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b4e6a708b720d376ff8b65d92be44c3d7888a77d' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/campana_extraccion/datos_informe_mapeo.tpl',
-      1 => 1644854048,
+      1 => 1644941499,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620a8e1b0bfa29_18510818 (Smarty_Internal_Template $_smarty_tpl) {
+function content_620d2dbb2c4ab0_42449361 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-3" style="text-align:center;">
@@ -470,7 +470,7 @@ function content_620a8e1b0bfa29_18510818 (Smarty_Internal_Template $_smarty_tpl)
           </div>
         </div><!-- FIN CARD 5-->
         <br>
-        <button class="btn btn-info">Grabar</button>
+        <button class="btn btn-info">Guardar</button>
         </div>
        
       </form>

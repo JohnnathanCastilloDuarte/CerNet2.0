@@ -36,31 +36,49 @@ if($tipo_grafico == "TEMP"){
         
         $tipo_medicion="Temperatura";
         if($altura == "todas"){
-            $traer_data_cruda = mysqli_prepare($connect,"SELECT a.temp , LENGTH(b.posicion) as longitud, b.posicion from datos_crudos_general as a, mapeo_general_sensor as b, informes_general as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = c.id_mapeo AND b.id_mapeo = ?  ORDER BY longitud ASC, b.posicion ASC");  
+            $traer_data_cruda = mysqli_prepare($connect,"SELECT a.temp , LENGTH(b.posicion) as longitud, b.posicion, a.time from datos_crudos_general as a, mapeo_general_sensor as b,
+            informes_general as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = c.id_mapeo AND b.id_mapeo = ?  ORDER BY a.time ASC, longitud ASC, b.posicion ASC");  
             mysqli_stmt_bind_param($traer_data_cruda, 'i', $id_mapeo);
             mysqli_stmt_execute($traer_data_cruda);
             mysqli_stmt_store_result($traer_data_cruda);
-            mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion);
+            mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion, $feee);
           
+            /*
             $consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
             FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja");
             mysqli_stmt_bind_param($consultar_sensores, 'i', $id_mapeo);  
             mysqli_stmt_execute($consultar_sensores);
             mysqli_stmt_store_result($consultar_sensores);
-            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);
+            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);*/
+            $consultar_sensores = mysqli_prepare($connect,"SELECT c.nombre, a.id_sensor_mapeo, d.nombre ,LENGTH(a.posicion) as longitud, a.posicion FROM mapeo_general_sensor as a, 
+            informes_general as b, sensores as c, bandeja as d WHERE a.id_mapeo = b.id_mapeo AND b.id_mapeo = ?  AND a.id_sensor = c.id_sensor 
+            AND a.id_bandeja = d.id_bandeja ORDER BY longitud ASC, a.posicion ASC");
+            /*$consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
+            FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja AND c.id_bandeja = ?");*/
+            mysqli_stmt_bind_param($consultar_sensores, 'i', $id_mapeo);  
+            mysqli_stmt_execute($consultar_sensores);
+            mysqli_stmt_store_result($consultar_sensores);
+            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo, $longitud, $posicion);
         }else{
-            $traer_data_cruda = mysqli_prepare($connect,"SELECT a.temp , LENGTH(b.posicion) as longitud, b.posicion from datos_crudos_general as a, mapeo_general_sensor as b, informes_general as c, bandeja as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = c.id_mapeo AND b.id_mapeo = ? AND b.id_bandeja = d.id_bandeja AND d.id_bandeja = ? ORDER BY longitud ASC, b.posicion ASC");  
+            $traer_data_cruda = mysqli_prepare($connect,"SELECT  DISTINCT b.posicion, a.temp , LENGTH(b.posicion) as longitud, a.time
+            from datos_crudos_general as a, mapeo_general_sensor as b, informes_general as c, bandeja as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo 
+            AND b.id_mapeo = c.id_mapeo AND b.id_mapeo = ? AND b.id_bandeja = d.id_bandeja AND d.id_bandeja = ? ORDER BY a.time ASC, longitud ASC, b.posicion ASC");  
+
             mysqli_stmt_bind_param($traer_data_cruda, 'ii', $id_mapeo, $altura);
             mysqli_stmt_execute($traer_data_cruda);
             mysqli_stmt_store_result($traer_data_cruda);
-            mysqli_stmt_bind_result($traer_data_cruda, $dato, $longitud, $posicion);
+            mysqli_stmt_bind_result($traer_data_cruda, $posicion, $dato, $longitud,  $fehca);
           
-            $consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
-            FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja AND c.id_bandeja = ?");
+          
+            $consultar_sensores = mysqli_prepare($connect,"SELECT DISTINCT c.nombre, a.id_sensor_mapeo, d.nombre ,LENGTH(a.posicion) as longitud, a.posicion FROM mapeo_general_sensor as a, 
+            informes_general as b, sensores as c, bandeja as d WHERE a.id_mapeo = b.id_mapeo AND b.id_mapeo = ?  AND a.id_sensor = c.id_sensor AND a.id_bandeja = ? 
+            AND a.id_bandeja = d.id_bandeja ORDER BY longitud ASC, a.posicion ASC");
+            /*$consultar_sensores = mysqli_prepare($connect,"SELECT a.nombre, b.id_sensor_mapeo, c.nombre
+            FROM sensores AS a, mapeo_general_sensor AS b, bandeja as c WHERE a.id_sensor = b.id_sensor AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja AND c.id_bandeja = ?");*/
             mysqli_stmt_bind_param($consultar_sensores, 'ii', $id_mapeo, $altura);  
             mysqli_stmt_execute($consultar_sensores);
             mysqli_stmt_store_result($consultar_sensores);
-            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo);
+            mysqli_stmt_bind_result($consultar_sensores, $sensor, $id_sensor, $nombre_altura_titulo, $longitud, $posicion);
         }
        
     }
