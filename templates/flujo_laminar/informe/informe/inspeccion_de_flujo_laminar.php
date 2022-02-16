@@ -1997,6 +1997,6 @@ EOD;
 $pdf->writeHTML($linea13, true, false, false, false, '');
 
 
-$pdf->Output('Algo.pdf', 'I');
+$pdf->Output($nombre_informe, 'I');
 
 ?>

@@ -401,7 +401,7 @@ function listar_resultados_prueba(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
-                console.log(response);
+                //console.log(response);
                 let traer = JSON.parse(response);
                 let template = "";
                 let contador = 0;
@@ -426,7 +426,7 @@ function listar_resultados_prueba(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
-                console.log(response);
+                //console.log(response);
                 let traer = JSON.parse(response);
                 let template = "";
                 let contador = 0;
@@ -448,7 +448,7 @@ function listar_resultados_prueba(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
-                console.log(response);
+                //console.log(response);
                 let traer = JSON.parse(response);
                 let template = "";
                 let contador = 0;
@@ -479,7 +479,7 @@ function listar_resultados_prueba(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
-                console.log(response);
+                //console.log(response);
                 let traer = JSON.parse(response);
                 let template = "";
                 let contador = 0;
@@ -504,7 +504,7 @@ function listar_resultados_prueba(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
-                console.log(response);
+                //console.log(response);
                 let traer = JSON.parse(response);
                 let template = "";
                 let contador = 0;
@@ -660,7 +660,7 @@ $("#formulario_salas").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        console.log(response);
+        //console.log(response);
         Swal.fire({
             title:'Mensaje',
             text:'Se ha modificado la información de la Sala limpia',
@@ -696,7 +696,7 @@ function listar_imagenes(){
     data:{id_asignado, movimiento},
     url:'templates/sala_limpia/controlador_imagenes.php',
     success:function(response){
-      console.log(response);
+      //console.log(response);
 
       let traer = JSON.parse(response);
       let template1 = "";
@@ -775,7 +775,7 @@ $("#formulario_evidencias_graficas_sala_limpia").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        console.log(response);
+        //console.log(response);
         if(response == "Movido"){
           Swal.fire({
             title:'Mensaje',
@@ -800,7 +800,7 @@ $.ajax({
     data:{id_imagen, movimiento},
     url:'templates/sala_limpia/controlador_imagenes.php',
     success:function(response){
-        console.log(response);
+        //console.log(response);
         if(response == "listo"){
             Swal.fire({
                 title:'Mensaje',

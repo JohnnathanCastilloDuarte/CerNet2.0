@@ -30,7 +30,7 @@ $("#actualizar_mapeo").click(function(){
      url:'templates/flujo_laminar/almacena_informacion_1.php',
 
      success:function(response){
-        console.log(response);
+        ///console.log(response);
 
         if (response == ''){
             Swal.fire({
@@ -384,7 +384,7 @@ function listar_inspeccion_visual(numeral){
             data:{id_asignado, movimiento},
             url:'templates/flujo_laminar/controlador_pruebas.php',
             success:function(response){
-                console.log(response);            
+                ///console.log(response);            
                 let traer = JSON.parse(response);
                 let template1 = "";
                 let template2 = "";
@@ -465,7 +465,7 @@ function listar_inspeccion_visual(numeral){
             data:{id_asignado, movimiento},
             url:'templates/flujo_laminar/controlador_pruebas.php',
             success:function(response){
-                console.log(response);
+                ///console.log(response);
                 
                 let traer = JSON.parse(response);
                 let template1 = "";
@@ -501,7 +501,7 @@ function listar_inspeccion_visual(numeral){
             data:{id_asignado, movimiento},
             url:'templates/flujo_laminar/controlador_pruebas.php',
             success:function(response){
-                console.log(response);
+                ///console.log(response);
                 
                 let traer = JSON.parse(response);
                 let template1 = "";
@@ -531,7 +531,7 @@ function listar_inspeccion_visual(numeral){
             data:{id_asignado, movimiento},
             url:'templates/flujo_laminar/controlador_pruebas.php',
             success:function(response){
-                console.log(response);
+                ///console.log(response);
                 
                 let traer = JSON.parse(response);
                 
@@ -755,7 +755,7 @@ $("#formulario_flujo_laminar").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        console.log(response);
+        ///console.log(response);
 
         if (response == ''){
             Swal.fire({
@@ -794,7 +794,7 @@ function listar_imagenes(){
     data:{id_asignado, movimiento},
     url:'templates/flujo_laminar/controlador_imagenes.php',
     success:function(response){
-      console.log(response);
+      ///console.log(response);
 
       let traer = JSON.parse(response);
       let template1 = "";
@@ -873,7 +873,7 @@ $("#formulario_evidencias_graficas_flujo_laminar").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        console.log(response);
+        ///console.log(response);
         if(response == "Movido"){
           Swal.fire({
             title:'Mensaje',
@@ -898,7 +898,7 @@ $("#formulario_evidencias_graficas_flujo_laminar").submit(function(e){
         data:{id_imagen, movimiento},
         url:'templates/flujo_laminar/controlador_imagenes.php',
         success:function(response){
-            console.log(response);
+            ///console.log(response);
             if(response == "listo"){
                 Swal.fire({
                     title:'Mensaje',

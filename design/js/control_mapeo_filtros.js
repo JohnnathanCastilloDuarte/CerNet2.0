@@ -119,7 +119,7 @@ $(document).ready(function(){
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-          console.log(response);
+          //console.log(response);
           let traer = JSON.parse(response);
         
           traer.forEach((x)=>{
@@ -429,7 +429,7 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
 
   for(i=0;i<inspeccion_visual_campos;i++){
     inspeccion_visual_array[i] = document.getElementsByName("inspeccion_visual[]")[i].value;
-    console.log(document.getElementsByName("inspeccion_visual[]")[i].value);
+    //console.log(document.getElementsByName("inspeccion_visual[]")[i].value);
   }
   
   var detalles_medicion_campos_a = document.getElementsByName("cumplimiento_filtro_a[]").length;
@@ -563,7 +563,7 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
 
   for(i=0;i<inspeccion_visual_campos;i++){
     inspeccion_visual_array[i] = document.getElementsByName("inspeccion_visual[]")[i].value;
-     console.log(document.getElementsByName("inspeccion_visual[]")[i].value);
+     //console.log(document.getElementsByName("inspeccion_visual[]")[i].value);
   }
   
   
