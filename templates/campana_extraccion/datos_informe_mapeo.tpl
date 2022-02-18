@@ -209,7 +209,7 @@
               <button class="btn btn-info">Guardar</button>
              
               </form>
-              <button class="btn btn-warning text-light" id="abrir_informe">Informes</button>
+              <button class="btn btn-warning text-light" id="abrir_informe">Informe</button>
               </div>
 
             <br>
@@ -623,10 +623,10 @@
     </div>
 
 </div>
-<br>  
+<!-- <br>  
 <button class="btn btn-warning" id="abrir_informe">Informe</button>
 <br>
-
+ -->
 <!--
 <button class="btn btn-success" id="ir_informe_campanas">Informe</button>-->
 
