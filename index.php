@@ -67,7 +67,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12,13));
 
 
 $aprobaciones = array();
@@ -319,6 +319,8 @@ else
               include("templates/flujo_laminar/gestionar_informe.php");
             }else if($_GET['page'] == 12 ){
               include("templates/sala_limpia/gestionar_informe.php");
+            }else if($_GET['page'] == 13 ){
+              include("templates/URS/gestionar_informe.php");
             }
           }
        break;

@@ -256,6 +256,9 @@
             <li>
                 <a href="index.php?module={$modulo[6]}&page={$page[8]}"><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
             </li>
+            <li>
+                <a href="index.php?module={$modulo[6]}&page={$page[12]}"><i class="metismenu-icon pe-7s-news-paper"></i>Calificaciones</a>
+            </li>
 
 
         </ul>
