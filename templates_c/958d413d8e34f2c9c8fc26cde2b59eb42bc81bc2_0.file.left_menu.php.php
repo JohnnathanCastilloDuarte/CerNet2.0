@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-21 22:09:30
+/* Smarty version 3.1.34-dev-7, created on 2022-03-07 16:54:26
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6213ff8ab8c580_10277171',
+  'unifunc' => 'content_62262ab25e3d27_44420090',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1645477768,
+      1 => 1646667482,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6213ff8ab8c580_10277171 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62262ab25e3d27_44420090 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -367,6 +367,11 @@ function content_6213ff8ab8c580_10277171 (Smarty_Internal_Template $_smarty_tpl)
                 <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[8];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Calificación</a>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[12];?>
+"><i class="metismenu-icon pe-7s-news-paper"></i>Calificaciones</a>
             </li>
 
 
