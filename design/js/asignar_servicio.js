@@ -477,7 +477,7 @@ function listar_equipos(id_servicio){
 	}
 	
 		$.post('templates/OT/listar_equipos.php', data ,function(e){
-      
+			
 			let traer =  JSON.parse(e);
 			let template = "";
 			let boton = "";

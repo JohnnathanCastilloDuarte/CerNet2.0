@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-04 22:10:03
+/* Smarty version 3.1.34-dev-7, created on 2022-02-21 21:19:41
   from 'C:\xampp\htdocs\CerNet2.0\templates\OT\asignar_servicio_ot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d4b7abc6eae1_79021987',
+  'unifunc' => 'content_6213f3dd3f0660_25889605',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '80b6c7e41ba5b9412eabc9ecec47ac04c119b2ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\OT\\asignar_servicio_ot.tpl',
-      1 => 1641329035,
+      1 => 1645474776,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d4b7abc6eae1_79021987 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6213f3dd3f0660_25889605 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container-fluid">
 	<div class="row mb-2">
 		<div class="col-sm-6">
@@ -130,7 +130,7 @@ function content_61d4b7abc6eae1_79021987 (Smarty_Internal_Template $_smarty_tpl)
 					<div class="card-body">
 						<div class="row" id="equipos_disponibles" style="text-align:center;">
 							<div class="col-sm-12">
-								<table id="example" style="width:100%;">
+								<table  class="table" style="width:100%;">
 									<thead>
 										<th>ID</th>
 										<th>Nombre</th>
@@ -156,7 +156,7 @@ function content_61d4b7abc6eae1_79021987 (Smarty_Internal_Template $_smarty_tpl)
 						</div>	
 						<div class="row" id="equipos_asignados" style="text-align:center;">
 							<div class="col-sm-12">
-								<table id="example" style="width:100%;" class="tabla_equipos_asignados">
+								<table  style="width:100%;" class="tabla_equipos_asignados">
 									<thead>
 										<th>ITEM</th>
 										<th>Servicio</th>

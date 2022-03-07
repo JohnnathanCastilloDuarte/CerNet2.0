@@ -101,7 +101,7 @@
 					<div class="card-body">
 						<div class="row" id="equipos_disponibles" style="text-align:center;">
 							<div class="col-sm-12">
-								<table id="example" style="width:100%;">
+								<table  class="table" style="width:100%;">
 									<thead>
 										<th>ID</th>
 										<th>Nombre</th>
@@ -127,7 +127,7 @@
 						</div>	
 						<div class="row" id="equipos_asignados" style="text-align:center;">
 							<div class="col-sm-12">
-								<table id="example" style="width:100%;" class="tabla_equipos_asignados">
+								<table  style="width:100%;" class="tabla_equipos_asignados">
 									<thead>
 										<th>ITEM</th>
 										<th>Servicio</th>

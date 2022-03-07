@@ -216,9 +216,15 @@
 <div id="modulo_8">
     <li><a href="#"><i class="metismenu-icon pe-7s-copy-file"></i>Informes<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
         <ul>
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Informes Temperatura</strong>
+                <hr>
+            </li>
             <li>
                 <a href="index.php?module={$modulo[6]}&page={$page[0]}"><i class="metismenu-icon pe-7s-news-paper"></i>Mapeo generales</a>
             </li>
+            <!--
             <li>
                 <a href="index.php?module={$modulo[6]}&page={$page[1]}"><i class="metismenu-icon pe-7s-news-paper"></i>Refrigeradores</a>
             </li>
@@ -237,7 +243,12 @@
             <li>
                 <a href="index.php?module={$modulo[6]}&page={$page[5]}"><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
             </li>
-
+            -->
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Informes Aire</strong>
+                <hr>
+            </li>
             <li>
                 <a href="index.php?module={$modulo[6]}&page={$page[6]}"><i class="metismenu-icon pe-7s-news-paper"></i>Filtros</a>
             </li>
@@ -253,8 +264,13 @@
             <li>
                 <a href="index.php?module={$modulo[6]}&page={$page[11]}"><i class="metismenu-icon pe-7s-news-paper"></i>Sala limpia</a>
             </li>
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Informes Calificación</strong>
+                <hr>
+            </li>
             <li>
-                <a href="index.php?module={$modulo[6]}&page={$page[8]}"><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
+                <a href="index.php?module={$modulo[6]}&page={$page[8]}"><i class="metismenu-icon pe-7s-news-paper"></i>Calificación</a>
             </li>
 
 

@@ -1,6 +1,6 @@
 <?php 
 
-	$tipo_1 = "Protocolo";
+	$tipo_1 = "Calificación";
 
 	$array_mapeo=array();
 
@@ -35,7 +35,7 @@ empresa as d, persona as e, item as f  WHERE c.id_numot = b.id_numot AND a.id_se
 	$smarty->assign("conteo_mapeo",$conteo_informes_mapeo);
 	$smarty->assign("array_mapeo",$array_mapeo);
 
-	$smarty->display("protocolos/gestionar_protocolos.tpl");
+	$smarty->display("Calificacion/gestionar_calificaciones.tpl");
 
 
 	mysqli_stmt_close($connect);

@@ -5,6 +5,7 @@
 	$ot = $_POST['ot'];
 	$id_empresa = $_POST['id_empresa'];
 	$id_servicio = $_POST['id_servicio'];
+	$equipos = "";
 
 /*	echo $ot."-";
 	echo $id_empresa."-";
@@ -16,12 +17,20 @@
 	mysqli_stmt_bind_result($query, $tipo_item);
 	mysqli_stmt_fetch($query);
 
-
-	$equipos = mysqli_prepare($connect,"SELECT id_item, nombre, descripcion FROM item  WHERE id_tipo = ? AND id_empresa = ?");
-	mysqli_stmt_bind_param($equipos, 'ii', $tipo_item, $id_empresa);
-	mysqli_stmt_execute($equipos);
-	mysqli_stmt_store_result($equipos);
-	mysqli_stmt_bind_result($equipos, $id_item, $nombre_item, $desc_item);
+	if($tipo_item == 1111){
+		$equipos = mysqli_prepare($connect,"SELECT id_item, nombre, descripcion FROM item  WHERE id_empresa = ?");
+		mysqli_stmt_bind_param($equipos, 'i', $id_empresa);
+		mysqli_stmt_execute($equipos);
+		mysqli_stmt_store_result($equipos);
+		mysqli_stmt_bind_result($equipos, $id_item, $nombre_item, $desc_item);
+	}else{
+		$equipos = mysqli_prepare($connect,"SELECT id_item, nombre, descripcion FROM item  WHERE id_tipo = ? AND id_empresa = ?");
+		mysqli_stmt_bind_param($equipos, 'ii', $tipo_item, $id_empresa);
+		mysqli_stmt_execute($equipos);
+		mysqli_stmt_store_result($equipos);
+		mysqli_stmt_bind_result($equipos, $id_item, $nombre_item, $desc_item);
+	}
+	
 
 //echo "SELECT id_item, nombre, descripcion FROM item  WHERE id_tipo = $tipo_item AND id_empresa = $id_empresa";
 

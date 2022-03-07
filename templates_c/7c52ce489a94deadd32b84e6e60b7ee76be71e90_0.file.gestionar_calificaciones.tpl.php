@@ -1,4 +1,27 @@
-<div class="row">
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2022-02-21 23:04:02
+  from 'C:\xampp\htdocs\CerNet2.0\templates\calificacion\gestionar_calificaciones.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_62140c52532492_18950092',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '7c52ce489a94deadd32b84e6e60b7ee76be71e90' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\calificacion\\gestionar_calificaciones.tpl',
+      1 => 1645480680,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_62140c52532492_18950092 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
@@ -32,7 +55,7 @@
                                         <th>Acciones</th>
                                     </thead>
                                     <tbody>
-                                        {if $conteo_mapeo == 0}
+                                        <?php if ($_smarty_tpl->tpl_vars['conteo_mapeo']->value == 0) {?>
                                         <tr>
                                             <td>
                                             
@@ -40,19 +63,35 @@
         
                                             </td>   
                                         </tr>   
-                                        {else}
-                                        {foreach from=$array_mapeo item=mapeo}
+                                        <?php } else { ?>
+                                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_mapeo']->value, 'mapeo');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['mapeo']->value) {
+?>
                                         <tr>
-                                            <td>{$mapeo.numot}</td>
-                                            <td>{$mapeo.item}</td>
-                                            <td>{$mapeo.empresa}</td>
-                                            <td>{$mapeo.nombre_usuario} {$mapeo.apellido_usuario}</td>
+                                            <td><?php echo $_smarty_tpl->tpl_vars['mapeo']->value['numot'];?>
+</td>
+                                            <td><?php echo $_smarty_tpl->tpl_vars['mapeo']->value['item'];?>
+</td>
+                                            <td><?php echo $_smarty_tpl->tpl_vars['mapeo']->value['empresa'];?>
+</td>
+                                            <td><?php echo $_smarty_tpl->tpl_vars['mapeo']->value['nombre_usuario'];?>
+ <?php echo $_smarty_tpl->tpl_vars['mapeo']->value['apellido_usuario'];?>
+</td>
                                             <td>
-                                                <a href="index.php?module={$modulo[6]}&page={$page[9]}&asignado={$mapeo.id_asignado}&type={$id_servicio_mapeo}" class="btn btn-outline-success">Informe</a>
+                                                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[9];?>
+&asignado=<?php echo $_smarty_tpl->tpl_vars['mapeo']->value['id_asignado'];?>
+&type=<?php echo $_smarty_tpl->tpl_vars['id_servicio_mapeo']->value;?>
+" class="btn btn-outline-success">Informe</a>
                                             </td>
                                         </tr>
-                                        {/foreach}
-                                        {/if}
+                                        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                        <?php }?>
                                     </tbody>
                                 </table>
                             </div>
@@ -65,4 +104,5 @@
             </div>
         </div>
     </div>
-</div>
+</div><?php }
+}
