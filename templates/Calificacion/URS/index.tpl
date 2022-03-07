@@ -1,4 +1,3 @@
-<input type="hidden" value="{$id_asignado_urs}" id="id_asignado_urs">
 <div class="row">
     <div class="col-sm-12">
 
@@ -364,9 +363,6 @@
 
 
 </div>
-
-
-
 
 <script type="text/javascript" src="design/js/control_mapeo_urs.js"></script>
 <script type="text/javascript" src="design/js/nuevo_equipo_cercal.js"></script>

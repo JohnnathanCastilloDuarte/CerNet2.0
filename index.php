@@ -360,9 +360,8 @@ else
 /////////////// CASE PARA LA MANIPULACIÓN DE LAS CALIFICACIONES        
       case "Calificacion":
         if($_GET['type']=="URS"){
-          include("templates/Calificacion/URS/index.php?id_informe=".$_GET['id_informe']);
+          include("templates/Calificacion/URS/index.php");
         }else if($_GET['type']=="DQ"){
-         
           include("templates/Calificacion/DQ/index.php");
         }
         break;
