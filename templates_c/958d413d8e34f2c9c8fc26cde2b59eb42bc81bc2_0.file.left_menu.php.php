@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-21 16:53:51
+/* Smarty version 3.1.34-dev-7, created on 2022-02-21 22:09:30
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6213b58f1e8cc2_33934886',
+  'unifunc' => 'content_6213ff8ab8c580_10277171',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1645458777,
+      1 => 1645477768,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6213b58f1e8cc2_33934886 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6213ff8ab8c580_10277171 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -290,11 +290,17 @@ function content_6213b58f1e8cc2_33934886 (Smarty_Internal_Template $_smarty_tpl)
 <div id="modulo_8">
     <li><a href="#"><i class="metismenu-icon pe-7s-copy-file"></i>Informes<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
         <ul>
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Informes Temperatura</strong>
+                <hr>
+            </li>
             <li>
                 <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Mapeo generales</a>
             </li>
+            <!--
             <li>
                 <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
@@ -323,7 +329,12 @@ function content_6213b58f1e8cc2_33934886 (Smarty_Internal_Template $_smarty_tpl)
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[5];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Automoviles</a>
             </li>
-
+            -->
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Informes Aire</strong>
+                <hr>
+            </li>
             <li>
                 <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[6];?>
@@ -347,15 +358,15 @@ function content_6213b58f1e8cc2_33934886 (Smarty_Internal_Template $_smarty_tpl)
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[11];?>
 "><i class="metismenu-icon pe-7s-news-paper"></i>Sala limpia</a>
             </li>
-            <li>
-                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[8];?>
-"><i class="metismenu-icon pe-7s-news-paper"></i>Protocolos</a>
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Informes Calificación</strong>
+                <hr>
             </li>
             <li>
                 <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[12];?>
-"><i class="metismenu-icon pe-7s-news-paper"></i>Calificaciones</a>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[8];?>
+"><i class="metismenu-icon pe-7s-news-paper"></i>Calificación</a>
             </li>
 
 

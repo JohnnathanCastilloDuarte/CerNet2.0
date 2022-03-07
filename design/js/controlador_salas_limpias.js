@@ -1,6 +1,6 @@
 
 var id_asignado = $("#id_asignado_sala_limpia").val();
-
+ 
 
 validacion_salas_limpias(100);
 validacion_salas_limpias(200);

@@ -284,7 +284,7 @@ else
             }else if ($_GET["page"] == 8){
               include("templates/campana_extraccion/gestionar_informes.php");
             }else if ($_GET["page"] == 9){
-              include("templates/protocolos/gestionar_protocolos.php");
+              include("templates/Calificacion/gestionar_calificaciones.php");
             }
 
             else if($_GET["page"] == 10){
@@ -312,6 +312,8 @@ else
                 include("templates/sala_limpia/datos_informe_mapeo.php");
               }else if($_GET["type"] == 12){
                include("templates/mapeos_generales/datos_informe_mapeo.php");
+              }else if($_GET["type"]==13){
+                include("templates/Calificacion/datos_calificacion.php");
               }
               
       
@@ -355,7 +357,15 @@ else
        }
         break;
 
-     
+/////////////// CASE PARA LA MANIPULACIÓN DE LAS CALIFICACIONES        
+      case "Calificacion":
+        if($_GET['type']=="URS"){
+          include("templates/Calificacion/URS/index.php?id_informe=".$_GET['id_informe']);
+        }else if($_GET['type']=="DQ"){
+         
+          include("templates/Calificacion/DQ/index.php");
+        }
+        break;
    }//FIN DEL SWITCH
 
 }else if(isset($_GET['clave'])){

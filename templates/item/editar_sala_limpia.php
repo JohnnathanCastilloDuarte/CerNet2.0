@@ -21,7 +21,7 @@ $presion_versus = $_POST['presion_versus'];
 $tipo_presion = $_POST['tipo_presion'];
 $puntos_muestreo = $_POST['puntos_muestreo'];
 $codigo = $_POST['codigo'];
-$estado_sala = $_POST['estado_sala'];
+$estado_sala = $_POST['estado_sala']; 
 
 $id_item_sala_limpia     = $_POST['id_item_sala_limpia'];
 $id_item_2_sala_limpia   = $_POST['id_item_2_sala_limpia'];
