@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-09 15:54:27
+/* Smarty version 3.1.34-dev-7, created on 2022-03-08 23:27:25
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6203d5a344ede3_79668282',
+  'unifunc' => 'content_6227d84d32a8f6_52178556',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10cd508aa62a2b747cc0b00d78a3d76fc3305eb7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_bodega.tpl',
-      1 => 1644418327,
+      1 => 1646778440,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6203d5a344ede3_79668282 (Smarty_Internal_Template $_smarty_tpl) {
-?><div class="row">
+function content_6227d84d32a8f6_52178556 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+<div class="row">
   <div class="col-sm-12">
     <div class="card">
       <div class="card-header">
@@ -60,7 +61,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['bodega']->value) {
             </li>
 
           </ul>
+    
           <div class="form-wizard-content">
+           
            <input value='<?php echo $_smarty_tpl->tpl_vars['id_tipo']->value;?>
 ' id='id_tipo' type="hidden">
             <div id="step-12">
@@ -70,7 +73,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['bodega']->value) {
 ">
                   <div class="position-relative form-group">
                     <label>Nombre bodega:</label><input name="text" id="nombre_bodega" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['nombre_item'];?>
-" placeholder="Nombre de bodega">
+" placeholder="Nombre de bodega" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -512,7 +515,26 @@ for ($__section_i_4_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 >
                 </div>
               </div>
-              <br><!--
+                
+              <br>
+              <?php if ($_smarty_tpl->tpl_vars['bodega']->value['estado'] != 0) {
+$_smarty_tpl->_assignInScope('estado1', "checked");
+} else {
+$_smarty_tpl->_assignInScope('estado2', "checked");
+}?>
+
+             <div class="form-row">
+              <div class="col-sm-3">
+                <label>Estado de aprobación</label><br>
+                <lable style="color: #50ff00;">Aprobado: <input type="radio" name="estado_bodega" id="estado_bodega_si" value="1" <?php echo $_smarty_tpl->tpl_vars['estado1']->value;?>
+></lable>
+                ||
+                <lable style="color: #ff0000;">No Aprobado: <input type="radio" name="estado_bodega" id="estado_bodega_no" value="0" <?php echo $_smarty_tpl->tpl_vars['estado2']->value;?>
+></lable>
+                
+              </div>
+             </div> 
+              <!--
               <div class="form-row">
                 <div class="col-sm-12">
                   <input type="checkbox" name="copia_correo" value="Si" id="enviar_item_bodega">
@@ -535,8 +557,10 @@ for ($__section_i_4_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
             </div>
 
           </div>
+            
           <!--Cierre del content wizzard-->
         </div>
+      
         <div class="divider"></div>
         <div class="clearfix">
           <button type="button" id="next-btn2" class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Siguiente</button>
@@ -551,7 +575,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
     </div>
   </div>
+
   <?php echo '<script'; ?>
  type="text/javascript" src="design/js/update_bodega.js"><?php echo '</script'; ?>
-><?php }
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/js/validar_campos_vacios.js"><?php echo '</script'; ?>
+>
+<?php }
 }

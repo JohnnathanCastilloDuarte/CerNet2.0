@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -33,14 +34,16 @@
             </li>
 
           </ul>
+    
           <div class="form-wizard-content">
+           
            <input value='{$id_tipo}' id='id_tipo' type="hidden">
             <div id="step-12">
               <div class="form-row">
                 <div class="col-sm-6">
                   <input type="hidden" id="id_item_bodega" value="{$id_item}">
                   <div class="position-relative form-group">
-                    <label>Nombre bodega:</label><input name="text" id="nombre_bodega" class="form-control" value="{$bodega.nombre_item}" placeholder="Nombre de bodega">
+                    <label>Nombre bodega:</label><input name="text" id="nombre_bodega" class="form-control" value="{$bodega.nombre_item}" placeholder="Nombre de bodega" required>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -382,7 +385,20 @@
                   <input type="radio" name="fichas_estabilidad" id="fichas_estabilidad" value="No" {$ficha_2}>
                 </div>
               </div>
-              <br><!--
+                
+              <br>
+              {if $bodega.estado != 0}{$estado1 = "checked"}{else}{$estado2 = "checked"}{/if}
+
+             <div class="form-row">
+              <div class="col-sm-3">
+                <label>Estado de aprobación</label><br>
+                <lable style="color: #50ff00;">Aprobado: <input type="radio" name="estado_bodega" id="estado_bodega_si" value="1" {$estado1}></lable>
+                ||
+                <lable style="color: #ff0000;">No Aprobado: <input type="radio" name="estado_bodega" id="estado_bodega_no" value="0" {$estado2}></lable>
+                
+              </div>
+             </div> 
+              <!--
               <div class="form-row">
                 <div class="col-sm-12">
                   <input type="checkbox" name="copia_correo" value="Si" id="enviar_item_bodega">
@@ -405,8 +421,10 @@
             </div>
 
           </div>
+            
           <!--Cierre del content wizzard-->
         </div>
+      
         <div class="divider"></div>
         <div class="clearfix">
           <button type="button" id="next-btn2" class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Siguiente</button>
@@ -418,4 +436,6 @@
 
     </div>
   </div>
+
   <script type="text/javascript" src="design/js/update_bodega.js"></script>
+  <script type="text/javascript" src="design/js/validar_campos_vacios.js"></script>
