@@ -133,16 +133,19 @@ $pdf->writeHTML($html, true, false, false, false, '');
 
 
 $que_hace = "";
+$qr_imagen = "";
+$fecha_firma = "";
 
-$consultar_2 = mysqli_prepare($connect,"SELECT   a.fecha_firma, b.nombre, b.apellido, d.nombre, a.rol, a.qr FROM
+$consultar_2 = mysqli_prepare($connect,"SELECT   a.fecha_firma, b.nombre, b.apellido, d.nombre, a.rol, a.qr, a.id_persona FROM
 participante_documentacion as a, persona as b, cargo as d WHERE a.id_documentacion = ?
-AND a.id_persona = b.id_usuario AND a.fecha_firma is not null AND b.id_cargo = d.id_cargo  ORDER BY fecha_firma ASC;;");
+AND a.id_persona = b.id_usuario AND b.id_cargo = d.id_cargo  ORDER BY fecha_firma ASC;");
 mysqli_stmt_bind_param($consultar_2, 'i', $key);
 mysqli_stmt_execute($consultar_2);
 mysqli_stmt_store_result($consultar_2);
-mysqli_stmt_bind_result($consultar_2,  $fecha_registro, $nombre, $apellido, $cargo, $tipo, $qr);
+mysqli_stmt_bind_result($consultar_2,  $fecha_registro, $nombre, $apellido, $cargo, $tipo, $qr, $id_usuario);
 
 while($row = mysqli_stmt_fetch($consultar_2)){
+
 
 
     if($tipo == 1){     
@@ -152,13 +155,27 @@ while($row = mysqli_stmt_fetch($consultar_2)){
     }else{
         $que_hace = "Aprobado por";
     }
+
+    if($fecha_registro != ""){
+        $qr_imagen='<p><img src="templates/documentacion/head_templates/'.$qr.'" border="0" height="80" width="80" align="middle" /></p>';
+        $fecha_firma = $fecha_registro;
+    }else{
+        $qr_imagen = "Rechazo documento";
+        $buscar_rechazo = mysqli_prepare($connect,"SELECT fecha_registro FROM rechazos_documentacion WHERE id_documentacion = ? AND id_usuario = ?");
+        mysqli_stmt_bind_param($buscar_rechazo, 'ii', $key, $id_usuario);
+        mysqli_stmt_execute($buscar_rechazo);
+        mysqli_stmt_store_result($buscar_rechazo);
+        mysqli_stmt_bind_result($buscar_rechazo, $fecha_firma_no);
+        mysqli_stmt_fetch($buscar_rechazo);
+        $fecha_firma = $fecha_firma_no;
+    }
+
   /*
     if($contador == 4){
         $pdf->AddPage('A4');
 
     }*/
      
-  
 
       $pdf->writeHTMLCell(60, 5, 10, '', '<srtong>'.$que_hace.'</srtong>', 1, 0, 0, true, 'C', true);
 
@@ -170,9 +187,10 @@ while($row = mysqli_stmt_fetch($consultar_2)){
       $firma_que = "Token";
       $pdf->writeHTMLCell(60, 30, 10, '', $nombre.' '.$apellido.'<br> Cargo: '.$cargo, 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(70,30, 70, '',$fecha_registro, 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(70,30, 70, '',$fecha_firma, 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(60, 30, 140, '', '<p><img src="templates/documentacion/head_templates/'.$qr.'" border="0" height="80" width="80" align="middle" /></p>', 1, 1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(60, 30, 140, '', $qr_imagen, 1, 1, 0, true, 'C', true);
+      
     
 
       if($contador == 3)

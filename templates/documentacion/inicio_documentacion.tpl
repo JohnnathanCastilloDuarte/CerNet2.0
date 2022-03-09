@@ -12,13 +12,20 @@
       
       <div class="row-form">
         <div class="col-sm-6">
-          <label>Selecciona la empresa:</label>
+         <!-- <label>Selecciona la empresa:</label>
           <select class="form-control" id="empresa_documentacion">
             <option value="0">Seleccione...</option>
             {foreach from=$array_empresa item=empresa}
             <option value="{$empresa.id_empresa}">{$empresa.nombre_empresa}</option>
             {/foreach}
-          </select>
+          </select>-->
+          <label>Empresa:</label>
+            <input type="hidden" id="id_empresa">
+            <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="{$filtro.nombre_empresa}">
+            <div >
+              <table class="table" id="aqui_resultados_empresa">
+              </table>
+            </div>
         </div>
         <br>
       </div>
