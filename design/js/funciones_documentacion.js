@@ -22,10 +22,54 @@ listar_firmantes_ok();
 listar_firmantes_no();
 listar_config_documentacion();
 listar_pdf_grande();
-///////////EVENTO QUE CONTROLA EL CHANGE DEL SELECT DE EMPRESAS///////////////////////
-$("#empresa_documentacion").change(function(){
-  
-    let id_empresa = $(this).val();
+
+//////// LISTAR EMPRESAS 
+
+$("#buscador_empresa").keydown(function(){
+	
+	let buscar = $(this).val();
+  console.log(buscar);
+	
+	$.ajax({
+		type:'POST',
+		data:{buscar},
+		url:'templates/controlador_buscador_empresa.php',
+		success:function(response){
+      console.log(response);
+			let trear = JSON.parse(response);
+			let template = "";
+			$("#aqui_resultados_empresa").show();
+
+			trear.forEach((valor)=>{
+				template +=
+				`	
+					<tr>
+						<td><button class="btn btn-muted" id="seleccionar_empresa" data-id="${valor.id_empresa}" data-name="${valor.nombre}" data-direccion="${valor.direccion}">${valor.nombre}</button></td>
+					</tr>
+					
+				`;
+			});
+
+			$("#aqui_resultados_empresa").html(template);
+
+		}
+	})
+});
+
+///////////////// EVENTO EMPRESA 
+
+$(document).on('click','#seleccionar_empresa',function(){
+
+	let id_empresa = $(this).attr('data-id');
+	let nombre_empresa = $(this).attr('data-name');
+  let direccion = $(this).attr('data-direccion');
+
+	$("#buscador_empresa").val(nombre_empresa);
+  $("#id_empresa").val(id_empresa);
+  $("#ubicacion_filtro").val(direccion);
+
+	$("#aqui_resultados_empresa").hide();
+
     let id_numot = "";
      $.ajax({
        type:'POST',
@@ -163,11 +207,8 @@ function listar_documentacion_activo(id_empresa){
        
         if(x.estado == 1){
          estado += `
-              <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
-                  <option value="0">Seleccione...</option>
-                  <option value="2">Participantes</option>
-                  <option value="3">Documentación</option>
-                </select>
+              <button class="btn btn-info" id="agregar_participante" data-id="${x.id_documentacion}" value="2">Participantes</button> |
+              <button class="btn btn-info" id="agregar_documentacion" data-id="${x.id_documentacion}" value="3">Documentacion</button>
           `;
         }else if(x.estado == 0 && x.estructura == 1){
           estado += `
@@ -176,11 +217,8 @@ function listar_documentacion_activo(id_empresa){
            `;
          }else{
           estado += `
-              <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
-                  <option value="0">Seleccione...</option>
-                  <option value="2">Participantes</option>
-                  <option value="3">Documentación</option>
-                </select>
+          <button class="btn btn-info" id="agregar_participante" data-id="${x.id_documentacion}" value="2">Participantes</button> ||
+          <button class="btn btn-info" id="agregar_documentacion" data-id="${x.id_documentacion}" value="3">Documentacion</button>
           `;
         }
         
@@ -232,10 +270,26 @@ $(document).on('click','#guarda_link_inspector',function(){
 });
 
 
-///////// CONTROLA EL SELECT DE PASOS DE DOCUMENTACION
-$(document).on('change','#pasos_documentacion',function(){
+
+$(document).on('click','#agregar_participante', function(){
+
   let eleccion = $(this).val();
   let clave_valor = $(this).attr('data-id');
+  tipo_proceso_botones_documentacion(eleccion,clave_valor);
+});
+
+$(document).on('click','#agregar_documentacion', function(){
+
+  let eleccion = $(this).val();
+  let clave_valor = $(this).attr('data-id');
+  tipo_proceso_botones_documentacion(eleccion,clave_valor);
+});
+///////// CONTROLA EL SELECT DE PASOS DE DOCUMENTACION
+
+
+function tipo_proceso_botones_documentacion(eleccion,clave_valor){
+
+
   let option = "";
   let link = "";
   
@@ -269,8 +323,9 @@ $(document).on('change','#pasos_documentacion',function(){
         window.open(link);
       }
     });
-    }  
-}); 
+    }
+  }    
+//}); 
   
 
 //////////////////////////////////////////////////////////////////////////////////FUNCIONES QUE CONTROLAN EL ARCHIVO AÑADIR_PARTICIPANTES.PHP////////////////////////////////////////////////////////
@@ -341,7 +396,7 @@ $("#listar_usuarios_cernet").change(function(){
         data: datos,
         url:'templates/documentacion/listar_particiante_x_empresa.php',
         success:function(response){
-          console.log(response);
+          
           let traer = JSON.parse(response);
           let template = ""
 
@@ -1273,7 +1328,7 @@ $(document).on("click","#ver",function(){
   
 });
 
-
+/*
   var limpiar = document.getElementById("limpiar");
   var canvas = document.getElementById("algo");
 	var ctx = canvas.getContext("2d");
@@ -1470,7 +1525,7 @@ $("#cerrar_hojita_2").click(function(){
 $("#ocultar_3").click(function(){
   
 });
-
+*/
 ///////////////////TRAER FIRMANTES
 function traer_firmantes(){
    let id = $("#id_oculto_oculto").val();
@@ -1744,6 +1799,7 @@ function listar_config_documentacion(){
     }
   })
 }
+
 
 
 
