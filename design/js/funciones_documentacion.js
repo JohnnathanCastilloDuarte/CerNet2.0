@@ -207,11 +207,8 @@ function listar_documentacion_activo(id_empresa){
        
         if(x.estado == 1){
          estado += `
-              <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
-                  <option value="0">Seleccione...</option>
-                  <option value="2">Participantes</option>
-                  <option value="3">Documentación</option>
-                </select>
+              <button class="btn btn-info" id="agregar_participante" data-id="${x.id_documentacion}" value="2">Participantes</button> |
+              <button class="btn btn-info" id="agregar_documentacion" data-id="${x.id_documentacion}" value="3">Documentacion</button>
           `;
         }else if(x.estado == 0 && x.estructura == 1){
           estado += `
@@ -220,11 +217,8 @@ function listar_documentacion_activo(id_empresa){
            `;
          }else{
           estado += `
-              <select id="pasos_documentacion" data-id="${x.id_documentacion}" class="form-control">
-                  <option value="0">Seleccione...</option>
-                  <option value="2">Participantes</option>
-                  <option value="3">Documentación</option>
-                </select>
+          <button class="btn btn-info" id="agregar_participante" data-id="${x.id_documentacion}" value="2">Participantes</button> ||
+          <button class="btn btn-info" id="agregar_documentacion" data-id="${x.id_documentacion}" value="3">Documentacion</button>
           `;
         }
         
@@ -276,10 +270,26 @@ $(document).on('click','#guarda_link_inspector',function(){
 });
 
 
-///////// CONTROLA EL SELECT DE PASOS DE DOCUMENTACION
-$(document).on('change','#pasos_documentacion',function(){
+
+$(document).on('click','#agregar_participante', function(){
+
   let eleccion = $(this).val();
   let clave_valor = $(this).attr('data-id');
+  tipo_proceso_botones_documentacion(eleccion,clave_valor);
+});
+
+$(document).on('click','#agregar_documentacion', function(){
+
+  let eleccion = $(this).val();
+  let clave_valor = $(this).attr('data-id');
+  tipo_proceso_botones_documentacion(eleccion,clave_valor);
+});
+///////// CONTROLA EL SELECT DE PASOS DE DOCUMENTACION
+
+
+function tipo_proceso_botones_documentacion(eleccion,clave_valor){
+
+
   let option = "";
   let link = "";
   
@@ -313,8 +323,9 @@ $(document).on('change','#pasos_documentacion',function(){
         window.open(link);
       }
     });
-    }  
-}); 
+    }
+  }    
+//}); 
   
 
 //////////////////////////////////////////////////////////////////////////////////FUNCIONES QUE CONTROLAN EL ARCHIVO AÑADIR_PARTICIPANTES.PHP////////////////////////////////////////////////////////
