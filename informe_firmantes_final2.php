@@ -20,6 +20,13 @@ if($cuantos != 0){
     $tipo_originalidad = "<span>Documento Original</span>";
 }
 
+$informacion_encabezados = mysqli_prepare($connect, "SELECT enunciado_1, enunciado_2, protocolo, version, paginacion, leyenda FROM documentacion WHERE id = ?");
+mysqli_stmt_bind_param($informacion_encabezados, 'i', $key);
+mysqli_stmt_execute($informacion_encabezados);
+mysqli_stmt_store_result($informacion_encabezados);
+mysqli_stmt_bind_result($informacion_encabezados, $enunciado_1, $enunciado_2, $protocolo, $version, $paginacion, $leyenda);
+mysqli_stmt_fetch($informacion_encabezados);
+
 
 
 
@@ -29,29 +36,33 @@ class MYPDF extends TCPDF
     //Page header
     public function Header() 
 	{
-    global $key, $tipo_originalidad;
+    global $enunciado_1, $enunciado_2, $protocolo, $version, $paginacion;
 		// Set border style
 		$this->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(120, 120, 120)));
         // Logo
-		$this->writeHTMLCell(35, 22, 17, 11, '<img src="design/assets/images/logo_big.png"" width="150">', 0, 0, 0, true, 'C', true);
+		
         // Set font
         $this->SetFont('helvetica', 'B', 10);
         // Title
 		//$this->writeHTMLCell(50, 20, 15, 7, '', 1, 0, 0, true, 'C', true);
-    $this->SetFont('helvetica', 'B', 9);	
+   	
 	//	$this->MultiCell(60, 20, $a, 1, 'C', 0, 0, 65, 7, true, 0,true, true, 20, 'M');
-		$this->SetFont('helvetica', 'B', 10);
+		
 	//	$this->writeHTMLCell(70, 15, 125, 7, 'Informe: '.$nombre_informe.' <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 		//$this->MultiCell(91, 15, 'Informe:  // REVISION: 0.0.0', 1, 'C', 0, 1, 190, 7, true, 1, true, true, 0, 'M');		
 		//$this->writeHTMLCell(70, 5, 125, 22, '<table><tr><td width="120%">Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
    
     
   //$this->MultiCell(120, 16.5,17 '<img src="design/assets/images/logo_big.png"><br><b>Original</b>', 1, 'C', 0, 0, 15, 30, true, 0, false, true, 16, 'M');
-		$this->writeHTMLCell(100, 6, 60, 30, '<br>SISTEMA DE GESTIÓN DE CALIDAD', 1, 0, 0, true, 'C', true);
-		$this->writeHTMLCell(100, 10.5, 60, 36, 'Sistema de firmas digital<br> Cercal Group', 1, 1, 0, true, 'C', true);
-    
-		$this->writeHTMLCell(45, 16.5, 15, 30, '<img src="design/assets/images/logo_big.png" width="100"><br><b>'.$tipo_originalidad.'</b>', 1, 1, 0, true, 'C', true);
-    $this->writeHTMLCell(37, 16.5, 160, 30, 'Proceso documental # '.$key, 1, 0, 0, true, 'C', true);
+        $this->SetFont('helvetica', 'B', 11);
+		$this->writeHTMLCell(135, 10, 15, 30, $enunciado_1, 1, 0, 0, true, 'C', true);
+		$this->writeHTMLCell(135, 10, 15, 40, $enunciado_2, 1, 1, 0, true, 'C', true);
+
+        $this->SetFont('helvetica', 'B', 8);
+        $this->writeHTMLCell(45, 10, 150, 30, " Protocolo : <br>".$protocolo, 1, 0, 0, true, 'C', true);
+       
+        $this->writeHTMLCell(45, 5, 150, 40, 'Version : '.$version, 1, 1, 0, true, 'C', true);
+        $this->writeHTMLCell(45, 5, 150, 45, '<br><span>'.$paginacion.'</span>', 1, 1, 0, true, 'C', true);
     }
 	
     // Page footer
@@ -63,11 +74,7 @@ class MYPDF extends TCPDF
 // create new PDF document
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // set document information
-$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle("");
-$pdf->SetSubject('TCPDF Tutorial');
-$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -110,27 +117,14 @@ mysqli_stmt_bind_result($query, $empresa, $proyecto, $url);
 mysqli_stmt_fetch($query);
 
 $pdf->AddPage('A4');
+$pdf->ln(6);
 $html = <<<EOD
-<br><br>
-<h2 style="text-align:center;">DOCUMENTO DE FIRMA ELECTRONICA</h2>
-<p style="text-align:justify">El siguiente documento contiene la relación de los participantes, quienes por medio  la misma aceptan y dan por entendido
-que lo demostrado en los adjuntos disponibles para <strong>$proyecto</strong>, son veracez y cumplen con el proposito por el cual han sido creados.
-<br>
-Por lo consiguiente se acepta que el siguiente proceso es de firma electronica, y cumple con lo estipulado en la <strong>CFR 21 (parte 11).</strong>
-Por ende se busca  promover la integridad de datos del uso de los registros y firmas electrónicas de manera que los datos no se distorsionen, eliminen
-o manipulen de ninguna manera que pueda comprometer la prestación de servicios. 
-</p>
-<br>
-<p>Empresas participantes:</p>
-<br>
-<p style="text-align:center;">Cercal Group</p>
-<p style="text-align:center;">$empresa</p>
-<br>
+   <strong>$leyenda</strong>
 EOD;
-
 $pdf->writeHTML($html, true, false, false, false, '');
 
 
+$pdf->ln(15);
 
 $que_hace = "";
 $qr_imagen = "";
@@ -149,15 +143,15 @@ while($row = mysqli_stmt_fetch($consultar_2)){
 
 
     if($tipo == 1){     
-        $que_hace = "Elaborado por";
+        $que_hace = "<strong>Preparado por</strong>";
     }else if($tipo == 2){
-        $que_hace = "Revisado por";
+        $que_hace = "<strong>Revisado por</strong>";
     }else{
-        $que_hace = "Aprobado por";
+        $que_hace = "<strong>Aprobado por</strong>";
     }
 
     if($fecha_registro != ""){
-        $qr_imagen='<p><img src="templates/documentacion/head_templates/'.$qr.'" border="0" height="80" width="80" align="middle" /></p>';
+        $qr_imagen='<p><br><img src="templates/documentacion/head_templates/'.$qr.'" border="1" height="70" width="70" align="middle" /></p>';
         $fecha_firma = $fecha_registro;
     }else{
         $qr_imagen = "Rechazo documento";
@@ -170,43 +164,58 @@ while($row = mysqli_stmt_fetch($consultar_2)){
         $fecha_firma = $fecha_firma_no;
     }
 
-  /*
-    if($contador == 4){
+    $pdf->writeHTMLCell(45, 5, 15, '', $que_hace, 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(45, 5, 60, '', '<strong>Cargo</strong>', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(45, 5, 105, '', '<strong>Fecha</strong>', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(45, 5, 150, '', '<strong>Firma</strong>', 1, 1, 0, true, 'C', true);
+
+    //<br><p></p> Cargo: '.$cargo
+    $firma_que = "Token";
+
+    $pdf->writeHTMLCell(45, 30.7, 15, '', '<p><br><br><br>'.$nombre.' '.$apellido.'</p>', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(45, 30.7, 60, '', '<p><br><br><br>'.$cargo.'</p>', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(45,30.7, 105, '','<p><br><br><br>'.$fecha_firma.'</p>', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(45, 30.7, 150, '', $qr_imagen, 1, 1, 0, true, 'C', true);
+
+
+
+    if($contador == 3)
+    {
         $pdf->AddPage('A4');
+    }
 
-    }*/
-     
-
-      $pdf->writeHTMLCell(60, 5, 10, '', '<srtong>'.$que_hace.'</srtong>', 1, 0, 0, true, 'C', true);
-
-      $pdf->writeHTMLCell(70, 5, 70, '', '<srtong>Fecha</srtong>', 1, 0, 0, true, 'C', true);
-
-      $pdf->writeHTMLCell(60, 5, 140, '', '<srtong>Firma</srtong>', 1, 1, 0, true, 'C', true);
-
-
-      $firma_que = "Token";
-      $pdf->writeHTMLCell(60, 30, 10, '', $nombre.' '.$apellido.'<br> Cargo: '.$cargo, 1, 0, 0, true, 'C', true);
-
-      $pdf->writeHTMLCell(70,30, 70, '',$fecha_firma, 1, 0, 0, true, 'C', true);
-
-      $pdf->writeHTMLCell(60, 30, 140, '', $qr_imagen, 1, 1, 0, true, 'C', true);
-      
-    
-
-      if($contador == 3)
-        
-      {
-        $pdf->AddPage('A4');
-          
-      }
-   
     $contador++;
-     $sumale++;
+    $sumale++;
 
 }/////// CIERRE DEL WHILE
-/*
 
-*/
+$pdf->ln(10);
+
+$html = <<<EOD
+<br><br>
+<h4 style="text-align:center;">DOCUMENTO DE FIRMA ELECTRONICA</h4>
+<p style="text-align:justify">El siguiente documento contiene la relación de los participantes, quienes por medio  la misma aceptan y dan por entendido
+que lo demostrado en los adjuntos disponibles para <strong>$proyecto</strong>, son veracez y cumplen con el proposito por el cual han sido creados.
+<br>
+Por lo consiguiente se acepta que el siguiente proceso es de firma electronica, y cumple con lo estipulado en la <strong>CFR 21 (parte 11).</strong>
+Por ende se busca  promover la integridad de datos del uso de los registros y firmas electrónicas de manera que los datos no se distorsionen, eliminen
+o manipulen de ninguna manera que pueda comprometer la prestación de servicios. 
+</p>
+<br>
+<p>Empresas participantes:</p>
+<br>
+<p style="text-align:center;">Cercal Group</p>
+<p style="text-align:center;">$empresa</p>
+<br>
+EOD;
+
+$pdf->writeHTML($html, true, false, false, false, '');
 
 function numeroPaginasPdf($archivoPDF)
 

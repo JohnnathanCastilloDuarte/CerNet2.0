@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-15 17:31:39
+/* Smarty version 3.1.34-dev-7, created on 2022-03-10 14:42:09
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\inicio_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620bd56bba10b1_68946940',
+  'unifunc' => 'content_622a0031b6aee7_26926193',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c16cadc4633304385901fdf24a0af0514e0a0591' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\inicio_documentacion.tpl',
-      1 => 1644942696,
+      1 => 1646919727,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620bd56bba10b1_68946940 (Smarty_Internal_Template $_smarty_tpl) {
+function content_622a0031b6aee7_26926193 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
     <div class="card-header">
-      Gestion de documentaciòn para procesos GEP
+      Sistema de gestión de aprobaciones
     </div>
     <div class="card">
       

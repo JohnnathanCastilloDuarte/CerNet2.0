@@ -317,16 +317,48 @@ $(document).on('change','#aprobacion_head',function(){
     let id = $(this).attr('data-id');
     let valor = $(this).val();
     let id_participante = $(this).attr('data-participante');
-
     let informa_documentacion = "";
-
     $("#id_documentacion_rechazos").val(id);
+    var hoy = new Date();
+    let date = hoy.getDate();
+    let month = hoy.getMonth() + 1;
+    let year = hoy.getFullYear();
+
+    if(date < 10){
+      date = "0"+date;
+    }
+
+    if(month < 10){
+      month = "0"+month;
+    }
+    let fecha = year+"-"+month+"-"+date;
+
+    let hora = hoy.getHours();
+    let minuto = hoy.getMinutes();
+    let segundo = hoy.getSeconds(); 
+
+    
+
+    if(hora < 10){
+      hora = "0"+hora;
+    }
+    if(minuto < 10){
+      minuto = "0"+minuto;
+    }
+    if(segundo < 10){
+      segundo = "0"+segundo;
+    }
+
+    let hora_oficial = hora+":"+minuto+":"+segundo;
+
   
     const datos = {
       id,
       valor,
       id_valida,
-      id_participante
+      id_participante,
+      fecha,
+      hora_oficial
     }
 
     let id_documentacion_d = id;
@@ -626,20 +658,26 @@ function ya_firmo(id_documentacion, id_valida) {
     url: 'templates/documentacion/yafirmo.php',
     success: function(response) {
 
-      
+      console.log(response);
       let traer = JSON.parse(response);
       let msj = "";
           
         traer.forEach((valor)=>{
 
-          if(valor.qr == ""){
+          if(valor.fecha_firma != null && valor.qr == ""){
             qr="<span class='text-danger' style='font-size: 22px;'>Usuario rechazo proceso</span>";
             firma = "<span class='text-danger'>Rechazó</span>";
-          }else{
+             msj += `
+            <div class="col-sm-4" style="text-align:center;">
+              <span class='text-muted' style='text-align:center;'>${valor.nombre} ${valor.apellido} ${firma}:<br>
+              Nombre proceso documental: ${valor.nombre_documento}.<br>
+              Empresas: Cercal Group - ${valor.empresa}.<br>
+              El dia ${valor.fecha_firma}</span><br>${qr}       
+             </div>               
+            `;
+          }else if(valor.fecha_firma != " " && valor.qr != ""){
             qr = `<img src="templates/documentacion/head_templates/${valor.qr}" style="margin-left:0px" width="300px"/>`;
-            firma = "<span class='text-danger'>Ya ha firmado</span>";
-          }
-         
+            firma = "<span class='text-success'>Ya ha firmado</span>";
             msj += `
             <div class="col-sm-4" style="text-align:center;">
               <span class='text-muted' style='text-align:center;'>${valor.nombre} ${valor.apellido} ${firma}:<br>
@@ -648,6 +686,18 @@ function ya_firmo(id_documentacion, id_valida) {
               El dia ${valor.fecha_firma}</span><br>${qr}       
              </div>               
             `;
+          }else{
+            qr="<span class='text-muted' style='font-size: 22px;'>Los usuarios no han firmado</span>";
+            firma = "<span class='text-muted'>Sin revisión </span>";
+            msj += `
+            <div class="col-sm-12" style="text-align:center;">
+              ${qr}<br>
+              ${firma}   
+             </div>               
+            `;
+          }
+         
+           
           
            
         });
@@ -685,9 +735,5 @@ $(document).on('click', '#descarga_datos_informe', function(){
     }
     }
   })
-
  
-
-
-  
 })

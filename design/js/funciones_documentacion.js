@@ -208,7 +208,7 @@ function listar_documentacion_activo(id_empresa){
         if(x.estado == 1){
          estado += `
               <button class="btn btn-info" id="agregar_participante" data-id="${x.id_documentacion}" value="2">Participantes</button> |
-              <button class="btn btn-info" id="agregar_documentacion" data-id="${x.id_documentacion}" value="3">Documentacion</button>
+              <button class="btn btn-info" id="agregar_documentos" data-id="${x.id_documentacion}" value="3">Documentacion</button>
           `;
         }else if(x.estado == 0 && x.estructura == 1){
           estado += `
@@ -218,7 +218,7 @@ function listar_documentacion_activo(id_empresa){
          }else{
           estado += `
           <button class="btn btn-info" id="agregar_participante" data-id="${x.id_documentacion}" value="2">Participantes</button> ||
-          <button class="btn btn-info" id="agregar_documentacion" data-id="${x.id_documentacion}" value="3">Documentacion</button>
+          <button class="btn btn-info" id="agregar_documentos" data-id="${x.id_documentacion}" value="3">Documentacion</button>
           `;
         }
         
@@ -278,7 +278,7 @@ $(document).on('click','#agregar_participante', function(){
   tipo_proceso_botones_documentacion(eleccion,clave_valor);
 });
 
-$(document).on('click','#agregar_documentacion', function(){
+$(document).on('click','#agregar_documentos', function(){
 
   let eleccion = $(this).val();
   let clave_valor = $(this).attr('data-id');
@@ -1799,6 +1799,97 @@ function listar_config_documentacion(){
     }
   })
 }
+
+
+///////// LISTAR HOJA FIRMAS
+listar_config_hoja_firma();
+function listar_config_hoja_firma(){
+  let movimiento = "Leer";
+  $.ajax({
+    type:'POST',
+    data:{id_documentacion_d, movimiento},
+    url:'templates/documentacion/listar_config_hoja_firma.php',
+    success:function(respuesta){
+      console.log(respuesta);
+
+      let traer = JSON.parse(respuesta);
+
+      traer.forEach((valor)=>{
+        $("#encabezado_1").val(valor.enunciado1);
+        $("#encabezado_2").val(valor.enunciado2);
+        $("#protocolo").val(valor.protocolo);
+        $("#version").val(valor.version);
+        $("#paginacion").val(valor.paginacion);
+        $("#leyenda").val(valor.leyenda);
+      });
+    }
+  })
+}
+
+//////// FUNCION PARA ACTUALIZAR LA CONFIGURACIÓN DEL HOJA DE FIRMAS.
+
+$("#actualizar").click(function(){
+
+  let movimiento = "Actualizar";
+  let encabezado1 = $("#encabezado_1").val();
+  let encabezado2 = $("#encabezado_2").val();
+  let protocolo =  $("#protocolo").val();
+  let version =  $("#version").val();
+  let paginacion = $("#paginacion").val();
+  let leyenda = $("#leyenda").val();
+
+  const datos = {
+    id_documentacion_d,
+    movimiento,
+    encabezado1,
+    encabezado2,
+    protocolo,
+    version,
+    paginacion,
+    leyenda
+  }
+
+  $.ajax({
+    type:'POST',
+    data:datos,
+    url:'templates/documentacion/listar_config_hoja_firma.php',
+    success:function(respuesta){
+      console.log(respuesta);
+      if(respuesta == "Ok"){
+        Swal.fire({
+          title:'Mensaje',
+          text:'Se ha actualizado correctamente',
+          icon:'success',
+          timer:1700
+        });
+
+      }else{
+        alert("Error "+respuesta);
+      }
+      listar_config_hoja_firma();
+    }
+  })
+});
+
+/////////// FUNCION PARA ABRIR DOCUMENTACIÓN
+$(document).on('click', '#vista_previa', function(){
+  let id_documentacion = id_documentacion_d;
+  $.ajax({
+    type:'POST',
+    data:{id_documentacion},
+    url:'templates/documentacion/creador_md5.php',
+    success:function(response){
+      console.log(response);
+      let id_documentacion_f = response;
+      if(es_local == "No"){
+        window.open('https://cercal.net/CerNet2.0/informe_firmantes_final2.php?key=' + id_documentacion_f);  
+    }else{
+      window.open('https://localhost/CerNet2.0/informe_firmantes_final2.php?key=' + id_documentacion_f);  
+    }
+    }
+  })
+ 
+})
 
 
 
