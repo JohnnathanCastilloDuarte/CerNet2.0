@@ -191,6 +191,11 @@ p{
 			<span>Subir</span>
 		</a>
 	</li>
+   <li class="nav-item">
+		<a role="tab" class="nav-link active subir1" id="tab-1" data-toggle="tab" href="#Hoja_firmas">
+			<span>Hoja firmas</span>
+		</a>
+	</li>
   <!--
   <li class="nav-item">
      <a role="tab" class="nav-link active" id="tab-1" data-toggle="tab" href="#listar_subidas">
@@ -417,87 +422,46 @@ p{
   </div>
   
   
-  <div class="tab-pane tabs-animation fade show" id="listar_subidas" role="tabpanel">
-    <div class="row" id="ocultar_1">
+  <div class="tab-pane tabs-animation fade show" id="Hoja_firmas" role="tabpanel">
+    <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header">
-            <h6>
-              Archivos agregados
-            </h6>
-           </div> 
-            <div class="card-body">
-              <div class="scroll-area-sm">
-								<div class="scrollbar-container">
-                  <table class="table">
-                    <thead>
-                      <th>Estado</th>
-                      <th>Nombre</th>
-                      <th colspan="2">Acciones</th>
-                    </thead>
-                    <tbody id="traer_documentos">
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row" id="ocultar_2">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header"><h6> Vista Previa </h6> <button class="btn btn-danger" id="cerrar_hojita" title="cerrar" style="text-align:right;">X</button></div>
-          <div class="card-body">
-            <canvas id="imagen_aqui" width="1140" height="1400"></canvas> 
-            <div id="imagen_pdf_completo" style="heigth=700px;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-       
-    
-    <div class="row" id="ocultar_3">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header" >
-            <button class="btn btn-danger" id="cerrar_hojita_2" title="cerrar" style="text-align:right;">X</button>
-          </div>
-          <div class="card-body">
-        
-            <button id="limpiar" class="btn btn-primary btn-lg btn-block">limpiar</button> 
-            <div class="row"> 
-              <div class="col-sm-12">
-                <div class="container">
-                    <canvas id="algo">
-                    </canvas>
-                </div>
-              </div>
-              <br>
-              <input type="hidden" id="id_oculto_documento">
-              <button style="text-align:center" class="btn btn-success btn-lg btn-block" id="va_parriba" display="block">
-                Listo!!
-              </button> 
-              <input type="hidden" id="id_oculto_oculto">
-             <input type="hidden" id="url_oculta">
-            </div>
-            
+          <div class="card-body" style="text-align:center;">
             <div class="row">
-              <div class="col-sm-12">
-                <table class="table">
-                  <thead>
-                    <th>Empresa</th>
-                    <th>Nombres</th>
-                    <th>Fecha firma</th>
-                  </thead>
-                  <tbody id="traer_quien_firma">
-                  
-                  </tbody>
-                </table>
+              <div class="col-sm-6">
+                <label>Encabezado 1</label>
+                <input type="text" id="encabezado_1" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                <label>Protocolo:</label>
+                <input type="text" id="protocolo" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                <label>Versión:</label>
+                <input type="text" id="version" class="form-control">
+              </div>
+            </div> 
+            <hr>
+            <div class="row">
+              <div class="col-sm-8">
+                <label>Encabezado 2</label>
+                <input type="text" name="" id="encabezado_2" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                <label>Paginación</label>
+                <input type="text" name="" id="paginacion" class="form-control">
+              </div>
+            </div> 
+            <br>
+            <div class="row">
+              <div class="col-sm-4">
+              <label for="">Leyenda</label>
+              <input type="text" name="" id="leyenda" class="form-control">
               </div>
             </div>
+            <hr>
+            <button class="btn btn-success" id="actualizar">Actualizar</button>
+            <button class="btn btn-primary" id="vista_previa">Vista previa</button>    
           </div>
         </div>
       </div>
