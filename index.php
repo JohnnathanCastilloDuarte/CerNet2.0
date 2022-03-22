@@ -16,6 +16,8 @@ $smarty->assign('mi_usuario',$mi_usuario);
 $smarty->assign('mi_pass',$mi_pass);
 $smarty->assign('mi_cargo',$mi_cargo);
 $smarty->assign('mi_id',$mi_id);
+
+
    
 
 $query = "SELECT a.id_privilegio, a.id_rol, b.imagen_usuario FROM usuario as a, persona as b WHERE a.id_usuario = ?";
@@ -404,6 +406,7 @@ else
     include("dashboard_cliente.php");
   
 }
+
 
 
   

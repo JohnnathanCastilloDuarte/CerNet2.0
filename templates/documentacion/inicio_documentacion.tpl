@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="card-header">
-      Gestion de documentaciòn para procesos GEP
+      Sistema de gestión de aprobaciones
     </div>
     <div class="card">
       
