@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-09 15:54:27
+/* Smarty version 3.1.34-dev-7, created on 2022-03-29 16:15:23
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6203d5a344ede3_79668282',
+  'unifunc' => 'content_6243147bcc37c0_54217638',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10cd508aa62a2b747cc0b00d78a3d76fc3305eb7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_bodega.tpl',
-      1 => 1644418327,
+      1 => 1648563322,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6203d5a344ede3_79668282 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6243147bcc37c0_54217638 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -142,6 +142,21 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 </textarea>
                   </div>
               </div>
+
+              <div class="form-row">
+                  <div class="col-sm-4">
+                    <label>Marca:</label>
+                    <input type="text" id="marca_bodega" class="form-control" placeholder="Marca bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['marca'];?>
+">
+                  </div>
+                
+                <div class="col-sm-4">
+                  <label>Modelo:</label>
+                  <input type="text" id="modelo_bodega" class="form-control" placeholder="Modelo bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['modelo'];?>
+">
+                </div>
+                   
+              </div>
             </div>
             <!--Cierre del step 12-->
 
@@ -169,69 +184,47 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                 </div>
               </div>
 
-
-
               <div class="form-row">
-                <div class="col-sm-4">
-                  <div class="position-relative form-group">
-                    <label>Marca:</label>
-                    <input type="text" id="marca_bodega" class="form-control" placeholder="Marca bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['marca'];?>
-">
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <label>Modelo:</label>
-                  <input type="text" id="modelo_bodega" class="form-control" placeholder="Modelo bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['modelo'];?>
-">
-                </div>
                 <div class="col-sm-4">
                   <label>Orientación principal:</label>
                   <input type="text" id="orientacion_principal" class="form-control" placeholder="Orientación principal" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['orientacion_principal'];?>
 ">
                 </div>
-              </div>
-
-              <div class="form-row">
                 <div class="col-sm-4">
-                  <div class="position-relative form-group">
                     <label>Orientación recepción:</label>
                     <input type="text" id="orientacion_recepcion" class="form-control" placeholder="Orientación recepción" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['orientacion_recepcion'];?>
 ">
-                  </div>
                 </div>
                 <div class="col-sm-4">
                   <label>Orientación despacho:</label>
                   <input type="text" id="orientacion_despacho" class="form-control" placeholder="Orientación despacho" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['orientacion_despacho'];?>
 ">
                 </div>
+              </div>
+              <br>
+              <div class="form-row">
                 <div class="col-sm-4">
                   <label>Número puertas:</label>
                   <input type="text" id="num_puertas" class="form-control" placeholder="Numero puertas" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['num_puertas'];?>
 ">
                 </div>
-              </div>
-
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <div class="position-relative form-group">
+                 <div class="col-sm-4">
                     <label>Salida emergencia:</label>
                     <input type="text" id="salida_emergencia" class="form-control" placeholder="Salida emergencia" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['salida_emergencia'];?>
 ">
-                  </div>
                 </div>
                 <div class="col-sm-4">
                   <label>Cantidad rack:</label>
                   <input type="text" id="cantidad_rack" class="form-control" placeholder="Cantidad rack" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cantidad_rack'];?>
 ">
                 </div>
+              </div>
+              <div class="form-row">
                 <div class="col-sm-4">
                   <label>Número estantes:</label>
                   <input type="text" id="num_estantes" class="form-control" placeholder="Número estantes" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['num_estantes'];?>
 ">
                 </div>
-              </div>
-
-              <div class="form-row">
                 <div class="col-sm-4">
                   <div class="position-relative form-group">
                     <label>Altura maxima rack:</label>
@@ -244,16 +237,14 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                   <input type="text" id="sistema_extraccion" class="form-control" placeholder="Sistema extracción" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['sistema_extraccion'];?>
 ">
                 </div>
+              </div>
+              <div class="form-row">
                 <div class="col-sm-4">
                   <label>Cielo pasa lus:</label>
                   <input type="text" id="cielo_lus" class="form-control" placeholder="Clielo pasa lus" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cielo_lus'];?>
 ">
                 </div>
-              </div>
-
-
-              <div class="form-row">
-                <div class="col-sm-4">
+                 <div class="col-sm-4">
                   <div class="position-relative form-group">
                     <label>Temperatura maxima:</label>
                     <input type="text" id="temp_max" class="form-control" placeholder="Temperatura maxima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['temp_max'];?>
@@ -265,15 +256,14 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                   <input type="text" id="temp_min" class="form-control" placeholder="Temperatura minima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['temp_min'];?>
 ">
                 </div>
+              </div>
+              <div class="form-row">
                  <div class="col-sm-4">
                     <label>Valor seteado temperatura:</label>
                     <input type="text" id="valor_seteado_temp" class="form-control" placeholder="Valo seteado temperatura" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['valor_seteado_temp'];?>
 ">
                   </div>
-              </div>
-
-              <div class="form-row">
-                <div class="col-sm-4">
+                   <div class="col-sm-4">
                   <div class="position-relative form-group">
                     <label>Cantidad iluminarias:</label>
                     <input type="text" id="cantidad_iluminarias" class="form-control" placeholder="Cantidad iluminarias" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cantidad_iluminarias'];?>
@@ -287,14 +277,15 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 ">
                   </div>
                 </div>
+              </div>
+
+              <div class="form-row">
                 <div class="col-sm-4">
                   <label>Humedad relativa maxima:</label>
                  <input type="text" id="hr_max" class="form-control" placeholder="Humedad Maxima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['hr_max'];?>
 ">
                 </div>
-              </div>
-               <div class="form-row">
-                  <div class="col-sm-4">
+                 <div class="col-sm-4">
                     <label>Humedad relativa minima:</label>
                     <input type="text" id="hr_min" class="form-control" placeholder="Humedad Minima" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['hr_min'];?>
 ">
@@ -304,20 +295,21 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                     <input type="text" id="valor_seteado_hum" class="form-control" placeholder="Valor seteado" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['valor_seteado_hum'];?>
 ">
                   </div>
+              </div>
+               <div class="form-row">
                  <div class="col-sm-4">
                     <label>Cantidad Ventanas:</label>
                     <input type="text" id="cantidad_ventana" class="form-control" placeholder="Cantidad ventanas" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['cantidad_ventana'];?>
 ">
                   </div>
-               </div> 
-              
-              <div class="form-row">
-                 <div class="col-sm-4">
+                  <div class="col-sm-4">
                   <label>Altura de la bodega:</label>
                    <input type="text" id="altura_bodega" class="form-control" placeholder="Altura bodega" value="<?php echo $_smarty_tpl->tpl_vars['bodega']->value['altura'];?>
 ">
                 </div>
                </div> 
+               <br>
+              
               <?php
 $__section_f_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_muro']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_f_1_total = $__section_f_1_loop;
