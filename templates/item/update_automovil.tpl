@@ -8,29 +8,20 @@
           Edición del equipo <span>{$automovil.nombre_automovil}</span>
         </h5>
       </div>
+
       <div class="card-body">
         <div id="smartwizard2" class="forms-wizard-alt">
           <ul class="forms-wizard">
             <li>
               <a href="#step-12">
-											<em>1</em><span>Identificación del equipo</span>
+											<em>1</em><span>Identificación</span>
 									</a>
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Características del equipo</span>
+											<em>2</em><span>Infraestructura</span>
 									</a>
             </li>
-            <!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
-						<li id="si_envia">
-									<a href="#step-42">
-											<em>4</em><span>Evidencia</span>
-									</a>
-							</li>-->
           </ul>
           <input type="hidden"  id="id_item_automovil" value="{$automovil.id_item}">
           <input type="hidden" id="id_automovil" value="{$automovil.id_automovil}">
@@ -91,9 +82,7 @@
                   <input type="date" id="fecha_fabricacion_automovil" class="form-control" placeholder="" value="{$automovil.fecha_fabricacion}">
                 </div>
               </div>
-            </div>
-
-            <div id="step-22">
+              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Dirección equipo:</label>
@@ -108,6 +97,10 @@
                   <input type="text" id="area_interna_automovil" class="form-control" placeholder="Área equipo" value="{$automovil.area_interna}">
                 </div>
               </div>
+            </div>
+
+
+            <div id="step-22">              
               <br>
               <div class="form-row">
                 <div class="col-sm-4">
@@ -161,9 +154,6 @@
                   <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="{$automovil.tem_max}" required>
                 </div>
               </div>
-
-
-
               <br>
               <div class="form-row">
                 <div class="col-sm-12" style="text-align:center;">
@@ -180,12 +170,10 @@
         </div>
         <!--Cierre del wizard-->
         <div class="divider"></div>
-        <div class="clearfix">
+         <div class="clearfix">
           <button type="button" id="next-btn2" class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Siguiente</button>
           <button type="button" id="prev-btn2" class="btn-shadow float-right btn-wide btn-pill mr-3 btn btn-outline-secondary">Anterior</button>
-        </div>
-
-
+         </div>
       </div>
     </div>
     {/foreach}

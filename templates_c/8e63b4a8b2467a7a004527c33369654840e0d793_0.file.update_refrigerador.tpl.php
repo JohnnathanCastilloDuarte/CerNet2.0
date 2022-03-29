@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-14 17:13:26
+/* Smarty version 3.1.34-dev-7, created on 2022-03-28 18:10:32
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_refrigerador.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e1a126ba3bc6_54326763',
+  'unifunc' => 'content_6241ddf8452528_45523958',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8e63b4a8b2467a7a004527c33369654840e0d793' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_refrigerador.tpl',
-      1 => 1642176805,
+      1 => 1648483831,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e1a126ba3bc6_54326763 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6241ddf8452528_45523958 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
  	<div class="col-sm-12">
  		<?php
@@ -40,12 +40,12 @@ foreach ($_from as $_smarty_tpl->tpl_vars['refrigerador']->value) {
  					<ul class="forms-wizard">
  						<li>
  							<a href="#step-12">
- 								<em>1</em><span>Identificación del equipo</span>
+ 								<em>1</em><span>Identificación</span>
  							</a>
  						</li>
  						<li>
  							<a href="#step-22">
- 								<em>2</em><span>Caracteristica del equipo</span>
+ 								<em>2</em><span>Infraestructura</span>
  							</a>
  						</li>
 						<!--	<li>
@@ -74,14 +74,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['refrigerador']->value) {
 										</div>
 										<div class="col-sm-6">
 											 <label>Empresa:</label>
-                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['id_empresa'];?>
+					                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['id_empresa'];?>
 ">
-                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['nombre_empresa'];?>
+					                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['nombre_empresa'];?>
 ">
-                    <div >
-                      <table class="table" id="aqui_resultados_empresa">
-                      </table>
-                    </div>
+					                    <div >
+					                      <table class="table" id="aqui_resultados_empresa">
+					                      </table>
+					                    </div>
 										</div>
 									</div>
 									<br>
@@ -101,7 +101,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['refrigerador']->value) {
 									<div class="form-row">
 										<div class="col-sm-12">
 											<label>Descripcion:</label>
-											<textarea class="form-control" id="desc_refrigerador"><?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['descripcion_refrigerador'];?>
+											<textarea class="form-control" id="desc_refrigerador"><?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['descripcion'];?>
 </textarea>
 										</div>
 									</div>
@@ -123,12 +123,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['refrigerador']->value) {
 ">
 										</div>
 									</div>
-								</div>
-
-								<div id="step-22">
+									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
-											<label>Dirección Empresa:</label>
+											<label>Dirección equipo:</label>
 											<input type="text" id="direccion_refrigerador" class="form-control" placeholder="Dirección equipo" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['direccion'];?>
 ">
 										</div>
@@ -137,25 +135,32 @@ foreach ($_from as $_smarty_tpl->tpl_vars['refrigerador']->value) {
 											<input type="text" id="ubicacion_interna_refrigerador" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['ubicacion_interna'];?>
 ">
 										</div>
-                    <div class="col-sm-4">
+									</div>
+								</div>
+
+								<div id="step-22">
+									<div class="form-row">
+										
+                   					     
+									</div>
+									<br>
+									<div class="form-row">
+										<div class="col-sm-3">
 											<label>Área del equipo :</label>
 											<input type="text" id="area_refrigerador" class="form-control" placeholder="Área equipo" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['area_interna'];?>
 ">
 										</div>
-									</div>
-									<br>
-									<div class="form-row">
-										<div class="col-sm-4">
+										<div class="col-sm-3">
 											<label>Voltaje:</label>
 											<input type="text" id="voltaje_refrigerador" class="form-control" placeholder="Voltaje" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['voltaje'];?>
 ">
 										</div>
-										<div class="col-sm-4">
+										<div class="col-sm-3">
 											<label>Potencia:</label>
 											<input type="text" id="potencia_refrigerador" class="form-control" placeholder="Potencia" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['potencia'];?>
 ">
 										</div>
-										<div class="col-sm-4">
+										<div class="col-sm-3">
 											<label>Capacidad:</label>
 											<input type="text" id="capacidad_refrigerador" class="form-control" placeholder="Capacidad" value="<?php echo $_smarty_tpl->tpl_vars['refrigerador']->value['capacidad'];?>
 ">

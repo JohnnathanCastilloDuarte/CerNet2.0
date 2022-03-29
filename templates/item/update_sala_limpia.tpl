@@ -15,7 +15,23 @@
         </h5>
         {/if}
       </div>
-      <div class="card-body">
+
+    <div class="card-body">
+       <div id="smartwizard2" class="forms-wizard-alt"> 
+         <ul class="forms-wizard">
+            <li>
+              <a href="#step-12">
+                      <em>1</em><span>Identificación</span>
+                  </a>
+            </li>
+            <li>
+              <a href="#step-22">
+                      <em>2</em><span>Infraestructura</span>
+                  </a>
+            </li>
+          </ul>
+
+      
         <div class="form-wizard-content">
           <div id="step-12">
             <div class="form-row">
@@ -35,9 +51,7 @@
                   </table>
                 </div>
               </div>
-
             </div>
-
             <div class="form-row">
               <div class="col-sm-6">
                 <label>Clasificación OMS :</label>
@@ -64,6 +78,8 @@
               </div>
             </div>
             <br>
+         </div>   
+         <div id="step-22">  
             <div class="form-row">
               <div class="col-sm-4">
                 <label>Área m2:</label>
@@ -138,20 +154,30 @@
                 <input type="text" id="estado_sala" class="form-control" placeholder="Estado sala" value="{$sala_limpia.estado_sala}">
               </div>
             </div>
+            <br>
+            <div class="form-row">
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
+                </div> 
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Nuevo</button>
+                </div>
+           </div>
 
           </div>
-
-          <br>
-          <div class="col-sm-12" style="text-align:center;">
-            <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Crear</button>
-            <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
-          </div>
-        </div>
+        </div>  
+          
       </div>
+    </div>
+      
       <!---Cierre del content-->
     </div>
     <!--Cierre del wizard-->
-
+    <div class="divider"></div>
+        <div class="clearfix">
+          <button type="button" id="next-btn2" class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Siguiente</button>
+          <button type="button" id="prev-btn2" class="btn-shadow float-right btn-wide btn-pill mr-3 btn btn-outline-secondary">Anterior</button>
+        </div>
   </div>
 </div>
 {/foreach}

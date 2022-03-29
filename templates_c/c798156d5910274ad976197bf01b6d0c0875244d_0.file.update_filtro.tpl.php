@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-21 17:46:35
+/* Smarty version 3.1.34-dev-7, created on 2022-03-28 21:59:34
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61eae36baf2e79_47867196',
+  'unifunc' => 'content_624213a6e6b681_25563982',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c798156d5910274ad976197bf01b6d0c0875244d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_filtro.tpl',
-      1 => 1642783594,
+      1 => 1648497574,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61eae36baf2e79_47867196 (Smarty_Internal_Template $_smarty_tpl) {
+function content_624213a6e6b681_25563982 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -60,13 +60,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
                   <?php if ($_smarty_tpl->tpl_vars['filtro']->value['nombre_item'] == '') {?>
                    <option value="0" selected>Seleccione...</option>
                    <option value="Filtro Absoluto HEPA H13 ">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   <?php } else { ?>
                    <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
 " selected=""><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
 </option>
                    <option value="Filtro Absoluto HEPA H13">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   <?php }?>
                 </select>
               </div>

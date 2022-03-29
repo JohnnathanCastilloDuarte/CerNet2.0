@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-28 23:03:26
+/* Smarty version 3.1.34-dev-7, created on 2022-03-28 18:28:18
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_ultrafreezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61cb89aee67467_33147103',
+  'unifunc' => 'content_6241e222740644_80044554',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '59eb34aa37ab9b045ffea5adab8c7adbc9ac320f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_ultrafreezer.tpl',
-      1 => 1640729004,
+      1 => 1648484897,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61cb89aee67467_33147103 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6241e222740644_80044554 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -41,12 +41,12 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
           <ul class="forms-wizard">
             <li>
               <a href="#step-12">
-											<em>1</em><span>Identificación del equipo</span>
+											<em>1</em><span>Identificación</span>
 									</a>
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Caracteristica del equipo</span>
+											<em>2</em><span>Infraestructura</span>
 									</a>
             </li>
             <!--	<li>
@@ -74,41 +74,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
 " required="" placeholder="Nombre ultrafreezer">
                 </div>
                 <div class="col-sm-6">
-                  <label>Empresa</label>
-                  <select class="form-control" id="empresa_ultrafreezer">
-                    <?php if ($_smarty_tpl->tpl_vars['ultrafreezer']->value['id_empresa'] == '') {?>
-                    <option value="0">Seleccione....</option>
-                    <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-                      <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
-</option>
-                     <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                     <?php } else { ?>
-                    <option value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['nombre_empresa'];?>
-</option>
-                     <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array_empresas']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-                      <option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresas'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre_empresas'];?>
-</option>
-                     <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                     <?php }?>
-                    }
-                  </select>
+                 <label>Empresa:</label>
+                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['id_empresa'];?>
+">
+                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['nombre_empresa'];?>
+">
+                    <div>
+                      <table class="table" id="aqui_resultados_empresa">
+                      </table>
+                    </div>
                 </div>
 
               </div>
@@ -129,7 +103,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               <div class="form-row">
                 <div class="col-sm-12">
                   <label>Descripción:</label>
-                  <textarea class="form-control" id="desc_ultrafreezer" placeholder="Descripción"> <?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['descripcion_ultrafreezer'];?>
+                  <textarea class="form-control" id="desc_ultrafreezer" placeholder="Descripción"> <?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['descripcion'];?>
 </textarea>
                 </div>
               </div>
@@ -151,22 +125,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 ">
                 </div>
               </div>
-            </div>
-
-            <div id="step-22">
+              <br>
               <div class="form-row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Dirección equipo:</label>
                   <input type="text" id="direccion_ultrafreezer" class="form-control" placeholder="Dirección equipo" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['direccion'];?>
 ">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
                   <input type="text" id="ubicacion_interna_ultrafreezer" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['ubicacion'];?>
 ">
                 </div>
+                 <div class="col-sm-4">
+                  <label>Área interna equipo:</label>
+                  <input type="text" id="area_interna_ultrafreezer" class="form-control" placeholder="Área interna" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['area_interna'];?>
+">
+                </div>
               </div>
-              <br>
+            </div>
+
+            <div id="step-22">
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Voltaje:</label>

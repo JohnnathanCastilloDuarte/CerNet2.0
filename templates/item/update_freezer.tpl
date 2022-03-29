@@ -12,12 +12,12 @@
  					<ul class="forms-wizard">
  						<li>
  							<a href="#step-12">
- 								<em>1</em><span>Identificación del equipo</span>
+ 								<em>1</em><span>Identificación</span>
  							</a>
  						</li>
  						<li>
  							<a href="#step-22">
- 								<em>2</em><span>Caracteristica del equipo</span>
+ 								<em>2</em><span>Infraestructura</span>
  							</a>
  						</li>
 						<!--	<li>
@@ -84,9 +84,7 @@
 											<input type="date" id="fecha_fabricacion_freezer" class="form-control" placeholder="" value="{$freezer.fecha_fabricacion}">
 										</div>
 									</div>
-								</div>
-								
-								<div id="step-22">
+									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
 											<label>Dirección equipo:</label>
@@ -96,12 +94,14 @@
 											<label>Ubicación interna equipo:</label>
 											<input type="text" id="ubicacion_interna_freezer" class="form-control" placeholder="Ubicación equipo" value="{$freezer.ubicacion_interna}">
 										</div>
-                    <div class="col-sm-4">
+                    					<div class="col-sm-4">
 											<label>Área interna equipo:</label>
 											<input type="text" id="area_interna_freezer" class="form-control" placeholder="Area interna equipo" value="{$freezer.area_interna}">
 										</div>
 									</div>
-									<br>
+								</div>
+								
+								<div id="step-22">
 									<div class="form-row">
 										<div class="col-sm-4">
 											<label>Voltaje:</label>

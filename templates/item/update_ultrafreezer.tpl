@@ -13,12 +13,12 @@
           <ul class="forms-wizard">
             <li>
               <a href="#step-12">
-											<em>1</em><span>Identificación del equipo</span>
+											<em>1</em><span>Identificación</span>
 									</a>
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Caracteristica del equipo</span>
+											<em>2</em><span>Infraestructura</span>
 									</a>
             </li>
             <!--	<li>
@@ -86,9 +86,7 @@
                   <input type="date" id="fecha_fabricacion_ultrafreezer" class="form-control" placeholder="" value="{$ultrafreezer.fecha_fabricacion}">
                 </div>
               </div>
-            </div>
-
-            <div id="step-22">
+              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Dirección equipo:</label>
@@ -103,7 +101,9 @@
                   <input type="text" id="area_interna_ultrafreezer" class="form-control" placeholder="Área interna" value="{$ultrafreezer.area_interna}">
                 </div>
               </div>
-              <br>
+            </div>
+
+            <div id="step-22">
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Voltaje:</label>

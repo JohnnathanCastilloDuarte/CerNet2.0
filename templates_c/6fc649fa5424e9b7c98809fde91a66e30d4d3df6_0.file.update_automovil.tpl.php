@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-17 16:51:59
+/* Smarty version 3.1.34-dev-7, created on 2022-03-28 19:00:32
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_automovil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e5909f035104_00737007',
+  'unifunc' => 'content_6241e9b07bed90_69690483',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fc649fa5424e9b7c98809fde91a66e30d4d3df6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_automovil.tpl',
-      1 => 1642434712,
+      1 => 1648486830,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e5909f035104_00737007 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6241e9b07bed90_69690483 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
@@ -41,12 +41,12 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
           <ul class="forms-wizard">
             <li>
               <a href="#step-12">
-											<em>1</em><span>Identificación del equipo</span>
+											<em>1</em><span>Identificación</span>
 									</a>
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Características del equipo</span>
+											<em>2</em><span>Infraestructura</span>
 									</a>
             </li>
             <!--	<li>
@@ -131,9 +131,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
 ">
                 </div>
               </div>
-            </div>
-
-            <div id="step-22">
+              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Dirección equipo:</label>
@@ -142,7 +140,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
                 </div>
                 <div class="col-sm-4">
                   <label>Ubicación interna equipo:</label>
-                  <input type="text" id="ubicacion_interna_automovil" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['ubicacion'];?>
+                  <input type="text" id="ubicacion_interna_automovil" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['ubicacion_interna'];?>
 ">
                 </div>
                 <div class="col-sm-4">
@@ -151,6 +149,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
 ">
                 </div>
               </div>
+            </div>
+
+            <div id="step-22">              
               <br>
               <div class="form-row">
                 <div class="col-sm-4">
