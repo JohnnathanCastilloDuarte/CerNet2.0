@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-03-28 19:00:32
+/* Smarty version 3.1.34-dev-7, created on 2022-03-29 17:58:34
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_automovil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6241e9b07bed90_69690483',
+  'unifunc' => 'content_62432caaeafb14_26477231',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fc649fa5424e9b7c98809fde91a66e30d4d3df6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_automovil.tpl',
-      1 => 1648486830,
+      1 => 1648569513,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6241e9b07bed90_69690483 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62432caaeafb14_26477231 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
@@ -36,6 +36,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
 </span>
         </h5>
       </div>
+
       <div class="card-body">
         <div id="smartwizard2" class="forms-wizard-alt">
           <ul class="forms-wizard">
@@ -46,19 +47,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Infraestructura</span>
+											<em>2</em><span>Especificación </span>
 									</a>
             </li>
-            <!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
-						<li id="si_envia">
-									<a href="#step-42">
-											<em>4</em><span>Evidencia</span>
-									</a>
-							</li>-->
+            <li>
+              <a href="#step-32">
+                      <em>2</em><span>Infraestructura</span>
+                  </a>
+            </li>
           </ul>
           <input type="hidden"  id="id_item_automovil" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['id_item'];?>
 ">
@@ -85,9 +81,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
                       </table>
                     </div>
                 </div>
-
               </div>
-              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Fabricante/Marca:</label>
@@ -150,9 +144,31 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
                 </div>
               </div>
             </div>
-
             <div id="step-22">              
-              <br>
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Valor seteado temperatura(°C):</label>
+                  <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['seteado_tem'];?>
+" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura mínima(°C):</label>
+                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura mínima" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['tem_min'];?>
+" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura máxima(°C):</label>
+                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['tem_max'];?>
+" required>
+                </div>
+              </div>
+              
+
+            </div>
+            <div id="step-32">
+
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Voltaje(V):</label>
@@ -196,29 +212,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
 
               <br>
 
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <label>Valor seteado temperatura(°C):</label>
-                  <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['seteado_tem'];?>
-" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura mínima(°C):</label>
-                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura mínima" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['tem_min'];?>
-" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura máxima(°C):</label>
-                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="<?php echo $_smarty_tpl->tpl_vars['automovil']->value['tem_max'];?>
-" required>
-                </div>
-              </div>
-
-
-
-              <br>
+                <br>
               <div class="form-row">
                 <div class="col-sm-12" style="text-align:center;">
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_automovil">Actualizar</button>
@@ -227,19 +221,16 @@ foreach ($_from as $_smarty_tpl->tpl_vars['automovil']->value) {
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_nuevo_item_automovil">Nuevo</button>
                 </div>
               </div>
-
-            </div>
+            </div> 
           </div>
           <!---Cierre del content-->
         </div>
         <!--Cierre del wizard-->
         <div class="divider"></div>
-        <div class="clearfix">
+         <div class="clearfix">
           <button type="button" id="next-btn2" class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Siguiente</button>
           <button type="button" id="prev-btn2" class="btn-shadow float-right btn-wide btn-pill mr-3 btn btn-outline-secondary">Anterior</button>
-        </div>
-
-
+         </div>
       </div>
     </div>
     <?php

@@ -18,14 +18,15 @@
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Infraestructura</span>
+											<em>2</em><span>Especificación</span>
 									</a>
             </li>
-            <!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
+            <li>
+                  <a href="#step-32">
+                      <em>3</em><span>Infraestructura</span>
+                  </a>
+              </li>
+            <!--	
 						<li id="si_envia">
 									<a href="#step-42">
 											<em>4</em><span>Evidencia</span>
@@ -103,41 +104,7 @@
               </div>
             </div>
 
-            <div id="step-22">
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <label>Voltaje:</label>
-                  <input type="text" id="voltaje_ultrafreezer" class="form-control" placeholder="Voltaje" value="{$ultrafreezer.voltaje}">
-                </div>
-                <div class="col-sm-4">
-                  <label>Potencia:</label>
-                  <input type="text" id="potencia_ultrafreezer" class="form-control" placeholder="Potencia" value="{$ultrafreezer.potencia}">
-                </div>
-                <div class="col-sm-4">
-                  <label>Capacidad:</label>
-                  <input type="text" id="capacidad_ultrafreezer" class="form-control" placeholder="Capacidad" value="{$ultrafreezer.capacidad}">
-                </div>
-              </div>
-              <br>
-              <div class="form-row">
-                <div class="col-sm-3">
-                  <label>Peso:</label>
-                  <input type="text" id="peso_ultrafreezer" class="form-control" placeholder="Peso" value="{$ultrafreezer.peso}">
-                </div>
-                <div class="col-sm-3">
-                  <label>Alto(mm):</label>
-                  <input type="text" id="alto_ultrafreezer" class="form-control" placeholder="Alto" value="{$ultrafreezer.alto}">
-                </div>
-                <div class="col-sm-3">
-                  <label>Largo(mm):</label>
-                  <input type="text" id="largo_ultrafreezer" class="form-control" placeholder="Largo" value="{$ultrafreezer.largo}">
-                </div>
-                <div class="col-sm-3">
-                  <label>Ancho(mm):</label>
-                  <input type="text" id="ancho_ultrafreezer" class="form-control" placeholder="Ancho" value="{$ultrafreezer.ancho}">
-                </div>
-              </div>
-
+            <div id="step-22">              
               <br>
               <div class="form-row">
                 <div class="col-sm-4">
@@ -175,7 +142,46 @@
                 </div>
               </div>
 
+             
+            </div>
+
+             <div id="step-32">
+
+                <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Voltaje:</label>
+                  <input type="text" id="voltaje_ultrafreezer" class="form-control" placeholder="Voltaje" value="{$ultrafreezer.voltaje}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Potencia:</label>
+                  <input type="text" id="potencia_ultrafreezer" class="form-control" placeholder="Potencia" value="{$ultrafreezer.potencia}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Capacidad:</label>
+                  <input type="text" id="capacidad_ultrafreezer" class="form-control" placeholder="Capacidad" value="{$ultrafreezer.capacidad}">
+                </div>
+              </div>
               <br>
+              <div class="form-row">
+                <div class="col-sm-3">
+                  <label>Peso:</label>
+                  <input type="text" id="peso_ultrafreezer" class="form-control" placeholder="Peso" value="{$ultrafreezer.peso}">
+                </div>
+                <div class="col-sm-3">
+                  <label>Alto(mm):</label>
+                  <input type="text" id="alto_ultrafreezer" class="form-control" placeholder="Alto" value="{$ultrafreezer.alto}">
+                </div>
+                <div class="col-sm-3">
+                  <label>Largo(mm):</label>
+                  <input type="text" id="largo_ultrafreezer" class="form-control" placeholder="Largo" value="{$ultrafreezer.largo}">
+                </div>
+                <div class="col-sm-3">
+                  <label>Ancho(mm):</label>
+                  <input type="text" id="ancho_ultrafreezer" class="form-control" placeholder="Ancho" value="{$ultrafreezer.ancho}">
+                </div>
+              </div>
+
+               <br>
               <div class="form-row" id="btns_ultrafreezer">
                 <div class="col-sm-12" style="text-align:center;">
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_ultrafreezer">Crear</button>  
@@ -183,7 +189,7 @@
                 </div>
               </div>
 
-            </div>
+             </div> 
           </div>
           <!---Cierre del content-->
         </div>

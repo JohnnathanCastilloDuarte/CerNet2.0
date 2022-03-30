@@ -17,14 +17,15 @@
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Infraestructura</span>
+											<em>2</em><span>Especificación </span>
 									</a>
             </li> 
-            <!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
+            <li>
+              <a href="#step-32">
+                      <em>3</em><span>Infraestructura</span>
+                 </a>
+            </li>
+            <!--	
 						<li id="si_envia">
 									<a href="#step-42">
 											<em>4</em><span>Evidencia</span>
@@ -53,7 +54,6 @@
                     </div>
                 </div>
               </div>
-              <br>
               <div class="form-row">
                 <div class="col-sm-6">
                   <label>Fabricante/Marca:</label>
@@ -106,6 +106,25 @@
             <div id="step-22">
               <div class="form-row">
                 <div class="col-sm-4">
+                  <label>Valor seteado temperatura:</label>
+                  <input type="text" id="valor_seteado_tem_estufa" class="form-control" placeholder="Valor seteado temperatura" value="{$estufa.seteado_tem}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura minima:</label>
+                  <input type="text" id="temperatura_minima_estufa" class="form-control" placeholder="Temperatura minima" value="{$estufa.tem_min}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura maxima:</label>
+                  <input type="text" id="temperatura_maxima_estufa" class="form-control" placeholder="Temperatura maxima" value="{$estufa.tem_max}" required>
+                </div>
+              </div> 
+            </div>
+
+            <div id="step-32">
+                <div class="form-row">
+                <div class="col-sm-4">
                   <label>Voltaje:</label>
                   <input type="text" id="voltaje_estufa" class="form-control" placeholder="Voltaje" value="{$estufa.voltaje}">
                 </div>
@@ -137,37 +156,15 @@
                   <input type="text" id="ancho_estufa" class="form-control" placeholder="Ancho" value="{$estufa.ancho}">
                 </div>
               </div>
-
               <br>
-
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <label>Valor seteado temperatura:</label>
-                  <input type="text" id="valor_seteado_tem_estufa" class="form-control" placeholder="Valor seteado temperatura" value="{$estufa.seteado_tem}" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura minima:</label>
-                  <input type="text" id="temperatura_minima_estufa" class="form-control" placeholder="Temperatura minima" value="{$estufa.tem_min}" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura maxima:</label>
-                  <input type="text" id="temperatura_maxima_estufa" class="form-control" placeholder="Temperatura maxima" value="{$estufa.tem_max}" required>
-                </div>
-              </div>
-
-
-
-              <br>
-              <div class="form-row">
+                <div class="form-row">
                 <div class="col-sm-12" style="text-align:center;">
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_nuevo_item_estufa">Nuevo</button>
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_estufa">Actualizar</button>
                 </div>
               </div>
+            </div>  
 
-            </div>
           </div>
           <!---Cierre del content-->
         </div>

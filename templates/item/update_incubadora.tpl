@@ -17,11 +17,16 @@
  						</li>
  						<li>
  							<a href="#step-22">
+ 								<em>2</em><span>Especificación </span>
+ 							</a>
+ 						</li>
+ 						<li>
+ 							<a href="#step-32">
  								<em>2</em><span>Infraestructura</span>
  							</a>
  						</li>
 
-							</ul>
+					</ul>
 
 							<div class="form-wizard-content">
 								<div id="step-12">
@@ -113,6 +118,10 @@
 									</div>
 
 								</div>
+								<div id="step-12">
+
+									
+								</div>	
 							</div><!---Cierre del content-->
 						</div><!--Cierre del wizard-->	
 						<div class="divider"></div>

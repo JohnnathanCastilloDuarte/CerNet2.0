@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-03-28 18:28:18
+/* Smarty version 3.1.34-dev-7, created on 2022-03-29 17:19:32
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_ultrafreezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6241e222740644_80044554',
+  'unifunc' => 'content_62432384806019_51902744',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '59eb34aa37ab9b045ffea5adab8c7adbc9ac320f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_ultrafreezer.tpl',
-      1 => 1648484897,
+      1 => 1648567171,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6241e222740644_80044554 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62432384806019_51902744 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -46,14 +46,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Infraestructura</span>
+											<em>2</em><span>especificación</span>
 									</a>
             </li>
-            <!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
+            <li>
+                  <a href="#step-32">
+                      <em>3</em><span>Infraestructura</span>
+                  </a>
+              </li>
+            <!--	
 						<li id="si_envia">
 									<a href="#step-42">
 											<em>4</em><span>Evidencia</span>
@@ -145,48 +146,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
               </div>
             </div>
 
-            <div id="step-22">
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <label>Voltaje:</label>
-                  <input type="text" id="voltaje_ultrafreezer" class="form-control" placeholder="Voltaje" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['voltaje'];?>
-">
-                </div>
-                <div class="col-sm-4">
-                  <label>Potencia:</label>
-                  <input type="text" id="potencia_ultrafreezer" class="form-control" placeholder="Potencia" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['potencia'];?>
-">
-                </div>
-                <div class="col-sm-4">
-                  <label>Capacidad:</label>
-                  <input type="text" id="capacidad_ultrafreezer" class="form-control" placeholder="Capacidad" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['capacidad'];?>
-">
-                </div>
-              </div>
-              <br>
-              <div class="form-row">
-                <div class="col-sm-3">
-                  <label>Peso:</label>
-                  <input type="text" id="peso_ultrafreezer" class="form-control" placeholder="Peso" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['peso'];?>
-">
-                </div>
-                <div class="col-sm-3">
-                  <label>Alto(mm):</label>
-                  <input type="text" id="alto_ultrafreezer" class="form-control" placeholder="Alto" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['alto'];?>
-">
-                </div>
-                <div class="col-sm-3">
-                  <label>Largo(mm):</label>
-                  <input type="text" id="largo_ultrafreezer" class="form-control" placeholder="Largo" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['largo'];?>
-">
-                </div>
-                <div class="col-sm-3">
-                  <label>Ancho(mm):</label>
-                  <input type="text" id="ancho_ultrafreezer" class="form-control" placeholder="Ancho" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['ancho'];?>
-">
-                </div>
-              </div>
-
+            <div id="step-22">              
               <br>
               <div class="form-row">
                 <div class="col-sm-4">
@@ -230,7 +190,53 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
                 </div>
               </div>
 
+             
+            </div>
+
+             <div id="step-32">
+
+                <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Voltaje:</label>
+                  <input type="text" id="voltaje_ultrafreezer" class="form-control" placeholder="Voltaje" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['voltaje'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Potencia:</label>
+                  <input type="text" id="potencia_ultrafreezer" class="form-control" placeholder="Potencia" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['potencia'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Capacidad:</label>
+                  <input type="text" id="capacidad_ultrafreezer" class="form-control" placeholder="Capacidad" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['capacidad'];?>
+">
+                </div>
+              </div>
               <br>
+              <div class="form-row">
+                <div class="col-sm-3">
+                  <label>Peso:</label>
+                  <input type="text" id="peso_ultrafreezer" class="form-control" placeholder="Peso" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['peso'];?>
+">
+                </div>
+                <div class="col-sm-3">
+                  <label>Alto(mm):</label>
+                  <input type="text" id="alto_ultrafreezer" class="form-control" placeholder="Alto" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['alto'];?>
+">
+                </div>
+                <div class="col-sm-3">
+                  <label>Largo(mm):</label>
+                  <input type="text" id="largo_ultrafreezer" class="form-control" placeholder="Largo" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['largo'];?>
+">
+                </div>
+                <div class="col-sm-3">
+                  <label>Ancho(mm):</label>
+                  <input type="text" id="ancho_ultrafreezer" class="form-control" placeholder="Ancho" value="<?php echo $_smarty_tpl->tpl_vars['ultrafreezer']->value['ancho'];?>
+">
+                </div>
+              </div>
+
+               <br>
               <div class="form-row" id="btns_ultrafreezer">
                 <div class="col-sm-12" style="text-align:center;">
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_ultrafreezer">Crear</button>  
@@ -238,7 +244,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ultrafreezer']->value) {
                 </div>
               </div>
 
-            </div>
+             </div> 
           </div>
           <!---Cierre del content-->
         </div>

@@ -29,6 +29,11 @@
                       <em>2</em><span>Infraestructura</span>
                   </a>
             </li>
+            <li>
+              <a href="#step-32">
+                      <em>3</em><span>Infraestructura</span>
+                  </a>
+            </li>
           </ul>
 
       
@@ -80,78 +85,15 @@
             <br>
          </div>   
          <div id="step-22">  
-            <div class="form-row">
-              <div class="col-sm-4">
-                <label>Área m2:</label>
-                <input type="text" id="area_m2_sala_limpia" class="form-control" placeholder="Area en m2" value="{$sala_limpia.area_m2}" required="">
-              </div>
 
-              <div class="col-sm-4">
-                <label>Volumen m3:</label>
-                <input type="text" id="volumen_m3_sala_limpia" class="form-control" placeholder="Volumen en m3" value="{$sala_limpia.volumen_m3}">
-              </div>
-              <div class="col-sm-4">
-                <label>Claudal teorico m3/h :</label>
-                <input type="text" id="claudal_m3h" class="form-control" placeholder="Claudal teorico m3/h " value="{$sala_limpia.claudal_m3h}">
-              </div>
-            </div>
-            <br>
             <div class="form-row">
-              <div class="col-sm-4">
-                <label>Ren/hr:</label>
-                <input type="text" id="ren_hr" class="form-control" placeholder="Area en m2" value="{$sala_limpia.ren_hr}" required="">
-              </div>
-
-              <div class="col-sm-4">
+              <div class="col-sm-6">
                 <label>Temperatura °C:</label>
                 <input type="text" id="temperatura" class="form-control" placeholder="°C" value="{$sala_limpia.temperatura}">
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-6">
                 <label>Humedad relativa % :</label>
                 <input type="text" id="hum_relativa" class="form-control" placeholder="Hum %" value="{$sala_limpia.hum_relativa}">
-              </div>
-            </div>
-            <br>
-            <div class="form-row">
-              <div class="col-sm-4">
-                <label>Luz, lux:</label>
-                <input type="text" id="lux" class="form-control" value="{$sala_limpia.lux}" required="" placeholder="Luz, lux">
-              </div>
-
-              <div class="col-sm-4">
-                <label>Ruido, dBA:</label>
-                <input type="text" id="ruido_dba" class="form-control" placeholder="Ruido" value="{$sala_limpia.ruido_dba}">
-              </div>
-              <div class="col-sm-4">
-                <label>Presión sala [Pa]:</label>
-                <input type="text" id="presion_sala" class="form-control" placeholder="Presión sala" value="{$sala_limpia.presion_sala}">
-              </div>
-            </div>
-            <br>
-            <div class="form-row">
-              <div class="col-sm-4">
-                <label>Presión versus:</label>
-                <input type="text" id="presion_versus" class="form-control" placeholder="Presión versus" value="{$sala_limpia.presion_versus}" required="">
-              </div>
-
-              <div class="col-sm-4">
-                <label>Tipo de Presión:</label>
-                <input type="text" id="tipo_presion" class="form-control" placeholder="Tipo presión" value="{$sala_limpia.tipo_presion}">
-              </div>
-              <div class="col-sm-4">
-                <label>Puntos de muestreo normal ISO 14644-1:2015:</label>
-                <input type="text" id="puntos_muestreo" class="form-control" placeholder="Puntos muestreo normal" value="{$sala_limpia.puntos_muestreo}">
-              </div>
-            </div>
-            <br>
-            <div class="form-row">
-              <div class="col-sm-4">
-                <label>Código:</label>
-                <input type="text" id="codigo" class="form-control" placeholder="Código" value="{$sala_limpia.codigo}" required="">
-              </div>
-              <div class="col-sm-4">
-                <label>Estado sala:</label>
-                <input type="text" id="estado_sala" class="form-control" placeholder="Estado sala" value="{$sala_limpia.estado_sala}">
               </div>
             </div>
             <br>
@@ -165,20 +107,78 @@
            </div>
 
           </div>
+          <div id="step-32">
+
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Área m2:</label>
+                  <input type="text" id="area_m2_sala_limpia" class="form-control" placeholder="Area en m2" value="{$sala_limpia.area_m2}" required="">
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Volumen m3:</label>
+                  <input type="text" id="volumen_m3_sala_limpia" class="form-control" placeholder="Volumen en m3" value="{$sala_limpia.volumen_m3}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Claudal teorico m3/h :</label>
+                  <input type="text" id="claudal_m3h" class="form-control" placeholder="Claudal teorico m3/h " value="{$sala_limpia.claudal_m3h}">
+                </div>
+             </div>
+              <br>
+              <div class="form-row">
+                 <div class="col-sm-4">
+                    <label>Ren/hr:</label>
+                    <input type="text" id="ren_hr" class="form-control" placeholder="Area en m2" value="{$sala_limpia.ren_hr}" required="">
+                 </div>
+                 <div class="col-sm-4">
+                  <label>Luz, lux:</label>
+                  <input type="text" id="lux" class="form-control" value="{$sala_limpia.lux}" required="" placeholder="Luz, lux">
+                </div>
+                <div class="col-sm-4">
+                  <label>Ruido, dBA:</label>
+                  <input type="text" id="ruido_dba" class="form-control" placeholder="Ruido" value="{$sala_limpia.ruido_dba}">
+                </div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Presión sala [Pa]:</label>
+                  <input type="text" id="presion_sala" class="form-control" placeholder="Presión sala" value="{$sala_limpia.presion_sala}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Presión versus:</label>
+                  <input type="text" id="presion_versus" class="form-control" placeholder="Presión versus" value="{$sala_limpia.presion_versus}" required="">
+                </div>
+                <div class="col-sm-4">
+                  <label>Tipo de Presión:</label>
+                  <input type="text" id="tipo_presion" class="form-control" placeholder="Tipo presión" value="{$sala_limpia.tipo_presion}">
+                </div>
+              </div>                          
+                <br>
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Puntos de muestreo normal ISO 14644-1:2015:</label>
+                  <input type="text" id="puntos_muestreo" class="form-control" placeholder="Puntos muestreo normal" value="{$sala_limpia.puntos_muestreo}">
+                </div>
+              </div>
+
+
+          </div>  
         </div>  
           
       </div>
-    </div>
-      
-      <!---Cierre del content-->
-    </div>
-    <!--Cierre del wizard-->
-    <div class="divider"></div>
+      <div class="divider"></div>
         <div class="clearfix">
           <button type="button" id="next-btn2" class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Siguiente</button>
           <button type="button" id="prev-btn2" class="btn-shadow float-right btn-wide btn-pill mr-3 btn btn-outline-secondary">Anterior</button>
         </div>
   </div>
+    </div>
+
+      <!---Cierre del content-->
+    </div>
+    <!--Cierre del wizard-->
+    
 </div>
 {/foreach}
 </div>

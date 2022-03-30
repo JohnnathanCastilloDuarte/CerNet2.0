@@ -15,22 +15,23 @@
  								<em>1</em><span>Identificación</span>
  							</a>
  						</li>
+ 						 <li>
+							<a href="#step-22">
+								<em>3</em><span>Especificación</span>
+							</a>
+						</li>
  						<li>
- 							<a href="#step-22">
+ 							<a href="#step-32">
  								<em>2</em><span>Infraestructura</span>
  							</a>
  						</li>
-						<!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
+						<!--	
 						<li id="si_envia">
 									<a href="#step-42">
 											<em>4</em><span>Evidencia</span>
 									</a>
 								</li>-->
-							</ul>
+					</ul>
 
 							<div class="form-wizard-content">
 								<div id="step-12">
@@ -99,10 +100,41 @@
 
 								<div id="step-22">
 									<div class="form-row">
-										
-                   					     
+										<div class="col-sm-4">
+											<label>Valor seteado humedad:</label>
+											<input type="text" id="valor_seteado_hum" class="form-control" placeholder="Valor seteado humedad" value="{$refrigerador.seteado_hum}" required>
+										</div>
+
+										<div class="col-sm-4">
+											<label>Humedad minima:</label>
+											<input type="text" id="humedad_minima" class="form-control" placeholder="Humedad minima" value="{$refrigerador.hum_min}" required>
+										</div>
+
+										<div class="col-sm-4">
+											<label>Humedad maxima:</label>
+											<input type="text" id="humedad_maxima" class="form-control" placeholder="Humedad maxima" value="{$refrigerador.hum_max}" required>
+										</div>
 									</div>
 									<br>
+									<div class="form-row">
+										<div class="col-sm-4">
+											<label>Valor seteado temperatura:</label>
+											<input type="text" id="valor_seteado_tem" class="form-control" placeholder="Valor seteado humedad" value="{$refrigerador.seteado_tem}" required>
+										</div>
+
+										<div class="col-sm-4">
+											<label>Temperatura minima:</label>
+											<input type="text" id="temperatura_minima" class="form-control" placeholder="Humedad minima" value="{$refrigerador.tem_min}" required>
+										</div>
+
+										<div class="col-sm-4">
+											<label>Temperatura maxima:</label>
+											<input type="text" id="temperatura_maxima" class="form-control" placeholder="Humedad maxima" value="{$refrigerador.tem_max}" required>
+										</div>
+									</div>
+								</div>
+
+								<div id="step-32">	
 									<div class="form-row">
 										<div class="col-sm-3">
 											<label>Área del equipo :</label>
@@ -142,43 +174,6 @@
 									</div>
 									<br>
 
-									<div class="form-row">
-										<div class="col-sm-4">
-											<label>Valor seteado humedad:</label>
-											<input type="text" id="valor_seteado_hum" class="form-control" placeholder="Valor seteado humedad" value="{$refrigerador.seteado_hum}" required>
-										</div>
-
-										<div class="col-sm-4">
-											<label>Humedad minima:</label>
-											<input type="text" id="humedad_minima" class="form-control" placeholder="Humedad minima" value="{$refrigerador.hum_min}" required>
-										</div>
-
-										<div class="col-sm-4">
-											<label>Humedad maxima:</label>
-											<input type="text" id="humedad_maxima" class="form-control" placeholder="Humedad maxima" value="{$refrigerador.hum_max}" required>
-										</div>
-									</div>
-
-									<br>
-
-									<div class="form-row">
-										<div class="col-sm-4">
-											<label>Valor seteado temperatura:</label>
-											<input type="text" id="valor_seteado_tem" class="form-control" placeholder="Valor seteado humedad" value="{$refrigerador.seteado_tem}" required>
-										</div>
-
-										<div class="col-sm-4">
-											<label>Temperatura minima:</label>
-											<input type="text" id="temperatura_minima" class="form-control" placeholder="Humedad minima" value="{$refrigerador.tem_min}" required>
-										</div>
-
-										<div class="col-sm-4">
-											<label>Temperatura maxima:</label>
-											<input type="text" id="temperatura_maxima" class="form-control" placeholder="Humedad maxima" value="{$refrigerador.tem_max}" required>
-										</div>
-									</div>
-
-
 
 									<br>
 									<div class="form-row">
@@ -187,8 +182,7 @@
 											<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_refrigerador">Actualizar</button>
 										</div>
 									</div>
-
-								</div>
+								</div>	
 							</div><!---Cierre del content-->
 						</div><!--Cierre del wizard-->	
 						<div class="divider"></div>

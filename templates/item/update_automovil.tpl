@@ -19,8 +19,13 @@
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Infraestructura</span>
+											<em>2</em><span>Especificación </span>
 									</a>
+            </li>
+            <li>
+              <a href="#step-32">
+                      <em>2</em><span>Infraestructura</span>
+                  </a>
             </li>
           </ul>
           <input type="hidden"  id="id_item_automovil" value="{$automovil.id_item}">
@@ -43,9 +48,7 @@
                       </table>
                     </div>
                 </div>
-
               </div>
-              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Fabricante/Marca:</label>
@@ -98,10 +101,28 @@
                 </div>
               </div>
             </div>
-
-
             <div id="step-22">              
-              <br>
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Valor seteado temperatura(°C):</label>
+                  <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="{$automovil.seteado_tem}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura mínima(°C):</label>
+                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura mínima" value="{$automovil.tem_min}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura máxima(°C):</label>
+                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="{$automovil.tem_max}" required>
+                </div>
+              </div>
+              
+
+            </div>
+            <div id="step-32">
+
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Voltaje(V):</label>
@@ -138,23 +159,7 @@
 
               <br>
 
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <label>Valor seteado temperatura(°C):</label>
-                  <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="{$automovil.seteado_tem}" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura mínima(°C):</label>
-                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura mínima" value="{$automovil.tem_min}" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura máxima(°C):</label>
-                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="{$automovil.tem_max}" required>
-                </div>
-              </div>
-              <br>
+                <br>
               <div class="form-row">
                 <div class="col-sm-12" style="text-align:center;">
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_automovil">Actualizar</button>
@@ -163,8 +168,7 @@
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_nuevo_item_automovil">Nuevo</button>
                 </div>
               </div>
-
-            </div>
+            </div> 
           </div>
           <!---Cierre del content-->
         </div>
