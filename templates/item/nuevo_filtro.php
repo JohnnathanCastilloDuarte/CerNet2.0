@@ -19,9 +19,9 @@
     $eficiencia = $_POST['eficiencia'];
 
 
-    $tipo  = substr($nombre_filtro, -3);
+/*    $tipo  = substr($nombre_filtro, -3);
     $nombre_filtro = substr($nombre_filtro, 0, -3);  
-
+*/
 
 
 ///////////////// PRIMER INSERT TABLA ITEM

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-14 20:02:48
+/* Smarty version 3.1.34-dev-7, created on 2022-03-29 17:42:52
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_estufa.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e1c8d8be7300_13101819',
+  'unifunc' => 'content_624328fc7e74d0_66673215',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8cfa87615307b0cf3a96451ce1aa8dc349ce1246' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_estufa.tpl',
-      1 => 1642186962,
+      1 => 1648568571,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e1c8d8be7300_13101819 (Smarty_Internal_Template $_smarty_tpl) {
+function content_624328fc7e74d0_66673215 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -40,19 +40,20 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
           <ul class="forms-wizard">
             <li>
               <a href="#step-12">
-											<em>1</em><span>Identificación del equipo</span>
+											<em>1</em><span>Identificación</span>
 									</a>
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Caracteristica del equipo</span>
+											<em>2</em><span>Especificación </span>
 									</a>
             </li> 
-            <!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
+            <li>
+              <a href="#step-32">
+                      <em>3</em><span>Infraestructura</span>
+                 </a>
+            </li>
+            <!--	
 						<li id="si_envia">
 									<a href="#step-42">
 											<em>4</em><span>Evidencia</span>
@@ -87,7 +88,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
                     </div>
                 </div>
               </div>
-              <br>
               <div class="form-row">
                 <div class="col-sm-6">
                   <label>Fabricante/Marca:</label>
@@ -126,9 +126,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
 ">
                 </div>
               </div>
-            </div>
-
-            <div id="step-22">
+              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Dirección equipo:</label>
@@ -146,8 +144,32 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
 ">
                 </div>
               </div>
-              <br>
+            </div>
+
+            <div id="step-22">
               <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Valor seteado temperatura:</label>
+                  <input type="text" id="valor_seteado_tem_estufa" class="form-control" placeholder="Valor seteado temperatura" value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['seteado_tem'];?>
+" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura minima:</label>
+                  <input type="text" id="temperatura_minima_estufa" class="form-control" placeholder="Temperatura minima" value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['tem_min'];?>
+" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura maxima:</label>
+                  <input type="text" id="temperatura_maxima_estufa" class="form-control" placeholder="Temperatura maxima" value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['tem_max'];?>
+" required>
+                </div>
+              </div> 
+            </div>
+
+            <div id="step-32">
+                <div class="form-row">
                 <div class="col-sm-4">
                   <label>Voltaje:</label>
                   <input type="text" id="voltaje_estufa" class="form-control" placeholder="Voltaje" value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['voltaje'];?>
@@ -187,40 +209,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['estufa']->value) {
 ">
                 </div>
               </div>
-
               <br>
-
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <label>Valor seteado temperatura:</label>
-                  <input type="text" id="valor_seteado_tem_estufa" class="form-control" placeholder="Valor seteado temperatura" value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['seteado_tem'];?>
-" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura minima:</label>
-                  <input type="text" id="temperatura_minima_estufa" class="form-control" placeholder="Temperatura minima" value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['tem_min'];?>
-" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura maxima:</label>
-                  <input type="text" id="temperatura_maxima_estufa" class="form-control" placeholder="Temperatura maxima" value="<?php echo $_smarty_tpl->tpl_vars['estufa']->value['tem_max'];?>
-" required>
-                </div>
-              </div>
-
-
-
-              <br>
-              <div class="form-row">
+                <div class="form-row">
                 <div class="col-sm-12" style="text-align:center;">
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_nuevo_item_estufa">Nuevo</button>
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_estufa">Actualizar</button>
                 </div>
               </div>
+            </div>  
 
-            </div>
           </div>
           <!---Cierre del content-->
         </div>

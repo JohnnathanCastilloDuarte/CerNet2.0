@@ -12,16 +12,21 @@
  					<ul class="forms-wizard">
  						<li>
  							<a href="#step-12">
- 								<em>1</em><span>Identificación del equipo</span>
+ 								<em>1</em><span>Identificación</span>
  							</a>
  						</li>
  						<li>
  							<a href="#step-22">
- 								<em>2</em><span>Caracteristica del equipo</span>
+ 								<em>2</em><span>Especificación </span>
+ 							</a>
+ 						</li>
+ 						<li>
+ 							<a href="#step-32">
+ 								<em>2</em><span>Infraestructura</span>
  							</a>
  						</li>
 
-							</ul>
+					</ul>
 
 							<div class="form-wizard-content">
 								<div id="step-12">
@@ -71,9 +76,7 @@
 											<input type="date" id="fecha_fabricacion_incubadora" class="form-control" placeholder="" value="{$incubadora.fecha_fabricacion}">
 										</div>
 									</div>
-								</div>
-
-								<div id="step-22">
+									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
 											<label>Dirección equipo:</label>
@@ -88,6 +91,9 @@
 											<input type="text" id="area_interna_incubadora" class="form-control" placeholder="Área equipo" value="{$incubadora.area_interna}">
 										</div>
 									</div>
+								</div>
+
+								<div id="step-22">
 									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
@@ -112,6 +118,10 @@
 									</div>
 
 								</div>
+								<div id="step-12">
+
+									
+								</div>	
 							</div><!---Cierre del content-->
 						</div><!--Cierre del wizard-->	
 						<div class="divider"></div>

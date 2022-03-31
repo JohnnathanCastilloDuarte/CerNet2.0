@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-17 15:27:01
+/* Smarty version 3.1.34-dev-7, created on 2022-03-29 17:53:03
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_incubadora.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e57cb5189f62_49923985',
+  'unifunc' => 'content_62432b5f703ca4_50501056',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fa154793e02dd43523808460fbe75e87845536ec' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_incubadora.tpl',
-      1 => 1642429327,
+      1 => 1648569182,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e57cb5189f62_49923985 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62432b5f703ca4_50501056 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
  	<div class="col-sm-12">
  		<?php
@@ -40,16 +40,21 @@ foreach ($_from as $_smarty_tpl->tpl_vars['incubadora']->value) {
  					<ul class="forms-wizard">
  						<li>
  							<a href="#step-12">
- 								<em>1</em><span>Identificación del equipo</span>
+ 								<em>1</em><span>Identificación</span>
  							</a>
  						</li>
  						<li>
  							<a href="#step-22">
- 								<em>2</em><span>Caracteristica del equipo</span>
+ 								<em>2</em><span>Especificación </span>
+ 							</a>
+ 						</li>
+ 						<li>
+ 							<a href="#step-32">
+ 								<em>2</em><span>Infraestructura</span>
  							</a>
  						</li>
 
-							</ul>
+					</ul>
 
 							<div class="form-wizard-content">
 								<div id="step-12">
@@ -109,9 +114,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['incubadora']->value) {
 ">
 										</div>
 									</div>
-								</div>
-
-								<div id="step-22">
+									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
 											<label>Dirección equipo:</label>
@@ -129,6 +132,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['incubadora']->value) {
 ">
 										</div>
 									</div>
+								</div>
+
+								<div id="step-22">
 									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
@@ -156,6 +162,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['incubadora']->value) {
 									</div>
 
 								</div>
+								<div id="step-12">
+
+									
+								</div>	
 							</div><!---Cierre del content-->
 						</div><!--Cierre del wizard-->	
 						<div class="divider"></div>

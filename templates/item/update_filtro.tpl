@@ -30,11 +30,11 @@
                   {if $filtro.nombre_item == ""}
                    <option value="0" selected>Seleccione...</option>
                    <option value="Filtro Absoluto HEPA H13 ">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   {else}
                    <option value="{$filtro.nombre_item}" selected="">{$filtro.nombre_item}</option>
                    <option value="Filtro Absoluto HEPA H13">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   {/if}
                 </select>
               </div>
