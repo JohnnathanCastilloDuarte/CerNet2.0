@@ -97,10 +97,10 @@ function setear_campos(){
 $("#btn_nuevo_item_estufa").click(function(){
 
   
-  let empresa_estufas = $("#empresa_estufa").val();
+  let id_empresa = $("#id_empresa").val();
   const datos = {
-    nombre_estufa : $("#nombre_estufa").val(),
-    empresa_estufa : $("#id_empresa").val(),
+    nombre_aire_comprimido : $("#nombre_aire_comprimido").val(),
+    id_empresa : $("#id_empresa").val(),
     fabricante_estufa : $("#fabricante_estufa").val(),
     modelo_estufa : $("#modelo_estufa").val(),
     desc_estufa : $("#desc_estufa").val(),

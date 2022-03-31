@@ -264,6 +264,9 @@
             <li>
                 <a href="index.php?module={$modulo[6]}&page={$page[11]}"><i class="metismenu-icon pe-7s-news-paper"></i>Sala limpia</a>
             </li>
+            <li>
+                <a href="index.php?module={$modulo[6]}&page={$page[13]}"><i class="metismenu-icon pe-7s-news-paper"></i>Aire comprimido</a>
+            </li>
             <li style="text-align: center;">
                 <hr>
                     <strong>Informes Calificación</strong>
