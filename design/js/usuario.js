@@ -1,6 +1,4 @@
 $("#btn_nuevo_usuario").hide();
-
-
 $("#usuario_principal").val("");
 $("#clave_usuario").val("");
 $("#re_clave_usuario").val("");
@@ -28,6 +26,7 @@ mostrar_privilegios();
 
 validar_usuario();
 comparar_pass();
+//mostrar_cargo();
 
  //////// LISTAR EMPRESAS 
 
@@ -59,6 +58,47 @@ $("#buscador_empresa").keydown(function(){
     }
   })
 });
+
+function mostrar_cargo(){
+  
+   let id_departamento = $('#id_departamento_editar').val();
+  
+	 let tipo_mostrar = 'cargos';
+
+   let nombre_cargo = $("#nombre_cargo_editar").val();
+   let id_cargo_editar = $("#id_cargo_editar").val();
+  
+  // console.log(id_departamento_editar)
+   $.ajax({
+     type:'POST',
+     data: {tipo_mostrar,id_departamento},
+     url:'templates/usuario/mostrar_departamentos_usuario.php',
+      success:function(e){
+       let traer = JSON.parse(e);
+       let template = "";
+       
+        template +=
+          `	
+					<option value="${id_cargo_editar}" selected>${nombre_cargo}</option>
+					
+				`;
+       traer.forEach((valor)=>{
+				template +=
+				`	
+					<option value="${valor.id_cargo}">${valor.nombre_cargo}</option>
+					
+				`;
+                 
+          });
+        
+          $("#cargo_usuario_editar").html(template);
+        }
+		});
+
+			
+  
+ }
+
 
 ///////////////// EVENTO EMPRESA 
 
@@ -240,6 +280,8 @@ function mostar_departamentos(){
 			$("#departamento_usuario").html(template);
      }
    });
+  
+  mostrar_cargo();
 }
 
 //mostrar roles segun departamento
@@ -303,6 +345,7 @@ function mostar_departamentos_editar(){
 			$("#departamento_usuario_editar").html(template);
      }
    });
+  
 }
 
 //mostrar roles segun departamento2
@@ -397,7 +440,7 @@ $("#btn_nuevo_usuario").click(function(){
   departamento_usuario:$("#departamento_usuario").val(),
   pais_usuario: $("#pais_usuario").val(),
   empresa_usuario: $("#id_empresa").val(),	
-  privilegios_usuario: $("#privilegios").val(),  
+  privilegios_usuario: $("#privilegios_usuario").val(),  
   estado_usuario: estado_defecto
   }
 

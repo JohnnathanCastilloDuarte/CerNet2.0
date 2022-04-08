@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-12-23 14:25:29
+/* Smarty version 3.1.34-dev-7, created on 2022-03-22 17:14:01
   from '/home/god/public_html/CerNet2.0/templates/item/gestionar_item.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61c486d92ab4d0_20474225',
+  'unifunc' => 'content_623a03d960bc87_33817601',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '41753d103b9de0e428c88e9bc47f8cb30773c4bd' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/gestionar_item.tpl',
-      1 => 1640269525,
+      1 => 1647969238,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61c486d92ab4d0_20474225 (Smarty_Internal_Template $_smarty_tpl) {
+function content_623a03d960bc87_33817601 (Smarty_Internal_Template $_smarty_tpl) {
 ?><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="app-main__inner">
 	<div class="container-fluid">
@@ -37,7 +37,7 @@ function content_61c486d92ab4d0_20474225 (Smarty_Internal_Template $_smarty_tpl)
 						<th>Tipo</th>
 						<th>Nombre</th>
 						<th>Compañia</th>
-						<th>Acciones</th>
+						<th style="width:150px;">Acciones</th>
 					</thead>
 			
 					<?php

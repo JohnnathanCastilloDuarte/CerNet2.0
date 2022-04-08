@@ -19,6 +19,7 @@ $id_usuario = $_POST['id_valida_filtro'];
 $id_item = $_POST['id_item_filtro'];
 $id_filtro = $_POST['id_filtro'];
 $eficiencia = $_POST['eficiencia'];
+$dimenciones = $_POST['dimenciones'];
 
 
 $tipo  = substr($nombre_filtro, -3);
@@ -52,8 +53,8 @@ mysqli_stmt_bind_param($actualiza_filtro, 'sssisssssssi',
 	$cantidad_filtros_filtro, 
 	$ubicacion_filtro,
 	$ubicado_en_filtro, 
+	$dimenciones, 
 	$tipo_filtro, 
-	$tipo, 
 	$lugar_filtro, 
 	$penetracion_filtro,
 	$eficiencia,

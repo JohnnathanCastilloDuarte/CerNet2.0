@@ -259,11 +259,11 @@ else if($orden == 9){
 else if($orden == 10){
     $id_asignado = $_POST['id_asignado'];
     $array_resultado = array();
-    $consultar = mysqli_prepare($connect,"SELECT id_informe, nombre_informe, solicita, conclusion FROM salas_limpias_informe WHERE id_asignado = ?");
+    $consultar = mysqli_prepare($connect,"SELECT id_informe, nombre_informe, solicita, conclusion, usuario_responsable FROM salas_limpias_informe WHERE id_asignado = ?");
     mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
     mysqli_stmt_execute($consultar);
     mysqli_stmt_store_result($consultar);
-    mysqli_stmt_bind_result($consultar, $id_informe, $nombre_informe,  $solicitante, $conclusion);
+    mysqli_stmt_bind_result($consultar, $id_informe, $nombre_informe,  $solicitante, $conclusion, $usuario_responsable);
 
     
     while($row = mysqli_stmt_fetch($consultar)){
@@ -272,7 +272,8 @@ else if($orden == 10){
            'id_informe'=>$id_informe,
            'nombre_informe'=>$nombre_informe,
            'solicitante'=>$solicitante,
-           'conclusion'=>$conclusion
+           'conclusion'=>$conclusion,
+           'responsable'=>$usuario_responsable
         );
     }
 
@@ -364,7 +365,7 @@ else if($orden == 300){
                 mysqli_stmt_bind_param($creando, 'ii', $id_asignado, $categoria_2);
                 mysqli_stmt_execute($creando);
 
-            }else if($i == 1){
+            }else if($i == 2){
                 $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_prueba_4 (id_asignado, categoria) VALUES (?, ?)");
                 mysqli_stmt_bind_param($creando, 'ii', $id_asignado, $categoria_3);
                 mysqli_stmt_execute($creando);

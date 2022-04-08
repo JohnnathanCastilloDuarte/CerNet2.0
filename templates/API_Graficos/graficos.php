@@ -142,10 +142,6 @@ mysqli_stmt_store_result($consultar_fechas);
 mysqli_stmt_bind_result($consultar_fechas, $time);
 
 
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -221,9 +217,7 @@ mysqli_stmt_bind_result($consultar_fechas, $time);
             <div class="card-header"></div>
             <div class="card-body">
                 <?php 
-                    if(!isset($_GET['promedio'])){
-
-                   
+                   if(!isset($_GET['promedio'])){
                 ?>
                 <div class="row">
                     <div class="col-sm-12">
@@ -243,9 +237,7 @@ mysqli_stmt_bind_result($consultar_fechas, $time);
                                 mysqli_stmt_execute($consultar_alturas);
                                 mysqli_stmt_store_result($consultar_alturas);
                                 mysqli_stmt_bind_result($consultar_alturas, $nombre_altura, $id_altura);
-                          
                                 while($row = mysqli_stmt_fetch($consultar_alturas)){
-                                  
                                   echo "<option value='$id_altura'>$nombre_altura</option>";
                                 }
                             ?>

@@ -7,7 +7,11 @@
 		<div class="card">
 			<div class="card-header">
 				<h6>
-					Configuración Filtro
+          {if $id_item_filtro == ''}
+					Crear Filtro
+          {else}
+          Configurar Filtro
+          {/if}
 				</h6>
 			</div>
     </div><!--CIERRE DEL CARD-->  
@@ -30,11 +34,11 @@
                   {if $filtro.nombre_item == ""}
                    <option value="0" selected>Seleccione...</option>
                    <option value="Filtro Absoluto HEPA H13 ">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   {else}
                    <option value="{$filtro.nombre_item}" selected="">{$filtro.nombre_item}</option>
                    <option value="Filtro Absoluto HEPA H13">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   {/if}
                 </select>
               </div>
@@ -70,9 +74,13 @@
               <label>Serie: </label>
               <input type="text" class="form-control" id="serie_filtro" value="{$filtro.serie}" required="" placeholder="Serie filtro">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
               <label>Cantidad Filtros HEPA: </label>
               <input type="number" class="form-control" id="cantidad_filtros_filtro" value="{$filtro.cantidad_filtros}" required="" placeholder="Cantidad de filtros">
+            </div>
+            <div class="col-sm-3">
+              <label>Tipo Filtro </label>
+              <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo_filtro}" required="" placeholder="Tipo de Filtro">
             </div>
           </div>
           
@@ -114,7 +122,7 @@
           <div class="form-row">
             <div class="col-sm-6">
               <label>Dimensiones: </label>
-              <input type="text" class="form-control" id="tipo_filtro" value="{$filtro.tipo_filtro}" required="" placeholder="Dimensiones del filtro">
+              <input type="text" class="form-control" id="dimenciones_filtro" value="{$filtro.filtro_dimension}" required="" placeholder="Dimensiones del filtro">
             </div>
             <div class="col-sm-3">
               <label>Limite de penetración: </label>

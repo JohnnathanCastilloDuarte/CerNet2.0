@@ -13,14 +13,13 @@
     $ubicado_en_filtro = $_POST['ubicado_en_filtro'];
     $lugar_filtro = $_POST['lugar_filtro'];
     $tipo_filtro = $_POST['tipo_filtro'];
+    $dimenciones = $_POST['dimenciones'];
     $penetracion_filtro = $_POST['penetracion_filtro'];
     $id_tipo_filtro = $_POST['id_tipo_filtro'];
     $id_usuario = $_POST['id_valida_filtro'];
     $eficiencia = $_POST['eficiencia'];
 
-
-    $tipo  = substr($nombre_filtro, -3);
-    $nombre_filtro = substr($nombre_filtro, 0, -3);  
+ 
 
 
 
@@ -39,7 +38,7 @@
 
     $insert_filtro = mysqli_prepare($connect,"INSERT INTO item_filtro (id_item, marca, modelo, serie, cantidad_filtro, ubicacion, ubicado_en, filtro_dimension, tipo_filtro, lugar_filtro, limite_penetracion, eficiencia) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
     
-    mysqli_stmt_bind_param($insert_filtro, 'isssisssssss', $id_item, $marca_filtro, $modelo_filtro, $serie_filtro, $cantidad_filtros_filtro, $ubicacion_filtro, $ubicado_en_filtro, $tipo_filtro, $tipo, $lugar_filtro, $penetracion_filtro, $eficiencia);
+    mysqli_stmt_bind_param($insert_filtro, 'isssisssssss', $id_item, $marca_filtro, $modelo_filtro, $serie_filtro, $cantidad_filtros_filtro, $ubicacion_filtro, $ubicado_en_filtro, $dimenciones, $tipo_filtro, $lugar_filtro, $penetracion_filtro, $eficiencia);
     
     mysqli_stmt_execute($insert_filtro);
     echo mysqli_stmt_error($insert_filtro);

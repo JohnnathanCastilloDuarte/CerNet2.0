@@ -48,6 +48,7 @@ $("#btn_crear_item_filtro").click(function(){
   let ubicado_en_filtro = $("#ubicado_en_filtro").val();
   let lugar_filtro = $("#lugar_filtro").val();
   let tipo_filtro = $("#tipo_filtro").val();
+  let dimenciones = $("#dimenciones_filtro").val();
   let penetracion_filtro = $("#penetracion_filtro").val();
   let id_tipo_filtro = $("#id_tipo_filtro").val();
   let eficiencia = $("#eficiencia").val();
@@ -63,6 +64,7 @@ $("#btn_crear_item_filtro").click(function(){
     ubicado_en_filtro,
     lugar_filtro,
     tipo_filtro,
+    dimenciones,
     penetracion_filtro,
     eficiencia,
     id_tipo_filtro,
@@ -86,13 +88,7 @@ $("#btn_crear_item_filtro").click(function(){
         
         limpiar_campos_filtro();
       }else{
-        Swal.fire({
-          title:'Mensaje',
-          text:'Ha ocurrido un error, contacta con el administrador ',
-          icon:'danger',
-          showConfirmButton: false,
-          timer:1500
-        });
+        console.log("no")
       }
     }
   })
@@ -114,6 +110,7 @@ $("#btn_editar_item_filtro").click(function(){
   let ubicado_en_filtro = $("#ubicado_en_filtro").val();
   let lugar_filtro = $("#lugar_filtro").val();
   let tipo_filtro = $("#tipo_filtro").val();
+  let dimenciones = $("#dimenciones_filtro").val();
   let penetracion_filtro = $("#penetracion_filtro").val();
   let id_tipo_filtro = $("#id_tipo_filtro").val();
   let eficiencia = $("#eficiencia").val();
@@ -129,6 +126,7 @@ $("#btn_editar_item_filtro").click(function(){
     ubicado_en_filtro,
     lugar_filtro,
     tipo_filtro,
+    dimenciones,
     penetracion_filtro,
     id_tipo_filtro,
     id_valida_filtro,
@@ -154,13 +152,7 @@ $("#btn_editar_item_filtro").click(function(){
           
         });
       }else{
-        Swal.fire({
-          title:'Mensaje',
-          text:'Ha ocurrido un error, contacta con el administrador ',
-          icon:'danger',
-          showConfirmButton: false,
-          timer:1500
-        });
+        console.log("No");
       }
     }
   })

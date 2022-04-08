@@ -32,18 +32,19 @@ if(isset($_GET['item'])){
   $smarty->assign("id_item_filtro",$id_item);
 
   $consultar = mysqli_prepare($connect,"SELECT a.nombre, b.id_filtro, b.marca, b.modelo, b.serie, b.cantidad_filtro, b.ubicacion, 
-  b.ubicado_en, b.filtro_dimension, c.nombre, c.id_empresa, b.lugar_filtro, b.limite_penetracion, d.nombre, a.fecha_registro, b.eficiencia 
+  b.ubicado_en, b.filtro_dimension, c.nombre, c.id_empresa, b.lugar_filtro, b.limite_penetracion, d.nombre, a.fecha_registro, b.eficiencia, b.tipo_filtro 
   FROM item as a, item_filtro as b, empresa as c, tipo_item as d WHERE a.id_item = ? AND a.id_item = b.id_item AND a.id_tipo = d.id_item  AND a.id_empresa = c.id_empresa");
   
   mysqli_stmt_bind_param($consultar, 'i', $id_item);
   mysqli_stmt_execute($consultar);
   mysqli_stmt_store_result($consultar);
   mysqli_stmt_bind_result($consultar, $nombre_filtro, $id_filtro, $marca_fitro, $modelo_filtro, $serie_filtro, $cantidad_filtro, $ubicacion_filtro, $ubicado_en_filtro,
-    $tipo_filtro, $empresa_filtro, $id_empresa, $lugar_filtro, $penetracion_filtro,$nombre_tipo_item,$fecha_registro, $eficiencia);
+    $filtro_dimension, $empresa_filtro, $id_empresa, $lugar_filtro, $penetracion_filtro,$nombre_tipo_item,$fecha_registro, $eficiencia, $tipo_filtro);
   
   mysqli_stmt_fetch($consultar);
 
   $smarty->assign("nombre_item",$nombre_filtro);
+  
 
   $array_filtro[] = array(
     'nombre_item'=>$nombre_filtro,
@@ -55,6 +56,7 @@ if(isset($_GET['item'])){
     'cantidad_filtros' => $cantidad_filtro,
     'direccion' => $ubicacion_filtro,
     'ubicacion_interna' => $ubicado_en_filtro,
+    'filtro_dimension' => $filtro_dimension,
     'tipo_filtro' => $tipo_filtro,
     'area_interna' => $lugar_filtro,
     'penetracion_filtro' => $penetracion_filtro,

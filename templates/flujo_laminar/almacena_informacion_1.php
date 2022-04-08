@@ -9,9 +9,10 @@ if (isset($_POST['accion'])) {
     $conclusion = $_POST['conclusion'];
     $solicitante = $_POST['solicitante'];
     $nombre_informe = $_POST['nombre_informe'];
+    $responsable = $_POST['responsable'];
 
-    $actualizar0 = mysqli_prepare($connect,"UPDATE informe_flujo_laminar SET conclusion= ?, solicitante= ?, nombre_informe = ? WHERE  id_informe = ?");
-    mysqli_stmt_bind_param($actualizar0, 'sssi', $conclusion, $solicitante, $nombre_informe, $id_informe);
+    $actualizar0 = mysqli_prepare($connect,"UPDATE informe_flujo_laminar SET conclusion= ?, solicitante= ?, nombre_informe = ?, usuario_responsable = ? WHERE  id_informe = ?");
+    mysqli_stmt_bind_param($actualizar0, 'ssssi', $conclusion, $solicitante, $nombre_informe, $responsable, $id_informe);
     mysqli_stmt_execute($actualizar0);
 
 
@@ -19,7 +20,7 @@ if (isset($_POST['accion'])) {
         echo "Existe un error en la prueba 0 ".$id_informe."-".$conclusion."-".$solicitante."-".$nombre_informe;
 
     }else{
-        'todo_ok';
+       
     }
 
 }else { 
@@ -129,7 +130,7 @@ for($i = 0; $i < count($id_prueba_4); $i++){
     $actualizar5 = mysqli_prepare($connect,"UPDATE flujo_laminar_prueba_4 SET punto_1= ? ,punto_2= ? ,punto_3= ? ,promedio= ? WHERE id_prueba = ?");
     mysqli_stmt_bind_param($actualizar5, 'ssssi', $punto_1_p4[$i], $punto_2_p4[$i], $punto_3_p4[$i], $promedio_p4[$i], $id_prueba_4[$i]);
     mysqli_stmt_execute($actualizar5);
-
+  
     if(!$actualizar5){
         echo "Existe un error actualizando la prueba 4 ".mysqli_stmt_error($actualizar5);
     }

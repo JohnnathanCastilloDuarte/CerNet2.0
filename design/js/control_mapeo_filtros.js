@@ -1,14 +1,35 @@
-
+ $("#alerta_1").hide();
 $("#ir_informe_filtros").click(function(){
 
   window.open("templates/filtros/informes/inspeccion_de_filtros.php");
 })
+
+//Validar usuario responsable 
+
+$("#responsable").blur(function(){
+ let usuario = $("#responsable").val();
+ $.ajax({
+    type:'POST',
+    data:{usuario},
+    url:'templates/usuario/validar_usuario.php',
+    success:function(e){
+      console.log(e)
+      if(e == 'disponible'){
+         $("#responsable").css("border-color", "red");
+         $("#alerta_1").show();
+       }else{
+         $("#alerta_1").hide();
+         $("#responsable").css("border-color", "#03cb1b");
+       }
+     }
+   });   
+});
 /// VARIABLES GLOBALES
 var id_asignado_filtro = $("#id_asignado_filtro").val();
 
+
 // FUNCIONES A EJECUTAR
 consultando_ot();
-
 
 ///////////// CONSULTAR DATOS DE LA OT
 function consultando_ot(){
@@ -48,12 +69,8 @@ $(document).ready(function(){
 
   let cantidad = $("#cantidad_filtros_input").val();
 
-
-
     controlador_filtros('buscar_si_existe');
   
-   
-    
   //}else{
     //controlador_filtros('buscando_inf_parte_1');
     //controlador_filtros('buscando_inf_parte_2');
@@ -77,37 +94,63 @@ $(document).ready(function(){
 
     if(tipo == 'buscar_si_existe'){
       let variable = "";
+      
       $.ajax({
         type:'POST',
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
 
-          if(response == "No"){
+          if(response != "No"){
 
-            $("#tarjeta_equipos_medicion_filtros").hide();
+            $("#tarjeta_equipos_medicion_filtros").show();
             $("#btn_nuevo_filtro_mapeo").show();
             $("#btn_actualizar_filtro_mapeo").hide();
-            let tipo = 'contar_filtros';
+           
+            let tipo = 'buscar_si_ifo_p3';
 
-            const datos = {
+            const datos2 = {
               id_asignado_filtro,
               tipo
-            } 
-            $.ajax({
-              type:'POST',
-              url:'templates/filtros/buscar_inpeccion.php',
-              data:datos,
-              success:function(response){
-                cargar_posiciones_vacias(response);
-              }
-            });
-          }else{
+            }
+            
+             $.ajax({
+                   type:'POST',
+                    url:'templates/filtros/buscar_inpeccion.php',
+                     data:datos2,
+                     success:function(e){
+                      //console.log(e)
+                       if(e == 'NO'){
+                          let tipo = 'contar_filtros';
+                          console.log('entrando');
+                         const datos = {
+                            id_asignado_filtro,
+                            tipo
+                          } 
+                         
+                         $.ajax({
+                         type:'POST',
+                         url:'templates/filtros/buscar_inpeccion.php',
+                         data:datos,
+                         success:function(response){
+                            cargar_posiciones_vacias(response);
+                           }
+                           });
+                       }else{
+                     //    console.log('no entro');
+                       }
+                       
+                   }
+             });
+            
+                
+         // }else{
             $("#btn_nuevo_filtro_mapeo").hide();
             $("#btn_actualizar_filtro_mapeo").show();
             controlador_filtros('buscando_inf_parte_1');
             controlador_filtros('buscando_inf_parte_2');
             controlador_filtros('buscando_inf_parte_3'); 
+            
           }
           
         }
@@ -138,6 +181,7 @@ $(document).ready(function(){
             $("#insp6_traido_db").val(x.insp6);
             $('#nombre_informe').val(x.nombre_informe);
             $('#solicitante').val(x.solicitante);
+            $("#responsable").val(x.responsable);
             $('#conclusion').val(x.conclusion);
           })
         }
@@ -481,6 +525,7 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
   let nombre_informe = $("#nombre_informe").val();
   let solicitante = $("#solicitante").val();
   let conclusion = $("#conclusion").val();
+  let responsable = $("#responsable").val();
 
 const datos ={
   inspeccion_visual_array,
@@ -497,6 +542,7 @@ const datos ={
   id_asignado_filtro,
   nombre_informe,
   solicitante,
+  responsable,
   conclusion
 }
 
@@ -616,6 +662,7 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
   let id_informe  = $("#id_informe_filtro").val();
   let nombre_informe = $("#nombre_informe").val();
   let solicitante = $("#solicitante").val();
+  let responsable = $("#responsable").val();
   let conclusion = $("#conclusion").val();
 
   let tipo = "actualizar";
@@ -638,24 +685,29 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     id_medicion_2_array,
     nombre_informe,
     solicitante,
+    responsable,
     conclusion
   }
-
-  $.ajax({
-    type:'POST',
-    data:datos,
-    url:'templates/filtros/controlador_filtro.php',
-    success:function(response){
-      if(response == "Listo"){
-        Swal.fire({
-          title:'Mensaje',
-          text:'Se ha creado la información con exito',
-          icon:'success',
-          timer:2000
-        });
+       $.ajax({
+         type:'POST',
+         data:datos,
+         url:'templates/filtros/controlador_filtro.php',
+         success:function(response){
+         console.log(response);
+           if(response == "ListoListo"){
+           Swal.fire({
+           title:'Mensaje',
+           text:'Se ha creado la información con exito',
+           icon:'success',
+           showConfirmButton: false,
+           timer:1500
+          });
       }
-    }
-  });
+     }
+     // recargar();
+     
+   });
+ 
 
 });
 

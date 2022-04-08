@@ -5,8 +5,7 @@ include('../../config.ini.php');
 $id_asignado_filtro = $_POST['id_asignado_filtro'];
 $tipo = $_POST['tipo'];
 
-
-
+$null = 'NA';
 switch ($tipo) {
     case 'buscar_si_existe':
         $consultar = mysqli_prepare($connect,"SELECT id_informe FROM informe_filtro WHERE id_asignado = ?");
@@ -19,7 +18,17 @@ switch ($tipo) {
         if(mysqli_stmt_num_rows($consultar) != 0){
             echo $id_informe;
         }else{
-            echo "No";
+          //echo "No";
+          $insertar = mysqli_prepare($connect, "INSERT INTO informe_filtro(nombre_informe, concepto, conclusion, 
+                                                solicitante, insp1,insp2, insp3, insp4, insp5, insp6, id_asignado) 
+                                                VALUES (?,?,?,?,?,?,?,?,?,?,?) ");
+          mysqli_stmt_bind_param($insertar,'ssssssssssi',$null,$null,$null,$null,$null,$null,$null,$null,$null,$null,$id_asignado_filtro);
+          mysqli_stmt_execute($insertar);
+          
+          $id_informe = mysqli_stmt_insert_id($insertar);
+          
+          echo $id_informe;
+          
         }
         break;
 
@@ -28,11 +37,11 @@ switch ($tipo) {
         $array_datos1 = array();
         //echo "SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5 FROM informe_filtro as a WHERE  a.id_asignado =".$id_asignado_filtro;
         
-        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5, a.insp6, a.nombre_informe, a.solicitante FROM informe_filtro as a WHERE  a.id_asignado = ?");
+        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5, a.insp6, a.nombre_informe, a.solicitante,a.usuario_responsable FROM informe_filtro as a WHERE  a.id_asignado = ?");
         mysqli_stmt_bind_param($consultar, 'i', $id_asignado_filtro);
         mysqli_stmt_execute($consultar);
         mysqli_stmt_store_result($consultar);
-        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5, $insp6, $nombre_informe, $solicitante);
+        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5, $insp6, $nombre_informe, $solicitante, $usuario_responsable);
         
         while($row = mysqli_stmt_fetch($consultar)){
 
@@ -42,6 +51,7 @@ switch ($tipo) {
                 'conclusion'=>$conclusion,
                 'nombre_informe'=>$nombre_informe,
                 'solicitante'=>$solicitante,
+                'responsable'=>$usuario_responsable,
                 'insp1'=>$insp1,
                 'insp2'=>$insp2,
                 'insp3'=>$insp3,
@@ -100,7 +110,6 @@ switch ($tipo) {
 
 
         break;
-      
     case 'buscando_inf_parte_3':
 
         $array_datos3 = array();
@@ -136,6 +145,30 @@ switch ($tipo) {
 
 
         break;
+      
+    case 'buscar_si_ifo_p3':      
+      
+      
+        $consultar = mysqli_prepare($connect,"SELECT a.id_informe FROM filtro_mediciones_2 a, informe_filtro b  WHERE a.id_informe = b.id_informe AND b.id_asignado = ?");
+        mysqli_stmt_bind_param($consultar, 'i', $id_asignado_filtro);
+        mysqli_stmt_execute($consultar);
+        mysqli_stmt_store_result($consultar);
+        mysqli_stmt_bind_result($consultar, $id_medicion_2);
+        mysqli_stmt_fetch($consultar);
+        
+       // $nnn = mysqli_stmt_num_rows($consultar); 
+        
+        if(mysqli_stmt_num_rows($consultar) >0){
+          echo "SI";
+        }else{
+          echo "NO";
+        }
+
+
+        break;
+    
+    
+    
 
 }
 

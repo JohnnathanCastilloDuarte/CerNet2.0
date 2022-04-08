@@ -9,25 +9,38 @@ $id_asignado = substr($clave, 97);
 
 
 /////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
-$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala, b.direccion FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item");
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala, b.direccion, b.temperatura, b.hum_relativa, b.ruido_dba, b.lux 
+FROM item as a, item_sala_limpia as b, item_asignado as c 
+WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item");
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
-mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala, $direccion_item);
+mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala, $direccion_item, $temperatura_item, $hum_relativa_item, $ruido_dba_item, $lux_item);
 mysqli_stmt_fetch($consulta_informacion_informe);
-
-/*echo "SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala, b.direccion FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = $id_asignado AND c.id_item = b.id_item AND b.id_item = c.id_item";*/
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion, e.conclusion FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion, e.conclusion, e.usuario_responsable FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion, $conclusion);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion, $conclusion, $usuario_responsable);
 mysqli_stmt_fetch($consulta_empresa);
 
 $num_ot = substr($numot, 2);
+
+
+
+//consultar informacion del responsable
+
+$consultar_responsable = mysqli_prepare($connect,"SELECT b.nombre, b.apellido, c.nombre 
+  FROM usuario a, persona b, cargo c WHERE a.id_usuario = b.id_usuario AND c.id_cargo = b.id_cargo AND a.usuario = ?");
+
+mysqli_stmt_bind_param($consultar_responsable, 's', $usuario_responsable);
+mysqli_stmt_execute($consultar_responsable);
+mysqli_stmt_store_result($consultar_responsable);
+mysqli_stmt_bind_result($consultar_responsable, $nombre_responsable, $apellido_responsable, $nombre_cargo);
+mysqli_stmt_fetch($consultar_responsable);
 
 $pdf->AddPage('A4');
 
@@ -194,7 +207,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b> Prueba de Renovación de Aire</b></td>
+        <td class="linea" align="center"><h2> Prueba de Renovación de Aire</h2></td>
    </tr>
 </table>
 
@@ -223,18 +236,36 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Difencial de Presión</b></td>
+        <td class="linea" align="center"><h2>Prueba de Difencial de Presión</h2></td>
    </tr>
 </table>
 
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(50, 5, 15, '', 'Enunciado' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 65, '', 'Enunciado' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 100, '', 'Enunciado' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', 'Enunciado' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', 'Enunciado' ,1,1, 0, true, 'C', true);
+/////// Consulta información  de presion 
+$consultar_info_presion = mysqli_prepare($connect,"SELECT medicion_1, medicion_2, medicion_3, medicion_4
+FROM salas_limpias_prueba_3
+WHERE id_asignado = ? ");
+mysqli_stmt_bind_param($consultar_info_presion, 'i', $id_asignado);
+mysqli_stmt_execute($consultar_info_presion);
+mysqli_stmt_store_result($consultar_info_presion);
+mysqli_stmt_bind_result($consultar_info_presion, $medicion_1, $medicion_2, $medicion_3, $medicion_4);
+//mysqli_stmt_fetch($consultar_info_presion);
+
+$enunciadospresion = array('Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación');
+$contador = 0;
+while($row = mysqli_stmt_fetch($consultar_info_presion)){
+
+$pdf->writeHTMLCell(50, 5, 15, '', $enunciadospresion[$contador] ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(35, 5, 65, '', $medicion_1 ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(35, 5, 100, '', $medicion_2 ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 135, '', $medicion_3 ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 165, '', $medicion_4 ,1,1, 0, true, 'C', true);
+
+   $contador++;
+}
+
 
 $linea = <<<EOD
 
@@ -248,7 +279,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Temperatura y Humedad Relativa</b></td>
+        <td class="linea" align="center"><h2>Prueba de Temperatura y Humedad Relativa</h2></td>
    </tr>
 </table>
 
@@ -280,7 +311,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Prueba de Iluminación y Ruido</b></td>
+        <td class="linea" align="center"><h2>Prueba de Iluminación y Ruido</h2></td>
    </tr>
 </table>
 
@@ -329,7 +360,6 @@ $linea = <<<EOD
    background-color: #1a53ff;
 }
 </style>
-<br><br>
 <table>
    <tr border="1">
         <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
@@ -351,7 +381,7 @@ $linea = <<<EOD
    background-color: #1a53ff;
 }
 </style>
-<br><br>
+
 <table>
    <tr border="1">
         <td class="linea" align="center"><h2>Responsable</h2></td>
@@ -361,8 +391,7 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(165, 5, 15, '', 'Ing. Raúl Quevedo Silva<br>
-Gerente de Operaciones' ,0,1, 0, true, 'C', true);
+$pdf->writeHTMLCell(180, 5, 15, '', 'Ing. '.$nombre_responsable.' &nbsp; '. $apellido_responsable.'<br>'.$nombre_cargo ,0,1, 0, true, 'C', true);
 
 
 
@@ -453,6 +482,14 @@ $prueba = <<<EOD
 EOD;  
 $pdf->writeHTML($prueba, true, false, false, false, '');
 
+$buscarimagen = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ?");
+mysqli_stmt_bind_param($buscarimagen, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen);
+mysqli_stmt_store_result($buscarimagen);
+mysqli_stmt_bind_result($buscarimagen, $url_imagen, $nombre_imagen);
+mysqli_stmt_fetch($buscarimagen);
 
 
 
@@ -467,15 +504,23 @@ $linea = <<<EOD
 </style>
 <br><br>
 <table>
-   <tr border="1">
-        <td class="linea" align="center"><h3>Imagen de la Medición y Registro de Conteo de Partículas</h3></td>
+   <tr border="0">
+        <td class="linea" align="center"><h2>Imagen de la Medición y Registro de Conteo de Partículas</h2></td>
    </tr>
+</table>
+<br><br>
+<table border="0">
+    <tr>
+        <td></td>
+        <td>
+        <img src="../../$url_imagen$nombre_imagen"  style="width: 700px; height: 500px;" ></td>
+        <td></td>
+    </tr>
 </table>
 
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-
 $linea = <<<EOD
 
 <style>
@@ -488,7 +533,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Cálculo de Resultados - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm: 3520000 / 5,0 µm: 29300</b></td>
+        <td class="linea" align="center"><h3>Cálculo de Resultados - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm: 3520000 / 5,0 µm: 29300</h3></td>
    </tr>
 </table>
 
@@ -554,7 +599,7 @@ $enunciados1 = array('>=0,5', '>=5,0');
 $contador = 0;
 
 $query2 = mysqli_prepare($connect,"SELECT promedios, cumple FROM salas_limpias_prueba_1 WHERE id_asignado = ? AND categoria  = ?");
-mysqli_stmt_bind_param($query2, 'ii', $id_asignado, $categoria_1);
+mysqli_stmt_bind_param($query2, 'ii', $id_asignado, $categoria_2);
 mysqli_stmt_execute($query2);
 mysqli_stmt_store_result($query2);
 mysqli_stmt_bind_result($query2, $promedios, $cumple);
@@ -850,13 +895,13 @@ while($row = mysqli_stmt_fetch($query6)){
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, °C:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,°C:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', $temperatura_item ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', '' ,1,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
 
 
 }
@@ -906,13 +951,13 @@ while($row = mysqli_stmt_fetch($query6)){
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, HR%:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,HR%:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', $hum_relativa_item ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', '' ,1,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
 
 
 }
@@ -1063,13 +1108,13 @@ while($row = mysqli_stmt_fetch($query6)){
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, Lux:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,Lux:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', $lux_item ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', '' ,1,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
 
 
 }
@@ -1119,13 +1164,14 @@ while($row = mysqli_stmt_fetch($query6)){
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, dBA:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,dBA:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', '' ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', $ruido_dba_item ,1,0, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', '' ,1,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
+    $pdf->writeHTMLCell(20, 5, 170, '', '' ,0,1, 0, true, 'J', true);
 
 
 }

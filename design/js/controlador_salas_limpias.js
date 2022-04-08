@@ -1,5 +1,26 @@
-
+$("#alerta_1").hide();
 var id_asignado = $("#id_asignado_sala_limpia").val();
+
+//Validar usuario responsable 
+
+$("#responsable").blur(function(){
+ let usuario = $("#responsable").val();
+ $.ajax({
+    type:'POST',
+    data:{usuario},
+    url:'templates/usuario/validar_usuario.php',
+    success:function(e){
+      //console.log(e)
+      if(e == 'disponible'){
+         $("#responsable").css("border-color", "red");
+         $("#alerta_1").show();
+       }else{
+         $("#alerta_1").hide();
+         $("#responsable").css("border-color", "#03cb1b");
+       }
+     }
+   });   
+});
  
 
 validacion_salas_limpias(100);
@@ -144,6 +165,10 @@ function listar_resultados_prueba(orden){
                                             <td>Promedio, C°:</td>
                                             <td><input type="text" name="promedio_p4" class="form-control" value="${valor.promedio}"></td>
                                         </tr>
+                                        <tr>
+                                            <td>Cumple: </td>
+                                            <td><input type="text" name="cumple_p4" class="form-control" value="${valor.cumple}"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -176,6 +201,10 @@ function listar_resultados_prueba(orden){
                                             <td>Promedio, HR%:</td>
                                             <td><input type="text" name="promedio_p5" class="form-control" value="${valor.promedio}"></td>
                                         </tr>
+                                        <tr>
+                                            <td>Cumple: </td>
+                                            <td><input type="text" name="cumple_p5" class="form-control" value="${valor.cumple}"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                        
@@ -206,19 +235,20 @@ function listar_resultados_prueba(orden){
                                             <td><input type="text" name="n4_p6" class="form-control" value="${valor.n4}"></td>
                                             <td><input type="text" name="n5_p6" class="form-control" value="${valor.n5}"></td>
                                         </tr>
+                                        <tr>
+                                            <td>Promedio, Lux:</td>
+                                            <td><input type="text" name="promedio_p6" class="form-control" value="${valor.promedio}"></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Cumple: </td>
+                                            <td><input type="text" name="cumple_p6" class="form-control" value="${valor.cumple}"></td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
-                                <div class="row" style="text-align:center;">
-                                    <div class="col-sm-4">
-                                        <label>Promedio, Lux: <input type="text" name="promedio_p6" class="form-control" value="${valor.promedio}"></label>  
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Especificación Cliente ,Lux: <input type="text" name="especificacion_p6" class="form-control" value=""></label>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Cumple: <input type="text" name="cumple_p6" class="form-control" value="${valor.cumple}"></label>
-                                    </div>
-                                </div>
+
+                                
                             </div>
 
                         `;
@@ -250,6 +280,10 @@ function listar_resultados_prueba(orden){
                                         <tr>
                                             <td>Promedio, dBA</td> 
                                             <td><input type="text" name="promedio_p7[]" class="form-control" value="${valor.promedio}"></td>
+                                        </tr>
+                                        <tr>
+                                             <td>Cumple:</td>
+                                            <td><input type="text" name="cumple_p7[]" class="form-control" value="${valor.cumple}"> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -511,8 +545,9 @@ function listar_resultados_prueba(orden){
                 
                 traer.forEach((valor)=>{
                     $("#id_informe").val(valor.id_informe);
-                    $("#conclusion_informe").val(valor.nombre_informe);
+                    $("#conclusion_informe").val(valor.conclusion);
                     $("#solicitante").val(valor.solicitante);
+                    $("#responsable").val(valor.responsable);
                     $("#nombre_informe").val(valor.nombre_informe);
                          
                 });

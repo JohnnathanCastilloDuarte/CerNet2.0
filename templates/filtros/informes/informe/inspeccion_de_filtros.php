@@ -9,30 +9,46 @@ $id_asignado = substr($clave, 97);
 
 //echo $id_asignado;
 /////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
-$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.descripcion, a.nombre, b.marca,  b.modelo, b.ubicacion, b.ubicado_en, b.tipo_filtro, b.cantidad_filtro, b.limite_penetracion, b.eficiencia, b.serie FROM item as a, item_filtro as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item AND a.id_tipo = 11");
-
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.descripcion, a.nombre, b.marca,  b.modelo, b.ubicacion, b.ubicado_en, b.lugar_filtro, b.tipo_filtro, b.filtro_dimension, b.cantidad_filtro, b.limite_penetracion, b.eficiencia, b.serie FROM item as a, item_filtro as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item AND a.id_tipo = 11");
 
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
 mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $marca, $modelo, $direccion, 
-   $ubicado_en, $tipo_filtro, $cantidad_filtro, $limite_penetracion, $eficiencia, $n_serie);
+   $ubicado_en, $lugar_filtro, $tipo_filtro, $dimenciones, $cantidad_filtro, $limite_penetracion, $eficiencia, $n_serie);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion  FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e 
+$consulta_empresa = mysqli_prepare($connect,"SELECT d.logo, e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion, e.usuario_responsable 
+FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e  
    WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
 
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion_empresa, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion);
+mysqli_stmt_bind_result($consulta_empresa,$logo_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion_empresa, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion, $usuario_responsable);
 mysqli_stmt_fetch($consulta_empresa);
+
+/*echo "SELECT d.logo, e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion 
+FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e  
+   WHERE a.id_asignado = $id_asignado AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado";*/
+
+
+  
+  $consultar_responsable = mysqli_prepare($connect,"SELECT b.nombre, b.apellido, c.nombre 
+  FROM usuario a, persona b, cargo c WHERE a.id_usuario = b.id_usuario AND c.id_cargo = b.id_cargo AND a.usuario = ?");
+
+mysqli_stmt_bind_param($consultar_responsable, 's', $usuario_responsable);
+mysqli_stmt_execute($consultar_responsable);
+mysqli_stmt_store_result($consultar_responsable);
+mysqli_stmt_bind_result($consultar_responsable, $nombre_responsable, $apellido_responsable, $nombre_cargo);
+mysqli_stmt_fetch($consultar_responsable);
 
 
 $num_numot = substr($numot,2);
+//$logo = $logo_empresa; 
 $pdf->AddPage('A4');
 
 $linea = <<<EOD
@@ -127,7 +143,7 @@ $info_equipo = <<<EOD
                <td>$marca</td>
                <td>$modelo</td>
                <td>$n_serie</td>
-               <td>$ubicacion</td>
+               <td>$lugar_filtro</td>
                <td>$ubicado_en</td>
             </tr>
          </table>
@@ -140,9 +156,9 @@ $info_equipo = <<<EOD
                <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
             </tr>
             <tr>
-               <td>$tipo_filtro</td>
+               <td>$tipo_filtro  $dimenciones</td>
                <td>$cantidad_filtro</td>
-               <td>$limite_penetracion</td>
+               <td>$limite_penetracion %</td>
                <td>$eficiencia</td>
             </tr>
          </table>    
@@ -289,7 +305,7 @@ $linea = <<<EOD
         <td class="linea" align="center"><h3>Firma</h3></td>
    </tr>
    <tr>
-       <td align="center">Ing. Raúl Quevedo Silva<br>Gerente de Operaciones</td>
+       <td align="center">Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
        <td align="center"></td>
        <td align="center"></td>
    </tr>
@@ -325,7 +341,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(13, 5, 105, '', $numot ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(13, 5, 105, '', $num_numot ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
 
@@ -382,7 +398,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td>$marca</td>
                <td>$modelo</td>
                <td>$n_serie</td>
-               <td>$ubicacion</td>
+               <td>$lugar_filtro</td>
                <td>$ubicado_en</td>
             </tr>
          </table>
@@ -395,9 +411,9 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
             </tr>
             <tr>
-               <td>$tipo_filtro</td>
+               <td>$tipo_filtro  $dimenciones</td>
                <td>$cantidad_filtro</td>
-               <td>$limite_penetracion</td>
+               <td>$limite_penetracion %</td>
                <td>$eficiencia</td>
             </tr>
          </table>    
@@ -470,13 +486,21 @@ $linea = <<<EOD
 </table>
 <br>
 <br>
-<table border="1" style="text-align: center;">
+<table border="0" style="text-align: center;">
       <tr>
-         <td style= "height: 250px;">imagen1</td>
+         <td><h2>Filtro a Examinar</h2></td>
+      </tr>
+      <br><br>
+      <tr>
+         <td style= "height: 250px;"><img src="../../imagenes/definidas/imagen1.png" style="width: 350px;"></td>
       </tr>
       <br>
       <tr>
-         <td style= "height: 250px;">imagen2</td>
+         <td><h2>Imagen de la Medición</h2></td>
+      </tr>
+      <br>
+      <tr>
+         <td style= "height: 150px;"><img src="../../imagenes/definidas/Imagen2.png" style="width: 200px;"></td>
       </tr>
 </table>
 
@@ -510,7 +534,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(13, 5, 105, '', $numot ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(13, 5, 105, '', $num_numot ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
    $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
 
@@ -568,7 +592,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td>$marca</td>
                <td>$modelo</td>
                <td>$n_serie</td>
-               <td>$ubicacion</td>
+               <td>$lugar_filtro</td>
                <td>$ubicado_en</td>
             </tr>
          </table>
@@ -581,9 +605,9 @@ $pdf->writeHTML($linea, true, false, false, false, '');
                <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
             </tr>
             <tr>
-               <td>$tipo_filtro</td>
+               <td>$tipo_filtro  $dimenciones</td>
                <td>$cantidad_filtro</td>
-               <td>$limite_penetracion</td>
+               <td>$limite_penetracion %</td>
                <td>$eficiencia</td>
             </tr>
          </table>    

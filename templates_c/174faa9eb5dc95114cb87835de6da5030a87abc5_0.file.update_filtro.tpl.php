@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-31 22:51:17
+/* Smarty version 3.1.34-dev-7, created on 2022-03-14 16:25:14
   from '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61f867e580dcd6_27967562',
+  'unifunc' => 'content_622f6c6a14e426_83667417',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '174faa9eb5dc95114cb87835de6da5030a87abc5' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_filtro.tpl',
-      1 => 1643030826,
+      1 => 1647275068,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f867e580dcd6_27967562 (Smarty_Internal_Template $_smarty_tpl) {
+function content_622f6c6a14e426_83667417 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" id="id_item_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_item_filtro']->value;?>
 ">
 <input type="hidden" id="id_tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['id_tipo_filtro']->value;?>
@@ -32,7 +32,11 @@ function content_61f867e580dcd6_27967562 (Smarty_Internal_Template $_smarty_tpl)
 		<div class="card">
 			<div class="card-header">
 				<h6>
-					Configuración Filtro
+          <?php if ($_smarty_tpl->tpl_vars['id_item_filtro']->value == '') {?>
+					Crear Filtro
+          <?php } else { ?>
+          Configurar Filtro
+          <?php }?>
 				</h6>
 			</div>
     </div><!--CIERRE DEL CARD-->  
@@ -60,13 +64,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
                   <?php if ($_smarty_tpl->tpl_vars['filtro']->value['nombre_item'] == '') {?>
                    <option value="0" selected>Seleccione...</option>
                    <option value="Filtro Absoluto HEPA H13 ">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   <?php } else { ?>
                    <option value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
 " selected=""><?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_item'];?>
 </option>
                    <option value="Filtro Absoluto HEPA H13">Filtro Absoluto HEPA H13</option>
-                   <option value="Filtro Absoluto ULPA (H14)">Filtro Absoluto ULPA H14</option> 
+                   <option value="Filtro Absoluto ULPA H14">Filtro Absoluto ULPA H14</option> 
                   <?php }?>
                 </select>
               </div>
@@ -107,10 +111,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
               <input type="text" class="form-control" id="serie_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['serie'];?>
 " required="" placeholder="Serie filtro">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
               <label>Cantidad Filtros HEPA: </label>
               <input type="number" class="form-control" id="cantidad_filtros_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['cantidad_filtros'];?>
 " required="" placeholder="Cantidad de filtros">
+            </div>
+            <div class="col-sm-3">
+              <label>Tipo Filtro </label>
+              <input type="text" class="form-control" id="tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['tipo_filtro'];?>
+" required="" placeholder="Tipo de Filtro">
             </div>
           </div>
           
@@ -156,7 +165,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['filtro']->value) {
           <div class="form-row">
             <div class="col-sm-6">
               <label>Dimensiones: </label>
-              <input type="text" class="form-control" id="tipo_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['tipo_filtro'];?>
+              <input type="text" class="form-control" id="dimenciones_filtro" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['filtro_dimension'];?>
 " required="" placeholder="Dimensiones del filtro">
             </div>
             <div class="col-sm-3">

@@ -47,6 +47,17 @@ mysqli_stmt_store_result($inspeccion_visual);
 mysqli_stmt_bind_result($inspeccion_visual, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_registro_informe);
 mysqli_stmt_fetch($inspeccion_visual);
 
+//Información de responsable
+
+  $consultar_responsable = mysqli_prepare($connect,"SELECT b.nombre, b.apellido, c.nombre 
+  FROM usuario a, persona b, cargo c WHERE a.id_usuario = b.id_usuario AND c.id_cargo = b.id_cargo AND a.usuario = ?");
+
+mysqli_stmt_bind_param($consultar_responsable, 's', $usuario_responsable);
+mysqli_stmt_execute($consultar_responsable);
+mysqli_stmt_store_result($consultar_responsable);
+mysqli_stmt_bind_result($consultar_responsable, $nombre_responsable, $apellido_responsable, $nombre_cargo);
+mysqli_stmt_fetch($consultar_responsable);
+
 
 $infor_numot = mysqli_prepare($connect,"SELECT c.numot, d.nombre, d.direccion, d.sigla_pais 
   FROM item_asignado as a, servicio as b, numot as c, empresa as d 
@@ -59,7 +70,6 @@ mysqli_stmt_bind_result($infor_numot, $ot, $nombre_empresa, $direccion_empresa, 
 mysqli_stmt_fetch($infor_numot);
 
 $num_ot = substr($ot,2);
-
 
 
 
@@ -371,7 +381,7 @@ $linea = <<<EOD
    </tr>
    <br>
    <tr>
-       <td align="center">Ing. Raúl Quevedo Silva<br>Gerente de Operaciones</td>
+       <td align="center">Ing. $nombre_responsable $apellido_responsable <br>$nombre_cargo</td>
        <td align="center"></td>
        <td align="center"></td>
    </tr>
@@ -589,7 +599,6 @@ $imagen1 = <<<EOD
         <td class="linea" align="center"><img src="../../imagenes/img_definidas/caudales-2.jpg"></td>  
    </tr>
 </table>
-
 
 EOD;
 $pdf->writeHTML($imagen1, true, false, false, false, '');

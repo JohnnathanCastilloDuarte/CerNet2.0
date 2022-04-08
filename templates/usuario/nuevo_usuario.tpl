@@ -146,7 +146,7 @@
                 </div>
              <div class="col-sm-6">
 						<label>Tipo Usuario:</label>
-							<select class="form-control" id="privilegios">
+							<select class="form-control" id="privilegios_usuario">
 								<option value="0" selected>Seleccione...</option>
 								
 							</select>

@@ -13,6 +13,7 @@ include('../../config.ini.php');
     /*info informe*/
     $nombre_informe = $_POST['nombre_informe'];
     $solicitante = $_POST['solicitante'];
+    $usuario_responsable = $_POST['responsable'];
     $conclusion = $_POST['conclusion'];
     $id_informe = $_POST['id_informe'];
 
@@ -24,12 +25,11 @@ include('../../config.ini.php');
 
 
     $consulta = mysqli_prepare($connect,"SELECT id_inspeccion FROM campana_extraccion_inspeccion WHERE id_asignado = ?");
-    mysqli_stmt_bind_param($consulta, 's', $tipo_1);
+    mysqli_stmt_bind_param($consulta, 's', $id_asignado_campana);
     mysqli_stmt_execute($consulta);
     mysqli_stmt_store_result($consulta);
     mysqli_stmt_bind_result($consulta, $id_inspeccion);
     mysqli_stmt_fetch($consulta);
-
 
     if ($id_inspeccion == '') {
 
@@ -38,8 +38,8 @@ include('../../config.ini.php');
     mysqli_stmt_execute($insert_inspeccion);
   echo mysqli_stmt_error($insert_inspeccion);
 
-  $insert_inspeccion = mysqli_prepare($connect,"INSERT INTO informe_campana ( id_asignado, conclusion, solicitante, nombre_informe) VALUES (?,?,?,?)");
-    mysqli_stmt_bind_param($insert_inspeccion, 'isss', $id_asignado_campana, $conclusion, $solicitante, $nombre_informe);
+  $insert_inspeccion = mysqli_prepare($connect,"INSERT INTO informe_campana ( id_asignado, conclusion, solicitante, nombre_informe, usuario_responsable) VALUES (?,?,?,?,?)");
+    mysqli_stmt_bind_param($insert_inspeccion, 'issss', $id_asignado_campana, $conclusion, $solicitante, $nombre_informe, $usuario_responsable);
     mysqli_stmt_execute($insert_inspeccion);
   echo mysqli_stmt_error($insert_inspeccion);
 
@@ -49,16 +49,11 @@ include('../../config.ini.php');
     mysqli_stmt_execute($insert_inspeccion);
 
 
-     $insert_inspeccion = mysqli_prepare($connect,"UPDATE informe_campana SET conclusion = ?, solicitante = ?, nombre_informe = ? WHERE id_informe = ?");
-    mysqli_stmt_bind_param($insert_inspeccion, 'sssi', $conclusion, $solicitante, $nombre_informe, $id_informe);
+     $insert_inspeccion = mysqli_prepare($connect,"UPDATE informe_campana SET conclusion = ?, solicitante = ?, nombre_informe = ?, usuario_responsable = ? WHERE id_informe = ?");
+    mysqli_stmt_bind_param($insert_inspeccion, 'ssssi', $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $id_informe);
     mysqli_stmt_execute($insert_inspeccion);
-
-    echo "UPDATE informe_campana SET conclusion = $conclusion, solicitante = $solicitante, nombre_informe = $nombre_informe WHERE id_informe = $id_informe";
-        
         
     }
-
-    //echo $id_asignado;
 
     if($insert_inspeccion){
         

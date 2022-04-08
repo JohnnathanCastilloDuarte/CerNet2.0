@@ -1,8 +1,28 @@
 var id_asignado = $("#id_asignado_campana").val();
-
+$("#alerta_1").hide();
 $("#ir_informe_campanas").click(function(){
 
   window.open("templates/campana_extraccion/informes/inspeccion_de_campanas.php");
+});
+
+//Validar responsable
+$("#responsable").blur(function(){
+ let usuario = $("#responsable").val();
+ $.ajax({
+    type:'POST',
+    data:{usuario},
+    url:'templates/usuario/validar_usuario.php',
+    success:function(e){
+      console.log(e)
+      if(e == 'disponible'){
+         $("#responsable").css("border-color", "red");
+         $("#alerta_1").show();
+       }else{
+         $("#alerta_1").hide();
+         $("#responsable").css("border-color", "#03cb1b");
+       }
+     }
+   });   
 });
 
 consultando_ot();
@@ -42,7 +62,7 @@ function listar_datos_full(numeral){
              $("#valor_insp_5").val(valor.insp_5);
              $("#valor_insp_5").text(valor.insp_5);
              $("#id_inspeccion").val(valor.id_inspeccion);
-             $("#id_informe_campana").val(valor.id_informe);
+          
             
           });
   
@@ -203,7 +223,7 @@ function listar_datos_full(numeral){
                 <td><input type="text" class="form-control" name="prueba_52_medicion_1[]" value="${valor.punto_1}"></td>
                 <td><input type="text" class="form-control" name="prueba_52_medicion_2[]" value="${valor.punto_2}"></td>
                 <td><input type="text" class="form-control" name="prueba_52_medicion_3[]" value="${valor.punto_3}"></td>
-                <td><input type="text" class="form-control" name="prueba_51_medicion_4[]" value="${valor.punto_promedio}"></td>
+                <td><input type="text" class="form-control" name="prueba_52_medicion_4[]" value="${valor.punto_promedio}"></td>
               </tr>
               `;
               validador2++;
@@ -311,7 +331,7 @@ function listar_datos_full(numeral){
         data:{id_asignado,movimiento},
         url:'templates/campana_extraccion/controlador_camara_extraccion.php',
         success:function(response){
-          //console.log(response);
+          console.log(response);
           let traer = JSON.parse(response);
           
           traer.forEach((valor)=>{
@@ -319,6 +339,7 @@ function listar_datos_full(numeral){
            $("#id_informe_campana").val(`${valor.id_informe}`);
            $("#nombre_informe").val(`${valor.nombre_informe}`);
            $("#solicitante").val(`${valor.solicitante}`);
+           $("#responsable").val(`${valor.usuario_responsable}`); 
            $("#conclusion").val(`${valor.conclusion}`);
 
 
@@ -413,7 +434,7 @@ $("#formulario_1_campana_extraccion").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        //console.log(response);
+        console.log(response);
 
         if(response == "Listo"){
           Swal.fire({
