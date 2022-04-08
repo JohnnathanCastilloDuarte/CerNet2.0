@@ -65,23 +65,18 @@
               <input type="hidden" name="id_informe" id="id_informe_campana" value="">
               <div id="cuerpo_mapeo_campana">
                 <div class="row">
-                  <div class="col-sm-12">
-                    <label>Nombre informe <span class="text-danger">*</span></label>
+                  <div class="col-sm-6">
+                    <label>Nombre informe</label>
                     <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
                   </div>
                   <div class="col-sm-6">
-                    <label>Solicitante <span class="text-danger">*</span></label>
+                    <label>Solicitante</label>
                     <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Quien solicita" value="{$solicitante}">
-                  </div>
-                   <div class="col-sm-6">
-                    <label>Responsable<span class="text-danger">*</span></label>
-                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
-                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
                   </div>
               </div>
               <div class="row">
                   <div class="col-sm-12">
-                  <label>Conclusión <span class="text-danger">*</span></label>
+                  <label>Conclusión</label>
                   <textarea class="form-control" name="conclusion" id="conclusion" value="{$conclusion}"></textarea>
                 </div>
               </div>
@@ -214,7 +209,7 @@
               <button class="btn btn-info">Guardar</button>
              
               </form>
-              <button class="btn btn-warning text-light" id="abrir_informe">Informes</button>
+              <button class="btn btn-warning text-light" id="abrir_informe">Informe</button>
               </div>
 
             <br>
@@ -628,10 +623,10 @@
     </div>
 
 </div>
-<br>  
-<!--<button class="btn btn-warning" id="abrir_informe">Informess</button>-->
+<!-- <br>  
+<button class="btn btn-warning" id="abrir_informe">Informe</button>
 <br>
-
+ -->
 <!--
 <button class="btn btn-success" id="ir_informe_campanas">Informe</button>-->
 

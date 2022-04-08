@@ -50,16 +50,17 @@ $hr_min = $_POST['hr_min'];
 $cantidad_ventana = $_POST['cantidad_ventana'];
 $valor_seteado_temp = $_POST['valor_seteado_temp']; 
 $valor_seteado_hum = $_POST['valor_seteado_hum']; 
+$estado_bodega = $_POST['estado_bodega'];
 
 
-$actualizar = mysqli_prepare($connect, "UPDATE item_bodega SET   direccion = ? , codigo_interno = ?, productos_almacena = ?, largo = ?, ancho = ?, 
+$actualizar = mysqli_prepare($connect, "UPDATE item_bodega SET   productos_almacena = ?, largo = ?, ancho = ?, 
 	superficie = ?, volumen = ?, altura = ?, tipo_muro = ?, tipo_cielo = ?, s_climatizacion = ?, s_monitoreo = ?, s_alarma = ?, planos = ?,
 	analisis_riesgo = ?, ficha_estabilidad = ?, id_usuario = ?, marca_bodega = ?, modelo_bodega = ?, orientacion_principal = ?, 
   orientacion_recepcion = ?, orientacion_despacho = ?, num_puertas = ?, salida_emergencia = ?, cantidad_rack = ?, num_estantes = ?, 
   altura_max_rack = ?, sistema_extraccion = ?, cielo_lus = ?, temp_max = ?, temp_min = ?, cantidad_iluminarias = ?, hr_max = ?, hr_min = ?, 
   cantidad_ventana = ?, valor_seteado_temp = ?, valor_seteado_hum = ? WHERE id_item = ?");
 
-mysqli_stmt_bind_param($actualizar, 'sssiiiiissssssssissssssssssssssssssssi', $direccion_bodega, $codigo_bodega, $combina_productos, $largo_bodega, $ancho_bodega, $superficie_bodega, $volume_bodega, $altura_bodega, $combina_muro, $combina_cielo, $array_climatizacion, $s_m_t, $s_m_t_a, $array_planos, $analisis_riesgo, $fichas_estabilidad, $id_valida, $marca_bodega, $modelo_bodega, $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max ,$temp_min, $cantidad_iluminarias, 
+mysqli_stmt_bind_param($actualizar, 'ssssssssssssssissssssssssssssssssssi', $combina_productos, $largo_bodega, $ancho_bodega, $superficie_bodega, $volume_bodega, $altura_bodega, $combina_muro, $combina_cielo, $array_climatizacion, $s_m_t, $s_m_t_a, $array_planos, $analisis_riesgo, $fichas_estabilidad, $id_valida, $marca_bodega, $modelo_bodega, $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max ,$temp_min, $cantidad_iluminarias, 
                        $hr_max, $hr_min, $cantidad_ventana, $valor_seteado_temp, $valor_seteado_hum, $id_item);
 mysqli_stmt_execute($actualizar);
  
@@ -67,8 +68,8 @@ mysqli_stmt_execute($actualizar);
 
 if($actualizar){
 
-	$actualizar_nombre = mysqli_prepare($connect,"UPDATE item SET id_empresa = ?, nombre = ?, descripcion = ?, clasificacion_item = ? WHERE id_item = ?");
-	mysqli_stmt_bind_param($actualizar_nombre, 'isssi', $empresa_bodega, $nombre_bodega, $descripcion_bodega, $clasificacion_item, $id_item);
+	$actualizar_nombre = mysqli_prepare($connect,"UPDATE item SET id_empresa = ?, nombre = ?, descripcion = ?, clasificacion_item = ?, direccion = ?, codigo_interno = ?, estado = ? WHERE id_item = ?");
+	mysqli_stmt_bind_param($actualizar_nombre, 'isssssii', $empresa_bodega, $nombre_bodega, $descripcion_bodega, $clasificacion_item, $direccion_bodega, $codigo_bodega, $estado_bodega, $id_item);
 	mysqli_stmt_execute($actualizar_nombre);
 
 	if($actualizar_nombre){

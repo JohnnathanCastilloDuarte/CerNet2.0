@@ -11,18 +11,51 @@ $id_valida = $_POST['id_valida'];
 $valor_insertar = "";
 $id_participante = $_POST['id_participante']; 
 $estado = "";
-
-
 $variable_url = $_SERVER['HTTP_HOST'];
 $filename = "";
-$fecha_firma = "";
+$fecha = $_POST['fecha'];
+$hora = $_POST['hora_oficial'];
+$fecha_firma = $fecha." ".$hora;
 
 
+
+//////// consultar información para identificar el cliente
+$consultar_quien_firma = mysqli_prepare($connect,"SELECT a.nombre, a.apellido, a.email, b.nombre FROM persona as a, empresa as b WHERE a.id_usuario = ? AND a.id_empresa = b.id_empresa");
+mysqli_stmt_bind_param($consultar_quien_firma, 'i', $id_valida);
+mysqli_stmt_execute($consultar_quien_firma);
+mysqli_stmt_store_result($consultar_quien_firma);
+mysqli_stmt_bind_result($consultar_quien_firma, $nombres, $apellidos, $email, $empresa);
+mysqli_stmt_fetch($consultar_quien_firma);
+
+
+ $name         = $nombres.' '.$apellidos;
+ $phone        = '---------';
+ $phonePrivate = '----------';
+ $phoneCell    = '----------';
+ $orgName      = $empresa;
+ $email        = $email;
+ // if not used - leave blank!
+ $addressLabel     = $email;
+
+ // we building raw data
+ $codeContents  = 'BEGIN:VCARD'."\n";
+ $codeContents .= 'VERSION:2.1'."\n";
+ $codeContents .= 'N:'.$sortName."\n";
+ $codeContents .= 'FN:'.$name."\n";
+ $codeContents .= 'ORG:'.$orgName."\n";
+
+ $codeContents .= 'TEL;WORK;VOICE:'.$phone."\n";
+ $codeContents .= 'TEL;HOME;VOICE:'.$phonePrivate."\n";
+ $codeContents .= 'TEL;TYPE=cell:'.$phoneCell."\n";
+
+ $codeContents .= 'EMAIL:'.$email."\n";
+
+ $codeContents .= 'END:VCARD'; 
 
 if($valor == 'Revisado'){
+
   $valor_insertar = 1;
   $estado = 3;
-  $fecha_firma = date('Y-m-d H:i:s');
   ////////////// CREO LA VARIABLE DE URL DE QR
   $url_qr = "https://".$variable_url."/CerNet2.0/informe_firmantes_final2.php?key=".base64_encode(id);
   //Declaramos una carpeta temporal para guardar la imagenes generadas
@@ -30,6 +63,8 @@ if($valor == 'Revisado'){
   //Si no existe la carpeta la creamos
   if (!file_exists($dir))
   mkdir($dir);
+   // here our data
+
   //Declaramos la ruta y nombre del archivo a generar
   $filename = $dir.$id.$id_valida.'.png';
   //Parametros de Condiguración
@@ -37,7 +72,7 @@ if($valor == 'Revisado'){
   $level = 'M'; //Precisión Baja
   $framSize = 2; //Tamaño en blanco
   //Enviamos los parametros a la Función para generar código QR
-  QRcode::png($url_qr, $filename, $level, $tama_o, $framSize);
+  QRcode::png($codeContents, $filename, $level, $tama_o, $framSize);
 
 }else{
   $valor_insertar = 0;

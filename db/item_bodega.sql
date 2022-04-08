@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-01-2022 a las 18:14:11
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.3.31
+-- Tiempo de generación: 07-03-2022 a las 16:59:25
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,23 +47,26 @@ CREATE TABLE `item_bodega` (
   `analisis_riesgo` varchar(2) DEFAULT NULL COMMENT 'Analisis de riesgos',
   `ficha_estabilidad` varchar(2) DEFAULT NULL COMMENT 'Fichas de estabilidad de la bodega',
   `id_usuario` int(10) DEFAULT NULL COMMENT 'id_usuario que registra la bodega',
-  `marca_bodega` varchar(100) DEFAULT 'NA' COMMENT 'Marca bodega',
-  `modelo_bodega` varchar(100) DEFAULT 'NA' COMMENT 'modelo bodega',
-  `orientacion_principal` varchar(100) DEFAULT 'na' COMMENT 'oruientacion principal',
-  `orientacion_recepcion` varchar(100) DEFAULT 'NA' COMMENT 'orientacion recepcion',
-  `orientacion_despacho` varchar(100) DEFAULT 'NA' COMMENT 'orientacion despacho ',
-  `num_puertas` varchar(100) DEFAULT 'NA' COMMENT 'numero de puertas',
-  `salida_emergencia` varchar(100) DEFAULT 'NA' COMMENT 'salida de emergencia',
-  `cantidad_rack` varchar(100) DEFAULT 'NA' COMMENT 'cantidad rack',
-  `num_estantes` varchar(100) DEFAULT 'NA' COMMENT 'numero de estantes',
-  `altura_max_rack` varchar(100) DEFAULT 'NA' COMMENT 'altura maxima  racks',
-  `sistema_extraccion` varchar(100) DEFAULT 'NA' COMMENT 'sistema de extraccion ',
-  `cielo_lus` varchar(100) DEFAULT 'NA' COMMENT 'acceso cielo a lus',
-  `temp_max` varchar(100) DEFAULT 'NA' COMMENT 'temperatura maxima',
-  `temp_min` varchar(100) DEFAULT 'NA' COMMENT 'temperatura minima',
-  `cantidad_iluminarias` varchar(100) DEFAULT 'NA' COMMENT 'cantidad iluminarias ',
-  `hr_max` varchar(100) DEFAULT 'NA' COMMENT 'humedad relativa maxima ',
-  `hr_min` varchar(100) DEFAULT 'NA' COMMENT 'huimedad relativa minima ',
+  `marca_bodega` varchar(100) DEFAULT 'NA',
+  `modelo_bodega` varchar(100) DEFAULT 'NA',
+  `orientacion_principal` varchar(100) DEFAULT 'NA',
+  `orientacion_recepcion` varchar(100) DEFAULT 'NA',
+  `orientacion_despacho` varchar(100) DEFAULT 'NA',
+  `num_puertas` varchar(100) DEFAULT 'NA',
+  `salida_emergencia` varchar(100) DEFAULT 'NA',
+  `cantidad_rack` varchar(100) DEFAULT 'NA',
+  `num_estantes` varchar(100) DEFAULT 'NA',
+  `altura_max_rack` varchar(100) DEFAULT 'NA',
+  `sistema_extraccion` varchar(100) DEFAULT 'NA',
+  `cielo_lus` varchar(100) DEFAULT 'NA',
+  `temp_max` varchar(100) DEFAULT 'NA',
+  `temp_min` varchar(100) DEFAULT 'NA',
+  `cantidad_iluminarias` varchar(100) DEFAULT 'NA',
+  `hr_max` varchar(100) DEFAULT 'NA',
+  `hr_min` varchar(100) DEFAULT 'NA',
+  `valor_seteado_temp` varchar(100) DEFAULT 'NA',
+  `valor_seteado_hum` varchar(100) DEFAULT 'NA',
+  `cantidad_ventana` varchar(100) DEFAULT 'NA',
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Fecha de registro de la bodega'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -71,10 +74,8 @@ CREATE TABLE `item_bodega` (
 -- Volcado de datos para la tabla `item_bodega`
 --
 
-INSERT INTO `item_bodega` (`id_bodega`, `id_item`, `direccion`, `codigo_interno`, `productos_almacena`, `largo`, `ancho`, `superficie`, `volumen`, `altura`, `tipo_muro`, `tipo_cielo`, `s_climatizacion`, `s_monitoreo`, `s_alarma`, `planos`, `analisis_riesgo`, `ficha_estabilidad`, `id_usuario`, `marca_bodega`, `modelo_bodega`, `orientacion_principal`, `orientacion_recepcion`, `orientacion_despacho`, `num_puertas`, `salida_emergencia`, `cantidad_rack`, `num_estantes`, `altura_max_rack`, `sistema_extraccion`, `cielo_lus`, `temp_max`, `temp_min`, `cantidad_iluminarias`, `hr_max`, `hr_min`, `fecha_registro`) VALUES
-(1, 7, '12', '12', 'Alimentos', '12', '12', '12', '12', '12', 'Muro de hormigón', 'Cielo de hormigón', 'Mezclador de aire', 'Si', 'Si', 'Arquitectura', 'Si', 'Si', 106, 'NA', 'NA', 'na', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', 'NA', '2021-12-20 14:21:13'),
-(2, 34, '12', '12', 'Alimentos', '12', '12', '12', '12', '12', 'Muro de hormigón', 'Cielo de hormigón', 'Mezclador de aire', 'Si', 'Si', 'Arquitectura', 'Si', 'Si', 106, '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '2022-01-24 16:25:45'),
-(3, 35, 'direccion', 'ns200 codigo', 'Alimentos, ', '12', '12', '12', '122', '122', 'Muro de hormigón, ', 'Cielo de hormigón, ', 'Mezclador de aire', 'Si', 'Si', 'Arquitectura', 'Si', 'Si', 106, 'marca bodega 2', 'modelo 2', 'orientacion 2', 'Orientacion recepcion2', 'Orientavcion despachop2', 'Numero de puertas 2', 'salida emergencia2', 'cantidad rack 2', 'numero estantes2', 'Altura maxima rack 2', 'sistema extraccioon2', 'cielo pasa lus 2', 'temperatura maxima2', 'temperatura minima 2', 'cantidad iluminarias 2', 'humedad relativa maxima2', 'Humedad relativa minima 2', '2022-01-24 16:33:48');
+INSERT INTO `item_bodega` (`id_bodega`, `id_item`, `direccion`, `codigo_interno`, `productos_almacena`, `largo`, `ancho`, `superficie`, `volumen`, `altura`, `tipo_muro`, `tipo_cielo`, `s_climatizacion`, `s_monitoreo`, `s_alarma`, `planos`, `analisis_riesgo`, `ficha_estabilidad`, `id_usuario`, `marca_bodega`, `modelo_bodega`, `orientacion_principal`, `orientacion_recepcion`, `orientacion_despacho`, `num_puertas`, `salida_emergencia`, `cantidad_rack`, `num_estantes`, `altura_max_rack`, `sistema_extraccion`, `cielo_lus`, `temp_max`, `temp_min`, `cantidad_iluminarias`, `hr_max`, `hr_min`, `valor_seteado_temp`, `valor_seteado_hum`, `cantidad_ventana`, `fecha_registro`) VALUES
+(1, 1, 'Av. los leones, 382', 'Cod45', 'Productos que almacena', '12', '12', '12', '12', '12', 'Muro de hormigón', 'Cielo de hormigón', 'Mezclador de aire', 'Si', 'Si', 'Arquitectura', 'Si', 'Si', 2, '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '2022-02-09 15:08:50');
 
 --
 -- Índices para tablas volcadas
@@ -94,7 +95,7 @@ ALTER TABLE `item_bodega`
 -- AUTO_INCREMENT de la tabla `item_bodega`
 --
 ALTER TABLE `item_bodega`
-  MODIFY `id_bodega` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id principal de la tabla', AUTO_INCREMENT=4;
+  MODIFY `id_bodega` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id principal de la tabla', AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

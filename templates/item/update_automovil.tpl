@@ -8,29 +8,25 @@
           Edición del equipo <span>{$automovil.nombre_automovil}</span>
         </h5>
       </div>
+
       <div class="card-body">
         <div id="smartwizard2" class="forms-wizard-alt">
           <ul class="forms-wizard">
             <li>
               <a href="#step-12">
-											<em>1</em><span>Identificación del equipo</span>
+											<em>1</em><span>Identificación</span>
 									</a>
             </li>
             <li>
               <a href="#step-22">
-											<em>2</em><span>Características del equipo</span>
+											<em>2</em><span>Especificación </span>
 									</a>
             </li>
-            <!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
-						<li id="si_envia">
-									<a href="#step-42">
-											<em>4</em><span>Evidencia</span>
-									</a>
-							</li>-->
+            <li>
+              <a href="#step-32">
+                      <em>2</em><span>Infraestructura</span>
+                  </a>
+            </li>
           </ul>
           <input type="hidden"  id="id_item_automovil" value="{$automovil.id_item}">
           <input type="hidden" id="id_automovil" value="{$automovil.id_automovil}">
@@ -52,9 +48,7 @@
                       </table>
                     </div>
                 </div>
-
               </div>
-              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Fabricante/Marca:</label>
@@ -91,9 +85,7 @@
                   <input type="date" id="fecha_fabricacion_automovil" class="form-control" placeholder="" value="{$automovil.fecha_fabricacion}">
                 </div>
               </div>
-            </div>
-
-            <div id="step-22">
+              <br>
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Dirección equipo:</label>
@@ -108,7 +100,29 @@
                   <input type="text" id="area_interna_automovil" class="form-control" placeholder="Área equipo" value="{$automovil.area_interna}">
                 </div>
               </div>
-              <br>
+            </div>
+            <div id="step-22">              
+              <div class="form-row">
+                <div class="col-sm-4">
+                  <label>Valor seteado temperatura(°C):</label>
+                  <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="{$automovil.seteado_tem}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura mínima(°C):</label>
+                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura mínima" value="{$automovil.tem_min}" required>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Temperatura máxima(°C):</label>
+                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="{$automovil.tem_max}" required>
+                </div>
+              </div>
+              
+
+            </div>
+            <div id="step-32">
+
               <div class="form-row">
                 <div class="col-sm-4">
                   <label>Voltaje(V):</label>
@@ -145,26 +159,7 @@
 
               <br>
 
-              <div class="form-row">
-                <div class="col-sm-4">
-                  <label>Valor seteado temperatura(°C):</label>
-                  <input type="text" id="valor_seteado_tem_automovil" class="form-control" placeholder="Valor seteado temperatura" value="{$automovil.seteado_tem}" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura mínima(°C):</label>
-                  <input type="text" id="temperatura_minima_automovil" class="form-control" placeholder="Temperatura mínima" value="{$automovil.tem_min}" required>
-                </div>
-
-                <div class="col-sm-4">
-                  <label>Temperatura máxima(°C):</label>
-                  <input type="text" id="temperatura_maxima_automovil" class="form-control" placeholder="Temperatura máxima" value="{$automovil.tem_max}" required>
-                </div>
-              </div>
-
-
-
-              <br>
+                <br>
               <div class="form-row">
                 <div class="col-sm-12" style="text-align:center;">
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_automovil">Actualizar</button>
@@ -173,19 +168,16 @@
                   <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_nuevo_item_automovil">Nuevo</button>
                 </div>
               </div>
-
-            </div>
+            </div> 
           </div>
           <!---Cierre del content-->
         </div>
         <!--Cierre del wizard-->
         <div class="divider"></div>
-        <div class="clearfix">
+         <div class="clearfix">
           <button type="button" id="next-btn2" class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Siguiente</button>
           <button type="button" id="prev-btn2" class="btn-shadow float-right btn-wide btn-pill mr-3 btn btn-outline-secondary">Anterior</button>
-        </div>
-
-
+         </div>
       </div>
     </div>
     {/foreach}

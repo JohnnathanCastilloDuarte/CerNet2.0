@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-27 00:38:24
+/* Smarty version 3.1.34-dev-7, created on 2022-03-23 14:35:51
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\gestor_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61f1db704965a6_98127313',
+  'unifunc' => 'content_623b2237db2743_02655555',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0340fc563f7887f68f8befb02125b5ae27d13864' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\gestor_documentacion.tpl',
-      1 => 1642633104,
+      1 => 1648042511,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f1db704965a6_98127313 (Smarty_Internal_Template $_smarty_tpl) {
+function content_623b2237db2743_02655555 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <style>
    
@@ -206,14 +206,19 @@ p{
 			<span>Config</span>
 		</a>
 	</li>
-	<li class="nav-item">
-		<a role="tab" class="nav-link active subir" id="tab-1" data-toggle="tab" href="#subir">
+  <li class="nav-item">
+		<a role="tab" class="nav-link active subir1" id="tab_subir_archivo" data-toggle="tab" href="#subir_pdf_archivo">
 			<span>Subir</span>
 		</a>
 	</li>
-  <li class="nav-item">
-		<a role="tab" class="nav-link active subir1" id="tab-1" data-toggle="tab" href="#subir1">
-			<span>Subir</span>
+   <li class="nav-item">
+		<a role="tab" class="nav-link active" id="tab_hoja_de_firmas" data-toggle="tab" href="#Hoja_firmas">
+			<span>Hoja firmas</span>
+		</a>
+	</li>
+  	<li class="nav-item">
+		<a role="tab" class="nav-link active" id="tab_aprobar_item" data-toggle="tab" href="#Revision_item">
+			<span>Revisión de ITEM</span>
 		</a>
 	</li>
   <!--
@@ -237,27 +242,27 @@ p{
           <div class="card-body">
             <div class="row">
               <div class="col-sm-6">
-                <label>Nombre del proceso</label>
-                <p style="text-align:justify;">
-                  Escoge un nombre para el proceso de documentación, el cual ayudara a identificar el proposito del mismo.
-                </p>
-                <input type="text" class="form-control" id="nombre_documental" placeholder = "Ingresa el nombre del proceso">
-              </div>  
-              <div class="col-sm-6">
                 <label>Tipo de proceso</label>
                 <p style="text-align:justify;">
-                  En esta configuración se decide la forma como se cargaran la documentación:
-                  <br>
-                  1-Pagina x pagina
-                  <br>
-                  2-Documento completo
+                  En esta configuración se define la fuente de la documentación:<br>
+                  -Aprobación de item.<br>
+                  -Aprobación de pdf.<br>
                 </p>
                 <select id="tipo_documentacional" class="form-control">
                   <option value="0">Seleccione</option>
-                  <option value="1">Hoja x Hoja</option>
-                  <option value="2">Pdf completo</option>
+                  <option value="1">Aprobación item</option>
+                  <option value="2">Subir pdf</option>
                 </select>
               </div>
+              <div class="col-sm-6">
+                <label>Nombre del proceso</label>
+                <p style="text-align:justify;">
+                  Escoge un nombre para el proceso de documentación, el cual ayudara a identificar el proposito del mismo.
+                  <br><br>
+                </p>
+                <input type="text" class="form-control" id="nombre_documental" placeholder = "Ingresa el nombre del proceso">
+              </div>  
+             
             </div>
           </div>
           <br>
@@ -268,8 +273,8 @@ p{
                 </button>
               </div>
             </div>
-          
           <br>
+          <hr>
          <br>  
           <div class="row">
             <div class="col-sm-6" style="text-align:center;">
@@ -445,92 +450,81 @@ p{
   </div>
   
   
-  <div class="tab-pane tabs-animation fade show" id="listar_subidas" role="tabpanel">
-    <div class="row" id="ocultar_1">
+  <div class="tab-pane tabs-animation fade show" id="Hoja_firmas" role="tabpanel">
+    <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header">
-            <h6>
-              Archivos agregados
-            </h6>
-           </div> 
-            <div class="card-body">
-              <div class="scroll-area-sm">
-								<div class="scrollbar-container">
-                  <table class="table">
-                    <thead>
-                      <th>Estado</th>
-                      <th>Nombre</th>
-                      <th colspan="2">Acciones</th>
-                    </thead>
-                    <tbody id="traer_documentos">
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row" id="ocultar_2">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header"><h6> Vista Previa </h6> <button class="btn btn-danger" id="cerrar_hojita" title="cerrar" style="text-align:right;">X</button></div>
-          <div class="card-body">
-            <canvas id="imagen_aqui" width="1140" height="1400"></canvas> 
-            <div id="imagen_pdf_completo" style="heigth=700px;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-       
-    
-    <div class="row" id="ocultar_3">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header" >
-            <button class="btn btn-danger" id="cerrar_hojita_2" title="cerrar" style="text-align:right;">X</button>
-          </div>
-          <div class="card-body">
-        
-            <button id="limpiar" class="btn btn-primary btn-lg btn-block">limpiar</button> 
-            <div class="row"> 
-              <div class="col-sm-12">
-                <div class="container">
-                    <canvas id="algo">
-                    </canvas>
-                </div>
-              </div>
-              <br>
-              <input type="hidden" id="id_oculto_documento">
-              <button style="text-align:center" class="btn btn-success btn-lg btn-block" id="va_parriba" display="block">
-                Listo!!
-              </button> 
-              <input type="hidden" id="id_oculto_oculto">
-             <input type="hidden" id="url_oculta">
-            </div>
-            
+          <div class="card-body" style="text-align:center;">
             <div class="row">
-              <div class="col-sm-12">
-                <table class="table">
-                  <thead>
-                    <th>Empresa</th>
-                    <th>Nombres</th>
-                    <th>Fecha firma</th>
-                  </thead>
-                  <tbody id="traer_quien_firma">
-                  
-                  </tbody>
-                </table>
+              <div class="col-sm-6">
+                <label>Encabezado 1</label>
+                <input type="text" id="encabezado_1" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                <label>Protocolo:</label>
+                <input type="text" id="protocolo" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                <label>Versión:</label>
+                <input type="text" id="version" class="form-control">
+              </div>
+            </div> 
+            <hr>
+            <div class="row">
+              <div class="col-sm-8">
+                <label>Encabezado 2</label>
+                <input type="text" name="" id="encabezado_2" class="form-control">
+              </div>
+              <div class="col-sm-4">
+                <label>Paginación</label>
+                <input type="text" name="" id="paginacion" class="form-control">
+              </div>
+            </div> 
+            <br>
+            <div class="row">
+              <div class="col-sm-4">
+              <label for="">Leyenda</label>
+              <input type="text" name="" id="leyenda" class="form-control">
               </div>
             </div>
+            <hr>
+            <button class="btn btn-success" id="actualizar">Actualizar</button>
+            <button class="btn btn-primary" id="vista_previa">Vista previa</button>    
           </div>
         </div>
       </div>
     </div>
   </div><!--Cierre del segundo tab listar_subidas-->
+
+  <!--AQUI COMIENZA EL CODIGO PARA MOSTRAR LOS ITEM EN PROCESO DE APROBACIÓN-->
+  <div class="tab-pane tabs-animation fade show" id="Revision_item" role="tabpanel">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table" style="text-align:center;">
+            <thead>
+              <th>Nombre</th>
+              <th>Tipo de item</th>
+              <th>Fecha creacion</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </thead>
+            <tbody id="listar_item_para_aprobacion">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--CIERRE DE LA GESTIÓN DE ITEM PARA SU APROBACIÓN-->
+
+
+
+
+
 </div><!--Cierre del tab content-->
 <!--SCRIPT PARA CONTROLAR LA VISTA PREVIA DEL DOCUMENTO QUE SE SUBE-->
 

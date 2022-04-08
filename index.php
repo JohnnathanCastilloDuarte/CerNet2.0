@@ -16,6 +16,8 @@ $smarty->assign('mi_usuario',$mi_usuario);
 $smarty->assign('mi_pass',$mi_pass);
 $smarty->assign('mi_cargo',$mi_cargo);
 $smarty->assign('mi_id',$mi_id);
+
+
    
 
 $query = "SELECT a.id_privilegio, a.id_rol, b.imagen_usuario FROM usuario as a, persona as b WHERE a.id_usuario = ?";
@@ -67,7 +69,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12,13,14));
 
 
 $aprobaciones = array();
@@ -224,6 +226,8 @@ else
                 include("templates/item/update_flujo_laminar.php");
               }else if($_GET["type"] == 14){
                 include("templates/item/update_camara_congelada.php");
+              }else if ($_GET["type"] == 15) {
+                include("templates/item/update_aire_comprimido.php");
               }
             }else if($_GET["page"] == 4){
               include("templates/item/historial_item.php");
@@ -314,6 +318,8 @@ else
                include("templates/mapeos_generales/datos_informe_mapeo.php");
               }else if($_GET["type"]==13){
                 include("templates/Calificacion/datos_calificacion.php");
+              }else if ($_GET['type']==14) {
+                include("templates/aire_comprimido/datos_informe_mapeo.php");
               }
               
       
@@ -321,6 +327,10 @@ else
               include("templates/flujo_laminar/gestionar_informe.php");
             }else if($_GET['page'] == 12 ){
               include("templates/sala_limpia/gestionar_informe.php");
+            }else if($_GET['page'] == 13 ){
+              include("templates/URS/gestionar_informe.php");
+            }else if ($_GET['page'] == 14) {
+              include("templates/aire_comprimido/gestionar_informe.php");
             }
           }
        break;
@@ -358,9 +368,8 @@ else
 /////////////// CASE PARA LA MANIPULACIÓN DE LAS CALIFICACIONES        
       case "Calificacion":
         if($_GET['type']=="URS"){
-          include("templates/Calificacion/URS/index.php?id_informe=".$_GET['id_informe']);
+          include("templates/Calificacion/URS/index.php");
         }else if($_GET['type']=="DQ"){
-         
           include("templates/Calificacion/DQ/index.php");
         }
         break;
@@ -403,6 +412,7 @@ else
     include("dashboard_cliente.php");
   
 }
+
 
 
   

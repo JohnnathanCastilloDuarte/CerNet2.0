@@ -1,3 +1,4 @@
+
 var id_item_bodega = $("#id_item_bodega").val();
 var id_valida = $("#id_valida").val();
 
@@ -136,7 +137,7 @@ function planos(){
 		let volume_bodega = $("#volume_bodega").val();
 		let altura_bodega = $("#altura_bodega").val();
 
-    let clasificacion_item = $("#clasificacion_item").val();
+    	let clasificacion_item = $("#clasificacion_item").val();
 		let marca_bodega = $("#marca_bodega").val();
 		let modelo_bodega = $("#modelo_bodega").val();
 		let orientacion_principal = $("#orientacion_principal").val();
@@ -154,25 +155,25 @@ function planos(){
 		let cantidad_iluminarias = $("#cantidad_iluminarias").val();
 		let hr_max = $("#hr_max").val();
 		let hr_min = $("#hr_min").val();	
-    let cantidad_ventana = $("#cantidad_ventana").val();
-    let valor_seteado_temp = $("#valor_seteado_temp").val();
-    let valor_seteado_hum = $("#valor_seteado_hum").val();
+    	let cantidad_ventana = $("#cantidad_ventana").val();
+    	let valor_seteado_temp = $("#valor_seteado_temp").val();
+    	let valor_seteado_hum = $("#valor_seteado_hum").val();
 
-
+		
 
 		var muro = $("input:checkbox[id=tipo_muro]:checked").map(function(){
 			return this.value;
 		}).get();
 		var array_muro = muro.join(', ');
 		
-		let otro_tipo_muro_bodega = $("#otro_tipo_muro_bodega").val();
+		//let otro_tipo_muro_bodega = $("#otro_tipo_muro_bodega").val();
 		
 		var cielo = $("input:checkbox[id=tipo_cielo]:checked").map(function(){
 			return this.value;
 		}).get();
 		var array_cielo = cielo.join(', ');
 		
-		let otro_tipo_cielo_bodega = $("#otro_tipo_cielo_bodega").val();
+		//let otro_tipo_cielo_bodega = $("#otro_tipo_cielo_bodega").val();
 		
 		var climatizacion = $("input:checkbox[id=climatizacion]:checked").map(function(){
 			return this.value;
@@ -194,6 +195,9 @@ function planos(){
 		
 		let id_item = $("#id_item_bodega").val();
 		let id_valida = $("#id_valida").val();
+
+		let estado_bodega = $("input:radio[name=estado_bodega]:checked").val();
+
 		
 		const datos = {
 			nombre_bodega,
@@ -208,9 +212,9 @@ function planos(){
 			volume_bodega,
 			altura_bodega,
 			array_muro,
-			otro_tipo_muro_bodega,
+			//otro_tipo_muro_bodega,
 			array_cielo,
-			otro_tipo_cielo_bodega,
+			//otro_tipo_cielo_bodega,
 			array_climatizacion,
 			s_m_t,
 			s_m_t_a,
@@ -219,8 +223,7 @@ function planos(){
 			fichas_estabilidad,
 			id_item,
 			id_valida,
-      clasificacion_item,
-
+      		clasificacion_item,
 			marca_bodega,
 			modelo_bodega,
 			orientacion_principal,
@@ -238,34 +241,39 @@ function planos(){
 			cantidad_iluminarias,
 			hr_max,
 			hr_min,
-      cantidad_ventana,
-      valor_seteado_temp,
-      valor_seteado_hum
-      
+      		cantidad_ventana,
+      		valor_seteado_temp,
+      		valor_seteado_hum,
+			estado_bodega
 		}
-		
-		$.post('templates/item/editar_bodega.php', datos, function(e){
+
+		campos_vacios(datos);
+		if(campos_vacios(datos)){
+			$.post('templates/item/editar_bodega.php', datos, function(e){
 				console.log(e);
-			if(e == "Si"){
-				Swal.fire({
-					position:'center',
-					icon:'success',
-					title:'La bodega ha sido actualizada',
-					showConfirmButton: false,
-					timer:1500
-				});
-			}
-		});
+				if(e == "Si"){
+					Swal.fire({
+						text:'La bodega ha sido actualizada',
+						icon:'success',
+						title:'Mensaje',
+						showConfirmButton: false,
+						timer:1500
+					});
+				}
+			});
+		}
 		
 	});
 	
 }());
 
 
+
 /////// FUNCTION PARA CREAR BODEGA 
 
 $("#btn_nuevo_item_bodega").click(function(){
 
+	
 	let nombre_bodega = $("#nombre_bodega").val();
 	let empresa_bodega = $("#id_empresa").val();
 	let descripcion_item_bodega = $("#descripcion_item_bodega").val();
@@ -273,8 +281,7 @@ $("#btn_nuevo_item_bodega").click(function(){
 	let codigo_bodega = $("#codigo_bodega").val();
 	let productos = $("#productos_bodega").val();
 	let id_tipo = $("#id_tipo").val();
-
-  let clasificacion_item = $("#clasificacion_item").val();
+  	let clasificacion_item = $("#clasificacion_item").val();
 	let marca_bodega = $("#marca_bodega").val();
 	let modelo_bodega = $("#modelo_bodega").val();
 	let orientacion_principal = $("#orientacion_principal").val();
@@ -292,12 +299,9 @@ $("#btn_nuevo_item_bodega").click(function(){
 	let cantidad_iluminarias = $("#cantidad_iluminarias").val();
 	let hr_max = $("#hr_max").val();
 	let hr_min = $("#hr_min").val();
-  let cantidad_ventana = $("#cantidad_ventana").val();
-  let valor_seteado_temp = $("#valor_seteado_temp").val();
-  let valor_seteado_hum = $("#valor_seteado_hum").val();
-
-	
-
+  	let cantidad_ventana = $("#cantidad_ventana").val();
+  	let valor_seteado_temp = $("#valor_seteado_temp").val();
+  	let valor_seteado_hum = $("#valor_seteado_hum").val();
 	let largo_bodega = $("#largo_bodega").val();
 	let ancho_bodega = $("#ancho_bodega").val();
 	let superficie_bodega = $("#superficie_bodega").val();
@@ -344,7 +348,6 @@ $("#btn_nuevo_item_bodega").click(function(){
 		fichas_estabilidad,
 		id_tipo,
 		id_valida,
-
 		marca_bodega,
 		modelo_bodega,
 		orientacion_principal,
@@ -362,30 +365,37 @@ $("#btn_nuevo_item_bodega").click(function(){
 		cantidad_iluminarias,
 		hr_max,
 		hr_min,
-    cantidad_ventana,
-    valor_seteado_temp,
-    valor_seteado_hum
+    	cantidad_ventana,
+    	valor_seteado_temp,
+    	valor_seteado_hum,
+		clasificacion_item
 	}  
 
-	$.ajax({
-		type:'POST',
-		url:'templates/item/nueva_bodega.php',
-		data: datos,
-		success:function(response){
-      	console.log(response);
-			Swal.fire({
-				icon :'success',			
-				text: 'Bodega creada correctamente!',
-				confirmButtonText: 'Ok!'
-			}).then((result) => {
-				if(result.value){
-					location.reload();
-				}
+	campos_vacios(datos);
 
-			});
-		
-		}
-	})
+	if(campos_vacios(datos)){
+
+		$.ajax({
+			type:'POST',
+			url:'templates/item/nueva_bodega.php',
+			data: datos,
+			success:function(response){
+			console.log(response);
+				Swal.fire({
+					title:'Mensaje',
+					icon :'success',			
+					text: 'Bodega creada correctamente!',
+					confirmButtonText: 'Ok!'
+				}).then((result) => {
+					if(result.value){
+						location.reload();
+					}
+
+				});
+			
+			}
+		});		
+	}
 
 });
 
@@ -458,3 +468,6 @@ $(document).on('click','#seleccionar_empresa',function(){
 	$("#aqui_resultados_empresa").hide();
 
 })
+
+
+

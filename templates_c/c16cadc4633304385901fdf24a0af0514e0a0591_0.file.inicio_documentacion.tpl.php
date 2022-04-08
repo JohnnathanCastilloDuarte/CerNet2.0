@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-10-19 23:26:19
+/* Smarty version 3.1.34-dev-7, created on 2022-03-10 14:42:09
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\inicio_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_616f37fba11557_61224568',
+  'unifunc' => 'content_622a0031b6aee7_26926193',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c16cadc4633304385901fdf24a0af0514e0a0591' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\inicio_documentacion.tpl',
-      1 => 1634216392,
+      1 => 1646919727,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616f37fba11557_61224568 (Smarty_Internal_Template $_smarty_tpl) {
+function content_622a0031b6aee7_26926193 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
     <div class="card-header">
-      Gestion de documentaciòn para procesos GEP
+      Sistema de gestión de aprobaciones
     </div>
     <div class="card">
       
@@ -35,7 +35,7 @@ function content_616f37fba11557_61224568 (Smarty_Internal_Template $_smarty_tpl)
       
       <div class="row-form">
         <div class="col-sm-6">
-          <label>Selecciona la empresa:</label>
+         <!-- <label>Selecciona la empresa:</label>
           <select class="form-control" id="empresa_documentacion">
             <option value="0">Seleccione...</option>
             <?php
@@ -50,7 +50,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-          </select>
+          </select>-->
+          <label>Empresa:</label>
+            <input type="hidden" id="id_empresa">
+            <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['filtro']->value['nombre_empresa'];?>
+">
+            <div >
+              <table class="table" id="aqui_resultados_empresa">
+              </table>
+            </div>
         </div>
         <br>
       </div>

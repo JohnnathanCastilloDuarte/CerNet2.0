@@ -12,19 +12,20 @@
  					<ul class="forms-wizard">
  						<li>
  							<a href="#step-12">
- 								<em>1</em><span>Identificación del equipo</span>
+ 								<em>1</em><span>Identificación</span>
  							</a>
  						</li>
  						<li>
  							<a href="#step-22">
- 								<em>2</em><span>Caracteristica del equipo</span>
+ 								<em>2</em><span>Especificación</span>
  							</a>
  						</li>
-						<!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
+ 						<li>
+							<a href="#step-32">
+								<em>3</em><span>Infraestructura</span>
+							</a>
+						</li>
+						<!--	
 						<li id="si_envia">
 									<a href="#step-42">
 											<em>4</em><span>Evidencia</span>
@@ -84,9 +85,7 @@
 											<input type="date" id="fecha_fabricacion_freezer" class="form-control" placeholder="" value="{$freezer.fecha_fabricacion}">
 										</div>
 									</div>
-								</div>
-								
-								<div id="step-22">
+									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
 											<label>Dirección equipo:</label>
@@ -96,46 +95,15 @@
 											<label>Ubicación interna equipo:</label>
 											<input type="text" id="ubicacion_interna_freezer" class="form-control" placeholder="Ubicación equipo" value="{$freezer.ubicacion_interna}">
 										</div>
-                    <div class="col-sm-4">
+                    					<div class="col-sm-4">
 											<label>Área interna equipo:</label>
 											<input type="text" id="area_interna_freezer" class="form-control" placeholder="Area interna equipo" value="{$freezer.area_interna}">
 										</div>
 									</div>
-									<br>
-									<div class="form-row">
-										<div class="col-sm-4">
-											<label>Voltaje:</label>
-											<input type="text" id="voltaje_freezer" class="form-control" placeholder="Voltaje" value="{$freezer.voltaje}">
-										</div>
-										<div class="col-sm-4">
-											<label>Potencia:</label>
-											<input type="text" id="potencia_freezer" class="form-control" placeholder="Potencia" value="{$freezer.potencia}">
-										</div>
-										<div class="col-sm-4">
-											<label>Capacidad:</label>
-											<input type="text" id="capacidad_freezer" class="form-control" placeholder="Capacidad" value="{$freezer.capacidad}">
-										</div>
-									</div>
-									<br>
-									<div class="form-row">
-										<div class="col-sm-3">
-											<label>Peso:</label>
-											<input type="text" id="peso_freezer" class="form-control" placeholder="Peso" value="{$freezer.peso}">
-										</div>
-										<div class="col-sm-3">
-											<label>Alto(mm):</label>
-											<input type="text" id="alto_freezer" class="form-control" placeholder="Alto" value="{$freezer.alto}">
-										</div>
-										<div class="col-sm-3">
-											<label>Largo(mm):</label>
-											<input type="text" id="largo_freezer" class="form-control" placeholder="Largo" value="{$freezer.largo}">
-										</div>
-										<div class="col-sm-3">
-											<label>Ancho(mm):</label>
-											<input type="text" id="ancho_freezer" class="form-control" placeholder="Ancho" value="{$freezer.ancho}">
-										</div>	
-									</div>
-									<br>
+								</div>
+								
+								<div id="step-22">
+									
 									
 									<div class="form-row">
 										<div class="col-sm-4">
@@ -171,10 +139,43 @@
 											<label>Temperatura maxima:</label>
 											<input type="text" id="temperatura_maxima_freezer" class="form-control" placeholder="Humedad maxima" value="{$freezer.tem_max}" required>
 										</div>
+									</div>									
+								</div>
+
+								<div id="step-32">
+									<div class="form-row">
+										<div class="col-sm-4">
+											<label>Voltaje:</label>
+											<input type="text" id="voltaje_freezer" class="form-control" placeholder="Voltaje" value="{$freezer.voltaje}">
+										</div>
+										<div class="col-sm-4">
+											<label>Potencia:</label>
+											<input type="text" id="potencia_freezer" class="form-control" placeholder="Potencia" value="{$freezer.potencia}">
+										</div>
+										<div class="col-sm-4">
+											<label>Capacidad:</label>
+											<input type="text" id="capacidad_freezer" class="form-control" placeholder="Capacidad" value="{$freezer.capacidad}">
+										</div>
 									</div>
-									
-									
-									
+									<br>
+									<div class="form-row">
+										<div class="col-sm-3">
+											<label>Peso:</label>
+											<input type="text" id="peso_freezer" class="form-control" placeholder="Peso" value="{$freezer.peso}">
+										</div>
+										<div class="col-sm-3">
+											<label>Alto(mm):</label>
+											<input type="text" id="alto_freezer" class="form-control" placeholder="Alto" value="{$freezer.alto}">
+										</div>
+										<div class="col-sm-3">
+											<label>Largo(mm):</label>
+											<input type="text" id="largo_freezer" class="form-control" placeholder="Largo" value="{$freezer.largo}">
+										</div>
+										<div class="col-sm-3">
+											<label>Ancho(mm):</label>
+											<input type="text" id="ancho_freezer" class="form-control" placeholder="Ancho" value="{$freezer.ancho}">
+										</div>	
+									</div>
 									<br>
 									<div class="form-row">
 										<div class="col-sm-12" style="text-align:center;">
@@ -182,8 +183,8 @@
 											<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_freezer">Actualizar</button>
 										</div>
 									</div>
-									
-								</div>
+								</div>	
+
 							</div><!---Cierre del content-->
 						</div><!--Cierre del wizard-->	
 						<div class="divider"></div>
