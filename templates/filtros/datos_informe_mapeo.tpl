@@ -108,16 +108,22 @@
      <!-- <form id="form_filtro_1" enctype="multipart/form-data" method="post">--> 
 
         <div class="row col-sm-12">
-          <div class="col-sm-6">
-            <label>Nombre informe:</label>
+          <div class="col-sm-12">
+            <label>Nombre informe <span class="text-danger"> *</span></label>
             <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre del informe">
           </div>
           <div class="col-sm-6">
-            <label>Solicitante:</label>
+            <label>Solicitante<span class="text-danger"> *</span></label>
             <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Nombre quien solicita">
           </div>
+          <div class="col-sm-6">
+            <label>Responsable<span class="text-danger"> *</span></label>
+            <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
+            <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+          </div>
+            
           <div class="col-sm-12">
-            <label>Conclusión</label>
+            <label>Conclusión<span class="text-danger"> *</span></label>
            <textarea name="conclusion" id="conclusion" class="form-control" placeholder="Conclusión"></textarea>
           </div>
 
@@ -377,7 +383,7 @@
           <div class="row">
 
             <div class="col-sm-12">
-              <div class="card">
+              <div class="card" id="card_evidencia_grafica">
                 <div class="card-header">
                   <a data-toggle="collapse" data-target="#collapseOne99"  aria-controls="collapseOne99" id="img_filtros">
                     Evidencia grafica

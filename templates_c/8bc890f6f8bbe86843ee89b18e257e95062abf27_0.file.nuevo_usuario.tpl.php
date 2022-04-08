@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-18 17:40:51
+/* Smarty version 3.1.34-dev-7, created on 2022-03-25 18:05:58
   from '/home/god/public_html/CerNet2.0/templates/usuario/nuevo_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e6fba385d3e4_30886207',
+  'unifunc' => 'content_623e0486ed16c2_79418084',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8bc890f6f8bbe86843ee89b18e257e95062abf27' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/usuario/nuevo_usuario.tpl',
-      1 => 1642520892,
+      1 => 1648231553,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e6fba385d3e4_30886207 (Smarty_Internal_Template $_smarty_tpl) {
+function content_623e0486ed16c2_79418084 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-4">	
 		<div class="card">
@@ -180,7 +180,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
              <div class="col-sm-6">
 						<label>Tipo Usuario:</label>
-							<select class="form-control" id="privilegios">
+							<select class="form-control" id="privilegios_usuario">
 								<option value="0" selected>Seleccione...</option>
 								
 							</select>

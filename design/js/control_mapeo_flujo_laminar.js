@@ -1,5 +1,25 @@
-
+ $("#alerta_1").hide();
 var id_asignado = $("#id_asignado_flujo_laminar").val();
+
+//Validar usuario responsable 
+$("#responsable").blur(function(){
+ let usuario = $("#responsable").val();
+ $.ajax({
+    type:'POST',
+    data:{usuario},
+    url:'templates/usuario/validar_usuario.php',
+    success:function(e){
+      console.log(e)
+      if(e == 'disponible'){
+         $("#responsable").css("border-color", "red");
+         $("#alerta_1").show();
+       }else{
+         $("#alerta_1").hide();
+         $("#responsable").css("border-color", "#03cb1b");
+       }
+     }
+   });   
+});
 
 listar_inspeccion_visual(8);
 listar_inspeccion_visual(9);
@@ -16,22 +36,23 @@ validador(10);
 validador(11);//info_ot
  
 
+
 //Actualizar datos del informe-luis
 $("#actualizar_mapeo").click(function(){
     
   let id_informe = $("#id_informe").val();  
   let nombre_informe = $("#nombre_informe").val();  
   let solicitante =  $("#solicitante").val();
+  let responsable = $("#responsable").val();
   let conclusion =  $("#conclusion").val();
   let accion = ("actualizar_informe");
    $.ajax({
      type:'POST',
-     data:{nombre_informe, solicitante, conclusion, id_informe, accion},
+     data:{nombre_informe, solicitante, responsable, conclusion, id_informe, accion},
      url:'templates/flujo_laminar/almacena_informacion_1.php',
 
      success:function(response){
-        ///console.log(response);
-
+       // console.log(response);
         if (response == ''){
             Swal.fire({
                     position:'center',
@@ -41,13 +62,7 @@ $("#actualizar_mapeo").click(function(){
                     timer:1000
                 });
         }else{
-           Swal.fire({
-                    position:'center',
-                    icon:'error',
-                    title:'Error interno',
-                    showConfirmButton: false,
-                    timer:1000
-                }); 
+           console.log("error");
         }
          listar_inspeccion_visual(8);
      }
@@ -341,7 +356,7 @@ function listar_inspeccion_visual(numeral){
                                 <td><input type="text" name="punto_1_p4[]" id="punto_1_p4${contador1}" class="form-control" value="${valor.punto_1}"></td>
                                 <td><input type="text" name="punto_2_p4[]"  id="punto_2_p4${contador1}" class="form-control" value="${valor.punto_2}"></td>
                                 <td><input type="text" name="punto_3_p4[]"  id="punto_3_p4${contador1}" class="form-control" value="${valor.punto_3}"></td>
-                                <td><input type="text" name="promedio_p4[]"  disabled=""  id="punto_4_p4${contador1}" class="form-control" value="${valor.promedio}"></td>
+                                <td><input type="text" name="promedio_p4[]" id="punto_4_p4${contador1}" class="form-control" value="${valor.promedio}"></td>
                                
                         </tr>
                         `;
@@ -358,7 +373,7 @@ function listar_inspeccion_visual(numeral){
                                 <td><input type="text" name="punto_1_p4[]" id="punto_1_p42${contador2}" class="form-control" value="${valor.punto_1}"></td>
                                 <td><input type="text" name="punto_2_p4[]" id="punto_2_p42${contador2}" class="form-control" value="${valor.punto_2}"></td>
                                 <td><input type="text" name="punto_3_p4[]" id="punto_3_p42${contador2}" class="form-control" value="${valor.punto_3}"></td>
-                                <td><input type="text" name="promedio_p4[]" disabled="" id="punto_4_p42${contador2}" class="form-control" value="${valor.promedio}"></td>
+                                <td><input type="text" name="promedio_p4[]" id="punto_4_p42${contador2}" class="form-control" value="${valor.promedio}"></td>
                                
                         </tr>
                         `;
@@ -481,7 +496,7 @@ function listar_inspeccion_visual(numeral){
                             <td><input type="text" name="punto_3_p6" class="form-control"  id="punto_3_p6" value="${valor.punto_3}"></td>
                             <td><input type="text" name="punto_4_p6" class="form-control"  id="punto_4_p6" value="${valor.punto_4}"></td>
                             <td><input type="text" name="punto_5_p6" class="form-control"  id="punto_5_p6" value="${valor.punto_5}"></td>
-                            <td><input type="text" name="promedio_p6" disabled="" class="form-control" Promedio=""  id="promedio_p6" value="${valor.promedio}"></td>
+                            <td><input type="text" name="promedio_p6" class="form-control" Promedio=""  id="promedio_p6" value="${valor.promedio}"></td>
                         </tr>
                     `;
 
@@ -516,6 +531,7 @@ function listar_inspeccion_visual(numeral){
                     $("#id_informe").val(`${valor.id_informe}`);
                     $("#solicitante").val(`${valor.solicitante}`);
                     $("#conclusion").val(`${valor.conclusion}`);
+                    $("#responsable").val(`${valor.usuario_responsable}`);
                 
                   
                 });
@@ -755,7 +771,7 @@ $("#formulario_flujo_laminar").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        ///console.log(response);
+        //console.log(response);
 
         if (response == ''){
             Swal.fire({

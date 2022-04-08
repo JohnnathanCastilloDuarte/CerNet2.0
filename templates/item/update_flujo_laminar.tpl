@@ -4,7 +4,11 @@
       <div class="card-header">
        {foreach from=$array_flujo_laminar  item=flujo_laminar}
        <h5 id="text_enunciado_flujo_laminar">
+         {if $flujo_laminar.id_item == ''}
+         Crear flujo laminar
+         {else}
          Modificar flujo laminar
+         {/if}
        </h5>
      </div>
      <input type="hidden" id="id_item_flujo_laminar" value="{$flujo_laminar.id_item}">

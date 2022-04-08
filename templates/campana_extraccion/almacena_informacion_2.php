@@ -27,7 +27,7 @@ $prueba_52_id = $_POST['prueba_52_id'];
 $prueba_52_medicion_1 = $_POST['prueba_52_medicion_1'];
 $prueba_52_medicion_2 = $_POST['prueba_52_medicion_2'];
 $prueba_52_medicion_3 = $_POST['prueba_52_medicion_3'];
-$prueba_51_medicion_4 = $_POST['prueba_51_medicion_4'];
+$prueba_52_medicion_4 = $_POST['prueba_52_medicion_4'];
 
 $prueba_53_id = $_POST['prueba_53_id'];
 $prueba_53_medicion_1 = $_POST['prueba_53_medicion_1'];

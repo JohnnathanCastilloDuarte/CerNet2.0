@@ -4,7 +4,7 @@
   <input type="hidden" value="{$persona.nombre_departamento}" id="nombre_departamento_editar">
   <input type="hidden" value="{$persona.id_cargo}" id="id_cargo_editar">
   <input type="hidden" value="{$persona.nombre_cargo}" id="nombre_cargo_editar">
-      {/foreach}
+ {/foreach}
 
 <form method="post" id="formulario_actualizacion_usuario" enctype="multipart/form-data">
 	<input type="hidden" name="id_usuario" value="{$id_usuario}">
@@ -18,7 +18,7 @@
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
 						<li class="breadcrumb-item"><a href="index.php?module={$modulo[1]}&page={$page[1]}">Usuarios</a></li>
-						<li class="breadcrumb-item active">Editar Usuario</li>			  
+						<li class="breadcrumb-item active">Editar Usuarios</li>			  
 					</ol>
 				</div>
 			</div>
@@ -121,22 +121,6 @@
 								<input type="text" name="telefono_usuario" class="form-control" value="{$persona_array.telefono}">
 							</div>
 						</div>
-						<!--<div class="row">
-							<div class="col-sm-6">
-								<label>Departamento:</label>
-								<select class="form-control" id="departamento_usuario_editar" name="departamento_usuario">
-									
-								</select>
-							</div>
-							<div class="col-sm-6">
-								<label>Cargo:</label>
-								<select class="form-control" id="cargo_usuario_editar"  name="cargo_usuario">
-                  {foreach from=$array_persona  item=persona}
-									<option value="{$persona.id_cargo}">{$persona.nombre_cargo}</option>
-                  {/foreach}
-								</select>
-							</div>
-						</div>-->
             <div class="row">
               <div class="col-sm-6">
                 <div class="position-relative form-group">
@@ -146,14 +130,14 @@
                   </select>
                 </div>
               </div>
-          
               <div class="col-sm-6">
-                <label>Tipo Usuario:</label>
-                  <select class="form-control" id="privilegios_usuario" name="privilegios_usuario">
-                    <option value="0" selected>Seleccione...</option>
+								<div class="position-relative form-group"><label>Cargo:</label>
+                  <select class="form-control" name="cargo_usuario" id="cargo_usuario_editar">
 
                   </select>
-				  	  </div>
+                </div>
+              </div>
+          
 				  </div>
 
 						{if $persona_array.estado == "Activo"}
@@ -170,6 +154,15 @@
 						{/if}
 
 						<div class="row">
+              
+              <div class="col-sm-6">
+                <label>Tipo Usuario:</label>
+                  <select class="form-control" id="privilegios_usuario" name="privilegios_usuario">
+                    <option value="0" selected>Seleccione...</option>
+
+                  </select>
+				  	  </div>
+              
 							<div class="col-sm-6">
 								<div class="position-relative form-group"><label>Estado:</label>
 								<select class="form-control" name="estado_usuario">
@@ -183,6 +176,7 @@
 								</select>
                 </div>
               </div>
+              
             </div>  
               <div class="row">
                 <div class="col-sm-12" >

@@ -8,15 +8,20 @@
             <div class="card-body">
                 <div class="col-sm-12">
                     <input type="hidden" name="" id="id_informe">
-                    <label>Nombre informe</label>
+                    <label>Nombre informe <span class="text-danger"> *</span></label>
                     <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe">
                 </div>
                 <div class="col-sm-12">
-                    <label>Solicitante</label>
+                    <label>Solicitante <span class="text-danger"> *</span></label>
                     <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
                 </div>
                 <div class="col-sm-12">
-                    <label>Conclusión</label>
+                   <label>Responsable<span class="text-danger"> *</span></label>
+                   <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
+                   <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                </div>
+                <div class="col-sm-12">
+                    <label>Conclusión <span class="text-danger"> *</span></label>
                     <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea>
                 </div>
                 <br>

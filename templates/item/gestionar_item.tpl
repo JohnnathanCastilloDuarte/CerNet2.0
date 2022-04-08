@@ -14,7 +14,7 @@
 						<th>Tipo</th>
 						<th>Nombre</th>
 						<th>Compañia</th>
-						<th>Acciones</th>
+						<th style="width:150px;">Acciones</th>
 					</thead>
 			
 					{foreach from=$array_gestionar item=gestionar}

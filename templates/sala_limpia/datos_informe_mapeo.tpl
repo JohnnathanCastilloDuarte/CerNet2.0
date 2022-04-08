@@ -343,21 +343,26 @@
                             </div>
                             <div class="card-body collapse" id="collapseOne15">  
                               <div class="row">
-                                  <div class="col-sm-6">
-                                      <input type="hidden" name="id_informe" id="id_informe">
-                                     <label for="">Conclusiones:</label>
-                                     <textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea> 
+                                 
+                                <div class="col-sm-12">
+                                      <label for="">Nombre informe:</label>
+                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
                                   </div>
                                   <div class="col-sm-6">
                                     <label for="">Solicita:</label>
                                     <input type="text" name="solicitante" id="solicitante" class="form-control">
                                  </div>
-                              </div>
-                              
+                                <div class="col-sm-6">
+                                    <label for="">Responsable:</label>
+                                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Solicitante">
+                                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                                 </div>
+                              </div>                              
                               <div class="row">
-                                  <div class="col-sm-6">
-                                      <label for="">Nombre informe:</label>
-                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
+                                   <div class="col-sm-6">
+                                      <input type="hidden" name="id_informe" id="id_informe">
+                                     <label for="">Conclusiones:</label>
+                                     <textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea> 
                                   </div>
                               </div>
                             </div>
@@ -374,7 +379,7 @@
 
                       <button class="btn btn-warning text-light" id="ver_informe_salas_limpias">Informe</button>
 
-  </div>
+                      </div>
                         </div>
                         
                         <hr>

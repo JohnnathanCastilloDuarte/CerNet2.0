@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-16 16:30:31
+/* Smarty version 3.1.34-dev-7, created on 2022-03-23 13:41:32
   from '/home/god/public_html/CerNet2.0/templates/filtros/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620d26a7b7c993_38825652',
+  'unifunc' => 'content_623b238cb18d89_85054810',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab4c17ec2efc5f4dde8d80e0944db694fc65af6e' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/filtros/datos_informe_mapeo.tpl',
-      1 => 1644873979,
+      1 => 1648042885,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620d26a7b7c993_38825652 (Smarty_Internal_Template $_smarty_tpl) {
+function content_623b238cb18d89_85054810 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -132,16 +132,22 @@ function content_620d26a7b7c993_38825652 (Smarty_Internal_Template $_smarty_tpl)
      <!-- <form id="form_filtro_1" enctype="multipart/form-data" method="post">--> 
 
         <div class="row col-sm-12">
-          <div class="col-sm-6">
-            <label>Nombre informe:</label>
+          <div class="col-sm-12">
+            <label>Nombre informe <span class="text-danger"> *</span></label>
             <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre del informe">
           </div>
           <div class="col-sm-6">
-            <label>Solicitante:</label>
+            <label>Solicitante<span class="text-danger"> *</span></label>
             <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Nombre quien solicita">
           </div>
+          <div class="col-sm-6">
+            <label>Responsable<span class="text-danger"> *</span></label>
+            <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
+            <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+          </div>
+            
           <div class="col-sm-12">
-            <label>Conclusión</label>
+            <label>Conclusión<span class="text-danger"> *</span></label>
            <textarea name="conclusion" id="conclusion" class="form-control" placeholder="Conclusión"></textarea>
           </div>
 
@@ -401,7 +407,7 @@ function content_620d26a7b7c993_38825652 (Smarty_Internal_Template $_smarty_tpl)
           <div class="row">
 
             <div class="col-sm-12">
-              <div class="card">
+              <div class="card" id="card_evidencia_grafica">
                 <div class="card-header">
                   <a data-toggle="collapse" data-target="#collapseOne99"  aria-controls="collapseOne99" id="img_filtros">
                     Evidencia grafica
@@ -436,9 +442,9 @@ function content_620d26a7b7c993_38825652 (Smarty_Internal_Template $_smarty_tpl)
           <br>
           <div class="row">
             <div class="col-sm-12" style="text-align:center;">
-              <button class="btn-shadow btn-outline-2x btn btn-outline-success"  id="btn_nuevo_filtro_mapeo">Aceptar</button>
-							<button class="btn-shadow btn-outline-2x btn btn-outline-info"  id="btn_actualizar_filtro_mapeo">Actualizar</button>
-              <button class="btn-shadow btn-outline-2x btn btn-outline-warning" id="abrir_informe">Informe</button>
+              <button class="btn btn-success"  id="btn_nuevo_filtro_mapeo">Aceptar</button>
+							<button class="btn btn-info"  id="btn_actualizar_filtro_mapeo">Actualizar</button>
+              <button class="btn btn-warning text-light" id="abrir_informe">Informe</button>
             </div>
           </div>
              

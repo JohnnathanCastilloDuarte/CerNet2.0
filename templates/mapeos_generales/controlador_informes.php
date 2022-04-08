@@ -218,15 +218,15 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
 
         if($insertando_informe){
             echo "Listo";
-            $array_enunciado_1 = array('ÁREAS DE ACCESO:<br>Control de personas',
-                                       'ÁREAS DE ACCESO:<br>Puertas',
-                                       'INFRAESTRUCTURA:<br>Revestimiento del Techo',
-                                       'INFRAESTRUCTURA:<br>Iluminación de la bodega',
-                                       'INFRAESTRUCTURA:<br>Ventanas',
+            $array_enunciado_1 = array('ÁREAS DE ACCESO: Control de personas',
+                                       'ÁREAS DE ACCESO: Puertas',
+                                       'INFRAESTRUCTURA: Revestimiento del Techo',
+                                       'INFRAESTRUCTURA: Iluminación de la bodega',
+                                       'INFRAESTRUCTURA: Ventanas',
                                        'Equipos productivos/ climatización asistida cerca de área de almacenamiento. Ejemplo: calderas, cámaras frías.', 
-                                      'Sistema de Climatización:<br>Interrupción por falla.',
-                                       'Sistema de Climatización:<br>Calibración del seteo.',
-                                       'Sistema de Climatización:<br>Desgaste y mantención.',
+                                      'Sistema de Climatización: Interrupción por falla.',
+                                       'Sistema de Climatización: Calibración del seteo.',
+                                       'Sistema de Climatización: Desgaste y mantención.',
                                        'Personal y maquinaria');
           
             $gmp = "GMP";

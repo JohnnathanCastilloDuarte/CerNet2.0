@@ -205,10 +205,11 @@ mysqli_stmt_execute($actualizando10);
 $id_informe = $_POST['id_informe'];
 $conclusion_informe = $_POST['conclusion_informe'];
 $solicitante = $_POST['solicitante'];
+$responsable = $_POST['responsable'];
 $nombre_informe = $_POST['nombre_informe'];
 
-$actualizando10 = mysqli_prepare($connect,"UPDATE salas_limpias_informe SET nombre_informe= ?, solicita= ?,conclusion= ? WHERE id_informe = ?");
-mysqli_stmt_bind_param($actualizando10, 'sssi', $nombre_informe, $solicitante, $conclusion_informe, $id_informe);
+$actualizando10 = mysqli_prepare($connect,"UPDATE salas_limpias_informe SET nombre_informe= ?, solicita= ?,conclusion= ?, usuario_responsable = ? WHERE id_informe = ?");
+mysqli_stmt_bind_param($actualizando10, 'ssssi', $nombre_informe, $solicitante, $conclusion_informe, $responsable, $id_informe);
 mysqli_stmt_execute($actualizando10);
 mysqli_close($connect);
 ?>

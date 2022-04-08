@@ -4,7 +4,7 @@ require('../../../../config.ini.php');
 $id_informe = $_GET['informe'];
 
 $informes_generales = mysqli_prepare($connect,"SELECT a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
-g.direccion, a.solicitante, b.intervalo, a.comentario, a.acta_inspeccion, f.clasificacion_item
+g.direccion, g.ciudad, a.solicitante, b.intervalo, a.comentario, a.acta_inspeccion, f.clasificacion_item
 FROM informes_general a,mapeo_general b,item_asignado c, servicio d, numot e,item f,empresa g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -17,7 +17,7 @@ mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
 mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
-$nombre_empresa_g, $direccion_empresa_g, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item);
+$nombre_empresa_g, $direccion_empresa_g, $ciudad_g, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item);
 
 mysqli_stmt_fetch($informes_generales);
 
@@ -57,6 +57,59 @@ switch ($id_tipo_item_g) {
 }
 //quitarle la hora  a la fecha 
 $fecha_inicio_g_sin_hora = substr($fecha_inicio_g, 0, -8);
+                                  
+//Validar si es chile
+   
+
+if($ciudad_g == 'Chile'){
+  
+  $info1 = '<tr>
+  <td width="25%" align="right">Normativa técnica N° 147 del MINSAL:</td>
+  <td align="left" width="75%">"Buenas Prácticas de almacenamiento y distribución para droguerías y depósitos de productos de uso humano"</td>
+    </tr>'; 
+  
+  $info2 = '<tr>
+  <td width="25%" align="right">RESOLUCIÓN EXENTA 6590 ISP:</td>
+  <td align="left" width="75%">"Guía para realizar el mapeo térmico de áreas de almacenamiento" del 14-12-2018</td>
+   </tr>';
+  
+  $info3 = '<SPAN STYLE="text-align: justify;">Según la norma técnica N°147 de Buenas Prácticas de Almacenamiento y Distribución
+para droguerías y depósitos de productos de uso humano, se detalla en
+el punto 4.17 Condiciones de almacenamiento lo siguiente:</SPAN>
+
+
+<UL>
+
+<LI CLASS="biglist">“Las condiciones de almacenamiento de materiales y productos
+deben estar en conformidad con lo señalado en sus rótulos o etiquetas, que se base
+en los resultados de las pruebas de estabilidad y lo aprobado en el respectivo
+registro sanitario, según corresponda según lo señalado a continuación:
+
+
+	<UL>
+	<br><br><SPAN STYLE="text-align: justify;">Almacenamiento y condiciones de etiquetado</SPAN>
+	<br><SPAN STYLE="text-align: justify;"><STRONG>Condiciones normales de almacenamiento:</STRONG></SPAN>
+	
+	<LI CLASS="smallist">Los locales de almacenamiento deben estar secos y bien ventilados, a temperatura
+	ambiente de 15-25°C, o, dependiendo de las condiciones climáticas, hasta 30°C en
+	periodos breves.</LI>
+	<LI CLASS="smallist">Se debe evitar los olores extraños, indicios de contaminación y luz intensa.</LI>
+
+	<br><br><SPAN STYLE="text-align: justify;"><STRONG>Instrucciones definidas de almacenamiento:</STRONG></SPAN>
+	<LI CLASS="smallist">Los productos deben ser almacenados bajo condiciones definidas
+	que requieren aprobadas instrucciones de almacenamiento. A menos que se
+	indique lo contrario (por ejemplo, productos que requieren mantener
+	almacenamiento continuo de frío, productos refrigerados, etc.). Las desviaciones
+	pueden ser toleradas sólo durante interrupciones de corta duración, por ejemplo,
+	durante el transporte local, siempre y cuando la estabilidad del producto así lo
+	permita.</LI>
+	</UL>
+</LI>
+</UL>';
+  
+}else{
+  
+}                                  
 
 // set font
 $pdf->SetFont('freesans', 'R', 8.2);
@@ -94,7 +147,6 @@ tr:nth-child(even)
 	background-color: #f2f2f2;
 }
 </style>
-
 <table>
 <tr><td width="13%" align="right">Solicitante:</td><td width="87%" align="left">$nombre_empresa_g</td></tr>
 <tr><td width="13%" align="right">Dirección:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
@@ -120,21 +172,20 @@ tr:nth-child(even)
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>3.0 NORMATIVA</strong></H3></td></tr></table><br><br>
 
 <table>
-<tr><td width="25%" align="right">Normativa técnica N° 147 del MINSAL:</td>
-<td align="left" width="75%">"Buenas Prácticas de almacenamiento y distribución para droguerías y depósitos de productos de uso humano"</td>
-</tr>
+
+$info1
 
 <tr><td width="25%" align="right">WHO 961-2015:</td>
 <td align="left" width="75%">Temperature mapping of storage areas</td></tr>
 
-<tr><td width="25%" align="right">WHO Technical report series 992,2015:</td>
+<tr><td width="25%" align="right">WHO Technical report series 961,2015:</td>
 <td align="left" width="75%">Suplemento 8 del anexo 9; "Temperature mapping of storage areas".</td></tr>
 
-<tr><td width="25%" align="right">USP 41 C1079:</td>
+<tr><td width="25%" align="right">USP 44 C1079:</td>
 <td align="left" width="75%">Good storage and distribution practices for drug products</td></tr>
 
-<tr><td width="25%" align="right">RESOLUCIÓN EXENTA 6590 ISP:</td>
-<td align="left" width="75%">"Guía para realizar el mapeo térmico de áreas de almacenamiento" del 14-12-2018</td></tr>
+$info2
+
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>4.0 ANTECEDENTES PROPORCIONADOS POR EL SOLICITANTE</strong></H3></td></tr></table><br><br>
@@ -170,8 +221,8 @@ tr:nth-child(even)
 <tr><td width="25%" align="right">Tipo de pared:</td><td align="left" width="75%">$tipo_muro</td></tr>
 <tr><td width="25%" align="right">Tipo de cielo:</td><td align="left" width="75%">$tipo_cielo</td></tr>
 <tr><td width="25%" align="right">Dimensiones de la $clasificacion_item:</td>
-<td align="left" width="75%">Altura $altura mts / Superficie: $superficie m2 / Volumen: $volumen m3<br>
-														Largo: $largo mts. / Ancho: $ancho mts.</td></tr>
+<td align="left" width="75%">Altura $altura m / Superficie: $superficie m2 / Volumen: $volumen m3<br>
+														Largo: $largo m. / Ancho: $ancho m.</td></tr>
 </table><br><br>
 
 EOD;
@@ -265,39 +316,7 @@ metros.</LI>
 productos o donde se planea almacenar.</LI>
 </UL>
 
-<SPAN STYLE="text-align: justify;">Según la norma técnica N°147 de Buenas Prácticas de Almacenamiento y Distribución
-para droguerías y depósitos de productos de uso humano, se detalla en
-el punto 4.17 Condiciones de almacenamiento lo siguiente:</SPAN>
-
-
-<UL>
-
-<LI CLASS="biglist">“Las condiciones de almacenamiento de materiales y productos
-deben estar en conformidad con lo señalado en sus rótulos o etiquetas, que se base
-en los resultados de las pruebas de estabilidad y lo aprobado en el respectivo
-registro sanitario, según corresponda según lo señalado a continuación:
-
-
-	<UL>
-	<br><br><SPAN STYLE="text-align: justify;">Almacenamiento y condiciones de etiquetado</SPAN>
-	<br><SPAN STYLE="text-align: justify;"><STRONG>Condiciones normales de almacenamiento:</STRONG></SPAN>
-	
-	<LI CLASS="smallist">Los locales de almacenamiento deben estar secos y bien ventilados, a temperatura
-	ambiente de 15-25°C, o, dependiendo de las condiciones climáticas, hasta 30°C en
-	periodos breves.</LI>
-	<LI CLASS="smallist">Se debe evitar los olores extraños, indicios de contaminación y luz intensa.</LI>
-
-	<br><br><SPAN STYLE="text-align: justify;"><STRONG>Instrucciones definidas de almacenamiento:</STRONG></SPAN>
-	<LI CLASS="smallist">Los productos deben ser almacenados bajo condiciones definidas
-	que requieren aprobadas instrucciones de almacenamiento. A menos que se
-	indique lo contrario (por ejemplo, productos que requieren mantener
-	almacenamiento continuo de frío, productos refrigerados, etc.). Las desviaciones
-	pueden ser toleradas sólo durante interrupciones de corta duración, por ejemplo,
-	durante el transporte local, siempre y cuando la estabilidad del producto así lo
-	permita.</LI>
-	</UL>
-</LI>
-</UL>
+$info3
 
 
 <H3>6.3 METODOLOGÍA</H3>
@@ -387,7 +406,7 @@ almacenamiento.<!--de TTSPPs.--></LI>
 
 <!--<SPAN STYLE="text-align: justify;"><STRONG>Nota: TTSPP</STRONG> - Producto farmacéutico sensible al tiempo y a la temperatura.</SPAN><BR><BR>-->
 
-<SPAN STYLE="text-align: justify;"><STRONG>USP 41 C1079</STRONG>: El proceso de mapeo térmico ayudará a determinar cuándo podrían
+<SPAN STYLE="text-align: justify;"><STRONG>USP 44 C1079</STRONG>: El proceso de mapeo térmico ayudará a determinar cuándo podrían
 ocurrir excursiones y son útiles cuando los fabricantes de productos
 desarrollen un plan para tratarlas. Las alarmas deben usarse para revelar excursiones
 ambientales durante las operaciones. Puede admitirse excursiones de temperatura por
