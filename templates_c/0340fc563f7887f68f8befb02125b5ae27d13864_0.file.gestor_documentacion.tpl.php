@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-03-17 22:59:59
+/* Smarty version 3.1.34-dev-7, created on 2022-03-23 14:35:51
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\gestor_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6233af5f823055_17892404',
+  'unifunc' => 'content_623b2237db2743_02655555',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0340fc563f7887f68f8befb02125b5ae27d13864' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\gestor_documentacion.tpl',
-      1 => 1647525330,
+      1 => 1648042511,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6233af5f823055_17892404 (Smarty_Internal_Template $_smarty_tpl) {
+function content_623b2237db2743_02655555 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <style>
    
@@ -206,19 +206,19 @@ p{
 			<span>Config</span>
 		</a>
 	</li>
-	<li class="nav-item">
-		<a role="tab" class="nav-link active subir" id="tab-1" data-toggle="tab" href="#subir">
-			<span>Subir</span>
-		</a>
-	</li>
   <li class="nav-item">
-		<a role="tab" class="nav-link active subir1" id="tab-1" data-toggle="tab" href="#subir1">
+		<a role="tab" class="nav-link active subir1" id="tab_subir_archivo" data-toggle="tab" href="#subir_pdf_archivo">
 			<span>Subir</span>
 		</a>
 	</li>
    <li class="nav-item">
-		<a role="tab" class="nav-link active subir1" id="tab-1" data-toggle="tab" href="#Hoja_firmas">
+		<a role="tab" class="nav-link active" id="tab_hoja_de_firmas" data-toggle="tab" href="#Hoja_firmas">
 			<span>Hoja firmas</span>
+		</a>
+	</li>
+  	<li class="nav-item">
+		<a role="tab" class="nav-link active" id="tab_aprobar_item" data-toggle="tab" href="#Revision_item">
+			<span>Revisión de ITEM</span>
 		</a>
 	</li>
   <!--
@@ -242,27 +242,27 @@ p{
           <div class="card-body">
             <div class="row">
               <div class="col-sm-6">
-                <label>Nombre del proceso</label>
-                <p style="text-align:justify;">
-                  Escoge un nombre para el proceso de documentación, el cual ayudara a identificar el proposito del mismo.
-                </p>
-                <input type="text" class="form-control" id="nombre_documental" placeholder = "Ingresa el nombre del proceso">
-              </div>  
-              <div class="col-sm-6">
                 <label>Tipo de proceso</label>
                 <p style="text-align:justify;">
-                  En esta configuración se decide la forma como se cargaran la documentación:
-                  <br>
-                  1-Pagina x pagina
-                  <br>
-                  2-Documento completo
+                  En esta configuración se define la fuente de la documentación:<br>
+                  -Aprobación de item.<br>
+                  -Aprobación de pdf.<br>
                 </p>
                 <select id="tipo_documentacional" class="form-control">
                   <option value="0">Seleccione</option>
-                  <option value="1">Hoja x Hoja</option>
-                  <option value="2">Pdf completo</option>
+                  <option value="1">Aprobación item</option>
+                  <option value="2">Subir pdf</option>
                 </select>
               </div>
+              <div class="col-sm-6">
+                <label>Nombre del proceso</label>
+                <p style="text-align:justify;">
+                  Escoge un nombre para el proceso de documentación, el cual ayudara a identificar el proposito del mismo.
+                  <br><br>
+                </p>
+                <input type="text" class="form-control" id="nombre_documental" placeholder = "Ingresa el nombre del proceso">
+              </div>  
+             
             </div>
           </div>
           <br>
@@ -273,8 +273,8 @@ p{
                 </button>
               </div>
             </div>
-          
           <br>
+          <hr>
          <br>  
           <div class="row">
             <div class="col-sm-6" style="text-align:center;">
@@ -495,6 +495,36 @@ p{
       </div>
     </div>
   </div><!--Cierre del segundo tab listar_subidas-->
+
+  <!--AQUI COMIENZA EL CODIGO PARA MOSTRAR LOS ITEM EN PROCESO DE APROBACIÓN-->
+  <div class="tab-pane tabs-animation fade show" id="Revision_item" role="tabpanel">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table" style="text-align:center;">
+            <thead>
+              <th>Nombre</th>
+              <th>Tipo de item</th>
+              <th>Fecha creacion</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </thead>
+            <tbody id="listar_item_para_aprobacion">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--CIERRE DE LA GESTIÓN DE ITEM PARA SU APROBACIÓN-->
+
+
+
+
+
 </div><!--Cierre del tab content-->
 <!--SCRIPT PARA CONTROLAR LA VISTA PREVIA DEL DOCUMENTO QUE SE SUBE-->
 

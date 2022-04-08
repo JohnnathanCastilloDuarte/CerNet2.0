@@ -15,7 +15,8 @@ $("#gif_loading").hide();
 ////VARIABLES CONSTANTES
 var id_valida_usuario = $("#id_valida").val();
 var id_documentacion = $("#id_documentacion").val();
-var id_documentacion_d = $("#id_documentacion_d").val()
+var id_documentacion_d = $("#id_documentacion_d").val();
+
 
 saber_que_ver();
 listar_firmantes_ok();
@@ -1783,14 +1784,17 @@ function listar_config_documentacion(){
       let template = "";
       let tpo = "";
       traer.forEach((x)=>{
+       
           if(x.tipo == 1){
-            tpo = "Hoja x hoja";
-            $(".subir1").hide();
-            $(".subir").show();
+            tpo = "Aprobación de item";
+            $("#tab_subir_archivo").hide();
+            $("#tab_hoja_de_firmas").hide();
+            $("#tab_aprobar_item").show();
           }else{
             tpo = "Pdf";
-            $(".subir").hide();
-            $(".subir1").show();
+            $("#tab_subir_archivo").show();
+            $("#tab_hoja_de_firmas").show();
+            $("#tab_aprobar_item").hide();
           }
         
           $("#nombre_config").html(x.nombre);
@@ -1888,8 +1892,81 @@ $(document).on('click', '#vista_previa', function(){
     }
     }
   })
- 
-})
+});
+
+
+////// CODIGO PARA GENERAR LA APROBACIÓN DE ITEM.
+listar_items_aprobacion();
+function listar_items_aprobacion(){
+
+  let movimiento = "Leer_items";
+
+  $.ajax({
+    type:'POST',
+    data:{id_documentacion_d,movimiento},
+    url:'templates/documentacion/controlador_item_aprobacion.php',
+    success:function(respuesta){
+      console.log(respuesta);
+
+      let traer = JSON.parse(respuesta);
+      let template = "";
+      let estado = "";
+      let seleccionar = "";
+
+      traer.forEach((valor)=>{
+
+        if(valor.estado == 0){
+          estado = "<span class='badge badge-secondary'>Sin aprobación</span>";
+          seleccionar = `<select class='form-control' id='selector_aprobaciones' data-id='${valor.id_item}'>
+                          <option value='0'>Seleccione...</option>
+                          <option value="1">Enviar a aprobación</option>
+                          </select>`;
+        }else{
+          estado = "<span class='badge badge-sucess'>Aprobado</span>";
+          seleccionar = `-`;
+        }
+        template +=
+        `
+          <tr>
+            <td>${valor.nombre}</td>
+            <td>${valor.clasificacion}</td>
+            <td>${valor.fecha_registro}</td>
+            <td>${estado}</td>
+            <td>${seleccionar}</td>
+          </tr>
+        `;
+      });
+
+      $("#listar_item_para_aprobacion").html(template);
+    }
+  })
+  
+}
+
+
+/// SELECTOR DE APROBACIONES 
+$(document).on('change','#selector_aprobaciones',function(){
+
+    let id_item = $(this).attr('data-id');
+    let movimiento = "Seleccionar";
+
+    const datos = {
+      id_item,
+      movimiento,
+      id_documentacion_d
+    }
+
+  
+    $.ajax({
+      type:'POST',
+      data:{datos},
+      url:'templates/documentacion/controlador_item_aprobacion.php' ,
+      success:function(respuesta){
+        console.log(respuesta);
+      }
+
+    })
+});
 
 
 
