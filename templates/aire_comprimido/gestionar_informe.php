@@ -1,8 +1,4 @@
 <?php 
-
-
-
-
 $tipo_1 = "Inspección aire Comprimido";
 
 
