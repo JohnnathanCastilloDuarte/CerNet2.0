@@ -97,14 +97,7 @@
               </div>
             </div>
             <br>
-            <div class="form-row">
-                <div class="col-sm-12" style="text-align:center;">
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
-                </div> 
-                <div class="col-sm-12" style="text-align:center;">
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Nuevo</button>
-                </div>
-           </div>
+            
 
           </div>
           <div id="step-32">
@@ -161,6 +154,15 @@
                   <input type="text" id="puntos_muestreo" class="form-control" placeholder="Puntos muestreo normal" value="{$sala_limpia.puntos_muestreo}">
                 </div>
               </div>
+              <br>
+            <div class="form-row">
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
+                </div> 
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Nuevo</button>
+                </div>
+           </div>
 
 
           </div>  
