@@ -26,7 +26,7 @@ $codigo = $_POST['codigo'];
 $estado_sala = $_POST['estado_sala'];             
 
 $tipo_item = 8;
-$estado = 1;
+$estado = 0;
 
 //// SE INSERTA EN EL ITEM
 $insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, estado, id_usuario) VALUES (?,?,?,?,?)');

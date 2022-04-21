@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-21 23:45:31
+/* Smarty version 3.1.34-dev-7, created on 2022-04-22 00:37:35
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6261d07b3d7c17_86616894',
+  'unifunc' => 'content_6261dcafba6232_66185774',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6f47c0c8509753ce8676c6b0dc8cf65abab77ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_sala_limpia.tpl',
-      1 => 1650577527,
+      1 => 1650580650,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6261d07b3d7c17_86616894 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6261dcafba6232_66185774 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -126,13 +126,26 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
 
             <div class="form-row">
               <div class="col-sm-6">
-                <label>Temperatura °C:</label>
-                <input type="text" id="temperatura" class="form-control" placeholder="°C" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temperatura'];?>
+                <label>Temperatura Minima°C:</label>
+                <input type="text" id="temperatura" class="form-control" placeholder="°C" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temp_min'];?>
 ">
               </div>
               <div class="col-sm-6">
-                <label>Humedad relativa % :</label>
-                <input type="text" id="hum_relativa" class="form-control" placeholder="Hum %" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['hum_relativa'];?>
+                <label>Temperatura Maxima °C:</label>
+                <input type="text" id="hum_relativa" class="form-control" placeholder="°C" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temp_max'];?>
+">
+              </div>
+            </div>
+            <br>
+            <div class="form-row">
+              <div class="col-sm-6">
+                <label>Humedad Minima %:</label>
+                <input type="text" id="temperatura" class="form-control" placeholder="Hum %" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['hr_min'];?>
+">
+              </div>
+              <div class="col-sm-6">
+                <label>Humedad Maxima %:</label>
+                <input type="text" id="hum_relativa" class="form-control" placeholder="Hum %" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['hr_max'];?>
 ">
               </div>
             </div>
@@ -240,5 +253,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/update_sala_limpia.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/validar_campos_vacios.js"><?php echo '</script'; ?>
 ><?php }
 }
