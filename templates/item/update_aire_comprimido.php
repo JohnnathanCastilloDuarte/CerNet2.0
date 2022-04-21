@@ -50,9 +50,6 @@ if (isset($_POST['accion']) && $_POST['accion'] == 'mostrar_listado_items') {
 			echo $convert;   
 }
 
-
-
-
 if (isset($_GET['item'])) {
 
 	$id_equipo = $_GET['item'];
@@ -148,7 +145,9 @@ if (isset($_GET['pdf'])) {
 		}
 	}
 }else{
-
+	if (!isset($_POST['accion'])) {
+		$smarty->display("item/update_aire_comprimido.tpl");
+	}
 }
 
 
