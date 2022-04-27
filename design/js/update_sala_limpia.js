@@ -74,27 +74,27 @@ function setear_campos(){
 
     campos_vacios(datos);
 
-    /*$.post('templates/item/editar_sala_limpia.php', datos, function(response){
-      console.log(response);
-     if(response == "Si"){
-      Swal.fire({
-       position:'center',
-       icon:'success',
-       title:'El item ha sido modificado con exito',
-       showConfirmButton: false,
-       timer:1500
-     });
-    }else{
-       Swal.fire({
-       position:'center',
-       icon:'error',
-       title:'Ha ocurrido un error, contacta con el administrador',
-       showConfirmButton: false,
-       timer:1500
-     });
-    }
-  });
-*/
+        $.post('templates/item/editar_sala_limpia.php', datos, function(response){
+          console.log(response);
+         if(response == "Si"){
+          Swal.fire({
+           position:'center',
+           icon:'success',
+           title:'El item ha sido modificado con exito',
+           showConfirmButton: false,
+           timer:1500
+         });
+        }else{
+           Swal.fire({
+           position:'center',
+           icon:'error',
+           title:'Ha ocurrido un error, contacta con el administrador',
+           showConfirmButton: false,
+           timer:1500
+         });
+        }
+      });
+
 
   });
 
@@ -150,14 +150,7 @@ $(document).on('click','#seleccionar_empresa',function(){
     
     let id_empresa_sala_limpia = $("#empresa_sala_limpia").val();
     //validacion de campos ////
-    if (id_empresa_sala_limpia == 0){
-      Swal.fire({
-             title:'Mensaje',
-             text:'No se pudo crear el item, revisa que los datos esten correctamente ingresados',
-             icon:'error',
-           });
-    }else{ 
-   const datos = {
+     const datos = {
         nombre_sala_limpia      : $("#nombre_sala_limpia").val(),
         empresa_sala_limpia     : $("#id_empresa").val(),
         clasificacion_oms       : $("#clasificacion_oms").val(),
@@ -170,8 +163,10 @@ $(document).on('click','#seleccionar_empresa',function(){
         claudal_m3h             : $("#claudal_m3h").val(),
 
         ren_hr                  : $("#ren_hr").val(),
-        temperatura             : $("#temperatura").val(),
-        hum_relativa            : $("#hum_relativa").val(),
+        temp_min                : $("#temp_min").val(),
+        temp_max                : $("#temp_max").val(),
+        hr_min                  : $("#hr_min").val(),
+        hr_max                  : $("#hr_max").val(),
         lux                     : $("#lux").val(),
         ruido_dba               : $("#ruido_dba").val(),
         presion_sala            : $("#presion_sala").val(),
@@ -184,13 +179,6 @@ $(document).on('click','#seleccionar_empresa',function(){
         id_valida                :$("#id_valida").val()
       }
 
-     // campos_vacios(datos);
-      //console.log(campos_vacios(datos))
-
-      /*if (console.log(campos_vacios(datos))){
-
-
-      }*/
       if (campos_vacios(datos) == true){
         console.log("si");
           $.ajax({
@@ -209,28 +197,15 @@ $(document).on('click','#seleccionar_empresa',function(){
                });
                  setear_campos();
              }else{
-              Swal.fire({
-                title:'Mensaje',
-                text:'No se ha podido crear, Contacta con el administrador',
-                icon:'error',
-                showConfirmButton: false,
-                timer:1500
-
-              });
+              console.log("error en la creación")
             }
 
           }
         });
       }else{
-        console.log("no");
+        console.log("error en los campos");
       }
 
-
-
-
-     
-
-    }
 
 
 

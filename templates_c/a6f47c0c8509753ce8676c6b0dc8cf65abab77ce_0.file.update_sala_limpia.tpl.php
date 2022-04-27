@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-22 00:37:35
+/* Smarty version 3.1.34-dev-7, created on 2022-04-27 19:43:01
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6261dcafba6232_66185774',
+  'unifunc' => 'content_626980a59499d5_67280249',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6f47c0c8509753ce8676c6b0dc8cf65abab77ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_sala_limpia.tpl',
-      1 => 1650580650,
+      1 => 1651081376,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6261dcafba6232_66185774 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626980a59499d5_67280249 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -54,7 +54,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
             </li>
             <li>
               <a href="#step-22">
-                      <em>2</em><span>Infraestructura</span>
+                      <em>2</em><span>Especificación</span>
                   </a>
             </li>
             <li>
@@ -98,8 +98,23 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
               </div>
               <div class="col-sm-6">
                 <label>Clasificación ISO:</label>
-                <input type="text" id="clasificacion_iso" class="form-control" placeholder="Clasificación ISO" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_iso'];?>
-" required="">
+                <select class="form-control" id="clasificacion_iso">
+                    <?php if ($_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_iso'] == '') {?>
+                    <option>Seleccione...</option>
+                    <?php } else { ?>
+                    <option><?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_iso'];?>
+</option>
+                    <?php }?>
+                    <option>ISO Class 1</option>
+                    <option>ISO Class 2</option>
+                    <option>ISO Class 3</option>
+                    <option>ISO Class 4</option>
+                    <option>ISO Class 5</option>
+                    <option>ISO Class 6</option>
+                    <option>ISO Class 7</option>
+                    <option>ISO Class 8</option>
+                    <option>ISO Class 9</option>
+                </select>
               </div>
             </div>
             <br>
@@ -121,18 +136,30 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
               </div>
             </div>
             <br>
+            <div class="form-row">
+              <div class="col-sm-4">
+                  <label>Código sala:</label>
+                  <input type="text" id="codigo" class="form-control" placeholder="Codigo de la sala " value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['codigo'];?>
+">
+                </div>
+                <div class="col-sm-4">
+                  <label>Estado de la sala:</label>
+                  <input type="text" id="estado_sala" class="form-control" placeholder="Estado de la sala" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['estado_sala'];?>
+">
+                </div>
+            </div>
          </div>   
          <div id="step-22">  
 
             <div class="form-row">
               <div class="col-sm-6">
                 <label>Temperatura Minima°C:</label>
-                <input type="text" id="temperatura" class="form-control" placeholder="°C" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temp_min'];?>
+                <input type="text" id="temp_min" class="form-control" placeholder="°C" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temp_min'];?>
 ">
               </div>
               <div class="col-sm-6">
                 <label>Temperatura Maxima °C:</label>
-                <input type="text" id="hum_relativa" class="form-control" placeholder="°C" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temp_max'];?>
+                <input type="text" id="temp_max" class="form-control" placeholder="°C" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temp_max'];?>
 ">
               </div>
             </div>
@@ -140,12 +167,12 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
             <div class="form-row">
               <div class="col-sm-6">
                 <label>Humedad Minima %:</label>
-                <input type="text" id="temperatura" class="form-control" placeholder="Hum %" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['hr_min'];?>
+                <input type="text" id="hr_min" class="form-control" placeholder="Hum %" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['hr_min'];?>
 ">
               </div>
               <div class="col-sm-6">
                 <label>Humedad Maxima %:</label>
-                <input type="text" id="hum_relativa" class="form-control" placeholder="Hum %" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['hr_max'];?>
+                <input type="text" id="hr_max" class="form-control" placeholder="Hum %" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['hr_max'];?>
 ">
               </div>
             </div>

@@ -26,7 +26,7 @@
             </li>
             <li>
               <a href="#step-22">
-                      <em>2</em><span>Infraestructura</span>
+                      <em>2</em><span>Especificación</span>
                   </a>
             </li>
             <li>
@@ -64,7 +64,22 @@
               </div>
               <div class="col-sm-6">
                 <label>Clasificación ISO:</label>
-                <input type="text" id="clasificacion_iso" class="form-control" placeholder="Clasificación ISO" value="{$sala_limpia.clasificacion_iso}" required="">
+                <select class="form-control" id="clasificacion_iso">
+                    {if $sala_limpia.clasificacion_iso == ""}
+                    <option>Seleccione...</option>
+                    {else}
+                    <option>{$sala_limpia.clasificacion_iso}</option>
+                    {/if}
+                    <option>ISO Class 1</option>
+                    <option>ISO Class 2</option>
+                    <option>ISO Class 3</option>
+                    <option>ISO Class 4</option>
+                    <option>ISO Class 5</option>
+                    <option>ISO Class 6</option>
+                    <option>ISO Class 7</option>
+                    <option>ISO Class 8</option>
+                    <option>ISO Class 9</option>
+                </select>
               </div>
             </div>
             <br>
@@ -83,28 +98,38 @@
               </div>
             </div>
             <br>
+            <div class="form-row">
+              <div class="col-sm-4">
+                  <label>Código sala:</label>
+                  <input type="text" id="codigo" class="form-control" placeholder="Codigo de la sala " value="{$sala_limpia.codigo}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Estado de la sala:</label>
+                  <input type="text" id="estado_sala" class="form-control" placeholder="Estado de la sala" value="{$sala_limpia.estado_sala}">
+                </div>
+            </div>
          </div>   
          <div id="step-22">  
 
             <div class="form-row">
               <div class="col-sm-6">
                 <label>Temperatura Minima°C:</label>
-                <input type="text" id="temperatura" class="form-control" placeholder="°C" value="{$sala_limpia.temp_min}">
+                <input type="text" id="temp_min" class="form-control" placeholder="°C" value="{$sala_limpia.temp_min}">
               </div>
               <div class="col-sm-6">
                 <label>Temperatura Maxima °C:</label>
-                <input type="text" id="hum_relativa" class="form-control" placeholder="°C" value="{$sala_limpia.temp_max}">
+                <input type="text" id="temp_max" class="form-control" placeholder="°C" value="{$sala_limpia.temp_max}">
               </div>
             </div>
             <br>
             <div class="form-row">
               <div class="col-sm-6">
                 <label>Humedad Minima %:</label>
-                <input type="text" id="temperatura" class="form-control" placeholder="Hum %" value="{$sala_limpia.hr_min}">
+                <input type="text" id="hr_min" class="form-control" placeholder="Hum %" value="{$sala_limpia.hr_min}">
               </div>
               <div class="col-sm-6">
                 <label>Humedad Maxima %:</label>
-                <input type="text" id="hum_relativa" class="form-control" placeholder="Hum %" value="{$sala_limpia.hr_max}">
+                <input type="text" id="hr_max" class="form-control" placeholder="Hum %" value="{$sala_limpia.hr_max}">
               </div>
             </div>
             <br>

@@ -9,7 +9,7 @@ $id_asignado = substr($clave, 97);
 
 
 /////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
-$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.Estado_sala, b.direccion, b.temperatura, b.hum_relativa, b.ruido_dba, b.lux 
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.estado_sala, b.direccion, b.temperatura, b.hum_relativa, b.ruido_dba, b.lux 
 FROM item as a, item_sala_limpia as b, item_asignado as c 
 WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item");
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
@@ -44,16 +44,16 @@ mysqli_stmt_fetch($consultar_responsable);
 
 $pdf->AddPage('A4');
 
+$pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(202, 202, 202)));
 $linea = <<<EOD
 
 <style>
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
-<br><br><br><br>
 <table >
    <tr border="1">
         <td class="linea" align="center"><h2> CERTIFICADO INSPECCIÓN DE SALA LIMPIA</h2></td>
@@ -122,20 +122,20 @@ $info_equipo = <<<EOD
       <tr>
          <table>
             <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Nom. de Sala</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Área</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Área m²</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Volumen m³ </strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Estado de Sala</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:25%;"><h5><strong>Nom. de Sala</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:30%;"><h5><strong>Área</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:10%;"><h5><strong>Código</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:10%;"><h5><strong>Área m²</strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:10%;"><h5><strong>Volumen m³ </strong></h5></td>
+               <td bgcolor="#DDDDDD" style="width:13%;"><h5><strong>Estado de Sala</strong></h5></td>
             </tr>
             <tr>
-               <td>$nombre_sala</td>
-               <td>$area_sala</td>
-               <td>$codigo_sala</td>
-               <td>$area_m2</td>
-               <td>$volumen_m3</td>
-               <td>$estado_sala</td>
+               <td style="width:25%;">$nombre_sala</td>
+               <td style="width:30%;">$area_sala</td>
+               <td style="width:10%;">$codigo_sala</td>
+               <td style="width:10%;">$area_m2</td>
+               <td style="width:10%;">$volumen_m3</td>
+               <td style="width:13%;">$estado_sala</td>
             </tr>
          </table>
       </tr>
@@ -148,7 +148,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 
@@ -201,7 +201,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -212,9 +212,14 @@ $linea = <<<EOD
 </table>
 
 EOD;  
+
+//$pdf->SetFillColor(255,255,0);
+//$pdf->SetTextColor(0,0,255);
+
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 $pdf->writeHTMLCell(25, 5, 15, '', 'Resultado, Ren/h:' ,0,0, 0, true, 'J', true);
+//$pdf->MultiCell(25, 5, 'Resultado', 15, 'C', 1, 0);
 $pdf->writeHTMLCell(33.5, 5, 40, '', '15.9' ,1,0, 0, true, 'C', true);
 
 
@@ -222,7 +227,7 @@ $pdf->writeHTMLCell(25, 5, 78, '', 'Especificado:' ,0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(33.5, 5, 103, '', '15.9' ,1,0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(21, 5, 140, '', 'Cumple:' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(33.5, 5, 161, '', '15.9' ,1,1, 0, true, 'C', true);
+$pdf->writeHTMLCell(33.5, 5, 161, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 $linea = <<<EOD
 
@@ -230,7 +235,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -273,7 +278,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -290,13 +295,13 @@ $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,°C: ' ,0,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 80, '', 'Especificación Temperatura:' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 120, '', 'entre 18°C y 24°C' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'Cumple' ,1,1, 0, true, 'C', true);
+$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, HR%: ' ,0,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 80, '', 'Especificación Humedad:' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 120, '', 'entre 30%HR y 50%HR' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'Cumple' ,1,1, 0, true, 'C', true);
+$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 
 $linea = <<<EOD
@@ -305,7 +310,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -322,13 +327,13 @@ $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,Lux:' ,0,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 80, '', 'Resultado,Lux:' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 120, '', '>= 150' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'Cumple' ,1,1, 0, true, 'C', true);
+$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, dbA:' ,0,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 80, '', 'Especificación, dbA:' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(40, 5, 120, '', '< = 85' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'Cumple' ,1,1, 0, true, 'C', true);
+$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 $linea = <<<EOD
 
@@ -336,7 +341,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -357,7 +362,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table>
@@ -378,7 +383,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 
@@ -393,8 +398,6 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 $pdf->writeHTMLCell(180, 5, 15, '', 'Ing. '.$nombre_responsable.' &nbsp; '. $apellido_responsable.'<br>'.$nombre_cargo ,0,1, 0, true, 'C', true);
 
-
-
 $pdf->AddPage('A4');
 
 $linea = <<<EOD
@@ -403,7 +406,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -499,7 +502,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -527,7 +530,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -575,7 +578,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -619,7 +622,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -642,7 +645,10 @@ $pdf->writeHTMLCell(30, 7.2, 165, '', '<b>Trazabilidad</b>  ' ,1,1, 0, true, 'C'
 $equipo_prueba_1 = "Prueba de conteo de particulas";
 
 
-$query3 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ? ");
+$query3 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  
+FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c 
+WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ? ");
+
 mysqli_stmt_bind_param($query3, 'is', $id_asignado, $equipo_prueba_1);
 mysqli_stmt_execute($query3);
 mysqli_stmt_store_result($query3);
@@ -659,14 +665,14 @@ while($row = mysqli_stmt_fetch($query3)){
 
 }
 
-
+$pdf->AddPage('A4');
 
 $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -698,14 +704,24 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Imagen de la médición</h2></td>
+        <td class="linea" align="center"><h2>Imagen de la medición</h2></td>
    </tr>
+</table>
+<br>
+<br>
+<table border="0">
+   <tr>
+       <td></td>
+       <td><img src="../imagenes_informe/Primera_foto.png"></td>
+       <td></td>
+   </tr>
+
 </table>
 
 EOD;  
@@ -718,7 +734,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -757,7 +773,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -806,7 +822,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -838,13 +854,21 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
         <td class="linea" align="center"><h2>Imagen de la Médición</h2></td>
+   </tr>
+</table>
+<br>
+<table border="0">
+   <tr border="0">
+        <td></td>
+        <td><img src="../imagenes_informe/Segunda_foto.png"></td>
+        <td></td>
    </tr>
 </table>
 EOD;  
@@ -856,7 +880,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -870,12 +894,12 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 
 
-$pdf->writeHTMLCell(20, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 35, '', '<strong>N°1</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 67.5, '', '<strong>N°2</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,100, '', '<strong>N°3</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,132.5, '', '<strong>N°4</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '<strong>N°5</strong>' ,1,1, 0, true, 'J', true);
+$pdf->writeHTMLCell(20, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(32.5, 5, 35, '', '<strong>N°1</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(32.5, 5, 67.5, '', '<strong>N°2</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(32.5, 5,100, '', '<strong>N°3</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(32.5, 5,132.5, '', '<strong>N°4</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 165, '', '<strong>N°5</strong>' ,1,1, 0, true, 'C', true);
 
 $query6 = mysqli_prepare($connect,"SELECT n1, n2, n3, n4, n5, promedio, cumple, categoria FROM salas_limpias_prueba_4 WHERE id_asignado = ? AND categoria = 1");
 mysqli_stmt_bind_param($query6, 'i', $id_asignado);
@@ -895,13 +919,13 @@ while($row = mysqli_stmt_fetch($query6)){
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, °C:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,°C:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', $temperatura_item ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,°C:</strong>' ,0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', $temperatura_item ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'C', true);
 
 
 }
@@ -912,7 +936,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -951,13 +975,13 @@ while($row = mysqli_stmt_fetch($query6)){
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, HR%:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,HR%:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', $hum_relativa_item ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,HR%:</strong>' ,0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', $hum_relativa_item ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'C', true);
 
 
 }
@@ -969,7 +993,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1009,9 +1033,6 @@ while($row = mysqli_stmt_fetch($query7)){
 }
 
 
-
-
-
 $pdf->AddPage('A4');
 
 $linea = <<<EOD
@@ -1019,7 +1040,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1051,7 +1072,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1060,6 +1081,15 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
    </tr>
 </table>
+<br>
+<table border="0">
+   <tr border="0">
+        <td></td>
+        <td><img src="../imagenes_informe/Tercera_foto.png"></td>
+        <td></td>
+   </tr>
+</table>
+
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -1069,7 +1099,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1125,7 +1155,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1183,7 +1213,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1233,7 +1263,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1271,13 +1301,20 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
         <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
+   </tr>
+</table>
+<table>
+   <tr border="">
+        <td></td>
+        <td><img src="../imagenes_informe/Cuarta_foto.png"></td>
+        <td></td>
    </tr>
 </table>
 EOD;  
@@ -1288,7 +1325,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1359,7 +1396,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1431,7 +1468,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -1472,7 +1509,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>

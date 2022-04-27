@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-16 15:57:30
+/* Smarty version 3.1.34-dev-7, created on 2022-04-27 21:40:34
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620d10da7408a0_50612515',
+  'unifunc' => 'content_62699c3251de96_74376117',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1645023443,
+      1 => 1650577933,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620d10da7408a0_50612515 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62699c3251de96_74376117 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <div class="row">
@@ -367,21 +367,26 @@ function content_620d10da7408a0_50612515 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="card-body collapse" id="collapseOne15">  
                               <div class="row">
-                                  <div class="col-sm-6">
-                                      <input type="hidden" name="id_informe" id="id_informe">
-                                     <label for="">Conclusiones:</label>
-                                     <textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea> 
+                                 
+                                <div class="col-sm-12">
+                                      <label for="">Nombre informe:</label>
+                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
                                   </div>
                                   <div class="col-sm-6">
                                     <label for="">Solicita:</label>
                                     <input type="text" name="solicitante" id="solicitante" class="form-control">
                                  </div>
-                              </div>
-                              
+                                <div class="col-sm-6">
+                                    <label for="">Responsable:</label>
+                                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Solicitante">
+                                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                                 </div>
+                              </div>                              
                               <div class="row">
-                                  <div class="col-sm-6">
-                                      <label for="">Nombre informe:</label>
-                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
+                                   <div class="col-sm-6">
+                                      <input type="hidden" name="id_informe" id="id_informe">
+                                     <label for="">Conclusiones:</label>
+                                     <textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea> 
                                   </div>
                               </div>
                             </div>
@@ -398,7 +403,7 @@ function content_620d10da7408a0_50612515 (Smarty_Internal_Template $_smarty_tpl)
 
                       <button class="btn btn-warning text-light" id="ver_informe_salas_limpias">Informe</button>
 
-  </div>
+                      </div>
                         </div>
                         
                         <hr>
