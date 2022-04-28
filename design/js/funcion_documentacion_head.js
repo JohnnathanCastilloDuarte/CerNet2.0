@@ -216,9 +216,9 @@ function listar_documentacion_head(estado_ver){
             option_estado =`<button class="btn btn-danger" data-id='${x.id_documentacion}' id="ver_rechazos_rechazados"><span class="badge badge-white">Documento rechazado</span></button>`;
           }
 
-          boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}" data-id="${x.id_documentacion}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
+          boton_ver = `<button class="btn btn-info" id="ver_documentacion_aprobacion" data-name="${x.nombre_archivo}" data-id="${x.id_documentacion}" data-type="${x.tipo_document}"><i class="fa fa-eye" aria-hidden="true"></i</button>`;
 
-          if(x.estado == 2){
+          if(x.estado == 2 && x.faltantes != 0){
             estado = '<span class="badge badge-success">En espera de firmas</span>';
             escritura_estado = "En espera de firmas";
           }else if(x.estado == 3){
@@ -240,7 +240,6 @@ function listar_documentacion_head(estado_ver){
           }         
         }  
 
-        console.log(x.estado);
         
         template += 
            `
@@ -461,8 +460,17 @@ $(document).on('click','#ver_documentacion_aprobacion',function(){
     //$("#aprobacion_head").show();
     let nombre_archivo = $(this).attr('data-name');
     let id_documentacion_ff = $(this).attr('data-id');
+    let type_document = $(this).attr('data-type');
+
+    let cifrado = "fdlshgkjNLKFNDSJKHGJKDSBJKfs6g14sd64hg67fhjsildukhlfd74h75gf415dshlnjJ";
+
+    if(type_document == 1){
+      window.open('templates/item/pdf/pdf/pdf_item.php?data='+cifrado+id_documentacion_ff);
+    }else{
+      window.open('templates/documentacion/head_templates/visor_archivo.php?nombre='+nombre_archivo, nombre_archivo); 
+    }
     //window.open('informe_firmantes_final2.php?nombre='+nombre_archivo+'&id='+id_documentacion_ff, nombre_archivo); 
-    window.open('templates/documentacion/head_templates/visor_archivo.php?nombre='+nombre_archivo, nombre_archivo); 
+    
 });
 /*
 <form id="form_head_comentarios" enctype="multipart/form-data" method="post">  

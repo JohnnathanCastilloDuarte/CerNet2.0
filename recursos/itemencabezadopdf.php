@@ -34,8 +34,8 @@ class MYPDF extends TCPDF
      */
     // Logo
    
-	    $this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
-      $this->writeHTMLCell(35, 22, 155, 0, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
+	$this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
+    $this->writeHTMLCell(35, 22, 160, 11, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
    
@@ -54,10 +54,10 @@ class MYPDF extends TCPDF
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicola Asuni');
+$pdf->SetAuthor('Cercal');
 $pdf->SetTitle("");
-$pdf->SetSubject('TCPDF Tutorial');
-$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+$pdf->SetSubject('INFORME CERCAL');
+$pdf->SetKeywords('-');
 
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -90,6 +90,6 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('freesans', 'R', 7);
+$pdf->SetFont('courierbi', 'R', 7);
 
 ?>
