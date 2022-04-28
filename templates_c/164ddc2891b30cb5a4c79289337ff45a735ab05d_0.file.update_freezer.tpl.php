@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-05 16:53:51
+/* Smarty version 3.1.34-dev-7, created on 2022-04-12 17:17:05
   from '/home/god/public_html/CerNet2.0/templates/item/update_freezer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61d5cd1f645f64_28607319',
+  'unifunc' => 'content_6255b411db93d1_16694093',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '164ddc2891b30cb5a4c79289337ff45a735ab05d' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_freezer.tpl',
-      1 => 1641401499,
+      1 => 1649429192,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d5cd1f645f64_28607319 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6255b411db93d1_16694093 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="row">
  	<div class="col-sm-12">
  		<?php
@@ -40,19 +40,20 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
  					<ul class="forms-wizard">
  						<li>
  							<a href="#step-12">
- 								<em>1</em><span>Identificación del equipo</span>
+ 								<em>1</em><span>Identificación</span>
  							</a>
  						</li>
  						<li>
  							<a href="#step-22">
- 								<em>2</em><span>Caracteristica del equipo</span>
+ 								<em>2</em><span>Especificación</span>
  							</a>
  						</li>
-						<!--	<li>
-									<a href="#step-32">
-											<em>3</em><span>Equipos</span>
-									</a>
-							</li>
+ 						<li>
+							<a href="#step-32">
+								<em>3</em><span>Infraestructura</span>
+							</a>
+						</li>
+						<!--	
 						<li id="si_envia">
 									<a href="#step-42">
 											<em>4</em><span>Evidencia</span>
@@ -69,19 +70,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 											<input type="hidden" id="id_item_2" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['id_item'];?>
 ">
 											<label>Nombre del freezer</label>
-											<input type="text" id="nombre_freezer" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['nombre_freezer'];?>
+											<input type="text" id="nombre_freezer" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['nombre_item'];?>
 " placeholder="Nombre freezer"> 
 										</div>
 										<div class="col-sm-6">
 											<label>Empresa:</label>
-                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['id_empresa'];?>
+							                    <input type="hidden" id="id_empresa" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['id_empresa'];?>
 ">
-                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['nombre_empresa'];?>
+							                    <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['nombre_empresa'];?>
 ">
-                    <div >
-                      <table class="table" id="aqui_resultados_empresa">
-                      </table>
-                    </div>
+							                    <div >
+							                      <table class="table" id="aqui_resultados_empresa">
+							                      </table>
+							                    </div>
 										</div>
 									</div>
 									<br>
@@ -101,7 +102,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 									<div class="form-row">
 										<div class="col-sm-12">
 											<label>Descripcion:</label>
-											<textarea class="form-control" id="desc_freezer"><?php echo $_smarty_tpl->tpl_vars['freezer']->value['descripcion_freezer'];?>
+											<textarea class="form-control" id="desc_freezer"><?php echo $_smarty_tpl->tpl_vars['freezer']->value['descripcion'];?>
 </textarea>
 										</div>
 									</div>
@@ -123,9 +124,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 ">
 										</div>
 									</div>
-								</div>
-								
-								<div id="step-22">
+									<br>
 									<div class="form-row">
 										<div class="col-sm-4">
 											<label>Dirección equipo:</label>
@@ -134,57 +133,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 										</div>
 										<div class="col-sm-4">
 											<label>Ubicación interna equipo:</label>
-											<input type="text" id="ubicacion_interna_freezer" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['ubicacion'];?>
+											<input type="text" id="ubicacion_interna_freezer" class="form-control" placeholder="Ubicación equipo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['ubicacion_interna'];?>
 ">
 										</div>
-                    <div class="col-sm-4">
+                    					<div class="col-sm-4">
 											<label>Área interna equipo:</label>
 											<input type="text" id="area_interna_freezer" class="form-control" placeholder="Area interna equipo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['area_interna'];?>
 ">
 										</div>
 									</div>
-									<br>
-									<div class="form-row">
-										<div class="col-sm-4">
-											<label>Voltaje:</label>
-											<input type="text" id="voltaje_freezer" class="form-control" placeholder="Voltaje" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['voltaje'];?>
-">
-										</div>
-										<div class="col-sm-4">
-											<label>Potencia:</label>
-											<input type="text" id="potencia_freezer" class="form-control" placeholder="Potencia" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['potencia'];?>
-">
-										</div>
-										<div class="col-sm-4">
-											<label>Capacidad:</label>
-											<input type="text" id="capacidad_freezer" class="form-control" placeholder="Capacidad" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['capacidad'];?>
-">
-										</div>
-									</div>
-									<br>
-									<div class="form-row">
-										<div class="col-sm-3">
-											<label>Peso:</label>
-											<input type="text" id="peso_freezer" class="form-control" placeholder="Peso" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['peso'];?>
-">
-										</div>
-										<div class="col-sm-3">
-											<label>Alto(mm):</label>
-											<input type="text" id="alto_freezer" class="form-control" placeholder="Alto" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['alto'];?>
-">
-										</div>
-										<div class="col-sm-3">
-											<label>Largo(mm):</label>
-											<input type="text" id="largo_freezer" class="form-control" placeholder="Largo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['largo'];?>
-">
-										</div>
-										<div class="col-sm-3">
-											<label>Ancho(mm):</label>
-											<input type="text" id="ancho_freezer" class="form-control" placeholder="Ancho" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['ancho'];?>
-">
-										</div>	
-									</div>
-									<br>
+								</div>
+								
+								<div id="step-22">
+									
 									
 									<div class="form-row">
 										<div class="col-sm-4">
@@ -226,10 +187,50 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 											<input type="text" id="temperatura_maxima_freezer" class="form-control" placeholder="Humedad maxima" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['tem_max'];?>
 " required>
 										</div>
+									</div>									
+								</div>
+
+								<div id="step-32">
+									<div class="form-row">
+										<div class="col-sm-4">
+											<label>Voltaje:</label>
+											<input type="text" id="voltaje_freezer" class="form-control" placeholder="Voltaje" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['voltaje'];?>
+">
+										</div>
+										<div class="col-sm-4">
+											<label>Potencia:</label>
+											<input type="text" id="potencia_freezer" class="form-control" placeholder="Potencia" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['potencia'];?>
+">
+										</div>
+										<div class="col-sm-4">
+											<label>Capacidad:</label>
+											<input type="text" id="capacidad_freezer" class="form-control" placeholder="Capacidad" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['capacidad'];?>
+">
+										</div>
 									</div>
-									
-									
-									
+									<br>
+									<div class="form-row">
+										<div class="col-sm-3">
+											<label>Peso:</label>
+											<input type="text" id="peso_freezer" class="form-control" placeholder="Peso" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['peso'];?>
+">
+										</div>
+										<div class="col-sm-3">
+											<label>Alto(mm):</label>
+											<input type="text" id="alto_freezer" class="form-control" placeholder="Alto" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['alto'];?>
+">
+										</div>
+										<div class="col-sm-3">
+											<label>Largo(mm):</label>
+											<input type="text" id="largo_freezer" class="form-control" placeholder="Largo" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['largo'];?>
+">
+										</div>
+										<div class="col-sm-3">
+											<label>Ancho(mm):</label>
+											<input type="text" id="ancho_freezer" class="form-control" placeholder="Ancho" value="<?php echo $_smarty_tpl->tpl_vars['freezer']->value['ancho'];?>
+">
+										</div>	
+									</div>
 									<br>
 									<div class="form-row">
 										<div class="col-sm-12" style="text-align:center;">
@@ -237,8 +238,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['freezer']->value) {
 											<button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_freezer">Actualizar</button>
 										</div>
 									</div>
-									
-								</div>
+								</div>	
+
 							</div><!---Cierre del content-->
 						</div><!--Cierre del wizard-->	
 						<div class="divider"></div>

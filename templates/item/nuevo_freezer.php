@@ -27,7 +27,7 @@ $temperatura_maxima = $_POST['temperatura_maxima'];
 $id_valida  = $_POST['id_valida'];
 $area_interna_freezer = $_POST['area_interna_freezer'];
 $tipo_item = 3;
-$estado = 1;
+$estado = 0;
 
 if($fecha_fabricacion_freezer = "" || $fecha_fabricacion_freezer == NULL) {
    

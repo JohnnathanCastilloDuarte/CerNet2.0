@@ -26,7 +26,7 @@ include('../../config.ini.php');
         $fecha_fabricacion = $_POST['fecha_fabricacion_campana'];
     }
  
-    $insertando_item = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre,  estado, id_usuario) VALUES (?, ?, ?, 1, ?)");
+    $insertando_item = mysqli_prepare($connect,"INSERT INTO item (id_empresa, id_tipo, nombre,  estado, id_usuario) VALUES (?, ?, ?, 0, ?)");
     mysqli_stmt_bind_param($insertando_item, 'iisi', $empresa_campana, $id_type_campana, $nombre_campana, $id_usuario);
     mysqli_stmt_execute($insertando_item);
     $id_item =  mysqli_stmt_insert_id($insertando_item);

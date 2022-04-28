@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-03-17 21:17:32
+/* Smarty version 3.1.34-dev-7, created on 2022-04-08 15:14:35
   from '/home/god/public_html/CerNet2.0/templates/campana_extraccion/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6233a56cdaa655_08125436',
+  'unifunc' => 'content_6250515bbdcb87_55192547',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b4e6a708b720d376ff8b65d92be44c3d7888a77d' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/campana_extraccion/datos_informe_mapeo.tpl',
-      1 => 1647551848,
+      1 => 1649429192,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6233a56cdaa655_08125436 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6250515bbdcb87_55192547 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-3" style="text-align:center;">
@@ -88,24 +88,19 @@ function content_6233a56cdaa655_08125436 (Smarty_Internal_Template $_smarty_tpl)
               <input type="hidden" name="id_informe" id="id_informe_campana" value="">
               <div id="cuerpo_mapeo_campana">
                 <div class="row">
-                  <div class="col-sm-12">
-                    <label>Nombre informe <span class="text-danger">*</span></label>
+                  <div class="col-sm-6">
+                    <label>Nombre informe</label>
                     <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
                   </div>
                   <div class="col-sm-6">
-                    <label>Solicitante <span class="text-danger">*</span></label>
+                    <label>Solicitante</label>
                     <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Quien solicita" value="<?php echo $_smarty_tpl->tpl_vars['solicitante']->value;?>
 ">
-                  </div>
-                   <div class="col-sm-6">
-                    <label>Responsable<span class="text-danger">*</span></label>
-                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
-                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
                   </div>
               </div>
               <div class="row">
                   <div class="col-sm-12">
-                  <label>Conclusión <span class="text-danger">*</span></label>
+                  <label>Conclusión</label>
                   <textarea class="form-control" name="conclusion" id="conclusion" value="<?php echo $_smarty_tpl->tpl_vars['conclusion']->value;?>
 "></textarea>
                 </div>
@@ -240,7 +235,7 @@ function content_6233a56cdaa655_08125436 (Smarty_Internal_Template $_smarty_tpl)
               <button class="btn btn-info">Guardar</button>
              
               </form>
-              <button class="btn btn-warning text-light" id="abrir_informe">Informes</button>
+              <button class="btn btn-warning text-light" id="abrir_informe">Informe</button>
               </div>
 
             <br>
@@ -655,10 +650,10 @@ function content_6233a56cdaa655_08125436 (Smarty_Internal_Template $_smarty_tpl)
     </div>
 
 </div>
-<br>  
-<!--<button class="btn btn-warning" id="abrir_informe">Informess</button>-->
+<!-- <br>  
+<button class="btn btn-warning" id="abrir_informe">Informe</button>
 <br>
-
+ -->
 <!--
 <button class="btn btn-success" id="ir_informe_campanas">Informe</button>-->
 

@@ -19,7 +19,7 @@ $limite_penetracion = $_POST['limite_penetracion'];
 $eficiencia = $_POST['eficiencia'];
 
 $tipo_item = "13";
-$estado = 1;
+$estado = 0;
 
 $insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, estado, id_usuario) VALUES (?,?,?,?,?)');
 

@@ -101,7 +101,7 @@ echo "<input type='hidden' value='$mi_id' id='id_valida'>";
 
 if($_COOKIE["user"]==false)
 {
-    header("refresh:0; url=mi_acceso.php?error=error_0002");
+    header("refresh:0; url=mi_acceso.php");
 }
 //SI EL USUARIO ESTÁ LOGEADO SE MOSTRARÁ TODO EL CONTENIDO DE CERNET
 else

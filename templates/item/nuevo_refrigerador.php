@@ -27,7 +27,7 @@ $temperatura_maxima = $_POST['temperatura_maxima'];
 $id_valida = $_POST['id_valida'];
 $area_refrigerador = $_POST['area_refrigerador'];
 $tipo_item = 2;
-$estado = 1;
+$estado = 0;
 
 if($fecha_fabricacion_refrigerador == "" || $fecha_fabricacion_refrigerador == NULL){
    $fecha_fabricacion = "NA";

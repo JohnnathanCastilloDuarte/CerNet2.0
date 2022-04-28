@@ -35,7 +35,7 @@ class MYPDF extends TCPDF
     // Logo
    
 	    $this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
-      $this->writeHTMLCell(35, 22, 155, 0, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
+      $this->writeHTMLCell(35, 22, 155, 11, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
    

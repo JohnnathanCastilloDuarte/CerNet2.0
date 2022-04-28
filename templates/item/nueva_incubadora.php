@@ -23,7 +23,7 @@ if ($fecha_fabricacion_incubadora == "" || $fecha_fabricacion_incubadora == NULL
 }
 
 $tipo_item = 6;
-$estado = 1;
+$estado = 0;
 
 
 $insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES (?,?,?,?,?,?)');

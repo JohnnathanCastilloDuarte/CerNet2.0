@@ -29,7 +29,7 @@
  	$smarty->assign("id_item",$id_item);
 
 	//consultar item
- 	$execute = mysqli_prepare($connect,"SELECT d.id_bodega, a.nombre, b.descripcion, b.nombre, c.nombre, c.id_empresa, b.direccion, b.codigo_interno, d.productos_almacena, d.largo, d.ancho, d.superficie, 
+ 	$execute = mysqli_prepare($connect,"SELECT d.id_bodega, a.nombre, b.descripcion, b.nombre, c.nombre, c.id_empresa, d.direccion, d.codigo_interno, d.productos_almacena, d.largo, d.ancho, d.superficie, 
  		d.volumen, d.altura, d.tipo_muro, d.tipo_cielo, d.s_climatizacion, d.s_monitoreo, d.s_alarma, d.planos, d.analisis_riesgo, 
     d.ficha_estabilidad , d.marca_bodega, d.modelo_bodega, d.orientacion_principal, d.orientacion_recepcion, d.orientacion_despacho, d.num_puertas, 
     d.salida_emergencia, d.cantidad_rack, d.num_estantes, d.altura_max_rack, d.sistema_extraccion, d.cielo_lus, d.temp_max, d.temp_min, 
@@ -46,8 +46,7 @@
      $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, 
     $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max, $temp_min, $cantidad_iluminarias, $hr_max, $hr_min, $cantidad_ventana, $valor_seteado_temp, $valor_seteado_hum, $clasificacion_item, $estado);
  	mysqli_stmt_fetch($execute);	
-
-
+   
  	$array_bodega[] = array(
  		'id_bodega'=>$id_bodega,
  		'nombre_tipo_item'=>$nombre_tipo_item,

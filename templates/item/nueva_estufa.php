@@ -31,7 +31,7 @@ if($fecha_fabricacion_estufa == "" || $fecha_fabricacion_estufa == NULL){
 }
 
 $tipo_item = 5;
-$estado = 1;
+$estado = 0;
 
 
 $insertando_item = mysqli_prepare($connect,'INSERT INTO item (id_empresa, id_tipo, nombre, descripcion, estado, id_usuario) VALUES (?,?,?,?,?,?)');

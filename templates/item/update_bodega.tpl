@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -95,14 +94,14 @@
               {section name=i loop=$explode_producto} {if $explode_producto[i] eq "Alimentos"} {$alimentos="checked"} {elseif $explode_producto[i] eq "Cosméticos"} {$cosmeticos="checked"} {elseif $explode_producto[i] eq "Dispositivos Médicos"} {$dispositivos_medicos="checked"}
               {elseif $explode_producto[i] eq "Farmacéuticos"} {$farmaceutico="checked"} {elseif $explode_producto[i] eq "Insumos Médicos"} {$insumos_medicos="checked"} {elseif $explode_producto[i] eq "Materias Primas"} {$materias_primas="checked"} {elseif
               $explode_producto[i] eq "Sustancias Peligrosas"} {$sustancias_peligrosas="checked"} {elseif $explode_producto[i] eq "Otros"} {$otros="checked"} {else} {$otros_e=$explode_producto[i]} {/if} {/section}
--->
+-->  
               <div class="form-row">
                 <div class="col-sm-12">
                      <label>Productos que almacena:</label>
                     <textarea id="productos_bodega" class="form-control" placeholder="Describa los productos que almacena">{$bodega.productos}</textarea>
                   </div>
               </div>
-
+              <br>
               <div class="form-row">
                   <div class="col-sm-4">
                     <label>Marca:</label>

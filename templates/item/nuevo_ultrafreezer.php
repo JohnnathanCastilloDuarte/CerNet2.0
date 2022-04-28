@@ -37,7 +37,7 @@ if( $fecha_fabricacion == "" || $fecha_fabricacion ==NULL){
 }
 
 $tipo_item = 4;
-$estado = 1;
+$estado = 0;
 $id = NULL;
 $fecha_registro = NULL;
 

@@ -26,7 +26,7 @@
             </li>
             <li>
               <a href="#step-22">
-                      <em>2</em><span>Infraestructura</span>
+                      <em>2</em><span>Especificación</span>
                   </a>
             </li>
             <li>
@@ -83,7 +83,19 @@
               </div>
             </div>
             <br>
+            <div class="form-row">
+              <div class="col-sm-4">
+                  <label>Código sala:</label>
+                  <input type="text" id="codigo" class="form-control" placeholder="Codigo de la sala " value="{$sala_limpia.codigo}">
+                </div>
+                <div class="col-sm-4">
+                  <label>Estado de la sala:</label>
+                  <input type="text" id="estado_sala" class="form-control" placeholder="Estado de la sala" value="{$sala_limpia.estado_sala}">
+                </div>
+            </div>
+         
          </div>   
+          
          <div id="step-22">  
 
             <div class="form-row">
@@ -97,14 +109,7 @@
               </div>
             </div>
             <br>
-            <div class="form-row">
-                <div class="col-sm-12" style="text-align:center;">
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
-                </div> 
-                <div class="col-sm-12" style="text-align:center;">
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Nuevo</button>
-                </div>
-           </div>
+            
 
           </div>
           <div id="step-32">
@@ -161,6 +166,15 @@
                   <input type="text" id="puntos_muestreo" class="form-control" placeholder="Puntos muestreo normal" value="{$sala_limpia.puntos_muestreo}">
                 </div>
               </div>
+              <br>
+            <div class="form-row">
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
+                </div> 
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Nuevo</button>
+                </div>
+           </div>
 
 
           </div>  
