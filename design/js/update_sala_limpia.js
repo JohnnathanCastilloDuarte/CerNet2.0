@@ -69,9 +69,12 @@ function setear_campos(){
 
         id_item_sala_limpia     : $("#id_item_sala_limpia").val(),
         id_item_2_sala_limpia   : $("#id_item_2_sala_limpia").val(),
-
     }
-    $.post('templates/item/editar_sala_limpia.php', datos, function(response){
+
+
+    campos_vacios(datos);
+
+    /*$.post('templates/item/editar_sala_limpia.php', datos, function(response){
       console.log(response);
      if(response == "Si"){
       Swal.fire({
@@ -91,7 +94,7 @@ function setear_campos(){
      });
     }
   });
-
+*/
 
   });
 
@@ -181,34 +184,51 @@ $(document).on('click','#seleccionar_empresa',function(){
         id_valida                :$("#id_valida").val()
       }
 
-      $.ajax({
-       type:'POST',
-       url:'templates/item/nueva_sala_limpia.php',
-       data:datos,
-       success:function(response){
-        console.log(response);
-         if(response == "Si"){
-           Swal.fire({
-             title:'Mensaje',
-             text:'Se ha creado una sala limpia correctamente',
-             icon:'success',
-             showConfirmButton: false,
-             timer:1500
-           });
-             setear_campos();
-         }else{
-          Swal.fire({
-            title:'Mensaje',
-            text:'No se ha podido crear, Contacta con el administrador',
-            icon:'error',
-            showConfirmButton: false,
-            timer:1500
+     // campos_vacios(datos);
+      //console.log(campos_vacios(datos))
 
-          });
-        }
+      /*if (console.log(campos_vacios(datos))){
 
+
+      }*/
+      if (campos_vacios(datos) == true){
+        console.log("si");
+          $.ajax({
+           type:'POST',
+           url:'templates/item/nueva_sala_limpia.php',
+           data:datos,
+           success:function(response){
+            console.log(response);
+             if(response == "Si"){
+               Swal.fire({
+                 title:'Mensaje',
+                 text:'Se ha creado una sala limpia correctamente',
+                 icon:'success',
+                 showConfirmButton: false,
+                 timer:1500
+               });
+                 setear_campos();
+             }else{
+              Swal.fire({
+                title:'Mensaje',
+                text:'No se ha podido crear, Contacta con el administrador',
+                icon:'error',
+                showConfirmButton: false,
+                timer:1500
+
+              });
+            }
+
+          }
+        });
+      }else{
+        console.log("no");
       }
-    });
+
+
+
+
+     
 
     }
 

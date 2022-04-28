@@ -1912,19 +1912,34 @@ function listar_items_aprobacion(){
       let template = "";
       let estado = "";
       let seleccionar = "";
+      let aprobacion_en_curso = 0;
+      let opcion_cancelar = "";
 
       traer.forEach((valor)=>{
 
-        if(valor.estado == 0){
+        if(valor.estado == 0){ 
+          opcion_cancelar = "";
           estado = "<span class='badge badge-secondary'>Sin aprobación</span>";
           seleccionar = `<select class='form-control' id='selector_aprobaciones' data-id='${valor.id_item}'>
                           <option value='0'>Seleccione...</option>
                           <option value="1">Enviar a aprobación</option>
                           </select>`;
+        }else if (valor.estado == 2){
+          opcion_cancelar = `<button class="btn btn-danger" data-id='${valor.id_item}' style="border-radius: 15px;" id="quitar_aprobacion">x</button>`; 
+          aprobacion_en_curso++; 
+          estado = "<span class='badge badge-warning'>En aprobación</span>";
+          seleccionar = `-`;
         }else{
-          estado = "<span class='badge badge-sucess'>Aprobado</span>";
+          opcion_cancelar = "";
+          aprobacion_en_curso++;
+          estado = "<span class='badge badge-success'>Aprobado</span>";
           seleccionar = `-`;
         }
+
+        
+
+      
+
         template +=
         `
           <tr>
@@ -1932,7 +1947,7 @@ function listar_items_aprobacion(){
             <td>${valor.clasificacion}</td>
             <td>${valor.fecha_registro}</td>
             <td>${estado}</td>
-            <td>${seleccionar}</td>
+            <td>${seleccionar} ${opcion_cancelar}</td>
           </tr>
         `;
       });
@@ -1959,12 +1974,62 @@ $(document).on('change','#selector_aprobaciones',function(){
   
     $.ajax({
       type:'POST',
-      data:{datos},
+      data:datos,
       url:'templates/documentacion/controlador_item_aprobacion.php' ,
       success:function(respuesta){
         console.log(respuesta);
+        if(respuesta == "Listo"){
+          Swal.fire({
+            title:'Mensaje',
+            text:'Se ha seleccionado item para su aprobación',
+            icon:'success',
+            timer:2000
+          });
+          listar_items_aprobacion();
+        }else{
+          Swal.fire({
+            title:'Mensaje',
+            text:'Ya existe un item asociado para este proceso',
+            icon:'warning',
+            timer:2000
+          });
+        }
       }
 
+    })
+});
+
+////////// btn que quita de la aprobación al item
+$(document).on('click','#quitar_aprobacion', function(){
+
+
+    let id_item = $(this).attr('data-id');
+    let movimiento = "Cancelar_aprobacion";
+
+    const datos = {
+      id_item,
+      movimiento,
+      id_documentacion_d
+    }
+
+
+    $.ajax({
+      type:'POST',
+      data: datos,
+      url:'templates/documentacion/controlador_item_aprobacion.php',
+      success:function(respuesta){
+        console.log(respuesta);
+
+        if(respuesta == "Listo"){
+          Swal.fire({
+            title:'Mensaje',
+            text:'Se ha seleccionado item para su aprobación',
+            icon:'success',
+            timer:2000
+          });
+          listar_items_aprobacion();
+        }
+      }
     })
 });
 

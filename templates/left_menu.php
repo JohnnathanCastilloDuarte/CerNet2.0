@@ -38,12 +38,12 @@
                 <a href="index.php">
                     <i class="metismenu-icon pe-7s-rocket"></i>Dashboard</a>			
                 </li>
-
+                <!--
                 <div id="modulo_1">
                     <li>
                         <a href="index.php?module={$modulo[0]}&page={$page[0]}"><i class="metismenu-icon pe-7s-server"></i>Modulos</a>
                     </li>                     
-                </div>
+                </div>-->
 
     <!--<div id="modulo_2">
     <li>
@@ -200,7 +200,7 @@
 </li>
 </div>
 
-
+<!--
 <div id="modulo_7">
     <li><a href="#"><i class="metismenu-icon pe-7s-config"></i>Servicios<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
         <ul>
@@ -210,6 +210,7 @@
         </ul>
     </li>
 </div>
+-->
 
 
 

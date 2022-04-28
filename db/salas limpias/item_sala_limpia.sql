@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-02-2022 a las 17:07:50
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.3.31
+-- Tiempo de generación: 22-04-2022 a las 00:41:10
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,8 +39,10 @@ CREATE TABLE `item_sala_limpia` (
   `volumen_m3` varchar(100) DEFAULT NULL COMMENT 'Volumen de la sala en metros cubicos',
   `claudal_m3h` varchar(100) DEFAULT NULL COMMENT 'claudal_m3h',
   `ren_hr` varchar(100) DEFAULT NULL COMMENT 'ren_hr',
-  `temperatura` varchar(50) DEFAULT NULL COMMENT 'temperatura °c',
-  `hum_relativa` varchar(100) DEFAULT NULL COMMENT 'hum_relativa',
+  `temp_max` varchar(50) DEFAULT NULL COMMENT 'temperatura °c',
+  `temp_min` varchar(50) DEFAULT NULL COMMENT 'Est la temperatura minima',
+  `hr_min` varchar(100) DEFAULT NULL COMMENT 'hum_relativa',
+  `hr_max` varchar(50) DEFAULT NULL,
   `lux` varchar(100) DEFAULT NULL COMMENT 'lux/luz',
   `ruido_dba` varchar(100) DEFAULT NULL COMMENT 'ruido_dba',
   `presion_sala` varchar(100) DEFAULT NULL COMMENT 'presion_sala',
@@ -51,14 +53,6 @@ CREATE TABLE `item_sala_limpia` (
   `estado_sala` varchar(100) DEFAULT NULL,
   `fecha_registro` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `item_sala_limpia`
---
-
-INSERT INTO `item_sala_limpia` (`id`, `id_item`, `clasificacion_oms`, `clasificacion_iso`, `direccion`, `ubicacion_interna`, `area_interna`, `Area_m2`, `volumen_m3`, `claudal_m3h`, `ren_hr`, `temperatura`, `hum_relativa`, `lux`, `ruido_dba`, `presion_sala`, `presion_versus`, `tipo_presion`, `puntos_muestreo`, `codigo`, `estado_sala`, `fecha_registro`) VALUES
-(1, 6, '12', '12', 'Sin registrar12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '11', '11', '2022-02-15 14:48:48'),
-(2, 7, '12', '12', 'Sin registrar12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '2022-02-15 15:50:44');
 
 --
 -- Índices para tablas volcadas
@@ -78,7 +72,7 @@ ALTER TABLE `item_sala_limpia`
 -- AUTO_INCREMENT de la tabla `item_sala_limpia`
 --
 ALTER TABLE `item_sala_limpia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id primaria', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id primaria';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

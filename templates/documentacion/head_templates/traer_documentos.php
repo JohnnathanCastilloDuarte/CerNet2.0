@@ -11,11 +11,11 @@ $cuantos_faltan = "";
 
 
 
-$consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo, a.estructura, CASE WHEN t.fecha_firma is NULL THEN 'No' ELSE 'Si' END, t.id, t.tipo FROM documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e, participante_documentacion as t WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa AND a.id_usuario = d.id_usuario AND a.id = e.id_documentacion AND t.id_persona = ? AND t.id_documentacion = a.id");
+$consultando = mysqli_prepare($connect, "SELECT c.nombre, a.nombre, d.usuario, a.fecha_creacion, a.estado, a.id, e.nombre_archivo, a.estructura, CASE WHEN t.fecha_firma is NULL THEN 'No' ELSE 'Si' END, t.id, t.tipo, a.tipo FROM documentacion as a, numot as b, empresa as c, usuario as d, archivos_documentacion as e, participante_documentacion as t WHERE a.id_numot = b.id_numot AND b.id_empresa = c.id_empresa AND a.id_usuario = d.id_usuario AND a.id = e.id_documentacion AND t.id_persona = ? AND t.id_documentacion = a.id");
 mysqli_stmt_bind_param($consultando, 'i', $id_valida);
 mysqli_stmt_execute($consultando);
 mysqli_stmt_store_result($consultando);
-mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo, $estructura, $ha_firmado, $id_participante, $tipo);
+mysqli_stmt_bind_result($consultando, $empresa, $archivo, $usuario, $fecha_creacion, $estado, $id_documentacion, $nombre_archivo, $estructura, $ha_firmado, $id_participante, $tipo, $tipo_document);
 
 
 while($row = mysqli_stmt_fetch($consultando)){
@@ -44,7 +44,8 @@ while($row = mysqli_stmt_fetch($consultando)){
     'ha_firmado'=>$ha_firmado,
     'id_participante'=>$id_participante,
     'faltantes'=>$cuantos,
-    'tipo_validador'=>$tipo
+    'tipo_validador'=>$tipo,
+    'tipo_document'=>$tipo_document
   );
 }
 
