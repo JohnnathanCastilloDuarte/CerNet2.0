@@ -88,23 +88,27 @@
 
             <div class="form-row">
               <div class="col-sm-6">
-                <label>Temperatura °C:</label>
-                <input type="text" id="temperatura" class="form-control" placeholder="°C" value="{$sala_limpia.temperatura}">
+                <label>Temperatura Minima°C:</label>
+                <input type="text" id="temperatura" class="form-control" placeholder="°C" value="{$sala_limpia.temp_min}">
               </div>
               <div class="col-sm-6">
-                <label>Humedad relativa % :</label>
-                <input type="text" id="hum_relativa" class="form-control" placeholder="Hum %" value="{$sala_limpia.hum_relativa}">
+                <label>Temperatura Maxima °C:</label>
+                <input type="text" id="hum_relativa" class="form-control" placeholder="°C" value="{$sala_limpia.temp_max}">
               </div>
             </div>
             <br>
             <div class="form-row">
-                <div class="col-sm-12" style="text-align:center;">
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
-                </div> 
-                <div class="col-sm-12" style="text-align:center;">
-                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Nuevo</button>
-                </div>
-           </div>
+              <div class="col-sm-6">
+                <label>Humedad Minima %:</label>
+                <input type="text" id="temperatura" class="form-control" placeholder="Hum %" value="{$sala_limpia.hr_min}">
+              </div>
+              <div class="col-sm-6">
+                <label>Humedad Maxima %:</label>
+                <input type="text" id="hum_relativa" class="form-control" placeholder="Hum %" value="{$sala_limpia.hr_max}">
+              </div>
+            </div>
+            <br>
+            
 
           </div>
           <div id="step-32">
@@ -161,6 +165,15 @@
                   <input type="text" id="puntos_muestreo" class="form-control" placeholder="Puntos muestreo normal" value="{$sala_limpia.puntos_muestreo}">
                 </div>
               </div>
+              <br>
+            <div class="form-row">
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-info" id="btn_editar_item_sala_limpia">Actualizar</button>
+                </div> 
+                <div class="col-sm-12" style="text-align:center;">
+                  <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_crear_item_sala_limpia">Nuevo</button>
+                </div>
+           </div>
 
 
           </div>  
@@ -184,3 +197,4 @@
 </div>
 </div>
 <script type="text/javascript" src="design/js/update_sala_limpia.js"></script>
+<script type="text/javascript" src="design/js/validar_campos_vacios.js"></script>

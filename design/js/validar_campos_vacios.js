@@ -15,11 +15,13 @@ function campos_vacios(x){
             title:'Mensaje',
             text:'Ningun campo puede ir vacio, verifica la información',
             icon:'warning',
-            timer:1700
+            //timer:2000
         });
         return false;
+        //console.log("mal");
     }else{
         return true;
+       // console.log("bien");
     }
 
 }
