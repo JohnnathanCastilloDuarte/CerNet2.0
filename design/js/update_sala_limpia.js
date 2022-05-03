@@ -163,25 +163,27 @@ $(document).on('click','#seleccionar_empresa',function(){
         clasificacion_oms       : $("#clasificacion_oms").val(),
         clasificacion_iso       : $("#clasificacion_iso").val(),
         direccion_sala_limpia   : $("#direccion_sala_limpia").val(),
-        ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
+        codigo_interna_sala_limpia : $("#codigo_interna_sala_limpia").val(),
         area_interna_sala_limpia: $("#area_interna_sala_limpia").val(),
         area_m2_sala_limpia     : $("#area_m2_sala_limpia").val(),
         volumen_m3_sala_limpia  : $("#volumen_m3_sala_limpia").val(),
-        claudal_m3h             : $("#claudal_m3h").val(),
-
         ren_hr                  : $("#ren_hr").val(),
-        temperatura             : $("#temperatura").val(),
-        hum_relativa            : $("#hum_relativa").val(),
+        temperatura_min             : $("#temperatura_minima").val(),
+        hum_relativa_min            : $("#hum_relativa_minima").val(),
+        temperatura_max             : $("#temperatura_maxima").val(),
+        hum_relativa_max            : $("#hum_relativa_maxima").val(),
         lux                     : $("#lux").val(),
         ruido_dba               : $("#ruido_dba").val(),
         presion_sala            : $("#presion_sala").val(),
         presion_versus          : $("#presion_versus").val(),
         tipo_presion            : $("#tipo_presion").val(),
         puntos_muestreo         : $("#puntos_muestreo").val(),
-        codigo                  : $("#codigo").val(),
         estado_sala             : $("#estado_sala").val(),
-
-        id_valida                :$("#id_valida").val()
+        id_valida                :$("#id_valida").val(),
+        temperatura_informativa : $("#temperatura_informativa").val(),
+        humedad_informativa : $("#humedad_informativa").val(),
+        cantidad_extracciones : $("#cantidad_extracciones").val(),
+        cantidad_inyecciones : $("#cantidad_inyecciones").val()
       }
 
      // campos_vacios(datos);
