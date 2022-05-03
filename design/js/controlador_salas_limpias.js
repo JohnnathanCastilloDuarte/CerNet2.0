@@ -57,11 +57,11 @@ function listar_resultados_prueba(orden){
                       template1 += 
                       `
                         <tr>
-                            <td>${array_nombres[contador]}<input type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}"></td>
-                            <td><input type="text" name="media_promedios_p1[]" value="${valor.medida_promedio}" class="form-control"></td>
-                            <td><input type="text" name="desviacion_estandar_p1[]" value="${valor.desviacion_estandar}" class="form-control"></td>
-                            <td><input type="text" name="maximo_p1[]" value="${valor.maximo}" class="form-control"></td>
-                            <td><input type="text" name="cumple_p1[]" value="${valor.cumple}" class="form-control"></td>
+                            <td>${array_nombres[contador]}<input required="" type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}"></td>
+                            <td><input required="" type="text" name="media_promedios_p1[]" value="${valor.medida_promedio}" class="form-control"></td>
+                            <td><input required="" type="text" name="desviacion_estandar_p1[]" value="${valor.desviacion_estandar}" class="form-control"></td>
+                            <td><input required="" type="text" name="maximo_p1[]" value="${valor.maximo}" class="form-control"></td>
+                            <td><input required="" type="text" name="cumple_p1[]" value="${valor.cumple}" class="form-control"></td>
                         </tr>
                       
                       `;
@@ -69,9 +69,9 @@ function listar_resultados_prueba(orden){
                       template2 += 
                       `
                       <tr>
-                        <td>${array_nombres[contador]}<input type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}"></td>
-                        <td><input type="text" name="promedios_p1[]" value="${valor.promedios}" class="form-control"></td>
-                        <td><input type="text" name="cumple_p1[]" value="${valor.cumple}" class="form-control"></td>
+                        <td>${array_nombres[contador]}<input required="" type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}"></td>
+                        <td><input required="" type="text" name="promedios_p1[]" value="${valor.promedios}" class="form-control"></td>
+                        <td><input required="" type="text" name="cumple_p1[]" value="${valor.cumple}" class="form-control"></td>
                       </tr>
                       `;
                   }
@@ -87,37 +87,57 @@ function listar_resultados_prueba(orden){
     else if(orden == 2){
 
         let array_nombres = ['Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación'];
-
-        $.ajax({
-            type:'POST',
-            data:{id_asignado, orden},
-            url:'templates/sala_limpia/controlador_sala_limpia.php',
-            success:function(response){
-           
-                let traer = JSON.parse(response);
-                let template = "";
-                let contador = 0;
-                
-                traer.forEach((valor)=>{
-                  template +=
-                  ` 
-                    <tr>
+          
+            
+                $.ajax({
+                    type:'POST',
+                    data:{id_asignado, orden},
+                    url:'templates/sala_limpia/controlador_sala_limpia.php',
+                    success:function(response){
+                    
+                      //alert(n_prueba);
+                        console.log(response);
+                        let traer = JSON.parse(response);
+                        let template1 = "";
+                        let contador = 0;
                         
-                        <td>${array_nombres[contador]}<input type="hidden" name="id_prueba_3[]" value="${valor.id_prueba}"></td>
-                        <td><input type="text" class="form-control" name="medicion_1_p3[]" value="${valor.medicion1}"></td>
-                        <td><input type="text" class="form-control" name="medicion_2_p3[]" value="${valor.medicion2}"></td>
-                        <td><input type="text" class="form-control" name="medicion_3_p3[]" value="${valor.medicion3}"></td>
-                        <td><input type="text" class="form-control" name="medicion_4_p3[]" value="${valor.medicion4}"></td>
-                    <tr>
-                  `;
-                  contador++;
-                });
+                        traer.forEach((valor)=>{
 
-                $("#tabla_prueba_3").html(template);
-                
-            }
-        })
-    }
+                                  template1 +=
+                                  `     
+                                   <table class="table"> 
+                                    <tr>
+                                         <th >${array_nombres[0]}</th>
+                                         <th >${array_nombres[1]}</th>
+                                         <th >${array_nombres[2]}</th>
+                                         <th >${array_nombres[3]}</th>
+                                         <th >${array_nombres[4]}</th>
+                                         <th >${array_nombres[5]}</th>
+                                    </tr>
+                                    <tr>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_1[]" value="${valor.campo_1}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_2[]" value="${valor.campo_2}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_3[]" value="${valor.campo_3}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_4[]" value="${valor.campo_4}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_5[]" value="${valor.campo_5}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_6[]" value="${valor.campo_6}">&nbsp;</td>
+                                           <td><input id="" type="hidden" name="id_prueba_3[]" value="${valor.id}"></td>
+                                    </tr>
+                                   </table> 
+                                    <button class="btn btn-danger" style="margin-bottom: 20px;" id="eliminar_prueba" data-id="${valor.id}">Eliminar</button> 
+                                  `;
+                                
+                                //  contador++
+
+                        });
+
+                         $("#tabla").html(template1);
+
+                        
+                    }//response
+                }); //ajax
+
+    }//if
 
     else if(orden == 3){
 
@@ -154,23 +174,27 @@ function listar_resultados_prueba(orden){
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Resultado, °C <input type="hidden" name="id_prueba_4" value="${valor.id_prueba}"></td>
-                                            <td><input type="text" name="n1_p4" class="form-control" value="${valor.n1}"></td>
-                                            <td><input type="text" name="n2_p4" class="form-control" value="${valor.n2}"></td>
-                                            <td><input type="text" name="n3_p4" class="form-control" value="${valor.n3}"></td>
-                                            <td><input type="text" name="n4_p4" class="form-control" value="${valor.n4}"></td>
-                                            <td><input type="text" name="n5_p4" class="form-control" value="${valor.n5}"></td>
+                                            <td>Resultado, °C <input required="" type="hidden" name="id_prueba_4" value="${valor.id_prueba}"></td>
+                                            <td><input required="" type="text" name="n1_p4" class="form-control" value="${valor.n1}"></td>
+                                            <td><input required="" type="text" name="n2_p4" class="form-control" value="${valor.n2}"></td>
+                                            <td><input required="" type="text" name="n3_p4" class="form-control" value="${valor.n3}"></td>
+                                            <td><input required="" type="text" name="n4_p4" class="form-control" value="${valor.n4}"></td>
+                                            <td><input required="" type="text" name="n5_p4" class="form-control" value="${valor.n5}"></td>
                                         </tr>
-                                        <tr>
+                                        </tbody>
+                                    </table>
+                                        <hr>
+                                       <div class="row"> 
+                                        <div class="col-sm-6">
                                             <td>Promedio, C°:</td>
-                                            <td><input type="text" name="promedio_p4" class="form-control" value="${valor.promedio}"></td>
-                                        </tr>
-                                        <tr>
+                                            <td><input required="" type="text" name="promedio_p4" class="form-control" value="${valor.promedio}"></td>
+                                        </div>
+                                        <div class="col-sm-6">
                                             <td>Cumple: </td>
-                                            <td><input type="text" name="cumple_p4" class="form-control" value="${valor.cumple}"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <td><input required="" type="text" name="cumple_p4" class="form-control" value="${valor.cumple}"></td>
+                                        </div>
+                                       </div>     
+                                
                             </div>
 
                         `;
@@ -190,23 +214,27 @@ function listar_resultados_prueba(orden){
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Resultado, HR%<input type="hidden" name="id_prueba_5" value="${valor.id_prueba}"></td>
-                                            <td><input type="text" name="n1_p5" class="form-control" value="${valor.n1}"></td>
-                                            <td><input type="text" name="n2_p5" class="form-control" value="${valor.n2}"></td>
-                                            <td><input type="text" name="n3_p5" class="form-control" value="${valor.n3}"></td>
-                                            <td><input type="text" name="n4_p5" class="form-control" value="${valor.n4}"></td>
-                                            <td><input type="text" name="n5_p5" class="form-control" value="${valor.n5}"></td>
+                                            <td>Resultado, HR%<input required="" type="hidden" name="id_prueba_5" value="${valor.id_prueba}"></td>
+                                            <td><input required="" required="" type="text" name="n1_p5" class="form-control" value="${valor.n1}"></td>
+                                            <td><input required="" required="" type="text" name="n2_p5" class="form-control" value="${valor.n2}"></td>
+                                            <td><input required="" required="" type="text" name="n3_p5" class="form-control" value="${valor.n3}"></td>
+                                            <td><input required="" required="" type="text" name="n4_p5" class="form-control" value="${valor.n4}"></td>
+                                            <td><input required="" required="" type="text" name="n5_p5" class="form-control" value="${valor.n5}"></td>
                                         </tr>
-                                        <tr>
-                                            <td>Promedio, HR%:</td>
-                                            <td><input type="text" name="promedio_p5" class="form-control" value="${valor.promedio}"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cumple: </td>
-                                            <td><input type="text" name="cumple_p5" class="form-control" value="${valor.cumple}"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                       <div class="row">
+                                            <div class="col-sm-6">
+                                                <td>Promedio, HR%:
+                                                <td><input required="" type="text" name="promedio_p5" class="form-control" value="${valor.promedio}">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <td>Cumple: 
+                                                <td><input required="" type="text" name="cumple_p5" class="form-control" value="${valor.cumple}">
+                                            </div>
+                                       </div>         
+                                    
                        
                             </div>
 
@@ -228,23 +256,27 @@ function listar_resultados_prueba(orden){
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Resultado, Lux<input type="hidden" name="id_prueba_6" value="${valor.id_prueba}"></td>
-                                            <td><input type="text" name="n1_p6" class="form-control" value="${valor.n1}"></td>
-                                            <td><input type="text" name="n2_p6" class="form-control" value="${valor.n2}"></td>
-                                            <td><input type="text" name="n3_p6" class="form-control" value="${valor.n3}"></td>
-                                            <td><input type="text" name="n4_p6" class="form-control" value="${valor.n4}"></td>
-                                            <td><input type="text" name="n5_p6" class="form-control" value="${valor.n5}"></td>
+                                            <td>Resultado, Lux<input required="" type="hidden" name="id_prueba_6" value="${valor.id_prueba}"></td>
+                                            <td><input required="" type="text" name="n1_p6" class="form-control" value="${valor.n1}"></td>
+                                            <td><input required="" type="text" name="n2_p6" class="form-control" value="${valor.n2}"></td>
+                                            <td><input required="" type="text" name="n3_p6" class="form-control" value="${valor.n3}"></td>
+                                            <td><input required="" type="text" name="n4_p6" class="form-control" value="${valor.n4}"></td>
+                                            <td><input required="" type="text" name="n5_p6" class="form-control" value="${valor.n5}"></td>
                                         </tr>
-                                        <tr>
-                                            <td>Promedio, Lux:</td>
-                                            <td><input type="text" name="promedio_p6" class="form-control" value="${valor.promedio}"></td>
+                                     </tbody>
+                                </table>  
+                                    <hr>  
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <td>Promedio, Lux:
+                                            <td><input required="" type="text" name="promedio_p6" class="form-control" value="${valor.promedio}">
                                             
-                                        </tr>
-                                        <tr>
-                                            <td>Cumple: </td>
-                                            <td><input type="text" name="cumple_p6" class="form-control" value="${valor.cumple}"></td>
-                                        </tr>
-
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <td>Cumple: 
+                                            <td><input required="" type="text" name="cumple_p6" class="form-control" value="${valor.cumple}">
+                                        </div>
+                                     </div>
                                     </tbody>
                                 </table>
 
@@ -270,21 +302,24 @@ function listar_resultados_prueba(orden){
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Resultado, dBA<input type="hidden" name="id_prueba_7[]" value="${valor.id_prueba}"></td>
-                                            <td><input type="text" name="n1_p7[]" class="form-control" value="${valor.n1}"></td>
-                                            <td><input type="text" name="n2_p7[]" class="form-control" value="${valor.n2}"></td>
-                                            <td><input type="text" name="n3_p7[]" class="form-control" value="${valor.n3}"></td>
-                                            <td><input type="text" name="n4_p7[]" class="form-control" value="${valor.n4}"></td>
-                                            <td><input type="text" name="n5_p7[]" class="form-control" value="${valor.n5}"></td>
+                                            <td>Resultado, dBA<input required="" type="hidden" name="id_prueba_7[]" value="${valor.id_prueba}"></td>
+                                            <td><input required="" type="text" name="n1_p7[]" class="form-control" value="${valor.n1}"></td>
+                                            <td><input required="" type="text" name="n2_p7[]" class="form-control" value="${valor.n2}"></td>
+                                            <td><input required="" type="text" name="n3_p7[]" class="form-control" value="${valor.n3}"></td>
+                                            <td><input required="" type="text" name="n4_p7[]" class="form-control" value="${valor.n4}"></td>
+                                            <td><input required="" type="text" name="n5_p7[]" class="form-control" value="${valor.n5}"></td>
                                         </tr>
-                                        <tr>
-                                            <td>Promedio, dBA</td> 
-                                            <td><input type="text" name="promedio_p7[]" class="form-control" value="${valor.promedio}"></td>
-                                        </tr>
-                                        <tr>
-                                             <td>Cumple:</td>
-                                            <td><input type="text" name="cumple_p7[]" class="form-control" value="${valor.cumple}"> </td>
-                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                        <div>
+                                            Promedio, dBA
+                                            <input required="" type="text" name="promedio_p7[]" class="form-control" value="${valor.promedio}">
+                                        </div>
+                                        <div>
+                                             Cumple:<
+                                            <input required="" type="text" name="cumple_p7[]" class="form-control" value="${valor.cumple}"> 
+                                        </div>
                                     </tbody>
                                 </table>
                           
@@ -331,22 +366,22 @@ function listar_resultados_prueba(orden){
                         template+= 
                             `
                             <tr>
-                                <td>${enunciados[contador]}<input type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
-                                <td><input type="text" name="n1[]" class="form-control" value="${valor.n1}"></td>
-                                <td><input type="text" name="n2[]" class="form-control" value="${valor.n2}"></td>
-                                <td><input type="text" name="n3[]" class="form-control" value="${valor.n3}"></td>
-                                <td><input type="text" name="n4[]" class="form-control" value="${valor.n4}"></td>
-                                <td><input type="text" name="n5[]" class="form-control" value="${valor.n5}"></td>
-                                <td><input type="text" name="n6[]" class="form-control" value="${valor.n6}"></td>
-                                <td><input type="text" name="n7[]" class="form-control" value="${valor.n7}"></td>
-                                <td><input type="text" name="n8[]" class="form-control" value="${valor.n8}"></td>
-                                <td><input type="text" name="n9[]" class="form-control" value="${valor.n9}"></td>
-                                <td><input type="text" name="n10[]" class="form-control" value="${valor.n10}"></td>
-                                <td><input type="text" name="n11[]" class="form-control" value="${valor.n11}"></td>
-                                <td><input type="text" name="n12[]" class="form-control" value="${valor.n12}"></td>
-                                <td><input type="text" name="n13[]" class="form-control" value="${valor.n13}"></td>
-                                <td><input type="text" name="n14[]" class="form-control" value="${valor.n14}"></td>
-                                <td><input type="text" name="n15[]" class="form-control" value="${valor.n15}"></td>
+                                <td>${enunciados[contador]}<input required="" type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
+                                <td><input required="" type="text" name="n1[]" class="form-control" value="${valor.n1}"></td>
+                                <td><input required="" type="text" name="n2[]" class="form-control" value="${valor.n2}"></td>
+                                <td><input required="" type="text" name="n3[]" class="form-control" value="${valor.n3}"></td>
+                                <td><input required="" type="text" name="n4[]" class="form-control" value="${valor.n4}"></td>
+                                <td><input required="" type="text" name="n5[]" class="form-control" value="${valor.n5}"></td>
+                                <td><input required="" type="text" name="n6[]" class="form-control" value="${valor.n6}"></td>
+                                <td><input required="" type="text" name="n7[]" class="form-control" value="${valor.n7}"></td>
+                                <td><input required="" type="text" name="n8[]" class="form-control" value="${valor.n8}"></td>
+                                <td><input required="" type="text" name="n9[]" class="form-control" value="${valor.n9}"></td>
+                                <td><input required="" type="text" name="n10[]" class="form-control" value="${valor.n10}"></td>
+                                <td><input required="" type="text" name="n11[]" class="form-control" value="${valor.n11}"></td>
+                                <td><input required="" type="text" name="n12[]" class="form-control" value="${valor.n12}"></td>
+                                <td><input required="" type="text" name="n13[]" class="form-control" value="${valor.n13}"></td>
+                                <td><input required="" type="text" name="n14[]" class="form-control" value="${valor.n14}"></td>
+                                <td><input required="" type="text" name="n15[]" class="form-control" value="${valor.n15}"></td>
                             </tr>
                             `;
 
@@ -357,22 +392,22 @@ function listar_resultados_prueba(orden){
                         template2+= 
                             `
                             <tr>
-                                <td>${enunciados[contador1]}<input type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
-                                <td><input type="text" name="n1[]" class="form-control" value="${valor.n1}"></td>
-                                <td><input type="text" name="n2[]" class="form-control" value="${valor.n2}"></td>
-                                <td><input type="text" name="n3[]" class="form-control" value="${valor.n3}"></td>
-                                <td><input type="text" name="n4[]" class="form-control" value="${valor.n4}"></td>
-                                <td><input type="text" name="n5[]" class="form-control" value="${valor.n5}"></td>
-                                <td><input type="text" name="n6[]" class="form-control" value="${valor.n6}"></td>
-                                <td><input type="text" name="n7[]" class="form-control" value="${valor.n7}"></td>
-                                <td><input type="text" name="n8[]" class="form-control" value="${valor.n8}"></td>
-                                <td><input type="text" name="n9[]" class="form-control" value="${valor.n9}"></td>
-                                <td><input type="text" name="n10[]" class="form-control" value="${valor.n10}"></td>
-                                <td><input type="text" name="n11[]" class="form-control" value="${valor.n11}"></td>
-                                <td><input type="text" name="n12[]" class="form-control" value="${valor.n12}"></td>
-                                <td><input type="text" name="n13[]" class="form-control" value="${valor.n13}"></td>
-                                <td><input type="text" name="n14[]" class="form-control" value="${valor.n14}"></td>
-                                <td><input type="text" name="n15[]" class="form-control" value="${valor.n15}"></td>
+                                <td>${enunciados[contador1]}<input required="" type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
+                                <td><input required="" type="text" name="n1[]" class="form-control" value="${valor.n1}"></td>
+                                <td><input required="" type="text" name="n2[]" class="form-control" value="${valor.n2}"></td>
+                                <td><input required="" type="text" name="n3[]" class="form-control" value="${valor.n3}"></td>
+                                <td><input required="" type="text" name="n4[]" class="form-control" value="${valor.n4}"></td>
+                                <td><input required="" type="text" name="n5[]" class="form-control" value="${valor.n5}"></td>
+                                <td><input required="" type="text" name="n6[]" class="form-control" value="${valor.n6}"></td>
+                                <td><input required="" type="text" name="n7[]" class="form-control" value="${valor.n7}"></td>
+                                <td><input required="" type="text" name="n8[]" class="form-control" value="${valor.n8}"></td>
+                                <td><input required="" type="text" name="n9[]" class="form-control" value="${valor.n9}"></td>
+                                <td><input required="" type="text" name="n10[]" class="form-control" value="${valor.n10}"></td>
+                                <td><input required="" type="text" name="n11[]" class="form-control" value="${valor.n11}"></td>
+                                <td><input required="" type="text" name="n12[]" class="form-control" value="${valor.n12}"></td>
+                                <td><input required="" type="text" name="n13[]" class="form-control" value="${valor.n13}"></td>
+                                <td><input required="" type="text" name="n14[]" class="form-control" value="${valor.n14}"></td>
+                                <td><input required="" type="text" name="n15[]" class="form-control" value="${valor.n15}"></td>
                             </tr>
                             `;
 
@@ -411,11 +446,11 @@ function listar_resultados_prueba(orden){
                     <tr>
                         
                         
-                        <td><input type="hidden" name="id_prueba_9[]" value="${valor.id_prueba}">
-                        <input type="text" name="medicion_1_p9[]" class="form-control" value="${valor.medicion_1}"></td>
-                        <td><input type="text" name="medicion_2_p9[]" class="form-control" value="${valor.medicion_2}"></td>
-                        <td><input type="text" name="medicion_3_p9[]" class="form-control" value="${valor.medicion_3}"></td>
-                        <td><input type="text" name="medicion_4_p9[]" class="form-control" value="${valor.medicion_4}"></td>
+                        <td><input required="" type="hidden" name="id_prueba_9[]" value="${valor.id_prueba}">
+                        <input required="" type="text" name="medicion_1_p9[]" class="form-control" value="${valor.medicion_1}"></td>
+                        <td><input required="" type="text" name="medicion_2_p9[]" class="form-control" value="${valor.medicion_2}"></td>
+                        <td><input required="" type="text" name="medicion_3_p9[]" class="form-control" value="${valor.medicion_3}"></td>
+                        <td><input required="" type="text" name="medicion_4_p9[]" class="form-control" value="${valor.medicion_4}"></td>
                     <tr>
                   `;
                   contador++;
@@ -577,6 +612,7 @@ function validacion_salas_limpias(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
+                //console.log(response);
                 listar_resultados_prueba(2);
             }
         });
@@ -749,17 +785,17 @@ function listar_imagenes(){
           template1 += 
           `
             <div class="col-sm-4">
-              <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+              <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
-        }/*
+        }
         else if(valor.tipo == 2){
 
           template2 += 
           `
             <div class="col-sm-4">
-            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
@@ -769,7 +805,7 @@ function listar_imagenes(){
           template3 += 
           `
             <div class="col-sm-4">
-            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
@@ -779,11 +815,11 @@ function listar_imagenes(){
           template4 += 
           `
             <div class="col-sm-4">
-            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
-        }*/
+        }
         
       });
 
@@ -822,6 +858,57 @@ $("#formulario_evidencias_graficas_sala_limpia").submit(function(e){
         }
       }
     }); 
+});
+
+$("#agregar_prueba").click(function(e){
+ e.preventDefault();
+let orden = 200;
+let accion = 'agregar';
+
+$.ajax({
+    type:'POST',
+    data:{orden, accion, id_asignado},
+    url:'templates/sala_limpia/controlador_sala_limpia.php',
+    success:function(response){
+        console.log(response);
+        if(response == "Si"){
+            Swal.fire({
+                title:'Mensaje',
+                text:'Se ha Creado correctamente el campo de prueba',
+                icon:'success',
+                timer:1700
+            });
+        }
+        listar_resultados_prueba(2);
+    }
+})
+
+});
+
+$(document).on('click','#eliminar_prueba',function(e){
+ e.preventDefault();
+let orden = 200;
+let accion = 'borrar';
+let id_prueba_3 = $(this).attr('data-id'  );
+
+$.ajax({
+    type:'POST',
+    data:{orden, accion, id_asignado, id_prueba_3},
+    url:'templates/sala_limpia/controlador_sala_limpia.php',
+    success:function(response){
+        console.log(response);
+        if(response == "Si"){
+            Swal.fire({
+                title:'Mensaje',
+                text:'Se ha eliminado correctamente el campo de prueba',
+                icon:'success',
+                timer:1700
+            });
+        }
+        listar_resultados_prueba(2);
+    }
+})
+
 });
 
 

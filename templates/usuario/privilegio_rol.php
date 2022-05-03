@@ -1,5 +1,5 @@
 <?php
-
+include('../../config.ini.php');
 $buscar_privilegios = mysqli_query($connect,"SELECT * FROM privilegio");
 	
 $encontrados = array();
