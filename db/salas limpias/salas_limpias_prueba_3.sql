@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2022 a las 14:45:28
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 7.4.22
+-- Tiempo de generación: 04-05-2022 a las 00:56:15
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,10 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `salas_limpias_prueba_3` (
   `id_prueba` int(11) NOT NULL,
   `id_asignado` int(11) NOT NULL,
-  `medicion_1` varchar(25) NOT NULL DEFAULT 'NA',
-  `medicion_2` varchar(25) NOT NULL DEFAULT 'NA',
-  `medicion_3` varchar(25) NOT NULL DEFAULT 'NA',
-  `medicion_4` varchar(25) NOT NULL DEFAULT 'NA',
+  `prueba` int(11) DEFAULT NULL COMMENT 'Es la prueba que se esta realizando en la sala limpia (Lugar de Medición,Medición Realizada en,Resultado (Pa),Presión especificada (Pa),Tipo de Presión,Cumple Especificación)',
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,13 +38,13 @@ CREATE TABLE `salas_limpias_prueba_3` (
 -- Volcado de datos para la tabla `salas_limpias_prueba_3`
 --
 
-INSERT INTO `salas_limpias_prueba_3` (`id_prueba`, `id_asignado`, `medicion_1`, `medicion_2`, `medicion_3`, `medicion_4`, `fecha_registro`) VALUES
-(1, 7, 'd', 'd', 'd', 'dd', '2022-01-11 14:53:40'),
-(2, 7, 'd', 'd', 'd', 'd', '2022-01-11 14:53:40'),
-(3, 7, 'd', 'd', 'd', 'd', '2022-01-11 14:53:40'),
-(4, 7, 'd', 'd', 'dd', 'd', '2022-01-11 14:53:40'),
-(5, 7, 'd', 'd', 'd', 'd', '2022-01-11 14:53:40'),
-(6, 7, 'd', 'd', 'd', 'd', '2022-01-11 14:53:40');
+INSERT INTO `salas_limpias_prueba_3` (`id_prueba`, `id_asignado`, `prueba`, `fecha_registro`) VALUES
+(1, 2, NULL, '2022-05-03 17:10:41'),
+(2, 2, NULL, '2022-05-03 18:36:59'),
+(3, 2, NULL, '2022-05-03 18:42:19'),
+(4, 2, NULL, '2022-05-03 21:52:55'),
+(5, 2, NULL, '2022-05-03 21:55:06'),
+(6, 2, NULL, '2022-05-03 22:39:55');
 
 --
 -- Índices para tablas volcadas

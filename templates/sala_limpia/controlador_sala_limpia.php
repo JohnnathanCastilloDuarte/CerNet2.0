@@ -36,22 +36,26 @@ if($orden == 1){
 else if($orden == 2){
     $id_asignado = $_POST['id_asignado'];
     $array_resultado = array();
+    $n_prueba = $_POST['n_prueba'];
 
-    $consultar = mysqli_prepare($connect,"SELECT id_prueba, medicion_1, medicion_2, medicion_3, medicion_4 FROM salas_limpias_prueba_3 WHERE id_asignado = ?");
+    $consultar = mysqli_prepare($connect,"SELECT b.id_prueba, a.campo_1, a.campo_2, a.campo_3, a.campo_4, a.campo_5, a.campo_6 
+        FROM datos_de_prueba_3 a, salas_limpias_prueba_3 b
+        WHERE a.id_prueba_3=b.id_prueba AND  b.id_asignado = ? ");
     mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
     mysqli_stmt_execute($consultar);
     mysqli_stmt_store_result($consultar);
-    mysqli_stmt_bind_result($consultar, $id_prueba, $medicion_1, $medicion_2, $medicion_3, $medicion_4);
-
+    mysqli_stmt_bind_result($consultar, $id, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
     
     while($row = mysqli_stmt_fetch($consultar)){
 
         $array_resultado[] = array(
-            'id_prueba'=>$id_prueba,
-            'medicion1'=>$medicion_1,
-            'medicion2'=>$medicion_2,
-            'medicion3'=>$medicion_3,
-            'medicion4'=>$medicion_4
+            'id'=>$id,
+            'campo_1'=>$campo_1,
+            'campo_2'=>$campo_2,
+            'campo_3'=>$campo_3,
+            'campo_4'=>$campo_4,
+            'campo_5'=>$campo_5,
+            'campo_6'=>$campo_6,
              
         );
     }
@@ -288,13 +292,16 @@ else if($orden == 100){
     $id_asignado = $_POST['id_asignado'];
     $categoria_1 = 1;
     $categoria_2 = 2;
+    $array_resultado = array();
 
     $validador1 = mysqli_prepare($connect,"SELECT id_prueba FROM salas_limpias_prueba_1 WHERE id_asignado = ?");
     mysqli_stmt_bind_param($validador1, 'i', $id_asignado);
     mysqli_stmt_execute($validador1);
     mysqli_stmt_store_result($validador1);
     mysqli_stmt_bind_result($validador1, $id_prueba);
-    mysqli_stmt_fetch($validador1);
+   // mysqli_stmt_fetch($validador1);
+
+       
 
     if(mysqli_stmt_num_rows($validador1) == 0){
         for($i=0;$i<4;$i++){
@@ -309,6 +316,8 @@ else if($orden == 100){
             }
             
         }
+
+       
        
     }
 }
@@ -323,17 +332,48 @@ else if($orden == 200){
     mysqli_stmt_execute($validador1);
     mysqli_stmt_store_result($validador1);
     mysqli_stmt_bind_result($validador1, $id_prueba);
-    mysqli_stmt_fetch($validador1);
+   // mysqli_stmt_fetch($validador1);
 
-    if(mysqli_stmt_num_rows($validador1) == 0){
+     while($row = mysqli_stmt_fetch($validador1)){
 
-        for($i == 0; $i<6; $i++){
+            $array_resultado[] = array(
+               'id_prueba'=>$id_prueba,
+            );
+        }
+
+    if(mysqli_stmt_num_rows($validador1) == 0 || isset($_POST['accion']) AND $_POST['accion'] =='agregar'){
+
             $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_prueba_3 (id_asignado) VALUES (?)");
             mysqli_stmt_bind_param($creando, 'i', $id_asignado);
             mysqli_stmt_execute($creando);
-        }   
-        
-    }
+
+            $id_item = mysqli_stmt_insert_id($creando);
+
+            $creando2 = mysqli_prepare($connect,"INSERT INTO datos_de_prueba_3 (id_prueba_3) VALUES (?)");
+            mysqli_stmt_bind_param($creando2, 'i', $id_item);
+            mysqli_stmt_execute($creando2);
+
+    }else if (isset($_POST['accion']) && $_POST['accion'] == 'borrar'){
+
+         $id_prueba_3 = $_POST['id_prueba_3']; 
+
+         $query = "DELETE FROM datos_de_prueba_3 WHERE id_prueba_3 = ? ";
+         $execute_query_1 = mysqli_prepare($connect,$query);
+         mysqli_stmt_bind_param($execute_query_1, 'i', $id_prueba_3);
+         mysqli_stmt_execute($execute_query_1);
+
+         $query2 = "DELETE FROM salas_limpias_prueba_3 WHERE id_prueba = ? ";
+         $execute_query_2 = mysqli_prepare($connect,$query);
+         mysqli_stmt_bind_param($execute_query_2, 'i', $id_prueba_3);
+         mysqli_stmt_execute($execute_query_2);
+
+         if ($query && $query2) {
+             echo "Si";
+         }else{
+            echo "No";
+         }
+    }  
+
 }
 
 else if($orden == 300){

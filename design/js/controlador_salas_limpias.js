@@ -87,37 +87,57 @@ function listar_resultados_prueba(orden){
     else if(orden == 2){
 
         let array_nombres = ['Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación'];
-
-        $.ajax({
-            type:'POST',
-            data:{id_asignado, orden},
-            url:'templates/sala_limpia/controlador_sala_limpia.php',
-            success:function(response){
-           
-                let traer = JSON.parse(response);
-                let template = "";
-                let contador = 0;
-                
-                traer.forEach((valor)=>{
-                  template +=
-                  ` 
-                    <tr>
+          
+            
+                $.ajax({
+                    type:'POST',
+                    data:{id_asignado, orden},
+                    url:'templates/sala_limpia/controlador_sala_limpia.php',
+                    success:function(response){
+                    
+                      //alert(n_prueba);
+                        console.log(response);
+                        let traer = JSON.parse(response);
+                        let template1 = "";
+                        let contador = 0;
                         
-                        <td>${array_nombres[contador]}<input required="" type="hidden" name="id_prueba_3[]" value="${valor.id_prueba}"></td>
-                        <td><input required="" type="text" class="form-control" name="medicion_1_p3[]" value="${valor.medicion1}"></td>
-                        <td><input required="" type="text" class="form-control" name="medicion_2_p3[]" value="${valor.medicion2}"></td>
-                        <td><input required="" type="text" class="form-control" name="medicion_3_p3[]" value="${valor.medicion3}"></td>
-                        <td><input required="" type="text" class="form-control" name="medicion_4_p3[]" value="${valor.medicion4}"></td>
-                    <tr>
-                  `;
-                  contador++;
-                });
+                        traer.forEach((valor)=>{
 
-                $("#tabla_prueba_3").html(template);
-                
-            }
-        })
-    }
+                                  template1 +=
+                                  `     
+                                   <table class="table"> 
+                                    <tr>
+                                         <th >${array_nombres[0]}</th>
+                                         <th >${array_nombres[1]}</th>
+                                         <th >${array_nombres[2]}</th>
+                                         <th >${array_nombres[3]}</th>
+                                         <th >${array_nombres[4]}</th>
+                                         <th >${array_nombres[5]}</th>
+                                    </tr>
+                                    <tr>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_1[]" value="${valor.campo_1}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_2[]" value="${valor.campo_2}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_3[]" value="${valor.campo_3}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_4[]" value="${valor.campo_4}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_5[]" value="${valor.campo_5}">&nbsp;</td>
+                                           <td><input required="" type="text" class="form-control col-sm-6" name="campo_6[]" value="${valor.campo_6}">&nbsp;</td>
+                                           <td><input id="" type="hidden" name="id_prueba_3[]" value="${valor.id}"></td>
+                                    </tr>
+                                   </table> 
+                                    <button class="btn btn-danger" style="margin-bottom: 20px;" id="eliminar_prueba" data-id="${valor.id}">Eliminar</button> 
+                                  `;
+                                
+                                //  contador++
+
+                        });
+
+                         $("#tabla").html(template1);
+
+                        
+                    }//response
+                }); //ajax
+
+    }//if
 
     else if(orden == 3){
 
@@ -592,6 +612,7 @@ function validacion_salas_limpias(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
+                //console.log(response);
                 listar_resultados_prueba(2);
             }
         });
@@ -764,17 +785,17 @@ function listar_imagenes(){
           template1 += 
           `
             <div class="col-sm-4">
-              <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+              <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
-        }/*
+        }
         else if(valor.tipo == 2){
 
           template2 += 
           `
             <div class="col-sm-4">
-            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
@@ -784,7 +805,7 @@ function listar_imagenes(){
           template3 += 
           `
             <div class="col-sm-4">
-            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
@@ -794,11 +815,11 @@ function listar_imagenes(){
           template4 += 
           `
             <div class="col-sm-4">
-            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 80%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
               <img src="templates/sala_limpia/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
-        }*/
+        }
         
       });
 
@@ -837,6 +858,57 @@ $("#formulario_evidencias_graficas_sala_limpia").submit(function(e){
         }
       }
     }); 
+});
+
+$("#agregar_prueba").click(function(e){
+ e.preventDefault();
+let orden = 200;
+let accion = 'agregar';
+
+$.ajax({
+    type:'POST',
+    data:{orden, accion, id_asignado},
+    url:'templates/sala_limpia/controlador_sala_limpia.php',
+    success:function(response){
+        console.log(response);
+        if(response == "Si"){
+            Swal.fire({
+                title:'Mensaje',
+                text:'Se ha Creado correctamente el campo de prueba',
+                icon:'success',
+                timer:1700
+            });
+        }
+        listar_resultados_prueba(2);
+    }
+})
+
+});
+
+$(document).on('click','#eliminar_prueba',function(e){
+ e.preventDefault();
+let orden = 200;
+let accion = 'borrar';
+let id_prueba_3 = $(this).attr('data-id'  );
+
+$.ajax({
+    type:'POST',
+    data:{orden, accion, id_asignado, id_prueba_3},
+    url:'templates/sala_limpia/controlador_sala_limpia.php',
+    success:function(response){
+        console.log(response);
+        if(response == "Si"){
+            Swal.fire({
+                title:'Mensaje',
+                text:'Se ha eliminado correctamente el campo de prueba',
+                icon:'success',
+                timer:1700
+            });
+        }
+        listar_resultados_prueba(2);
+    }
+})
+
 });
 
 

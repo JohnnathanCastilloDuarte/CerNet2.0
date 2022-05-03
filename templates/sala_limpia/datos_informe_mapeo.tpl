@@ -26,35 +26,37 @@
                 <form method="POST" id="formulario_salas">
                     <div id="accordion">
                                             
-                        <div class="card">
                             <div class="card">
                                 <div class="card-header">
                                     <a data-toggle="collapse" data-target="#collapseOne1"  aria-controls="collapseOne1">
-                                        Prueba de Partículas en suspensión
+                                        Prueba de Partículas en suspensión 
                                     </a>
                                 </div>
                                 <div class="card-body collapse in show" id="collapseOne1">
                                     <div class="row">
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <input type="hidden" name="id_ensayo_p11" id="id_ensayo_p11">
                                             <label>Metodo de ensayo</label>
-                                            <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control">
+                                            <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control" placeholder="Metodo ensayo">
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <label>N° Puntos por Medición</label>
-                                            <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control">
+                                            <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control" placeholder="Puntos por mediciòn">
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <label>N° Muestras por Punto</label>
-                                            <input type="text" id="ensayo_p13" name="ensayo_p13" class="form-control">
+                                            <input type="text" id="ensayo_p13" name="ensayo_p13" class="form-control" placeholder="Muestras por Punto">
                                         </div>
-                                        <div class="col-sm-3">
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                         <div class="col-sm-4">
                                             <label>Volumen por Muestras (L)</label>
-                                            <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control">
+                                            <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control" placeholder="Volumen por Muestras (L)">
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <label>Altura toma de Muestras (m)</label>
-                                            <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control">
+                                            <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control" placeholder="Altura toma de Muestras (m)">
                                         </div>
                                     </div>
                                     <hr>
@@ -93,11 +95,7 @@
                                 </table>
                             </div>
                         </div>     
-                        </div>
-                    
-                    
                         <hr>
-
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
@@ -125,10 +123,13 @@
                                     </div>
                                 </div>
                                 <hr>
-                            
-                                <table class="table" id="tabla_prueba_3">
-                                        
-                                </table>
+                                <div class="col-sm-12">
+                                    <div class="row" id="tabla"></div>
+                                </div>
+                                    <hr>
+                                <div style="text-align: right;">
+                                    <button class="btn btn-success" id="agregar_prueba">Agregar</button>    
+                                </div>                                        
                             </div>
                         </div>
                         
@@ -470,6 +471,9 @@
                                           <select class="form-control" name="tipo_imagen">
                                             <option value="">Seleccion la categoria</option> 
                                             <option value="1">Imagen Registro de Conteo de Partículas</option>
+                                            <option value="2">Imagen Medicion de presion</option>
+                                            <option value="3">Imagen Medicion de temperatura y humedad</option>
+                                            <option value="4">Imagen Medicion de iluminacion y Ruido</option>
   
                                           </select>
                                         </div>
@@ -497,6 +501,19 @@
                                       <div class="card-header">Conteo de particulas</div>
                                       <div class="card-body">
                                         <div class="row" id="Listar_img_c1">
+              
+                                        </div>
+                                         <div class="card-header">Imagen Medicion de presion</div>
+                                        <div class="row" id="Listar_img_c2">
+              
+                                        </div>
+
+                                         <div class="card-header">Imagen Medicion de temperatura y humedad</div>
+                                        <div class="row" id="Listar_img_c2">
+              
+                                        </div>
+                                        <div class="card-header">Imagen Medicion de iluminacion y Ruido</div>
+                                        <div class="row" id="Listar_img_c2">
               
                                         </div>
                                       </div>

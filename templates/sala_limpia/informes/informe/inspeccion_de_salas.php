@@ -18,6 +18,7 @@ mysqli_stmt_store_result($consulta_informacion_informe);
 mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala, $direccion_item, $temperatura_item, $hum_relativa_item, $ruido_dba_item, $lux_item);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
+
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
 $consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion, e.conclusion, e.usuario_responsable FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
@@ -485,14 +486,14 @@ $prueba = <<<EOD
 EOD;  
 $pdf->writeHTML($prueba, true, false, false, false, '');
 
-$buscarimagen = mysqli_prepare($connect,"SELECT url, nombre 
+$buscarimagen1 = mysqli_prepare($connect,"SELECT url, nombre 
 FROM image_sala_limpia
-WHERE id_asignado = ?");
-mysqli_stmt_bind_param($buscarimagen, 'i', $id_asignado);
-mysqli_stmt_execute($buscarimagen);
-mysqli_stmt_store_result($buscarimagen);
-mysqli_stmt_bind_result($buscarimagen, $url_imagen, $nombre_imagen);
-mysqli_stmt_fetch($buscarimagen);
+WHERE id_asignado = ? AND tipo = 1");
+mysqli_stmt_bind_param($buscarimagen1, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen1);
+mysqli_stmt_store_result($buscarimagen1);
+mysqli_stmt_bind_result($buscarimagen1, $url_imagen, $nombre_imagen);
+mysqli_stmt_fetch($buscarimagen1);
 
 
 
@@ -699,6 +700,18 @@ $pdf->writeHTMLCell(45, 5, 150, '', $especificacion ,1,1  , 0, true, 'J', true);
 
 
 
+
+$buscarimagen2 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 2");
+mysqli_stmt_bind_param($buscarimagen2, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen2);
+mysqli_stmt_store_result($buscarimagen2);
+mysqli_stmt_bind_result($buscarimagen2, $url_imagen2, $nombre_imagen2);
+mysqli_stmt_fetch($buscarimagen2);
+
+
+
 $linea = <<<EOD
 <style>
 .linea{
@@ -718,7 +731,7 @@ $linea = <<<EOD
 <table border="0">
    <tr>
        <td></td>
-       <td><img src="../imagenes_informe/Primera_foto.png"></td>
+       <td><img src="../../$url_imagen2$nombre_imagen2"  style="width: 700px; height: 500px;" ></td>
        <td></td>
    </tr>
 
@@ -751,23 +764,59 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 $nombres = array('Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación');
 $contador = 0;
 
-$query4 = mysqli_prepare($connect,"SELECT medicion_1, medicion_2, medicion_3, medicion_4 FROM salas_limpias_prueba_3 WHERE id_asignado = ?");
+$query4 = mysqli_prepare($connect,"SELECT campo_1, campo_2, campo_3, campo_4, campo_5, campo_6 
+   FROM datos_de_prueba_3 a, salas_limpias_prueba_3 b 
+   WHERE a.id_prueba_3 = b.id_prueba AND  b.id_asignado = ?");
 mysqli_stmt_bind_param($query4, 'i', $id_asignado);
 mysqli_stmt_execute($query4);
 mysqli_stmt_store_result($query4);
-mysqli_stmt_bind_result($query4, $medicion_1, $medicion_2, $medicion_3, $medicion_4);
+mysqli_stmt_bind_result($query4, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
 
-while($row = mysqli_stmt_fetch($query4)){
+$array_resultado = array();
+   while($row = mysqli_stmt_fetch($query4)){
 
-   $pdf->writeHTMLCell(38, 5, 15, '', $nombres[$contador] ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(33, 5, 53, '', $medicion_1 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(38, 5, 86, '', $medicion_2 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(38, 5, 124, '', $medicion_3 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(33, 5, 162, '', $medicion_4 ,1,1, 0, true, 'C', true);
+        $array_resultado[] = array(
+            'campo_1'=>$campo_1,
+            'campo_2'=>$campo_2,
+            'campo_3'=>$campo_3,
+            'campo_4'=>$campo_4,
+            'campo_5'=>$campo_5,
+            'campo_6'=>$campo_6
+        );
+    }
+      $espaciado = 53;
 
-   $contador++;
-}
+          $pdf->writeHTMLCell(38, 5, 15, '', $nombres[0] ,1,0, 0, true, 'C', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 5, $espaciado+$i*15, '', $array_resultado[$i]['campo_1'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(5);
+      $pdf->writeHTMLCell(38, 5, 15, '', $nombres[1] ,1,0, 0, true, 'C', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 5, $espaciado+$i*15, '', $array_resultado[$i]['campo_2'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(5);
+      $pdf->writeHTMLCell(38, 5, 15, '', $nombres[2] ,1,0, 0, true, 'C', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 5, $espaciado+$i*15, '', $array_resultado[$i]['campo_3'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(5);
+      $pdf->writeHTMLCell(38, 5, 15, '', $nombres[3] ,1,0, 0, true, 'C', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 5, $espaciado+$i*15, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(5);
+      $pdf->writeHTMLCell(38, 5, 15, '', $nombres[4] ,1,0, 0, true, 'C', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 5, $espaciado+$i*15, '', $array_resultado[$i]['campo_5'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(5);
+      $pdf->writeHTMLCell(38, 5, 15, '', $nombres[5] ,1,0, 0, true, 'C', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 5, $espaciado+$i*15, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true);  
+      }
 
+$pdf->ln(10);
 $linea = <<<EOD
 <style>
 .linea{

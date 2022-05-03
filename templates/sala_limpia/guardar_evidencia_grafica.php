@@ -8,6 +8,7 @@ $i = 1;
 $ruta = "imagenes/".$tipo_imagen."/";
 $id_insertado = "";
 
+
 do {
     /////////// VALIDACIÓN
     $consultar = mysqli_prepare($connect,"SELECT id_imagen FROM image_sala_limpia WHERE nombre = ? AND tipo = ? AND id_asignado = ?");
@@ -31,7 +32,6 @@ do {
 } while ($i > 0);
 
 /**LOGICA IMAGEN**/
-
 
 if(is_dir($ruta)===false){
     mkdir($ruta,0777,true);

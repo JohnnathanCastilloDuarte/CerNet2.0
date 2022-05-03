@@ -30,19 +30,20 @@ for($i = 0; $i < count($id_prueba_1); $i++){
     
 }
 
-
 ///////// SEGUNDA PRUEBA
 $id_prueba_3 = $_POST['id_prueba_3'];
-$medicion_1_p3= $_POST['medicion_1_p3'];
-$medicion_2_p3= $_POST['medicion_2_p3'];
-$medicion_3_p3= $_POST['medicion_3_p3'];
-$medicion_4_p3= $_POST['medicion_4_p3'];
+$medicion_1_p3= $_POST['campo_1'];
+$medicion_2_p3= $_POST['campo_2'];
+$medicion_3_p3= $_POST['campo_3'];
+$medicion_4_p3= $_POST['campo_4'];
+$medicion_5_p3= $_POST['campo_5'];
+$medicion_6_p3= $_POST['campo_6'];
 
 
 for($i=0; $i < count($id_prueba_3); $i++){
 
-    $actualizando2 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_3 SET medicion_1= ? ,medicion_2= ? ,medicion_3= ? ,medicion_4= ? WHERE id_prueba = ?");
-    mysqli_stmt_bind_param($actualizando2, 'ssssi', $medicion_1_p3[$i], $medicion_2_p3[$i], $medicion_3_p3[$i], $medicion_4_p3[$i], $id_prueba_3[$i]);
+    $actualizando2 = mysqli_prepare($connect,"UPDATE datos_de_prueba_3 SET campo_1= ? ,campo_2= ? ,campo_3= ? ,campo_4= ?, campo_5= ?, campo_6= ? WHERE id = ?");
+    mysqli_stmt_bind_param($actualizando2, 'ssssssi', $medicion_1_p3[$i], $medicion_2_p3[$i], $medicion_3_p3[$i], $medicion_4_p3[$i], $medicion_5_p3[$i], $medicion_6_p3[$i], $id_prueba_3[$i]);
     mysqli_stmt_execute($actualizando2);
 }
 
