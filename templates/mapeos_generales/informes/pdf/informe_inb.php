@@ -65,7 +65,7 @@ if($ciudad_g == 'Chile'){
   
   $info1 = '<tr>
   <td width="25%" align="right">Normativa técnica N° 147 del MINSAL:</td>
-  <td align="left" width="75%">"Buenas Prácticas de almacenamiento y distribución para droguerías y depósitos de productos de uso humano"</td>
+  <td align="left" width="75%">"Buenas Prácticas de almacenamiento y distribucidó&nbsp;&nbsp;n para droguerías y depdó&nbsp;&nbsp;sitos de productos de uso humano"</td>
     </tr>'; 
   
   $info2 = '<tr>
@@ -73,17 +73,17 @@ if($ciudad_g == 'Chile'){
   <td align="left" width="75%">"Guía para realizar el mapeo térmico de áreas de almacenamiento" del 14-12-2018</td>
    </tr>';
   
-  $info3 = '<SPAN STYLE="text-align: justify;">Según la norma técnica N°147 de Buenas Prácticas de Almacenamiento y Distribución
-para droguerías y depósitos de productos de uso humano, se detalla en
+  $info3 = '<SPAN STYLE="text-align: justify;">Según la norma técnica N°147 de Buenas Prácticas de Almacenamiento y Distribucidó&nbsp;&nbsp;n
+para droguerías y depdó&nbsp;&nbsp;sitos de productos de uso humano, se detalla en
 el punto 4.17 Condiciones de almacenamiento lo siguiente:</SPAN>
 
 
 <UL>
 
 <LI CLASS="biglist">“Las condiciones de almacenamiento de materiales y productos
-deben estar en conformidad con lo señalado en sus rótulos o etiquetas, que se base
+deben estar en conformidad con lo señalado en sus rdó&nbsp;&nbsp;tulos o etiquetas, que se base
 en los resultados de las pruebas de estabilidad y lo aprobado en el respectivo
-registro sanitario, según corresponda según lo señalado a continuación:
+registro sanitario, según corresponda según lo señalado a continuacidó&nbsp;&nbsp;n:
 
 
 	<UL>
@@ -93,14 +93,14 @@ registro sanitario, según corresponda según lo señalado a continuación:
 	<LI CLASS="smallist">Los locales de almacenamiento deben estar secos y bien ventilados, a temperatura
 	ambiente de 15-25°C, o, dependiendo de las condiciones climáticas, hasta 30°C en
 	periodos breves.</LI>
-	<LI CLASS="smallist">Se debe evitar los olores extraños, indicios de contaminación y luz intensa.</LI>
+	<LI CLASS="smallist">Se debe evitar los olores extraños, indicios de contaminacidó&nbsp;&nbsp;n y luz intensa.</LI>
 
 	<br><br><SPAN STYLE="text-align: justify;"><STRONG>Instrucciones definidas de almacenamiento:</STRONG></SPAN>
 	<LI CLASS="smallist">Los productos deben ser almacenados bajo condiciones definidas
 	que requieren aprobadas instrucciones de almacenamiento. A menos que se
 	indique lo contrario (por ejemplo, productos que requieren mantener
 	almacenamiento continuo de frío, productos refrigerados, etc.). Las desviaciones
-	pueden ser toleradas sólo durante interrupciones de corta duración, por ejemplo,
+	pueden ser toleradas sdó&nbsp;&nbsp;lo durante interrupciones de corta duracidó&nbsp;&nbsp;n, por ejemplo,
 	durante el transporte local, siempre y cuando la estabilidad del producto así lo
 	permita.</LI>
 	</UL>
@@ -111,8 +111,6 @@ registro sanitario, según corresponda según lo señalado a continuación:
   
 }                                  
 
-// set font
-$pdf->SetFont('freesans', 'R', 8.2);
 
 // add a page
 $pdf->AddPage();
@@ -149,24 +147,24 @@ tr:nth-child(even)
 </style>
 <table>
 <tr><td width="13%" align="right">Solicitante:</td><td width="87%" align="left">$nombre_empresa_g</td></tr>
-<tr><td width="13%" align="right">Dirección:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
-<tr><td width="13%" align="right">Atención:</td><td width="87%" align="left">$solicitante</td></tr>
-<tr><td width="13%" align="right">Fecha Emisión:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
+<tr><td width="13%" align="right">Direccidó&nbsp;&nbsp;n:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
+<tr><td width="13%" align="right">Atencidó&nbsp;&nbsp;n:</td><td width="87%" align="left">$solicitante</td></tr>
+<tr><td width="13%" align="right">Fecha Emisidó&nbsp;&nbsp;n:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>1.0 ANTECEDENTES DE LA INSPECCION</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="25%" align="right">Lugar:</td><td align="left" width="75%">$ubicacion_equipo</td></tr>
-<tr><td width="25%" align="right">Fecha de medición:</td><td align="left" width="75%">$fecha_inicio_g - $fecha_fin_g</td></tr>
-<tr><td width="25%" align="right">Acta de inspección:</td><td align="left" width="75%">$acta_inspeccion</td></tr>
+<tr><td width="25%" align="right">Fecha de medicidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$fecha_inicio_g - $fecha_fin_g</td></tr>
+<tr><td width="25%" align="right">Acta de inspeccidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$acta_inspeccion</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>2.0 IDENTIFICACIÓN DE EQUIPO Y/O ÁREA</strong></H3></td></tr></table><br><br>
 <table>
-<tr><td width="25%" align="right">Descripción:</td><td align="left" width="75%">$descripcion_item</td></tr>
+<tr><td width="25%" align="right">Descripcidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$descripcion_item</td></tr>
 <tr><td width="25%" align="right">Marca:</td><td align="left" width="75%">$marca</td></tr>
 <tr><td width="25%" align="right">Modelo:</td><td align="left" width="75%">$modelo</td></tr>
-<tr><td width="25%" align="right">Identificación:</td><td align="left" width="75%">$codigo_interno</td></tr>
+<tr><td width="25%" align="right">Identificacidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$codigo_interno</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>3.0 NORMATIVA</strong></H3></td></tr></table><br><br>
@@ -192,10 +190,10 @@ $info2
 <table>
 <tr><td width="25%" align="right">Plano de la $clasificacion_item y N° rev.:</td><td align="left" width="75%">$planos</td></tr>
 
-<tr><td width="25%" align="right">Especificación de temperatura:</td>
+<tr><td width="25%" align="right">Especificacidó&nbsp;&nbsp;n de temperatura:</td>
 <td align="left" width="75%">Mínima $min_temp °C- Máxima $max_temp °C</td></tr>
 
-<tr><td width="25%" align="right">Especificación de humedad:</td>
+<tr><td width="25%" align="right">Especificacidó&nbsp;&nbsp;n de humedad:</td>
 <td align="left" width="75%">Mínima $min_hr % - Máxima $max_hr %</td></tr>
 
 <tr><td width="25%" align="right">Productos que almacenan:</td><td align="left" width="75%">$productos_almacena</td></tr>
@@ -205,9 +203,9 @@ $info2
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>5.0 ANÁLISIS DE RIESGOS - INFORMACIÓN BASE</strong></H3></td></tr></table><br><br>
 <table>
 
-<tr><td width="25%" align="right">Orientación principal de la $clasificacion_item:</td><td align="left" width="75%">$orientacion_principal</td></tr>
-<tr><td width="25%" align="right">Orientación de recepción:</td><td align="left" width="75%">$orientacion_rececpion</td></tr>
-<tr><td width="25%" align="right">Orientación de despacho:</td><td align="left" width="75%">$orientacion_despacho</td></tr>
+<tr><td width="25%" align="right">Orientacidó&nbsp;&nbsp;n principal de la $clasificacion_item:</td><td align="left" width="75%">$orientacion_principal</td></tr>
+<tr><td width="25%" align="right">Orientacidó&nbsp;&nbsp;n de recepcidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$orientacion_rececpion</td></tr>
+<tr><td width="25%" align="right">Orientacidó&nbsp;&nbsp;n de despacho:</td><td align="left" width="75%">$orientacion_despacho</td></tr>
 <tr><td width="25%" align="right">Número de puertas:</td><td align="left" width="75%">$num_puertas</td></tr>
 <tr><td width="25%" align="right">Salidas de emergencia:</td><td align="left" width="75%">$salida_emergencia</td></tr>
 <tr><td width="25%" align="right">Número de ventanas:</td><td align="left" width="75%"></td></tr>
@@ -215,7 +213,7 @@ $info2
 <tr><td width="25%" align="right">Número de niveles de los estantes:</td><td align="left" width="75%">$num_estantes</td></tr>
 <tr><td width="25%" align="right">Altura máxima de racks:</td><td align="left" width="75%">$altura_max_rack</td></tr>
 <tr><td width="25%" align="right">Cuenta con sistema HVAC:</td><td align="left" width="75%">$s_climatizacion</td></tr>
-<tr><td width="25%" align="right">Cuenta con sistema de extracción:</td><td align="left" width="75%">$sistema_extraccion</td></tr>
+<tr><td width="25%" align="right">Cuenta con sistema de extraccidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$sistema_extraccion</td></tr>
 <tr><td width="25%" align="right">Cuenta con cielo pasa luz:</td><td align="left" width="75%">$cielo_lus</td></tr>
 <tr><td width="25%" align="right">Cantidad de luminarias:</td><td align="left" width="75%">$cantidad_luminarias</td></tr>
 <tr><td width="25%" align="right">Tipo de pared:</td><td align="left" width="75%">$tipo_muro</td></tr>
@@ -287,19 +285,19 @@ tr:nth-child(even)
 <H3>6.1 OBJETIVO</H3>
 <SPAN STYLE="text-align: justify;">Comprobar que las temperaturas en la cual se almacenan los productos se mantengan
 dentro de los límites establecidos, proporcionando evidencia documental que
-demuestre información general para un buen almacenamiento y las prácticas de
-distribución, para asegurar que los productos lleguen al usuario final (los
+demuestre informacidó&nbsp;&nbsp;n general para un buen almacenamiento y las prácticas de
+distribucidó&nbsp;&nbsp;n, para asegurar que los productos lleguen al usuario final (los
 profesionales y los pacientes / consumidores) con calidad intacta.</SPAN>
 
 <H3>6.2 REVISIÓN NORMATIVA</H3>
 <SPAN STYLE="text-align: justify;">Según el suplemento técnico OMS Reporte Técnico N°961- anexo 9 “Model guidance for
 the storage and transport of time- temperature – sensitive pharmaceutical products”
-dentro del punto 5- ubicación de sensores de monitoreo se recomienda según el layout
+dentro del punto 5- ubicacidó&nbsp;&nbsp;n de sensores de monitoreo se recomienda según el layout
 del área del almacenamiento:</SPAN>
 
 <UL>
-<LI CLASS="biglist">Largo y ancho: se recomienda la utilización de una “rejilla” a lo largo y ancho del
-plano, para la distribución de los sensores tomando entre 5- 10 metros de distancia
+<LI CLASS="biglist">Largo y ancho: se recomienda la utilizacidó&nbsp;&nbsp;n de una “rejilla” a lo largo y ancho del
+plano, para la distribucidó&nbsp;&nbsp;n de los sensores tomando entre 5- 10 metros de distancia
 lineal entre cada sensor. Si son $clasificacion_item s con mayores longitudes de
 almacenamiento pueden colocarse los sensores a una distancia lineal de 20 o 30
 metros entre ellos.</LI>
@@ -322,28 +320,28 @@ $info3
 <H3>6.3 METODOLOGÍA</H3>
 <SPAN STYLE="text-align: justify;">Proceso:</span>
 <UL>
-<LI CLASS="biglist">Se realiza una inspección visual de la $clasificacion_item donde se determinan las áreas
+<LI CLASS="biglist">Se realiza una inspeccidó&nbsp;&nbsp;n visual de la $clasificacion_item donde se determinan las áreas
 críticas que pueden afectar las temperaturas de los productos almacenados.</LI>
 
 <LI CLASS="biglist">Se realiza análisis de riesgo para determinar áreas críticas.</LI>
 
-<LI CLASS="biglist">La $clasificacion_item se encuentra al momento de la instalación de sensores con $carga_bod% de
+<LI CLASS="biglist">La $clasificacion_item se encuentra al momento de la instalacidó&nbsp;&nbsp;n de sensores con $carga_bod% de
 carga aproximadamente.</LI>
 
 <LI CLASS="biglist">Por altura de la $clasificacion_item y los estantes instalados en ella se consideran $alturas_generales niveles de
-ubicación de sensores, a fin de evaluar el gradiente de temperatura, $zona_alt_a $zona_alt_m7 $zona_alt_m6 $zona_alt_m5 $zona_alt_m4 
+ubicacidó&nbsp;&nbsp;n de sensores, a fin de evaluar el gradiente de temperatura, $zona_alt_a $zona_alt_m7 $zona_alt_m6 $zona_alt_m5 $zona_alt_m4 
 $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b.</LI>
 
 <LI CLASS="biglist">Se determinan entonces, teniendo en cuenta los puntos más críticos mencionados
-anteriormente la instalación de <strong> $total_sensores sensores</strong> ubicados al interior de la $numero_equipo de
+anteriormente la instalacidó&nbsp;&nbsp;n de <strong> $total_sensores sensores</strong> ubicados al interior de la $numero_equipo de
 almacenamiento de $descrip_material, para evaluar comportamiento bajo criterio de sobrepasar las temperaturas
 límite de $min_temp °C a $max_temp °C definidas por el solicitante.</LI>
 
-<LI CLASS="biglist">La posición de los sensores se encuentra registrada en el punto “Descripción de
-distribución de sensores”.</LI>
+<LI CLASS="biglist">La posicidó&nbsp;&nbsp;n de los sensores se encuentra registrada en el punto “Descripcidó&nbsp;&nbsp;n de
+distribucidó&nbsp;&nbsp;n de sensores”.</LI>
 
-<LI CLASS="biglist">Se verificó el correcto estado de calibración y funcionamiento de los sensores
-datalogger del equipo de validación. Los datalogger realizan medición de
+<LI CLASS="biglist">Se verificdó&nbsp;&nbsp; el correcto estado de calibracidó&nbsp;&nbsp;n y funcionamiento de los sensores
+datalogger del equipo de validacidó&nbsp;&nbsp;n. Los datalogger realizan medicidó&nbsp;&nbsp;n de
 temperatura y humedad relativa.</LI>
 
 <LI CLASS="biglist">Las mediciones de Humedad relativa son de carácter informativo.</LI>
@@ -359,7 +357,7 @@ el mapa del área durante el período de estudio.</SPAN><BR><BR>
 <SPAN STYLE="text-align: justify;">La temperatura mínima se refiere a la temperatura más baja registrada en el espacio
 mapeado durante el período de estudio; la temperatura máxima se refiere a la más alta
 registrada durante el mismo período. Cualquiera o ambas de estas temperaturas pueden
-estar fuera de los criterios de aceptación especificados para la droguería.</SPAN><BR><BR>
+estar fuera de los criterios de aceptacidó&nbsp;&nbsp;n especificados para la droguería.</SPAN><BR><BR>
 
 <SPAN STYLE="text-align: justify;">Un punto frío se refiere a las temperaturas más bajas registradas en el área durante el
 período de estudio, pero estas temperaturas más bajas se mantienen dentro de lo
@@ -369,7 +367,7 @@ especificado por cliente de +$min_temp °C a +$max_temp °C.</SPAN><BR><BR>
 <SPAN STYLE="text-align: justify;">Un punto caliente se refiere a las temperaturas más altas registradas en el área durante
 el período de estudio, pero estas temperaturas más altas permanecen dentro del rango
 de temperatura especificado en el rango de temperatura por cliente de +$min_temp °C a +$max_temp °C.
-El propósito de determinar los puntos calientes y fríos es identificar las ubicaciones
+El propdó&nbsp;&nbsp;sito de determinar los puntos calientes y fríos es identificar las ubicaciones
 donde los sensores del sistema de monitoreo deben ubicarse preferentemente. Los
 puntos calientes y los puntos fríos deben determinarse estacionalmente, ya que, pueden
 ser significativamente diferentes en verano y en invierno.</SPAN><BR><BR>
@@ -378,29 +376,29 @@ ser significativamente diferentes en verano y en invierno.</SPAN><BR><BR>
 las temperaturas más altas y bajas. Los valores promedio pueden ser útiles para ayudar
 a confirmar verdaderos puntos calientes y fríos.</SPAN >
 
-<SPAN STYLE="text-align: justify;">El resultado final y el propósito de un ejercicio de mapeo es la implementación de las
-recomendaciones del informe. Una discusión detallada de la implementación está fuera
+<SPAN STYLE="text-align: justify;">El resultado final y el propdó&nbsp;&nbsp;sito de un ejercicio de mapeo es la implementacidó&nbsp;&nbsp;n de las
+recomendaciones del informe. Una discusidó&nbsp;&nbsp;n detallada de la implementacidó&nbsp;&nbsp;n está fuera
 del alcance de este documento, pero podría incluir cualquiera de los siguientes
 resultados:</SPAN>
 
 <UL>
-<LI CLASS="biglist">Un dibujo o diagrama que muestra dónde se pueden almacenar <!--TTSPP-->de forma
-segura en el espacio que se ha mapeado: es posible que haya alguna zonificación
-involucrada. Por ejemplo, productos que no se ven afectados por congelación podría
+<LI CLASS="biglist">Un dibujo o diagrama que muestra ddó&nbsp;&nbsp;nde se pueden almacenar <!--TTSPP-->de forma
+segura en el espacio que se ha mapeado: es posible que haya alguna zonificacidó&nbsp;&nbsp;n
+involucrada. Por ejemplo, productos que no se ven afectados por congelacidó&nbsp;&nbsp;n podría
 asignarse a partes de una cámara frigorífica donde el estudio de mapeo ha mostrado
-algún riesgo de congelación.</LI>
+algún riesgo de congelacidó&nbsp;&nbsp;n.</LI>
 
-<LI CLASS="biglist">Asignación de bahías de pallets a categorías específicas <!--de TTSPP-->en el sistema de
-gestión de almacén para controlar dónde existencias están posicionados.
+<LI CLASS="biglist">Asignacidó&nbsp;&nbsp;n de bahías de pallets a categorías específicas <!--de TTSPP-->en el sistema de
+gestidó&nbsp;&nbsp;n de almacén para controlar ddó&nbsp;&nbsp;nde existencias están posicionados.
 - Reposicionamiento de sensores de monitoreo de temperatura y/o sensores de control
 ambiental.</LI>
 
-<LI CLASS="biglist">Ajuste de las salidas de aire para reducir la estratificación de la temperatura y/o
+<LI CLASS="biglist">Ajuste de las salidas de aire para reducir la estratificacidó&nbsp;&nbsp;n de la temperatura y/o
 minimice los puntos fríos y calientes.
-- Actualización de sistemas mecánicos para mejorar el control de temperatura y
+- Actualizacidó&nbsp;&nbsp;n de sistemas mecánicos para mejorar el control de temperatura y
 rendimiento.</LI>
 
-<LI CLASS="biglist">Una decisión de usar el espacio para otros fines porque no es adecuado para el
+<LI CLASS="biglist">Una decisidó&nbsp;&nbsp;n de usar el espacio para otros fines porque no es adecuado para el
 almacenamiento.<!--de TTSPPs.--></LI>
 </UL>
 
@@ -411,17 +409,17 @@ ocurrir excursiones y son útiles cuando los fabricantes de productos
 desarrollen un plan para tratarlas. Las alarmas deben usarse para revelar excursiones
 ambientales durante las operaciones. Puede admitirse excursiones de temperatura por
 períodos breves fuera de las condiciones de etiqueta de almacenamiento respectivas
-siempre que existan datos de estabilidad y justificación científica / técnica que
+siempre que existan datos de estabilidad y justificacidó&nbsp;&nbsp;n científica / técnica que
 demuestren que la calidad del producto no se ve afectada (consulte la GUI 0069 de
 Health Canada titulada Guías para el control de temperatura de productos durante almacenamiento y transporte; 2011).</SPAN><BR><BR>
 
-<SPAN STYLE="text-align: justify;">El MKT es la temperatura calculada única a la cual la cantidad total de degradación
+<SPAN STYLE="text-align: justify;">El MKT es la temperatura calculada única a la cual la cantidad total de degradacidó&nbsp;&nbsp;n
 durante un período particular es igual a la suma de las degradaciones individuales que
 ocurrirían a diversas temperaturas. MKT puede considerarse como una temperatura de
-almacenamiento isotérmico que simula los efectos no isotérmicos de la variación de la
+almacenamiento isotérmico que simula los efectos no isotérmicos de la variacidó&nbsp;&nbsp;n de la
 temperatura de almacenamiento. No es una simple media aritmética. Las temperaturas
 usadas para calcular MKT se pueden recoger convenientemente usando dispositivos
-electrónicos que miden temperaturas a intervalos frecuentes (por ejemplo, cada 15
+electrdó&nbsp;&nbsp;nicos que miden temperaturas a intervalos frecuentes (por ejemplo, cada 15
 minutos).</SPAN><BR><BR>
 
 
@@ -432,7 +430,7 @@ $pdf->writeHTML($txt, true, false, false, false, '');
 $txt = <<<EOD
 
 <SPAN STYLE="text-align: justify;">La media aritmética de las temperaturas altas y bajas semanales se usan luego en el
-cálculo de MKT. MKT se calcula mediante la siguiente ecuación (derivada de la ecuación
+cálculo de MKT. MKT se calcula mediante la siguiente ecuacidó&nbsp;&nbsp;n (derivada de la ecuacidó&nbsp;&nbsp;n
 de Arrhenius):</SPAN><BR>
 <table border="0">
 <tr>
@@ -443,32 +441,32 @@ de Arrhenius):</SPAN><BR>
 </table>
 
 
-<SPAN STYLE="text-align: justify;">En el que ΔH es el calor de activación, lo que equivale a 83.144 kJ por mol (a menos
-que haya información más precisa disponible de estudios experimentales); R es la
+<SPAN STYLE="text-align: justify;">En el que ΔH es el calor de activacidó&nbsp;&nbsp;n, lo que equivale a 83.144 kJ por mol (a menos
+que haya informacidó&nbsp;&nbsp;n más precisa disponible de estudios experimentales); R es la
 constante universal de los gases, que es igual a 8,3144 × 10-3 kJ por grado por mol; T1
 es la temperatura media, en grados Kelvin, durante el primer periodo de tiempo, por
 ejemplo, la primera semana; T2 es la temperatura media, en grados Kelvin, durante el
 segundo período de tiempo.</SPAN><BR><BR>
 
-<SPAN STYLE="text-align: justify;">La posesión de un medicamento puede ocurrir como parte de las prácticas de
-almacenamiento y distribución. Los productos en la cadena de suministro
-de distribución se pueden mantener a temperaturas fuera de los requisitos de
+<SPAN STYLE="text-align: justify;">La posesidó&nbsp;&nbsp;n de un medicamento puede ocurrir como parte de las prácticas de
+almacenamiento y distribucidó&nbsp;&nbsp;n. Los productos en la cadena de suministro
+de distribucidó&nbsp;&nbsp;n se pueden mantener a temperaturas fuera de los requisitos de
 almacenamiento etiquetados según lo determinado por un estudio de estabilidad
 apropiado.<SPAN><BR><BR>
 
 <SPAN STYLE="text-align: justify;">Los productos almacenados en condiciones de almacén o en modos de
 transporte pueden experimentar excursiones de sus rangos de temperatura aceptables.
-Cada excursión de producto debe evaluarse para determinar el efecto final del producto.
-Los medios de evaluación deben ser científicamente sólidos, con justificación técnica
+Cada excursidó&nbsp;&nbsp;n de producto debe evaluarse para determinar el efecto final del producto.
+Los medios de evaluacidó&nbsp;&nbsp;n deben ser científicamente sdó&nbsp;&nbsp;lidos, con justificacidó&nbsp;&nbsp;n técnica
 documentada de que la integridad del producto farmacéutico no se ha visto afectada. Un
 método de análisis para el producto farmacéutico almacenado fuera de sus respectivas
 condiciones de almacenamiento de etiquetas es el uso de un cálculo MKT. Debido a que
 MKT expresa el estrés térmico acumulado que experimenta un producto farmacéutico, 
 se considera una práctica aceptable para el almacenamiento, y se deduce que debe
-considerarse para las excursiones de tránsito en el proceso de distribución.</SPAN><BR><BR>
+considerarse para las excursiones de tránsito en el proceso de distribucidó&nbsp;&nbsp;n.</SPAN><BR><BR>
 
-<SPAN STYLE="text-align: justify;">El cálculo debe justificarse para su uso con excursiones de distribución al confirmar que
-la característica de estabilidad de limitación del producto sigue una cinética de primer
+<SPAN STYLE="text-align: justify;">El cálculo debe justificarse para su uso con excursiones de distribucidó&nbsp;&nbsp;n al confirmar que
+la característica de estabilidad de limitacidó&nbsp;&nbsp;n del producto sigue una cinética de primer
 orden sobre el rango de temperatura encontrado. Las directrices de prueba de
 estabilidad de ICH definen MKT como una temperatura derivada "única" que, si se
 mantiene durante un período definido, ofrecerá el mismo desafío térmico a un producto
@@ -481,7 +479,7 @@ producto.</SPAN><BR><BR>
 <SPAN STYLE="text-align: justify;">El MKT calculado no es sensible al impacto de las excursiones que pueden ocurrir si la
 línea de base es un período de tiempo prolongado, como un segmento de
 almacenamiento o toda la vida útil del producto farmacéutico. Para periodos de tiempo
-iniciales más cortos, como segmentos de transporte, una excursión puede tener un
+iniciales más cortos, como segmentos de transporte, una excursidó&nbsp;&nbsp;n puede tener un
 impacto significativo en el MKT resultante para ese segmento; sin embargo, esto no
 tendría necesariamente un impacto significativo en la calidad del producto.</SPAN><BR><BR>
 
@@ -489,19 +487,19 @@ tendría necesariamente un impacto significativo en la calidad del producto.</SP
 los parámetros aceptables para un producto farmacéutico, durante un corto período de
 tiempo y no pretende ser una medida para el almacenamiento a largo plazo.</SPAN><BR><BR>
 
-<SPAN STYLE="text-align: justify;">Conocer el MKT para una excursión es útil para evaluar el impacto potencial en la calidad
+<SPAN STYLE="text-align: justify;">Conocer el MKT para una excursidó&nbsp;&nbsp;n es útil para evaluar el impacto potencial en la calidad
 del producto. Sin embargo, también es esencial conocer los límites de temperatura
-superior e inferior de cualquier excursión. Si estas temperaturas extremas están fuera
+superior e inferior de cualquier excursidó&nbsp;&nbsp;n. Si estas temperaturas extremas están fuera
 de los datos de estabilidad disponibles, puede que no sea posible predecir el impacto de
-calidad de la excursión con confianza independientemente del MKT. Aunque a las
+calidad de la excursidó&nbsp;&nbsp;n con confianza independientemente del MKT. Aunque a las
 temperaturas más altas se les da un mayor peso en el cálculo, el cálculo de MKT para
 el producto no congelado que se congela por cualquier período de tiempo puede no dar
 como resultado una temperatura aceptable, aunque el producto no esté adulterado.</SPAN><BR><BR>
 
-<SPAN STYLE="text-align: justify;">A temperaturas más altas, la cinética de degradación puede cambiar o pueden ocurrir
-nuevas reacciones de degradación; a temperaturas más bajas (cerca de la congelación)
+<SPAN STYLE="text-align: justify;">A temperaturas más altas, la cinética de degradacidó&nbsp;&nbsp;n puede cambiar o pueden ocurrir
+nuevas reacciones de degradacidó&nbsp;&nbsp;n; a temperaturas más bajas (cerca de la congelacidó&nbsp;&nbsp;n)
 puede producirse un cambio de fase que se sabe que tiene un impacto negativo en la
-calidad de algunos productos farmacológicos (por ejemplo, algunas proteínas y
+calidad de algunos productos farmacoldó&nbsp;&nbsp;gicos (por ejemplo, algunas proteínas y
 vacunas).</SPAN><BR><BR>
 
 
@@ -522,15 +520,15 @@ $pdf->writeHTML($txt, true, false, false, false, '');
 ////////////////////////////////////////////////////////CICLO DE IMPRESION DE ALTURAS ////////////////////////////////////////////////////////////////////////
 
 
-$pdf->writeHTMLCell(15, 5, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 5, 15, '', 'Posicidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(28, 5, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(28, 5, 30, '', 'N° de identificacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(55, 5, 58, '', 'Ubicación', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(55, 5, 58, '', 'Ubicacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(28, 5, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(54, 5, 141, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(54, 5, 141, '', 'N° Certificado de Calibracidó&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
 
 $contador_t = 0;
 
@@ -554,15 +552,15 @@ while($row = mysqli_stmt_fetch($query_32)){
 
        $pdf->AddPage('A4');
        //TITULOS
-        $pdf->writeHTMLCell(15, 5, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
+        $pdf->writeHTMLCell(15, 5, 15, '', 'Posicidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-        $pdf->writeHTMLCell(28, 5, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
+        $pdf->writeHTMLCell(28, 5, 30, '', 'N° de identificacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-        $pdf->writeHTMLCell(55, 5, 58, '', 'Ubicación', 1, 0, 0, true, 'C', true);
+        $pdf->writeHTMLCell(55, 5, 58, '', 'Ubicacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
         $pdf->writeHTMLCell(28, 5, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 
-        $pdf->writeHTMLCell(54, 5, 141, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);
+        $pdf->writeHTMLCell(54, 5, 141, '', 'N° Certificado de Calibracidó&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
 
      } 
       $pdf->writeHTMLCell(15, 5, 15, '', $contador_t, 1, 0, 0, true, 'C', true);
@@ -734,7 +732,7 @@ mysqli_stmt_fetch($sensor_desv_min_full);
 
 $minstd=round($desc_min_full,2);
 
-$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con menor desviación estándar', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con menor desviacidó&nbsp;&nbsp;n estándar', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(50, 13, 85, '', 'Temperatura: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 13, 135, '',' '.$minstd.'°C <br> '.$nombre_sensor_desv_min_full.'<br> Ubicado en :'.$nombre_altura_desv_min_full, 1, 1, 0, true, 'C', true);
 
@@ -752,7 +750,7 @@ mysqli_stmt_fetch($sensor_desv_max_full);
 
 $maxstd=round($desc_max_full,2);
 
-$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con mayor desviación estándar', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con mayor desviacidó&nbsp;&nbsp;n estándar', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(50, 13, 85, '', 'Temperatura: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 13, 135, '',' '.$maxstd.'°C <br> '.$nombre_sensor_desv_max_full.'<br> Ubicado en :'.$nombre_altura_desv_max_full, 1, 1, 0, true, 'C', true);
 
@@ -923,26 +921,26 @@ tr:nth-child(even)
 <br><br>
 <table>
 <tr><td width="5%">7.1</td>
-<td width="95%" class="justificado">La $clasificacion_item al momento de la instalación de los sensores de mapeo térmico por
+<td width="95%" class="justificado">La $clasificacion_item al momento de la instalacidó&nbsp;&nbsp;n de los sensores de mapeo térmico por
 personal de CERCAL INGENIERIA SPA, se encontraba con $carga_bod% de carga
 aproximadamente.</td></tr>
 </table>
 <br><br>
 <table>
 <tr><td width="5%">7.2</td>
-<td width="95%" class="justificado">Por la altura de la $clasificacion_item se consideran $alturas_generales niveles de ubicación de sensores, con el
+<td width="95%" class="justificado">Por la altura de la $clasificacion_item se consideran $alturas_generales niveles de ubicacidó&nbsp;&nbsp;n de sensores, con el
 fin de determinar el gradiente de temperatura: $zona_alt_a $zona_alt_m7 $zona_alt_m6 $zona_alt_m5 $zona_alt_m4 
 $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b, ubicados en $clasificacion_item de almacenamiento de $descrip_material.</td></tr>
 </table>
 <br><br>
 <table>
 <tr><td width="5%">7.3</td>
-<td width="95%" class="justificado">La propuesta y ubicación de los sensores fue analizada en conjunto con el $cargo.</td></tr>
+<td width="95%" class="justificado">La propuesta y ubicacidó&nbsp;&nbsp;n de los sensores fue analizada en conjunto con el $cargo.</td></tr>
 </table>
 <br><br>
 <table>
 <tr><td width="5%">7.4</td>
-<td width="95%" class="justificado">Es importante destacar que la información de la Humedad Relativa es sólo de carácter
+<td width="95%" class="justificado">Es importante destacar que la informacidó&nbsp;&nbsp;n de la Humedad Relativa es sdó&nbsp;&nbsp;lo de carácter
 informativo.</td></tr>
 </table>
 <br><br>
@@ -1204,8 +1202,8 @@ tr:nth-child(even)
 <table>
 <tr><td width="5%">8.1</td>
 <td width="95%" class="justificado">Los resultados obtenidos corresponden a la muestra inspeccionada por CERCAL
-INGENIERIA SPA al momento de la ejecución del Mapeo Térmico. Cualquier
-modificación posterior a la ejecución del mapeo, invalida el presente informe.</td></tr>
+INGENIERIA SPA al momento de la ejecucidó&nbsp;&nbsp;n del Mapeo Térmico. Cualquier
+modificacidó&nbsp;&nbsp;n posterior a la ejecucidó&nbsp;&nbsp;n del mapeo, invalida el presente informe.</td></tr>
 </table>
 <br><br>
 <table>
@@ -1400,7 +1398,7 @@ tr:nth-child(even)
 <br><br>
 <table>
 <tr><td width="5%">9.4</td>
-<td width="95%" class="justificado">Informe de Propuesta de Ubicación de Sensores: N° Informe $el_ps</td></tr>
+<td width="95%" class="justificado">Informe de Propuesta de Ubicacidó&nbsp;&nbsp;n de Sensores: N° Informe $el_ps</td></tr>
 </table>
 <br><br>
 <table>
@@ -1415,7 +1413,7 @@ tr:nth-child(even)
 <br><br>
 <table>
 <tr><td width="5%">9.7</td>
-<td width="95%" class="justificado">Certificados de Calibración de datalogger utilizados en el Mapeo Térmico.</td></tr>
+<td width="95%" class="justificado">Certificados de Calibracidó&nbsp;&nbsp;n de datalogger utilizados en el Mapeo Térmico.</td></tr>
 </table>
 <br><br><br>
 

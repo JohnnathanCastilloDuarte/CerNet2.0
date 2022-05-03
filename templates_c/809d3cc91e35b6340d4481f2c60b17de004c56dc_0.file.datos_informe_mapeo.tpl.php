@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-15 15:14:21
+/* Smarty version 3.1.34-dev-7, created on 2022-04-29 11:25:39
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620bc34d667e38_70356760',
+  'unifunc' => 'content_626bcb33050fe3_50975214',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '809d3cc91e35b6340d4481f2c60b17de004c56dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl',
-      1 => 1644937975,
+      1 => 1651231536,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620bc34d667e38_70356760 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626bcb33050fe3_50975214 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -398,6 +398,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
       <div class="col-sm-12">
         <div class="card-header">Sensores asignados</div>
         <div class="card body" id="from_termocupla">
+      
           <table class="table" style="text-align:center;">
             <thead>
               <th>Sensor</th>
@@ -414,6 +415,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
         </div>
         <div class="card body" id="from_sensores">
+          
+              
           <table class="table" style="text-align:center;">
             <thead>
               <th>Sensor</th>

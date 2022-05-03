@@ -314,6 +314,7 @@
       <div class="col-sm-12">
         <div class="card-header">Sensores asignados</div>
         <div class="card body" id="from_termocupla">
+      
           <table class="table" style="text-align:center;">
             <thead>
               <th>Sensor</th>
@@ -330,6 +331,8 @@
 
         </div>
         <div class="card body" id="from_sensores">
+          
+              
           <table class="table" style="text-align:center;">
             <thead>
               <th>Sensor</th>
