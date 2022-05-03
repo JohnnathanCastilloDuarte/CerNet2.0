@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-01-2022 a las 14:40:21
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.3.31
+-- Tiempo de generación: 03-05-2022 a las 21:26:21
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,36 +30,30 @@ SET time_zone = "+00:00";
 CREATE TABLE `item_sala_limpia` (
   `id` int(11) NOT NULL COMMENT 'id primaria',
   `id_item` int(11) DEFAULT NULL COMMENT 'id del item al que se asigna',
-  `clasificacion_oms` varchar(100) DEFAULT NULL COMMENT 'clasificacion_oms',
-  `clasificacion_iso` varchar(100) DEFAULT NULL COMMENT 'clasificacion_iso\r\n',
+  `Area_sala_limpia` varchar(100) DEFAULT NULL COMMENT 'Area de la sala limpia',
+  `Codigo` varchar(100) DEFAULT NULL COMMENT 'Codigo de la sala limpia\r\n',
   `direccion` varchar(100) DEFAULT NULL COMMENT 'dirección del ítem',
-  `ubicacion_interna` varchar(100) DEFAULT NULL COMMENT 'ubicación interna del ítem',
   `area_interna` varchar(100) DEFAULT NULL COMMENT 'Área interna del ítem',
   `Area_m2` varchar(100) DEFAULT NULL COMMENT 'Area de la sala en metros cuadrados',
   `volumen_m3` varchar(100) DEFAULT NULL COMMENT 'Volumen de la sala en metros cubicos',
-  `claudal_m3h` varchar(100) DEFAULT NULL COMMENT 'claudal_m3h',
-  `ren_hr` varchar(100) DEFAULT NULL COMMENT 'ren_hr',
-  `temperatura` varchar(50) DEFAULT NULL COMMENT 'temperatura °c',
-  `hum_relativa` varchar(100) DEFAULT NULL COMMENT 'hum_relativa',
-  `lux` varchar(100) DEFAULT NULL COMMENT 'lux/luz',
-  `ruido_dba` varchar(100) DEFAULT NULL COMMENT 'ruido_dba',
-  `presion_sala` varchar(100) DEFAULT NULL COMMENT 'presion_sala',
-  `presion_versus` varchar(100) DEFAULT NULL COMMENT 'presion_versus',
-  `tipo_presion` varchar(100) DEFAULT NULL COMMENT 'tipo_presion',
-  `puntos_muestreo` varchar(100) DEFAULT NULL COMMENT 'puntos_muestreo',
+  `Estado_sala` varchar(100) DEFAULT NULL COMMENT 'Estado de la sala ',
+  `especificacion_1_temp` varchar(50) DEFAULT NULL COMMENT 'especificación de temperatura 1',
+  `especificacion_2_temp` varchar(50) DEFAULT NULL COMMENT 'especificación de temperatura 2',
+  `especificacion_1_hum` varchar(50) DEFAULT NULL COMMENT 'especificación de humedad 1',
+  `especificacion_2_hum` varchar(50) DEFAULT NULL COMMENT 'especificación de humedad 2',
+  `clasificacion_oms` varchar(50) NOT NULL,
+  `clasificacion_iso` varchar(50) NOT NULL,
+  `ren_hr` varchar(50) NOT NULL,
+  `lux` varchar(50) NOT NULL,
+  `ruido_dba` varchar(50) NOT NULL,
+  `presion_sala` varchar(50) NOT NULL,
+  `presion_versus` varchar(50) NOT NULL,
+  `tipo_presion` varchar(50) NOT NULL,
+  `puntos_muestreo` varchar(50) NOT NULL,
+  `temp_informativa` varchar(50) NOT NULL,
+  `hum_informativa` varchar(50) NOT NULL,
   `fecha_registro` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `item_sala_limpia`
---
-
-INSERT INTO `item_sala_limpia` (`id`, `id_item`, `clasificacion_oms`, `clasificacion_iso`, `direccion`, `ubicacion_interna`, `area_interna`, `Area_m2`, `volumen_m3`, `claudal_m3h`, `ren_hr`, `temperatura`, `hum_relativa`, `lux`, `ruido_dba`, `presion_sala`, `presion_versus`, `tipo_presion`, `puntos_muestreo`, `fecha_registro`) VALUES
-(1, 1, '12', '12', 'Sin registrar12', '12', '12', '12', '12', '12', '12', '12', '12', '12', NULL, NULL, NULL, NULL, NULL, '2022-01-11 22:22:27'),
-(2, 6, '12', '12', 'Sin registrar12', '12', '12', 'aream2', 'volumenm3', 'estadosala', '12', '12', '12', '12', NULL, NULL, NULL, NULL, NULL, '2022-01-12 23:06:59'),
-(3, 7, '123', '123', NULL, '123', NULL, '123', '123', '123', '123', '123', '123', '123', '123', '123', NULL, '123', '123', '2022-01-13 20:12:47'),
-(4, 8, '123', '123', 'Sin registrar', '', NULL, '123', '123', '123', '123', '123', '123', '123', '123', '123', '123', '123', '123', '2022-01-13 20:15:59'),
-(5, 9, '12', '12', 'Sin registrar12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '12', '2022-01-13 20:23:18');
 
 --
 -- Índices para tablas volcadas
@@ -79,7 +73,7 @@ ALTER TABLE `item_sala_limpia`
 -- AUTO_INCREMENT de la tabla `item_sala_limpia`
 --
 ALTER TABLE `item_sala_limpia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id primaria', AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id primaria';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
