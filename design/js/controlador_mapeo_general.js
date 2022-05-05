@@ -1572,11 +1572,18 @@ function listar_info_temp(id_informe, extra){
               $("#tipo_informe").val(valor.tipo_informe);
                if(valor.tipo_informe == "AR"){
                     
+                 
                   if(contador == 1){
                     template += 
                       
                       `
                        <form id="formulario_informe" enctype="multipart/form-data" method="post">
+                         <select class="form-control" name="tipo_protocolo">
+                            <option value="0">Seleccione...</option>
+                            <option value="GMP">GMP</option>
+                            <option value="GLP">GLP</option>
+                            <option value="GSP">GSP</option>
+                         </select>
                         <input type="hidden" value="AR" name="AR">
                         <input type="hidden" value="${id_informe}" name="id_informe">
                         <table class="table">
@@ -1681,7 +1688,10 @@ function listar_info_temp(id_informe, extra){
                 <div class="row">
                   <div class="col-sm-5">
                       <button class="btn btn-info" id="ver_dc_todos" data-id="${valor.id_informe}" data-name="${valor.tipo_informe}">Datos crudos (Todos los sensores)</button>
-                    
+              
+                  </div>
+                  <div class="col-sm-5">
+                      <button class="btn btn-info" id="ver_dc_todos_promedio" data-id="${valor.id_informe}" data-name="${valor.tipo_informe}">Datos crudos promedio (Todos los sensores)</button>
                   </div>
                 </div>
                 <hr>
@@ -1858,7 +1868,7 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-        
+          console.log(response)
             Swal.fire({
               title:'Mensaje',
               text:'Se ha actualizado correctamentes',
@@ -2016,7 +2026,16 @@ $("#form_cargar_archivos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-       
+         console.log(response)
+         if(response == "fecha"){
+           Swal.fire({
+             title:'Mensaje',
+             text:'Formato de fecha incorrecto, formato de fecha correcto debe ser yyyy-mm-dd HH:mm:ss, valida tu archivo y vuelve a intentarlo',
+             icon:'warning',
+             timer:2200
+           });
+         }else{
+
          listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
           Swal.fire({
             title:'Mensaje',
@@ -2025,6 +2044,8 @@ $("#form_cargar_archivos").submit(function(e){
             timer:1700
           });
           $("#mostrar_dato_crudo").hide();
+                      
+         }
         }
     });
     
@@ -2106,5 +2127,12 @@ $(document).on('click','#ver_dc_todos', function(){
     let tipo = $(this).attr('data-name');
     window.open('templates/mapeos_generales/datos_crudos_excel.php?key='+complemento+id_informe+'&tipo='+tipo);
 });
+
+$(document).on('click', '#ver_dc_todos_promedio', function(){
+    let id_informe  = $(this).attr('data-id');
+    let complemento = "FJANFNFIAOFNASLJNGJNSANFLSGGG5G4S84SSDGASIHGJLSFGD484512FSGFSGDG";
+    let tipo = $(this).attr('data-name');
+    window.open('templates/mapeos_generales/datos_crudos_excel.php?key='+complemento+id_informe+'&tipo='+tipo+'PROM');
+})
 
 

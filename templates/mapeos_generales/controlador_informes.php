@@ -181,6 +181,7 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
     $id_usuario = $_POST['id_usuario'];
     $tipo = "AR";
     $consecutivo = "";
+    $tipo_protocolo = $_POST['tipo_protocolo'];
 
     $consulta_empresa = mysqli_prepare($connect,"SELECT a.sigla_empresa, a.sigla_pais, b.correlativo FROM empresa as a, item_asignado as b, item as c WHERE a.id_empresa = c.id_empresa AND c.id_item = b.id_item AND b.id_asignado  = ?");
     mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
@@ -211,8 +212,8 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
      
         $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-AR';
 
-        $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
-        mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
+        $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario, tipo_protocolo) VALUES (?,?,?,?,?,?,?)");
+        mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario, $tipo_protocolo);
         mysqli_stmt_execute($insertando_informe);
         $id_informe = mysqli_stmt_insert_id($insertando_informe);
 
@@ -229,7 +230,7 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
                                        'Sistema de Climatización: Desgaste y mantención.',
                                        'Personal y maquinaria');
           
-            $gmp = "GMP";
+            $gmp = $_POST['tipo_protocolo'];
             $descrpcion = "Descripción";
             $probabilidad = "NA";
             $impacto = "A";
@@ -246,9 +247,6 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
             
   
             }
-          
-    
-           
           
         }else{
             echo "No";

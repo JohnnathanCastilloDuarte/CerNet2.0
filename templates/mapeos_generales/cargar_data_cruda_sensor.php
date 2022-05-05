@@ -23,14 +23,12 @@ do {
    if(file_exists($personalizado)){
      $nombre_archivo_n = "data_cruda_".$incremet.".csv";
      $personalizado = $directorio_carga.$nombre_archivo_n;
-     echo "intento ".$personalizado;
      $incremet++;
    }else{
      $i=2;
    }
 } while ($i == 0);
 
-echo "Final ".$personalizado;
 
 if(is_dir($directorio_carga)===false)
 {
@@ -99,29 +97,51 @@ else
 
       while(($column=fgetcsv($abrir_archivo,10000,";","\t"))!==false){
         
+          
+        
+       
+        
         if($contador > 20){
           
+   
+         $validador_fecha = strpos($column[1], '/');
+          
+         if($validador_fecha){
+           echo "fecha";
+           break;
+         }else{
+           
+
             if($z_1==1){
               
-                 $fecha_suma=$fecha_inicio;
+                $fecha_suma=$fecha_inicio;
             }else{
                   
                 $fecha_suma=$fecha_suma;
             } 
-        
             
-            if(($fecha_suma>=$fecha_inicio) && ($fecha_suma<=$fecha_fin)){
+          
+            
+            
+            $fecha_sql=date("Y-m-d H:i:s",strtotime($column[1]));
+            
+            if($fecha_sql>=$fecha_inicio && $fecha_sql<=$fecha_fin){
                 
-               $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
+                $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
                 mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $column[2], $column[3]);
                 mysqli_stmt_execute($insertando);
                 $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));
                 $z_1=2; 
             } 
+                            
         }
-        $contador++;
+       }                                     
+         $contador++;
+       
       }
     }
 }
+
+mysqli_close($connect);
 
 ?>

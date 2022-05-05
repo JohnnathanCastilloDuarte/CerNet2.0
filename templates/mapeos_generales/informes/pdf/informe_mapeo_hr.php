@@ -7,18 +7,18 @@
 
     //$a = "PRUEBA DE MAPEO TÉRMICO A DROGUERÍA MATHIESEN ( PERÍODO VERANO )";
 	
-		/////////////////////////////////////////////////////////PASOS DE CREACIÓN DE PDF///////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////PASOS DE CREACIó&nbsp;&nbsp;&nbsp;&nbsp;N DE PDF///////////////////////////////////////////////////////////
 
-		// 1-CONSULTAR LA INFORMACIÓN LA CUAL SE IMPRIMIRA EN LAS CABECERAS Y EL NOMBRE DEL INFORME
+		// 1-CONSULTAR LA INFORMACIó&nbsp;&nbsp;&nbsp;&nbsp;N LA CUAL SE IMPRIMIRA EN LAS CABECERAS Y EL NOMBRE DEL INFORME
 
-		$query_1 = mysqli_prepare($connect,"SELECT nombre, id_asignado, id_mapeo, observacion, comentario, corresponde_a, solicitante, fecha_registro FROM informes_general WHERE id_informe = ?");
+		$query_1 = mysqli_prepare($connect,"SELECT nombre, id_asignado, id_mapeo, observacion, comentario, corresponde_a, solicitante, fecha_registro FROM informes_general WHERE id_informe = ? ");
 		mysqli_stmt_bind_param($query_1, 'i', $id_informe);
 		mysqli_stmt_execute($query_1);
 		mysqli_stmt_store_result($query_1);
 		mysqli_stmt_bind_result($query_1, $dato_1, $id_asignado, $id_mapeo, $observacion, $comentarios, $concepto, $solicitante, $fecha_registro);
 		mysqli_stmt_fetch($query_1);
    
-		$nombre_informe = substr($dato_1, 0, -3);
+		$nombre_informe = $dato_1;
     $fecha_emicion = substr($fecha_registro,0, -8);
 
 		$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
@@ -44,7 +44,7 @@
 		mysqli_stmt_fetch($query_4);
 		
 		$numot = $dato_2;
-    $num_nummot = substr($dato_2, 2);
+    $num_nummot = substr($numot, 2);
 
 		$query_5 = mysqli_prepare($connect,"SELECT nombre, direccion FROM empresa WHERE id_empresa = ?");
 		mysqli_stmt_bind_param($query_5, 'i', $id_empresa);
@@ -53,7 +53,7 @@
 		mysqli_stmt_bind_result($query_5, $nombre_empresa, $direccion_empresa);
 		mysqli_stmt_fetch($query_5);
 
-		// 2-CONSULTAR LA INFORMACIÓN DE IDENTIFICACIÓN DEL EQUIPO
+		// 2-CONSULTAR LA INFORMACIó&nbsp;&nbsp;&nbsp;&nbsp;N DE IDENTIFICACIó&nbsp;&nbsp;&nbsp;&nbsp;N DEL EQUIPO
 
 		$nombre_item = "";
 		$descripcion_item = "";
@@ -97,20 +97,22 @@
         
       case 'Bodega':
 
-      $consultar_item_bodega = mysqli_prepare($connect,"SELECT direccion, codigo_interno, productos_almacena, largo, ancho, superficie, volumen, altura, tipo_muro, tipo_cielo,
-      s_climatizacion, s_monitoreo, s_alarma, planos, analisis_riesgo, ficha_estabilidad, id_usuario, fecha_registro, marca_bodega, modelo_bodega, temp_max, 
-      temp_min, hr_max, hr_min, orientacion_principal, orientacion_recepcion, orientacion_despacho, num_puertas, salida_emergencia, cantidad_rack, num_estantes,
-      altura_max_rack, sistema_extraccion, cielo_lus, cantidad_iluminarias, valor_seteado_hum FROM item_bodega WHERE id_item = ?");
+      $consultar_item_bodega = mysqli_prepare($connect,"SELECT b.direccion, b.codigo_interno, a.productos_almacena, a.largo, a.ancho, a.superficie, a.volumen, a.altura, a.tipo_muro, 
+      a.tipo_cielo, a.s_climatizacion, a.s_monitoreo, a.s_alarma, a.planos, a.analisis_riesgo, a.ficha_estabilidad, a.id_usuario, a.fecha_registro, a.marca_bodega, a.modelo_bodega, a.temp_max, 
+      a.temp_min, a.hr_max, a.hr_min, a.orientacion_principal, a.orientacion_recepcion, a.orientacion_despacho, a.num_puertas, a.salida_emergencia, a.cantidad_rack, a.num_estantes,
+      a.altura_max_rack, a.sistema_extraccion, a.cielo_lus, a.cantidad_iluminarias, a.valor_seteado_temp 
+      FROM item_bodega a, item b 
+      WHERE b.id_item =  ? AND a.id_item = b.id_item");
       mysqli_stmt_bind_param($consultar_item_bodega, 'i', $id_item);
       mysqli_stmt_execute($consultar_item_bodega);
       mysqli_stmt_store_result($consultar_item_bodega);
       mysqli_stmt_bind_result($consultar_item_bodega, $ubicacion, $codigo_interno, $productos_almacena, $largo, $ancho, $superficie, $volumen, $altura, $tipo_muro, 
                           $tipo_cielo, $s_climatizacion, $s_monitoreo, $s_alarma, $planos, $analisis_riesgo, $ficha_estabilidad, $id_usuario, $fecha_registro, 
-                          $marca, $modelo, $max_temp, $min_temp, $max_hr, $min_hr, $orientacion_principal, $orientacion_rececpion, $orientacion_despacho, $num_puertas,
-                          $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion,  $cielo_lus, $cantidad_luminarias, $valor_seteado_hum);
+                          $marcas, $modelos, $max_temp, $min_temp, $max_hr, $min_hr, $orientacion_principal, $orientacion_rececpion, $orientacion_despacho, $num_puertas,
+                          $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion,  $cielo_lus, $cantidad_luminarias, $valor_seteado_temp);
 
       mysqli_stmt_fetch($consultar_item_bodega);
-      break;
+        
         
 			case 'Camara Congelada':
 			
@@ -122,10 +124,6 @@
 					mysqli_stmt_fetch($consulta_info);
 
 
-				break;
-			
-			default:
-				# code...
 				break;
 		} 
 
@@ -223,7 +221,7 @@
     
     $min_general = number_format($min_general, 2);
 
-		//CALCULO DE LA DESVIACIÓN ESTANDAR		
+		//CALCULO DE LA DESVIACIó&nbsp;&nbsp;&nbsp;&nbsp;N ESTANDAR		
 
 		$query_16 = mysqli_prepare($connect,"SELECT STD(a.hum) as desviacion FROM datos_crudos_general as a, mapeo_general_sensor as b, 
 																					bandeja as c, sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? 
@@ -280,19 +278,18 @@
   $dif_max_resta = number_format($dif_max_resta, 2);
 
 	$query_22 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, mapeo_general_sensor as b, datos_crudos_general as c 
-  WHERE a.id_sensor = b.id_sensor AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = ? AND c.time = ? AND b.id_mapeo = ? ");
-	mysqli_stmt_bind_param($query_22, 'ssi', $dif_maxi, $dif_max_time, $id_mapeo);
+  WHERE a.id_sensor = b.id_sensor AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = $dif_maxi AND c.time = '$dif_max_time' AND b.id_mapeo = $id_mapeo");
+	//mysqli_stmt_bind_param($query_22, 'ssi', $dif_maxi, $dif_max_time, $id_mapeo);
 	mysqli_stmt_execute($query_22);
 	mysqli_stmt_store_result($query_22);
 	mysqli_stmt_bind_result($query_22, $dif_max_sensor);
 	mysqli_stmt_fetch($query_22);
 
 
- 
 
 	$query_20 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, mapeo_general_sensor as b, datos_crudos_general as c WHERE a.id_sensor = b.id_sensor
-  AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = ? AND c.time = ? AND b.id_mapeo = ? ");
-	mysqli_stmt_bind_param($query_20, 'ssi', $dif_min, $dif_max_time, $id_mapeo);
+  AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = $dif_min AND c.time = '$dif_max_time' AND b.id_mapeo = $id_mapeo ");
+	//mysqli_stmt_bind_param($query_20, 'ssi', $dif_min, $dif_max_time, $id_mapeo);
 	mysqli_stmt_execute($query_20);
 	mysqli_stmt_store_result($query_20);
 	mysqli_stmt_bind_result($query_20, $dif_min_sensor);
@@ -314,15 +311,17 @@
 	  
   $dif_max_resta_2 = number_format($dif_max_resta_2, 2);
 
-	$query_25 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, mapeo_general_sensor as b, datos_crudos_general as c WHERE a.id_sensor = b.id_sensor AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = ? AND c.time = ? AND b.id_mapeo = ? ");
-	mysqli_stmt_bind_param($query_25, 'ssi', $dif_maxi_2, $dif_max_time_2, $id_mapeo);
+	$query_25 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, mapeo_general_sensor as b, datos_crudos_general as c 
+  WHERE a.id_sensor = b.id_sensor AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = $dif_maxi_2 AND c.time = '$dif_max_time_2' AND b.id_mapeo = $id_mapeo ");
+	//mysqli_stmt_bind_param($query_25, 'ssi', $dif_maxi_2, $dif_max_time_2, $id_mapeo);
 	mysqli_stmt_execute($query_25);
 	mysqli_stmt_store_result($query_25);
 	mysqli_stmt_bind_result($query_25, $dif_max_sensor_2);
 	mysqli_stmt_fetch($query_25);
 
-	$query_26 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, mapeo_general_sensor as b, datos_crudos_general as c WHERE a.id_sensor = b.id_sensor AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = ? AND c.time = ? AND b.id_mapeo = ? ");
-	mysqli_stmt_bind_param($query_26, 'ssi', $dif_min_2, $dif_max_time_2, $id_mapeo);
+	$query_26 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, mapeo_general_sensor as b, datos_crudos_general as c 
+  WHERE a.id_sensor = b.id_sensor AND b.id_sensor_mapeo = c.id_sensor_mapeo AND c.hum = $dif_min_2 AND c.time = '$dif_max_time_2' AND b.id_mapeo = $id_mapeo ");
+	//mysqli_stmt_bind_param($query_26, 'ssi', $dif_min_2, $dif_max_time_2, $id_mapeo);
 	mysqli_stmt_execute($query_26);
 	mysqli_stmt_store_result($query_26);
 	mysqli_stmt_bind_result($query_26, $dif_min_sensor_2);
@@ -386,7 +385,7 @@
   $total_mediciones = number_format($d_1,2);
 
 
-  //OBTENER UBICACIÓN DE SENSORES Y SUS IMAGENES 
+  //OBTENER UBICACIó&nbsp;&nbsp;&nbsp;&nbsp;N DE SENSORES Y SUS IMAGENES 
   $tipo_imagen_1 = 1;
   $img_1 = "";
   $url_imagen_1 = "";
@@ -422,7 +421,7 @@
   mysqli_stmt_fetch($query_34);
 
   	if(mysqli_stmt_num_rows($query_34) > 0){
-		$img_2 = '<img src="../../'.$url_imagen_2.'"  width="600px">';
+		$img_2 = '<img src="../../'.$url_imagen_2.'" >';
 	}else{
 		$img_2 = '<img src="../../../design/images/no_imagen.png">';
 	}
@@ -435,16 +434,39 @@
   mysqli_stmt_bind_result($query_35, $url_imagen_3);
 
 
+//Hora sin decimal
+$c_hora_sin = round($c_hora, 0, PHP_ROUND_HALF_ODD);
 
+$c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
+
+
+	//CALCULO DEL MINIMO GENERAL
+
+		$query_15 = mysqli_prepare($connect,"SELECT MIN(CAST(a.hum AS DECIMAL(6,2))) as minimo, a.time, c.nombre, d.nombre, b.posicion FROM datos_crudos_general as a,
+																					mapeo_general_sensor as b, bandeja as c, sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? 
+																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor GROUP BY a.time, c.nombre, d.nombre, b.posicion ORDER BY minimo ASC LIMIT 1");
+		mysqli_stmt_bind_param($query_15, 'i', $id_mapeo);
+		mysqli_stmt_execute($query_15);
+		mysqli_stmt_store_result($query_15);
+		mysqli_stmt_bind_result($query_15, $min_general, $min_time_general, $bandeja_min_general, $sensor_min_general, $posicion_min_general);
+		mysqli_stmt_fetch($query_15);
+
+
+//MAXIMO GENERAL
+
+	$query_14 = mysqli_prepare($connect,"SELECT MAX(CAST(a.hum AS DECIMAL(6,2))) as maximo, a.time, c.nombre, d.nombre, b.posicion FROM datos_crudos_general as a,
+																					mapeo_general_sensor as b, bandeja as c, sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? 
+																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor GROUP BY a.time, c.nombre, d.nombre, b.posicion ORDER BY maximo DESC LIMIT 1  ");
+		mysqli_stmt_bind_param($query_14, 'i', $id_mapeo);
+		mysqli_stmt_execute($query_14);
+		mysqli_stmt_store_result($query_14);
+		mysqli_stmt_bind_result($query_14, $max_general, $max_time_general, $bandeja_max_general, $sensor_max_general, $posicion_max_general);
+		mysqli_stmt_fetch($query_14);
 		
   /////////////////////////////////////////////////////////////INICIO INFORME////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		$pdf->AddPage('A4');
-//Hora sin decimal
-$c_hora_sin = round($c_hora, 0, PHP_ROUND_HALF_ODD);
-
-$c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
 
 
 $html = <<<EOD
@@ -482,84 +504,86 @@ text-align:left;
 }
 </style>
 
-<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE HUMEDAD RELATIVA</strong></H3></td></tr></table><br><br>
+<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE TEMPERATURA</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="15%" ><strong>Informe:</strong></td><td width="45%">$nombre_informe</td>
 <td width="15%"><strong>O.T. N°</strong></td><td width="25%">$num_nummot</td></tr>
 <tr><td width="15%"><strong>Solicitante:</strong></td><td>$nombre_empresa</td>
-		<td>Dirección:</td><td>$ubicacion</td></tr>
+		<td>Direcció&nbsp;&nbsp;n:</td><td>$direccion_empresa</td></tr>
 
-		<tr><td width="15%"><strong>Atención:</strong></td><td>$solicitante</td>
-		<td>Fecha de emisión:</td><td>$fecha_emicion</td></tr>
+		<tr><td width="15%"><strong>Atenció&nbsp;&nbsp;n:</strong></td><td>$solicitante</td>
+		<td>Fecha de emisió&nbsp;&nbsp;n:</td><td>$fecha_emicion</td></tr>
 		</table><br><br>
 
-		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>1. Identificación del Equipo o Muestra</strong></H3></td></tr>
+		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>1. Identificació&nbsp;&nbsp;n del Equipo o Muestra</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Descripción:</td><td width="70%">Almacenamiento de $descripcion_item</td></tr>
-		<tr><td width="30%" class="enunciado">Marca:</td><td width="70%">$marca</td></tr>
-		<tr><td width="30%" class="enunciado">Modelo:</td><td width="70%">$modelo</td></tr>
-		<tr><td width="30%" class="enunciado">N° de serie / Código interno</td><td width="70%">$codigo_interno</td></tr>
-		<tr><td width="30%" class="enunciado">Ubicación</td><td width="70%">$ubicacion</td></tr>
-		<tr><td width="30%" class="enunciado">Valor seteado %HR</td><td width="70%">$valor_seteado_hum</td></tr>
-		<tr><td width="30%" rowspan="2" class="enunciado">Límites %HR</td>
+		<tr><td width="30%" class="enunciado">Descripció&nbsp;&nbsp;n:</td><td width="70%">$descripcion_item</td></tr>
+		<tr><td width="30%" class="enunciado">Marca:</td><td width="70%">$marcas</td></tr>
+		<tr><td width="30%" class="enunciado">Modelo:</td><td width="70%">$modelos</td></tr>
+		<tr><td width="30%" class="enunciado">N° de serie / Có&nbsp;&nbsp;digo interno</td><td width="70%">$codigo_interno</td></tr>
+		<tr><td width="30%" class="enunciado">Ubicació&nbsp;&nbsp;n</td><td width="70%">$direccion_empresa</td></tr>
+		<tr><td width="30%" class="enunciado">Valor seteado (% HR)</td><td width="70%">N/A</td></tr>
+		<tr><td width="30%" rowspan="2" class="enunciado">Límites (% HR)</td>
 
 		<td width="35%">Máximo</td><td width="35%">Mínimo</td></tr>
-		<tr><td width="35%">$max_hr</td><td width="35%">$min_hr</td></tr>
+		<tr><td width="35%">$max_hr</td><td width="35%">N/A</td></tr>
 		</table><br><br>
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>2. Resumen de las Mediciones</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">Prueba de humedad relativa por un periodo de  $c_hora horas durante ($c_dia Dias)</td></tr>
+		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">Prueba de Humedad Relativa $nombre_prueba por un período de $c_hora horas durante $c_dia Dias</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de inicio</td><td width="70%">$fecha_inicio</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de término</td><td width="70%">$fecha_fin</td></tr>
-		<tr><td width="30%" class="enunciado">Cantidad de mediciones</td><td width="70%">$c_total_medicion</td></tr>
-		<tr><td width="30%" class="enunciado">Tiempo total de mediciones (Horas)</td><td width="70%">$c_hora_sin</td></tr>
-		<tr><td width="30%" class="enunciado">Tiempo total de mediciones (dias)</td><td width="70%">$c_dia</td></tr>
+		<tr><td width="30%" class="enunciado">Cantidad de mediciones</td><td width="70%">$total_mediciones</td></tr>
+		<tr><td width="30%" class="enunciado">Tiempo total de mediciones (hrs.)</td><td width="70%">$c_hora</td></tr>
+		<tr><td width="30%" class="enunciado">Tiempo total de mediciones (días)</td><td width="70%">$c_dia</td></tr>
 		<tr><td width="30%" class="enunciado">Tiempo acumulado superior al límite máximo (hrs.)</td><td width="70%">$registros_over</td></tr>
-		<tr><td width="30%" class="enunciado">% Superior al límite máximo</td><td width="70%">$max_percent%</td></tr>
+		<tr><td width="30%" class="enunciado">Superior al límite máximo (%)</td><td width="70%">$max_percent</td></tr>
 		<tr><td width="30%" class="enunciado">Tiempo acumulado mínimo al límite (hrs.)</td><td width="70%">$registros_under</td></tr>
-		<tr><td width="30%" class="enunciado">% inferior a límite mínimo</td><td width="70%">$min_percent%</td></tr>
+		<tr><td width="30%" class="enunciado">Inferior al límite mínimo (%)</td><td width="70%">$min_percent</td></tr>
 		</table><br>
 
-		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medición Obtenida</strong></H3></td></tr>
+		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medició&nbsp;&nbsp;n Obtenida</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio General %HR</td><td width="70%" colspan="5">$prom_general</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio General (% HR)</td><td width="70%" colspan="5">$prom_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Máximo General %HR</td><td width="10%">$max_general</td>
-		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posición: $bandeja_max_general</td></tr>
+		<tr><td width="30%" class="enunciado">Máximo General (% HR)</td><td width="10%">$max_general</td>
+		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posició&nbsp;&nbsp;n $posicion_max_general: $bandeja_max_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Mínimo General %HR</td><td width="10%">$min_general</td>
-		<td width="10%">a las:</td><td width="20%">$min_time_general</td><td width="10%">En:</td><td width="20%">$sensor_min_general, Ubicado en posición: $bandeja_min_general</td></tr>
+		<tr><td width="30%" class="enunciado">Mínimo General (% HR)</td><td width="10%">$min_general</td>
+		<td width="10%">a las:</td><td width="20%">$min_time_general</td><td width="10%">En:</td><td width="20%">$sensor_min_general, Ubicado en posició&nbsp;&nbsp;n $posicion_min_general: $bandeja_min_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Desv. Estandar de todos los sensores</td><td width="70%" colspan="3">$desviacion_general</td></tr>
+		<tr><td width="30%" class="enunciado">Desv. Estándar de todos los sensores (% HR)</td><td width="70%" colspan="3">$desviacion_general</td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio + 3 Desv. Est. %HR</td><td width="20%">$desv_3max_num</td><td width="25%">Cumple Limite Máx.</td><td width="25%">$cumple_max</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio + 3 Desv. Est. (% HR)</td><td width="20%">$desv_3max_num</td><td width="25%">Cumple Limite Máx.</td><td width="25%">Informativo</td></tr>
 
-		<tr><td width="30%" class="enunciado">Promedio - 3 Desv. Est. %HR</td><td width="20%">$desv_3min_num</td><td width="25%">Cumple Limite Mín.</td><td width="25%">$cumple_min</td></tr>
+		<tr><td width="30%" class="enunciado">Promedio - 3 Desv. Est. (% HR)</td><td width="20%">$desv_3min_num</td><td width="25%">Cumple Limite Mín.</td><td width="25%">Informativo</td></tr>
+
+		<tr><td width="30%" class="enunciado">MKT General (% HR)*</td><td width="70%">N/A</td></tr>
 
 		</table>
-	<br>
+		* Usa: Energía activació&nbsp;&nbsp;n = 83,144 (kJ/mol) y Constante universal de gases ideales = 0,0083144 (kJ/mol)<br><br>
 
 		<table width="100%"><tr><td colspan="8" bgcolor="#DDDDDD"><H3><strong>4. Análisis de los Resultados</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Dif. Máx. entre sensores %HR</td><td width="10%"> $dif_max_resta</td><td width="10%">a las:</td>
+		<tr><td width="30%" class="enunciado">Dif. Máx. entre sensores (% HR)</td><td width="10%"> $dif_max_resta</td><td width="10%">a las:</td>
 		<td width="20%" class="enunciado">$dif_max_time</td><td width="7%">entre</td><td width="10%">$dif_max_sensor</td><td width="3%">y</td>
-		<td width="10%" >$dif_min_sensor</td></tr>
+		<td width="10%" class="enunciado">$dif_min_sensor</td></tr>
 
-		<tr><td width="30%" class="enunciado">Dif. Mín. entre sensores %HR</td><td width="10%">$dif_max_resta_2</td><td width="10%">a las:</td>
+		<tr><td width="30%" class="enunciado">Dif. Mín. entre sensores (% HR)</td><td width="10%">$dif_max_resta_2</td><td width="10%">a las:</td>
 		<td width="20%" class="enunciado">$dif_max_time_2</td><td width="7%">entre</td><td width="10%">$dif_max_sensor_2</td><td width="3%">y</td>
-		<td width="10%" >$dif_min_sensor_2</td></tr>
+		<td width="10%" class="enunciado">$dif_min_sensor_2</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con promedio más alto %HR</td><td width="10%">$max_avg</td><td width="10%">en:</td><td width="50%">$max_avg_sensor, ubicado en: $max_avg_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con promedio más alto (% HR)</td><td width="10%">$max_avg</td><td width="10%">en:</td><td width="50%">$max_avg_sensor, ubicado en: $max_avg_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con promedio más bajo %HR</td><td width="10%">$min_avg</td><td width="10%">en:</td><td width="50%">$min_avg_sensor, ubicado en: $min_avg_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con promedio más bajo (% HR)</td><td width="10%">$min_avg</td><td width="10%">en:</td><td width="50%">$min_avg_sensor, ubicado en: $min_avg_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con mayor Desv. Est. %HR</td><td width="10%">$max_desv</td><td width="10%">en:</td><td width="50%">$max_desv_sensor, ubicado en: $max_desv_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con mayor Desv. Est. (% HR)</td><td width="10%">$max_desv</td><td width="10%">en:</td><td width="50%">$max_desv_sensor, ubicado en: $max_desv_posicion</td></tr>
 
-		<tr><td width="30%" class="enunciado">Sensor con menor Desv. Est. %HR</td><td width="10%">$min_desv</td><td width="10%">en:</td><td width="50%">$min_desv_sensor, ubicado en: $min_desv_posicion</td></tr>
+		<tr><td width="30%" class="enunciado">Sensor con menor Desv. Est. (% HR)</td><td width="10%">$min_desv</td><td width="10%">en:</td><td width="50%">$min_desv_sensor, ubicado en: $min_desv_posicion</td></tr>
 </table>
 
-<br><br><br><br>
+<br>
 <br>
 
 EOD;
@@ -603,7 +627,7 @@ tr:nth-child(even)
 
  
 <table>
-<tr><td bgcolor="#DDDDDD"><strong>Ubicación de los Sensores</strong></td></tr>
+<tr><td bgcolor="#DDDDDD"><strong>Ubicació&nbsp;&nbsp;n de los Sensores</strong></td></tr>
 <tr><td><br><br>$img_1 </td></tr></table><br><br><br>
 EOD;
 
@@ -612,24 +636,24 @@ $pdf->writeHTML($html_2, true,false,false,false,'');
 
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(170, 170, 170)));
 //TITULOS
-$pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 8, 15, '', 'Posició&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(55, 8, 58, '', 'Ubicación', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(55, 8, 58, '', 'Ubicació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(28, 8, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibració&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
 
 $contador_t = 0;
 //CONSULTA
-$query_32 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, b.nombre, a.serie, a.id_sensor, b.id_bandeja FROM sensores as a, bandeja as b, mapeo_general_sensor as c 
-WHERE c.id_sensor = a.id_sensor AND c.id_mapeo = ? AND b.id_bandeja = c.id_bandeja ORDER BY b.id_bandeja ASC ");
+$query_32 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, b.nombre, a.serie, a.id_sensor, b.id_bandeja, c.posicion FROM sensores as a, bandeja as b, mapeo_general_sensor as c 
+WHERE c.id_sensor = a.id_sensor AND c.id_mapeo = ? AND b.id_bandeja = c.id_bandeja ORDER BY b.nombre, c.posicion ASC ");
 mysqli_stmt_bind_param($query_32, 'i', $id_mapeo);
 mysqli_stmt_execute($query_32);
 mysqli_stmt_store_result($query_32);
-mysqli_stmt_bind_result($query_32, $nombre_sensor_t, $ubicacion_sensor_t, $serie_sensor_t,  $id_sensor_t, $id_bandeja);
+mysqli_stmt_bind_result($query_32, $nombre_sensor_t, $ubicacion_sensor_t, $serie_sensor_t,  $id_sensor_t, $id_bandeja, $posicion);
 
 while($row = mysqli_stmt_fetch($query_32)){
       $contador_t ++;
@@ -644,18 +668,18 @@ while($row = mysqli_stmt_fetch($query_32)){
 
        $pdf->AddPage('A4');
        //TITULOS
-       $pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
+       $pdf->writeHTMLCell(15, 8, 15, '', 'Posició&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(55, 8, 58, '', 'Ubicación', 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(55, 8, 58, '', 'Ubicació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
       $pdf->writeHTMLCell(28, 8, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibració&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
 
      } 
-      $pdf->writeHTMLCell(15, 5, 15, '', $contador_t, 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(15, 5, 15, '', $posicion, 1, 0, 0, true, 'C', true);
 
       $pdf->writeHTMLCell(28, 5, 30, '', $nombre_sensor_t, 1, 0, 0, true, 'C', true);
 
@@ -670,86 +694,69 @@ while($row = mysqli_stmt_fetch($query_32)){
 
 $pdf->AddPage('A4');
 
+$txt= <<<EOD
 
-//TITULOS
-$pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo %HR', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(15, 10, 55, '', 'Máximo %HR', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(20, 10, 70, '', 'Promedio %HR', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(15, 10, 110, '', 'MKT %HR', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(10, 10, 150, '', '%', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
-
-
-/*
- SUM(CASE WHEN CAST(b.hum)>$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_over, 
-                                    SUM(CASE WHEN CAST(b.hum)<$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_low,
-*/
-
-
-$contador_for_table = 1;
-$query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.hum AS DECIMAL(6,2))) as Minimo, 
-                                    MAX(CAST(b.hum AS DECIMAL(6,2))) as Maximo,AVG(CAST(b.hum AS DECIMAL(6,2))) as Promedio, STD(CAST(b.hum AS DECIMAL(6,2))) as Desv_Estandar, 
-                                    AVG(EXP(-83.144/(0.0083144*(CAST(b.hum AS DECIMAL(6,2))+273.15)))) as valor FROM sensores as a,
-                                    datos_crudos_general as b, mapeo_general_sensor as c WHERE a.id_sensor = c.id_sensor AND c.id_sensor_mapeo = b.id_sensor_mapeo AND c.id_mapeo = ? GROUP BY a.nombre");
-mysqli_stmt_bind_param($query_33, 'i', $id_mapeo);
-mysqli_stmt_execute($query_33);
-mysqli_stmt_store_result($query_33);
-mysqli_stmt_bind_result($query_33, $nombre_sensor_t_2, $minimo_t, $maximo_t, $promedio_t, $desviacion_t,$valor);
-
-while($row = mysqli_stmt_fetch($query_33)){
-
-  
-  
-$info_max=number_format($maximo_t,2);
-$info_min=number_format($minimo_t,2);
-$info_prom=number_format($promedio_t,2);
-$info_desv=number_format($desviacion_t,2);
-$info_over=number_format(($tiempo_over_t*$intervalo)/3600,2);
-$info_low=number_format(($tiempo_low_t*$intervalo)/3600,2);
-$info_percent_over=number_format(($info_over/$c_hora)*100,2);
-$info_percent_low=number_format(($info_low/$c_hora)*100,2);
-$valor_mkt=$valor;
-
-if($info_over>$c_hora)
+<style>
+table 
 {
-$info_over=number_format(($s5['tiempo_over']*$intervalo)/3600,0).".00";
-$info_percent_over="100.00";
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
 }
 
-if($info_low>$c_hora)
+th 
 {
-$info_low=number_format(($s5['tiempo_low']*$intervalo)/3600,0).".00";
-$info_percent_low="100.00";
-}	
-$mkt=number_format(-1*(83.144/0.0083144)/(log($valor_mkt))-273.15,2);	
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+</style>
+
+<table>
+<tr><td bgcolor="#DDDDDD"><h3><strong>Datos obtenidos por Sensores</strong></h3></td></tr>
+</table>
+EOD;
+
+$pdf->writeHTML($txt, true, false, false, false, '');
+
+$consultar_1 = mysqli_prepare($connect, "SELECT DISTINCT a.nombre, a.id_bandeja FROM bandeja as a, mapeo_general_sensor as b 
+WHERE a.id_bandeja = b.id_bandeja and b.id_mapeo  = ?  ORDER BY a.id_bandeja ASC");
+mysqli_stmt_bind_param($consultar_1, 'i', $id_mapeo);
+mysqli_stmt_execute($consultar_1);
+mysqli_stmt_store_result($consultar_1);
+mysqli_stmt_bind_result($consultar_1 ,  $nombre_zona, $id_zona);
+
+for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
+  mysqli_stmt_fetch($consultar_1);
+  $pdf->ln(5);
+  $pdf->writeHTMLCell(180, 10, 15, '', $nombre_zona , 0, 1, 0, true, 'C', true);
   
-if($contador_for_table == 35){
-  $pdf->AddPage('A4');
-  
-  $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo %HR', 1, 0, 0, true, 'C', true);
+  //TITULOS
+  $pdf->writeHTMLCell(25, 10, 15, '', 'Posició&nbsp;&nbsp;n -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo %HR', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio %HR', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 110, '', 'MKT %HR', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
@@ -758,32 +765,104 @@ if($contador_for_table == 35){
   $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
-}  
-  
-  
-$pdf->writeHTMLCell(25, 6, 15, '', $nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 6, 40, '', $info_min, 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(15, 6, 55, '', $info_max, 1, 0, 0, true, 'C', true);
+  /*
+   SUM(CASE WHEN CAST(b.hum AS DECIMAL(6,2))>$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_over, 
+                                      SUM(CASE WHEN CAST(b.hum AS DECIMAL(6,2))<$valor_maximo_item THEN 1 ELSE 0 END) as tiempo_low,
+  */
+  $contador_for_table = 1;
+  $query_33 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, MIN(CAST(b.hum AS DECIMAL(6,2))) as Minimo, MAX(CAST(b.hum AS DECIMAL(6,2))) as Maximo,
+  AVG(CAST(b.hum AS DECIMAL(6,2))) as Promedio, STD(CAST(b.hum AS DECIMAL(6,2))) as Desv_Estandar, 
+  SUM(CASE WHEN CAST(b.hum AS DECIMAL(4,2))>? THEN 1 ELSE 0 END) as tiempo_over,
+  SUM(CASE WHEN CAST(b.hum AS DECIMAL(4,2))<? THEN 1 ELSE 0 END) as tiempo_low,
+  AVG(EXP(-83.144/(0.0083144*(CAST(b.hum AS DECIMAL(6,2))+273.15)))) as valor, c.posicion 
+  FROM sensores as a, datos_crudos_general as b, mapeo_general_sensor as c, bandeja as g WHERE 
+  a.id_sensor = c.id_sensor AND c.id_sensor_mapeo = b.id_sensor_mapeo AND c.id_mapeo = ? AND c.id_bandeja = g.id_bandeja 
+  AND g.id_bandeja = ? GROUP BY a.nombre, c.posicion ORDER BY c.posicion ASC");
 
-$pdf->writeHTMLCell(20, 6, 70, '', $info_prom, 1, 0, 0, true, 'C', true);
+  mysqli_stmt_bind_param($query_33, 'ssii', $max_hum, $min_hum, $id_mapeo, $id_zona);
+  mysqli_stmt_execute($query_33);
+  mysqli_stmt_store_result($query_33);
+  mysqli_stmt_bind_result($query_33, $nombre_sensor_t_2, $minimo_t, $maximo_t, $promedio_t, $desviacion_t, $tiempo_over_t, $tiempo_low_t, $valor, $posicion);
 
-$pdf->writeHTMLCell(20, 6, 90, '', $info_desv, 1, 0, 0, true, 'C', true);
+  while($row = mysqli_stmt_fetch($query_33)){
 
-$pdf->writeHTMLCell(15, 6, 110, '', $mkt, 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(25, 6, 125, '', $info_over, 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(10, 6, 150, '',  $info_percent_over, 1, 0, 0, true, 'C', true);
+  $info_max=number_format($maximo_t,2);
+  $info_min=number_format($minimo_t,2);
+  $info_prom=number_format($promedio_t,2);
+  $info_desv=number_format($desviacion_t,2);
+  $info_over=number_format(($tiempo_over_t*$intervalo)/3600,2);
+  $info_low=number_format(($tiempo_low_t*$intervalo)/3600,2);
+  $info_percent_over=number_format(($info_over/$c_hora)*100,2);
+  $info_percent_low=number_format(($info_low/$c_hora)*100,2);
+  $valor_mkt=$valor;
 
-$pdf->writeHTMLCell(25, 6, 160, '', $info_low, 1, 0, 0, true, 'C', true);
+  if($info_over>$c_hora)
+  {
+  $info_over=number_format(($s5['tiempo_over']*$intervalo)/3600,0).".00";
+  $info_percent_over="100.00";
+  }
 
-$pdf->writeHTMLCell(10, 6, 185, '', $info_percent_low, 1, 1, 0, true, 'C', true); 
-  
-  
-  
-  $contador_for_table++;
+  if($info_low>$c_hora)
+  {
+  $info_low=number_format(($s5['tiempo_low']*$intervalo)/3600,0).".00";
+  $info_percent_low="100.00";
+  }	
+  $mkt=number_format(-1*(83.144/0.0083144)/(log($valor_mkt))-273.15,2);	
+
+  if($contador_for_table == 35){
+    $pdf->AddPage('A4');
+
+    $pdf->writeHTMLCell(25, 10, 15, '', 'Posició&nbsp;&nbsp;n -  N° de ident.', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(10, 10, 150, '', '%', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
+  }  
+
+
+
+  $pdf->writeHTMLCell(25, 6, 15, '', $posicion.'-'.$nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(15, 6, 40, '', $info_min, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(15, 6, 55, '', $info_max, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(20, 6, 70, '', $info_prom, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(20, 6, 90, '', $info_desv, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(15, 6, 110, '','N/A', 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(25, 6, 125, '', $info_over, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(10, 6, 150, '',  $info_percent_over, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(25, 6, 160, '', $info_low, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(10, 6, 185, '', $info_percent_low, 1, 1, 0, true, 'C', true); 
+
+
+
+    $contador_for_table++;
+  }
 }
 
 
@@ -824,14 +903,14 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Gráficos de Promedio Maximo y Minimo</strong></td></tr>
 <tr><td><br>Valores Promedio, Máximo y Mínimo</td></tr>
-<tr><td>$img_2</td></tr></table><br><br><br>
+<tr><td>$img_2</td></tr></table><br><br>
 <table>
 
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
 
-
+$pdf->AddPage();
 $txt= <<<EOD
 
 <style>
@@ -875,7 +954,7 @@ $pdf->writeHTML($txt, true, false, false, false, '');
 for($i = 0; $i<mysqli_stmt_num_rows($query_35);$i++){
 mysqli_stmt_fetch($query_35);
 if($url_imagen_3 != ""){
-  $img_3 = '<img src="../../'.$url_imagen_3.'"  width="600px">';
+  $img_3 = '<img src="../../'.$url_imagen_3.'">';
 }else{
   $img_3 = '<img src="../../../../design/images/no_imagen.png" width="250px">';
 }  
@@ -956,9 +1035,9 @@ tr:nth-child(even)
 </style>
 
 <table>
-<tr><td bgcolor="#DDDDDD"><strong>Comentarios</strong></td></tr>
+<tr><td bgcolor="#DDDDDD"><strong>Conclusió&nbsp;&nbsp;n</strong></td></tr>
 <tr><td>$comentarios</td></tr>
-<tr><td bgcolor="#DDDDDD"><strong>Observación</strong></td></tr>
+<tr><td bgcolor="#DDDDDD"><strong>Observació&nbsp;&nbsp;n</strong></td></tr>
 <tr><td>$observacion</td></tr>
 </table>
 <br><br><br>
