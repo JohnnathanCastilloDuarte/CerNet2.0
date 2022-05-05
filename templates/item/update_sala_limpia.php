@@ -34,17 +34,15 @@ if(isset($_GET['item'])){
    c.id_empresa, 
    c.nombre, 
    a.direccion, 
-   a.ubicacion_interna, 
    a.area_interna, 
    d.nombre, 
    a.clasificacion_oms, 
    a.clasificacion_iso, 
-   a.claudal_m3h, 
    a.ren_hr, 
-   a.temp_max, 
-   a.temp_min, 
-   a.hr_max, 
-   a.hr_min, 
+   a.especificacion_1_temp, 
+   a.especificacion_2_temp, 
+   a.especificacion_1_hum, 
+   a.especificacion_2_hum, 
    a.lux, 
    a.ruido_dba, 
    a.presion_sala, 
@@ -53,7 +51,9 @@ if(isset($_GET['item'])){
    a.puntos_muestreo,
    a.fecha_registro,
    a.codigo,
-   a.estado_sala
+   a.estado_sala,
+   a.temp_informativa,
+   a.hum_informativa
 
 FROM item_sala_limpia a, item b, empresa c, tipo_item d 
 WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id_tipo AND a.id_item =  $id_equipo");
@@ -70,17 +70,15 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
     $id_empresa, 
     $nombre_empresa, 
     $direccion ,
-    $ubicacion_interna, 
     $area_interna, 
     $nombre_tipo_item,
     $clasificacion_oms,
     $clasificacion_iso,
-    $claudal_m3h,
     $ren_hr,
-    $temp_max, 
-    $temp_min, 
-    $hr_max, 
-    $hr_min, 
+    $temperatura_maxima, 
+    $temperatura_minima, 
+    $humedad_maxima, 
+    $humedad_minima, 
     $lux,
     $ruido_dba,
     $presion_sala,
@@ -89,7 +87,9 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
     $puntos_muestreo,
     $fecha_registro,
     $codigo,
-    $estado_sala
+    $estado_sala,
+    $temperatura_informativa,
+    $humedad_informativa
 
   );
 
@@ -105,17 +105,15 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
         'id_empresa' =>$id_empresa,
         'nombre_empresa' =>$nombre_empresa,
         'direccion'=>$direccion,
-        'ubicacion_interna'=>$ubicacion_interna,
         'area_interna'=>$area_interna,
         'nombre_tipo_item'=>$nombre_tipo_item,
         'clasificacion_oms'=>$clasificacion_oms,
         'clasificacion_iso'=>$clasificacion_iso,
-        'claudal_m3h'=>$claudal_m3h,
         'ren_hr'=>$ren_hr,
-        'temp_max'=>$temp_max, 
-        'temp_min'=>$temp_min, 
-        'hr_max'=>$hr_max, 
-        'hr_min'=>$hr_min, 
+        'temperatura_maxima'=>$temperatura_maxima, 
+        'temperatura_minima'=>$temperatura_minima, 
+        'hum_relativa_maxima'=>$humedad_maxima, 
+        'hum_relativa_minima'=>$humedad_minima, 
         'lux'=>$lux,
         'ruido_dba'=>$ruido_dba,
         'presion_sala'=>$presion_sala,
@@ -123,8 +121,10 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
         'tipo_presion'=>$tipo_presion,
         'puntos_muestreo'=>$puntos_muestreo,
         'fecha_registro'=>$fecha_registro,
-        'codigo'=>$codigo,
-        'estado_sala'=>$estado_sala
+        'codigo_interna'=>$codigo,
+        'estado_sala'=>$estado_sala,
+        'temperatura_informativa'=>$temperatura_informativa,
+        'humedad_informativa'=>$humedad_informativa
         
     );	
   }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-02 18:12:06
+/* Smarty version 3.1.34-dev-7, created on 2022-05-05 22:07:43
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_627002d6af8988_52522550',
+  'unifunc' => 'content_62742e8f9ac9b4_59611695',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6f47c0c8509753ce8676c6b0dc8cf65abab77ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_sala_limpia.tpl',
-      1 => 1651507872,
+      1 => 1651780352,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627002d6af8988_52522550 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62742e8f9ac9b4_59611695 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -148,7 +148,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                   </select>
                 </div>
             </div>
-         
+  
          </div>   
           
          <div id="step-22">  
