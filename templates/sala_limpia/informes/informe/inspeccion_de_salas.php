@@ -9,14 +9,15 @@ $id_asignado = substr($clave, 97);
 
 
 /////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
-$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna,  b.codigo, b.area_m2, b.volumen_m3, b.estado_sala, b.direccion, b.temperatura, b.hum_relativa, b.ruido_dba, b.lux 
-FROM item as a, item_sala_limpia as b, item_asignado as c 
-WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item");
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna, b.codigo, b.area_m2, b.volumen_m3, b.estado_sala, b.direccion, b.especificacion_1_temp, b.especificacion_1_hum, b.ruido_dba, b.lux FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item");
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
 mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala, $direccion_item, $temperatura_item, $hum_relativa_item, $ruido_dba_item, $lux_item);
 mysqli_stmt_fetch($consulta_informacion_informe);
+
+
+
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
@@ -46,7 +47,6 @@ $pdf->AddPage('A4');
 
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(202, 202, 202)));
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -59,7 +59,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2> CERTIFICADO INSPECCIÓN DE SALA LIMPIA</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -93,14 +92,12 @@ $info_equipo = <<<EOD
    text-align: center;
    vertical-align: middle;
    }
-
    th 
    {
    background-color: #3138AA;
    color: #FFFFFF;
    vertical-align: middle;
    }
-
    th, td 
    {
    border: 1px solid #BBBBBB;
@@ -111,12 +108,10 @@ $info_equipo = <<<EOD
    font-size:11px;
    padding:auto auto auto auto;
    }
-
    tr:nth-child(even) 
    {
       background-color: #f2f2f2;
    }
-
    </style>
    <table>
       <tr>
@@ -151,7 +146,6 @@ $linea = <<<EOD
    background-color: rgb(0,79,135);
 }
 </style>
-
 <table >
    <tr border="1">
         <td class="linea" align="center"><h2><b>RESULTADO DE MEDICIONES</b></h2></td>
@@ -163,7 +157,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Prueba de Partículas en Suspensión</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -196,7 +189,6 @@ $pdf->writeHTMLCell(33.5, 5, 127, '', ' CUMPLE' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(33.5, 5, 160.5, '', ' CUMPLE' ,1,1, 0, true, 'C', true);
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -210,7 +202,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2> Prueba de Renovación de Aire</h2></td>
    </tr>
 </table>
-
 EOD;  
 
 //$pdf->SetFillColor(255,255,0);
@@ -230,7 +221,6 @@ $pdf->writeHTMLCell(21, 5, 140, '', 'Cumple:' ,0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(33.5, 5, 161, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -244,7 +234,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Prueba de Difencial de Presión</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -273,7 +262,6 @@ $pdf->writeHTMLCell(30, 5, 165, '', $medicion_4 ,1,1, 0, true, 'C', true);
 
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -287,7 +275,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Prueba de Temperatura y Humedad Relativa</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -305,7 +292,6 @@ $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -319,7 +305,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Prueba de Iluminación y Ruido</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -336,7 +321,6 @@ $pdf->writeHTMLCell(40, 5, 120, '', '< = 85' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -350,14 +334,12 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Conclusión</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 $pdf->writeHTMLCell(165, 5, 15, '', $conclusion ,0,1, 0, true, 'J', true);
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -370,7 +352,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -378,7 +359,6 @@ $pdf->writeHTMLCell(165, 5, 15, '', 'De acuerdo con la UNE-EN ISO 14644-1 Anexo 
 
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -386,13 +366,11 @@ $linea = <<<EOD
    background-color: rgb(0,79,135);
 }
 </style>
-
 <table>
    <tr border="1">
         <td class="linea" align="center"><h2>Responsable</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -401,7 +379,6 @@ $pdf->writeHTMLCell(180, 5, 15, '', 'Ing. '.$nombre_responsable.' &nbsp; '. $ape
 $pdf->AddPage('A4');
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -415,7 +392,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>MEDICIÓN DE PARTÍCULAS EN SUSPENSIÓN</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -437,14 +413,12 @@ $prueba = <<<EOD
    text-align: center;
    vertical-align: middle;
    }
-
    th 
    {
    background-color: #3138AA;
    color: #FFFFFF;
    vertical-align: middle;
    }
-
    th, td 
    {
    border: 1px solid #BBBBBB;
@@ -455,12 +429,10 @@ $prueba = <<<EOD
    font-size:11px;
    padding:auto auto auto auto;
    }
-
    tr:nth-child(even) 
    {
       background-color: #f2f2f2;
    }
-
    </style>
    <table>
       <tr>
@@ -485,19 +457,18 @@ $prueba = <<<EOD
 EOD;  
 $pdf->writeHTML($prueba, true, false, false, false, '');
 
-$buscarimagen = mysqli_prepare($connect,"SELECT url, nombre 
+$buscarimagen1 = mysqli_prepare($connect,"SELECT url, nombre 
 FROM image_sala_limpia
-WHERE id_asignado = ?");
-mysqli_stmt_bind_param($buscarimagen, 'i', $id_asignado);
-mysqli_stmt_execute($buscarimagen);
-mysqli_stmt_store_result($buscarimagen);
-mysqli_stmt_bind_result($buscarimagen, $url_imagen, $nombre_imagen);
-mysqli_stmt_fetch($buscarimagen);
+WHERE id_asignado = ? AND tipo = 1");
+mysqli_stmt_bind_param($buscarimagen1, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen1);
+mysqli_stmt_store_result($buscarimagen1);
+mysqli_stmt_bind_result($buscarimagen1, $url_imagen, $nombre_imagen);
+mysqli_stmt_fetch($buscarimagen1);
 
 
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -520,12 +491,10 @@ $linea = <<<EOD
         <td></td>
     </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -539,7 +508,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h3>Cálculo de Resultados - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm: 3520000 / 5,0 µm: 29300</h3></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -573,7 +541,6 @@ while($row = mysqli_stmt_fetch($query1)){
 
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
@@ -587,7 +554,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><b>Cálculo de Resultados para Informe Técnico N°45 de la OMS - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm:3.520.000 / 5,0 µm: 29.000</b></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -631,7 +597,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -681,7 +646,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>MEDICIÓN DE PRESIÓN DIFERENCIAL</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -696,6 +660,18 @@ $pdf->writeHTMLCell(30, 5, 15, '', '<strong>Método de ensayo:</strong>' ,0,0, 0
 $pdf->writeHTMLCell(60, 5, 45, '', $metodo_ensayo ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 110, '', '<strong>Especificación de la sala:</strong>',0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(45, 5, 150, '', $especificacion ,1,1  , 0, true, 'J', true);
+
+
+
+
+$buscarimagen2 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 2");
+mysqli_stmt_bind_param($buscarimagen2, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen2);
+mysqli_stmt_store_result($buscarimagen2);
+mysqli_stmt_bind_result($buscarimagen2, $url_imagen2, $nombre_imagen2);
+mysqli_stmt_fetch($buscarimagen2);
 
 
 
@@ -718,12 +694,10 @@ $linea = <<<EOD
 <table border="0">
    <tr>
        <td></td>
-       <td><img src="../imagenes_informe/Primera_foto.png"></td>
+       <td><img src="../../$url_imagen2$nombre_imagen2"  style="width: 700px; height: 500px;" ></td>
        <td></td>
    </tr>
-
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -743,7 +717,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Medición - Prueba de Presión Diferencial, Pa</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -751,23 +724,64 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 $nombres = array('Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación');
 $contador = 0;
 
-$query4 = mysqli_prepare($connect,"SELECT medicion_1, medicion_2, medicion_3, medicion_4 FROM salas_limpias_prueba_3 WHERE id_asignado = ?");
+$query4 = mysqli_prepare($connect,"SELECT campo_1, campo_2, campo_3, campo_4, campo_5, campo_6 
+   FROM datos_de_prueba_3 a, salas_limpias_prueba_3 b 
+   WHERE a.id_prueba_3 = b.id_prueba AND  b.id_asignado = ?");
 mysqli_stmt_bind_param($query4, 'i', $id_asignado);
 mysqli_stmt_execute($query4);
 mysqli_stmt_store_result($query4);
-mysqli_stmt_bind_result($query4, $medicion_1, $medicion_2, $medicion_3, $medicion_4);
+mysqli_stmt_bind_result($query4, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
 
-while($row = mysqli_stmt_fetch($query4)){
+$array_resultado = array();
+   while($row = mysqli_stmt_fetch($query4)){
 
-   $pdf->writeHTMLCell(38, 5, 15, '', $nombres[$contador] ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(33, 5, 53, '', $medicion_1 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(38, 5, 86, '', $medicion_2 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(38, 5, 124, '', $medicion_3 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(33, 5, 162, '', $medicion_4 ,1,1, 0, true, 'C', true);
+        $array_resultado[] = array(
+            'campo_1'=>$campo_1,
+            'campo_2'=>$campo_2,
+            'campo_3'=>$campo_3,
+            'campo_4'=>$campo_4,
+            'campo_5'=>$campo_5,
+            'campo_6'=>$campo_6
+        );
+    }
+      $espaciado = 55;
 
-   $contador++;
-}
+          $pdf->writeHTMLCell(40, 6, 15, '', $nombres[0] ,1,0, 0, true, 'J', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_1'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(6);
+      $pdf->writeHTMLCell(40, 6, 15, '', $nombres[1] ,1,0, 0, true, 'J', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_2'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(6);
+      $pdf->writeHTMLCell(40, 6, 15, '', $nombres[2] ,1,0, 0, true, 'J', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_3'],1,0, 0, true, 'C', true);  
+      }
+      /*$pdf->ln(6);
+      $pdf->writeHTMLCell(40, 6, 15, '', $nombres[3] ,1,0, 0, true, 'J', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
+      }*/
+      $pdf->ln(6);
+      $pdf->writeHTMLCell(40, 6, 15, '', $nombres[3] ,1,0, 0, true, 'J', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(6);
+      $pdf->writeHTMLCell(40, 6, 15, '', $nombres[4] ,1,0, 0, true, 'J', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_5'],1,0, 0, true, 'C', true);  
+      }
+      $pdf->ln(6);
+      $pdf->writeHTMLCell(40, 6, 15, '', $nombres[5] ,1,0, 0, true, 'J', true);
+      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
+          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true);  
+      }
 
+$pdf->ln(10);
 $linea = <<<EOD
 <style>
 .linea{
@@ -782,7 +796,6 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -1089,7 +1102,6 @@ $linea = <<<EOD
         <td></td>
    </tr>
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
@@ -1551,3 +1563,5 @@ while($row = mysqli_stmt_fetch($query7)){
 
 $pdf->Output($nombre_informe, 'I');
 ?>
+
+
