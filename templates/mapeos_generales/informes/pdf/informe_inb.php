@@ -1478,12 +1478,6 @@ if($img_ancho4>$img_alto4){$img_med4="width=300";}else{$img_med4="height=250";}
 
 /*FOTOS DE LA BODEGA*/
 
-
-
-$pdf->writeHTML($txt, true, false, false, false, '');
-
-
-
 $clasificacion_item_mayus = mb_strtoupper($clasificacion_item);
 $txt = <<<EOD
 
