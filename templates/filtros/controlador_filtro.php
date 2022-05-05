@@ -32,9 +32,6 @@ if($tipo == "Guardar"){
   echo mysqli_stmt_error($insertar_primera_parte);
   $id_informe = mysqli_stmt_insert_id($insertar_primera_parte);
 
-  
-  
-
   $buscando_dato = mysqli_prepare($connect,"SELECT limite_penetracion FROM item_asignado as a, item_filtro as b WHERE a.id_asignado = ? AND a.id_item = b.id_item");
   mysqli_stmt_bind_param($buscando_dato, 'i', $id_asignado_filtro);
   mysqli_stmt_execute($buscando_dato);
@@ -231,9 +228,9 @@ if($tipo == "Guardar"){
         $detalles_mediciones_array_dd[$b], $id_medicion_1_array[$b]);
         mysqli_stmt_execute($updater_tercera_parte);
          
-        echo "Listo";
-     
+        
        }
+      echo "Listo";
     
     }
   

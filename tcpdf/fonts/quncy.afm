@@ -199,7 +199,7 @@ C 180 ; WX 274 ; N igrave ; B 49 522 228 690 ;
 C 181 ; WX 245 ; N minus ; B 10 -5 256 660 ;
 C 182 ; WX 715 ; N icircumflex ; B 30 -93 685 621 ;
 C 183 ; WX 202 ; N idieresis ; B 50 246 152 348 ;
-C 184 ; WX 238 ; N ntilde ; B 15 -202 223 0 ;
+C 184 ; WX 238 ; N ntilde ; B 15 0 612 621 ;
 C 243 ; WX 652 ; N oacute ; B 46 -8 606 745 ;
 C 186 ; WX 356 ; N ograve ; B 46 246 310 619 ;
 C 187 ; WX 382 ; N ocircumflex ; B 50 186 332 418 ;

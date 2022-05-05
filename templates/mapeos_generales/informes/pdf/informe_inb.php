@@ -3,9 +3,26 @@ require('../../../../recursos/encabezadopdf.php');
 require('../../../../config.ini.php');
 $id_informe = $_GET['informe'];
 
-$informes_generales = mysqli_prepare($connect,"SELECT a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, 
-c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
-g.direccion, g.pais, a.solicitante, b.intervalo, a.comentario, a.acta_inspeccion, f.clasificacion_item
+$informes_generales = mysqli_prepare($connect,"SELECT a.nombre,
+b.id_mapeo,
+CASE WHEN b.nombre LIKE('%Ó%') THEN replace(b.nombre, 'Ó', 'Ó ')  END as nombre,
+b.id_asignado,
+b.fecha_inicio,
+b.fecha_fin, 
+c.id_servicio as servicio,
+e.numot,
+f.id_item,
+f.nombre,
+f.descripcion,
+f.id_tipo,
+g.nombre, 
+CASE WHEN g.direccion LIKE('%ñ%') THEN replace(g.direccion, 'ñ', 'ñ   ')  END as direccion,
+g.pais,
+a.solicitante,
+b.intervalo,
+a.comentario,
+a.acta_inspeccion,
+f.clasificacion_item
 FROM informes_general a,mapeo_general b,item_asignado c, servicio d, numot e,item f,empresa g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -19,6 +36,7 @@ mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
 mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
 $nombre_empresa_g, $direccion_empresa_g, $pais, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item);
+
 
 mysqli_stmt_fetch($informes_generales);
 
@@ -144,10 +162,10 @@ tr:nth-child(even)
 }
 </style>
 <table>
-<tr><td width="13%" align="right">Solicitante:</td><td width="87%" align="left">$nombre_empresa_g</td></tr>
-<tr><td width="13%" align="right">Direccidó&nbsp;&nbsp;n:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
-<tr><td width="13%" align="right">Atencidó&nbsp;&nbsp;n:</td><td width="87%" align="left">$solicitante</td></tr>
-<tr><td width="13%" align="right">Fecha Emisidó&nbsp;&nbsp;n:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
+<tr><td width="13%" align="right">Solicitante:</td><td width="87%" align="left"> $nombre_empresa_g $ajuste</td></tr>
+<tr><td width="13%" align="right">Direcció&nbsp;&nbsp;n:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
+<tr><td width="13%" align="right">Atencició&nbsp;&nbsp;n:</td><td width="87%" align="left">$solicitante</td></tr>
+<tr><td width="13%" align="right">Fecha Emisió&nbsp;&nbsp;n:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>1.0 ANTECEDENTES DE LA INSPECCION</strong></H3></td></tr></table><br><br>
@@ -261,7 +279,7 @@ EOD;
 $pdf->writeHTML($txt, true, false, false, false, '');
 
 $pdf->AddPage();
-$pdf->SetFont('freesans', 'R', 8.5);
+
 $txt = <<<EOD
 
 <style>
@@ -541,7 +559,7 @@ vacunas).</SPAN><BR><BR>
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
-$pdf->AddPage();
+
 
 $txt = <<<EOD
 
@@ -614,8 +632,6 @@ $pdf->AddPage();
 
 /////////////////////////////////////////////////////////////COMPARATIVAS DE TEMPERATURA///////////////////////////////////////////////////////////////////////
 
-
-
 $mediciones = mysqli_prepare($connect,"SELECT DATEDIFF(fecha_fin, fecha_inicio) FROM mapeo_general WHERE id_mapeo = ?");
 mysqli_stmt_bind_param($mediciones, 'i',  $id_mapeo_g);
 mysqli_stmt_execute($mediciones);
@@ -623,11 +639,6 @@ mysqli_stmt_store_result($mediciones);
 mysqli_stmt_bind_result($mediciones, $d_1);
 mysqli_stmt_fetch($mediciones);
 $c_hora = number_format(($d_1 * 24),2);
-
-
-
-
-
 
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(200, 200, 200)));
 //TITULOS
@@ -833,6 +844,221 @@ mysqli_stmt_bind_result($buscar_informes_final, $posiciones, $informed);
 
 while($row = mysqli_stmt_fetch($buscar_informes_final)){
     $pdf->writeHTMLCell(180, 5, 15, '', 'Zona '.$posiciones. ': Ver resultados en informe '.$informed, 1, 1, 0, true, 'C', true);
+}
+
+$pdf->AddPage();
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////COMPARATIVAS DE HUMEDAD///////////////////////////////////////////////////////////////////////
+
+$pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(200, 200, 200)));
+//TITULOS
+
+$pdf->writeHTMLCell(70, 5, 15, '', '<strong>Parámetro</strong>', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(110, 5, 85, '', '<strong>Resultados de Mediciones</strong>', 1, 1, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(70, 13, 15, '', 'Tiempo de inicio del período de pruebas (Según lectura de sensores', 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(50, 13, 85, '', 'Hora inicio: <br> Hora término<br> Total: ', 1, 0, 0, true, 'C', true);
+
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$fecha_inicio_g.' <br> '.$fecha_fin_g.'<br>'.$c_hora, 1, 1, 0, true, 'C', true);
+
+
+$query_promedios_h = mysqli_prepare($connect,"SELECT c.nombre,  round(AVG(a.hum),2) AS promedio, MIN(a.hum) as minimo, MAX(a.hum) as maximo FROM datos_crudos_general as a, mapeo_general_sensor as b,
+bandeja as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja  GROUP BY c.nombre ORDER BY c.nombre ASC");
+mysqli_stmt_bind_param($query_promedios_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_promedios_h);
+mysqli_stmt_store_result($query_promedios_h);
+mysqli_stmt_bind_result($query_promedios_h, $posiciones_h, $promedio_h, $minimo_humedad, $max_humedad);	
+
+$query_promedios_general_h = mysqli_prepare($connect,"SELECT round(AVG(a.hum),2) AS promedio FROM datos_crudos_general as a, mapeo_general_sensor as b
+WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?");
+mysqli_stmt_bind_param($query_promedios_general_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_promedios_general_h);
+mysqli_stmt_store_result($query_promedios_general_h);
+mysqli_stmt_bind_result($query_promedios_general_h, $promedio_general_hh);	
+mysqli_stmt_fetch($query_promedios_general_h);
+
+$columh = mysqli_stmt_num_rows($query_promedios_h);
+
+$pdf->writeHTMLCell(70, 7.4*($columh+1), 15, '', 'Temperatura promedio del item durante período de estudio', 1, 0, 0, true, 'C', false);
+
+while($row = mysqli_stmt_fetch($query_promedios_h)){
+  $pdf->writeHTMLCell(50, 8, 85, '', 'T° promedio Zona '.$posiciones_h, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(60, 8, 135, '', $promedio_h.'%HR', 1, 1, 0, true, 'C', true);
+}
+$pdf->writeHTMLCell(50, 5, 85, '', '<strong>T° promedio</strong>', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 135, '', $promedio_general_hh.' %HR', 1, 1, 0, true, 'C', true);
+
+////////////////////////////////////
+$query_humedad = mysqli_prepare($connect,"SELECT c.nombre,  MIN(a.hum) as minimo FROM datos_crudos_general as a, mapeo_general_sensor as b,
+bandeja as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja  GROUP BY c.nombre ORDER BY c.nombre ASC");
+mysqli_stmt_bind_param($query_humedad, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_humedad);
+mysqli_stmt_store_result($query_humedad);
+mysqli_stmt_bind_result($query_humedad, $posiciones_h, $minimo_humedad);	
+
+$query_humedad_general = mysqli_prepare($connect,"SELECT MIN(a.hum) as minimo FROM datos_crudos_general as a, mapeo_general_sensor as b
+WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?");
+mysqli_stmt_bind_param($query_humedad_general, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_humedad_general);
+mysqli_stmt_store_result($query_humedad_general);
+mysqli_stmt_bind_result($query_humedad_general, $humedad_general_t);	
+mysqli_stmt_fetch($query_humedad_general);
+
+$pdf->writeHTMLCell(70, 7.4*($columh+1), 15, '', 'Sensor con la humedad promedio más baja', 1, 0, 0, true, 'C', false);
+while($row = mysqli_stmt_fetch($query_humedad)){
+  $pdf->writeHTMLCell(50, 8, 85, '', 'T° promedio Zona '.$posiciones_h, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(60, 8, 135, '', $minimo_humedad.'%HR', 1, 1, 0, true, 'C', true);
+}
+$pdf->writeHTMLCell(50, 5, 85, '', '<strong>T° promedio</strong>', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 135, '', $humedad_general_t.' %HR', 1, 1, 0, true, 'C', true);
+//////////////////////////////////////
+
+$query_humedad_2 = mysqli_prepare($connect,"SELECT c.nombre,  MAX(a.hum) as maximo FROM datos_crudos_general as a, mapeo_general_sensor as b,
+bandeja as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja  GROUP BY c.nombre ORDER BY c.nombre ASC");
+mysqli_stmt_bind_param($query_humedad_2, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_humedad_2);
+mysqli_stmt_store_result($query_humedad_2);
+mysqli_stmt_bind_result($query_humedad_2, $posiciones, $maximo_humedad);	
+
+$query_humedad_2_general = mysqli_prepare($connect,"SELECT MAX(a.hum) as maximo FROM datos_crudos_general as a, mapeo_general_sensor as b
+WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?");
+mysqli_stmt_bind_param($query_humedad_2_general, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_humedad_2_general);
+mysqli_stmt_store_result($query_humedad_2_general);
+mysqli_stmt_bind_result($query_humedad_2_general, $humedad_general_t2);	
+mysqli_stmt_fetch($query_humedad_2_general);
+
+$pdf->writeHTMLCell(70, 7.4*($columh+1), 15, '', 'Sensor con la humedad promedio más alta', 1, 0, 0, true, 'C', false);
+while($row = mysqli_stmt_fetch($query_humedad_2)){
+  $pdf->writeHTMLCell(50, 8, 85, '', 'T° promedio Zona '.$posiciones, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(60, 8, 135, '', $maximo_humedad.'%HR', 1, 1, 0, true, 'C', true);
+}
+$pdf->writeHTMLCell(50, 5, 85, '', '<strong>T° promedio</strong>', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 135, '', $humedad_general_t2.' %HR', 1, 1, 0, true, 'C', true);
+  
+
+$pdf->AddPage();
+
+$pdf->writeHTMLCell(70, 5, 15, '', '<strong>Parámetro</strong>', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(110, 5, 85, '', '<strong>Resultados de Mediciones</strong>', 1, 1, 0, true, 'C', true);
+
+$sensor_min_full_h = mysqli_prepare($connect,"SELECT  d.nombre, c.nombre, MIN(a.hum) as maximo FROM datos_crudos_general as a, mapeo_general_sensor as b, bandeja as c,
+sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor 
+GROUP BY c.nombre, d.nombre ORDER BY maximo ASC limit 1");
+mysqli_stmt_bind_param($sensor_min_full_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($sensor_min_full_h);
+mysqli_stmt_store_result($sensor_min_full_h);
+mysqli_stmt_bind_result($sensor_min_full_h, $nombre_sensor_min_full_h, $nombre_altura_min_full_h, $hum_min_full);	
+mysqli_stmt_fetch($sensor_min_full_h);
+
+
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con la humedad mínima en toda la prueba', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 13, 85, '', 'Humedad: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$hum_min_full.' %HR <br> '.$nombre_sensor_min_full_h.'<br> Ubicado en :'.$nombre_altura_min_full_H, 1, 1, 0, true, 'C', true);
+
+/////////////////////////////////////////////
+
+$sensor_max_full_h = mysqli_prepare($connect,"SELECT  d.nombre, c.nombre, MAX(a.hum) as maximo FROM datos_crudos_general as a, mapeo_general_sensor as b, bandeja as c,
+sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor 
+GROUP BY c.nombre, d.nombre ORDER BY maximo dESC limit 1");
+mysqli_stmt_bind_param($sensor_max_full_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($sensor_max_full_h);
+mysqli_stmt_store_result($sensor_max_full_h);
+mysqli_stmt_bind_result($sensor_max_full_h, $nombre_sensor_max_full_h, $nombre_altura_max_full_h, $hum_max_full);	
+mysqli_stmt_fetch($sensor_max_full_h);
+
+
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con la humedad máxima en toda la prueba', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 13, 85, '', 'Temperatura: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$temp_max_full_h.' %HR <br> '.$nombre_sensor_max_full_h.'<br> Ubicado en :'.$nombre_altura_max_full_h, 1, 1, 0, true, 'C', true);
+
+//////////////////////////////77
+
+
+$sensor_desv_min_full_h = mysqli_prepare($connect,"SELECT  d.nombre, c.nombre,STD(CAST(a.hum as DECIMAL(4,2))) AS desv  FROM datos_crudos_general as a, mapeo_general_sensor as b, bandeja as c,
+sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor 
+GROUP BY c.nombre, d.nombre ORDER BY desv ASC limit 1");
+mysqli_stmt_bind_param($sensor_desv_min_full_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($sensor_desv_min_full_h);
+mysqli_stmt_store_result($sensor_desv_min_full_h);
+mysqli_stmt_bind_result($sensor_desv_min_full_h, $nombre_sensor_desv_min_full_h, $nombre_altura_desv_min_full_h, $desc_min_full_h);	
+mysqli_stmt_fetch($sensor_desv_min_full_h);
+
+$minstd_h=round($desc_min_full_h,2);
+
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con menor desviacidó&nbsp;&nbsp;n estándar', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 13, 85, '', 'Humedad: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$minstd_h.' %HR <br> '.$nombre_sensor_desv_min_full_h.'<br> Ubicado en :'.$nombre_altura_desv_min_full_h, 1, 1, 0, true, 'C', true);
+
+
+/////////////////////////////////////
+
+$sensor_desv_max_full_h = mysqli_prepare($connect,"SELECT  d.nombre, c.nombre,STD(CAST(a.hum as DECIMAL(4,2))) AS desv  FROM datos_crudos_general as a, mapeo_general_sensor as b, bandeja as c,
+sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor 
+GROUP BY c.nombre, d.nombre ORDER BY desv DESC limit 1");
+mysqli_stmt_bind_param($sensor_desv_max_full_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($sensor_desv_max_full_h);
+mysqli_stmt_store_result($sensor_desv_max_full_h);
+mysqli_stmt_bind_result($sensor_desv_max_full_h, $nombre_sensor_desv_max_full_h, $nombre_altura_desv_max_full_h, $desc_max_full_h);	
+mysqli_stmt_fetch($sensor_desv_max_full_h);
+
+$maxstd_h=round($desc_max_full,2);
+
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con mayor desviacidó&nbsp;&nbsp;n estándar', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 13, 85, '', 'Humedad: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$maxstd_h.'%HR <br> '.$nombre_sensor_desv_max_full_h.'<br> Ubicado en :'.$nombre_altura_desv_max_full_h, 1, 1, 0, true, 'C', true);
+
+
+
+//////////////////////////////////////////////////////////
+
+$query_promedios_hh = mysqli_prepare($connect,"SELECT c.nombre,  AVG(EXP(-83.144/(0.0083144*(a.hum+273.15)))) as valor FROM datos_crudos_general as a, mapeo_general_sensor as b,
+bandeja as c WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja  GROUP BY c.nombre ORDER BY c.nombre ASC");
+mysqli_stmt_bind_param($query_promedios_hh, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_promedios_hh);
+mysqli_stmt_store_result($query_promedios_hh);
+mysqli_stmt_bind_result($query_promedios_hh, $posiciones, $mkt);	
+
+$query_mkt_promedio_h = mysqli_prepare($connect,"SELECT  AVG(EXP(-83.144/(0.0083144*(hum+273.15)))) as valor FROM datos_crudos_general as a, mapeo_general_sensor as b 
+WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?");
+mysqli_stmt_bind_param($query_mkt_promedio_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($query_mkt_promedio_h);
+mysqli_stmt_store_result($query_mkt_promedio_h);
+mysqli_stmt_bind_result($query_mkt_promedio_h, $mkt_general_alt_h);
+mysqli_stmt_fetch($query_mkt_promedio_h);
+  $mkt_gen_alt_h=round(-1*(83.144/0.0083144)/(log($mkt_general_alt_h))-273.15,2);
+
+
+$pdf->writeHTMLCell(70, 5*($colum+1), 15, '', 'Humedad cinética media', 1, 0, 0, true, 'C', false);
+
+while($row = mysqli_stmt_fetch($query_promedios_hh)){
+  $mkt_alt_h=round(-1*(83.144/0.0083144)/(log($mkt))-273.15,2);
+  
+
+  $pdf->writeHTMLCell(50, 5, 85, '', 'MKT Zona '.$posiciones.':', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(60, 5, 135, '', $mkt_alt_h.' %HR', 1, 1, 0, true, 'C', true);
+}
+
+$pdf->writeHTMLCell(50, 5, 85, '', '<strong>MKT promedio</strong>', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 5, 135, '', $mkt_gen_alt_h.' %HR', 1, 1, 0, true, 'C', true);
+
+
+$buscar_informes_final_h = mysqli_prepare($connect,"SELECT c.nombre, d.nombre FROM datos_crudos_general as a, mapeo_general_sensor as b, bandeja as c, informes_general AS d
+WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? AND b.id_bandeja = c.id_bandeja AND b.id_mapeo = d.id_mapeo AND tipo = 'HUM' 
+GROUP BY c.nombre, d.nombre ORDER BY c.nombre ASC");
+mysqli_stmt_bind_param($buscar_informes_final_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($buscar_informes_final_h);
+mysqli_stmt_store_result($buscar_informes_final_h);
+mysqli_stmt_bind_result($buscar_informes_final_h, $posiciones, $informed_h);
+
+while($row = mysqli_stmt_fetch($buscar_informes_final_h)){
+    $pdf->writeHTMLCell(180, 5, 15, '', 'Zona '.$posiciones. ': Ver resultados en informe '.$informed_h, 1, 1, 0, true, 'C', true);
 }
 
 $pdf->AddPage();

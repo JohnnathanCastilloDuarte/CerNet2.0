@@ -8,27 +8,48 @@ $tipo = $_POST['tipo'];
 $null = 'NA';
 switch ($tipo) {
     case 'buscar_si_existe':
-        $consultar = mysqli_prepare($connect,"SELECT id_informe FROM informe_filtro WHERE id_asignado = ?");
-        mysqli_stmt_bind_param($consultar, 'i', $id_asignado_filtro);
-        mysqli_stmt_execute($consultar);
-        mysqli_stmt_store_result($consultar);
-        mysqli_stmt_bind_result($consultar, $id_informe);
-        mysqli_stmt_fetch($consultar);
+        
+        $consultar_nombre = mysqli_prepare($connect,"SELECT id_informe FROM informe_filtro WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($consultar_nombre, 'i', $id_asignado_filtro);
+        mysqli_stmt_execute($consultar_nombre);
+        mysqli_stmt_store_result($consultar_nombre);
+        mysqli_stmt_bind_result($consultar_nombre, $id_informe);
+        mysqli_stmt_fetch($consultar_nombre);
+        
+        $query1 = mysqli_prepare($connect,"SELECT c.numot, d.sigla_pais, d.sigla_empresa, e.servicio
+                    FROM item_asignado as a, servicio as b, numot as c, empresa as d, servicio_tipo e 
+                    WHERE a.id_asignado = ?
+                    AND a.id_servicio = b.id_servicio 
+                    AND b.id_numot = c.id_numot 
+                    AND c.id_empresa = d.id_empresa
+                    AND e.id_servicio_tipo = b.id_servicio_tipo");
+
+        mysqli_stmt_bind_param($query1, 'i', $id_asignado_filtro);
+        mysqli_stmt_execute($query1);
+        mysqli_stmt_store_result($query1);
+        mysqli_stmt_bind_result($query1, $ot, $sigla_pais, $sigla_empresa, $servicio);
+        mysqli_stmt_fetch($query1);
+
+        $num_ot = substr($ot, 2);
+        $nombre_info = $sigla_pais."-".$num_ot."-".$sigla_empresa."-INF";                         
     
-        if(mysqli_stmt_num_rows($consultar) != 0){
+        echo $id_informe."-";
+        if($id_informe != 0){
             echo $id_informe;
-        }else{
+        }elseif($id_informe == ''){
           //echo "No";
           $insertar = mysqli_prepare($connect, "INSERT INTO informe_filtro(nombre_informe, concepto, conclusion, 
                                                 solicitante, insp1,insp2, insp3, insp4, insp5, insp6, id_asignado) 
                                                 VALUES (?,?,?,?,?,?,?,?,?,?,?) ");
-          mysqli_stmt_bind_param($insertar,'ssssssssssi',$null,$null,$null,$null,$null,$null,$null,$null,$null,$null,$id_asignado_filtro);
+          mysqli_stmt_bind_param($insertar,'ssssssssssi',$nombre_info,$null,$null,$null,$null,$null,$null,$null,$null,$null,$id_asignado_filtro);
           mysqli_stmt_execute($insertar);
           
           $id_informe = mysqli_stmt_insert_id($insertar);
           
           echo $id_informe;
           
+        }else{
+          echo"es rodo";
         }
         break;
 

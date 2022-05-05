@@ -100,7 +100,7 @@ $(document).ready(function(){
         data:datos,
         url:'templates/filtros/buscar_inpeccion.php',
         success:function(response){
-
+              console.log(response);
           if(response != "No"){
 
             $("#tarjeta_equipos_medicion_filtros").show();
@@ -693,8 +693,7 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
          data:datos,
          url:'templates/filtros/controlador_filtro.php',
          success:function(response){
-         console.log(response);
-           if(response == "ListoListo"){
+
            Swal.fire({
            title:'Mensaje',
            text:'Se ha creado la información con exito',
@@ -702,7 +701,7 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
            showConfirmButton: false,
            timer:1500
           });
-      }
+ 
      }
      // recargar();
      

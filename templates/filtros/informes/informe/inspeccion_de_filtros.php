@@ -57,7 +57,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br><br><br>
@@ -177,7 +177,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 {
    border-collapse: collapse;
@@ -213,7 +213,7 @@ $linea = <<<EOD
 
 <table >
    <tr border="1">
-        <td class="linea" align="center"><h3><b>RESULTADO DE MEDICIONES - NORMA: UNE-EN ISO 14.644-3:2015</b></h3></td>
+        <td class="linea" align="center"><h3>RESULTADO DE MEDICIONES - NORMA: UNE-EN ISO 14.644-3:2015</h3></td>
    </tr>
 </table>
 <br><br>
@@ -242,6 +242,17 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+$linea = <<<EOD
+
+ <table>
+      <tr>
+         <td style="width: 90%;height:300px;"></td>
+      </tr> 
+   </table>
+
+
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
 
 $linea = <<<EOD
 
@@ -249,7 +260,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -270,14 +281,14 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h3>Duración de Certificado</h3></td>
-        <td class="linea" align="center"><h3>Fecha de Medición</h3></td>
+        <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
+        <td class="linea" align="center"><h2>Fecha de Medición</h2></td>
    </tr>
    <tr>
         <td style="text-align:center;">La vigencia de Certificación es de 12 meses.</td>
@@ -294,15 +305,15 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h3>Responsable</h3></td>
-        <td class="linea" align="center"><h3>Código QR de Verificación</h3></td>
-        <td class="linea" align="center"><h3>Firma</h3></td>
+        <td class="linea" align="center"><h2>Responsable</h2></td>
+        <td class="linea" align="center"><h2>Código QR de Verificación</h2></td>
+        <td class="linea" align="center"><h2>Firma</h2></td>
    </tr>
    <tr>
        <td align="center">Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
@@ -324,7 +335,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -431,7 +442,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -444,23 +455,23 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-   $pdf->writeHTMLCell(70, 5, 15, '', 'Equipo en buenas condiciones de operación:',1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(10, 5, 85, '', $insp1 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(70, 5, 115, '','Filtro presenta reparaciones:' ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(10, 5, 185, '', $insp2,1,1, 0, true, 'C', true);
+     $pdf->writeHTMLCell(70, 6, 15, '', 'Equipo en buenas condiciones de operación:',1,0, 0, true, 'J', true);
+     $pdf->writeHTMLCell(10, 6, 85, '', $insp1 ,1,0, 0, true, 'C', true);
+     $pdf->writeHTMLCell(20, 6, 95, '', '',0,0, 0, true, 'C', true);
+     $pdf->writeHTMLCell(72, 6, 113, '','Filtro presenta reparaciones:' ,1,0, 0, true, 'J', true);
+     $pdf->writeHTMLCell(10, 6, 185, '', $insp2,1,1, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(70, 5, 15, '', 'Filtro presenta rotura:',1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(10, 5, 85, '', $insp3 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(70, 5, 115, '','Filtro presenta rotura en sellos perimetrales:' ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(10, 5, 185, '', $insp4,1,1, 0, true, 'C', true);
+     $pdf->writeHTMLCell(70, 5, 15, '', 'Filtro presenta rotura:',1,0, 0, true, 'J', true);
+     $pdf->writeHTMLCell(10, 5, 85, '', $insp3 ,1,0, 0, true, 'C', true);
+     $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
+     $pdf->writeHTMLCell(72, 5, 113, '','Filtro presenta rotura en sellos perimetrales:' ,1,0, 0, true, 'J', true);
+     $pdf->writeHTMLCell(10, 5, 185, '', $insp4,1,1, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(70, 5, 15, '', 'Filtros instalados correctamente:',1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(10, 5, 85, '', $insp5,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(70, 5, 115, '','Presenta colmatación:' ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(10, 5, 185, '', $insp6,1,1, 0, true, 'C', true);
+     $pdf->writeHTMLCell(70, 5, 15, '', 'Filtros instalados correctamente:',1,0, 0, true, 'J', true);
+     $pdf->writeHTMLCell(10, 5, 85, '', $insp5,1,0, 0, true, 'C', true);
+     $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
+     $pdf->writeHTMLCell(72, 5, 113, '','Presenta colmatación:' ,1,0, 0, true, 'J', true);
+     $pdf->writeHTMLCell(10, 5, 185, '', $insp6,1,1, 0, true, 'C', true);
 
 
 $linea = <<<EOD
@@ -469,7 +480,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -516,7 +527,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -626,7 +637,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -696,7 +707,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
@@ -745,7 +756,7 @@ $pdf->AddPage('A4');
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
