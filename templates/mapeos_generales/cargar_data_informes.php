@@ -16,15 +16,37 @@ $valor_deteccion = $_POST['valor_deteccion'];
 $valor_prioridad = $_POST['valor_prioridad'];
 $valor_medidas = $_POST['valor_medidas'];
 $id_informe = $_POST['id_informe'];
+$tipo_protocolo = $_POST['tipo_protocolo'];
   
-
-  for($i = 0; $i<count($id_informe_actual);$i++){
-    $actualizar = mysqli_prepare($connect,"UPDATE analisis_riesgos SET etapa= ? ,relevancia= ? ,descripcion= ? ,probabilidad= ? ,impacto= ? ,clase= ? ,deteccion= ? ,prioridad= ? ,medidas= ? 
+  echo $tipo_protocolo;
+  
+  if($tipo_protocolo == '0'){
+    for($i = 0; $i<count($id_informe_actual);$i++){
+    $actualizar = mysqli_prepare($connect,"UPDATE analisis_riesgos SET etapa= ? ,probabilidad= ? ,impacto= ? ,clase= ? ,deteccion= ? ,prioridad= ? ,medidas= ? 
     WHERE id = ?");
-    mysqli_stmt_bind_param($actualizar, 'sssssssssi', $valor_etapa[$i], $valor_relevancia[$i], $valor_descripcion[$i], $valor_probabilidad[$i], $valor_impacto[$i], $valor_clase[$i], $valor_deteccion[$i],
+    mysqli_stmt_bind_param($actualizar, 'sssssssi', $valor_etapa[$i], $valor_probabilidad[$i], 
+                           $valor_impacto[$i], $valor_clase[$i], $valor_deteccion[$i],
                            $valor_prioridad[$i], $valor_medidas[$i], $id_informe_actual[$i]);
     mysqli_stmt_execute($actualizar);
+        }
+  }else{
+      for($i = 0; $i<count($id_informe_actual);$i++){
+    $actualizar = mysqli_prepare($connect,"UPDATE analisis_riesgos SET etapa= ? ,relevancia= ? ,descripcion= ? ,probabilidad= ? ,impacto= ? ,clase= ? ,deteccion= ? ,prioridad= ? ,medidas= ? 
+    WHERE id = ?");
+    mysqli_stmt_bind_param($actualizar, 'sssssssssi', $valor_etapa[$i], $tipo_protocolo, $tipo_protocolo, $valor_probabilidad[$i], 
+                           $valor_impacto[$i], $valor_clase[$i], $valor_deteccion[$i],
+                           $valor_prioridad[$i], $valor_medidas[$i], $id_informe_actual[$i]);
+    mysqli_stmt_execute($actualizar);
+
+      }
+    $actualizar2 = mysqli_prepare($connect,"UPDATE informes_general SET tipo_protocolo= ?
+    WHERE id_informe = ?");
+    mysqli_stmt_bind_param($actualizar2, 'si', $tipo_protocolo, $id_informe);
+    mysqli_stmt_execute($actualizar2);
+    //echo $id_informe;
+    
   }
+  
   
   $array_respuesta = array(
     'id_informe'=>$id_informe,
@@ -32,7 +54,6 @@ $id_informe = $_POST['id_informe'];
   
   $convert = json_encode($array_respuesta);
   echo $convert;
-  
   
   
 }else if(isset($_POST['BASE'])){

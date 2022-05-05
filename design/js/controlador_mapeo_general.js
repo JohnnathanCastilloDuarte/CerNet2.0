@@ -1572,11 +1572,18 @@ function listar_info_temp(id_informe, extra){
               $("#tipo_informe").val(valor.tipo_informe);
                if(valor.tipo_informe == "AR"){
                     
+                 
                   if(contador == 1){
                     template += 
                       
                       `
                        <form id="formulario_informe" enctype="multipart/form-data" method="post">
+                         <select class="form-control" name="tipo_protocolo">
+                            <option value="0">Seleccione...</option>
+                            <option value="GMP">GMP</option>
+                            <option value="GLP">GLP</option>
+                            <option value="GSP">GSP</option>
+                         </select>
                         <input type="hidden" value="AR" name="AR">
                         <input type="hidden" value="${id_informe}" name="id_informe">
                         <table class="table">
@@ -1861,7 +1868,7 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-        
+          console.log(response)
             Swal.fire({
               title:'Mensaje',
               text:'Se ha actualizado correctamentes',

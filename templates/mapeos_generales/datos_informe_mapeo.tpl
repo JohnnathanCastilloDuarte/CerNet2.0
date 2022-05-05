@@ -502,7 +502,6 @@
           <div class="card-header">Edición de informe <button id="close_edicion" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
           <div class="card-body" id="editar_informe_row">
 
-
           </div>
           <hr>
           <div class="card-body" id="edicion_imagenes">

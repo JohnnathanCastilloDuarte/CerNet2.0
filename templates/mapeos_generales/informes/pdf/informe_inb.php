@@ -3,8 +3,9 @@ require('../../../../recursos/encabezadopdf.php');
 require('../../../../config.ini.php');
 $id_informe = $_GET['informe'];
 
-$informes_generales = mysqli_prepare($connect,"SELECT a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
-g.direccion, g.ciudad, a.solicitante, b.intervalo, a.comentario, a.acta_inspeccion, f.clasificacion_item
+$informes_generales = mysqli_prepare($connect,"SELECT a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, 
+c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
+g.direccion, g.pais, a.solicitante, b.intervalo, a.comentario, a.acta_inspeccion, f.clasificacion_item
 FROM informes_general a,mapeo_general b,item_asignado c, servicio d, numot e,item f,empresa g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -17,7 +18,7 @@ mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
 mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
-$nombre_empresa_g, $direccion_empresa_g, $ciudad_g, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item);
+$nombre_empresa_g, $direccion_empresa_g, $pais, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item);
 
 mysqli_stmt_fetch($informes_generales);
 
@@ -33,15 +34,12 @@ mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, 
 mysqli_stmt_fetch($query_2);
 
 
-
 switch ($id_tipo_item_g) {
 		//bodega 
 		case 1:
    
-      $consultar_item_bodega = mysqli_prepare($connect,"SELECT direccion, codigo_interno, productos_almacena, largo, ancho, superficie, volumen, altura, tipo_muro, tipo_cielo,
-      s_climatizacion, s_monitoreo, s_alarma, planos, analisis_riesgo, ficha_estabilidad, id_usuario, fecha_registro, marca_bodega, modelo_bodega, temp_max, 
-      temp_min, hr_max, hr_min, orientacion_principal, orientacion_recepcion, orientacion_despacho, num_puertas, salida_emergencia, cantidad_rack, num_estantes,
-      altura_max_rack, sistema_extraccion, cielo_lus, cantidad_iluminarias FROM item_bodega WHERE id_item = ?");
+      $consultar_item_bodega = mysqli_prepare($connect,"SELECT b.direccion, b.codigo_interno, a.productos_almacena, a.largo, a.ancho, a.superficie, a.volumen, a.altura, a.tipo_muro, a.tipo_cielo, a.s_climatizacion, a.s_monitoreo, a.s_alarma, a.planos, a.analisis_riesgo, a.ficha_estabilidad, a.id_usuario, a.fecha_registro, a.marca_bodega, a.modelo_bodega, a.temp_max, a.temp_min, a.hr_max, a.hr_min, a.orientacion_principal, a.orientacion_recepcion, a.orientacion_despacho, a.num_puertas, a.salida_emergencia, a.cantidad_rack, a.num_estantes, a.altura_max_rack, a.sistema_extraccion, a.cielo_lus, a.cantidad_iluminarias 
+      FROM item_bodega a, item b WHERE a.id_item = ? AND b.id_item = a.id_item ");
       mysqli_stmt_bind_param($consultar_item_bodega, 'i', $id_item_g);
       mysqli_stmt_execute($consultar_item_bodega);
       mysqli_stmt_store_result($consultar_item_bodega);
@@ -49,19 +47,19 @@ switch ($id_tipo_item_g) {
                               $tipo_cielo, $s_climatizacion, $s_monitoreo, $s_alarma, $planos, $analisis_riesgo, $ficha_estabilidad, $id_usuario, $fecha_registro, 
                               $marca, $modelo, $max_temp, $min_temp, $max_hr, $min_hr, $orientacion_principal, $orientacion_rececpion, $orientacion_despacho, $num_puertas,
                               $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion,  $cielo_lus, $cantidad_luminarias);
-    
+      
+   
       mysqli_stmt_fetch($consultar_item_bodega);
     	break;
-
   
 }
 //quitarle la hora  a la fecha 
 $fecha_inicio_g_sin_hora = substr($fecha_inicio_g, 0, -8);
                                   
 //Validar si es chile
-   
+// echo $ciudad_g;
 
-if($ciudad_g == 'Chile'){
+if($pais == 'Chile'){
   
   $info1 = '<tr>
   <td width="25%" align="right">Normativa técnica N° 147 del MINSAL:</td>
@@ -164,7 +162,7 @@ tr:nth-child(even)
 <tr><td width="25%" align="right">Descripcidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$descripcion_item</td></tr>
 <tr><td width="25%" align="right">Marca:</td><td align="left" width="75%">$marca</td></tr>
 <tr><td width="25%" align="right">Modelo:</td><td align="left" width="75%">$modelo</td></tr>
-<tr><td width="25%" align="right">Identificacidó&nbsp;&nbsp;n:</td><td align="left" width="75%">$codigo_interno</td></tr>
+<tr><td width="25%" align="right">Identificació&nbsp;&nbsp;n:</td><td align="left" width="75%">$codigo_interno</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>3.0 NORMATIVA</strong></H3></td></tr></table><br><br>
@@ -200,6 +198,41 @@ $info2
 <tr><td width="25%" align="right">Otros:</td><td align="left" width="75%">-</td></tr>
 </table><br><br>
 
+EOD;
+
+$pdf->writeHTML($txt, true, false, false, false, '');
+$pdf->AddPage();
+$txt = <<<EOD
+
+<style>
+table 
+{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th 
+{
+  background-color: #3138AA;
+  color: #FFFFFF;
+  vertical-align: middle;
+}
+
+th, td 
+{
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+tr:nth-child(even) 
+{
+	background-color: #f2f2f2;
+}
+</style>
+<br><br>
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>5.0 ANÁLISIS DE RIESGOS - INFORMACIÓN BASE</strong></H3></td></tr></table><br><br>
 <table>
 
@@ -226,6 +259,7 @@ $info2
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
+
 $pdf->AddPage();
 $pdf->SetFont('freesans', 'R', 8.5);
 $txt = <<<EOD
@@ -435,7 +469,7 @@ de Arrhenius):</SPAN><BR>
 <table border="0">
 <tr>
   <td width="31%"></td>
-  <td width="50%"><div class="centrar"><img src="../images/formula.png" width="400" style="text-align:center;"></div><br></td>
+  <td width="50%"><div class="centrar"><img src="../imagenes_internas/calculo.png" width="400" style="text-align:center;"></div><br></td>
   <td></td>
 </tr>
 </table>
@@ -520,15 +554,15 @@ $pdf->writeHTML($txt, true, false, false, false, '');
 ////////////////////////////////////////////////////////CICLO DE IMPRESION DE ALTURAS ////////////////////////////////////////////////////////////////////////
 
 
-$pdf->writeHTMLCell(15, 5, 15, '', 'Posicidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 8, 15, '', 'Posicidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(28, 5, 30, '', 'N° de identificacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(55, 5, 58, '', 'Ubicacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(55, 8, 58, '', 'Ubicacidó&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(28, 5, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(28, 8, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(54, 5, 141, '', 'N° Certificado de Calibracidó&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibracidó&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
 
 $contador_t = 0;
 

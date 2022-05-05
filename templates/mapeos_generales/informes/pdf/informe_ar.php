@@ -4,7 +4,7 @@ require('../../../../config.ini.php');
 $id_informe = $_GET['informe'];
 
 
-$informes_generales = mysqli_prepare($connect,"SELECT a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
+$informes_generales = mysqli_prepare($connect,"SELECT a.tipo_protocolo, a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
 g.direccion, a.solicitante, f.clasificacion_item, g.logo
 FROM informes_general a,mapeo_general b,item_asignado c, servicio d, numot e,item f,empresa g
 WHERE id_informe = ?
@@ -17,7 +17,7 @@ AND f.id_empresa = g.id_empresa");
 mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
-mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
+mysqli_stmt_bind_result($informes_generales, $tipo_protocolo, $nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
 $nombre_empresa_g, $direccion_empresa_g, $solicitante, $clasificacion_item, $logo_empresa);
 
 mysqli_stmt_fetch($informes_generales);
@@ -310,7 +310,7 @@ $array_contenido = array(
   
   'Prioridad y medidas para mitigar los riesgos ...................................................................................................',
   'Determinación de puntos críticos de calificación - control .............................................................................',
-  'Identificación de Riesgo GMP ...........................................................................................................................',
+  'Identificación de Riesgo '.$tipo_protocolo.'...........................................................................................................................',
   'Análisis de Riesgo ...............................................................................................................................................',
   'Tabla de Riesgos asociados ..............................................................................................................................'
   
@@ -555,7 +555,7 @@ $html = <<<EOD
 serán consideradas como la base para el desarrollo de la calificación del sistema. Los eventos que resulten con prioridad B no serán incluidos en el desarrollo de la calificación del sistema, y en caso 
 de contar con procedimiento que contribuyen al resultado hallado, los mismos se describen.</div>
 
-<H3><strong>2.8 Identificación de Riesgo GMP:</strong></H3>
+<H3><strong>2.8 Identificación de Riesgo $tipo_protocolo:</strong></H3>
 
 <div class="justificado">Esta etapa es la de determinación que una función o subfunción del sistema representa un riesgo para la operación farmacéutica.
 Sigue a continuación una visión general de los principales puntos que deben ser considerados durante una evaluación:<br>
