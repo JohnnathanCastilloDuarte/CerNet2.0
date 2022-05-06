@@ -16,7 +16,7 @@ f.nombre,
 f.descripcion,
 f.id_tipo,
 g.nombre, 
-CASE WHEN g.direccion LIKE('%ñ%') THEN replace(g.direccion, 'ñ', 'ñ   ')  END as direccion,
+CASE WHEN g.direccion LIKE('%ñ&nbsp;&nbsp;%') THEN replace(g.direccion, 'ñ', 'ñ   ')  END as direccion,
 g.pais,
 a.solicitante,
 b.intervalo,
@@ -97,9 +97,9 @@ el punto 4.17 Condiciones de almacenamiento lo siguiente:</SPAN>
 <UL>
 
 <LI CLASS="biglist">“Las condiciones de almacenamiento de materiales y productos
-deben estar en conformidad con lo señalado en sus rdó&nbsp;&nbsp;tulos o etiquetas, que se base
+deben estar en conformidad con lo señ&nbsp;&nbsp;alado en sus rdó&nbsp;&nbsp;tulos o etiquetas, que se base
 en los resultados de las pruebas de estabilidad y lo aprobado en el respectivo
-registro sanitario, según corresponda según lo señalado a continuacidó&nbsp;&nbsp;n:
+registro sanitario, según corresponda según lo señ&nbsp;&nbsp;alado a continuacidó&nbsp;&nbsp;n:
 
 
 	<UL>
@@ -109,14 +109,14 @@ registro sanitario, según corresponda según lo señalado a continuacidó&nbsp;
 	<LI CLASS="smallist">Los locales de almacenamiento deben estar secos y bien ventilados, a temperatura
 	ambiente de 15-25°C, o, dependiendo de las condiciones climáticas, hasta 30°C en
 	periodos breves.</LI>
-	<LI CLASS="smallist">Se debe evitar los olores extraños, indicios de contaminacidó&nbsp;&nbsp;n y luz intensa.</LI>
+	<LI CLASS="smallist">Se debe evitar los olores extrañ&nbsp;&nbsp;os, indicios de contaminacidó&nbsp;&nbsp;n y luz intensa.</LI>
 
 	<br><br><SPAN STYLE="text-align: justify;"><STRONG>Instrucciones definidas de almacenamiento:</STRONG></SPAN>
 	<LI CLASS="smallist">Los productos deben ser almacenados bajo condiciones definidas
 	que requieren aprobadas instrucciones de almacenamiento. A menos que se
 	indique lo contrario (por ejemplo, productos que requieren mantener
 	almacenamiento continuo de frío, productos refrigerados, etc.). Las desviaciones
-	pueden ser toleradas sdó&nbsp;&nbsp;lo durante interrupciones de corta duracidó&nbsp;&nbsp;n, por ejemplo,
+	pueden ser toleradas só&nbsp;&nbsp;lo durante interrupciones de corta duracidó&nbsp;&nbsp;n, por ejemplo,
 	durante el transporte local, siempre y cuando la estabilidad del producto así lo
 	permita.</LI>
 	</UL>

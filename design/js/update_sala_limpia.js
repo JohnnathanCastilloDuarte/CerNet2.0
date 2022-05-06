@@ -49,52 +49,71 @@ function setear_campos(){
         clasificacion_iso       : $("#clasificacion_iso").val(),
         direccion_sala_limpia   : $("#direccion_sala_limpia").val(),
         ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
-        area_interna_incubadora : $("#area_interna_incubadora").val(),
+        codigo_interna_sala_limpia : $("#codigo_interna_sala_limpia").val(),
+        estado_sala             : $("#estado_sala").val(),
+      
+        temperatura_minima      : $("#temperatura_minima").val(),
+        temperatura_maxima      : $("#temperatura_maxima").val(),
+        temperatura_informativa : $("#temperatura_informativa").val(),
+        hum_relativa_minima     : $("#hum_relativa_minima").val(),
+        hum_relativa_maxima     : $("#hum_relativa_maxima").val(),
+        humedad_informativa     : $("#temperatura_informativa").val(),
+      
         area_m2_sala_limpia     : $("#area_m2_sala_limpia").val(),
         volumen_m3_sala_limpia  : $("#volumen_m3_sala_limpia").val(),
-        claudal_m3h             : $("#claudal_m3h").val(),
-
         ren_hr                  : $("#ren_hr").val(),
-        temperatura             : $("#temperatura").val(),
-        hum_relativa            : $("#hum_relativa").val(),
         lux                     : $("#lux").val(),
         ruido_dba               : $("#ruido_dba").val(),
         presion_sala            : $("#presion_sala").val(),
         presion_versus          : $("#presion_versus").val(),
         tipo_presion            : $("#tipo_presion").val(),
         puntos_muestreo         : $("#puntos_muestreo").val(),
-        codigo                  : $("#codigo").val(),
-        estado_sala             : $("#estado_sala").val(),
+        cantidad_extracciones   : $("#cantidad_extracciones").val(),
+        cantidad_inyecciones    : $("#cantidad_inyecciones").val(),
 
 
         id_item_sala_limpia     : $("#id_item_sala_limpia").val(),
         id_item_2_sala_limpia   : $("#id_item_2_sala_limpia").val(),
     }
+    
+    if (campos_vacios(datos) == true){
+        console.log("si");
+          $.ajax({
+           type:'POST',
+           url:'templates/item/editar_sala_limpia.php',
+           data:datos,
+           success:function(response){
+            console.log(response);
+             if(response == "Si"){
+               Swal.fire({
+                 title:'Mensaje',
+                 text:'Se ha creado una sala limpia correctamente',
+                 icon:'success',
+                 showConfirmButton: false,
+                 timer:1500
+               });
+                 setear_campos();
+             }else{
+              Swal.fire({
+                title:'Mensaje',
+                text:'No se ha podido crear, Contacta con el administrador',
+                icon:'error',
+                showConfirmButton: false,
+                timer:1500
+
+              });
+            }
+
+          }
+        });
+      }else{
+        console.log("no");
+      }
 
 
-    campos_vacios(datos);
+    //campos_vacios(datos);
 
-    /*$.post('templates/item/editar_sala_limpia.php', datos, function(response){
-      console.log(response);
-     if(response == "Si"){
-      Swal.fire({
-       position:'center',
-       icon:'success',
-       title:'El item ha sido modificado con exito',
-       showConfirmButton: false,
-       timer:1500
-     });
-    }else{
-       Swal.fire({
-       position:'center',
-       icon:'error',
-       title:'Ha ocurrido un error, contacta con el administrador',
-       showConfirmButton: false,
-       timer:1500
-     });
-    }
-  });
-*/
+      
 
   });
 
@@ -186,13 +205,6 @@ $(document).on('click','#seleccionar_empresa',function(){
         cantidad_inyecciones : $("#cantidad_inyecciones").val()
       }
 
-     // campos_vacios(datos);
-      //console.log(campos_vacios(datos))
-
-      /*if (console.log(campos_vacios(datos))){
-
-
-      }*/
       if (campos_vacios(datos) == true){
         console.log("si");
           $.ajax({

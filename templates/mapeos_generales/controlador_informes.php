@@ -212,8 +212,8 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
      
         $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-AR';
 
-        $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario, tipo_protocolo) VALUES (?,?,?,?,?,?,?)");
-        mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario, $tipo_protocolo);
+        $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
+        mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
         mysqli_stmt_execute($insertando_informe);
         $id_informe = mysqli_stmt_insert_id($insertando_informe);
 
@@ -239,13 +239,10 @@ if(mysqli_stmt_num_rows($consultar_informe) > 0){
             $prioridad = "NA";
             $medidas = "Medidas";
             
-            for($i = 0; $i <=9; $i++){
-              
+            for($i = 0; $i <=9; $i++){ 
                   $isertando = mysqli_prepare($connect,"INSERT INTO analisis_riesgos (id_informe, num_riesgo, etapa, relevancia, descripcion, probabilidad, impacto, clase, deteccion, prioridad, medidas) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
                   mysqli_stmt_bind_param($isertando, 'issssssssss', $id_informe,$i, $array_enunciado_1[$i], $gmp, $descrpcion, $probabilidad, $impacto, $clase, $deteccion, $prioridad, $medidas);
                   mysqli_stmt_execute($isertando);
-            
-  
             }
           
         }else{

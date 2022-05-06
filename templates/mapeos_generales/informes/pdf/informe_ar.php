@@ -22,11 +22,11 @@ $nombre_empresa_g, $direccion_empresa_g, $solicitante, $clasificacion_item, $log
 
 mysqli_stmt_fetch($informes_generales);
 
-//$nombre_informe = $nombre_informe_g;
-$nombre_informe = substr($nombre_informe_g, 0, -3);
+$nombre_informe = $nombre_informe_g;
+//$nombre_informe = substr($nombre_informe_g, 0, -3);
 $numot = $num_ot_g;
-$a = "INFORME DE ANALISIS DE RIESGO DE ".$nombre_item_g."     ".$nombre_empresa_g;
-$a_portada = "INFORME DE ANALISIS DE RIESGO <br> ".$nombre_item_g."<br>". $nombre_empresa_g;
+$a = "INFORME DE ANÁ LISIS DE RIESGO DE ".$nombre_item_g."     ".$nombre_empresa_g;
+$a_portada = "INFORME DE ANÁ LISIS DE RIESGO <br> ".$nombre_item_g."<br>". $nombre_empresa_g;
 /*
 
 //CONSULTAS PARA PUNTO 1
@@ -162,7 +162,7 @@ class MYPDF extends TCPDF
 		//$this->writeHTMLCell(40, 20, 15, '', '', 0, 1, 0, true, 'C', true);		
     $this->MultiCell(120, 12, 'INFORME DE ANÁLISIS DE RIESGO MAPEO TÉRMICO '.$numero_equipo.' - '.$empresa.$txt2, 1, 'C', 0, 0, 15, 30, true, 0, false, true, 12, 'M');
 		$this->writeHTMLCell(60, 8, 135, 30, 'Informe: '.$codigo_informe.' <br>'.$num_ot.' // REVISION: 0.0.0', 1, 0, 0, true, 'R', true);
-		$this->writeHTMLCell(60, 4, 135, 38, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
+		$this->writeHTMLCell(60, 4, 135, 38, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pá&nbsp;gina '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
     }
 
     // Page footer
@@ -301,17 +301,17 @@ $array_indice = array(
 $array_contenido = array(
   'Objetivos ..............................................................................................................................................................',
   'Procedimiento ......................................................................................................................................................',
-  'Identificación del Riesgo ....................................................................................................................................',
+  'Identificació&nbsp;&nbsp;n del Riesgo ....................................................................................................................................',
   'Probabilidad de ocurrencia del Riesgo .............................................................................................................',
-  'Clasificación del Impacto de un Riesgo preidentificado .................................................................................',
-  'Clasificación del Riesgo .....................................................................................................................................',
-  'Probabilidad de detección del Riesgo ..............................................................................................................',
+  'Clasificació&nbsp;&nbsp;n del Impacto de un Riesgo preidentificado .................................................................................',
+  'Clasificació&nbsp;&nbsp;n del Riesgo .....................................................................................................................................',
+  'Probabilidad de detecció&nbsp;&nbsp;n del Riesgo ..............................................................................................................',
   
   
   'Prioridad y medidas para mitigar los riesgos ...................................................................................................',
-  'Determinación de puntos críticos de calificación - control .............................................................................',
-  'Identificación de Riesgo '.$tipo_protocolo.'...........................................................................................................................',
-  'Análisis de Riesgo ...............................................................................................................................................',
+  'Determinació&nbsp;&nbsp;n de puntos críticos de calificació&nbsp;&nbsp;n - control .............................................................................',
+  'Identificació&nbsp;&nbsp;n de Riesgo '.$tipo_protocolo.'...........................................................................................................................',
+  'Aná&nbsp;lisis de Riesgo ...............................................................................................................................................',
   'Tabla de Riesgos asociados ..............................................................................................................................'
   
 );
@@ -349,40 +349,40 @@ $html = <<<EOD
       <td style="width:97%;">
       
       <H3><strong>1 Objetivos:</strong></H3>
-<label class="justificado">El objetivo del Análisis de Riesgos es evaluar aquellas situaciones con probabilidad de peligro y desarrollar medidas que aseguren su control.
-El Análisis de Riesgos se compone de dos documentos:<br>
-1. Formulario de Análisis de riesgos Potenciales.<br>
-2. Formulario de Evaluación de riesgos.</label>
+<label class="justificado">El objetivo del Aná&nbsp;lisis de Riesgos es evaluar aquellas situaciones con probabilidad de peligro y desarrollar medidas que aseguren su control.
+El Aná&nbsp;lisis de Riesgos se compone de dos documentos:<br>
+1. Formulario de Aná&nbsp;lisis de riesgos Potenciales.<br>
+2. Formulario de Evaluació&nbsp;&nbsp;n de riesgos.</label>
 
 <H3><strong>2 Procedimiento:</strong></H3>
-<label class="justificado">El Análisis de Riesgos tiene en cuenta en particular para los sistemas en calificación:<br><br>
-• Cumplimiento de instalación y funcionamiento.<br><br>
-• Atributos del desempeño de los sistemas con implicancia en la calidad del producto (se evita la contaminación cruzada, falsificación de productos y fallas de almacenamiento).</label><br>
+<label class="justificado">El Aná&nbsp;lisis de Riesgos tiene en cuenta en particular para los sistemas en calificació&nbsp;&nbsp;n:<br><br>
+• Cumplimiento de instalació&nbsp;&nbsp;n y funcionamiento.<br><br>
+• Atributos del desempeñ&nbsp;&nbsp;o de los sistemas con implicancia en la calidad del producto (se evita la contaminació&nbsp;&nbsp;n cruzada, falsificació&nbsp;&nbsp;n de productos y fallas de almacenamiento).</label><br>
 
-<H3><strong>2.1 Identificación del Riesgo:</strong></H3>
+<H3><strong>2.1 Identificació&nbsp;&nbsp;n del Riesgo:</strong></H3>
 
-<label class="justificado">Se debe identificar el evento o situación específica que puedan causar un riesgo, adjudicándole un número de referencia, tomando en cuenta el efecto y las consecuencias.</label><br>
+<label class="justificado">Se debe identificar el evento o situació&nbsp;&nbsp;n específica que puedan causar un riesgo, adjudicá&nbsp;ndole un numero de referencia, tomando en cuenta el efecto y las consecuencias.</label><br>
 <H3><strong>2.2 Probabilidad de ocurrencia del Riesgo:</strong></H3>
 
-<label class="justificado">Se determina la probabilidad de que un riesgo ocurra, considerando los distintos aspectos que hacen a la instalación, operación y desempeño en la operación farmacéutica de los sistemas bajo estudio, 
-así, el riesgo podrá ser:<br>
+<label class="justificado">Se determina la probabilidad de que un riesgo ocurra, considerando los distintos aspectos que hacen a la instalació&nbsp;&nbsp;n, operació&nbsp;&nbsp;n y desempeñ&nbsp;&nbsp;o en la operació&nbsp;&nbsp;n farmacéutica de los sistemas bajo estudio, 
+así, el riesgo podrá&nbsp; ser:<br>
 • Alto (A).<br>
 • Medio (M).<br>
 • Bajo (B).</label><br> 
 
-<H3><strong>2.3 Clasificación del impacto de un Riesgo Preidentificado:</strong></H3>
-<label class="justificado">Los efectos de los riesgos se evalúan a corto, mediano y largo plazo y clasificando el impacto de acuerdo con la siguiente escala:</label><br><br>
+<H3><strong>2.3 Clasificació&nbsp;&nbsp;n del impacto de un Riesgo Preidentificado:</strong></H3>
+<label class="justificado">Los efectos de los riesgos se evaluan a corto, mediano y largo plazo y clasificando el impacto de acuerdo con la siguiente escala:</label><br><br>
 <table>
-<tr><td width="15%">• Bajo (B): </td><td width="85%">Se espera un impacto negativo menor. No se espera un daño a largo plazo.</td></tr>
+<tr><td width="15%">• Bajo (B): </td><td width="85%">Se espera un impacto negativo menor. No se espera un dañ&nbsp;&nbsp;o a largo plazo.</td></tr>
 <tr><td width="15%">• Medio (M): </td><td width="85%">Se espera tener un impacto moderado.</td></tr>
-<tr><td width="15%">• Alto (A): </td><td width="85%">Se espera tener un impacto negativo significante. Se espera que el impacto pueda tener efectos significativos a largo plazo y un efecto de dimensión catastrófica a 
+<tr><td width="15%">• Alto (A): </td><td width="85%">Se espera tener un impacto negativo significante. Se espera que el impacto pueda tener efectos significativos a largo plazo y un efecto de dimensió&nbsp;&nbsp;n catastró&nbsp;&nbsp;fica a 
 corto plazo.</td></tr>
 </table><br>
 
 
 
-<H3><strong>2.4 Clasificación del Riesgo (Clase de Riesgo):</strong></H3>
-<label class="justificado">Una vez asignado el nivel de probabilidad y de impacto, el riesgo debe ser ubicado y clasificado utilizando la siguiente Matriz de Clasificación de Riesgo.</label>
+<H3><strong>2.4 Clasificació&nbsp;&nbsp;n del Riesgo (Clase de Riesgo):</strong></H3>
+<label class="justificado">Una vez asignado el nivel de probabilidad y de impacto, el riesgo debe ser ubicado y clasificado utilizando la siguiente Matriz de Clasificació&nbsp;&nbsp;n de Riesgo.</label>
       
       
       
@@ -461,15 +461,15 @@ Clase 1 significa Riesgo Alto.<br>
 Clase 2 significa Riesgo Moderado.<br>
 Clase 3 significa Riesgo Bajo.<br>
 
-<H3><strong>2.5 Probabilidad de detección del Riesgo:</strong></H3>
+<H3><strong>2.5 Probabilidad de detecció&nbsp;&nbsp;n del Riesgo:</strong></H3>
 
 
-<label class="justificado">Una vez asignado el nivel de probabilidad y de impacto, el riesgo debe ser ubicado y clasificado utilizando la siguiente Matriz de Clasificación de Riesgo.
-Se debe identificar la velocidad de respuesta con la que un evento puede ser reconocido o detectado; en otras palabras, se debe identificar el tiempo transcurrido entre un incidente y su detección. 
-El detalle de detección se evalúa según:<br>
-• Baja (B) La detección de una condición de falla es imposible.<br>
-• Medio (M) La detección de una condición de falla se percibe con cierta probabilidad.<br>
-• Alta (A) La detección de una condición de falla tiene alta probabilidad.</label><br>
+<label class="justificado">Una vez asignado el nivel de probabilidad y de impacto, el riesgo debe ser ubicado y clasificado utilizando la siguiente Matriz de Clasificació&nbsp;&nbsp;n de Riesgo.
+Se debe identificar la velocidad de respuesta con la que un evento puede ser reconocido o detectado; en otras palabras, se debe identificar el tiempo transcurrido entre un incidente y su detecció&nbsp;&nbsp;n. 
+El detalle de detecció&nbsp;&nbsp;n se evalua segun:<br>
+• Baja (B) La detecció&nbsp;&nbsp;n de una condició&nbsp;&nbsp;n de falla es imposible.<br>
+• Medio (M) La detecció&nbsp;&nbsp;n de una condició&nbsp;&nbsp;n de falla se percibe con cierta probabilidad.<br>
+• Alta (A) La detecció&nbsp;&nbsp;n de una condició&nbsp;&nbsp;n de falla tiene alta probabilidad.</label><br>
 
 <H3><strong>2.6 Prioridad y medidas para mitigar los riesgos:</strong></H3>
 <label class="justificado">
@@ -548,22 +548,22 @@ $html = <<<EOD
       <td style="width: 3%;"></td>
       <td style="width:97%;">
         
-<H3><strong>2.7 Determinación de puntos críticos de calificación - control:</strong></H3>
+<H3><strong>2.7 Determinació&nbsp;&nbsp;n de puntos críticos de calificació&nbsp;&nbsp;n - control:</strong></H3>
 
-<div class="justificado">Una vez realizada la priorización, se deben definir y documentar las medidas necesarias para mitigar los eventos adversos que representan mayor riesgo 
-(puntos críticos de control), identificados como prioridad A y M (como pruebas específicas, control del sistema de monitoreo, cambio de almacenamiento, etc.), estas medidas/acciones documentadas en el análisis de riesgo, 
-serán consideradas como la base para el desarrollo de la calificación del sistema. Los eventos que resulten con prioridad B no serán incluidos en el desarrollo de la calificación del sistema, y en caso 
+<div class="justificado">Una vez realizada la priorizació&nbsp;&nbsp;n, se deben definir y documentar las medidas necesarias para mitigar los eventos adversos que representan mayor riesgo 
+(puntos críticos de control), identificados como prioridad A y M (como pruebas específicas, control del sistema de monitoreo, cambio de almacenamiento, etc.), estas medidas/acciones documentadas en el aná&nbsp;lisis de riesgo, 
+será&nbsp;n consideradas como la base para el desarrollo de la calificació&nbsp;&nbsp;n del sistema. Los eventos que resulten con prioridad B no será&nbsp;n incluidos en el desarrollo de la calificació&nbsp;&nbsp;n del sistema, y en caso 
 de contar con procedimiento que contribuyen al resultado hallado, los mismos se describen.</div>
 
-<H3><strong>2.8 Identificación de Riesgo $tipo_protocolo:</strong></H3>
+<H3><strong>2.8 Identificació&nbsp;&nbsp;n de Riesgo $tipo_protocolo:</strong></H3>
 
-<div class="justificado">Esta etapa es la de determinación que una función o subfunción del sistema representa un riesgo para la operación farmacéutica.
-Sigue a continuación una visión general de los principales puntos que deben ser considerados durante una evaluación:<br>
+<div class="justificado">Esta etapa es la de determinació&nbsp;&nbsp;n que una funció&nbsp;&nbsp;n o subfunció&nbsp;&nbsp;n del sistema representa un riesgo para la operació&nbsp;n farmacéutica.
+Sigue a continuació&nbsp;&nbsp;n una visió&nbsp;&nbsp;n general de los principales puntos que deben ser considerados durante una evaluació&nbsp;&nbsp;n:<br>
 • Accesos a la $clasificacion_item de almacenamiento.<br>
-• Instalación física y construcción de la $clasificacion_item.<br>
-• Ubicación de equipos productivos cerca de áreas de almacenamiento.<br>
-• Sistema de climatización, desempeño y ubicación.<br>
-• Cargas Internas: iluminación, equipos y personal.</div>
+• Instalació&nbsp;&nbsp;n física y construcció&nbsp;&nbsp;n de la $clasificacion_item.<br>
+• Ubicació&nbsp;&nbsp;n de equipos productivos cerca de á&nbsp;reas de almacenamiento.<br>
+• Sistema de climatizació&nbsp;&nbsp;n, desempeñ&nbsp;&nbsp;o y ubicació&nbsp;&nbsp;n.<br>
+• Cargas Internas: iluminació&nbsp;&nbsp;n, equipos y personal.</div>
         
 
 
@@ -592,13 +592,13 @@ $html = <<<EOD
       <td style="width: 3%;"></td>
       <td style="width:97%;">
         
-  <H3><strong>3. Análisis de Riesgo:</strong></H3>
-        A partir del presente momento se procede a realizar el análisis de riesgo correspondiente al presente mapeo térmico.<br>
-        Nota: según lo identificado en el levamiento de la $clasificacion_item no aplican los siguientes riesgos:<br>
+  <H3><strong>3. Aná&nbsp;lisis de Riesgo:</strong></H3>
+        A partir del presente momento se procede a realizar el aná&nbsp;&nbsp;lisis de riesgo correspondiente al presente mapeo térmico.<br>
+        Nota: segun lo identificado en el levamiento de la $clasificacion_item no aplican los siguientes riesgos:<br>
         1- Ventanas: la $clasificacion_item no cuenta con ventanas en las zonas de almacenamiento.<br>
-        2- Equipos productivos/ climatización asistida cerca de área de almacenamiento. Ejemplo: calderas, cámaras frías. La $clasificacion_item no cuenta con equipos productivos instalados al momento de generar el análisis de riesgo.<br>
-        3- Sistema de Climatización: la $clasificacion_item no cuenta con HVAC.<br>
-        4- Personal y maquinaria: la $clasificacion_item no se encuentra operativa al momento de generar el presente análisis de riesgo.<br>
+        2- Equipos productivos/ climatizació&nbsp;&nbsp;n asistida cerca de á&nbsp;rea de almacenamiento. Ejemplo: calderas, cá&nbsp;maras frías. La $clasificacion_item no cuenta con equipos productivos instalados al momento de generar el aná&nbsp;lisis de riesgo.<br>
+        3- Sistema de Climatizació&nbsp;&nbsp;n: la $clasificacion_item no cuenta con HVAC.<br>
+        4- Personal y maquinaria: la $clasificacion_item no se encuentra operativa al momento de generar el presente aná&nbsp;lisis de riesgo.<br>
       </td>
     </tr>
 
@@ -622,15 +622,15 @@ $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'da
 //TITULOS
 
 $txt01='No. Referencia del Riesgo';
-$txt02='Etapa/ subetapa bajo análisis';
+$txt02='Etapa/ subetapa bajo aná lisis';
 $txt03='Relevancia';
-$txt04='Descripción del Riesgo Identificado';
+$txt04='Descripció  n del Riesgo Identificado';
 $txt05='Probabilidad
 (A,M,B)';
 $txt06='Impacto
 (A,M,B)';
 $txt07='Clase';
-$txt08='Probabilidad de detección
+$txt08='Probabilidad de detecció n
 (A,M,B)';
 $txt09='Prioridad
 (A,M,B)';

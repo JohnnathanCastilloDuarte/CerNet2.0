@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-05 15:44:44
+/* Smarty version 3.1.34-dev-7, created on 2022-05-06 13:36:09
   from '/home/god/public_html/CerNet2.0/templates/item/update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6273f0ecaa6537_54279269',
+  'unifunc' => 'content_6275244946e690_27300283',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '73059e465212e877311fefbda650d6f3c0ac9957' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_sala_limpia.tpl',
-      1 => 1651765477,
+      1 => 1651844167,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6273f0ecaa6537_54279269 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6275244946e690_27300283 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -148,7 +148,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                   </select>
                 </div>
             </div>
-         
+  
          </div>   
           
          <div id="step-22">  
@@ -172,9 +172,17 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
               <div class="col-sm-12">
                 <label for="">Informativo</label>
                 <select class="form-control" style="width: 10%;" id="temperatura_informativa">
-                  <option></option>
+                  <?php if ($_smarty_tpl->tpl_vars['sala_limpia']->value['temperatura_informativa'] == '') {?>
+                  <option value="">Seleccione...</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
+                  <?php } else { ?>
+                  <option value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temperatura_informativa'];?>
+"><?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['temperatura_informativa'];?>
+</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                  <?php }?>
                 </select>
               </div>
             </div>
@@ -198,9 +206,17 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
               <div class="col-sm-12">
                 <label for="">Informativo</label>
                 <select class="form-control" style="width: 10%;" id="humedad_informativa">
-                  <option></option>
+                  <?php if ($_smarty_tpl->tpl_vars['sala_limpia']->value['humedad_informativa'] == '') {?>
+                  <option value="">Seleccione...</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
+                  <?php } else { ?>
+                  <option value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['humedad_informativa'];?>
+"><?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['humedad_informativa'];?>
+</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                  <?php }?>
                 </select>
               </div>
             </div>

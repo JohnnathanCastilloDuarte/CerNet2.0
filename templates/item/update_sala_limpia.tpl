@@ -128,9 +128,15 @@
               <div class="col-sm-12">
                 <label for="">Informativo</label>
                 <select class="form-control" style="width: 10%;" id="temperatura_informativa">
-                  <option></option>
+                  {if $sala_limpia.temperatura_informativa == ''}
+                  <option value="">Seleccione...</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
+                  {else $sala_limpia.temperatura_informativa != ''}
+                  <option value="{$sala_limpia.temperatura_informativa}">{$sala_limpia.temperatura_informativa}</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                  {/if}
                 </select>
               </div>
             </div>
@@ -152,9 +158,15 @@
               <div class="col-sm-12">
                 <label for="">Informativo</label>
                 <select class="form-control" style="width: 10%;" id="humedad_informativa">
-                  <option></option>
+                  {if $sala_limpia.humedad_informativa == ''}
+                  <option value="">Seleccione...</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
+                  {else $sala_limpia.humedad_informativa != ''}
+                  <option value="{$sala_limpia.humedad_informativa}">{$sala_limpia.humedad_informativa}</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                  {/if}
                 </select>
               </div>
             </div>

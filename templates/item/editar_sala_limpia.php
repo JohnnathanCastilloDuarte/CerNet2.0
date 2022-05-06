@@ -7,21 +7,26 @@ $clasificacion_oms = $_POST['clasificacion_oms'];
 $clasificacion_iso = $_POST['clasificacion_iso'];
 $direccion_sala_limpia = $_POST['direccion_sala_limpia'];
 $ubicacion_interna_sala_limpia = $_POST['ubicacion_interna_sala_limpia'];
-$area_interna_incubadora = $_POST['area_interna_incubadora'];
+$codigo_interna_sala_limpia = $_POST['codigo_interna_sala_limpia'];
+$estado_sala = $_POST['estado_sala'];
+$temperatura_minima = $_POST['temperatura_minima'];
+$temperatura_maxima = $_POST['temperatura_maxima'];
+$temperatura_informativa = $_POST['temperatura_informativa'];
+$hum_relativa_minima = $_POST['hum_relativa_minima'];
+$hum_relativa_maxima = $_POST['hum_relativa_maxima'];
+$humedad_informativa = $_POST['humedad_informativa'];
 $area_m2_sala_limpia = $_POST['area_m2_sala_limpia'];
 $volumen_m3_sala_limpia = $_POST['volumen_m3_sala_limpia'];
-$claudal_m3h = $_POST['claudal_m3h'];
 $ren_hr = $_POST['ren_hr'];
-$temperatura = $_POST['temperatura'];
-$hum_relativa = $_POST['hum_relativa'];
 $lux = $_POST['lux'];
 $ruido_dba = $_POST['ruido_dba'];
 $presion_sala = $_POST['presion_sala'];
 $presion_versus = $_POST['presion_versus'];
 $tipo_presion = $_POST['tipo_presion'];
 $puntos_muestreo = $_POST['puntos_muestreo'];
-$codigo = $_POST['codigo'];
-$estado_sala = $_POST['estado_sala']; 
+$cantidad_extracciones = $_POST['cantidad_extracciones'];
+$cantidad_inyecciones = $_POST['cantidad_inyecciones'];
+
 
 $id_item_sala_limpia     = $_POST['id_item_sala_limpia'];
 $id_item_2_sala_limpia   = $_POST['id_item_2_sala_limpia'];
@@ -35,29 +40,33 @@ if($update_sala_limpia){
 
 	$update_sala_limpia_2  = mysqli_prepare($connect,"UPDATE item_sala_limpia 
 		SET 
-		Area_m2 = ?, 
-		volumen_m3 = ?, 
-		direccion = ?, 
-		ubicacion_interna = ?, 
-		area_interna = ?, 
-		clasificacion_oms = ?,
-		clasificacion_iso = ?,
-		claudal_m3h = ?,
-		ren_hr = ?,
-		temperatura = ?,
-		hum_relativa = ?,
-		lux = ?,
-		ruido_dba = ?,
-		presion_sala = ?,
-		presion_versus = ?,
-		tipo_presion = ?,
-		puntos_muestreo = ?,
-		codigo = ?,
-		estado_sala = ?
+    
+       direccion = ?,   
+       Area_m2 = ?,
+       Volumen_m3 = ?, 
+       area_interna = ?,  
+       clasificacion_oms = ?, 
+       clasificacion_iso = ?, 
+       ren_hr = ?, 
+       especificacion_1_temp = ?, 
+       especificacion_2_temp = ?, 
+       especificacion_1_hum = ?, 
+       especificacion_2_hum = ?, 
+       lux = ?, 
+       ruido_dba = ?, 
+       presion_sala = ?, 
+       presion_versus = ?, 
+       tipo_presion = ?, 
+       puntos_muestreo = ?,
+       fecha_registro = ?,
+       codigo = ?,
+       estado_sala = ?,
+       temp_informativa = ?,
+       hum_informativa = ?
 
 
 		WHERE id = $id_item_sala_limpia");
-	mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssssss', 
+	mysqli_stmt_bind_param($update_sala_limpia_2, 'ssssssssssssssssssssss', 
 		$area_m2_sala_limpia, 
 		$volumen_m3_sala_limpia, 
 		$direccion_sala_limpia, 
