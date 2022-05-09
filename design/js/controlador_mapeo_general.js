@@ -1271,15 +1271,25 @@ $("#creacion_temp").click(function(){
                         icon:'warning',
                         timer:1500
                     });
-                }else{
+                  listar_informes_x_prueba(id_mapeo);
+                }else if(response == "Primero correlativo"){
+                    Swal.fire({
+                        title:'Mensaje',
+                        text:'Primero debes crear un correlativo',
+                        icon:'error',
+                        timer:1700
+                    });
+                }
+              else{
                     Swal.fire({
                         title:'Mensaje',
                         text:'Se ha creado el informe correctamente',
                         icon:'success',
                         timer:1700
                     });
-                }
                 listar_informes_x_prueba(id_mapeo);
+                }
+                
             }
 
             

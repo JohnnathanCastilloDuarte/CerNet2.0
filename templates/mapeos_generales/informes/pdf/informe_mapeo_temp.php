@@ -596,19 +596,19 @@ text-align:left;
 <tr><td width="15%" ><strong>Informe:</strong></td><td width="45%">$nombre_informe</td>
 <td width="15%"><strong>O.T. N°</strong></td><td width="25%">$num_ot</td></tr>
 <tr><td width="15%"><strong>Solicitante:</strong></td><td>$nombre_empresa</td>
-		<td>Direcció&nbsp;&nbsp;n:</td><td>$direccion_empresa</td></tr>
+		<td>Dirección:</td><td>$direccion_empresa</td></tr>
 
-		<tr><td width="15%"><strong>Atenció&nbsp;&nbsp;n:</strong></td><td>$solicitante</td>
-		<td>Fecha de emisió&nbsp;&nbsp;n:</td><td>$fecha_emicion</td></tr>
+		<tr><td width="15%"><strong>Atención:</strong></td><td>$solicitante</td>
+		<td>Fecha de emisión:</td><td>$fecha_emicion</td></tr>
 		</table><br><br>
 
-		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>1. Identificació&nbsp;&nbsp;n del Equipo o Muestra</strong></H3></td></tr>
+		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>1. Identificación del Equipo o Muestra</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Descripció&nbsp;&nbsp;n:</td><td width="70%">$descripcion_item</td></tr>
+		<tr><td width="30%" class="enunciado">Descripción:</td><td width="70%">$descripcion_item</td></tr>
 		<tr><td width="30%" class="enunciado">Marca:</td><td width="70%">$marca</td></tr>
 		<tr><td width="30%" class="enunciado">Modelo:</td><td width="70%">$modelo</td></tr>
-		<tr><td width="30%" class="enunciado">N° de serie / Có&nbsp;&nbsp;digo interno</td><td width="70%">$codigo_interno</td></tr>
-		<tr><td width="30%" class="enunciado">Ubicació&nbsp;&nbsp;n</td><td width="70%">$direccion_empresa</td></tr>
+		<tr><td width="30%" class="enunciado">N° de serie / Código interno</td><td width="70%">$codigo_interno</td></tr>
+		<tr><td width="30%" class="enunciado">Ubicación</td><td width="70%">$direccion_empresa</td></tr>
 		<tr><td width="30%" class="enunciado">Valor seteado (°C)</td><td width="70%">$valor_seteado_temp</td></tr>
 		<tr><td width="30%" rowspan="2" class="enunciado">Límites (°C)</td>
 
@@ -630,15 +630,15 @@ text-align:left;
 		<tr><td width="30%" class="enunciado">Inferior al límite mínimo (%)</td><td width="70%">$min_percent</td></tr>
 		</table><br>
 
-		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medició&nbsp;&nbsp;n Obtenida</strong></H3></td></tr>
+		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medición Obtenida</strong></H3></td></tr>
 
 		<tr><td width="30%" class="enunciado">Promedio General (°C)</td><td width="70%" colspan="5">$prom_general</td></tr>
 
 		<tr><td width="30%" class="enunciado">Máximo General (°C)</td><td width="10%">$max_general</td>
-		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posició&nbsp;&nbsp;n $posicion_max_general: $bandeja_max_general</td></tr>
+		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posición $posicion_max_general: $bandeja_max_general</td></tr>
 
 		<tr><td width="30%" class="enunciado">Mínimo General (°C)</td><td width="10%">$min_general</td>
-		<td width="10%">a las:</td><td width="20%">$min_time_general</td><td width="10%">En:</td><td width="20%">$sensor_min_general, Ubicado en posició&nbsp;&nbsp;n $posicion_min_general: $bandeja_min_general</td></tr>
+		<td width="10%">a las:</td><td width="20%">$min_time_general</td><td width="10%">En:</td><td width="20%">$sensor_min_general, Ubicado en posición $posicion_min_general: $bandeja_min_general</td></tr>
 
 		<tr><td width="30%" class="enunciado">Desv. Estándar de todos los sensores (°C)</td><td width="70%" colspan="3">$desviacion_general</td></tr>
 
@@ -649,7 +649,7 @@ text-align:left;
 		<tr><td width="30%" class="enunciado">MKT General (°C)*</td><td width="70%">$mkt_gen</td></tr>
 
 		</table>
-		* Usa: Energía activació&nbsp;&nbsp;n = 83,144 (kJ/mol) y Constante universal de gases ideales = 0,0083144 (kJ/mol)<br><br>
+		* Usa: Energía activación = 83,144 (kJ/mol) y Constante universal de gases ideales = 0,0083144 (kJ/mol)<br><br>
 
 		<table width="100%"><tr><td colspan="8" bgcolor="#DDDDDD"><H3><strong>4. Análisis de los Resultados</strong></H3></td></tr>
 
@@ -713,7 +713,7 @@ tr:nth-child(even)
 
  
 <table>
-<tr><td bgcolor="#DDDDDD"><strong>Ubicació&nbsp;&nbsp;n de los Sensores</strong></td></tr>
+<tr><td bgcolor="#DDDDDD"><strong>Ubicación de los Sensores</strong></td></tr>
 <tr><td><br><br>$img_1 </td></tr></table><br><br><br>
 EOD;
 
@@ -721,15 +721,15 @@ $pdf->writeHTML($html_2, true,false,false,false,'');
 
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(170, 170, 170)));
 //TITULOS
-$pdf->writeHTMLCell(15, 8, 15, '', 'Posició&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(55, 8, 58, '', 'Ubicació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(55, 8, 58, '', 'Ubicación', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(28, 8, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibració&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);
 
 $contador_t = 0;
 //CONSULTA
@@ -753,15 +753,15 @@ while($row = mysqli_stmt_fetch($query_32)){
 
        $pdf->AddPage('A4');
        //TITULOS
-       $pdf->writeHTMLCell(15, 8, 15, '', 'Posició&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+       $pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(55, 8, 58, '', 'Ubicació&nbsp;&nbsp;n', 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(55, 8, 58, '', 'Ubicación', 1, 0, 0, true, 'C', true);
 
       $pdf->writeHTMLCell(28, 8, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 
-      $pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibració&nbsp;&nbsp;n', 1, 1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);
 
      } 
       $pdf->writeHTMLCell(15, 5, 15, '', $posicion, 1, 0, 0, true, 'C', true);
@@ -832,7 +832,7 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
   
 
 //TITULOS
-$pdf->writeHTMLCell(25, 10, 15, '', 'Posició&nbsp;&nbsp;n -  N° de ident.', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (°C)', 1, 0, 0, true, 'C', true);
 
@@ -911,7 +911,7 @@ $mkt=number_format(-1*(83.144/0.0083144)/(log($valor_mkt))-273.15,2);
 if($contador_for_table == 35){
   $pdf->AddPage('A4');
   
-  $pdf->writeHTMLCell(25, 10, 15, '', 'Posició&nbsp;&nbsp;n -  N° de ident.', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (°C)', 1, 0, 0, true, 'C', true);
 
@@ -1131,7 +1131,7 @@ tr:nth-child(even)
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Comentarios</strong></td></tr>
 <tr><td>$comentarios</td></tr>
-<tr><td bgcolor="#DDDDDD"><strong>Observació&nbsp;&nbsp;n</strong></td></tr>
+<tr><td bgcolor="#DDDDDD"><strong>Observación</strong></td></tr>
 <tr><td>$observacion</td></tr>
 </table>
 <br><br><br>
