@@ -1,4 +1,12 @@
 <input type="hidden" value="{$id_asignado_sala_limpia}" id="id_asignado_sala_limpia">
+<input type="hidden" name="" id="presion_sala_pa" value="{$presion_sala}">
+<input type="hidden" name="" id="especificacion_1_temp" value="{$especificacion_1_temp}">
+<input type="hidden" name="" id="especificacion_2_temp" value="{$especificacion_2_temp}">
+<input type="hidden" name="" id="especificacion_1_hum" value="{$especificacion_1_hum}">
+<input type="hidden" name="" id="especificacion_2_hum" value="{$especificacion_2_hum}">
+<input type="hidden" name="" id="lux" value="{$lux}">
+<input type="hidden" name="" id="lux" value="{$ren_hr}">
+<input type="hidden" name="" id="ruido_dba" value="{$ruido_dba}">
 <div class="row">
     
     <div class="col-sm-12">
@@ -49,16 +57,6 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                         <div class="col-sm-4">
-                                            <label>Volumen por Muestras (L)</label>
-                                            <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control" placeholder="Volumen por Muestras (L)">
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Altura toma de Muestras (m)</label>
-                                            <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control" placeholder="Altura toma de Muestras (m)">
-                                        </div>
-                                    </div>
                                     <hr>
                                     <table class="table" style="text-align: center;">
                                     <thead>
@@ -66,7 +64,6 @@
                                         <th>Media de los Promedios</th>
                                         <th>Desviación Estandar</th>
                                         <th>Máximo</th>
-                                        <th>Cumple</th>
                                     </thead>
                                     <tbody id="listar_p1">
 
@@ -74,7 +71,7 @@
                                     </table>
                                 </div>
                             </div> 
-                        <hr>
+                  <!--       <hr>
                         <div class="card">
                             <div class="card-header">
                                 <a data-toggle="collapse" data-target="#collapseOne2"  aria-controls="collapseOne2">
@@ -94,7 +91,7 @@
                                 </tbody>
                                 </table>
                             </div>
-                        </div>     
+                        </div> -->     
                         <hr>
                         <div class="card">
                             <div class="card-header">
@@ -152,11 +149,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
-                                        <input type="text" name="ensayo_p32" id="ensayo_p32" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Altura toma de muestras:</label>
-                                        <input type="text" name="ensayo_p33" id="ensayo_p33" class="form-control">
+                                        <input type="text" name="ensayo_p32" id="ensayo_p32" class="form-control" value="5" disabled="">
                                     </div>
                                 </div>
                                 <hr>
@@ -197,11 +190,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
-                                        <input type="text" name="ensayo_p42" id="ensayo_p42" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Altura toma de muestras:</label>
-                                        <input type="text" name="ensayo_p43" id="ensayo_p43" class="form-control">
+                                        <input type="text" name="ensayo_p42" id="ensayo_p42" class="form-control" value="5" disabled="">
                                     </div>
                                 </div>
                                 <hr>
@@ -232,7 +221,7 @@
                                     Resultado - Prueba de Medición de Caudal de Inyección de Aire, m³/h
                                 </a>
                             </div>
-                            <div class="card-body collapse" id="collapseOne12"> 
+                            <div class="card-body collapse" id="collapseOne12" style="overflow-x: auto;"> 
 
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -244,13 +233,9 @@
                                         <label for="">N° de rejillas de inyección:</label>
                                         <input type="text" name="ensayo_p52" id="ensayo_p52" class="form-control">
                                     </div>
-                                    <div class="col-sm-4">
-                                        <label for="">N° de Extractores:</label>
-                                        <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
-                                    </div>
                                 </div>
                         <br>
-                                <table class="table">
+                                <table class="table" style="overflow-x: auto;width: 180%;">
                                     <thead>
                                         <th>Inyección (m³/h)</th>
                                         <th>N°1</th>
@@ -283,8 +268,15 @@
                                     Resultado - Prueba de Medición de Caudal de Extracción de Aire, m³/h
                                 </a>
                             </div>
-                            <div class="card-body collapse" id="collapseOne13">   
-                                <table class="table">
+                            <div class="card-body collapse" id="collapseOne13" style="overflow-x: auto;"> 
+                                <div class="row">
+                                     <div class="col-sm-4">
+                                        <label for="">N° de Extractores:</label>
+                                        <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
+                                    </div> 
+                                </div>
+                                <br>
+                                <table class="table" style="overflow-x: auto;width: 180%;">
                                     <thead>
                                         <th>Inyección (m³/h)</th>
                                         <th>N°1</th>
@@ -474,6 +466,7 @@
                                             <option value="2">Imagen Medicion de presion</option>
                                             <option value="3">Imagen Medicion de temperatura y humedad</option>
                                             <option value="4">Imagen Medicion de iluminacion y Ruido</option>
+                                            <option value="5">Imagen Medicion de Caudal</option>
   
                                           </select>
                                         </div>
@@ -498,7 +491,7 @@
                                 <div class="row">
                                   <div class="col-sm-12">
                                     <div class="card">
-                                      <div class="card-header">Conteo de particulas</div>
+                                      <div class="card-header">Imagen Conteo de particulas (boucher)</div>
                                       <div class="card-body">
                                         <div class="row" id="Listar_img_c1">
               
@@ -509,11 +502,15 @@
                                         </div>
 
                                          <div class="card-header">Imagen Medicion de temperatura y humedad</div>
-                                        <div class="row" id="Listar_img_c2">
+                                        <div class="row" id="Listar_img_c3">
               
                                         </div>
                                         <div class="card-header">Imagen Medicion de iluminacion y Ruido</div>
-                                        <div class="row" id="Listar_img_c2">
+                                        <div class="row" id="Listar_img_c4">
+              
+                                        </div>
+                                        <div class="card-header">Imagen Medicion de Caudal</div>
+                                        <div class="row" id="Listar_img_c5">
               
                                         </div>
                                       </div>

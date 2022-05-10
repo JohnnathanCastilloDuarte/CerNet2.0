@@ -168,11 +168,10 @@ mysqli_stmt_execute($actualizando7);
 
 $id_ensayo_p31 = $_POST["id_ensayo_p31"];
 $ensayo_p31 = $_POST["ensayo_p31"];
-$ensayo_p32 = $_POST["ensayo_p32"];
 $ensayo_p33 = $_POST["ensayo_p33"];
 
-$actualizando8 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_4 SET metodo_ensayo= ?,n_muestras= ?,altura_muestra= ? WHERE id_ensayo = ?");
-mysqli_stmt_bind_param($actualizando8, 'sssi', $ensayo_p31, $ensayo_p32, $ensayo_p33, $id_ensayo_p31);
+$actualizando8 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_4 SET metodo_ensayo= ?,altura_muestra= ? WHERE id_ensayo = ?");
+mysqli_stmt_bind_param($actualizando8, 'sssi', $ensayo_p31, $ensayo_p33, $id_ensayo_p31);
 mysqli_stmt_execute($actualizando8);
 
 echo mysqli_stmt_error($actualizando8);

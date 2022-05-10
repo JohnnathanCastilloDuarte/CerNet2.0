@@ -61,22 +61,39 @@
               <div class="col-sm-6">
                 <label>Clasificación OMS :</label>
                 <select class="form-control" id="clasificacion_oms">
-                  <option value="{$sala_limpia.clasificacion_oms}">{$sala_limpia.clasificacion_oms}</option>
+                  {if $sala_limpia.clasificacion_oms == ''}
+                  <option value="">Seleccione...</option>
                   <option value="A">Clase A</option>
                   <option value="B">Clase B</option>
                   <option value="C">Clase C</option>
                   <option value="D">Clase D</option>
+                  {else if $sala_limpia.clasificacion_oms != ''}
+                  <option value="{$sala_limpia.clasificacion_oms}">Clase {$sala_limpia.clasificacion_oms}</option>
+                  <option value="A">Clase A</option>
+                  <option value="B">Clase B</option>
+                  <option value="C">Clase C</option>
+                  <option value="D">Clase D</option>
+                  {/if}
                 </select>
               </div>
               <div class="col-sm-6">
                 <label>Clasificación ISO:</label>
                 <select class="form-control" id="clasificacion_iso">
-                  <option value="{$sala_limpia.clasificacion_iso}">{$sala_limpia.clasificacion_iso}</option>
+                 {if $sala_limpia.clasificacion_oms == ''}
+                  <option value="">Seleccione...</option>
                   <option value="5">ISO 5</option>
                   <option value="6">ISO 6</option>
                   <option value="7">ISO 7</option>
                   <option value="8">ISO 8</option>
                   <option value="9">ISO 9</option>
+                {else if $sala_limpia.clasificacion_oms != ''}
+                   <option value="{$sala_limpia.clasificacion_iso}">ISO {$sala_limpia.clasificacion_iso}</option>
+                   <option value="5">ISO 5</option>
+                   <option value="6">ISO 6</option>
+                   <option value="7">ISO 7</option>
+                   <option value="8">ISO 8</option>
+                   <option value="9">ISO 9</option>
+                {/if}   
                 <select>
               </div>
             </div>
@@ -132,7 +149,7 @@
                   <option value="">Seleccione...</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
-                  {else $sala_limpia.temperatura_informativa != ''}
+                  {else if $sala_limpia.temperatura_informativa != ''}
                   <option value="{$sala_limpia.temperatura_informativa}">{$sala_limpia.temperatura_informativa}</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -162,7 +179,7 @@
                   <option value="">Seleccione...</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
-                  {else $sala_limpia.humedad_informativa != ''}
+                  {else if $sala_limpia.humedad_informativa != ''}
                   <option value="{$sala_limpia.humedad_informativa}">{$sala_limpia.humedad_informativa}</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
@@ -186,7 +203,7 @@
                 </div>
                 <div class="col-sm-4">
                   <label>Ren/hr:</label>
-                  <input type="text" id="ren_hr" class="form-control" placeholder="Area en m2" value="{$sala_limpia.ren_hr}" required="">
+                  <input type="text" id="ren_hr" class="form-control" placeholder="Ren/hr" value="{$sala_limpia.ren_hr}" required="">
                </div>
              </div>
               <br>
