@@ -48,6 +48,7 @@ function setear_campos(){
         clasificacion_oms       : $("#clasificacion_oms").val(),
         clasificacion_iso       : $("#clasificacion_iso").val(),
         direccion_sala_limpia   : $("#direccion_sala_limpia").val(),
+        area_interna_sala_limpia: $("#area_interna_sala_limpia").val(),
         ubicacion_interna_sala_limpia : $("#ubicacion_interna_sala_limpia").val(),
         codigo_interna_sala_limpia : $("#codigo_interna_sala_limpia").val(),
         estado_sala             : $("#estado_sala").val(),
@@ -92,7 +93,6 @@ function setear_campos(){
                  showConfirmButton: false,
                  timer:1500
                });
-                 setear_campos();
              }else{
               Swal.fire({
                 title:'Mensaje',

@@ -9,11 +9,17 @@ $id_asignado = substr($clave, 97);
 
 
 /////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
-$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna, b.codigo, b.area_m2, b.volumen_m3, b.estado_sala, b.direccion, b.especificacion_1_temp, b.especificacion_1_hum, b.ruido_dba, b.lux FROM item as a, item_sala_limpia as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item");
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna, b.codigo, 
+   b.area_m2, b.volumen_m3, b.estado_sala, b.direccion, b.especificacion_1_temp, 
+   b.especificacion_1_hum, b.ruido_dba, b.lux, b.clasificacion_oms, b.clasificacion_iso, b.ren_hr, b.especificacion_2_temp, b.especificacion_2_hum 
+   FROM item as a, item_sala_limpia as b, item_asignado as c 
+   WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item");
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
-mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, $area_m2, $volumen_m3, $estado_sala, $direccion_item, $temperatura_item, $hum_relativa_item, $ruido_dba_item, $lux_item);
+mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, 
+   $area_m2, $volumen_m3, $estado_sala, $direccion_item, $especificacion_1_temp, 
+   $especificacion_1_hum, $ruido_dba_item, $lux_item,$clasificacion_oms, $clasificacion_iso, $ren_hr, $especificacion_2_temp, $especificacion_2_hum);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
 
@@ -179,7 +185,7 @@ $pdf->writeHTMLCell(33.5, 5, 127, '', '177386' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(33.5, 5, 160.5, '', '177386' ,1,1, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(45, 5, 15, '', 'Requisito:' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(67, 5, 60, '', ' Clase D (OMS) / ISO 8 -> 0,5 µm: 3520000 / 5,0 µm: 29300' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(67, 5, 60, '', ' Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: 3520000 / 5,0 µm: 29300' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(67, 5, 127, '', 'Clase D (OMS) / ISO 8 -> 0,5 µm: 3520000 / 5,0 µm: 29300' ,1,1, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(45, 5, 15, '', 'Veredicto:' ,0,0, 0, true, 'J', true);
@@ -215,7 +221,7 @@ $pdf->writeHTMLCell(33.5, 5, 40, '', '15.9' ,1,0, 0, true, 'C', true);
 
 
 $pdf->writeHTMLCell(25, 5, 78, '', 'Especificado:' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(33.5, 5, 103, '', '15.9' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(33.5, 5, 103, '', $ren_hr ,1,0, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(21, 5, 140, '', 'Cumple:' ,0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(33.5, 5, 161, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
@@ -278,17 +284,34 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,°C: ' ,0,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 80, '', 'Especificación Temperatura:' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 120, '', 'entre 18°C y 24°C' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, HR%: ' ,0,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 80, '', 'Especificación Humedad:' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 120, '', 'entre 30%HR y 50%HR' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+$consultar_info_pruebas = mysqli_prepare($connect,"SELECT promedio, categoria
+FROM salas_limpias_prueba_4
+WHERE id_asignado = ? ");
+mysqli_stmt_bind_param($consultar_info_pruebas, 'i', $id_asignado);
+mysqli_stmt_execute($consultar_info_pruebas);
+mysqli_stmt_store_result($consultar_info_pruebas);
+mysqli_stmt_bind_result($consultar_info_pruebas, $promedio ,$categoria);
+
+while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
+   if ($categoria == 1) {
+      # code...
+      $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,°C: ' ,0,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(45, 5, 75, '', 'Especificación Temperatura:' ,1,0, 0, true, 'J', true);
+      $pdf->writeHTMLCell(40, 5, 120, '', 'Entre '.$especificacion_2_temp.'°C y '.$especificacion_1_temp.'°C' ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+   }elseif ($categoria == 2) {
+      # code...
+      $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, HR%: ' ,0,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(45, 5, 75, '', 'Especificación Humedad:' ,1,0, 0, true, 'J', true);
+      $pdf->writeHTMLCell(40, 5, 120, '', 'entre '.$especificacion_2_hum.'%HR y '.$especificacion_1_hum.'%HR' ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+   }
+}
+
+
 
 
 $linea = <<<EOD
@@ -308,17 +331,31 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,Lux:' ,0,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 80, '', 'Resultado,Lux:' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 120, '', '>= 150' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+$consultar_info_pruebas = mysqli_prepare($connect,"SELECT promedio, categoria
+FROM salas_limpias_prueba_4
+WHERE id_asignado = ? ");
+mysqli_stmt_bind_param($consultar_info_pruebas, 'i', $id_asignado);
+mysqli_stmt_execute($consultar_info_pruebas);
+mysqli_stmt_store_result($consultar_info_pruebas);
+mysqli_stmt_bind_result($consultar_info_pruebas, $promedio ,$categoria);
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, dbA:' ,0,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 45, '', 'variable' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 80, '', 'Especificación, dbA:' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 120, '', '< = 85' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
+   if ($categoria == 3) {
+      # code...
+      $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,Lux: ' ,0,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(45, 5, 75, '', 'Especificación, Lux:' ,1,0, 0, true, 'J', true);
+      $pdf->writeHTMLCell(40, 5, 120, '', ' > ='.$lux_item ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+   }elseif ($categoria == 4) {
+      # code...
+      $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, dbA: ' ,0,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(45, 5, 75, '', 'Especificación, dbA:' ,1,0, 0, true, 'J', true);
+      $pdf->writeHTMLCell(40, 5, 120, '', ' < ='.$ruido_dba_item ,1,0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+   }
+}
 
 $linea = <<<EOD
 <style>
@@ -447,9 +484,9 @@ $prueba = <<<EOD
             <tr>
                <td>$metodo_ensayo</td>
                <td>$puntos_x_medicion</td>
-               <td>$muestra_x_punto</td>
-               <td>$volumen_muestra</td>
-               <td>$altura_muestra</td>
+               <td>1</td>
+               <td>28.3</td>
+               <td>0.85</td>
             </tr>
          </table>
       </tr>
@@ -502,10 +539,9 @@ $linea = <<<EOD
    background-color: rgb(0,79,135);
 }
 </style>
-<br><br>
-<table>
-   <tr border="1">
-        <td class="linea" align="center"><h3>Cálculo de Resultados - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm: 3520000 / 5,0 µm: 29300</h3></td>
+<table >
+   <tr border="0">
+        <td class="linea" align="center"><h3> Cálculo de Resultados - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm: 3520000 / 5,0 µm: 29300</h3></td>
    </tr>
 </table>
 EOD;  
@@ -551,7 +587,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Cálculo de Resultados para Informe Técnico N°45 de la OMS - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm:3.520.000 / 5,0 µm: 29.000</b></td>
+        <td class="linea" align="center"><h3>Cálculo de Resultados para Informe Técnico N°45 de la OMS - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm:3.520.000 / 5,0 µm: 29.000</h3></td>
    </tr>
 </table>
 EOD;  
@@ -748,37 +784,32 @@ $array_resultado = array();
 
           $pdf->writeHTMLCell(40, 6, 15, '', $nombres[0] ,1,0, 0, true, 'J', true);
       for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_1'],1,0, 0, true, 'C', true);  
+          $pdf->writeHTMLCell(23, 6, $espaciado+$i*23, '', $array_resultado[$i]['campo_1'],1,0, 0, true, 'C', true);  
       }
       $pdf->ln(6);
       $pdf->writeHTMLCell(40, 6, 15, '', $nombres[1] ,1,0, 0, true, 'J', true);
       for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_2'],1,0, 0, true, 'C', true);  
+          $pdf->writeHTMLCell(23, 6, $espaciado+$i*23, '', 'bajo la puerta',1,0, 0, true, 'C', true);  
       }
       $pdf->ln(6);
       $pdf->writeHTMLCell(40, 6, 15, '', $nombres[2] ,1,0, 0, true, 'J', true);
       for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_3'],1,0, 0, true, 'C', true);  
+          $pdf->writeHTMLCell(23, 6, $espaciado+$i*23, '', $array_resultado[$i]['campo_3'],1,0, 0, true, 'C', true);  
       }
-      /*$pdf->ln(6);
-      $pdf->writeHTMLCell(40, 6, 15, '', $nombres[3] ,1,0, 0, true, 'J', true);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
-      }*/
       $pdf->ln(6);
       $pdf->writeHTMLCell(40, 6, 15, '', $nombres[3] ,1,0, 0, true, 'J', true);
       for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
+          $pdf->writeHTMLCell(23, 6, $espaciado+$i*23, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
       }
       $pdf->ln(6);
       $pdf->writeHTMLCell(40, 6, 15, '', $nombres[4] ,1,0, 0, true, 'J', true);
       for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_5'],1,0, 0, true, 'C', true);  
+          $pdf->writeHTMLCell(23, 6, $espaciado+$i*23, '', $array_resultado[$i]['campo_5'],1,0, 0, true, 'C', true);  
       }
       $pdf->ln(6);
       $pdf->writeHTMLCell(40, 6, 15, '', $nombres[5] ,1,0, 0, true, 'J', true);
       for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          $pdf->writeHTMLCell(15, 6, $espaciado+$i*15, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true);  
+          $pdf->writeHTMLCell(23, 6, $espaciado+$i*23, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true);  
       }
 
 $pdf->ln(10);
@@ -862,6 +893,18 @@ $pdf->writeHTMLCell(15, 5, 130, '', $n_muestras ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 145, '', '<strong>Altura toma de Muestras:</strong>',0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(10, 5, 185, '',  $altura_muestra ,1,1  , 0, true, 'J', true);
 
+
+
+$buscarimagen3 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 3");
+mysqli_stmt_bind_param($buscarimagen3, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen3);
+mysqli_stmt_store_result($buscarimagen3);
+mysqli_stmt_bind_result($buscarimagen3, $url_imagen3, $nombre_imagen3);
+mysqli_stmt_fetch($buscarimagen3);
+
+
 $linea = <<<EOD
 <style>
 .linea{
@@ -876,13 +919,14 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Imagen de la Médición</h2></td>
    </tr>
 </table>
-<br>
+<br><br>
 <table border="0">
-   <tr border="0">
+    <tr>
         <td></td>
-        <td><img src="../imagenes_informe/Segunda_foto.png"></td>
+        <td>
+        <img src="../../$url_imagen3$nombre_imagen3"  style="width: 700px; height: 500px;" ></td>
         <td></td>
-   </tr>
+    </tr>
 </table>
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
@@ -907,12 +951,20 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 
 
-$pdf->writeHTMLCell(20, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(32.5, 5, 35, '', '<strong>N°1</strong>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(32.5, 5, 67.5, '', '<strong>N°2</strong>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(32.5, 5,100, '', '<strong>N°3</strong>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(32.5, 5,132.5, '', '<strong>N°4</strong>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '<strong>N°5</strong>' ,1,1, 0, true, 'C', true);
+//Validar si cumple o no cu´mple
+ if ($promedio >= $especificacion_2_temp && $promedio <= $especificacion_1_temp) {
+      $cumple_temp = 'CUMPLE';
+   }else{
+      $cumple_temp = 'NO CUMPLE';
+   }
+
+
+$pdf->writeHTMLCell(28, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 43, '', '<strong>N°1</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 73, '', '<strong>N°2</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 103, '', '<strong>N°3</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 133, '', '<strong>N°4</strong>' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 5, 163, '', '<strong>N°5</strong>' ,1,1, 0, true, 'C', true);
 
 $query6 = mysqli_prepare($connect,"SELECT n1, n2, n3, n4, n5, promedio, cumple, categoria FROM salas_limpias_prueba_4 WHERE id_asignado = ? AND categoria = 1");
 mysqli_stmt_bind_param($query6, 'i', $id_asignado);
@@ -920,29 +972,35 @@ mysqli_stmt_execute($query6);
 mysqli_stmt_store_result($query6);
 mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio, $cumple, $categoria);
 
+
 while($row = mysqli_stmt_fetch($query6)){
 
-   $pdf->writeHTMLCell(20, 5, 15, '', 'Resultado, °C' ,1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(32.5, 5, 35, '', $n1 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 67.5, '', $n2 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 100, '', $n3 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 132.5, '', $n4 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 165, '', $n5 ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(28, 5, 15, '', 'Resultado, °C' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 43, '', $n1 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 73, '', $n2 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 103, '', $n3 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 133, '', $n4 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 163, '', $n5 ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
-   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, °C:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
+   //$pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, °C:</strong>' ,0,0, 0, true, 'J', true);
+   //$pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,°C:</strong>' ,0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', $temperatura_item ,1,0, 0, true, 'C', true);
-
-   $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'C', true);
+   $pdf->Cell(30,5,'Promedio, °C:',0,0,'C',0,'',0);
+   $pdf->Cell(20,5,$promedio,1,0,'C',0,'',0);
+   $pdf->Cell(8,5,'',0,0,'C',0,'',0);
+   //$pdf->writeHTMLCell(50, 5, 65, '', '<strong>Especificación Cliente ,°C:</strong>' ,0,0, 0, true, 'C', true);
+  // $pdf->writeHTMLCell(31, 5, 105, '', 'Entre '.$especificacion_2_temp.' Y '.$especificacion_1_temp ,1,0, 0, true, 'C', true);
+   $pdf->Cell(40,5,'Especificación Cliente ,°C:',0,0,'C',0,'',0);
+   $pdf->Cell(30,5,'Entre '.$especificacion_2_temp.' Y '.$especificacion_1_temp,1,0,'L',0,'',0);
+ //  $pdf->writeHTMLCell(25, 5, 145, '', '<strong>Cumple:</strong>' ,0,0, 0, true, 'C', true);
+ //  $pdf->writeHTMLCell(20, 5, 170, '', $cumple_temp ,1,1, 0, true, 'C', true);
+   $pdf->Cell(30, 5, 'Cumple:', 0, 0, 'C', 0, '', 0);
+   $pdf->Cell(20, 5, $cumple_temp, 1, 1, 'C', 0, '', 0);
 
 
 }
-
 
 $linea = <<<EOD
 <style>
@@ -962,13 +1020,22 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
+if ($promedio >= $especificacion_2_hum && $promedio <= $especificacion_1_hum) {
+      $cumple_hr = 'CUMPLE';
+   }else{
+      $cumple_hr = 'NO CUMPLE';
+   }
+   $pdf->SetFillColor(255,255,0);
 
-$pdf->writeHTMLCell(20, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 35, '', '<strong>N°1</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 67.5, '', '<strong>N°2</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,100, '', '<strong>N°3</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,132.5, '', '<strong>N°4</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '<strong>N°5</strong>' ,1,1, 0, true, 'J', true);
+   $pdf->Cell(28, 5, 'Muestras:', 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, 'N°1', 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, 'N°2', 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, 'N°3', 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, 'N°4', 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, 'N°5', 1, 0, 'C', 0, '', 0);
+   $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+
+
 
 $query6 = mysqli_prepare($connect,"SELECT n1, n2, n3, n4, n5, promedio, cumple, categoria FROM salas_limpias_prueba_4 WHERE id_asignado = ? AND categoria = 2");
 mysqli_stmt_bind_param($query6, 'i', $id_asignado);
@@ -978,23 +1045,43 @@ mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio, $cumple, $c
 
 while($row = mysqli_stmt_fetch($query6)){
 
-   $pdf->writeHTMLCell(20, 5, 15, '', 'Resultado, HR%' ,1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(32.5, 5, 35, '', $n1 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 67.5, '', $n2 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 100, '', $n3 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 132.5, '', $n4 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 165, '', $n5 ,1,1, 0, true, 'C', true);
+  // $pdf->writeHTMLCell(28, 5, 15, '', 'Resultado, HR%' ,1,0, 0, true, 'J', true);
 
+
+   $pdf->Cell(28, 5, 'Resultado, HR%', 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, $n1, 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, $n2, 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, $n3, 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, $n4, 1, 0, 'C', 0, '', 0);
+   $pdf->Cell(30, 5, $n5, 1, 0, 'C', 0, '', 0);
+   $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
-   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, HR%:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,HR%:</strong>' ,0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', $hum_relativa_item ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'C', true);
+   /*$pdf->writeHTMLCell(30, 5, 43, '', $n1 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 73, '', $n2 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 103, '', $n3 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 133, '', $n4 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 163, '', $n5 ,1,1, 0, true, 'C', true);*/
+
+   
+
+
+  // $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, HR%:</strong>' ,0,0, 0, true, 'J', true);
+   //$pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
+   $pdf->Cell(30,5,'Promedio, HR%:',0,0,'C',0,'',0);
+   $pdf->Cell(20,5,$promedio,1,0,'C',0,'',0);
+   $pdf->Cell(8,5,'',0,0,'C',0,'',0);
+
+   /*$pdf->writeHTMLCell(50, 5, 65, '', '<strong>Especificación Cliente ,HR%:</strong>' ,0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(31, 5, 105, '', 'Entre '.$especificacion_2_hum.' Y '.$especificacion_1_hum ,1,0, 0, true, 'C', true);*/
+   $pdf->Cell(40,5,'Especificación Cliente ,HR%',0,0,'C',0,'',0);
+   $pdf->Cell(30,5,'Entre '.$especificacion_2_hum.' Y '.$especificacion_1_hum,1,0,'L',0,'',0);
+  /* $pdf->writeHTMLCell(25, 5, 145, '', '<strong>Cumple:</strong>' ,0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(20, 5, 170, '', $cumple_hr ,1,1, 0, true, 'C', true);*/
+   $pdf->Cell(30, 5, 'Cumple:', 0, 0, 'C', 0, '', 0);
+   $pdf->Cell(20, 5, $cumple_hr, 1, 1, 'C', 0, '', 0);
 
 
 }
@@ -1076,9 +1163,23 @@ mysqli_stmt_fetch($metodo_4);
 $pdf->writeHTMLCell(30, 5, 15, '', '<strong>Método de ensayo:</strong>' ,0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(50, 5, 45, '',  $metodo_ensayo ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(25, 5, 105, '', '<strong>N° de muestras:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(15, 5, 130, '', $n_muestras ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(15, 5, 130, '', '5' ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 145, '', '<strong>Altura toma de Muestras:</strong>',0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(10, 5, 185, '', $altura_muestra ,1,1  , 0, true, 'J', true);
+$pdf->writeHTMLCell(10, 5, 185, '', '0.85' ,1,1  , 0, true, 'J', true);
+
+
+
+
+
+$buscarimagen4 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 4");
+mysqli_stmt_bind_param($buscarimagen4, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen4);
+mysqli_stmt_store_result($buscarimagen4);
+mysqli_stmt_bind_result($buscarimagen4, $url_imagen4, $nombre_imagen4);
+mysqli_stmt_fetch($buscarimagen4);
+
 
 $linea = <<<EOD
 <style>
@@ -1094,13 +1195,14 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
    </tr>
 </table>
-<br>
+<br><br>
 <table border="0">
-   <tr border="0">
+    <tr>
         <td></td>
-        <td><img src="../imagenes_informe/Tercera_foto.png"></td>
+        <td>
+        <img src="../../$url_imagen4$nombre_imagen4"  style="width: 700px; height: 500px;" ></td>
         <td></td>
-   </tr>
+    </tr>
 </table>
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
@@ -1125,12 +1227,12 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 
 
-$pdf->writeHTMLCell(20, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 35, '', '<strong>N°1</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 67.5, '', '<strong>N°2</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,100, '', '<strong>N°3</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,132.5, '', '<strong>N°4</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '<strong>N°5</strong>' ,1,1, 0, true, 'J', true);
+$pdf->writeHTMLCell(28, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5, 43, '', '<strong>N°1</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5, 73, '', '<strong>N°2</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5,103, '', '<strong>N°3</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5,133, '', '<strong>N°4</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(32, 5, 163, '', '<strong>N°5</strong>' ,1,1, 0, true, 'J', true);
 
 $query6 = mysqli_prepare($connect,"SELECT n1, n2, n3, n4, n5, promedio, cumple, categoria FROM salas_limpias_prueba_4 WHERE id_asignado = ? AND categoria = 3");
 mysqli_stmt_bind_param($query6, 'i', $id_asignado);
@@ -1140,23 +1242,23 @@ mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio, $cumple, $c
 
 while($row = mysqli_stmt_fetch($query6)){
 
-   $pdf->writeHTMLCell(20, 5, 15, '', 'Resultado, Lux ' ,1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(32.5, 5, 35, '', $n1 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 67.5, '', $n2 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 100, '', $n3 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 132.5, '', $n4 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 165, '', $n5 ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(28, 5, 15, '', 'Resultado, Lux ' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 43, '', $n1 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 73, '', $n2 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 103, '', $n3 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 133, '', $n4 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(32, 5, 163, '', $n5 ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, Lux:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,Lux:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', $lux_item ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(50, 5, 65, '', '<strong>Especificación Cliente ,Lux:</strong>' ,0,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', ' > = '.$lux_item ,1,0, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(40, 5, 155, '', $cumple ,1,1, 0, true, 'C', true);
 
 
 }
@@ -1181,12 +1283,12 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 
 
-$pdf->writeHTMLCell(20, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 35, '', '<strong>N°1</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5, 67.5, '', '<strong>N°2</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,100, '', '<strong>N°3</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(32.5, 5,132.5, '', '<strong>N°4</strong>' ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '<strong>N°5</strong>' ,1,1, 0, true, 'J', true);
+$pdf->writeHTMLCell(28, 5, 15, '', '<strong>Muestras</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5, 43, '', '<strong>N°1</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5, 73, '', '<strong>N°2</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5,103, '', '<strong>N°3</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5,133, '', '<strong>N°4</strong>' ,1,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(30, 5, 163, '', '<strong>N°5</strong>' ,1,1, 0, true, 'J', true);
 
 $query6 = mysqli_prepare($connect,"SELECT n1, n2, n3, n4, n5, promedio, cumple, categoria FROM salas_limpias_prueba_4 WHERE id_asignado = ? AND categoria = 4");
 mysqli_stmt_bind_param($query6, 'i', $id_asignado);
@@ -1196,24 +1298,24 @@ mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio, $cumple, $c
 
 while($row = mysqli_stmt_fetch($query6)){
 
-   $pdf->writeHTMLCell(20, 5, 15, '', 'Resultado, dBA' ,1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(32.5, 5, 35, '', $n1 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 67.5, '', $n2 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 100, '', $n3 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(32.5, 5, 132.5, '', $n4 ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 165, '', $n5 ,1,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(28, 5, 15, '', 'Resultado, dBA' ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 43, '', $n1 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 73, '', $n2 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 103, '', $n3 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 133, '', $n4 ,1,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(30, 5, 163, '', $n5 ,1,1, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(20, 5, 15, '', '' ,0,1, 0, true, 'J', true);
 
-   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, dBA:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Promedio, dBA:</strong>' ,0,0, 0, true, 'j', true);
+   $pdf->writeHTMLCell(20, 5, 40, '', $promedio ,1,0, 0, true, 'C', true);
 
-   $pdf->writeHTMLCell(40, 5, 65, '', '<strong>Especificación Cliente ,dBA:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 105, '', $ruido_dba_item ,1,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(50, 5, 65, '', '<strong>Especificación Cliente ,dBA:</strong>' ,0,0, 0, true, 'J', true);
+   $pdf->writeHTMLCell(20, 5, 105, '', ' < = '.$ruido_dba_item ,1,0, 0, true, 'C', true);
 
    $pdf->writeHTMLCell(40, 5, 130, '', '<strong>Cumple</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 170, '', $cumple ,1,1, 0, true, 'J', true);
-    $pdf->writeHTMLCell(20, 5, 170, '', '' ,0,1, 0, true, 'J', true);
+   $pdf->writeHTMLCell(40, 5, 155, '', $cumple ,1,1, 0, true, 'J', true);
+    $pdf->writeHTMLCell(20, 5, 170, '', '' ,0,1, 0, true, 'C', true);
 
 
 }
@@ -1248,13 +1350,15 @@ $equipo_prueba_5 = "Prueba Medición de ruido";
 $equipo_prueba_6 = "Prueba nivel de iluminación";
 
 
-$query7 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ? OR c.tipo_prueba = ?");
-mysqli_stmt_bind_param($query7, 'is', $id_asignado, $equipo_prueba_5, $equipo_prueba_6);
-mysqli_stmt_execute($query7);
-mysqli_stmt_store_result($query7);
-mysqli_stmt_bind_result($query7, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
+$query_71 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  
+   FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ? OR c.tipo_prueba = ?");
+mysqli_stmt_bind_param($query_71, 'iss', $id_asignado, $equipo_prueba_5, $equipo_prueba_6);
+mysqli_stmt_execute($query_71);
+mysqli_stmt_store_result($query_71);
+mysqli_stmt_bind_result($query_71, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
 
-while($row = mysqli_stmt_fetch($query7)){
+
+while($row = mysqli_stmt_fetch($query_71)){
 
    $pdf->writeHTMLCell(30, 7.2, 15, '', $marca ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(30, 7.2, 45, '', $modelo ,1,0, 0, true, 'C', true);
@@ -1296,17 +1400,20 @@ mysqli_stmt_fetch($metodo_5);
 
 $pdf->writeHTMLCell(30, 5, 15, '', '<strong>Método de ensayo:</strong>' ,0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(50, 5, 45, '', $metodo_ensayo ,1,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(40, 5, 105, '', '<strong>N° de Rejillas de Inyección:</strong>',0,0, 0, true, 'J', true);
+$pdf->writeHTMLCell(50, 5, 105, '', '<strong>N° de Rejillas de Inyección:</strong>',0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(10, 5, 145, '', $n_rejillas ,1,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(40, 5, 155, '', '<strong>N° de Extractores:</strong>',0,0, 0, true, 'J', true);
 $pdf->writeHTMLCell(10, 5, 185, '', $n_extractores ,1,1  , 0, true, 'J', true);
 
 
-
-
-
-
-
+$buscarimagen5 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 5");
+mysqli_stmt_bind_param($buscarimagen5, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen5);
+mysqli_stmt_store_result($buscarimagen5);
+mysqli_stmt_bind_result($buscarimagen5, $url_imagen5, $nombre_imagen5);
+mysqli_stmt_fetch($buscarimagen5);
 
 $linea = <<<EOD
 <style>
@@ -1322,12 +1429,14 @@ $linea = <<<EOD
         <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
    </tr>
 </table>
-<table>
-   <tr border="">
+<br><br>
+<table border="0">
+    <tr>
         <td></td>
-        <td><img src="../imagenes_informe/Cuarta_foto.png"></td>
+        <td>
+        <img src="../../$url_imagen5$nombre_imagen5"  style="width: 700px; height: 500px;" ></td>
         <td></td>
-   </tr>
+    </tr>
 </table>
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
@@ -1494,10 +1603,10 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false,'');
 
 
-$pdf->writeHTMLCell(50, 5, 15, '', 'Promedio de Caudal Total Inyectado (m³/h)' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(50, 5, 65, '', 'Renovaciones Aire/Hora Obtenidas' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(50, 5, 115, '', 'Renovaciones Aire/Hora Especificadas' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', 'Cumple' ,1,1, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 7, 15, '', 'Promedio de Caudal Total Inyectado (m³/h)' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 7, 65, '', 'Renovaciones Aire/Hora Obtenidas' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 7, 115, '', 'Renovaciones Aire/Hora Especificadas' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', 'Cumple' ,1,1, 0, true, 'C', true);
 
 $query9 = mysqli_prepare($connect,"SELECT medicion_1, medicion_2, medicion_3, medicion_4 FROM salas_limpias_prueba_6 WHERE id_asignado = ?");
 mysqli_stmt_bind_param($query9, 'i', $id_asignado);
@@ -1543,13 +1652,13 @@ $pdf->writeHTMLCell(30, 7.2, 165, '', '<b>Trazabilidad</b>  ' ,1,1, 0, true, 'C'
 $equipo_prueba_7 = "Prueba de medición de caudal";
 
 
-$query7 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ?");
-mysqli_stmt_bind_param($query7, 'is', $id_asignado, $equipo_prueba_7);
-mysqli_stmt_execute($query7);
-mysqli_stmt_store_result($query7);
-mysqli_stmt_bind_result($query7, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
+$query72 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ?");
+mysqli_stmt_bind_param($query72, 'is', $id_asignado, $equipo_prueba_7);
+mysqli_stmt_execute($query72);
+mysqli_stmt_store_result($query72);
+mysqli_stmt_bind_result($query72, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
 
-while($row = mysqli_stmt_fetch($query7)){
+while($row = mysqli_stmt_fetch($query72)){
 
    $pdf->writeHTMLCell(30, 7.2, 15, '', $marca ,1,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(30, 7.2, 45, '', $modelo ,1,0, 0, true, 'C', true);

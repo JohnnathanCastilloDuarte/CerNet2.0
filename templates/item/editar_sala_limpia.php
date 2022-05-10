@@ -8,6 +8,7 @@ $clasificacion_iso = $_POST['clasificacion_iso'];
 $direccion_sala_limpia = $_POST['direccion_sala_limpia'];
 $ubicacion_interna_sala_limpia = $_POST['ubicacion_interna_sala_limpia'];
 $codigo_interna_sala_limpia = $_POST['codigo_interna_sala_limpia'];
+$area_interna_sala_limpia = $_POST['area_interna_sala_limpia'];
 $estado_sala = $_POST['estado_sala'];
 $temperatura_minima = $_POST['temperatura_minima'];
 $temperatura_maxima = $_POST['temperatura_maxima'];
@@ -58,7 +59,6 @@ if($update_sala_limpia){
        presion_versus = ?, 
        tipo_presion = ?, 
        puntos_muestreo = ?,
-       fecha_registro = ?,
        codigo = ?,
        estado_sala = ?,
        temp_informativa = ?,
@@ -66,26 +66,28 @@ if($update_sala_limpia){
 
 
 		WHERE id = $id_item_sala_limpia");
-	mysqli_stmt_bind_param($update_sala_limpia_2, 'ssssssssssssssssssssss', 
-		$area_m2_sala_limpia, 
-		$volumen_m3_sala_limpia, 
-		$direccion_sala_limpia, 
-		$ubicacion_interna_sala_limpia, 
-		$area_m2_sala_limpia,
-		$clasificacion_oms,
-		$clasificacion_iso,
-		$claudal_m3h,
-		$ren_hr,
-		$temperatura,
-		$hum_relativa,
-		$lux,
-		$ruido_dba,
-		$presion_sala,
-		$presion_versus,
-		$tipo_presion,
-		$puntos_muestreo,
-		$codigo,
-		$estado_sala
+	mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssssssss', 
+	   $direccion_sala_limpia,   
+       $area_m2_sala_limpia,
+       $volumen_m3_sala_limpia, 
+       $area_interna_sala_limpia,  
+       $clasificacion_oms, 
+       $clasificacion_iso, 
+       $ren_hr, 
+       $temperatura_maxima, 
+       $temperatura_minima, 
+       $hum_relativa_maxima, 
+       $hum_relativa_minima, 
+       $lux, 
+       $ruido_dba, 
+       $presion_sala, 
+       $presion_versus, 
+       $tipo_presion, 
+       $puntos_muestreo,
+       $codigo_interna_sala_limpia,
+       $estado_sala,
+       $temperatura_informativa,
+       $humedad_informativa
 	);
 		
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-09 14:34:11
+/* Smarty version 3.1.34-dev-7, created on 2022-05-07 01:19:27
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_flujo_laminar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6203c2d3c0ae35_29468887',
+  'unifunc' => 'content_6275acff079dd9_49320537',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f498032172dc7242f53cbb6ae83f2578b844d41' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_flujo_laminar.tpl',
-      1 => 1644413647,
+      1 => 1650577933,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6203c2d3c0ae35_29468887 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6275acff079dd9_49320537 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -31,7 +31,11 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
 ?>
        <h5 id="text_enunciado_flujo_laminar">
+         <?php if ($_smarty_tpl->tpl_vars['flujo_laminar']->value['id_item'] == '') {?>
+         Crear flujo laminar
+         <?php } else { ?>
          Modificar flujo laminar
+         <?php }?>
        </h5>
      </div>
      <input type="hidden" id="id_item_flujo_laminar" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['id_item'];?>

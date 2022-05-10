@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-03 18:57:23
+/* Smarty version 3.1.34-dev-7, created on 2022-05-10 16:39:06
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62715ef3bcc022_26925996',
+  'unifunc' => 'content_627a790a621990_24059761',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1651596800,
+      1 => 1652193544,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627a790a621990_24059761 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
+<input type="hidden" name="" id="presion_sala_pa" value="<?php echo $_smarty_tpl->tpl_vars['presion_sala']->value;?>
+">
+<input type="hidden" name="" id="especificacion_1_temp" value="<?php echo $_smarty_tpl->tpl_vars['especificacion_1_temp']->value;?>
+">
+<input type="hidden" name="" id="especificacion_2_temp" value="<?php echo $_smarty_tpl->tpl_vars['especificacion_2_temp']->value;?>
+">
+<input type="hidden" name="" id="especificacion_1_hum" value="<?php echo $_smarty_tpl->tpl_vars['especificacion_1_hum']->value;?>
+">
+<input type="hidden" name="" id="especificacion_2_hum" value="<?php echo $_smarty_tpl->tpl_vars['especificacion_2_hum']->value;?>
+">
+<input type="hidden" name="" id="lux" value="<?php echo $_smarty_tpl->tpl_vars['lux']->value;?>
+">
+<input type="hidden" name="" id="lux" value="<?php echo $_smarty_tpl->tpl_vars['ren_hr']->value;?>
+">
+<input type="hidden" name="" id="ruido_dba" value="<?php echo $_smarty_tpl->tpl_vars['ruido_dba']->value;?>
+">
 <div class="row">
     
     <div class="col-sm-12">
@@ -73,16 +89,6 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                         <div class="col-sm-4">
-                                            <label>Volumen por Muestras (L)</label>
-                                            <input type="text" id="ensayo_p14" name="ensayo_p14" class="form-control" placeholder="Volumen por Muestras (L)">
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Altura toma de Muestras (m)</label>
-                                            <input type="text" id="ensayo_p15" name="ensayo_p15" class="form-control" placeholder="Altura toma de Muestras (m)">
-                                        </div>
-                                    </div>
                                     <hr>
                                     <table class="table" style="text-align: center;">
                                     <thead>
@@ -90,7 +96,6 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                         <th>Media de los Promedios</th>
                                         <th>Desviación Estandar</th>
                                         <th>Máximo</th>
-                                        <th>Cumple</th>
                                     </thead>
                                     <tbody id="listar_p1">
 
@@ -98,7 +103,7 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                     </table>
                                 </div>
                             </div> 
-                        <hr>
+                  <!--       <hr>
                         <div class="card">
                             <div class="card-header">
                                 <a data-toggle="collapse" data-target="#collapseOne2"  aria-controls="collapseOne2">
@@ -118,7 +123,7 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                 </tbody>
                                 </table>
                             </div>
-                        </div>     
+                        </div> -->     
                         <hr>
                         <div class="card">
                             <div class="card-header">
@@ -176,11 +181,7 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                     </div>
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
-                                        <input type="text" name="ensayo_p32" id="ensayo_p32" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Altura toma de muestras:</label>
-                                        <input type="text" name="ensayo_p33" id="ensayo_p33" class="form-control">
+                                        <input type="text" name="ensayo_p32" id="ensayo_p32" class="form-control" value="5" disabled="">
                                     </div>
                                 </div>
                                 <hr>
@@ -221,11 +222,7 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                     </div>
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
-                                        <input type="text" name="ensayo_p42" id="ensayo_p42" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Altura toma de muestras:</label>
-                                        <input type="text" name="ensayo_p43" id="ensayo_p43" class="form-control">
+                                        <input type="text" name="ensayo_p42" id="ensayo_p42" class="form-control" value="5" disabled="">
                                     </div>
                                 </div>
                                 <hr>
@@ -256,7 +253,7 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                     Resultado - Prueba de Medición de Caudal de Inyección de Aire, m³/h
                                 </a>
                             </div>
-                            <div class="card-body collapse" id="collapseOne12"> 
+                            <div class="card-body collapse" id="collapseOne12" style="overflow-x: auto;"> 
 
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -268,13 +265,9 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                         <label for="">N° de rejillas de inyección:</label>
                                         <input type="text" name="ensayo_p52" id="ensayo_p52" class="form-control">
                                     </div>
-                                    <div class="col-sm-4">
-                                        <label for="">N° de Extractores:</label>
-                                        <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
-                                    </div>
                                 </div>
                         <br>
-                                <table class="table">
+                                <table class="table" style="overflow-x: auto;width: 180%;">
                                     <thead>
                                         <th>Inyección (m³/h)</th>
                                         <th>N°1</th>
@@ -307,8 +300,15 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                     Resultado - Prueba de Medición de Caudal de Extracción de Aire, m³/h
                                 </a>
                             </div>
-                            <div class="card-body collapse" id="collapseOne13">   
-                                <table class="table">
+                            <div class="card-body collapse" id="collapseOne13" style="overflow-x: auto;"> 
+                                <div class="row">
+                                     <div class="col-sm-4">
+                                        <label for="">N° de Extractores:</label>
+                                        <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
+                                    </div> 
+                                </div>
+                                <br>
+                                <table class="table" style="overflow-x: auto;width: 180%;">
                                     <thead>
                                         <th>Inyección (m³/h)</th>
                                         <th>N°1</th>
@@ -499,6 +499,7 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                             <option value="2">Imagen Medicion de presion</option>
                                             <option value="3">Imagen Medicion de temperatura y humedad</option>
                                             <option value="4">Imagen Medicion de iluminacion y Ruido</option>
+                                            <option value="5">Imagen Medicion de Caudal</option>
   
                                           </select>
                                         </div>
@@ -523,7 +524,7 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                 <div class="row">
                                   <div class="col-sm-12">
                                     <div class="card">
-                                      <div class="card-header">Conteo de particulas</div>
+                                      <div class="card-header">Imagen Conteo de particulas (boucher)</div>
                                       <div class="card-body">
                                         <div class="row" id="Listar_img_c1">
               
@@ -534,11 +535,15 @@ function content_62715ef3bcc022_26925996 (Smarty_Internal_Template $_smarty_tpl)
                                         </div>
 
                                          <div class="card-header">Imagen Medicion de temperatura y humedad</div>
-                                        <div class="row" id="Listar_img_c2">
+                                        <div class="row" id="Listar_img_c3">
               
                                         </div>
                                         <div class="card-header">Imagen Medicion de iluminacion y Ruido</div>
-                                        <div class="row" id="Listar_img_c2">
+                                        <div class="row" id="Listar_img_c4">
+              
+                                        </div>
+                                        <div class="card-header">Imagen Medicion de Caudal</div>
+                                        <div class="row" id="Listar_img_c5">
               
                                         </div>
                                       </div>
