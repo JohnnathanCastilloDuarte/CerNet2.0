@@ -382,54 +382,61 @@ else if(orden == 4){
             traer.forEach((valor)=>{
 
                 if(valor.categoria == 1){
-                    template+= 
-                    `
-                    <tr>
-                    <td>${enunciados[contador]}<input required="" type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
-                    <td><input required="" type="number" name="n1[]" id="n1${contador}" class="form-control" value="${valor.n1}"></td>
-                    <td><input required="" type="number" name="n2[]" class="form-control" value="${valor.n2}"></td>
-                    <td><input required="" type="number" name="n3[]" class="form-control" value="${valor.n3}"></td>
-                    <td><input required="" type="number" name="n4[]" class="form-control" value="${valor.n4}"></td>
-                    <td><input required="" type="number" name="n5[]" class="form-control" value="${valor.n5}"></td>
-                    <td><input required="" type="number" name="n6[]" class="form-control" value="${valor.n6}"></td>
-                    <td><input required="" type="number" name="n7[]" class="form-control" value="${valor.n7}"></td>
-                    <td><input required="" type="number" name="n8[]" class="form-control" value="${valor.n8}"></td>
-                    <td><input required="" type="number" name="n9[]" class="form-control" value="${valor.n9}"></td>
-                    <td><input required="" type="number" name="n10[]" class="form-control" value="${valor.n10}"></td>
-                    <td><input required="" type="number" name="n11[]" class="form-control" value="${valor.n11}"></td>
-                    <td><input required="" type="number" name="n12[]" class="form-control" value="${valor.n12}"></td>
-                    <td><input required="" type="number" name="n13[]" class="form-control" value="${valor.n13}"></td>
-                    <td><input required="" type="number" name="n14[]" class="form-control" value="${valor.n14}"></td>
-                    <td><input required="" type="number" name="n15[]" class="form-control" value="${valor.n15}"></td>
-                    </tr>
-                    `;
+
+                    if(contador != 3){
+                        template+= 
+                        `
+                        <tr>
+                        <td>${enunciados[contador]}<input required="" type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
+                        <td><input  type="number" name="n1[]" id="n1${contador}" class="form-control" value="${valor.n1}"></td>
+                        <td><input  type="number" name="n2[]" class="form-control" value="${valor.n2}"></td>
+                        <td><input  type="number" name="n3[]" class="form-control" value="${valor.n3}"></td>
+                        <td><input  type="number" name="n4[]" class="form-control" value="${valor.n4}"></td>
+                        <td><input  type="number" name="n5[]" class="form-control" value="${valor.n5}"></td>
+                        <td><input  type="number" name="n6[]" class="form-control" value="${valor.n6}"></td>
+                        <td><input  type="number" name="n7[]" class="form-control" value="${valor.n7}"></td>
+                        <td><input  type="number" name="n8[]" class="form-control" value="${valor.n8}"></td>
+                        <td><input  type="number" name="n9[]" class="form-control" value="${valor.n9}"></td>
+                        <td><input  type="number" name="n10[]" class="form-control" value="${valor.n10}"></td>
+                        <td><input  type="number" name="n11[]" class="form-control" value="${valor.n11}"></td>
+                        <td><input  type="number" name="n12[]" class="form-control" value="${valor.n12}"></td>
+                        <td><input  type="number" name="n13[]" class="form-control" value="${valor.n13}"></td>
+                        <td><input  type="number" name="n14[]" class="form-control" value="${valor.n14}"></td>
+                        <td><input  type="number" name="n15[]" class="form-control" value="${valor.n15}"></td>
+                        </tr>
+                        `;
+                    } 
 
                     contador++;
                 }
 
                 else{
+
+                    if(contador1 != 3){
+
+                   
                     template2+= 
                     `
                     <tr>
                     <td>${enunciados[contador1]}<input required="" type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
-                    <td><input required="" type="number" name="n1[]" class="form-control" value="${valor.n1}"></td>
-                    <td><input required="" type="number" name="n2[]" class="form-control" value="${valor.n2}"></td>
-                    <td><input required="" type="number" name="n3[]" class="form-control" value="${valor.n3}"></td>
-                    <td><input required="" type="number" name="n4[]" class="form-control" value="${valor.n4}"></td>
-                    <td><input required="" type="number" name="n5[]" class="form-control" value="${valor.n5}"></td>
-                    <td><input required="" type="number" name="n6[]" class="form-control" value="${valor.n6}"></td>
-                    <td><input required="" type="number" name="n7[]" class="form-control" value="${valor.n7}"></td>
-                    <td><input required="" type="number" name="n8[]" class="form-control" value="${valor.n8}"></td>
-                    <td><input required="" type="number" name="n9[]" class="form-control" value="${valor.n9}"></td>
-                    <td><input required="" type="number" name="n10[]" class="form-control" value="${valor.n10}"></td>
-                    <td><input required="" type="number" name="n11[]" class="form-control" value="${valor.n11}"></td>
-                    <td><input required="" type="number" name="n12[]" class="form-control" value="${valor.n12}"></td>
-                    <td><input required="" type="number" name="n13[]" class="form-control" value="${valor.n13}"></td>
-                    <td><input required="" type="number" name="n14[]" class="form-control" value="${valor.n14}"></td>
-                    <td><input required="" type="number" name="n15[]" class="form-control" value="${valor.n15}"></td>
+                    <td><input  type="number" name="n1[]" class="form-control" value="${valor.n1}"></td>
+                    <td><input  type="number" name="n2[]" class="form-control" value="${valor.n2}"></td>
+                    <td><input  type="number" name="n3[]" class="form-control" value="${valor.n3}"></td>
+                    <td><input  type="number" name="n4[]" class="form-control" value="${valor.n4}"></td>
+                    <td><input  type="number" name="n5[]" class="form-control" value="${valor.n5}"></td>
+                    <td><input  type="number" name="n6[]" class="form-control" value="${valor.n6}"></td>
+                    <td><input  type="number" name="n7[]" class="form-control" value="${valor.n7}"></td>
+                    <td><input  type="number" name="n8[]" class="form-control" value="${valor.n8}"></td>
+                    <td><input  type="number" name="n9[]" class="form-control" value="${valor.n9}"></td>
+                    <td><input  type="number" name="n10[]" class="form-control" value="${valor.n10}"></td>
+                    <td><input  type="number" name="n11[]" class="form-control" value="${valor.n11}"></td>
+                    <td><input  type="number" name="n12[]" class="form-control" value="${valor.n12}"></td>
+                    <td><input  type="number" name="n13[]" class="form-control" value="${valor.n13}"></td>
+                    <td><input  type="number" name="n14[]" class="form-control" value="${valor.n14}"></td>
+                    <td><input  type="number" name="n15[]" class="form-control" value="${valor.n15}"></td>
                     </tr>
                     `;
-
+                }       
                     contador1++;
                 }
 
@@ -1105,9 +1112,6 @@ function calcular_promedio_1(){
      $("#promedio_p7").val(calculo.toFixed(2)); 
      $("#estado_dba").html(estado);
   }
-
-
-
 
 
 

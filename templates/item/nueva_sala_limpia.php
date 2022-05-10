@@ -73,7 +73,7 @@ if($id_item_insertado > 0){
   mysqli_stmt_bind_param($insertando_ultrafreezer, 'isssssssssssssssssssssss', 
     $id_item_insertado, 
     $clasificacion_oms, 
-    $clasificacion_oms, 
+    $clasificacion_iso, 
     $direccion_sala_limpia,
     $area_interna_sala_limpia,
     $area_m2_sala_limpia,
