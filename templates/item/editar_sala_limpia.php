@@ -62,11 +62,12 @@ if($update_sala_limpia){
        codigo = ?,
        estado_sala = ?,
        temp_informativa = ?,
-       hum_informativa = ?
-
+       hum_informativa = ?,
+       cantidad_extracciones = ?,
+       cantidad_inyecciones = ?
 
 		WHERE id = $id_item_sala_limpia");
-	mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssssssss', 
+	mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssssssssss', 
 	   $direccion_sala_limpia,   
        $area_m2_sala_limpia,
        $volumen_m3_sala_limpia, 
@@ -87,7 +88,9 @@ if($update_sala_limpia){
        $codigo_interna_sala_limpia,
        $estado_sala,
        $temperatura_informativa,
-       $humedad_informativa
+       $humedad_informativa,
+       $cantidad_extracciones,
+       $cantidad_inyecciones
 	);
 		
 
