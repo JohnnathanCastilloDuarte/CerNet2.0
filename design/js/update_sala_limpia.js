@@ -38,11 +38,11 @@ function setear_campos(){
 }
 
 (function(){
-	
-	$("#btn_editar_item_sala_limpia").click(function(){
+  
+  $("#btn_editar_item_sala_limpia").click(function(){
 
-		
-		const datos = {
+    
+    const datos = {
         nombre_sala_limpia      : $("#nombre_sala_limpia").val(),
         empresa_sala_limpia     : $("#id_empresa").val(),
         clasificacion_oms       : $("#clasificacion_oms").val(),

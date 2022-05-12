@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-13 23:30:35
+/* Smarty version 3.1.34-dev-7, created on 2022-05-12 23:27:09
   from 'C:\xampp\htdocs\CerNet2.0\templates\usuario\nuevo_usuario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e0a80b5b1dd7_14150954',
+  'unifunc' => 'content_627d7bad1b2f88_10243713',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '198f79b8a452309d06c0f2d4efbff92c176f102a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\usuario\\nuevo_usuario.tpl',
-      1 => 1642084153,
+      1 => 1650577933,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e0a80b5b1dd7_14150954 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627d7bad1b2f88_10243713 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-4">	
 		<div class="card">
@@ -169,26 +169,18 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 				</div>
         	<div class="row">
           <div class="col-sm-6">
-						<label>Empresa:</label>
-							<select class="form-control" id="empresa_usuario">
-								<option>Seleccione...</option>
-								<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['empresas']->value, 'empresa');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['empresa']->value) {
-?>
-									<option value="<?php echo $_smarty_tpl->tpl_vars['empresa']->value['id_empresa'];?>
-"><?php echo $_smarty_tpl->tpl_vars['empresa']->value['nombre'];?>
-</option>
-								<?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-							</select>
-					</div>
+                  <label>Empresa</label>
+                      <input type="text" id="buscador_empresa" class="form-control" placeholder="Ingresa el nombre de la empresa" value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['nombre_empresa'];?>
+">
+                      <input type="hidden" id="id_empresa" >
+                      <div>
+                        <table class="table" id="aqui_resultados_empresa" >
+                        </table>
+                      </div> 
+                </div>
              <div class="col-sm-6">
 						<label>Tipo Usuario:</label>
-							<select class="form-control" id="privilegios">
+							<select class="form-control" id="privilegios_usuario">
 								<option value="0" selected>Seleccione...</option>
 								
 							</select>

@@ -24,7 +24,7 @@ $("#formulario_envia_img").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-            console.log(response)
+            //console.log(response)
             if(response == "Si"){
                 Swal.fire({
                     title:'Mensaje',
@@ -33,6 +33,13 @@ $("#formulario_envia_img").submit(function(e){
                     timer:1700
                 });
                 mostrar_imagenes();
+            }else{
+                Swal.fire({
+                    title:'Error',
+                    text:'Solo se permite subir imagenes',
+                    icon:'error',
+                    timer:2000
+                });
             }
             
         }

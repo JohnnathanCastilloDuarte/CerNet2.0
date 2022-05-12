@@ -32,36 +32,50 @@ if(mysqli_stmt_num_rows($validacion_1) == 0){
     $id_imagen = $id_imagen_validacion;
 }
 
+$var = $_FILES["img_a_subir"]["type"];
 
-/**LOGICA IMAGEN**/
-$ruta = "imagenes/".$id_informe."/";
-
-if(is_dir($ruta)===false){
-    mkdir($ruta,0777,true);
+if ($var == 'image/png' || $var == 'image/jpg' || $var == 'image/gif' || $var == 'image/jpeg') {
+   $pasaimagen = 'SI';
+}else{
+   $pasaimagen = 'NO';  
 }
 
-$mix_imagen = $ruta.basename($_FILES["img_a_subir"]["name"]);
-$personalizado = $ruta.$id_imagen.$enunciado_convertido.".jpg";
-
-
-if (move_uploaded_file($_FILES["img_a_subir"]["tmp_name"], $mix_imagen)){
-
-    rename("$mix_imagen","$personalizado");
-    ///////////////////// ACTUALIZAMOS EN LA TABLA DE IMAGENES
-
-    $update_imagen = mysqli_prepare($connect,"UPDATE images_informe_filtro SET url = ? WHERE id_imagen = ?");
-    mysqli_stmt_bind_param($update_imagen, 'si', $personalizado, $id_imagen);
-    mysqli_stmt_execute($update_imagen);
-
-    if($update_imagen){
-        echo "Si";
-    }else{
-        echo "Error";
-    }
-
-
+if ($pasaimagen == 'SI') {
     
+        /**LOGICA IMAGEN**/
+        $ruta = "imagenes/".$id_informe."/";
+
+        if(is_dir($ruta)===false){
+            mkdir($ruta,0777,true);
+        }
+
+        $mix_imagen = $ruta.basename($_FILES["img_a_subir"]["name"]);
+        $personalizado = $ruta.$id_imagen.$enunciado_convertido.".jpg";
+
+
+        if (move_uploaded_file($_FILES["img_a_subir"]["tmp_name"], $mix_imagen)){
+
+            rename("$mix_imagen","$personalizado");
+            ///////////////////// ACTUALIZAMOS EN LA TABLA DE IMAGENES
+
+            $update_imagen = mysqli_prepare($connect,"UPDATE images_informe_filtro SET url = ? WHERE id_imagen = ?");
+            mysqli_stmt_bind_param($update_imagen, 'si', $personalizado, $id_imagen);
+            mysqli_stmt_execute($update_imagen);
+
+            if($update_imagen){
+                echo "Si";
+            }else{
+                echo "Error";
+            }
+
+
+            
+        }
+}else{
+    echo "No";
 }
+
+
 
 
 

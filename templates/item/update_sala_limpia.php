@@ -21,7 +21,7 @@
 
 if(isset($_GET['item'])){
 
-    //RECUPER EL DATO DE LA URL	
+    //RECUPER EL DATO DE LA URL 
     $id_equipo = $_GET['item'];
 
     //CONSULTO LA INFORMACIÓN DEL EQUIPO
@@ -132,7 +132,7 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
         'cantidad_extracciones'=>$cantidad_extracciones,
         'cantidad_inyecciones'=>$cantidad_inyecciones
         
-    );	
+    );  
   }
 
   $smarty->assign("array_sala_limpia",$array_sala_limpia);

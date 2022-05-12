@@ -39,8 +39,8 @@ mysqli_stmt_execute($update_sala_limpia);
 
 if($update_sala_limpia){
 
-	$update_sala_limpia_2  = mysqli_prepare($connect,"UPDATE item_sala_limpia 
-		SET 
+       $update_sala_limpia_2  = mysqli_prepare($connect,"UPDATE item_sala_limpia 
+              SET 
     
        direccion = ?,   
        Area_m2 = ?,
@@ -66,9 +66,9 @@ if($update_sala_limpia){
        cantidad_extracciones = ?,
        cantidad_inyecciones = ?
 
-		WHERE id = $id_item_sala_limpia");
-	mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssssssssss', 
-	   $direccion_sala_limpia,   
+              WHERE id = $id_item_sala_limpia");
+       mysqli_stmt_bind_param($update_sala_limpia_2, 'sssssssssssssssssssssss', 
+          $direccion_sala_limpia,   
        $area_m2_sala_limpia,
        $volumen_m3_sala_limpia, 
        $area_interna_sala_limpia,  
@@ -91,18 +91,18 @@ if($update_sala_limpia){
        $humedad_informativa,
        $cantidad_extracciones,
        $cantidad_inyecciones
-	);
-		
+       );
+              
 
-	mysqli_stmt_execute($update_sala_limpia_2);
-	//echo mysqli_stmt_error($update_sala_limpia_2);
+       mysqli_stmt_execute($update_sala_limpia_2);
+       //echo mysqli_stmt_error($update_sala_limpia_2);
 
-	if($update_sala_limpia_2)
-	{
-		echo "Si";	
-	}else{
-		echo "No";
-	}
+       if($update_sala_limpia_2)
+       {
+              echo "Si";    
+       }else{
+              echo "No";
+       }
 
 }
 
