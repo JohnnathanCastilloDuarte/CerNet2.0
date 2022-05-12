@@ -55,10 +55,21 @@
               <input class="form-control" type="text" name="" id="area_interna" value="{$flujo_laminar.area_interna}" placeholder="Área interna">
             </div>
           </div>
+          <br>
           <div class="form-row">
             <div class="col-sm-4">
               <label>Tipo cabina:</label>
-              <input type="text" id="tipo_cabina" class="form-control" placeholder="Tipo cabina" value="{$flujo_laminar.tipo_cabina}">
+              <select class="form-control" id="tipo_cabina">
+                {if $flujo_laminar.tipo_cabina == ''}
+                <option value="">Seleccione...</option>
+                <option>Vertical</option>
+                <option>Horizontal</option>
+                {else}
+                <option value="{$flujo_laminar.tipo_cabina}">{$flujo_laminar.tipo_cabina}</option>
+                <option>Vertical</option>
+                <option>Horizontal</option>
+                {/if}
+              </select>
             </div>
             <div class="col-sm-4">
               <label>Marca:</label>
@@ -90,8 +101,8 @@
               <input class="form-control" type="text" name="" id="limite_penetracion" value="{$flujo_laminar.limite_penetracion}" placeholder="Limite penetracion">
             </div>
             <div class="col-sm-4">
-              <label>Eficiencia:</label>
-              <input class="form-control" type="text" name="" id="eficiencia" value="{$flujo_laminar.eficiencia}" placeholder="Eficiencia">
+              <label>Requisito de velocidad de aire:</label>
+              <input class="form-control" type="text" name="" id="eficiencia" value="{$flujo_laminar.eficiencia}" placeholder="Requisito de velocidad de aire">
             </div>
           </div>
 
