@@ -240,11 +240,11 @@
               <div class="form-row">
                 <div class="col-sm-4">
                   <label for="">Cantidad Extracciones aire:</label>
-                  <input type="text" class="form-control" id="cantidad_extracciones">
+                  <input type="text" class="form-control" id="cantidad_extracciones" value="{$sala_limpia.cantidad_extracciones}">
                 </div>
                 <div class="col-sm-4">
                   <label for="">Cantidad de Inyecciones aire:</label>
-                  <input type="text" id="cantidad_inyecciones" class="form-control">
+                  <input type="text" id="cantidad_inyecciones" class="form-control" value="{$sala_limpia.cantidad_inyecciones}">
                 </div>
               </div>
               <br>

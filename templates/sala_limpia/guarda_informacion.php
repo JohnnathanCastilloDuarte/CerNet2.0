@@ -42,8 +42,14 @@ $medicion_6_p3= $_POST['campo_6'];
 
 for($i=0; $i < count($id_prueba_3); $i++){
 
+    if ($medicion_3_p3[$i] >= $medicion_4_p3[$i]) {
+        $medicion_3_4 = 'CUMPLE';
+    }else{
+        $medicion_3_4 = 'NO CUMPLE';
+    }
+
     $actualizando2 = mysqli_prepare($connect,"UPDATE datos_de_prueba_3 SET campo_1= ? ,campo_2= ? ,campo_3= ? ,campo_4= ?, campo_5= ?, campo_6= ? WHERE id = ?");
-    mysqli_stmt_bind_param($actualizando2, 'ssssssi', $medicion_1_p3[$i], $medicion_2_p3[$i], $medicion_3_p3[$i], $medicion_4_p3[$i], $medicion_5_p3[$i], $medicion_6_p3[$i], $id_prueba_3[$i]);
+    mysqli_stmt_bind_param($actualizando2, 'ssssssi', $medicion_1_p3[$i], $medicion_2_p3[$i], $medicion_3_p3[$i], $medicion_4_p3[$i], $medicion_5_p3[$i], $medicion_3_4, $id_prueba_3[$i]);
     mysqli_stmt_execute($actualizando2);
 }
 
@@ -107,12 +113,58 @@ $n13 = $_POST['n13'];
 $n14 = $_POST['n14'];
 $n15 = $_POST['n15'];
 
+
+$gg11 = ($n1[0] + $n1[1] + $n1[2])/3;
+$gg12 = ($n1[4] + $n1[5] + $n1[6])/3;
+$gg21 = ($n2[0] + $n2[1] + $n2[2])/3;
+$gg22 = ($n2[4] + $n2[5] + $n2[6])/3;
+$gg31 = ($n3[0] + $n3[1] + $n3[2])/3;
+$gg32 = ($n3[4] + $n3[5] + $n3[6])/3;
+$gg41 = ($n4[0] + $n4[1] + $n4[2])/3;
+$gg42 = ($n4[4] + $n4[5] + $n4[6])/3;
+$gg51 = ($n5[0] + $n5[1] + $n5[2])/3;
+$gg52 = ($n5[4] + $n5[5] + $n5[6])/3;
+$gg61 = ($n6[0] + $n6[1] + $n6[2])/3;
+$gg62 = ($n6[4] + $n6[5] + $n6[6])/3;
+$gg71 = ($n7[0] + $n7[1] + $n7[2])/3;
+$gg72 = ($n7[4] + $n7[5] + $n7[6])/3;
+$gg81 = ($n8[0] + $n8[1] + $n8[2])/3;
+$gg82 = ($n8[4] + $n8[5] + $n8[6])/3;
+$gg91 = ($n9[0] + $n9[1] + $n9[2])/3;
+$gg92 = ($n9[4] + $n9[5] + $n9[6])/3;
+$gg101 = ($n10[0] + $n10[1] + $n10[2])/3;
+$gg102 = ($n10[4] + $n10[5] + $n10[6])/3;
+$gg111 = ($n11[0] + $n11[1] + $n11[2])/3;
+$gg112 = ($n11[4] + $n11[5] + $n11[6])/3;
+$gg121 = ($n12[0] + $n12[1] + $n12[2])/3;
+$gg122 = ($n12[4] + $n12[5] + $n12[6])/3;
+$gg131 = ($n13[0] + $n13[1] + $n13[2])/3;
+$gg132 = ($n13[4] + $n13[5] + $n13[6])/3;
+$gg141 = ($n14[0] + $n14[1] + $n14[2])/3;
+$gg142 = ($n14[4] + $n14[5] + $n14[6])/3;
+$gg151 = ($n15[0] + $n15[1] + $n15[2])/3;
+$gg152 = ($n15[4] + $n15[5] + $n15[6])/3;
+
+
+print_r($id_prueba_8);
+echo $gg1;
+
 for($i=0;$i<count($id_prueba_8);$i++){
     $actualizando4 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_5 SET n1=?,n2=?,n3=?,n4=?,n5=?,n6=?,n7=?,n8=?,n9=?,n10=?,n11=?,n12=?,n13=?,n14=?,n15=? WHERE id_prueba = ?");
     mysqli_stmt_bind_param($actualizando4, 'sssssssssssssssi', $n1[$i], $n2[$i], $n3[$i], $n4[$i], $n5[$i], $n6[$i], $n7[$i], $n8[$i], $n9[$i], $n10[$i], $n11[$i], $n12[$i], $n13[$i], $n14[$i], $n15[$i], $id_prueba_8[$i]);
     mysqli_stmt_execute($actualizando4);
-}
 
+    if($i == 3) {
+       $actualizando4 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_5 SET n1=?,n2=?,n3=?,n4=?,n5=?,n6=?,n7=?,n8=?,n9=?,n10=?,n11=?,n12=?,n13=?,n14=?,n15=? WHERE id_prueba = ?");
+    mysqli_stmt_bind_param($actualizando4, 'sssssssssssssssi', $gg11, $gg21, $gg31, $gg41, $gg51, $gg61, $gg71, $gg81, $gg91, $gg101, $gg111, $gg121, $gg131, $gg141, $gg151, $id_prueba_8[$i]);
+    mysqli_stmt_execute($actualizando4);
+    }
+    if ($i == 7) {
+        $actualizando4 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_5 SET n1=?,n2=?,n3=?,n4=?,n5=?,n6=?,n7=?,n8=?,n9=?,n10=?,n11=?,n12=?,n13=?,n14=?,n15=? WHERE id_prueba = ?");
+    mysqli_stmt_bind_param($actualizando4, 'sssssssssssssssi', $gg12, $gg22, $gg32, $gg42, $gg52, $gg62, $gg72, $gg82, $gg92, $gg102, $gg112, $gg122, $gg132, $gg142, $gg152, $id_prueba_8[$i]);
+    mysqli_stmt_execute($actualizando4);
+    }
+}
 
 
 ///QUINTO PRUEBA
@@ -131,7 +183,7 @@ for ($i=0; $i < count($id_prueba_9); $i++) {
     mysqli_stmt_bind_param($actualizando5, 'ssssi', $medicion_1_p9[$i], $medicion_2_p9[$i], $medicion_3_p9[$i], $medicion_4_p9[$i], $id_prueba_9[$i]);
     mysqli_stmt_execute($actualizando5);
     
-    echo "hola".$id_prueba_9[$i];
+    //echo "hola".$id_prueba_9[$i];
 }
 
 
@@ -152,7 +204,7 @@ $actualizando6 = mysqli_prepare($connect, "UPDATE salas_limpias_metodo_1 SET met
 mysqli_stmt_bind_param($actualizando6, 'sssssi', $ensayo_p11, $ensayo_p12, $ensayo_p13, $ensayo_p14, $ensayo_p15, $id_ensayo_p11);
 mysqli_stmt_execute($actualizando6);
 
-echo mysqli_stmt_error($actualizando6);
+//echo mysqli_stmt_error($actualizando6);
 
 
 
@@ -171,22 +223,22 @@ $ensayo_p31 = $_POST["ensayo_p31"];
 $ensayo_p33 = $_POST["ensayo_p33"];
 
 $actualizando8 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_4 SET metodo_ensayo= ?,altura_muestra= ? WHERE id_ensayo = ?");
-mysqli_stmt_bind_param($actualizando8, 'sssi', $ensayo_p31, $ensayo_p33, $id_ensayo_p31);
+mysqli_stmt_bind_param($actualizando8, 'ssi', $ensayo_p31, $ensayo_p33, $id_ensayo_p31);
 mysqli_stmt_execute($actualizando8);
 
-echo mysqli_stmt_error($actualizando8);
+//echo mysqli_stmt_error($actualizando8);
 
 
 $id_ensayo_p41 = $_POST["id_ensayo_p41"];
 $ensayo_p41 = $_POST["ensayo_p41"];
-$ensayo_p42 = $_POST["ensayo_p42"];
+$ensayo_p42 = 5;
 $ensayo_p43 = $_POST["ensayo_p43"];
 
 $actualizando9 = mysqli_prepare($connect,"UPDATE salas_limpias_metodo_4 SET metodo_ensayo= ?,n_muestras= ?,altura_muestra= ? WHERE id_ensayo = ?");
 mysqli_stmt_bind_param($actualizando9, 'sssi', $ensayo_p41, $ensayo_p42, $ensayo_p43, $id_ensayo_p41);
 mysqli_stmt_execute($actualizando9);
 
-echo mysqli_stmt_error($actualizando9);
+//echo mysqli_stmt_error($actualizando9);
 
 
 

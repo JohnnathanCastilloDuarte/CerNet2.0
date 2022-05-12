@@ -107,19 +107,19 @@
 
                             <div class="card-body collapse" id="collapseOne3">
 
-                                <div class="row">
+                               <!--  <div class="row">
                                    
                                     <div class="col-sm-6">
                                         <input type="hidden" name="id_ensayo_p21" id="id_ensayo_p21">
                                         <label>Método de Ensayo:</label>
                                         <input type="text" name="ensayo_p21" id="ensayo_p21" class="form-control">
                                     </div>
-                                    <div class="col-sm-6">
+                                     <div class="col-sm-6">
                                         <label>Especificacion de sala:</label>
-                                        <input type="text" name="ensayo_p22" id="ensayo_p22" class="form-control">
+                                        <input type="text" name="ensayo_p22" id="ensayo_p22" class="form-control" >
                                     </div>
-                                </div>
-                                <hr>
+                                </div> 
+                                <hr> -->
                                 <div class="col-sm-12">
                                     <div class="row" id="tabla"></div>
                                 </div>
@@ -142,11 +142,11 @@
                             <div class="card-body collapse" id="collapseOne4">
 
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <input type="hidden" name="id_ensayo_p31" id="id_ensayo_p31">
+                                    <!-- <div class="col-sm-4">
+                                        <input type="hidden" name="id_ensayo_p31" id="id_ensayo_p31" >
                                         <label>Método de Ensayo:</label>
                                         <input type="text" name="ensayo_p31" id="ensayo_p31" class="form-control">
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
                                         <input type="text" name="ensayo_p32" id="ensayo_p32" class="form-control" value="5" disabled="">
@@ -183,11 +183,11 @@
                             </div>
                             <div class="card-body collapse" id="collapseOne6">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <!-- <div class="col-sm-4">
                                         <input type="hidden" name="id_ensayo_p41" id="id_ensayo_p41">
                                         <label>Método de Ensayo:</label>
                                         <input type="text" name="ensayo_p41" id="ensayo_p41" class="form-control">
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
                                         <input type="text" name="ensayo_p42" id="ensayo_p42" class="form-control" value="5" disabled="">
@@ -224,14 +224,14 @@
                             <div class="card-body collapse" id="collapseOne12" style="overflow-x: auto;"> 
 
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                   <!--  <div class="col-sm-4">
                                         <label for="">Metodo de ensayo:</label>
                                         <input type="hidden" id="id_ensayo_p51" name="id_ensayo_p51">
-                                        <input type="text" name="ensayo_p51" id="ensayo_p51" class="form-control">
-                                    </div>
+                                        <input type="text" name="ensayo_p51" id="ensayo_p51" class="form-control" value="1">
+                                    </div> -->
                                     <div class="col-sm-4">
                                         <label for="">N° de rejillas de inyección:</label>
-                                        <input type="text" name="ensayo_p52" id="ensayo_p52" class="form-control">
+                                        <input type="text" readonly="" name="ensayo_p52" id="ensayo_p52" class="form-control" value="{$cantidad_inyecciones}">
                                     </div>
                                 </div>
                         <br>
@@ -272,7 +272,7 @@
                                 <div class="row">
                                      <div class="col-sm-4">
                                         <label for="">N° de Extractores:</label>
-                                        <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
+                                        <input type="text" readonly="" name="ensayo_p53" id="ensayo_p53" class="form-control" value="{$cantidad_extracciones}">
                                     </div> 
                                 </div>
                                 <br>
@@ -303,7 +303,7 @@
 
                         <hr>
 
-                        <div class="card">
+                        <!-- <div class="card">
                             <div class="card-header">
                                 <a data-toggle="collapse" data-target="#collapseOne14"  aria-controls="collapseOne14">
                                     Resultado Final - Cálculo de Renovación de Aire/Hora
@@ -322,11 +322,9 @@
                                     </tbody>
                                 </table>             
                             </div>
-                        </div>
+                        </div> 
                         
-                        <hr>
-
-                        
+                        <hr>-->
 
                         <div class="card">
                             <div class="card-header">
@@ -531,3 +529,5 @@
 
 <script src="design/js/controlador_salas_limpias.js"></script>
 <script type="text/javascript" src="design/js/nuevo_equipo_cercal.js"></script>
+
+<script type="text/javascript"></script>

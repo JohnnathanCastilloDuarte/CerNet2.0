@@ -108,11 +108,12 @@ switch ($tipo) {
 
         $array_datos2 = array();
 
-        $consultar = mysqli_prepare($connect,"SELECT b.id_medicion_1, b.valor_obtenido, b.veredicto, b.nombre_filtro FROM informe_filtro as a, filtro_mediciones_1 as b WHERE  a.id_asignado = ? AND a.id_informe = b.id_informe ORDER BY b.nombre_filtro ASC");
+        $consultar = mysqli_prepare($connect,"SELECT b.id_medicion_1, b.valor_obtenido, b.veredicto, b.nombre_filtro, b.valor_filtro 
+            FROM informe_filtro as a, filtro_mediciones_1 as b WHERE  a.id_asignado = ? AND a.id_informe = b.id_informe ORDER BY b.nombre_filtro ASC");
         mysqli_stmt_bind_param($consultar, 'i', $id_asignado_filtro);
         mysqli_stmt_execute($consultar);
         mysqli_stmt_store_result($consultar);
-        mysqli_stmt_bind_result($consultar, $id_medicion_1, $valor_obtenido, $veredicto, $nombre_filtro);
+        mysqli_stmt_bind_result($consultar, $id_medicion_1, $valor_obtenido, $veredicto, $nombre_filtro, $valor_filtro);
         
         while($row = mysqli_stmt_fetch($consultar)){
 
@@ -120,7 +121,8 @@ switch ($tipo) {
                 'id_medicion_1'=>$id_medicion_1,
                 'valor_obtenido'=>$valor_obtenido,
                 'veredicto'=>$veredicto,
-                'nombre_filtro'=>$nombre_filtro
+                'nombre_filtro'=>$nombre_filtro,
+                'valor_filtro'=>$valor_filtro
             );
 
         }

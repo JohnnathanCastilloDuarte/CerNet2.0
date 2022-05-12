@@ -13,9 +13,9 @@ $area_m2_sala_limpia = $_POST['area_m2_sala_limpia'];
 $volumen_m3_sala_limpia = $_POST['volumen_m3_sala_limpia'];;
 $ren_hr = $_POST['ren_hr'];
 $temperatura_maxima = $_POST['temperatura_maxima'];
-$hum_relativa_maxima = $_POST['hum_relativa_maxima'];
-$temperatura_minima = $_POST['temperatura_minima'];
-$hum_relativa_minima = $_POST['hum_relativa_minima'];
+$hum_relativa_maxima = $_POST['hum_relativa_max'];
+$temperatura_minima = $_POST['temperatura_min'];
+$hum_relativa_minima = $_POST['hum_relativa_min'];
 $lux = $_POST['lux']; 
 $ruido_dba = $_POST['ruido_dba'];
 $presion_sala = $_POST['presion_sala'];
@@ -65,13 +65,15 @@ if($id_item_insertado > 0){
     codigo,
     estado_sala,
     temp_informativa,
-    hum_informativa 
+    hum_informativa,
+    cantidad_extracciones,
+    cantidad_inyecciones
     )
- VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-  mysqli_stmt_bind_param($insertando_ultrafreezer, 'isssssssssssssssssssss', 
+ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  mysqli_stmt_bind_param($insertando_ultrafreezer, 'isssssssssssssssssssssss', 
     $id_item_insertado, 
     $clasificacion_oms, 
-    $clasificacion_oms, 
+    $clasificacion_iso, 
     $direccion_sala_limpia,
     $area_interna_sala_limpia,
     $area_m2_sala_limpia,
@@ -90,7 +92,9 @@ if($id_item_insertado > 0){
     $codigo_interna_sala_limpia,
     $estado_sala,
     $temperatura_informativa,
-    $humedad_informativa
+    $humedad_informativa,
+    $cantidad_extracciones,
+    $cantidad_inyecciones
   );
   
   mysqli_stmt_execute($insertando_ultrafreezer);

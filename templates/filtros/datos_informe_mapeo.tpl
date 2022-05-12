@@ -293,6 +293,7 @@
             <table class="table" style="text-align:center;">
               <thead>
                 <th>Medicion</th>
+                <th>Filtro</th>
                 <th>Valor obtenido</th>
               </thead>
               <tbody id="medicion_del_norma_une_en_iso">

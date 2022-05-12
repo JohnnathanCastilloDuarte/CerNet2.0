@@ -21,7 +21,7 @@
 
 if(isset($_GET['item'])){
 
-    //RECUPER EL DATO DE LA URL	
+    //RECUPER EL DATO DE LA URL 
     $id_equipo = $_GET['item'];
 
     //CONSULTO LA INFORMACIÓN DEL EQUIPO
@@ -53,7 +53,9 @@ if(isset($_GET['item'])){
    a.codigo,
    a.estado_sala,
    a.temp_informativa,
-   a.hum_informativa
+   a.hum_informativa,
+   a.cantidad_extracciones,
+   a.cantidad_inyecciones
 
 FROM item_sala_limpia a, item b, empresa c, tipo_item d 
 WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id_tipo AND a.id_item =  $id_equipo");
@@ -89,7 +91,9 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
     $codigo,
     $estado_sala,
     $temperatura_informativa,
-    $humedad_informativa
+    $humedad_informativa,
+    $cantidad_extracciones,
+    $cantidad_inyecciones
 
   );
 
@@ -124,9 +128,11 @@ WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND d.id_item = b.id
         'codigo_interna'=>$codigo,
         'estado_sala'=>$estado_sala,
         'temperatura_informativa'=>$temperatura_informativa,
-        'humedad_informativa'=>$humedad_informativa
+        'humedad_informativa'=>$humedad_informativa,
+        'cantidad_extracciones'=>$cantidad_extracciones,
+        'cantidad_inyecciones'=>$cantidad_inyecciones
         
-    );	
+    );  
   }
 
   $smarty->assign("array_sala_limpia",$array_sala_limpia);
@@ -161,7 +167,9 @@ else{
         'tipo_presion'=>'',
         'puntos_muestreo'=>'',
         'codigo'=>'',
-        'estado_sala'=>''
+        'estado_sala'=>'',
+        'cantidad_extracciones'=>'',
+        'cantidad_inyecciones'=>''
 
 );
   $smarty->assign("array_sala_limpia",$array_sala_limpia);

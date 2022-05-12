@@ -60,9 +60,9 @@ if($tipo == "Guardar"){
 
     $nombre_filtro = "Filtro #".($i+1);
 
-    $insertar_segunda_parte = mysqli_prepare($connect,"INSERT INTO  filtro_mediciones_1 (valor_obtenido ,  veredicto ,  nombre_filtro ,  id_informe) VALUES
-      (?,?,?,?)");
-    mysqli_stmt_bind_param($insertar_segunda_parte, 'sssi', $recibe_inserta, $veredicto, $nombre_filtro, $id_informe);
+    $insertar_segunda_parte = mysqli_prepare($connect,"INSERT INTO  filtro_mediciones_1 (valor_obtenido ,  veredicto ,  nombre_filtro ,  id_informe, valor_filtro) VALUES
+      (?,?,?,?,?)");
+    mysqli_stmt_bind_param($insertar_segunda_parte, 'sssis', $recibe_inserta, $veredicto, $nombre_filtro, $id_informe, $valor_filtro);
     mysqli_stmt_execute($insertar_segunda_parte);
     echo mysqli_stmt_error($insertar_segunda_parte);
 
@@ -97,6 +97,7 @@ if($tipo == "Guardar"){
   $detalles_mediciones_array_d = $_POST['detalles_mediciones_array_d'];
   $detalles_mediciones_array_dd = $_POST['detalles_mediciones_array_dd'];
   $valor_obtenido_filtros = $_POST['valor_obtenido_filtros'];
+  $valor_filtro = $_POST['valor_filtro'];
 
   $nombre_informe = $_POST['nombre_informe'];
   $solicitante = $_POST['solicitante'];
@@ -147,8 +148,8 @@ if($tipo == "Guardar"){
     
     
 
-    $update_segunda_parte = mysqli_prepare($connect,"UPDATE filtro_mediciones_1 SET valor_obtenido = ?,  veredicto = ?,  nombre_filtro = ? WHERE id_medicion_1 = ?");
-    mysqli_stmt_bind_param($update_segunda_parte, 'sssi', $recibe_inserta, $veredicto, $nombre_filtro, $id_medicion_2_array[$i]);
+    $update_segunda_parte = mysqli_prepare($connect,"UPDATE filtro_mediciones_1 SET valor_obtenido = ?,  veredicto = ?,  nombre_filtro = ?, valor_filtro = ? WHERE id_medicion_1 = ?");
+    mysqli_stmt_bind_param($update_segunda_parte, 'ssssi', $recibe_inserta, $veredicto, $nombre_filtro, $valor_filtro[$i], $id_medicion_2_array[$i]);
     mysqli_stmt_execute($update_segunda_parte);
     echo mysqli_stmt_error($update_segunda_parte);
   }

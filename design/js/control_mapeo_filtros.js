@@ -205,6 +205,9 @@ $(document).ready(function(){
                   Prueba de integridad de filtro #${numero}
                 </td>
                 <td>
+                  <input type="text" class="form-control" name="valor_filtro[]" id="valor_filtro" value="${x.valor_filtro}">
+                </td>
+                <td>
                   <input type="text" class="form-control" name="valor_obtenido_filtros[]" id="valor_obtenido_filtros" value="${x.valor_obtenido}">
                 </td>
               </tr>
@@ -466,6 +469,7 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
   var detalles_mediciones_array_d = [];
   var detalles_mediciones_array_dd = [];
   var valor_obtenido_filtros = [];
+  var valor_filtro = [];
 
 
 
@@ -520,6 +524,10 @@ $("#btn_nuevo_filtro_mapeo").click(function(){
   for(i=0;i<valor_obtenido_filtros_campos;i++){
     valor_obtenido_filtros[i] = document.getElementsByName("valor_obtenido_filtros[]")[i].value;
   }
+  var valor_filtro_campos = document.getElementsByName("valor_filtro[]").length;
+  for(i=0;i<valor_filtro_campos;i++){
+    valor_filtro[i] = document.getElementsByName("valor_filtro[]")[i].value;
+  }
 
   let tipo = "Guardar";
   let nombre_informe = $("#nombre_informe").val();
@@ -543,7 +551,8 @@ const datos ={
   nombre_informe,
   solicitante,
   responsable,
-  conclusion
+  conclusion,
+  valor_filtro
 }
 
 
@@ -552,7 +561,7 @@ $.ajax({
   data:datos,
   url:'templates/filtros/controlador_filtro.php',
   success:function(response){
-    
+    console.log(response);
     if(response == "Listo"){
       Swal.fire({
         title:'Mensaje',
@@ -590,7 +599,7 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
   var valor_obtenido_filtros = [];
   var id_medicion_1_array = [];
   var id_medicion_2_array = [];
-
+  var valor_filtro = [];
 
   var detalles_id_medicion_1_campos = document.getElementsByName("id_medicion_1[]").length;
 
@@ -658,6 +667,12 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     valor_obtenido_filtros[i] = document.getElementsByName("valor_obtenido_filtros[]")[i].value;
   }
 
+  var valor_filtro_campos = document.getElementsByName("valor_filtro[]").length;
+  for(i=0;i<valor_filtro_campos;i++){
+    valor_filtro[i] = document.getElementsByName("valor_filtro[]")[i].value;
+  }
+
+
 
   let id_informe  = $("#id_informe_filtro").val();
   let nombre_informe = $("#nombre_informe").val();
@@ -686,7 +701,8 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     nombre_informe,
     solicitante,
     responsable,
-    conclusion
+    conclusion,
+    valor_filtro
   }
        $.ajax({
          type:'POST',
