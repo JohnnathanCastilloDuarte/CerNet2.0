@@ -502,7 +502,7 @@ text-align:left;
 }
 </style>
 
-<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE TEMPERATURA</strong></H3></td></tr></table><br><br>
+<table><tr><td bgcolor="#DDDDDD"><H3><strong>PRUEBA DE HUMEDAD RELATIVA</strong></H3></td></tr></table><br><br>
 <table>
 <tr><td width="15%" ><strong>Informe:</strong></td><td width="45%">$nombre_informe</td>
 <td width="15%"><strong>O.T. N°</strong></td><td width="25%">$num_nummot</td></tr>

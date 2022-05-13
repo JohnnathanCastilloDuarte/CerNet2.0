@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-15 16:12:02
+/* Smarty version 3.1.34-dev-7, created on 2022-05-10 19:50:43
   from '/home/god/public_html/CerNet2.0/templates/sala_limpia/gestionar_informe.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620bd0d2d8b274_84543195',
+  'unifunc' => 'content_627ac213e0c016_48182086',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '17039b9e51e6a85fe239c24eb21145e415a1b565' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/sala_limpia/gestionar_informe.tpl',
-      1 => 1644941499,
+      1 => 1652212222,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620bd0d2d8b274_84543195 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627ac213e0c016_48182086 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
 	<div class="col-sm-12">
 		<div class="card">
@@ -31,7 +31,7 @@ function content_620bd0d2d8b274_84543195 (Smarty_Internal_Template $_smarty_tpl)
 			</div>
 			<div class="card-body">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-header">
 								<div class="form-row">

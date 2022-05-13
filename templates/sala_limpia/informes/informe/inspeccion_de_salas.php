@@ -172,7 +172,7 @@ $pdf->writeHTMLCell(67, 5, 60, '', 'ISO 14644-1:2015 (Promedio)' ,1,0, 0, true, 
 $pdf->writeHTMLCell(67, 5, 127, '', 'ISO 14644-1:2015 (Promedio)' ,1,1, 0, true, 'C', true);
 
 $pdf->writeHTMLCell(45, 5, 15, '', 'Tamaño de Partículas:' ,0,0, 0, true, 'J', true);
-$pdf->writeHTMLCell(33.5, 5, 60, '', 'Partículas >= 0,5 µm' ,1,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(33.5, 5, 60, '', ' Partículas >= 0,5 µm' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(33.5, 5, 93.5, '', 'Partículas >= 5,0 µm' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(33.5, 5, 127, '', 'Partículas >= 0,5 µm' ,1,0, 0, true, 'C', true);
 $pdf->writeHTMLCell(33.5, 5, 160.5, '', 'Partículas >= 5,0 µm' ,1,1, 0, true, 'C', true);
@@ -293,21 +293,40 @@ mysqli_stmt_execute($consultar_info_pruebas);
 mysqli_stmt_store_result($consultar_info_pruebas);
 mysqli_stmt_bind_result($consultar_info_pruebas, $promedio ,$categoria);
 
+if($promedio >= $especificacion_2_temp && $promedio <= $especificacion_1_temp){
+  $estado_1 = 'CUMPLE';
+}else{
+  $estado_1 = 'NO CUMPLE';
+}
+
+
+
 while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
+      if($promedio >= $especificacion_2_temp && $promedio <= $especificacion_1_temp){
+      $estado_1 = 'CUMPLE';
+    }else{
+      $estado_1 = 'NO CUMPLE';
+    }
    if ($categoria == 1) {
       # code...
       $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,°C: ' ,0,0, 0, true, 'C', true);
       $pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
       $pdf->writeHTMLCell(45, 5, 75, '', 'Especificación Temperatura:' ,1,0, 0, true, 'J', true);
       $pdf->writeHTMLCell(40, 5, 120, '', 'Entre '.$especificacion_2_temp.'°C y '.$especificacion_1_temp.'°C' ,1,0, 0, true, 'C', true);
-      $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(35, 5, 160, '', $estado_1 ,1,1, 0, true, 'C', true);
    }elseif ($categoria == 2) {
+     
+     if($promedio >= $especificacion_2_hum && $promedio <= $especificacion_1_hum){
+        $estado_2 = 'CUMPLE';
+      }else{
+        $estado_2 = 'NO CUMPLE';
+      }
       # code...
       $pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, HR%: ' ,0,0, 0, true, 'C', true);
       $pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
       $pdf->writeHTMLCell(45, 5, 75, '', 'Especificación Humedad:' ,1,0, 0, true, 'J', true);
       $pdf->writeHTMLCell(40, 5, 120, '', 'entre '.$especificacion_2_hum.'%HR y '.$especificacion_1_hum.'%HR' ,1,0, 0, true, 'C', true);
-      $pdf->writeHTMLCell(35, 5, 160, '', 'CUMPLE' ,1,1, 0, true, 'C', true);
+      $pdf->writeHTMLCell(35, 5, 160, '', $estado_2 ,1,1, 0, true, 'C', true);
    }
 }
 
@@ -505,47 +524,48 @@ mysqli_stmt_fetch($buscarimagen1);
 
 
 
-$linea = <<<EOD
+$linea4 = <<<EOD
 <style>
 .linea{
    height: 14px;
    color:white;
    background-color: rgb(0,79,135);
+   text-align:center;
 }
 </style>
 <br><br>
 <table>
    <tr border="0">
-        <td class="linea" align="center"><h2>Imagen de la Medición y Registro de Conteo de Partículas</h2></td>
+        <td class="linea">Imagen de la Medición y Registro de Conteo de Partículas</td>
    </tr>
 </table>
 <br><br>
 <table border="0">
     <tr>
-        <td></td>
-        <td>
-        <img src="../../$url_imagen$nombre_imagen"  style="width: 700px; height: 500px;" ></td>
-        <td></td>
+        <td align="center">
+        <img src="../../$url_imagen$nombre_imagen"  style="width: 700px; height: 500px;" ></td> 
     </tr>
 </table>
 EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
+$pdf->writeHTML($linea4, true, false, false, false, '');
 
-$linea = <<<EOD
+$linea1 = <<<EOD
 <style>
 .linea{
    height: 14px;
    color:white;
    background-color: rgb(0,79,135);
+   vertical-align: middle;
+   
 }
 </style>
-<table >
+<table>
    <tr border="0">
-        <td class="linea" align="center"><h3> Cálculo de Resultados - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm: 3520000 / 5,0 µm: 29300</h3></td>
+        <td class="linea" align="center">Cálculo de Resultados - Medidos en partículas / m³ - Requisito de Partícula 0,5 µm: 3520000 / 5,0 µm: 29300</td>
    </tr>
 </table>
 EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
+$pdf->writeHTML($linea1, true, false, false, false, '');
 
 
 $pdf->writeHTMLCell(30, 5, 15, '', 'Tamaños (µm)' ,1,0, 0, true, 'C', true);
