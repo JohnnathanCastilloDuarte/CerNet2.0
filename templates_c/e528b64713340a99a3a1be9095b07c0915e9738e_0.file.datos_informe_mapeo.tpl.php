@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-12 22:07:40
+/* Smarty version 3.1.34-dev-7, created on 2022-05-16 16:45:02
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_627d690c0feb74_86040995',
+  'unifunc' => 'content_6282636e2ed312_72546317',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1652386058,
+      1 => 1652712298,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627d690c0feb74_86040995 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6282636e2ed312_72546317 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <input type="hidden" name="" id="presion_sala_pa" value="<?php echo $_smarty_tpl->tpl_vars['presion_sala']->value;?>
@@ -74,16 +74,16 @@ function content_627d690c0feb74_86040995 (Smarty_Internal_Template $_smarty_tpl)
                                 </div>
                                 <div class="card-body collapse in show" id="collapseOne1">
                                     <div class="row">
-                                        <div class="col-sm-4">
+                                       <!--  <div class="col-sm-4">
                                             <input type="hidden" name="id_ensayo_p11" id="id_ensayo_p11">
                                             <label>Metodo de ensayo</label>
                                             <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control" placeholder="Metodo ensayo">
-                                        </div>
-                                        <div class="col-sm-4">
+                                        </div> -->
+                                        <div class="col-sm-6">
                                             <label>N° Puntos por Medición</label>
                                             <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control" placeholder="Puntos por mediciòn">
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <label>N° Muestras por Punto</label>
                                             <input type="text" id="ensayo_p13" name="ensayo_p13" class="form-control" placeholder="Muestras por Punto">
                                         </div>

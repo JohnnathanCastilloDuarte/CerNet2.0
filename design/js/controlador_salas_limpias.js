@@ -73,9 +73,9 @@ function listar_resultados_prueba(orden){
                       `
                       <tr>
                       <td>${array_nombres[contador]}<input required="" type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}"></td>
-                      <td><input required="" type="text" name="media_promedios_p1[]" value="${valor.medida_promedio}" class="form-control"></td>
-                      <td><input required="" type="text" name="desviacion_estandar_p1[]" value="${valor.desviacion_estandar}" class="form-control"></td>
-                      <td><input required="" type="text" name="maximo_p1[]" value="${valor.maximo}" class="form-control"></td>
+                      <td><input required="" type="text" name="media_promedios_p1[]" placeholder="Media de promedios" value="${valor.medida_promedio}" class="form-control"></td>
+                      <td><input required="" type="text" name="desviacion_estandar_p1[]" placeholder="Desviación estandar" value="${valor.desviacion_estandar}" class="form-control"></td>
+                      <td><input required="" type="text" name="maximo_p1[]" value="${valor.maximo}" placeholder="Máximo" class="form-control"></td>
                       </tr>
                       
                       `;
@@ -127,9 +127,9 @@ function listar_resultados_prueba(orden){
                           <th >${array_nombres[4]}</th>
                           </tr>
                           <tr>
-                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_1[]" value="${valor.campo_1}">&nbsp;</td>
-                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_3[]" value="${valor.campo_3}">&nbsp;</td>
-                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_4[]" value="${presion_sala_pa}">&nbsp;</td>
+                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_1[]" required placeholder="Lugar de medición" value="${valor.campo_1}">&nbsp;</td>
+                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_3[]" required value="${valor.campo_3}">&nbsp;</td>
+                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_4[]" required value="${presion_sala_pa}">&nbsp;</td>
                           <td><select class="form-control col-sm-12" name="campo_5[]"><option>${valor.campo_5}</option><option value"Positiva">Positiva</option><option value"Negativa">Negativa</option><option value="Informativa">Informativa</option></select>&nbsp;</td>
                           <td><input id="" type="hidden" name="id_prueba_3[]" value="${valor.id}"></td>
                           </tr>
@@ -552,7 +552,7 @@ else if(orden == 6){
                 let contador = 0;
                 
                 traer.forEach((valor)=>{
-                    $("#id_ensayo_p11").val(valor.id_ensayo);
+                   // $("#id_ensayo_p11").val(valor.id_ensayo);
                     $("#ensayo_p11").val(valor.metodo_ensayo);
                     $("#ensayo_p12").val(valor.puntos_x_medicion);
                     $("#ensayo_p13").val(valor.muestra_x_punto);
@@ -956,6 +956,16 @@ $("#agregar_prueba").click(function(e){
    let orden = 200;
    let accion = 'agregar';
 
+   let quien = id_valida;
+    let movimiento = "Edita en el modulo";
+    let modulo = "Item y freezer";
+
+    const data = {
+      quien,
+      movimiento,
+      modulo
+    }
+
    $.ajax({
     type:'POST',
     data:{orden, accion, id_asignado},
@@ -1147,7 +1157,7 @@ function calcular_promedio_1(){
      let calculo = (parseFloat(punto_1) + parseFloat(punto_2) + parseFloat(punto_3) + parseFloat(punto_4) + parseFloat(punto_5))/5;
 
      let estado = '';
-        if(calculo > lux){
+        if(calculo >= lux){
              estado = 'Cumple';
         }else if (calculo < lux){
              estado = 'No Cumple';
@@ -1169,7 +1179,7 @@ function calcular_promedio_1(){
      let calculo = (parseFloat(punto_1) + parseFloat(punto_2) + parseFloat(punto_3) + parseFloat(punto_4) + parseFloat(punto_5))/5;
 
      let estado = '';
-        if(calculo < ruido_dba){
+        if(calculo <= ruido_dba){
              estado = 'Cumple';
         }else if (calculo > ruido_dba){
              estado = 'No Cumple';

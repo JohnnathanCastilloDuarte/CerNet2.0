@@ -324,8 +324,9 @@ function listar_servicios(){
 						<div class="card">
 							<div class="card body">
 								<div class="row">
-									<div class="col-sm-12" style="text-align:center;">
+									<div class="col-sm-12" style="text-align:center;text-align:center;height: 140px;" >
 										<i class="pe-7s-note2 bg-mean-fruit"></i>
+										<br>
 										<label class="text-info">${result.tipo_servicio}</label>
 										<br>
 										<br>

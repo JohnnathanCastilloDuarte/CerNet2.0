@@ -96,7 +96,7 @@ $(document).on('click','#btn_abrir_item',function(){
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Si, Eliminar!',
 			cancelButtonText: 'No, Eliminar!'
-		}).then((result)=>{
+		  }).then((result)=>{
 
 			if (result.value) {
 				$.ajax({
