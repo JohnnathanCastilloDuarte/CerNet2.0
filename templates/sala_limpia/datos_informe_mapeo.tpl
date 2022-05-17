@@ -42,8 +42,8 @@
                                 </div>
                                 <div class="card-body collapse in show" id="collapseOne1">
                                     <div class="row">
-                                       <!--  <div class="col-sm-4">
                                             <input type="hidden" name="id_ensayo_p11" id="id_ensayo_p11">
+                                       <!--  <div class="col-sm-4">
                                             <label>Metodo de ensayo</label>
                                             <input type="text" id="ensayo_p11" name="ensayo_p11" class="form-control" placeholder="Metodo ensayo">
                                         </div> -->

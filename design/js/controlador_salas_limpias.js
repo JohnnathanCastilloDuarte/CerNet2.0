@@ -552,8 +552,8 @@ else if(orden == 6){
                 let contador = 0;
                 
                 traer.forEach((valor)=>{
-                   // $("#id_ensayo_p11").val(valor.id_ensayo);
-                    $("#ensayo_p11").val(valor.metodo_ensayo);
+                    $("#id_ensayo_p11").val(valor.id_ensayo);
+                    //$("#ensayo_p11").val(valor.metodo_ensayo);
                     $("#ensayo_p12").val(valor.puntos_x_medicion);
                     $("#ensayo_p13").val(valor.muestra_x_punto);
                     $("#ensayo_p14").val(valor.volumen_muestra);
