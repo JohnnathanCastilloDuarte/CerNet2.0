@@ -90,6 +90,6 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('courierbi', 'R', 7);
+$pdf->SetFont('helvetica', 'R', 7);
 
 ?>
