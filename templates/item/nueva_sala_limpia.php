@@ -12,7 +12,7 @@ $area_interna_sala_limpia = $_POST['area_interna_sala_limpia'];
 $area_m2_sala_limpia = $_POST['area_m2_sala_limpia'];
 $volumen_m3_sala_limpia = $_POST['volumen_m3_sala_limpia'];;
 $ren_hr = $_POST['ren_hr'];
-$temperatura_maxima = $_POST['temperatura_maxima'];
+$temperatura_maxima = $_POST['temperatura_max'];
 $hum_relativa_maxima = $_POST['hum_relativa_max'];
 $temperatura_minima = $_POST['temperatura_min'];
 $hum_relativa_minima = $_POST['hum_relativa_min'];
@@ -79,10 +79,10 @@ if($id_item_insertado > 0){
     $area_m2_sala_limpia,
     $volumen_m3_sala_limpia,
     $ren_hr,
-    $temperatura_minima,
     $temperatura_maxima,
-    $hum_relativa_minima,
     $hum_relativa_maxima,
+    $temperatura_minima,
+    $hum_relativa_minima,
     $lux,
     $ruido_dba,
     $presion_sala,

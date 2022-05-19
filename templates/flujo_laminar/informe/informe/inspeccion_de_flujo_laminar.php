@@ -560,6 +560,17 @@ con una concentración de 22.9 mg/litro.</p>
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+
+$queryPrueba1 = mysqli_prepare($connect,"SELECT url, nombre
+  FROM image_flujo_laminar
+  WHERE id_asignado = ? AND tipo = 1");
+
+mysqli_stmt_bind_param($queryPrueba1, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba1);
+mysqli_stmt_store_result($queryPrueba1);
+mysqli_stmt_bind_result($queryPrueba1, $url, $nombre);
+
+
 $imagen = <<<EOD
 
 <style>
@@ -569,7 +580,7 @@ $imagen = <<<EOD
 <table border="0">
    <tr>
         <td></td>
-        <td align="center"><h2>Imagen1</h2></td>
+        <td align="center"><img src="../../$url $nombre">../../$url $nombre </td>
         <td></td>
    </tr>
 </table>
@@ -646,12 +657,12 @@ mysqli_stmt_store_result($equipos_flujo1);
 mysqli_stmt_bind_result($equipos_flujo1, $marca1, $modelo1, $n_serie1, $certificado_calibracion1, $ultima_calibracion1);
 
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
 while ($row = mysqli_stmt_fetch($equipos_flujo1)) {
 
@@ -914,23 +925,23 @@ mysqli_stmt_execute($equipos_flujo2);
 mysqli_stmt_store_result($equipos_flujo2);
 mysqli_stmt_bind_result($equipos_flujo2, $marca2, $modelo2, $n_serie2, $certificado_calibracion2, $ultima_calibracion2);
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
 $e= 2;
 
 while ($row = mysqli_stmt_fetch($equipos_flujo2)) {
 
-    $pdf->writeHTMLCell(30, 5, 15, '', $marca2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 45, '', $modelo2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 75, '', $n_serie2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true); 
+    $pdf->writeHTMLCell(30, 7, 15, '', $marca2, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 45, '', $modelo2, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 75, '', $n_serie2, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 105, '', $certificado_calibracion2, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 135, '', $ultima_calibracion2, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 165, '', '-', 1, 1, 0, true, 'C', true); 
 }
 
 
@@ -1160,21 +1171,21 @@ mysqli_stmt_store_result($equipos_flujo3);
 mysqli_stmt_bind_result($equipos_flujo3, $marca3, $modelo3, $n_serie3, $certificado_calibracion3, $ultima_calibracion3);
 
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
 while ($row = mysqli_stmt_fetch($equipos_flujo3)) {
 
-    $pdf->writeHTMLCell(30, 5, 15, '', $marca3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 45, '', $modelo3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 75, '', $n_serie3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true); 
+    $pdf->writeHTMLCell(30, 7, 15, '', $marca3, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 45, '', $modelo3, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 75, '', $n_serie3, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 105, '', $certificado_calibracion3, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 135, '', $ultima_calibracion3, 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(30, 7, 165, '', '-', 1, 1, 0, true, 'C', true); 
     
 }
 
@@ -1443,21 +1454,21 @@ mysqli_stmt_bind_result($equipos_flujo4, $marca4, $modelo4, $n_serie4, $certific
 
 
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
 
 while ($row = mysqli_stmt_fetch($equipos_flujo4)) {
-$pdf->writeHTMLCell(30, 5, 15, '', $marca4 , 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', $modelo4 , 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', $n_serie4 , 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion4 , 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion4 , 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '-' , 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 15, '', $marca4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 45, '', $modelo4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 75, '', $n_serie4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 105, '', $certificado_calibracion4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 135, '', $ultima_calibracion4 , 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', '-' , 1, 1, 0, true, 'C', true);
 }
 
 $pdf->AddPage('A4');
@@ -1781,20 +1792,20 @@ mysqli_stmt_store_result($equipos_flujo5);
 mysqli_stmt_bind_result($equipos_flujo5, $marca5, $modelo5, $n_serie5, $certificado_calibracion5, $ultima_calibracion5);
 
 
-$pdf->writeHTMLCell(30, 5, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
 
 while ($row = mysqli_stmt_fetch($equipos_flujo5)) {
-$pdf->writeHTMLCell(30, 5, 15, '', $marca5, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 45, '', $modelo5, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 75, '', $n_serie5, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 105, '', $certificado_calibracion5, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 135, '', $ultima_calibracion5, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 15, '', $marca5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 45, '', $modelo5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 75, '', $n_serie5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 105, '', $certificado_calibracion5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 135, '', $ultima_calibracion5, 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(30, 7, 165, '', '-', 1, 1, 0, true, 'C', true);
 }
 
 $pdf->AddPage('A4');
