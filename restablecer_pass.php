@@ -1,6 +1,21 @@
 <?php 
 
+	include('config.ini.php');
+
+
+
 	$id_protegido = $_GET['key'];
+	$security = $_GET['security'];
+
+	$id_protegido = substr($id_protegido, 73,100);
+
+	$consultar_codigo = mysqli_prepare($connect,"SELECT estado FROM update_password_control WHERE codigo = ?");
+	mysqli_stmt_bind_param($consultar_codigo, 's', $security);
+	mysqli_stmt_execute($consultar_codigo);
+	mysqli_stmt_store_result($consultar_codigo);
+	mysqli_stmt_bind_result($consultar_codigo, $estado);
+	mysqli_stmt_fetch($consultar_codigo);
+
 
 ?>
 <!doctype html>
@@ -31,30 +46,38 @@
 								</div>
 						</div>
 					</div>
-					<div class="card-body">
-						<div class="form-group">
-							<label>
-								Usuario CerNet
-							</label>
-							<input type="text" name="usuario" id="usuario" class="form-control">
-							<input type="hidden" name="id_protegido" id="id_protegido" value="<?php echo $id_protegido; ?>">
-							<div id="cambiar">
-								<p class="text-success" style="text-align:center;">Usuario Correcto</p>
+					<?php if($estado == 1){
+
+					?>
+					<div class="card-body" style="text-align:center">
+							<div class="form-group">
+								<input type="hidden" name="id_protegido" id="id_protegido" value="<?php echo $id_protegido; ?>">
 								<label>Nueva contraseña</label>
-								<input type="password" class="form-control" id="password">
+								<input type="password" class="form-control" id="password" >
 								<label>repita la contraseña</label>
-								<input type="password" class="form-control" id="password2">
-								<br>
-								<div id="contra">
-									
-								</div>
-								<br>
+								<input type="password" class="form-control" id="password2" >
+								<br><br>
+								
+							
+									<span id="coincide" class="text-success">Las contraseñas coinciden</span>
+									<span id="no_coincide" class="text-danger">Las contraseñas No coinciden</span>
+							
 								<button class="btn-block text-center btn btn-info" id="actualizar">
 									Actualizar
 								</button>
 							</div>
 						</div>
 					</div>
+					<?php }
+					else{ ?>
+					<div class="card-body">
+						<div class="row" style="text-align:center">
+							<div class="col-sm-12">
+								<span class="text-danger">Tú solicitud a expirado, vuelve a intentarlo</span>
+							</div>
+						</div>
+					</div>
+					<?php }?>
 				</div>
 			</div>
 			

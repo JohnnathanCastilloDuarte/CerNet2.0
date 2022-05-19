@@ -1,109 +1,91 @@
 
 
 var id_protegido = $('#id_protegido').val();
+$("#coincide").hide();
+$("#no_coincide").hide();
+$('#actualizar').hide();
 
-$('#usuario').keyup(function(){
 
-		var usuario = $('#usuario').val();		
-				if(usuario == '')
-				{
-					$('#cambiar').hide();
-				}else{
-          $('#cambiar').show();
-        }
 		
+
+$('#password , #password2').keyup(function(){
+
+	let pas1 = $('#password').val();
+	let pas2 = $('#password2').val();
+	let contra = $('#contra');
+	let template = '';
+
+	if(pas1 === pas2){
+		$("#coincide").show();
+		$("#no_coincide").hide();
+		$('#actualizar').show();
+	}else if(pas1.length == 0 ||  pas2.length == 0){
+		$("#coincide").hide();
+		$("#no_coincide").hide();
+		$('#actualizar').hide();
+	}else{
+		$("#coincide").hide();
+		$("#no_coincide").show();
+		$('#actualizar').hide();
+	}		
+});
+
+$('#actualizar').click(function(){
+	window.history.replaceState({},'','restablecer.php');
+	let pas1 = $('#password').val();
+	let pas2 = $('#password2').val();
+	let resp = $("#id_protegido").val();
+
+	if(pas1 == "" || pas2 == ""){
+		Swal.fire({
+			title:'Mensaje',
+			text:'No puedes dejar ningun campo vacio',
+			icon:'warning',
+			timer:1700
+		});
+	}else{
+
+
 		$.ajax({
 			type:'POST',
-			data:{'usuario':usuario, 'id_protegido':id_protegido},
-			url:'valida_restablece.php',
-			success:function(resp){
-				
-			console.log(resp);
-				if(resp != '')
-				{
-					$('#cambiar').show();
-					$('#actualizar').hide();
-							
-						$('#password , #password2').keyup(function(){
-							
-							var pas1 = $('#password').val();
-							var pas2 = $('#password2').val();
-							var contra = $('#contra');
-							var template = '';
-							
-							if(pas1 === pas2){
-							
-							 template = '<p class="text-success" style="text-align:center;">Contraseñas coinciden</p>';
-							 contra.html(template);
-								
-								$('#actualizar').show();
-								
-								$('#actualizar').click(function(){
-									window.history.replaceState({},'','restablecer.php');
-										$.ajax({
-											type:'POST',
-											data:{'password':pas1,'id':resp},
-											url:'actualiza_pass.php',
-											success:function(respu){
-												
-												if(respu == "si"){
-														Swal.fire({
-															position: 'center',
-															icon: 'success',
-															title: 'Tu contraseña ha sido actualizada',
-															showConfirmButton: true,
-															ConfirmButtonText:'Ok'
-														}).then((result)=>{
-															if(result.value){
-																var URLactual = window.location;
-																if(URLactual == "https://localhost/CerNet2.0/restablecer.php"){
-																	location.href = "https://localhost/CerNet2.0/index.php";
-																}else{
-																	location.href = "https://cercal.net/CerNet2.0/index.php";
-																}
-															
-															}
-														});
-												
-													
-												}else{
-														Swal.fire({
-															position: 'center',
-															icon: 'error',
-															title: 'Error al actualizar',
-															showConfirmButton: false,
-															timer: 1500
-														});
-													
-												}
-											
-											}
-										});
-								});
-								
-							}	else{
-							 template = '<p class="text-danger" style="text-align:center;">Contraseñas no coinciden</p>';
-							contra.html(template);
-								
+			data:{'password':pas1,'id':resp},
+			url:'actualiza_pass.php',
+			success:function(respu){
+
+				if(respu == "si"){
+					Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Tu contraseña ha sido actualizada',
+					showConfirmButton: true,
+					ConfirmButtonText:'Ok'
+					}).then((result)=>{
+						if(result.value){
+							var URLactual = window.location;
+							if(URLactual == "https://localhost/CerNet2.0/restablecer.php"){
+							location.href = "https://localhost/CerNet2.0/index.php";
+							}else{
+							location.href = "https://cercal.net/CerNet2.0/index.php";
 							}
-							
-							
-						});
-					
-					
-					
-						
-						
+						}
+					});
+
+				}else{
+					Swal.fire({
+					position: 'center',
+					icon: 'error',
+					title: 'Error al actualizar',
+					showConfirmButton: false,
+					timer: 1500
+					});
+
 				}
-				else{
-					$('#cambiar').hide();
-				}
-				
 			}
-			
 		});
-	
-});	
+	}	
+});
+
+
 
 
 $("#rest").click(function(){
@@ -146,7 +128,7 @@ $("#rest").click(function(){
 				})
 		
 			}
-			
+		
 		}
 	});//cierre del ajax que envia el correo
 		}
