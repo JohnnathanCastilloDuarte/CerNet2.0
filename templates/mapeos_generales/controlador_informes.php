@@ -133,7 +133,7 @@ $id_mapeo = $_POST['id_mapeo'];
   $id_mapeo = $_POST['id_mapeo'];
   $id_asignado = $_POST['id_asignado'];
   $id_usuario = $_POST['id_usuario'];
-  $tipo = "BASE";
+  $tipo_base = "BASE";
   $consecutivo = "";
 
   $consulta_empresa = mysqli_prepare($connect,"SELECT a.sigla_empresa, a.sigla_pais, b.correlativo FROM empresa as a, item_asignado as b, item as c WHERE a.id_empresa = c.id_empresa AND c.id_item = b.id_item AND b.id_asignado  = ?");
@@ -144,7 +144,7 @@ $id_mapeo = $_POST['id_mapeo'];
   mysqli_stmt_fetch($consulta_empresa);
 
   $consultar_informe = mysqli_prepare($connect, "SELECT id_informe FROM informes_general WHERE id_mapeo = ? AND id_asignado = ? AND tipo = ?");
-  mysqli_stmt_bind_param($consultar_informe, 'iis', $id_mapeo, $id_asignado, $tipo);
+  mysqli_stmt_bind_param($consultar_informe, 'iis', $id_mapeo, $id_asignado, $tipo_base);
   mysqli_stmt_execute($consultar_informe);
   mysqli_stmt_store_result($consultar_informe);
   mysqli_stmt_bind_result($consultar_informe, $id_informe);
@@ -161,7 +161,7 @@ $id_mapeo = $_POST['id_mapeo'];
       mysqli_stmt_bind_result($consultar_consecutivo , $temp_hum);
       mysqli_stmt_fetch($consultar_consecutivo);
 
-      $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-HUM';
+      $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-INB';
 
       $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
       mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
@@ -370,7 +370,7 @@ $id_mapeo = $_POST['id_mapeo'];
           'num_riesgo'=>$num_riesgo,
           'etapa'=>$etapa,
           'relevancia'=>$relevancia,
-          'descripcion'=>$relevancia,
+          'descripcion'=>$descripcion,
           'probabilidad'=>$probabilidad,
           'impacto'=>$impacto,
           'clase'=>$clase,

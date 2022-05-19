@@ -1055,7 +1055,7 @@ tr:nth-child(even)
 <br><br><br>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
-<tr><td height="90"><br><br><br>Ing. $nombres $apellidos<br> $cargo - Cercal Group Spa.</td><td height="50"></td></tr>
+<tr><td height="90"><br><br><br>$nombres $apellidos<br> $cargo SPOT- Cercal Group Spa.</td><td height="50"></td></tr>
 </table>
 
 EOD;

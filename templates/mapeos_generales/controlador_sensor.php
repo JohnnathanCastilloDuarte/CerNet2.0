@@ -107,17 +107,36 @@ if($movimiento == "buscar"){
 
     $id_mapeo = $_POST['id_mapeo'];
     $posicion = $_POST['posicion'];
+    $id_maping = $_POST['id_maping'];
+    $id_bandeja = $_POST['id_bandeja'];
+  
+  
+    $validador = mysqli_prepare($connect,"SELECT id_sensor_mapeo FROM mapeo_general_sensor WHERE posicion = ? AND id_mapeo = ? AND id_bandeja = ?");
+    mysqli_stmt_bind_param($validador, 'iii', $posicion, $id_maping, $id_bandeja);
+    mysqli_stmt_execute($validador);
+    mysqli_stmt_store_result($validador);
+    mysqli_stmt_bind_result($validador, $id_sensor_mapeof);
+    mysqli_stmt_fetch($validador);
+  
+    if(mysqli_stmt_num_rows($validador) > 0){
+      echo "ya esta la posicion";
+    }else{
+      
+          $cambiar_de_posicion = mysqli_prepare($connect,"UPDATE mapeo_general_sensor SET posicion = ? WHERE id_sensor_mapeo = ?");
+          mysqli_stmt_bind_param($cambiar_de_posicion, 'ii', $posicion, $id_mapeo);
+          mysqli_stmt_execute($cambiar_de_posicion);
+
+          if($cambiar_de_posicion){
+              echo "Si";
+          }else{
+              echo "No";
+          }
+    }
+      
+  
 
    
-    $cambiar_de_posicion = mysqli_prepare($connect,"UPDATE mapeo_general_sensor SET posicion = ? WHERE id_sensor_mapeo = ?");
-    mysqli_stmt_bind_param($cambiar_de_posicion, 'ii', $posicion, $id_mapeo);
-    mysqli_stmt_execute($cambiar_de_posicion);
 
-    if($cambiar_de_posicion){
-        echo "Si";
-    }else{
-        echo "No";
-    }
 
 }else if($movimiento == "remover"){
 

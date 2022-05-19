@@ -250,6 +250,7 @@ $("#btn_nuevo_mapeo_general").click(function(){
     let minuto_fin_mapeo_general = $("#minuto_fin_mapeo_general").val();
     let segundo_fin_mapeo_general = $("#segundo_fin_mapeo_general").val();
     let intervalo = $("#intervalo_mapeo").val();
+    let porcentaje_carga = $("#porcentaje_carga").val();
 
 
     const datos = {
@@ -265,7 +266,8 @@ $("#btn_nuevo_mapeo_general").click(function(){
         segundo_fin_mapeo_general,
         id_asignado,
         id_usuario,
-        intervalo
+        intervalo,
+        porcentaje_carga
     }
 
     $.ajax({
@@ -377,6 +379,7 @@ $(document).on('click','#editar_mapeo',function(){
                 $("#minuto_fin_mapeo_general").val(traer.minuto_fin);
                 $("#segundo_fin_mapeo_general").val(traer.segundo_fin);
                 $("#intervalo_mapeo").val(traer.intervalo);
+                $("#porcentaje_carga").val(traer.porcentaje_carga);
                 
 
                 Swal.fire({
@@ -411,6 +414,7 @@ $("#btn_atras_mapeo_general").click(function(){
     $("#segundo_fin_mapeo_general").val("");
     $("#id_mapeo").val("");
     $("#intervalo_mapeo").val("");
+    $("#porcentaje_carga").val("");
 
     
 });
@@ -430,6 +434,7 @@ $("#btn_editar_mapeo_general").click(function(){
     let segundo_fin_mapeo_general = $("#segundo_fin_mapeo_general").val();
     let id_mapeo = $("#id_mapeo").val();
     let intervalo = $("#intervalo_mapeo").val();
+    let porcentaje_carga = $("#porcentaje_carga").val();
 
     const datos = {
         movimiento,
@@ -443,7 +448,8 @@ $("#btn_editar_mapeo_general").click(function(){
         minuto_fin_mapeo_general,
         segundo_fin_mapeo_general,
         id_mapeo,
-        intervalo
+        intervalo,
+        porcentaje_carga
     }
 
     $.ajax({
@@ -693,7 +699,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                 `
                     <tr>
                         <td>${valor.nombre}</td>
-                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion">
+                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}"  data-type='${id_mapeo}' data-bandeja='${id_bandeja}' id="cambiar_posicion">
                                 <option value="${valor.posicion}">${valor.posicion}</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -735,7 +741,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                 `
                     <tr>
                         <td>${valor.nombre}</td>
-                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion">
+                        <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" data-type='${id_mapeo}'  data-bandeja='${id_bandeja}'id="cambiar_posicion">
                                 <option value="${valor.posicion}">${valor.posicion}</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -850,13 +856,17 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
 $(document).on('change','#cambiar_posicion', function(){
 
     let id_mapeo = $(this).attr('data-id');
+    let  id_maping = $(this).attr('data-type');
+  let id_bandeja = $(this).attr('data-bandeja');
     let posicion = $(this).val();
     let movimiento = "cambiar_posicion";
     
     const datos = {
         id_mapeo,
         posicion,
-        movimiento
+        movimiento,
+        id_maping,
+      id_bandeja
     }
 
     $.ajax({
@@ -866,7 +876,7 @@ $(document).on('change','#cambiar_posicion', function(){
         success:function(response){
             let id_mapeo_actual = $("#id_mapeo_configurar").val();
             let id_bandeja_actual = $("#id_bandeja_configurar").val();
-
+            
             if(response == "Si"){
                 Swal.fire({
                     title:'Mensaje',
@@ -874,8 +884,16 @@ $(document).on('change','#cambiar_posicion', function(){
                     icon:'success',
                     timer:1700
                 });
-                listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
+               
+            }else if( response == "ya esta la posicion"){
+              Swal.fire({
+                title:'Mensaje',
+                text:'No puedes utilizar esta posición, ya se encuentra ocuapda',
+                icon:'warning',
+                timer:1800
+              });
             }
+           listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
         }
     });
 

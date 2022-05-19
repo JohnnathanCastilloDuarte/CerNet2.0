@@ -187,6 +187,11 @@
                     <label for="">Intervalo:</label>
                     <input type="text" placeholder="Intervalo en seg" class="form-control" id="intervalo_mapeo">
                   </div>
+                  
+                  <div class="col-sm-6">
+                    <label for="">% de carga:</label>
+                    <input type="text" placeholder="% de carga" class="form-control" id="porcentaje_carga">
+                  </div>
                 </div>
 
                 <br>
