@@ -137,7 +137,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->ln(6);
 
      $pdf->Cell(30,5,'Dirección:',0,0,'J',0,'',0);
-     $pdf->Cell(150,5,$direccion_item,1,0,'J',0,'',0);
+     $pdf->Cell(150,5,$direccion_item,1,0,'C',0,'',0);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
