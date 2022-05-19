@@ -507,7 +507,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Prueba de Iluminación y Ruid</h2></td>
+        <td class="linea" align="center"><h2>Prueba de Iluminación y Ruido</h2></td>
    </tr>
 </table>
 EOD;  
@@ -539,7 +539,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
       $pdf->Cell(40,5,$lux_item,1,0,'C',0,'',0);
 
       //$pdf->writeHTMLCell(35, 5, 160, '', $estado_lux ,1,1, 0, true, 'C', true);
-      $pdf->Cell(35,5,$lux_item,1,0,'C',0,'',0);
+      $pdf->Cell(35,5,$estado_lux,1,0,'C',0,'',0);
       $pdf->ln(5); 
    }elseif ($categoria == 4) {
       if ($promedio <= $ruido_dba_item) {
@@ -550,7 +550,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
       //$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, dbA: ' ,0,0, 0, true, 'C', true);
       //$pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
       $pdf->Cell(30,5,'Resultado, dbA:',1,0,'L',0,'',0);
-      $pdf->Cell(30,5,$promedio,1,0,'C',0,'',0);
+      $pdf->Cell(30,5,'> ='.$promedio,1,0,'C',0,'',0);
 
       //$pdf->writeHTMLCell(45, 5, 75, '', 'Especificación, dbA:' ,1,0, 0, true, 'J', true);
       //$pdf->writeHTMLCell(40, 5, 120, '', ' < ='.$ruido_dba_item ,1,0, 0, true, 'C', true);
@@ -699,43 +699,6 @@ $prueba = <<<EOD
    </table>
 EOD;  
 $pdf->writeHTML($prueba, true, false, false, false, '');
-
-$buscarimagen1 = mysqli_prepare($connect,"SELECT url, nombre 
-FROM image_sala_limpia
-WHERE id_asignado = ? AND tipo = 1");
-mysqli_stmt_bind_param($buscarimagen1, 'i', $id_asignado);
-mysqli_stmt_execute($buscarimagen1);
-mysqli_stmt_store_result($buscarimagen1);
-mysqli_stmt_bind_result($buscarimagen1, $url_imagen, $nombre_imagen);
-mysqli_stmt_fetch($buscarimagen1);
-
-
-
-$linea = <<<EOD
-<style>
-.linea{
-   height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
-}
-</style>
-<br><br>
-<table>
-   <tr border="0">
-        <td class="linea" align="center"><h2>Imagen de la Medición y Registro de Conteo de Partículas</h2></td>
-   </tr>
-</table>
-<br><br>
-<table border="0">
-    <tr>
-        <td></td>
-        <td>
-        <img src="../../$url_imagen$nombre_imagen"  style="width: 700px; height: 500px;" ></td>
-        <td></td>
-    </tr>
-</table>
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
 
 $linea = <<<EOD
 <style>
@@ -900,7 +863,7 @@ $pdf->ln(5);
 
 
 
-$buscarimagen2 = mysqli_prepare($connect,"SELECT url, nombre 
+/*$buscarimagen2 = mysqli_prepare($connect,"SELECT url, nombre 
 FROM image_sala_limpia
 WHERE id_asignado = ? AND tipo = 2");
 mysqli_stmt_bind_param($buscarimagen2, 'i', $id_asignado);
@@ -935,7 +898,7 @@ $linea = <<<EOD
    </tr>
 </table>
 EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
+$pdf->writeHTML($linea, true, false, false, false, '');*/
 
 
 
@@ -1117,41 +1080,7 @@ $pdf->ln(5);
 
 
 
-$buscarimagen3 = mysqli_prepare($connect,"SELECT url, nombre 
-FROM image_sala_limpia
-WHERE id_asignado = ? AND tipo = 3");
-mysqli_stmt_bind_param($buscarimagen3, 'i', $id_asignado);
-mysqli_stmt_execute($buscarimagen3);
-mysqli_stmt_store_result($buscarimagen3);
-mysqli_stmt_bind_result($buscarimagen3, $url_imagen3, $nombre_imagen3);
-mysqli_stmt_fetch($buscarimagen3);
 
-
-$linea = <<<EOD
-<style>
-.linea{
-   height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
-}
-</style>
-<br><br>
-<table>
-   <tr border="1">
-        <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
-   </tr>
-</table>
-<br><br>
-<table border="0">
-    <tr>
-        <td></td>
-        <td>
-        <img src="../../$url_imagen3$nombre_imagen3"  style="width: 700px; height: 500px;" ></td>
-        <td></td>
-    </tr>
-</table>
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
 
 
 $linea = <<<EOD
@@ -1383,44 +1312,6 @@ $pdf->ln(5);
 
 
 
-
-$buscarimagen4 = mysqli_prepare($connect,"SELECT url, nombre 
-FROM image_sala_limpia
-WHERE id_asignado = ? AND tipo = 4");
-mysqli_stmt_bind_param($buscarimagen4, 'i', $id_asignado);
-mysqli_stmt_execute($buscarimagen4);
-mysqli_stmt_store_result($buscarimagen4);
-mysqli_stmt_bind_result($buscarimagen4, $url_imagen4, $nombre_imagen4);
-mysqli_stmt_fetch($buscarimagen4);
-
-
-$linea = <<<EOD
-<style>
-.linea{
-   height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
-}
-</style>
-<br><br>
-<table>
-   <tr border="1">
-        <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
-   </tr>
-</table>
-<br><br>
-<table border="0">
-    <tr>
-        <td></td>
-        <td>
-        <img src="../../$url_imagen4$nombre_imagen4"  style="width: 700px; height: 500px;" ></td>
-        <td></td>
-    </tr>
-</table>
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
-
-
 $linea = <<<EOD
 <style>
 .linea{
@@ -1631,40 +1522,7 @@ $pdf->Cell(14,5,$cantidad_extracciones,1,0,'C',0,'',0);
 $pdf->ln(5);
 
 
-$buscarimagen5 = mysqli_prepare($connect,"SELECT url, nombre 
-FROM image_sala_limpia
-WHERE id_asignado = ? AND tipo = 5");
-mysqli_stmt_bind_param($buscarimagen5, 'i', $id_asignado);
-mysqli_stmt_execute($buscarimagen5);
-mysqli_stmt_store_result($buscarimagen5);
-mysqli_stmt_bind_result($buscarimagen5, $url_imagen5, $nombre_imagen5);
-mysqli_stmt_fetch($buscarimagen5);
 
-$linea = <<<EOD
-<style>
-.linea{
-   height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
-}
-</style>
-<br><br>
-<table>
-   <tr border="1">
-        <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
-   </tr>
-</table>
-<br><br>
-<table border="0">
-    <tr>
-        <td></td>
-        <td>
-        <img src="../../$url_imagen5$nombre_imagen5"  style="width: 700px; height: 500px;" ></td>
-        <td></td>
-    </tr>
-</table>
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
 
 $linea = <<<EOD
 <style>
@@ -1921,7 +1779,312 @@ while($row = mysqli_stmt_fetch($query72)){
 
 }
 
+$pdf->AddPage('A4');
+
+$buscarimagen1 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 1");
+mysqli_stmt_bind_param($buscarimagen1, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen1);
+mysqli_stmt_store_result($buscarimagen1);
+mysqli_stmt_bind_result($buscarimagen1, $url_imagen, $nombre_imagen);
+//mysqli_stmt_fetch($buscarimagen1);
+
+
+
+
+
+$linea = <<<EOD
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: rgb(0,79,135);
+}
+</style>
+<br><br>
+<table>
+   <tr border="0">
+        <td class="linea" align="center"><h2>Imagen de la Medición y Registro de Conteo de Partículas</h2></td>
+   </tr>
+</table>
+
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+
+$cont = 1;
+$contador = 15;
+$contadorpage = 1;
+    while($row = mysqli_stmt_fetch($buscarimagen1)){
+
+      if ($cont == 3) {
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 700px; height: 500px;">', 1, 1, 0, true, 'C', true);
+         $pdf->ln(2); 
+         $contador = 15;
+         $cont = 0;
+       }else if ($cont == 1) {
+         $contador = 15;
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }else{
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }
+
+        //Condicion que controla el cambio de imagenes a otra hoja en caso de que esta sea mayor a 15 
+         if ($contadorpage == 15) {
+            $pdf->AddPage('A4');
+            $contadorpage = 0;
+         }
+       
+
+         $contador = $contador + 61;
+         $cont++;
+         $contadorpage++;
+    } 
+
+
+$pdf->AddPage('A4');
+$buscarimagen2 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 2");
+mysqli_stmt_bind_param($buscarimagen2, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen2);
+mysqli_stmt_store_result($buscarimagen2);
+mysqli_stmt_bind_result($buscarimagen2, $url_imagen2, $nombre_imagen2);
+//mysqli_stmt_fetch($buscarimagen2);
+
+
+
+
+$linea = <<<EOD
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: rgb(0,79,135);
+}
+</style>
+<br><br>
+<table>
+   <tr border="1">
+        <td class="linea" align="center"><h2>Imagen de la Medición Presión Diferencial</h2></td>
+   </tr>
+</table>
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+
+$cont = 1;
+$contador = 15;
+$contadorpage = 1;
+
+ while($row = mysqli_stmt_fetch($buscarimagen2)){
+
+      if ($cont == 3) {
+         //$pdf->writeHTMLCell(60, 10, $contador, '', '', 1, 0, 0, true, 'C', true); 
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 700px; height: 500px;">', 1, 1, 0, true, 'C', true); 
+         $pdf->ln(2);
+         $contador = 15;
+         $cont = 0;
+       }else if ($cont == 1) {
+         $contador = 15;
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }else{
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }
+       
+       //Condicion que controla el cambio de imagenes a otra hoja en caso de que esta sea mayor a 15 
+         if ($contadorpage == 15) {
+            $pdf->AddPage('A4');
+            $contadorpage = 0;
+         }
+         $contadorpage++;
+         $contador = $contador + 61;
+         $cont++;
+    } 
+
+
+
+$pdf->AddPage('A4');
+
+$buscarimagen3 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 3");
+mysqli_stmt_bind_param($buscarimagen3, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen3);
+mysqli_stmt_store_result($buscarimagen3);
+mysqli_stmt_bind_result($buscarimagen3, $url_imagen3, $nombre_imagen3);
+//mysqli_stmt_fetch($buscarimagen3);
+
+
+$linea = <<<EOD
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: rgb(0,79,135);
+}
+</style>
+<br><br>
+<table>
+   <tr border="1">
+        <td class="linea" align="center"><h2>Imagen de la Medición Prueba Temperatura y Humedad</h2></td>
+   </tr>
+</table>
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+$cont = 1;
+$contador = 15;
+$contadorpage = 1;
+
+while($row = mysqli_stmt_fetch($buscarimagen3)){
+
+      if ($cont == 3) {
+         //$pdf->writeHTMLCell(60, 10, $contador, '', '', 1, 0, 0, true, 'C', true); 
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen3.$nombre_imagen3.'" style="width: 700px; height: 500px;">', 1, 1, 0, true, 'C', true); 
+         $pdf->ln(2);
+         $contador = 15;
+         $cont = 0;
+       }else if ($cont == 1) {
+         $contador = 15;
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen3.$nombre_imagen3.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }else{
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen3.$nombre_imagen3.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }
+       
+        //Condicion que controla el cambio de imagenes a otra hoja en caso de que esta sea mayor a 15 
+         if ($contadorpage == 15) {
+            $pdf->AddPage('A4');
+            $contadorpage = 0;
+         }
+         $contadorpage++;
+         $contador = $contador + 61;
+         $cont++;
+    } 
+
+$pdf->AddPage('A4');
+
+$buscarimagen4 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 4");
+mysqli_stmt_bind_param($buscarimagen4, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen4);
+mysqli_stmt_store_result($buscarimagen4);
+mysqli_stmt_bind_result($buscarimagen4, $url_imagen4, $nombre_imagen4);
+//mysqli_stmt_fetch($buscarimagen4);
+
+
+$linea = <<<EOD
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: rgb(0,79,135);
+}
+</style>
+<br><br>
+<table>
+   <tr border="1">
+        <td class="linea" align="center"><h2>Imagen de la Medición de Iluminación y Ruido</h2></td>
+   </tr>
+</table>
+
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+$cont = 1;
+$contador = 15;
+$contadorpage = 1;
+
+
+while($row = mysqli_stmt_fetch($buscarimagen4)){
+
+      if ($cont == 3) {
+         //$pdf->writeHTMLCell(60, 10, $contador, '', '', 1, 0, 0, true, 'C', true); 
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen4.$nombre_imagen4.'" style="width: 700px; height: 500px;">', 1, 1, 0, true, 'C', true); 
+         $pdf->ln(2);
+         $contador = 15;
+         $cont = 0;
+       }else if ($cont == 1) {
+         $contador = 15;
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen4.$nombre_imagen4.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }else{
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen4.$nombre_imagen4.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }
+       
+         //Condicion que controla el cambio de imagenes a otra hoja en caso de que esta sea mayor a 15 
+         if ($contadorpage == 15) {
+            $pdf->AddPage('A4');
+            $contadorpage = 0;
+         }
+         $contadorpage++;
+         $contador = $contador + 61;
+         $cont++;
+    } 
+
+$pdf->AddPage('A4');
+
+$buscarimagen5 = mysqli_prepare($connect,"SELECT url, nombre 
+FROM image_sala_limpia
+WHERE id_asignado = ? AND tipo = 5");
+mysqli_stmt_bind_param($buscarimagen5, 'i', $id_asignado);
+mysqli_stmt_execute($buscarimagen5);
+mysqli_stmt_store_result($buscarimagen5);
+mysqli_stmt_bind_result($buscarimagen5, $url_imagen5, $nombre_imagen5);
+//mysqli_stmt_fetch($buscarimagen5);
+
+$linea = <<<EOD
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: rgb(0,79,135);
+}
+</style>
+<br><br>
+<table>
+   <tr border="1">
+        <td class="linea" align="center"><h2>Imagen de la Medición Cálculo de Renovación de Aire/Hora</h2></td>
+   </tr>
+</table>
+<br><br>
+
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+$cont = 1;
+$contador = 15;
+$contadorpage = 1;
+
+while($row = mysqli_stmt_fetch($buscarimagen5)){
+
+      if ($cont == 3) {
+         //$pdf->writeHTMLCell(60, 10, $contador, '', '', 1, 0, 0, true, 'C', true); 
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen5.$nombre_imagen5.'" style="width: 700px; height: 500px;">', 1, 1, 0, true, 'C', true); 
+         $pdf->ln(2);
+         $contador = 15;
+         $cont = 0;
+       }else if ($cont == 1) {
+         $contador = 15;
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen5.$nombre_imagen5.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }else{
+         $pdf->writeHTMLCell(58, 15, $contador, '', '<img src="../../'.$url_imagen5.$nombre_imagen5.'" style="width: 700px; height: 500px;">', 1, 0, 0, true, 'C', true); 
+       }
+       
+         //Condicion que controla el cambio de imagenes a otra hoja en caso de que esta sea mayor a 15 
+         if ($contadorpage == 15) {
+            $pdf->AddPage('A4');
+            $contadorpage = 0;
+         }
+         $contadorpage++;
+         $contador = $contador + 61;
+         $cont++;
+    } 
+
+
 $pdf->Output($nombre_informe, 'I');
+
 ?>
 
 
