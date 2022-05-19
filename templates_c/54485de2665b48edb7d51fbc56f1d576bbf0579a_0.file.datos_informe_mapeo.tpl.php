@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-10 19:50:47
+/* Smarty version 3.1.34-dev-7, created on 2022-05-13 22:17:20
   from '/home/god/public_html/CerNet2.0/templates/sala_limpia/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_627ac217aa3859_20970769',
+  'unifunc' => 'content_627ed8f027e237_16243001',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54485de2665b48edb7d51fbc56f1d576bbf0579a' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/sala_limpia/datos_informe_mapeo.tpl',
-      1 => 1652212222,
+      1 => 1652480209,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627ed8f027e237_16243001 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <input type="hidden" name="" id="presion_sala_pa" value="<?php echo $_smarty_tpl->tpl_vars['presion_sala']->value;?>
@@ -139,19 +139,19 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
 
                             <div class="card-body collapse" id="collapseOne3">
 
-                                <div class="row">
+                               <!--  <div class="row">
                                    
                                     <div class="col-sm-6">
                                         <input type="hidden" name="id_ensayo_p21" id="id_ensayo_p21">
                                         <label>Método de Ensayo:</label>
                                         <input type="text" name="ensayo_p21" id="ensayo_p21" class="form-control">
                                     </div>
-                                    <div class="col-sm-6">
+                                     <div class="col-sm-6">
                                         <label>Especificacion de sala:</label>
-                                        <input type="text" name="ensayo_p22" id="ensayo_p22" class="form-control">
+                                        <input type="text" name="ensayo_p22" id="ensayo_p22" class="form-control" >
                                     </div>
-                                </div>
-                                <hr>
+                                </div> 
+                                <hr> -->
                                 <div class="col-sm-12">
                                     <div class="row" id="tabla"></div>
                                 </div>
@@ -174,11 +174,11 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="card-body collapse" id="collapseOne4">
 
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <input type="hidden" name="id_ensayo_p31" id="id_ensayo_p31">
+                                    <!-- <div class="col-sm-4">
+                                        <input type="hidden" name="id_ensayo_p31" id="id_ensayo_p31" >
                                         <label>Método de Ensayo:</label>
                                         <input type="text" name="ensayo_p31" id="ensayo_p31" class="form-control">
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
                                         <input type="text" name="ensayo_p32" id="ensayo_p32" class="form-control" value="5" disabled="">
@@ -215,11 +215,11 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
                             </div>
                             <div class="card-body collapse" id="collapseOne6">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <!-- <div class="col-sm-4">
                                         <input type="hidden" name="id_ensayo_p41" id="id_ensayo_p41">
                                         <label>Método de Ensayo:</label>
                                         <input type="text" name="ensayo_p41" id="ensayo_p41" class="form-control">
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm-4">
                                         <label>N° de muestras:</label>
                                         <input type="text" name="ensayo_p42" id="ensayo_p42" class="form-control" value="5" disabled="">
@@ -256,14 +256,15 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="card-body collapse" id="collapseOne12" style="overflow-x: auto;"> 
 
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                   <!--  <div class="col-sm-4">
                                         <label for="">Metodo de ensayo:</label>
                                         <input type="hidden" id="id_ensayo_p51" name="id_ensayo_p51">
-                                        <input type="text" name="ensayo_p51" id="ensayo_p51" class="form-control">
-                                    </div>
+                                        <input type="text" name="ensayo_p51" id="ensayo_p51" class="form-control" value="1">
+                                    </div> -->
                                     <div class="col-sm-4">
                                         <label for="">N° de rejillas de inyección:</label>
-                                        <input type="text" name="ensayo_p52" id="ensayo_p52" class="form-control">
+                                        <input type="text" readonly="" name="ensayo_p52" id="ensayo_p52" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['cantidad_inyecciones']->value;?>
+">
                                     </div>
                                 </div>
                         <br>
@@ -304,7 +305,8 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
                                 <div class="row">
                                      <div class="col-sm-4">
                                         <label for="">N° de Extractores:</label>
-                                        <input type="text" name="ensayo_p53" id="ensayo_p53" class="form-control">
+                                        <input type="text" readonly="" name="ensayo_p53" id="ensayo_p53" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['cantidad_extracciones']->value;?>
+">
                                     </div> 
                                 </div>
                                 <br>
@@ -335,7 +337,7 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
 
                         <hr>
 
-                        <div class="card">
+                        <!-- <div class="card">
                             <div class="card-header">
                                 <a data-toggle="collapse" data-target="#collapseOne14"  aria-controls="collapseOne14">
                                     Resultado Final - Cálculo de Renovación de Aire/Hora
@@ -354,11 +356,9 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
                                     </tbody>
                                 </table>             
                             </div>
-                        </div>
+                        </div> 
                         
-                        <hr>
-
-                        
+                        <hr>-->
 
                         <div class="card">
                             <div class="card-header">
@@ -567,5 +567,9 @@ function content_627ac217aa3859_20970769 (Smarty_Internal_Template $_smarty_tpl)
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/nuevo_equipo_cercal.js"><?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+ type="text/javascript"><?php echo '</script'; ?>
 ><?php }
 }

@@ -22,7 +22,8 @@ a.solicitante,
 b.intervalo,
 a.comentario,
 a.acta_inspeccion,
-f.clasificacion_item
+f.clasificacion_item,
+b.porcentaje_carga
 FROM informes_general AS a,mapeo_general AS b,item_asignado AS c, servicio AS d, numot AS e,item AS f,empresa AS g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -35,7 +36,7 @@ mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
 mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
-$nombre_empresa_g, $direccion_empresa_g, $pais, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item);
+$nombre_empresa_g, $direccion_empresa_g, $pais, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item, $porcentaje_carga);
 
 
 mysqli_stmt_fetch($informes_generales);
@@ -50,6 +51,16 @@ mysqli_stmt_execute($query_2);
 mysqli_stmt_store_result($query_2);
 mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo);
 mysqli_stmt_fetch($query_2);
+
+ ////CONTAR CANTIDAD DE SENSORES:
+
+$cantidad_sensores_query = mysqli_prepare($connect,"SELECT count(id_sensor_mapeo) FROM mapeo_general_sensor WHERE id_mapeo = ?");
+mysqli_stmt_bind_param($cantidad_sensores_query, 'i', $id_mapeo_g);
+mysqli_stmt_execute($cantidad_sensores_query);
+mysqli_stmt_store_result($cantidad_sensores_query);
+mysqli_stmt_bind_result($cantidad_sensores_query, $cantidad_sensores);
+mysqli_stmt_fetch($cantidad_sensores_query);
+
 
 
 switch ($id_tipo_item_g) {
@@ -163,10 +174,10 @@ tr:nth-child(even)
 }
 </style>
 <table>
-<tr><td width="13%" align="right">Solicitante:</td><td width="87%" align="left"> $nombre_empresa_g $ajuste</td></tr>
-<tr><td width="13%" align="right">Direccón:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
-<tr><td width="13%" align="right">Atencicón:</td><td width="87%" align="left">$solicitante</td></tr>
-<tr><td width="13%" align="right">Fecha Emisón:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
+<tr><td width="15%" align="right">Solicitante:</td><td width="87%" align="left"> $nombre_empresa_g $ajuste</td></tr>
+<tr><td width="15%" align="right">Dirección:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
+<tr><td width="15%" align="right">Atención:</td><td width="87%" align="left">$solicitante</td></tr>
+<tr><td width="15%" align="right">Fecha Emisión:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>1.0 ANTECEDENTES DE LA INSPECCION</strong></H3></td></tr></table><br><br>
@@ -432,7 +443,7 @@ críticas que pueden afectar las temperaturas de los productos almacenados.</LI>
 
 <LI CLASS="biglist">Se realiza análisis de riesgo para determinar áreas críticas.</LI>
 
-<LI CLASS="biglist">La $clasificacion_item se encuentra al momento de la instalación de sensores con $carga_bod% de
+<LI CLASS="biglist">La $clasificacion_item se encuentra al momento de la instalación de $cantidad_sensores sensores con $porcentaje_carga% de
 carga aproximadamente.</LI>
 
 <LI CLASS="biglist">Por altura de la $clasificacion_item y los estantes instalados en ella se consideran $alturas_generales niveles de
@@ -440,7 +451,7 @@ ubicación de sensores, a fin de evaluar el gradiente de temperatura, $zona_alt_
 $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b.</LI>
 
 <LI CLASS="biglist">Se determinan entonces, teniendo en cuenta los puntos más críticos mencionados
-anteriormente la instalación de <strong> $total_sensores sensores</strong> ubicados al interior de la $numero_equipo de
+anteriormente la instalación de <strong> $cantidad_sensores sensores</strong> ubicados al interior de la $numero_equipo de
 almacenamiento de $descrip_material, para evaluar comportamiento bajo criterio de sobrepasar las temperaturas
 límite de $min_temp °C a $max_temp °C definidas por el solicitante.</LI>
 
@@ -451,7 +462,6 @@ distribución de sensores”.</LI>
 datalogger del equipo de validación. Los datalogger realizan medición de
 temperatura y humedad relativa.</LI>
 
-<LI CLASS="biglist">Las mediciones de Humedad relativa son de carácter informativo.</LI>
 </UL>
 
 
@@ -1324,11 +1334,7 @@ $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b, ubicados en $clasificacion_it
 <td width="95%" class="justificado">La propuesta y ubicación de los sensores fue analizada en conjunto con el $cargo.</td></tr>
 </table>
 <br><br>
-<table>
-<tr><td width="5%">7.4</td>
-<td width="95%" class="justificado">Es importante destacar que la información de la Humedad Relativa es sólo de carácter
-informativo.</td></tr>
-</table>
+
 <br><br>
 EOD;
 
@@ -1340,7 +1346,7 @@ mysqli_stmt_execute($listar_observaciones);
 mysqli_stmt_store_result($listar_observaciones);
 mysqli_stmt_bind_result($listar_observaciones, $observacion);
 
-$cont = 5;
+$cont = 4;
 while($row = mysqli_stmt_fetch($listar_observaciones)){
    
 $txt = <<<EOD

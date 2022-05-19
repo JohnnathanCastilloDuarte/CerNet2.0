@@ -16,24 +16,30 @@ $valor_deteccion = $_POST['valor_deteccion'];
 $valor_prioridad = $_POST['valor_prioridad'];
 $valor_medidas = $_POST['valor_medidas'];
 $id_informe = $_POST['id_informe'];
+//$valor_descripcion = $_POST['valor_descripcion'];
 $tipo_protocolo = $_POST['tipo_protocolo'];
   
   echo $tipo_protocolo;
   
   if($tipo_protocolo == '0'){
     for($i = 0; $i<count($id_informe_actual);$i++){
-    $actualizar = mysqli_prepare($connect,"UPDATE analisis_riesgos SET etapa= ? ,probabilidad= ? ,impacto= ? ,clase= ? ,deteccion= ? ,prioridad= ? ,medidas= ? 
+    $actualizar = mysqli_prepare($connect,"UPDATE analisis_riesgos SET etapa= ? ,probabilidad= ? ,impacto= ? ,clase= ? ,deteccion= ? ,prioridad= ? ,medidas= ?,
+    descripcion = ? 
     WHERE id = ?");
-    mysqli_stmt_bind_param($actualizar, 'sssssssi', $valor_etapa[$i], $valor_probabilidad[$i], 
+    mysqli_stmt_bind_param($actualizar, 'ssssssssi', $valor_etapa[$i], $valor_probabilidad[$i], 
                            $valor_impacto[$i], $valor_clase[$i], $valor_deteccion[$i],
-                           $valor_prioridad[$i], $valor_medidas[$i], $id_informe_actual[$i]);
+                           $valor_prioridad[$i], $valor_medidas[$i],$valor_descripcion[$i],$id_informe_actual[$i]);
     mysqli_stmt_execute($actualizar);
+      
+      echo"UPDATE analisis_riesgos SET etapa= $valor_etapa[$i] ,probabilidad= $valor_probabilidad[$i] ,impacto=  $valor_impacto[$i] ,clase= $valor_clase[$i] ,deteccion= $valor_deteccion[$i],
+      prioridad= $valor_prioridad[$i] ,medidas=  $valor_medidas[$i], descripcion = $valor_descripcion[$i]
+    WHERE id = $id_informe_actual[$i]"."-";
         }
   }else{
       for($i = 0; $i<count($id_informe_actual);$i++){
     $actualizar = mysqli_prepare($connect,"UPDATE analisis_riesgos SET etapa= ? ,relevancia= ? ,descripcion= ? ,probabilidad= ? ,impacto= ? ,clase= ? ,deteccion= ? ,prioridad= ? ,medidas= ? 
     WHERE id = ?");
-    mysqli_stmt_bind_param($actualizar, 'sssssssssi', $valor_etapa[$i], $tipo_protocolo, $tipo_protocolo, $valor_probabilidad[$i], 
+    mysqli_stmt_bind_param($actualizar, 'sssssssssi', $valor_etapa[$i], $tipo_protocolo, $valor_descripcion[$i], $valor_probabilidad[$i], 
                            $valor_impacto[$i], $valor_clase[$i], $valor_deteccion[$i],
                            $valor_prioridad[$i], $valor_medidas[$i], $id_informe_actual[$i]);
     mysqli_stmt_execute($actualizar);
