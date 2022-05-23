@@ -180,6 +180,7 @@ $(document).ready(function(){
             $("#insp6_traido_db").text(x.insp6);
             $("#insp6_traido_db").val(x.insp6);
             $('#nombre_informe').val(x.nombre_informe);
+            $("#fecha_medicion").val(x.fecha_medicion);
             $('#solicitante').val(x.solicitante);
             $("#responsable").val(x.responsable);
             $('#conclusion').val(x.conclusion);
@@ -241,60 +242,28 @@ $(document).ready(function(){
                 Filtro N° ${numero}
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_a[]" id="select_filtro">
-                  <option value="${f.zonaA}">${f.zonaA}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_a[]" id="select_filtro" value="${f.zonaA}">
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_aa[]" id="select_filtro">
-                  <option value="${f.zonaAA}">${f.zonaAA}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_aa[]" id="select_filtro" value="${f.zonaAA}">
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_b[]" id="select_filtro">
-                  <option value="${f.zonaB}">${f.zonaB}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_b[]" id="select_filtro" value="${f.zonaB}">
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_bb[]" id="select_filtro">
-                  <option value="${f.zonaBB}">${f.zonaBB}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_bb[]" id="select_filtro" value="${f.zonaBB}">
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_c[]" id="select_filtro">
-                  <option value="${f.zonaC}">${f.zonaC}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_c[]" id="select_filtro" value="${f.zonaC}">
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_cc[]" id="select_filtro">
-                  <option value="${f.zonaCC}">${f.zonaCC}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_cc[]" id="select_filtro" value="${f.zonaCC}">
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_d[]" id="select_filtro">
-                  <option value="${f.zonaD}">${f.zonaD}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_d[]" id="select_filtro" value="${f.zonaD}">
               </td>
               <td>
-                <select class="form-control" name="cumplimiento_filtro_dd[]" id="select_filtro">
-                  <option value="${f.zonaDD}">${f.zonaDD}</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
-                </select>
+                <input class="form-control" name="cumplimiento_filtro_dd[]" id="select_filtro" value="${f.zonaDD}">
               </td>
             </tr>
             
@@ -336,60 +305,28 @@ function cargar_posiciones_vacias(cantidad){
     `<tr>
       <td>Filtro N° ${a}</td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_a[]" id="select_filtro">
-          <option value="0">Select</option>
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_a[]" id="select_filtro">
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_aa[]" id="select_filtro">
-          <option value="0">Select</option>  
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_aa[]" id="select_filtro">
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_b[]" id="select_filtro">
-          <option value="0">Select</option>
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_b[]" id="select_filtro">
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_bb[]" id="select_filtro">
-          <option value="0">Select</option>
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_bb[]" id="select_filtro">
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_c[]" id="select_filtro">
-          <option value="0">Select</option>  
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_c[]" id="select_filtro">
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_cc[]" id="select_filtro">
-          <option value="0">Select</option>
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_cc[]" id="select_filtro">
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_d[]" id="select_filtro">
-          <option value="0">Select</option>
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_d[]" id="select_filtro">
       </td>
       <td>
-        <select class="form-control" name="cumplimiento_filtro_dd[]" id="select_filtro">
-          <option value="0">Select</option> 
-          <option value="si">Si</option>
-          <option value="no">No</option>
-        </select>
+        <input class="form-control" name="cumplimiento_filtro_dd[]" id="select_filtro">
       </td>
     </tr>
         `;
@@ -397,7 +334,8 @@ function cargar_posiciones_vacias(cantidad){
     let agrego2 = 
       `
         <tr>
-          <td>Prueba de integridad de filtro #${a}</td>
+          <td>Prueba de integridad de filtro</td>
+          <td><input type="text" class="form-control" name="valor_filtro[]" id="valor_filtro" value=""></td>
           <td><input type="text" class="form-control" name="valor_obtenido_filtros[]" id="valor_obtenido_filtros"></td>
         </tr>
       `;
@@ -679,6 +617,7 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
   let solicitante = $("#solicitante").val();
   let responsable = $("#responsable").val();
   let conclusion = $("#conclusion").val();
+  let fecha_medicion = $("#fecha_medicion").val();
 
   let tipo = "actualizar";
 
@@ -702,6 +641,7 @@ $("#btn_actualizar_filtro_mapeo").click(function(){
     solicitante,
     responsable,
     conclusion,
+    fecha_medicion,
     valor_filtro
   }
        $.ajax({
