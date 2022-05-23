@@ -1967,7 +1967,7 @@ mysqli_stmt_bind_result($imagenes_informes, $url1);
     while($row = mysqli_stmt_fetch($imagenes_informes)){
 
       if ($cont == 2) {
-         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px;">', 1, 1, 0, true, 'C', true);
+         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px;" >', 1, 1, 0, true, 'C', true);
          $pdf->ln(2); 
          $contador = 15;
          $cont = 0;

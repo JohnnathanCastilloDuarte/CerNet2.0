@@ -159,7 +159,7 @@
 		//CALCULO DE TIEMPO ACUMULADO AL LIMITE MAXIMO 
 
 		$limite_maximo = mysqli_prepare($connect,"SELECT DISTINCT MAX(hum) as maximo, a.time FROM datos_crudos_general as a, mapeo_general_sensor as b 
-																				WHERE a.hum >= ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? GROUP BY a.time");
+																				WHERE a.hum > ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? GROUP BY a.time");
 		mysqli_stmt_bind_param($limite_maximo, 'ii', $max_hr, $id_mapeo);
 		mysqli_stmt_execute($limite_maximo);
 		mysqli_stmt_store_result($limite_maximo);
@@ -173,7 +173,7 @@
 
 		//CALCULO DE TIEMPO ACUMULADO AL LIMITE MINIMO 
 		$limite_minimo = mysqli_prepare($connect,"SELECT DISTINCT MIN(CAST(a.hum AS DECIMAL(6))) as minimo, a.time FROM datos_crudos_general as a, mapeo_general_sensor as b 
-																				WHERE CAST(a.hum) <= ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?	GROUP BY a.time");
+																				WHERE CAST(a.hum) < ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?	GROUP BY a.time");
 		mysqli_stmt_bind_param($limite_minimo, 'ii', $min_hr, $id_mapeo);
 		mysqli_stmt_execute($limite_minimo);
 		mysqli_stmt_store_result($limite_minimo);
@@ -663,6 +663,8 @@ $pdf->writeHTMLCell(28, 8, 113, '', 'N° de serie', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(54, 8, 141, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);
 
 $contador_t = 0;
+
+$variable_utilizada_saltos = "";
 //CONSULTA
 $query_32 = mysqli_prepare($connect,"SELECT DISTINCT a.nombre, b.nombre, a.serie, a.id_sensor, b.id_bandeja, c.posicion FROM sensores as a, bandeja as b, mapeo_general_sensor as c 
 WHERE c.id_sensor = a.id_sensor AND c.id_mapeo = ? AND b.id_bandeja = c.id_bandeja ORDER BY b.id_bandeja, c.posicion ASC ");
@@ -678,7 +680,7 @@ while($row = mysqli_stmt_fetch($query_32)){
     $posicion = "SA";
   }
 
-      $contador_t ++;
+      
   $query_34 = mysqli_prepare($connect,'SELECT certificado FROM sensores_certificados WHERE id_sensor = ? ORDER BY fecha_vencimiento DESC LIMIT 1');
   mysqli_stmt_bind_param($query_34, 'i', $id_sensor_t);
   mysqli_stmt_execute($query_34);
@@ -686,11 +688,13 @@ while($row = mysqli_stmt_fetch($query_32)){
   mysqli_stmt_bind_result($query_34, $certificado_sensor_t);
   mysqli_stmt_fetch($query_34);
 
-    if($contador_t == 26 OR $contador_t == 61 ){
+    if($contador_t == 30 OR $contador_t == 70 OR $contador_t == 110 ){
 
        $pdf->AddPage('A4');
+        
+     
        //TITULOS
-       $pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
+      $pdf->writeHTMLCell(15, 8, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
 
       $pdf->writeHTMLCell(28, 8, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
 
@@ -710,7 +714,7 @@ while($row = mysqli_stmt_fetch($query_32)){
       $pdf->writeHTMLCell(28, 5, 113, '', $serie_sensor_t, 1, 0, 0, true, 'C', true);
 
        $pdf->writeHTMLCell(54, 5, 141, '', $certificado_sensor_t, 1, 1, 0, true, 'C', true);
-  
+    $contador_t ++;
   }
 
 
@@ -763,8 +767,18 @@ mysqli_stmt_bind_result($consultar_1 ,  $nombre_zona, $id_zona);
 
 for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
   mysqli_stmt_fetch($consultar_1);
+  if($i==0){
+    $variable_utilizada_saltos = $nombre_zona;
+  }else{
+  if($variable_utilizada_saltos != $nombre_zona){
+    $pdf->AddPage('A4');
+    $variable_utilizada_saltos = $nombre_zona;
+   }
+  }
   $pdf->ln(5);
   $pdf->writeHTMLCell(180, 10, 15, '', $nombre_zona , 0, 1, 0, true, 'C', true);
+  
+
   
 
   //TITULOS

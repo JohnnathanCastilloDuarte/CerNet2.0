@@ -172,9 +172,9 @@ function planos(){
 		let cantidad_iluminarias = $("#cantidad_iluminarias").val();
 		let hr_max = $("#hr_max").val();
 		let hr_min = $("#hr_min").val();	
-    	let cantidad_ventana = $("#cantidad_ventana").val();
-    	let valor_seteado_temp = $("#valor_seteado_temp").val();
-    	let valor_seteado_hum = $("#valor_seteado_hum").val();
+    let cantidad_ventana = $("#cantidad_ventana").val();
+    let valor_seteado_temp = $("#valor_seteado_temp").val();
+    let valor_seteado_hum = $("#valor_seteado_hum").val();
 
 		
 

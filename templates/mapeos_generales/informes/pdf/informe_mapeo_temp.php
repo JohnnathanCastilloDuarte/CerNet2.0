@@ -150,13 +150,12 @@
 
 		//CALCULO DE TIEMPO ACUMULADO AL LIMITE MAXIMO 
 		$limite_maximo = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.temp AS DECIMAL(6,2))) as maximo, a.time FROM datos_crudos_general as a, mapeo_general_sensor as b 
-																				WHERE CAST(a.temp AS DECIMAL(6,2)) >= ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? GROUP BY a.time");
+																				WHERE CAST(a.temp AS DECIMAL(6,2)) > ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? GROUP BY a.time");
 		mysqli_stmt_bind_param($limite_maximo, 'ii', $max_temp, $id_mapeo);
 		mysqli_stmt_execute($limite_maximo);
 		mysqli_stmt_store_result($limite_maximo);
-		mysqli_stmt_bind_result($limite_maximo, $maximo);
+		mysqli_stmt_bind_result($limite_maximo, $maximo, $tiempo_limite_maximo);
 		mysqli_stmt_fetch($limite_maximo);
-
 
 		$registros_over=number_format((mysqli_stmt_num_rows($limite_maximo)*$intervalo)/3600,2);
 		$max_percent=number_format(($registros_over/$c_hora)*100,2);
@@ -165,7 +164,7 @@
 
 		//CALCULO DE TIEMPO ACUMULADO AL LIMITE MINIMO 
 		$limite_minimo = mysqli_prepare($connect,"SELECT DISTINCT MIN(CAST(a.temp AS DECIMAL(6,2))) as minimo, a.time FROM datos_crudos_general as a, mapeo_general_sensor as b 
-																				WHERE CAST(a.temp AS DECIMAL(6,2)) <= ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?	GROUP BY a.time");
+																				WHERE CAST(a.temp AS DECIMAL(6,2)) < ? AND a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?	GROUP BY a.time");
 		mysqli_stmt_bind_param($limite_minimo, 'ii', $min_temp, $id_mapeo);
 		mysqli_stmt_execute($limite_minimo);
 		mysqli_stmt_store_result($limite_minimo);
@@ -760,7 +759,7 @@ while($row = mysqli_stmt_fetch($query_32)){
   mysqli_stmt_bind_result($query_34, $certificado_sensor_t);
   mysqli_stmt_fetch($query_34);
 
-    if($contador_t == 27 OR $contador_t == 63 ){
+    if($contador_t == 30 OR $contador_t == 70 OR $contador_t == 110){
 
        $pdf->AddPage('A4');
        //TITULOS
@@ -829,6 +828,8 @@ EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
 
+$variable_utilizada_saltos="";
+       
 $consultar_1 = mysqli_prepare($connect, "SELECT DISTINCT a.nombre, a.id_bandeja FROM bandeja as a, mapeo_general_sensor as b 
 WHERE a.id_bandeja = b.id_bandeja and b.id_mapeo  = ?  ORDER BY a.id_bandeja ASC");
 mysqli_stmt_bind_param($consultar_1, 'i', $id_mapeo);
@@ -838,6 +839,14 @@ mysqli_stmt_bind_result($consultar_1 ,  $nombre_zona, $id_zona);
 
 for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
   mysqli_stmt_fetch($consultar_1);
+   if($i==0){
+    $variable_utilizada_saltos = $nombre_zona;
+  }else{
+  if($variable_utilizada_saltos != $nombre_zona){
+    $pdf->AddPage('A4');
+    $variable_utilizada_saltos = $nombre_zona;
+   }
+  }
   $pdf->ln(5);
   $pdf->writeHTMLCell(180, 10, 15, '', $nombre_zona , 0, 1, 0, true, 'C', true);
   
@@ -877,16 +886,8 @@ AVG(EXP(-83.144/(0.0083144*(CAST(b.temp AS DECIMAL(6,2))+273.15)))) as valor, c.
 FROM sensores as a, datos_crudos_general as b, mapeo_general_sensor as c, bandeja as g WHERE 
 a.id_sensor = c.id_sensor AND c.id_sensor_mapeo = b.id_sensor_mapeo AND c.id_mapeo = ? AND c.id_bandeja = g.id_bandeja 
 AND g.id_bandeja = ? GROUP BY a.nombre, c.posicion ORDER BY c.posicion ASC");
-  
-/* echo "SELECT DISTINCT a.nombre, MIN(CAST(b.temp AS DECIMAL(6,2))) as Minimo, MAX(CAST(b.temp AS DECIMAL(6,2))) as Maximo,
-AVG(CAST(b.temp AS DECIMAL(6,2))) as Promedio, STD(CAST(b.temp AS DECIMAL(6,2))) as Desv_Estandar, 
-SUM(CASE WHEN CAST(b.temp AS DECIMAL(4,2))>$max_temp THEN 1 ELSE 0 END) as tiempo_over,
-SUM(CASE WHEN CAST(b.temp AS DECIMAL(4,2))<$min_temp THEN 1 ELSE 0 END) as tiempo_low,
-AVG(EXP(-83.144/(0.0083144*(CAST(b.temp AS DECIMAL(6,2))+273.15)))) as valor, c.posicion 
-FROM sensores as a, datos_crudos_general as b, mapeo_general_sensor as c, bandeja as g WHERE 
-a.id_sensor = c.id_sensor AND c.id_sensor_mapeo = b.id_sensor_mapeo AND c.id_mapeo = $id_mapeo AND c.id_bandeja = g.id_bandeja 
-AND g.id_bandeja = $id_zona GROUP BY a.nombre, c.posicion ORDER BY c.posicion ASC";*/
-  
+
+    
 mysqli_stmt_bind_param($query_33, 'ssii', $max_temp, $min_temp, $id_mapeo, $id_zona);
 mysqli_stmt_execute($query_33);
 mysqli_stmt_store_result($query_33);
@@ -910,17 +911,7 @@ $info_percent_over=number_format(($info_over/$c_hora)*100,2);
 $info_percent_low=number_format(($info_low/$c_hora)*100,2);
 $valor_mkt=$valor;
 
-if($info_over>$c_hora)
-{
-$info_over=number_format(($s5['tiempo_over']*$intervalo)/3600,0).".00";
-$info_percent_over="100.00";
-}
 
-if($info_low>$c_hora)
-{
-$info_low=number_format(($s5['tiempo_low']*$intervalo)/3600,0).".00";
-$info_percent_low="100.00";
-}	
 $mkt=number_format(-1*(83.144/0.0083144)/(log($valor_mkt))-273.15,2);	
   
 if($contador_for_table == 35){
