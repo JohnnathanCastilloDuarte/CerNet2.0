@@ -127,10 +127,13 @@ else
             $fecha_sql=date("Y-m-d H:i:s",strtotime($column[1]));
           
             if($fecha_sql>=$fecha_inicio && $contador_sub  <= $diferencia){
+              
+              $temp = str_replace(',','.', $column[2]);
+              $hum = str_replace(',','.', $column[3]);
                 
                   
                 $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
-                mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $column[2], $column[3]);
+                mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $temp, $hum);
                 mysqli_stmt_execute($insertando);
                 $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));
                 $z_1=2;

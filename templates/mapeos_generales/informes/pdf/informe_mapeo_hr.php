@@ -449,6 +449,9 @@ $c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
 		mysqli_stmt_bind_result($query_15, $min_general, $min_time_general, $bandeja_min_general, $sensor_min_general, $posicion_min_general);
 		mysqli_stmt_fetch($query_15);
 
+    if($posicion_min_general == 0){
+       $posicion_min_general = "SA";
+    }
 
 //MAXIMO GENERAL
 
@@ -460,6 +463,10 @@ $c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
 		mysqli_stmt_store_result($query_14);
 		mysqli_stmt_bind_result($query_14, $max_general, $max_time_general, $bandeja_max_general, $sensor_max_general, $posicion_max_general);
 		mysqli_stmt_fetch($query_14);
+
+    if($posicion_max_general == 0){
+       $posicion_max_general = "SA";
+    }
 		
   /////////////////////////////////////////////////////////////INICIO INFORME////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -524,7 +531,7 @@ text-align:left;
 		<tr><td width="30%" rowspan="2" class="enunciado">Límites (% HR)</td>
 
 		<td width="35%">Máximo</td><td width="35%">Mínimo</td></tr>
-		<tr><td width="35%">$max_hr</td><td width="35%">N/A</td></tr>
+		<tr><td width="35%">$max_hr</td><td width="35%">$min_hr</td></tr>
 		</table><br><br>
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>2. Resumen de las Mediciones</strong></H3></td></tr>
@@ -664,7 +671,13 @@ mysqli_stmt_execute($query_32);
 mysqli_stmt_store_result($query_32);
 mysqli_stmt_bind_result($query_32, $nombre_sensor_t, $ubicacion_sensor_t, $serie_sensor_t,  $id_sensor_t, $id_bandeja, $posicion);
 
+
+
 while($row = mysqli_stmt_fetch($query_32)){
+  if($posicion == 0){
+    $posicion = "SA";
+  }
+
       $contador_t ++;
   $query_34 = mysqli_prepare($connect,'SELECT certificado FROM sensores_certificados WHERE id_sensor = ? ORDER BY fecha_vencimiento DESC LIMIT 1');
   mysqli_stmt_bind_param($query_34, 'i', $id_sensor_t);
@@ -797,7 +810,9 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
 
   while($row = mysqli_stmt_fetch($query_33)){
 
-
+  if($posicion == 0){
+    $posicion = "SA";
+  }
 
   $info_max=number_format($maximo_t,2);
   $info_min=number_format($minimo_t,2);
@@ -1055,7 +1070,7 @@ tr:nth-child(even)
 <br><br><br>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
-<tr><td height="90"><br><br><br>$nombres $apellidos<br> $cargo SPOT- Cercal Group Spa.</td><td height="50"></td></tr>
+<tr><td height="90"><br><br><br>$nombres $apellidos<br> $cargo - Cercal Group Spa.</td><td height="50"></td></tr>
 </table>
 
 EOD;

@@ -196,6 +196,9 @@
 		mysqli_stmt_bind_result($query_14, $max_general, $max_time_general, $bandeja_max_general, $sensor_max_general, $posicion_max_general);
 		mysqli_stmt_fetch($query_14);
 
+    if($posicion_max_general == 0){
+      $posicion_max_general = "SA";
+    }    
 
 		//CALCULO DEL MINIMO GENERAL
 
@@ -208,7 +211,9 @@
 		mysqli_stmt_bind_result($query_15, $min_general, $min_time_general, $bandeja_min_general, $sensor_min_general, $posicion_min_general);
 		mysqli_stmt_fetch($query_15);
 
-
+     if($posicion_min_general == 0){
+      $posicion_min_general = "SA";
+    } 
 		//CALCULO DE LA DESVIACIÓN ESTANDAR		
 
 		$query_16 = mysqli_prepare($connect,"SELECT STD(CAST(a.temp AS DECIMAL(6,2))) as desviacion FROM datos_crudos_general as a, mapeo_general_sensor as b, 
@@ -372,7 +377,8 @@
   mysqli_stmt_bind_result($query_8, $d_1);
   mysqli_stmt_fetch($query_8);
  
-  $total_mediciones = number_format($d_1,0);
+$total_mediciones_ = number_format($d_1,0);
+$total_mediciones = str_replace(',','',$total_mediciones_);
 
 		/*
 
@@ -618,7 +624,7 @@ text-align:left;
 
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>2. Resumen de las Mediciones</strong></H3></td></tr>
 
-		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">Prueba de Mapeo Térmico $nombre_prueba por un período de $c_hora horas durante $c_dia Dias</td></tr>
+		<tr><td width="30%" class="enunciado">Resultado corresponde a:</td><td width="70%">Prueba de Mapeo Térmico $nombre_prueba_minuscula por un período de $c_hora horas durante $c_dia Dias</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de inicio</td><td width="70%">$fecha_inicio</td></tr>
 		<tr><td width="30%" class="enunciado">Fecha de término</td><td width="70%">$fecha_fin</td></tr>
 		<tr><td width="30%" class="enunciado">Cantidad de mediciones</td><td width="70%">$total_mediciones</td></tr>
@@ -741,6 +747,11 @@ mysqli_stmt_store_result($query_32);
 mysqli_stmt_bind_result($query_32, $nombre_sensor_t, $ubicacion_sensor_t, $serie_sensor_t,  $id_sensor_t, $id_bandeja, $posicion);
 
 while($row = mysqli_stmt_fetch($query_32)){
+  
+    if($posicion == 0){
+      $posicion = "SA";
+    }
+  
       $contador_t ++;
   $query_34 = mysqli_prepare($connect,'SELECT certificado FROM sensores_certificados WHERE id_sensor = ? ORDER BY fecha_vencimiento DESC LIMIT 1');
   mysqli_stmt_bind_param($query_34, 'i', $id_sensor_t);
@@ -883,6 +894,10 @@ mysqli_stmt_bind_result($query_33, $nombre_sensor_t_2, $minimo_t, $maximo_t, $pr
 
 while($row = mysqli_stmt_fetch($query_33)){
 
+  
+  if($posicion == 0){
+    $posicion = "SA";
+  }
   
   
 $info_max=number_format($maximo_t,2);
@@ -1137,7 +1152,7 @@ tr:nth-child(even)
 <br><br><br>
 <table>
 <tr><td bgcolor="#DDDDDD"><strong>Responsable</strong></td><td bgcolor="#DDDDDD"><strong>Firma</strong></td></tr>
-<tr><td height="90"><br><br><br>$nombres $apellidos<br> $cargo SPOT- Cercal Group Spa.</td><td height="50"></td></tr>
+<tr><td height="90"><br><br><br>$nombres $apellidos<br> $cargo - Cercal Group Spa.</td><td height="50"></td></tr>
 </table>
 
 EOD;

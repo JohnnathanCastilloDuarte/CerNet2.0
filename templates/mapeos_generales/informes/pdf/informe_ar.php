@@ -26,7 +26,7 @@ $nombre_informe = $nombre_informe_g;
 //$nombre_informe = substr($nombre_informe_g, 0, -3);
 $numot = $num_ot_g;
 $a = "INFORME DE ANÁLISIS DE RIESGO DE ".$nombre_item_g." ".$nombre_empresa_g;
-$a_portada = "INFORME DE ANÁ LISIS DE RIESGO <br> ".$nombre_item_g."<br>". $nombre_empresa_g;
+$a_portada = "INFORME DE ANÁLISIS DE RIESGO <br> ".$nombre_item_g."<br>". $nombre_empresa_g;
 /*
 
 //CONSULTAS PARA PUNTO 1

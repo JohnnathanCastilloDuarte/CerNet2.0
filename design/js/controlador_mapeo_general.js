@@ -1468,7 +1468,7 @@ $("#creacion_base").click(function(){
             data:datos,
             url:'templates/mapeos_generales/controlador_informes.php',
             success:function(response){
-                
+                console.log(response);
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',

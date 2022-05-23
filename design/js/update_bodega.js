@@ -7,12 +7,54 @@ $("#otro_tipo_muro_bodega").hide();
 $("#otro_tipo_cielo_bodega").hide();
 $("#si_envia").hide();
 $("#step-42").hide();
-tipo_muro();
+
 tipo_producto();
-tipo_cielo();
+
 climatizacion();
 planos();
 conocer_active_boton();
+
+
+
+
+//FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE MURO
+  $("#tipo_muro_d").click(function(){
+   
+	//$("input:checkbox[name=tipo_muro_bodega_5]").click(function(){
+    
+		let otro = $("input:checkbox[name=tipo_muro_bodega_5]:checked").val();
+	
+		if(otro == "otro_muro"){
+			$("#otro_tipo_muro_bodega").show()
+		}else{
+			$("#otro_tipo_muro_bodega").hide();
+		}
+	});
+
+
+//FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE CIELO
+    $("#tipo_cielo_d").click(function(){
+	//$("input:checkbox[name=tipo_cielo_bodega_4]").click(function(){
+		
+		let otro = $("input:checkbox[name=tipo_cielo_bodega_4]:checked").val();
+		if(otro == "otro_cielo"){
+			$("#otro_tipo_cielo_bodega").show()
+		}else{
+			$("#otro_tipo_cielo_bodega").hide();
+		}
+	});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //////////// FUNCION BOTONES
@@ -42,32 +84,7 @@ $(document).ready(function(){
 	
 });
 
-//FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE MURO
-function tipo_muro(){
-	$("input:checkbox[name=tipo_muro_bodega_5]").click(function(){
-		let otro = $("input:checkbox[name=tipo_muro_bodega_5]:checked").val();
-		
-		if(otro == "otro muro"){
-			$("#otro_tipo_muro_bodega").show()
-		}else{
-			$("#otro_tipo_muro_bodega").hide();
-		}
-	});
-}
 
-//FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE CIELO
-function tipo_cielo(){
-	$("input:checkbox[name=tipo_cielo_bodega_4]").click(function(){
-		
-		let otro = $("input:checkbox[name=tipo_cielo_bodega_4]:checked").val();
-		
-		if(otro == "otro cielo"){
-			$("#otro_tipo_cielo_bodega").show()
-		}else{
-			$("#otro_tipo_cielo_bodega").hide();
-		}
-	});
-}
 
 //FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE PRODUCTOS
 function tipo_producto(){

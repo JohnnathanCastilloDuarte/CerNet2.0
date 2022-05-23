@@ -45,6 +45,9 @@ $nombre_informe = $nombre_informe_g;
 $numot = $num_ot_g;
 $a = mb_strtoupper("PRUEBA DE MAPEO TÉRMICO A ".$nombre_mapeo_g)."  ".$nombre_empresa_g;
 
+$pre_nombre = strtolower($nombre_empresa_g);
+$nombre_empresa = ucwords($pre_nombre);
+
 $query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
 mysqli_stmt_bind_param($query_2, 'i', $id_asignado);
 mysqli_stmt_execute($query_2);
@@ -60,6 +63,29 @@ mysqli_stmt_execute($cantidad_sensores_query);
 mysqli_stmt_store_result($cantidad_sensores_query);
 mysqli_stmt_bind_result($cantidad_sensores_query, $cantidad_sensores);
 mysqli_stmt_fetch($cantidad_sensores_query);
+
+//contar total alturas
+$contar_total_alturas = mysqli_prepare($connect,"SELECT count(a.id_bandeja)FROM bandeja a, informes_general b
+WHERE a.id_asignado = b.id_asignado AND b.id_informe = ?");
+mysqli_stmt_bind_param($contar_total_alturas, 'i', $id_informe);
+mysqli_stmt_execute($contar_total_alturas);
+mysqli_stmt_store_result($contar_total_alturas);
+mysqli_stmt_bind_result($contar_total_alturas, $alturas_generales);
+mysqli_stmt_fetch($contar_total_alturas);
+
+//consultar alturas
+
+$contar_alturas = mysqli_prepare($connect,"SELECT a.nombre FROM bandeja a, informes_general b
+WHERE a.id_asignado = b.id_asignado AND b.id_informe = ? ORDER by a.id_bandeja ASC");
+mysqli_stmt_bind_param($contar_alturas, 'i', $id_informe);
+mysqli_stmt_execute($contar_alturas);
+mysqli_stmt_store_result($contar_alturas);
+mysqli_stmt_bind_result($contar_alturas, $nombre_alturas);
+
+$nombres_acomulados = '';
+while($row = mysqli_stmt_fetch($contar_alturas)){
+  $nombres_acomulados = $nombre_alturas.', '.$nombres_acomulados; 
+}
 
 
 
@@ -174,10 +200,10 @@ tr:nth-child(even)
 }
 </style>
 <table>
-<tr><td width="15%" align="right">Solicitante:</td><td width="87%" align="left"> $nombre_empresa_g $ajuste</td></tr>
-<tr><td width="15%" align="right">Dirección:</td><td width="87%" align="left">$direccion_empresa_g</td></tr>
-<tr><td width="15%" align="right">Atención:</td><td width="87%" align="left">$solicitante</td></tr>
-<tr><td width="15%" align="right">Fecha Emisión:</td><td width="87%" align="left">$fecha_inicio_g_sin_hora</td></tr>
+<tr><td width="15%" align="right">Solicitante:</td><td width="85%" align="left"> $nombre_empresa_g $ajuste</td></tr>
+<tr><td width="15%" align="right">Dirección:</td><td width="85%" align="left">$direccion_empresa_g</td></tr>
+<tr><td width="15%" align="right">Atención:</td><td width="85%" align="left">$solicitante</td></tr>
+<tr><td width="15%" align="right">Fecha Emisión:</td><td width="85%" align="left">$fecha_inicio_g_sin_hora</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>1.0 ANTECEDENTES DE LA INSPECCION</strong></H3></td></tr></table><br><br>
@@ -452,7 +478,7 @@ $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b.</LI>
 
 <LI CLASS="biglist">Se determinan entonces, teniendo en cuenta los puntos más críticos mencionados
 anteriormente la instalación de <strong> $cantidad_sensores sensores</strong> ubicados al interior de la $numero_equipo de
-almacenamiento de $descrip_material, para evaluar comportamiento bajo criterio de sobrepasar las temperaturas
+almacenamiento de $productos_almacena, para evaluar comportamiento bajo criterio de sobrepasar las temperaturas
 límite de $min_temp °C a $max_temp °C definidas por el solicitante.</LI>
 
 <LI CLASS="biglist">La posición de los sensores se encuentra registrada en el punto “Descripción de
@@ -652,7 +678,7 @@ if(mysqli_stmt_num_rows($query_img) > 0){
 	$img_pos = '<img src="../../../design/images/no_imagen.png">';
 }
 
-$txt=<<< EOD
+$txt= <<<EOD
 <style>
 table 
 {
@@ -702,11 +728,13 @@ tr:nth-child(even)
 
 <table>
 <tr>
-<td width="100%"><br><br><br>$img_pos<br></td>
+<td width="100%"><br><br>$img_pos<br></td>
 </tr>
 </table>
 EOD;
 $pdf->writeHTML($txt, true, false, false, false, '');
+
+$pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(180, 180, 180)));
 
 $pdf->writeHTMLCell(15, 9, 15, '', 'Posición', 1, 0, 0, true, 'C', true);
 
@@ -799,6 +827,7 @@ mysqli_stmt_execute($query_promedios);
 mysqli_stmt_store_result($query_promedios);
 mysqli_stmt_bind_result($query_promedios, $posiciones, $promedio, $minimo_temperatura, $max_temperatura);	
 
+
 $query_promedios_general = mysqli_prepare($connect,"SELECT round(AVG(a.temp),2) AS promedio FROM datos_crudos_general as a, mapeo_general_sensor as b
 WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?");
 mysqli_stmt_bind_param($query_promedios_general, 'i',  $id_mapeo_g);
@@ -812,8 +841,10 @@ $colum = mysqli_stmt_num_rows($query_promedios);
 $pdf->writeHTMLCell(70, 7.50*($colum+1), 15, '', 'Temperatura promedio en '.$clasificacion_item. ' durante período de estudio', 1, 0, 0, true, 'C', false);
 
 while($row = mysqli_stmt_fetch($query_promedios)){
+  $promedio_val = number_format($promedio,2);
+
   $pdf->writeHTMLCell(50, 8, 85, '', 'T° promedio '.$posiciones, 1, 0, 0, true, 'C', true);
-  $pdf->writeHTMLCell(60, 8, 135, '', $promedio.' °C', 1, 1, 0, true, 'C', true);
+  $pdf->writeHTMLCell(60, 8, 135, '', $promedio_val.' °C', 1, 1, 0, true, 'C', true);
 }
 $pdf->writeHTMLCell(50, 5, 85, '', '<strong>T° promedio</strong>', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 5, 135, '', $promedio_general_t.' °C', 1, 1, 0, true, 'C', true);
@@ -935,6 +966,22 @@ $pdf->writeHTMLCell(50, 13, 85, '', 'Temperatura: <br>Sensor:<br> ', 1, 0, 0, tr
 $pdf->writeHTMLCell(60, 13, 135, '',' '.$maxstd.' °C <br> '.$nombre_sensor_desv_max_full.'<br> Ubicado en :'.$nombre_altura_desv_max_full, 1, 1, 0, true, 'C', true);
 
 
+$sensor_desv_min_full = mysqli_prepare($connect,"SELECT  d.nombre, c.nombre,STD(CAST(a.temp as DECIMAL(4,2))) AS desv  FROM datos_crudos_general as a, mapeo_general_sensor as b, bandeja as c,
+sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor 
+GROUP BY c.nombre, d.nombre ORDER BY desv ASC limit 1");
+mysqli_stmt_bind_param($sensor_desv_min_full, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($sensor_desv_min_full);
+mysqli_stmt_store_result($sensor_desv_min_full);
+mysqli_stmt_bind_result($sensor_desv_min_full, $nombre_sensor_desv_min_full, $nombre_altura_desv_min_full, $desc_min_full);	
+mysqli_stmt_fetch($sensor_desv_min_full);
+
+$minstd=round($desc_min_full,2);
+
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con menor desviación estándar', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 13, 85, '', 'Temperatura: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$minstd.' °C <br> '.$nombre_sensor_desv_min_full.'<br> Ubicado en :'.$nombre_altura_desv_min_full, 1, 1, 0, true, 'C', true);
+
+
 
 //////////////////////////////////////////////////////////
 
@@ -961,7 +1008,7 @@ while($row = mysqli_stmt_fetch($query_promedios)){
   $mkt_alt=round(-1*(83.144/0.0083144)/(log($mkt))-273.15,2);
   
 
-  $pdf->writeHTMLCell(50, 5, 85, '', 'MKT Zona'.$posiciones.':', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(50, 5, 85, '', 'MKT&nbsp;'.$posiciones.':', 1, 0, 0, true, 'C', true);
   $pdf->writeHTMLCell(60, 5, 135, '', $mkt_alt.' °C', 1, 1, 0, true, 'C', true);
 }
 
@@ -1020,8 +1067,9 @@ $columh = mysqli_stmt_num_rows($query_promedios_h);
 $pdf->writeHTMLCell(70, 7.50*($columh+1), 15, '', 'Porcentaje de Humedad Relativa promedio durante período de estudio', 1, 0, 0, true, 'C', false);
 
 while($row = mysqli_stmt_fetch($query_promedios_h)){
-  $pdf->writeHTMLCell(50, 8, 85, '', ' promedio '.$posiciones_h, 1, 0, 0, true, 'C', true);
-  $pdf->writeHTMLCell(60, 8, 135, '', $promedio_h.' %HR', 1, 1, 0, true, 'C', true);
+  $promedio_valh = number_format($promedio_h,2);
+  $pdf->writeHTMLCell(50, 8, 85, '', '%HR promedio '.$posiciones_h, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(60, 8, 135, '', $promedio_valh.' %HR', 1, 1, 0, true, 'C', true);
 }
 $pdf->writeHTMLCell(50, 5, 85, '', '<strong> promedio</strong>', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 5, 135, '', $promedio_general_hh.' %HR', 1, 1, 0, true, 'C', true);
@@ -1103,7 +1151,7 @@ mysqli_stmt_fetch($sensor_max_full_h);
 
 
 $pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con la humedad máxima en toda la prueba', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(50, 13, 85, '', 'Temperatura: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 13, 85, '', 'Humedad: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(60, 13, 135, '',' '.$hum_max_full.' %HR <br> '.$nombre_sensor_max_full_h.'<br> Ubicado en :'.$nombre_altura_max_full_h, 1, 1, 0, true, 'C', true);
 
 //////////////////////////////77
@@ -1136,11 +1184,29 @@ mysqli_stmt_store_result($sensor_desv_max_full_h);
 mysqli_stmt_bind_result($sensor_desv_max_full_h, $nombre_sensor_desv_max_full_h, $nombre_altura_desv_max_full_h, $desc_max_full_h);	
 mysqli_stmt_fetch($sensor_desv_max_full_h);
 
-$maxstd_h=round($desc_max_full,2);
+$maxstd_h=round($desc_max_full_h,2);
 
 $pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con mayor desviación estándar', 1, 0, 0, true, 'C', true);
 $pdf->writeHTMLCell(50, 13, 85, '', 'Humedad: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(60, 13, 135, '',' '.$maxstd_h.'%HR <br> '.$nombre_sensor_desv_max_full_h.'<br> Ubicado en :'.$nombre_altura_desv_max_full_h, 1, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$maxstd_h.' %HR <br> '.$nombre_sensor_desv_max_full_h.'<br> Ubicado en :'.$nombre_altura_desv_max_full_h, 1, 1, 0, true, 'C', true);
+
+
+
+
+$sensor_desv_min_full_h = mysqli_prepare($connect,"SELECT  d.nombre, c.nombre,STD(CAST(a.hum as DECIMAL(4,2))) AS desv  FROM datos_crudos_general as a, mapeo_general_sensor as b, bandeja as c,
+sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ?  AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor 
+GROUP BY c.nombre, d.nombre ORDER BY desv ASC limit 1");
+mysqli_stmt_bind_param($sensor_desv_min_full_h, 'i',  $id_mapeo_g);
+mysqli_stmt_execute($sensor_desv_min_full_h);
+mysqli_stmt_store_result($sensor_desv_min_full_h);
+mysqli_stmt_bind_result($sensor_desv_min_full_h, $nombre_sensor_desv_min_full_h, $nombre_altura_desv_min_full_h, $desc_min_full_h);	
+mysqli_stmt_fetch($sensor_desv_min_full_h);
+
+$minstd_h=round($desc_min_full_h,2);
+
+$pdf->writeHTMLCell(70, 13, 15, '', 'Sensor con menor desviación estándar', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(50, 13, 85, '', 'Humedad: <br>Sensor:<br> ', 1, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 13, 135, '',' '.$minstd_h.' %HR <br> '.$nombre_sensor_desv_min_full_h.'<br> Ubicado en :'.$nombre_altura_desv_min_full_h, 1, 1, 0, true, 'C', true);
 
 
 
@@ -1310,24 +1376,25 @@ tr:nth-child(even)
 <table>
 <tr><td width="5%">7.1</td>
 <td width="95%" class="justificado">La $clasificacion_item al momento de la instalación de los sensores de mapeo térmico por
-personal de CERCAL INGENIERIA SPA, se encontraba con $carga_bod% de carga
+personal de CERCAL GROUP, se encontraba con $porcentaje_carga% de carga
 aproximadamente.</td></tr>
 </table>
 <br><br>
 <table>
 <tr><td width="5%">7.2</td>
 <td width="95%" class="justificado">Por la altura de la $clasificacion_item se consideran $alturas_generales niveles de ubicación de sensores, con el
-fin de determinar el gradiente de temperatura: $zona_alt_a $zona_alt_m7 $zona_alt_m6 $zona_alt_m5 $zona_alt_m4 
-$zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b, ubicados en $clasificacion_item de almacenamiento de $descrip_material.</td></tr>
+fin de determinar el gradiente de temperatura: $nombres_acomulados ubicados en $clasificacion_item de almacenamiento de $productos_almacena</td></tr>
 </table>
 <br><br>
 <table>
 <tr><td width="5%">7.3</td>
-<td width="95%" class="justificado">La propuesta y ubicación de los sensores fue analizada en conjunto con el $cargo.</td></tr>
+<td width="95%" class="justificado">La propuesta y ubicación de los sensores fue analizada en conjunto con $solicitante.</td></tr>
 </table>
 <br><br>
-
-<br><br>
+<table>
+<tr><td width="5%">7.4</td>
+<td width="95%" class="justificado">El análisis de riesgo que acompaña el presente informe puede ser complementado o actualizado por parte de $nombre_empresa. de acuerdo con los resultados obtenidos.</td></tr>
+</table>
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
@@ -1338,7 +1405,7 @@ mysqli_stmt_execute($listar_observaciones);
 mysqli_stmt_store_result($listar_observaciones);
 mysqli_stmt_bind_result($listar_observaciones, $observacion);
 
-$cont = 4;
+$cont = 5;
 while($row = mysqli_stmt_fetch($listar_observaciones)){
    
 $txt = <<<EOD
@@ -1585,8 +1652,7 @@ tr:nth-child(even)
 <br><br>
 <table>
 <tr><td width="5%">8.1</td>
-<td width="95%" class="justificado">Los resultados obtenidos corresponden a la muestra inspeccionada por CERCAL
-INGENIERIA SPA al momento de la ejecución del Mapeo Térmico. Cualquier
+<td width="95%" class="justificado">Los resultados obtenidos corresponden a la muestra inspeccionada por CERCAL GROUP al momento de la ejecución del Mapeo Térmico. Cualquier
 modificación posterior a la ejecución del mapeo, invalida el presente informe.</td></tr>
 </table>
 <br><br>
@@ -1600,7 +1666,7 @@ error e incertidumbre asociado.</td></tr>
 <tr><td width="5%">8.3</td>
 <td width="95%" class="justificado">El análisis de riesgo presentado corresponde al realizado en el presente mapeo
 térmico, el cual puede cambiar en la objetividad de la criticidad de los riesgos, de
-acuerdo con los cambios que realice el $cargo.</td></tr>
+acuerdo con los cambios que realice el Director Técnico.</td></tr>
 </table>
 <br><br>
 <table>
@@ -1799,7 +1865,7 @@ tr:nth-child(even)
 <br><br><br>
 
 <table>
-<tr><td><center><strong>$firma_final <br> CERCAL INGENIERÍA SpA.</center></strong></td></tr></table>
+<tr><td><center><strong>$firma_final</center></strong></td></tr></table>
 EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
@@ -1887,14 +1953,48 @@ EOD;
 
 $pdf->writeHTML($txt, true, false, false, false, '');
 
-$imagenes_informes = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ? AND tipo = 11");
+$imagenes_informes = mysqli_prepare($connect,"SELECT  url  FROM imagenes_general_informe WHERE id_informe = ?");
 mysqli_stmt_bind_param($imagenes_informes, 'i',  $id_informe);
 mysqli_stmt_execute($imagenes_informes);
 mysqli_stmt_store_result($imagenes_informes);
 mysqli_stmt_bind_result($imagenes_informes, $url1);
-mysqli_stmt_fetch($imagenes_informes);
+//mysqli_stmt_fetch($imagenes_informes);
 
-if(mysqli_stmt_num_rows($imagenes_informes) > 0){
+      $cont = 1;
+      $contador = 15;
+      $contadorpage = 1;
+      $num_rows = mysqli_stmt_num_rows($imagenes_informes);
+    while($row = mysqli_stmt_fetch($imagenes_informes)){
+
+      if ($cont == 2) {
+         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px;">', 1, 1, 0, true, 'C', true);
+         $pdf->ln(2); 
+         $contador = 15;
+         $cont = 0;
+       }else if ($cont == 1) {
+         $contador = 15;
+         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px;">', 1, 0, 0, true, 'C', true); 
+       }/*else{
+         $pdf->writeHTMLCell(80, '', $contador, '', '<img src="../../'.$url1.'" style="width: 250px;">', 1, 0, 0, true, 'C', true); 
+       }*/
+        //Condicion que controla el cambio de imagenes a otra hoja en caso de que esta sea mayor a 15 
+         if ($contadorpage > 4) {
+            $pdf->AddPage('A4');
+            $contadorpage = 0;
+         }
+         if ($contadorpage == $num_rows && $cont == 1){
+           $pdf->ln(40);
+         }
+       
+         $contador = $contador + 100;
+         $cont++;
+         $contadorpage++;
+    } 
+
+
+
+
+/*if(mysqli_stmt_num_rows($imagenes_informes) > 0){
   $img_1 = '<img src="../../'.$url1.'" width="250px">';
 }else{
   $img_1 = '<img src="../../../../design/images/no_imagen.png" width="200px">';
@@ -2012,7 +2112,7 @@ $pdf->writeHTML($txt, true, false, false, false, '');
 
 
 
-  
+  */
 
 
 $pdf->Output($nombre_informe_g.'.pdf', 'I');

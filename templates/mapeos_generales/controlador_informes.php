@@ -134,7 +134,7 @@ $id_mapeo = $_POST['id_mapeo'];
   $id_asignado = $_POST['id_asignado'];
   $id_usuario = $_POST['id_usuario'];
   $tipo_base = "BASE";
-  $consecutivo = "";
+  $consecutivo = 0;
 
   $consulta_empresa = mysqli_prepare($connect,"SELECT a.sigla_empresa, a.sigla_pais, b.correlativo FROM empresa as a, item_asignado as b, item as c WHERE a.id_empresa = c.id_empresa AND c.id_item = b.id_item AND b.id_asignado  = ?");
   mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
@@ -163,8 +163,9 @@ $id_mapeo = $_POST['id_mapeo'];
 
       $nombre_informe = $sigla_pais.'-'.$correlativo.'-'.$sigla_empresa.'-2022-INB';
 
+
       $insertando_informe = mysqli_prepare($connect,"INSERT INTO informes_general (nombre, temp_hum, tipo, id_mapeo, id_asignado, id_usuario) VALUES (?,?,?,?,?,?)");
-      mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo, $id_mapeo, $id_asignado, $id_usuario);
+      mysqli_stmt_bind_param($insertando_informe, 'sisiii', $nombre_informe, $consecutivo, $tipo_base, $id_mapeo, $id_asignado, $id_usuario);
       mysqli_stmt_execute($insertando_informe);
 
       if($insertando_informe){
