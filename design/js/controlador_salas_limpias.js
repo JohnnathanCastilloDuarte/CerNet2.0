@@ -660,6 +660,7 @@ else if(orden == 10){
                     $("#solicitante").val(valor.solicitante);
                     $("#responsable").val(valor.responsable);
                     $("#nombre_informe").val(valor.nombre_informe);
+                    $("#fecha_medicion").val(valor.fecha_medicion);
 
                 });
             }

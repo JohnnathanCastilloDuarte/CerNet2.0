@@ -260,9 +260,11 @@ $conclusion_informe = $_POST['conclusion_informe'];
 $solicitante = $_POST['solicitante'];
 $responsable = $_POST['responsable'];
 $nombre_informe = $_POST['nombre_informe'];
+$fecha_medicion = $_POST['fecha_medicion'];
 
-$actualizando10 = mysqli_prepare($connect,"UPDATE salas_limpias_informe SET nombre_informe= ?, solicita= ?,conclusion= ?, usuario_responsable = ? WHERE id_informe = ?");
-mysqli_stmt_bind_param($actualizando10, 'ssssi', $nombre_informe, $solicitante, $conclusion_informe, $responsable, $id_informe);
+$actualizando10 = mysqli_prepare($connect,"UPDATE salas_limpias_informe SET nombre_informe= ?, solicita= ?,conclusion= ?, usuario_responsable = ?, fecha_medicion = ? WHERE id_informe = ?");
+mysqli_stmt_bind_param($actualizando10, 'sssssi', $nombre_informe, $solicitante, $conclusion_informe, $responsable, $fecha_medicion, $id_informe);
+
 mysqli_stmt_execute($actualizando10);
 mysqli_close($connect);
 ?>

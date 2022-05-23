@@ -201,7 +201,9 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->Cell(60,5,'Medición',1,0,'C',1,'',0);
+
+
+  $pdf->Cell(60,5,'Medición',1,0,'C',1,'',0);
    $pdf->Cell(54,5,'Requisito',1,0,'C',1,'',0);
    $pdf->Cell(33,5,'Valor Obtenido',1,0,'C',1,'',0);
    $pdf->Cell(33,5,'Veredicto',1,0,'C',1,'',0);

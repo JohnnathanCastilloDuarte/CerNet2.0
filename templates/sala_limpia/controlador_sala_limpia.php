@@ -263,11 +263,11 @@ else if($orden == 9){
 else if($orden == 10){
     $id_asignado = $_POST['id_asignado'];
     $array_resultado = array();
-    $consultar = mysqli_prepare($connect,"SELECT id_informe, nombre_informe, solicita, conclusion, usuario_responsable FROM salas_limpias_informe WHERE id_asignado = ?");
+    $consultar = mysqli_prepare($connect,"SELECT id_informe, nombre_informe, solicita, conclusion, usuario_responsable, fecha_medicion FROM salas_limpias_informe WHERE id_asignado = ?");
     mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
     mysqli_stmt_execute($consultar);
     mysqli_stmt_store_result($consultar);
-    mysqli_stmt_bind_result($consultar, $id_informe, $nombre_informe,  $solicitante, $conclusion, $usuario_responsable);
+    mysqli_stmt_bind_result($consultar, $id_informe, $nombre_informe,  $solicitante, $conclusion, $usuario_responsable, $fecha_medicion);
 
     
     while($row = mysqli_stmt_fetch($consultar)){
@@ -277,7 +277,8 @@ else if($orden == 10){
            'nombre_informe'=>$nombre_informe,
            'solicitante'=>$solicitante,
            'conclusion'=>$conclusion,
-           'responsable'=>$usuario_responsable
+           'responsable'=>$usuario_responsable,
+           'fecha_medicion'=>$fecha_medicion
         );
     }
 

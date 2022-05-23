@@ -81,8 +81,7 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: #1a53ff;
+   color:black;
 }
 </style>
 <br><br><br><br>
@@ -210,14 +209,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: #1a53ff;
+   color:black;
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea" align="center"><h2>INSPECCION VISUAL</h2></td>
+        <td class="linea"><h2>INSPECCION VISUAL</h2></td>
    </tr>
 </table>
 
@@ -285,14 +283,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: #1a53ff;
+   color:black;
+
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea" align="center"><h2>RESULTADOS - NORMA: UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2015</h2></td>
+        <td class="linea" ><h2>RESULTADOS - NORMA: UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2015</h2></td>
    </tr>
 </table>
 

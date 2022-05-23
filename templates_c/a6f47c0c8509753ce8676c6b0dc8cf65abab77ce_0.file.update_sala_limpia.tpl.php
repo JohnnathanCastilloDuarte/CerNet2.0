@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-11 23:22:25
+/* Smarty version 3.1.34-dev-7, created on 2022-05-23 19:23:15
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_627c29117b0af9_02737239',
+  'unifunc' => 'content_628bc3032ea2d4_76226205',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6f47c0c8509753ce8676c6b0dc8cf65abab77ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_sala_limpia.tpl',
-      1 => 1652304130,
+      1 => 1653319238,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627c29117b0af9_02737239 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628bc3032ea2d4_76226205 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -100,6 +100,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                   <option value="B">Clase B</option>
                   <option value="C">Clase C</option>
                   <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
                   <?php } elseif ($_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_oms'] != '') {?>
                   <option value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_oms'];?>
 ">Clase <?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_oms'];?>
@@ -108,6 +109,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                   <option value="B">Clase B</option>
                   <option value="C">Clase C</option>
                   <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
                   <?php }?>
                 </select>
               </div>
