@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-17 22:54:55
+/* Smarty version 3.1.34-dev-7, created on 2022-05-23 21:01:44
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62840b9f548c26_07742670',
+  'unifunc' => 'content_628bda18d17695_14829911',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1652820783,
+      1 => 1653332494,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62840b9f548c26_07742670 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628bda18d17695_14829911 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <input type="hidden" name="" id="presion_sala_pa" value="<?php echo $_smarty_tpl->tpl_vars['presion_sala']->value;?>
@@ -369,25 +369,38 @@ function content_62840b9f548c26_07742670 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="card-body collapse" id="collapseOne15">  
                               <div class="row">
                                  
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                       <label for="">Nombre informe:</label>
                                       <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
+                                      <br>
+                                  </div> 
+                                  <div class="col-sm-6">
+                                      <label for="">fecha medición:</label>
+                                      <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                                      <br>
                                   </div>
                                   <div class="col-sm-6">
                                     <label for="">Solicita:</label>
                                     <input type="text" name="solicitante" id="solicitante" class="form-control">
+                                    <br>
                                  </div>
                                 <div class="col-sm-6">
                                     <label for="">Responsable:</label>
                                     <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Solicitante">
                                     <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                                    <br>
                                  </div>
                               </div>                              
                               <div class="row">
                                    <div class="col-sm-6">
                                       <input type="hidden" name="id_informe" id="id_informe">
                                      <label for="">Conclusiones:</label>
-                                     <textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea> 
+                                     <select class="form-control" name="conclusion_informe" id="conclusion_informe">
+                                         <option value="0">Seleccione...</option>
+                                         <option value="Pre-Informe">Pre-Informe</option>
+                                         <option value="Informe">Informe</option>
+                                     </select>
+                                     <!--<textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea>--> 
                                   </div>
                               </div>
                             </div>

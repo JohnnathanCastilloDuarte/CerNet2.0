@@ -67,12 +67,14 @@
                   <option value="B">Clase B</option>
                   <option value="C">Clase C</option>
                   <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
                   {else if $sala_limpia.clasificacion_oms != ''}
                   <option value="{$sala_limpia.clasificacion_oms}">Clase {$sala_limpia.clasificacion_oms}</option>
                   <option value="A">Clase A</option>
                   <option value="B">Clase B</option>
                   <option value="C">Clase C</option>
                   <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
                   {/if}
                 </select>
               </div>

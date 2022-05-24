@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-12 21:13:21
+/* Smarty version 3.1.34-dev-7, created on 2022-05-24 00:16:23
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_627d5c510b9191_78378972',
+  'unifunc' => 'content_628c07b7aad995_79949067',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1652382799,
+      1 => 1653344181,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627d5c510b9191_78378972 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628c07b7aad995_79949067 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -131,28 +131,42 @@ function content_627d5c510b9191_78378972 (Smarty_Internal_Template $_smarty_tpl)
       <div id="accordion">
      <!-- <form id="form_filtro_1" enctype="multipart/form-data" method="post">--> 
 
-        <div class="row col-sm-12">
-          <div class="col-sm-12">
-            <label>Nombre informe <span class="text-danger"> *</span></label>
-            <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre del informe">
-          </div>
-          <div class="col-sm-6">
-            <label>Solicitante<span class="text-danger"> *</span></label>
-            <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Nombre quien solicita">
-          </div>
-          <div class="col-sm-6">
-            <label>Responsable<span class="text-danger"> *</span></label>
-            <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
-            <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
-          </div>
-            
-          <div class="col-sm-12">
-            <label>Conclusión<span class="text-danger"> *</span></label>
-           <textarea name="conclusion" id="conclusion" class="form-control" placeholder="Conclusión"></textarea>
-          </div>
-
+      <div class="card-header">
+          <a data-toggle="collapse" data-target="#collapseOne33"  aria-controls="collapseOne33">
+            Información
+          </a>
         </div>
+        <div class="card-body collapse show" id="collapseOne33" >
+          <div class="row col-sm-12">
+            <div class="col-sm-6">
+              <label>Nombre informe <span class="text-danger"> *</span></label>
+              <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre del informe">
+            </div>
+            <div class="col-sm-6">
+              <label>Fecha de medición<span class="text-danger"> *</span></label>
+              <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+            </div>
+            <div class="col-sm-6">
+              <label>Solicitante<span class="text-danger"> *</span></label>
+              <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Nombre quien solicita">
+            </div>
+            <div class="col-sm-6">
+              <label>Responsable<span class="text-danger"> *</span></label>
+              <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
+              <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+            </div>
+              
+            <div class="col-sm-12">
+              <label>Conclusión<span class="text-danger"> *</span></label>
+              <select class="form-control" id="conclusion" name="conclusion">
+                <option>Informe</option>
+                <option>Pre-Informe</option>
+              </select>
+           <!--   <textarea name="conclusion" id="conclusion" class="form-control" placeholder="Conclusión"></textarea> -->
+            </div>
 
+          </div>
+        </div>  
         <br>
        <div class="card">
         <div class="card-header">
@@ -317,7 +331,7 @@ function content_627d5c510b9191_78378972 (Smarty_Internal_Template $_smarty_tpl)
             <table class="table" style="text-align:center;">
               <thead>
                 <th>Medicion</th>
-                <th>Filtro</th>
+                <th class="col-sm-2">Especificación</th>
                 <th>Valor obtenido</th>
               </thead>
               <tbody id="medicion_del_norma_une_en_iso">
@@ -416,14 +430,25 @@ function content_627d5c510b9191_78378972 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
                 <div class="card-body collapse" id="collapseOne99">
                   <div class="row" style="text-align:center;">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                       <form  id="formulario_envia_img" enctype="multipart/form-data" method="POST">
                         <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " name="id_asignado_filtro">
-                        <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
+                          </div>
+                          <div class="col-sm-6">
+                            <select class="form-control" name="tipo_imagen">
+                              <option value="0">Seleccione...</option>
+                              <option value="1">Imagen de medición</option>
+                              <option value="2">Evidencia Grafica</option>
+                            </select>
+                          </div>
+
+                        </div>
                         <br>
-                        <input type="file" name="img_a_subir" class="form-control">
+                          <input type="file" name="img_a_subir" class="form-control">
                         <br>
                         <button class="btn btn-success">Cargar</button>
                       </form>

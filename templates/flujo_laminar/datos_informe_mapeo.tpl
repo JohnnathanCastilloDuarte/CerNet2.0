@@ -79,9 +79,9 @@
                     </div>
                 </div>
                 
-                <hr>
+              <!--  <hr>
 
-                <div class="row">
+                 <div class="row">
                     <div class="col-sm-12">
                         <div id="accordion">
                                 
@@ -105,7 +105,7 @@
                             </div>        
                         </div>
                     </div>
-                    </div>   
+                    </div>    -->
 
                 <hr>
 
@@ -186,7 +186,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <a data-toggle="collapse" data-target="#collapseOne5"  aria-controls="collapseOne5">
-                                        Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2005
+                                        Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2015
                                     </a>
                                 </div>
                                 <div class="card-body collapse" id="collapseOne5">
@@ -218,7 +218,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <a data-toggle="collapse" data-target="#collapseOne6"  aria-controls="collapseOne6">
-                                        Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2005
+                                        Prueba de Ruido
                                     </a>
                                 </div>
                                 <div class="card-body collapse" id="collapseOne6">
@@ -259,7 +259,7 @@
                                         <thead>
                                             <th>Condiciones</th>
                                             <th>Resultado</th>
-                                            <th>Cumple</th>
+                                          <!--   <th>Cumple</th> -->
                                         </thead>
                                         <tbody id="aqui_prueba_6">
 
@@ -289,7 +289,7 @@
                                         <thead>
                                             <th>Condiciones</th>
                                             <th>Resultado</th>
-                                            <th>Cumple</th>
+                                           <!--  <th>Cumple</th> -->
                                         </thead>
                                         <tbody id="aqui_prueba_7">
 

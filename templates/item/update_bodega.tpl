@@ -272,7 +272,7 @@
                     <input type="checkbox" name="tipo_muro_bodega_4" id="tipo_muro" value="Muro de madera" {$madera}>
                     <label> Muro de madera </label>
                     <br>
-                    <input type="checkbox" name="tipo_muro_bodega_5" id="tipo_muro_d" value="otro_muro" {$otro_muro}>
+                    <input type="checkbox" name="tipo_muro_bodega_5" id="tipo_muro" value="otro_muro" {$otro_muro}>
                     <label> Otro tipo de muro </label>
                     <textarea class="form-control" id="otro_tipo_muro_bodega" placeholder="Especifica el tipo de muro">{$otro_muro_e}</textarea>
                   </div>
@@ -295,7 +295,7 @@
                     <input type="checkbox" name="tipo_cielo_bodega_3" id="tipo_cielo" value="Cielo de plachas metalicas" {$cielo_plachas_metalicas}>
                     <label> Cielo de planchas metálicas </label>
                     <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_4" id="tipo_cielo_d" value="otro_cielo" {$otro_cielo}>
+                    <input type="checkbox" name="tipo_cielo_bodega_4" id="tipo_cielo" value="otro_cielo" {$otro_cielo}>
                     <label> Otro tipo de cielo </label>
                     <textarea class="form-control" id="otro_tipo_cielo_bodega" placeholder="Especifica el tipo de cielo">{$otro_cielo_e}</textarea>
                   </div>

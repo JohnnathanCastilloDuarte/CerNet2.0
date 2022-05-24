@@ -335,25 +335,38 @@
                             <div class="card-body collapse" id="collapseOne15">  
                               <div class="row">
                                  
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                       <label for="">Nombre informe:</label>
                                       <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
+                                      <br>
+                                  </div> 
+                                  <div class="col-sm-6">
+                                      <label for="">fecha medición:</label>
+                                      <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                                      <br>
                                   </div>
                                   <div class="col-sm-6">
                                     <label for="">Solicita:</label>
                                     <input type="text" name="solicitante" id="solicitante" class="form-control">
+                                    <br>
                                  </div>
                                 <div class="col-sm-6">
                                     <label for="">Responsable:</label>
                                     <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Solicitante">
                                     <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                                    <br>
                                  </div>
                               </div>                              
                               <div class="row">
                                    <div class="col-sm-6">
                                       <input type="hidden" name="id_informe" id="id_informe">
                                      <label for="">Conclusiones:</label>
-                                     <textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea> 
+                                     <select class="form-control" name="conclusion_informe" id="conclusion_informe">
+                                         <option value="0">Seleccione...</option>
+                                         <option value="Pre-Informe">Pre-Informe</option>
+                                         <option value="Informe">Informe</option>
+                                     </select>
+                                     <!--<textarea class="form-control" id="conclusion_informe" name="conclusion_informe"></textarea>--> 
                                   </div>
                               </div>
                             </div>

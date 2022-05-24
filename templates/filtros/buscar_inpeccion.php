@@ -49,7 +49,7 @@ switch ($tipo) {
           echo $id_informe;
           
         }else{
-          echo"es rodo";
+          echo"es todo";
         }
         break;
 
@@ -58,11 +58,11 @@ switch ($tipo) {
         $array_datos1 = array();
         //echo "SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5 FROM informe_filtro as a WHERE  a.id_asignado =".$id_asignado_filtro;
         
-        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5, a.insp6, a.nombre_informe, a.solicitante,a.usuario_responsable FROM informe_filtro as a WHERE  a.id_asignado = ?");
+        $consultar = mysqli_prepare($connect,"SELECT a.id_informe, a.concepto, a.conclusion, a.insp1, a.insp2, a.insp3, a.insp4, a.insp5, a.insp6, a.nombre_informe, a.solicitante,a.usuario_responsable, a.fecha_medicion FROM informe_filtro as a WHERE  a.id_asignado = ?");
         mysqli_stmt_bind_param($consultar, 'i', $id_asignado_filtro);
         mysqli_stmt_execute($consultar);
         mysqli_stmt_store_result($consultar);
-        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5, $insp6, $nombre_informe, $solicitante, $usuario_responsable);
+        mysqli_stmt_bind_result($consultar, $id_informe, $concepto, $conclusion, $insp1, $insp2, $insp3, $insp4, $insp5, $insp6, $nombre_informe, $solicitante, $usuario_responsable, $fecha_medicion);
         
         while($row = mysqli_stmt_fetch($consultar)){
 
@@ -73,6 +73,7 @@ switch ($tipo) {
                 'nombre_informe'=>$nombre_informe,
                 'solicitante'=>$solicitante,
                 'responsable'=>$usuario_responsable,
+                'fecha_medicion'=>$fecha_medicion,
                 'insp1'=>$insp1,
                 'insp2'=>$insp2,
                 'insp3'=>$insp3,

@@ -3,6 +3,7 @@ include "../../config.ini.php";
 
 $id_asignado_filtro = $_POST['id_asignado_filtro'];
 $enunciado_imagen = $_POST['enunciado_imagen'];
+$tipo_imagen = $_POST['tipo_imagen'];
 
 $enunciado_convertido = str_replace(' ','_',$enunciado_imagen);
 
@@ -24,8 +25,8 @@ mysqli_stmt_bind_result($validacion_1, $id_imagen_validacion);
 mysqli_stmt_fetch($validacion_1);
 
 if(mysqli_stmt_num_rows($validacion_1) == 0){
-    $insertar_1 = mysqli_prepare($connect,"INSERT INTO  images_informe_filtro (id_informe, enunciado) VALUES (?,?)");
-    mysqli_stmt_bind_param($insertar_1, 'is', $id_informe, $enunciado_imagen);
+    $insertar_1 = mysqli_prepare($connect,"INSERT INTO  images_informe_filtro (id_informe, enunciado, tipo_imagen) VALUES (?,?,?)");
+    mysqli_stmt_bind_param($insertar_1, 'iss', $id_informe, $enunciado_imagen, $tipo_imagen);
     mysqli_stmt_execute($insertar_1);
     $id_imagen = mysqli_stmt_insert_id($insertar_1);
 }else{

@@ -21,14 +21,14 @@ mysqli_stmt_fetch($consulta_informacion_informe);
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT d.logo, e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion, e.usuario_responsable 
+$consulta_empresa = mysqli_prepare($connect,"SELECT d.logo, e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion, e.usuario_responsable, e.fecha_medicion 
 FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e  
    WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
 
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa,$logo_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion_empresa, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion, $usuario_responsable);
+mysqli_stmt_bind_result($consulta_empresa,$logo_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion_empresa, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion, $usuario_responsable, $fecha_medicion);
 mysqli_stmt_fetch($consulta_empresa);
 
 /*echo "SELECT d.logo, e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion 
@@ -56,8 +56,8 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br><br><br>
@@ -72,7 +72,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 $pdf->SetFillColor(221,221,221);
 $pdf->SetDrawColor(202,202,202);
-//$pdf->SetTextColor(0,0,0);  
+
      $pdf->Cell(25,5,'Informe referencia:',0,0,'L',0,'',0);
      $pdf->Cell(50,5,$nombre_informe,1,0,'J',0,'',0);
      $pdf->Cell(15,5,'OT N°',0,0,'C',0,'',0);
@@ -83,13 +83,6 @@ $pdf->SetDrawColor(202,202,202);
 
    $pdf->ln(7);   
 
-   //$pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
-
-/*   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Empresa:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(75, 5, 40, '', $empresa ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 140, '', '<strong>Solicita:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(35, 5, 160, '', $solicitante ,1,1, 0, true, 'C', true);*/
-
    $pdf->Cell(25,5,'Empresa:',0,0,'L',0,'',0);
    $pdf->Cell(80,5,$empresa,1,0,'C',0,'',0);
    $pdf->Cell(20,5,'',0,0,'C',0,'',0);
@@ -99,7 +92,7 @@ $pdf->SetDrawColor(202,202,202);
    $pdf->ln(7);  
 
    $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
-   $pdf->Cell(155,5,$direccion,1,0,'C',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
 
    $pdf->ln(10);  
 
@@ -135,8 +128,8 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 {
    border-collapse: collapse;
@@ -154,10 +147,8 @@ $linea = <<<EOD
 
    th, td 
    {
-   border: 1px solid #BBBBBB;
    padding: 3px;
    vertical-align: middle;
-   text-align: center;
    height:15px;
    font-size:11px;
    padding:auto auto auto auto;
@@ -169,99 +160,97 @@ $linea = <<<EOD
    }
 
 </style>
-
-<table >
-   <tr border="1">
-        <td class="linea" align="center"><h3>RESULTADO DE MEDICIONES - NORMA: UNE-EN ISO 14.644-3:2015</h3></td>
+<br><br>
+<table>
+   <tr>
+        <td class="linea"><h3>Resultado de Mediciones - Norma: UNE-EN ISO 14.644-3:2015</h3></td>
    </tr>
 </table>
 <br><br>
-
-
- <table>
-      <tr>
-         <table>
-            <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Medición</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Requisito</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Valor Obtenido</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Veredicto</strong></h5></td>
-            </tr>
-            <tr>
-               <td bgcolor="#DDDDDD"><h5>Prueba de Integridad de Filtro N°1</h5></td>
-               <td> < = 0,001 %</td>
-               <td> < 0.001 %</td>
-               <td>CUMPLE</td>
-            </tr>
-         </table>
-      </tr> 
-   </table>
-
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
+  
+  $busca_filtros1 = mysqli_prepare($connect,"SELECT valor_obtenido, valor_filtro, nombre_filtro FROM filtro_mediciones_1 WHERE id_informe = ?");
 
-$pdf->Cell(60,5,'Medición',1,0,'C',1,'',0);
-   $pdf->Cell(54,5,'Requisito',1,0,'C',1,'',0);
-   $pdf->Cell(33,5,'Valor Obtenido',1,0,'C',1,'',0);
-   $pdf->Cell(33,5,'Veredicto',1,0,'C',1,'',0);
+mysqli_stmt_bind_param($busca_filtros1, 'i', $id_informe);
+mysqli_stmt_execute($busca_filtros1);
+mysqli_stmt_store_result($busca_filtros1);
+mysqli_stmt_bind_result($busca_filtros1, $valor_obtenido, $valor_filtro, $nombre_filtro );
+//mysqli_stmt_fetch($busca_filtros1);
+
+
+  
+
+   $pdf->Cell(45,5,'Medición',1,0,'C',1,'',0);
+   $pdf->Cell(45,5,'Requisito',1,0,'C',1,'',0);
+   $pdf->Cell(45,5,'Valor Obtenido',1,0,'C',1,'',0);
+   $pdf->Cell(45,5,'Veredicto',1,0,'C',1,'',0);
    $pdf->ln(5);
-   $pdf->Cell(60,5,$tipo_filtro.' '.$dimenciones,1,0,'C',0,'',0);
-   $pdf->Cell(54,5,$cantidad_filtro,1,0,'C',0,'',0);
-   $pdf->Cell(33,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(33,5,$eficiencia,1,0,'C',0,'',0);
 
-$linea = <<<EOD
+   while($row = mysqli_stmt_fetch($busca_filtros1)){
+    if ($valor_obtenido <= 0.001) {
+        $cumple_filtro = 'CUMPLE';
+    }else{
+        $cumple_filtro = 'NO CUMPLE';
+    }
+      
+   $pdf->Cell(45,5,'Prueba de Integridad de Filtro #'.$valor_filtro,1,0,'C',1,'',0);
+   $pdf->Cell(45,5,'<= 0.001 %',1,0,'C',0,'',0);
+   $pdf->Cell(45,5,$valor_obtenido,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,$cumple_filtro,1,0,'C',0,'',0);
+   $pdf->ln(5);
+ 
+    }
 
- <table>
-      <tr>
-         <td style="width: 90%;height:300px;"></td>
-      </tr> 
-   </table>
-
-
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
-
+ $pdf->ln(80);
+ 
 $linea = <<<EOD
 
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Conclusión</h2></td>
+        <td class="linea"><h2>Conclusión</h2></td>
    </tr>
 </table>
 
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(165, 5, 15, '', $conclusion ,0,1, 0, true, 'J', true);
+if ($conclusion == 'Informe') {
+  $conclu = 'para informes con cumplimiento: De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
+CUMPLE con los parámetros establecidos en la normativa vigente.';
+}elseif($conclusion == 'Pre-Informe'){
+  $conclu = 'Los resultados obtenidos en el presente informe, 
+se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
+}
+
+$pdf->writeHTMLCell(165, 5, 15, '', $conclu ,0,1, 0, true, 'J', true);
 
 $linea = <<<EOD
 
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
-        <td class="linea" align="center"><h2>Fecha de Medición</h2></td>
+        <td class="linea"><h2>Duración de Certificado</h2></td>
+        <td class="linea"><h2>Fecha de Medición</h2></td>
    </tr>
    <tr>
-        <td style="text-align:center;">La vigencia de Certificación es de 12 meses.</td>
-        <td align="center">$fecha_registro</td>
+        <td>La vigencia de Certificación es de 12 meses.</td>
+        <td>$fecha_medicion</td>
    </tr>    
 </table>
 
@@ -273,21 +262,19 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Responsable</h2></td>
-        <td class="linea" align="center"><h2>Código QR de Verificación</h2></td>
-        <td class="linea" align="center"><h2>Firma</h2></td>
+        <td class="linea"><h2>Responsable</h2></td>
+        <!--<td class="linea" align="center"><h2>Código QR de Verificación</h2></td>-->
+        <!--<td class="linea" align="center"><h2>Firma</h2></td>-->
    </tr>
    <tr>
-       <td align="center">Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
-       <td align="center"></td>
-       <td align="center"></td>
+       <td >Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
    </tr>
 </table>
 EOD;  
@@ -303,159 +290,140 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
-}
-</style>
-<br><br>
-<table>
-   <tr border="1">
-        <td class="linea" align="center"><h2><b>MEDICIÓN DE INSPECCION INTEGRIDAD DE FILTRO</b></h2></td>
-   </tr>
-</table>
-
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
-
-
-   $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(13, 5, 105, '', $num_numot ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
-
-   $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
-
-   $info_equipo = <<<EOD
-   <style> 
-   {
-   border-collapse: collapse;
-   width: 90%;
-   text-align: center;
-   vertical-align: middle;
-   }
-
-   th 
-   {
-   background-color: #3138AA;
-   color: #FFFFFF;
-   vertical-align: middle;
-   }
-
-   th, td 
-   {
-   border: 1px solid #BBBBBB;
-   padding: 3px;
-   vertical-align: middle;
-   text-align: center;
-   height:15px;
-   font-size:11px;
-   padding:auto auto auto auto;
-   }
-
-   tr:nth-child(even) 
-   {
-      background-color: #f2f2f2;
-   }
-
-
-   </style>
-
-   <table>
-      <tr>
-         <table>
-            <tr>
-               <td bgcolor="#DDDDDD" style="width:150px; "><h5><strong>Descripción</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
-               <td bgcolor="#DDDDDD" style="width:85px;"><h5><strong>Modelo</strong></h5></td>
-               <td bgcolor="#DDDDDD" style="width:83px;"><h5><strong>Serie</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Lugar</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Ubicado en</strong></h5></td>
-            </tr>
-            <tr>
-               <td>$descripcion</td>
-               <td>$marca</td>
-               <td>$modelo</td>
-               <td>$n_serie</td>
-               <td>$lugar_filtro</td>
-               <td>$ubicado_en</td>
-            </tr>
-         </table>
-           <br><br> 
-         <table>  
-            <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Tipo de Filtro y Dimensiones</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
-            </tr>
-            <tr>
-               <td>$tipo_filtro  $dimenciones</td>
-               <td>$cantidad_filtro</td>
-               <td>$limite_penetracion %</td>
-               <td>$eficiencia</td>
-            </tr>
-         </table>    
-      </tr>
-      <br>
-   </table>
-
+   color:black;
    
-EOD;  
-$pdf->writeHTML($info_equipo, true, false, false, false, '');
-
-$linea = <<<EOD
-
-<style>
-.linea{
-   height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2><b>INSPECCIÓN VISUAL</b></h2></td>
+        <td class="linea"><h2><b>Medición de Inspección de Filtro</b></h2></td>
    </tr>
 </table>
 
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-     $pdf->writeHTMLCell(70, 6, 15, '', 'Equipo en buenas condiciones de operación:',1,0, 0, true, 'J', true);
-     $pdf->writeHTMLCell(10, 6, 85, '', $insp1 ,1,0, 0, true, 'C', true);
-     $pdf->writeHTMLCell(20, 6, 95, '', '',0,0, 0, true, 'C', true);
-     $pdf->writeHTMLCell(72, 6, 113, '','Filtro presenta reparaciones:' ,1,0, 0, true, 'J', true);
-     $pdf->writeHTMLCell(10, 6, 185, '', $insp2,1,1, 0, true, 'C', true);
 
-     $pdf->writeHTMLCell(70, 5, 15, '', 'Filtro presenta rotura:',1,0, 0, true, 'J', true);
-     $pdf->writeHTMLCell(10, 5, 85, '', $insp3 ,1,0, 0, true, 'C', true);
-     $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
-     $pdf->writeHTMLCell(72, 5, 113, '','Filtro presenta rotura en sellos perimetrales:' ,1,0, 0, true, 'J', true);
-     $pdf->writeHTMLCell(10, 5, 185, '', $insp4,1,1, 0, true, 'C', true);
+   $pdf->Cell(25,5,'Informe referencia:',0,0,'L',0,'',0);
+     $pdf->Cell(50,5,$nombre_informe,1,0,'J',0,'',0);
+     $pdf->Cell(15,5,'OT N°',0,0,'C',0,'',0);
+     $pdf->Cell(15,5,$num_numot,1,0,'C',0,'',0);
+     $pdf->Cell(20,5,'',0,0,'C',0,'',0);
+     $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
 
-     $pdf->writeHTMLCell(70, 5, 15, '', 'Filtros instalados correctamente:',1,0, 0, true, 'J', true);
-     $pdf->writeHTMLCell(10, 5, 85, '', $insp5,1,0, 0, true, 'C', true);
-     $pdf->writeHTMLCell(20, 5, 95, '', '',0,0, 0, true, 'C', true);
-     $pdf->writeHTMLCell(72, 5, 113, '','Presenta colmatación:' ,1,0, 0, true, 'J', true);
-     $pdf->writeHTMLCell(10, 5, 185, '', $insp6,1,1, 0, true, 'C', true);
+   $pdf->ln(7);   
 
+   $pdf->Cell(25,5,'Empresa:',0,0,'L',0,'',0);
+   $pdf->Cell(80,5,$empresa,1,0,'C',0,'',0);
+   $pdf->Cell(20,5,'',0,0,'C',0,'',0);
+   $pdf->Cell(20,5,'Solicita:',0,0,'L',0,'',0);
+   $pdf->Cell(35,5,$solicitante,1,0,'C',0,'',0);
+
+   $pdf->ln(7);  
+
+   $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
+
+   $pdf->ln(10);  
+
+   $pdf->Cell(42,5,'Descripción',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Marca',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Modelo',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Serie',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Lugar',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Ubicado en',1,0,'C',1,'',0);
+   $pdf->ln(5); 
+   $pdf->Cell(42,5,$descripcion,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$marca,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$modelo,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$n_serie,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$lugar_filtro,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$ubicado_en,1,0,'C',0,'',0);
+   $pdf->ln(7);  
+   $pdf->Cell(60,5,'Tipo de Filtro y Dimensiones',1,0,'C',1,'',0);
+   $pdf->Cell(54,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
+   $pdf->Cell(33,5,'Límite de Penetración',1,0,'C',1,'',0);
+   $pdf->Cell(33,5,'Eficiencia',1,0,'C',1,'',0);
+   $pdf->ln(5);
+   $pdf->Cell(60,5,$tipo_filtro.' '.$dimenciones,1,0,'C',0,'',0);
+   $pdf->Cell(54,5,$cantidad_filtro,1,0,'C',0,'',0);
+   $pdf->Cell(33,5,$limite_penetracion.'%',1,0,'C',0,'',0);
+   $pdf->Cell(33,5,$eficiencia,1,0,'C',0,'',0);
+
+  $pdf->ln(7);
 
 $linea = <<<EOD
 
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
+}
+</style>
+<br>
+<table>
+   <tr border="1">
+        <td class="linea"><h2><b>Inspección Visual</b></h2></td>
+   </tr>
+</table>
+
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+     $pdf->Cell(70,5,'Equipo en buenas condiciones de operación:',1,0,'L',0,'',0);
+     $pdf->Cell(15,5,$insp1,1,0,'C',0,'',0);
+     $pdf->Cell(10,5,'',0,0,'J',0,'',0);
+     $pdf->Cell(70,5,'Filtro presenta reparaciones:',1,0,'L',0,'',0);
+     $pdf->Cell(15,5,$insp2,1,0,'C',0,'',0);
+     $pdf->ln(5);
+     $pdf->Cell(70,5,'Filtro presenta rotura:',1,0,'L',0,'',0);
+     $pdf->Cell(15,5,$insp3,1,0,'C',0,'',0);
+     $pdf->Cell(10,5,'',0,0,'J',0,'',0);
+     $pdf->Cell(70,5,'Filtro presenta rotura en sellos perimetrales:',1,0,'L',0,'',0);
+     $pdf->Cell(15,5,$insp4,1,0,'C',0,'',0);
+     $pdf->ln(5);
+     $pdf->Cell(70,5,'Filtros instalados correctamente:',1,0,'L',0,'',0);
+     $pdf->Cell(15,5,$insp5,1,0,'C',0,'',0);
+     $pdf->Cell(10,5,'',0,0,'J',0,'',0);
+     $pdf->Cell(70,5,'Presenta colmatación:',1,0,'L',0,'',0);
+     $pdf->Cell(15,5,$insp6,1,0,'C',0,'',0);
+
+     $pdf->ln(5); 
+
+
+//Consultar la primera imagen 1
+
+$buscar_imagen_1 = mysqli_prepare($connect,"SELECT url FROM images_informe_filtro 
+  WHERE id_informe = ? AND tipo_imagen = 1");
+
+mysqli_stmt_bind_param($buscar_imagen_1, 'i', $id_informe);
+mysqli_stmt_execute($buscar_imagen_1);
+mysqli_stmt_store_result($buscar_imagen_1);
+mysqli_stmt_bind_result($buscar_imagen_1, $url_imagen1); 
+mysqli_stmt_fetch($buscar_imagen_1);
+
+if ($url_imagen1 == '') {
+  $url_img = '';
+}else{
+$url_img = $url_imagen1;    
+}
+
+$linea = <<<EOD
+
+<style>
+.linea{
+   height: 14px;
+   color:black;
+   
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2><b>Prueba de Integridad de Filtros UNE-EN ISO 14.644-3:2015</b></h2></td>
+        <td class="linea"><h2><b>Prueba de Integridad de Filtros UNE-EN ISO 14.644-3:2015</b></h2></td>
    </tr>
    <br>
    <tr>
@@ -472,15 +440,13 @@ $linea = <<<EOD
       </tr>
       <br><br>
       <tr>
-         <td style= "height: 250px;"><img src="../../imagenes/definidas/imagen1.png" style="width: 350px;"></td>
+         <td style= "height: 250px;"><img src="../../imagenes/definidas/imagen1.png" style="width: 300px;"></td>
       </tr>
-      <br>
       <tr>
          <td><h2>Imagen de la Medición</h2></td>
       </tr>
-      <br>
       <tr>
-         <td style= "height: 150px;"><img src="../../imagenes/definidas/Imagen2.png" style="width: 200px;"></td>
+         <td style= "height: 150px;"><img src="../../$url_img" style="width: 200px;"></td>
       </tr>
 </table>
 
@@ -495,14 +461,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2><b>MEDICIÓN DE INSPECCION INTEGRIDAD DE FILTRO</b></h2></td>
+        <td class="linea"><h2>Medición de Inspección Integridad de Filtro</h2></td>
    </tr>
 
 </table>
@@ -511,93 +477,54 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
-  $pdf->writeHTMLCell(25, 5, 15, '', '<strong>Informe ref:</strong>' ,0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(50, 5, 40, '', $nombre_informe ,1,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(15, 5, 90, '', '<strong>OT N°:</strong>',0,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(13, 5, 105, '', $num_numot ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(35, 5, 140, '', '<strong>Fecha de Emisión:</strong>',0,0, 0, true, 'J', true);
-   $pdf->writeHTMLCell(20, 5, 175, '', $fecha_registro ,1,1, 0, true, 'C', true);
+   $pdf->Cell(25,5,'Informe referencia:',0,0,'L',0,'',0);
+     $pdf->Cell(50,5,$nombre_informe,1,0,'J',0,'',0);
+     $pdf->Cell(15,5,'OT N°',0,0,'C',0,'',0);
+     $pdf->Cell(15,5,$num_numot,1,0,'C',0,'',0);
+     $pdf->Cell(20,5,'',0,0,'C',0,'',0);
+     $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
 
-   $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
+   $pdf->ln(7);   
 
+   $pdf->Cell(25,5,'Empresa:',0,0,'L',0,'',0);
+   $pdf->Cell(80,5,$empresa,1,0,'C',0,'',0);
+   $pdf->Cell(20,5,'',0,0,'C',0,'',0);
+   $pdf->Cell(20,5,'Solicita:',0,0,'L',0,'',0);
+   $pdf->Cell(35,5,$solicitante,1,0,'C',0,'',0);
 
-   $info_equipo = <<<EOD
-   <style> 
-   {
-   border-collapse: collapse;
-   width: 90%;
-   text-align: center;
-   vertical-align: middle;
-   }
+   $pdf->ln(7);  
 
-   th 
-   {
-   background-color: #3138AA;
-   color: #FFFFFF;
-   vertical-align: middle;
-   }
+   $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
 
-   th, td 
-   {
-   border: 1px solid #BBBBBB;
-   padding: 3px;
-   vertical-align: middle;
-   text-align: center;
-   height:15px;
-   font-size:11px;
-   padding:auto auto auto auto;
-   }
+   $pdf->ln(10);  
 
-   tr:nth-child(even) 
-   {
-      background-color: #f2f2f2;
-   }
+   $pdf->Cell(42,5,'Descripción',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Marca',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Modelo',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Serie',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Lugar',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Ubicado en',1,0,'C',1,'',0);
+   $pdf->ln(5); 
+   $pdf->Cell(42,5,$descripcion,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$marca,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$modelo,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$n_serie,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$lugar_filtro,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$ubicado_en,1,0,'C',0,'',0);
+   $pdf->ln(7);  
+   $pdf->Cell(60,5,'Tipo de Filtro y Dimensiones',1,0,'C',1,'',0);
+   $pdf->Cell(54,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
+   $pdf->Cell(33,5,'Límite de Penetración',1,0,'C',1,'',0);
+   $pdf->Cell(33,5,'Eficiencia',1,0,'C',1,'',0);
+   $pdf->ln(5);
+   $pdf->Cell(60,5,$tipo_filtro.' '.$dimenciones,1,0,'C',0,'',0);
+   $pdf->Cell(54,5,$cantidad_filtro,1,0,'C',0,'',0);
+   $pdf->Cell(33,5,$limite_penetracion.'%',1,0,'C',0,'',0);
+   $pdf->Cell(33,5,$eficiencia,1,0,'C',0,'',0);
 
-
-   </style>
-
-   <table>
-      <tr>
-         <table>
-            <tr>
-               <td bgcolor="#DDDDDD" style="width:150px; "><h5><strong>Descripción</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
-               <td bgcolor="#DDDDDD" style="width:85px;"><h5><strong>Modelo</strong></h5></td>
-               <td bgcolor="#DDDDDD" style="width:83px;"><h5><strong>Serie</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Lugar</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Ubicado en</strong></h5></td>
-            </tr>
-            <tr>
-               <td>$descripcion</td>
-               <td>$marca</td>
-               <td>$modelo</td>
-               <td>$n_serie</td>
-               <td>$lugar_filtro</td>
-               <td>$ubicado_en</td>
-            </tr>
-         </table>
-           <br><br> 
-         <table>  
-            <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Tipo de Filtro y Dimensiones</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
-            </tr>
-            <tr>
-               <td>$tipo_filtro  $dimenciones</td>
-               <td>$cantidad_filtro</td>
-               <td>$limite_penetracion %</td>
-               <td>$eficiencia</td>
-            </tr>
-         </table>    
-      </tr>
-      <br>
-   </table>
-
-   
-EOD;  
-$pdf->writeHTML($info_equipo, true, false, false, false, '');
+  $pdf->ln(7);
 
 
 $linea = <<<EOD
@@ -605,33 +532,30 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2><b>DETALLE DE MEDICIONES</b></h2></td>
+        <td class="linea"><h2>Detalle de Mediciones</h2></td>
    </tr>
 </table>
 
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-
-
-
-$pdf->writeHTMLCell(20, 5, 15, '', '<b>N° de Filtro</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 35, '', '<b>Zona A</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 55, '', '<b>Zona A</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 75, '', '<b>Zona B</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 95, '', '<b>Zona B</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 115, '', '<b>Zona C</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 135, '', '<b>Zona C</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 155, '', '<b>Zona D</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(20, 5, 175, '', '<b>Zona D</b>' ,1,1, 0, true, 'C', true);
-
+$pdf->Cell(20,5,'N° de Filtro',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona A',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona A',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona B',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona B',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona C',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona C',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona D',1,0,'C',1,'',0);
+$pdf->Cell(20,5,'Zona D',1,0,'C',1,'',0);
+$pdf->ln(5);
 
 //Consulta que busca los filtros usados 
 $consultar_N_filtro = mysqli_prepare($connect,"SELECT nombre_filtro, zonaA, zonaAA, zonaB, zonaBB, zonaC, zonaCC, zonaD, zonaDD  FROM filtro_mediciones_2 WHERE id_informe = ?");
@@ -644,45 +568,36 @@ mysqli_stmt_bind_result($consultar_N_filtro, $nombre_filtro, $zonaA, $zonaAA, $z
    //AQUI VAN LOS VALORES
 while($row = mysqli_stmt_fetch($consultar_N_filtro)){
       
-   $pdf->writeHTMLCell(20, 5, 15, '', $nombre_filtro ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 35, '', $zonaA ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 55, '', $zonaAA ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 75, '', $zonaB ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 95, '', $zonaBB ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 115, '', $zonaC ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 135, '', $zonaCC ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 155, '', $zonaD ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(20, 5, 175, '', $zonaDD ,1,1, 0, true, 'C', true);
+
+
+    $pdf->Cell(20,5,$nombre_filtro,1,0,'C',1,'',0);
+    $pdf->Cell(20,5,' < '.$zonaA,1,0,'C',0,'',0);
+    $pdf->Cell(20,5,' < '.$zonaAA,1,0,'C',0,'',0);
+    $pdf->Cell(20,5,' < '.$zonaB,1,0,'C',0,'',0);
+    $pdf->Cell(20,5,' < '.$zonaBB,1,0,'C',0,'',0);
+    $pdf->Cell(20,5,' < '.$zonaC,1,0,'C',0,'',0);
+    $pdf->Cell(20,5,' < '.$zonaCC,1,0,'C',0,'',0);
+    $pdf->Cell(20,5,' < '.$zonaD,1,0,'C',0,'',0);
+    $pdf->Cell(20,5,' < '.$zonaDD,1,0,'C',0,'',0);
+    $pdf->ln(5);
 
    }  
 
-
-$linea = <<<EOD
-<br>
-<br>
-<table border="0" style="text-align: center;">
-      <tr>
-         <td style= "height: 350px;"></td>
-      </tr>
-      <br>
-</table>
-
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
+$pdf->ln(70);
 
 $linea = <<<EOD
 
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2><b>Equipos Utilizados en la Medición</b></h2></td>
+        <td class="linea"><h2><b>Equipos Utilizados en la Medición</b></h2></td>
    </tr>
 </table>
 
@@ -724,8 +639,8 @@ $pdf->AddPage('A4');
 <style>
 .linea{
    height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
+   color:black;
+   
 }
 </style>
 <br><br>
@@ -740,7 +655,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 
 //Consulta que busca las imagenes
-$consultar_imagenes = mysqli_prepare($connect,"SELECT url, enunciado FROM images_informe_filtro WHERE id_informe = ?");
+$consultar_imagenes = mysqli_prepare($connect,"SELECT url, enunciado FROM images_informe_filtro WHERE id_informe = ? AND tipo_imagen = 2");
 
 mysqli_stmt_bind_param($consultar_imagenes, 'i', $id_informe);
 mysqli_stmt_execute($consultar_imagenes);
