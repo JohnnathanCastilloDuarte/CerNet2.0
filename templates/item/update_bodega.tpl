@@ -259,44 +259,14 @@
                 <div class="col-sm-6">
                   <div class="position-relative form-group">
                     <label>Tipo de muro:</label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_1" id="tipo_muro" value="Muro de hormigón" {$hormigon}>
-                    <label> Muro de hormigón </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_2" id="tipo_muro" value="Muro de isopol" {$isopol}>
-                    <label> Muro de isopol </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_3" id="tipo_muro" value="Muro de ladrillo" {$ladrillo}>
-                    <label> Muro de ladrillo </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_4" id="tipo_muro" value="Muro de madera" {$madera}>
-                    <label> Muro de madera </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_5" id="tipo_muro" value="otro_muro" {$otro_muro}>
-                    <label> Otro tipo de muro </label>
                     <textarea class="form-control" id="otro_tipo_muro_bodega" placeholder="Especifica el tipo de muro">{$otro_muro_e}</textarea>
                   </div>
                 </div>
-                {section name=i loop=$explode_cielo} {if $explode_cielo[i] eq "Cielo de hormigón"} {$cielo_hormigon = "checked"} {elseif $explode_cielo[i] eq "Cielo de isopol"} {$cielo_isopol = "checked"} {elseif $explode_cielo[i] eq "Cielo de plachas metalicas"} {$cielo_plachas_metalicas
-                = "checked"} {elseif $explode_cielo[i] eq "otro cielo"} {$otro_cielo = "checked"} {elseif $explode_cielo[i] eq "- "} {$otro_cielo_e = $explode_cielo[i]} {/if} {/section}
-
-
+      
 
                 <div class="col-sm-6">
                   <div class="position-relative form-group">
                     <label>Tipo de cielo</label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_1" id="tipo_cielo" value="Cielo de hormigón" {$cielo_hormigon}>
-                    <label> Cielo de hormigón </label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_2" id="tipo_cielo" value="Cielo de isopol" {$cielo_isopol}>
-                    <label> Cielo de isopol </label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_3" id="tipo_cielo" value="Cielo de plachas metalicas" {$cielo_plachas_metalicas}>
-                    <label> Cielo de planchas metálicas </label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_4" id="tipo_cielo" value="otro_cielo" {$otro_cielo}>
-                    <label> Otro tipo de cielo </label>
                     <textarea class="form-control" id="otro_tipo_cielo_bodega" placeholder="Especifica el tipo de cielo">{$otro_cielo_e}</textarea>
                   </div>
                 </div>
