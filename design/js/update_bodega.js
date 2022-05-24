@@ -19,16 +19,16 @@ conocer_active_boton();
 
 //FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE MURO
    
-	$("input:checkbox[name=tipo_muro_bodega_5]").click(function(){
-    
-		let otro = $("input:checkbox[name=tipo_muro_bodega_5]:checked").val();
-	
-		if(otro == "otro_muro"){
-			$("#otro_tipo_muro_bodega").show()
-		}else{
-			$("#otro_tipo_muro_bodega").hide();
-		}
-	});
+$("input:checkbox[name=tipo_muro_bodega_5]").click(function(){
+
+let otro = $("input:checkbox[name=tipo_muro_bodega_5]:checked").val();
+
+if(otro == "otro_muro"){
+$("#otro_tipo_muro_bodega").show()
+}else{
+$("#otro_tipo_muro_bodega").hide();
+}
+});
 
 
 //FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE CIELO
