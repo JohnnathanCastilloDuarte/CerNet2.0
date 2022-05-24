@@ -14,12 +14,8 @@ $ancho_bodega = $_POST['ancho_bodega'];
 $superficie_bodega = $_POST['superficie_bodega'];
 $volume_bodega = $_POST['volume_bodega'];
 $altura_bodega = $_POST['altura_bodega'];
-$array_muro = $_POST['array_muro'];
-$otro_tipo_muro_bodega = $_POST['otro_tipo_muro_bodega'];
-$combina_muro = $array_muro.', '.$otro_tipo_muro_bodega;
-$array_cielo = $_POST['array_cielo'];
-$otro_tipo_cielo_bodega = $_POST['otro_tipo_cielo_bodega'];
-$combina_cielo = $array_cielo.', '.$otro_tipo_cielo_bodega;
+$array_muro = $_POST['tipo_muro'];
+$array_cielo = $_POST['tipo_cielo'];
 $array_climatizacion = $_POST['array_climatizacion'];
 $s_m_t = $_POST['s_m_t'];
 $s_m_t_a = $_POST['s_m_t_a'];
@@ -60,7 +56,7 @@ $actualizar = mysqli_prepare($connect, "UPDATE item_bodega SET   productos_almac
   altura_max_rack = ?, sistema_extraccion = ?, cielo_lus = ?, temp_max = ?, temp_min = ?, cantidad_iluminarias = ?, hr_max = ?, hr_min = ?, 
   cantidad_ventana = ?, valor_seteado_temp = ?, valor_seteado_hum = ? WHERE id_item = ?");
 
-mysqli_stmt_bind_param($actualizar, 'ssssssssssssssissssssssssssssssssssi', $combina_productos, $largo_bodega, $ancho_bodega, $superficie_bodega, $volume_bodega, $altura_bodega, $combina_muro, $combina_cielo, $array_climatizacion, $s_m_t, $s_m_t_a, $array_planos, $analisis_riesgo, $fichas_estabilidad, $id_valida, $marca_bodega, $modelo_bodega, $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max ,$temp_min, $cantidad_iluminarias, 
+mysqli_stmt_bind_param($actualizar, 'ssssssssssssssissssssssssssssssssssi', $combina_productos, $largo_bodega, $ancho_bodega, $superficie_bodega, $volume_bodega, $altura_bodega, $array_muro, $array_cielo, $array_climatizacion, $s_m_t, $s_m_t_a, $array_planos, $analisis_riesgo, $fichas_estabilidad, $id_valida, $marca_bodega, $modelo_bodega, $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max ,$temp_min, $cantidad_iluminarias, 
                        $hr_max, $hr_min, $cantidad_ventana, $valor_seteado_temp, $valor_seteado_hum, $id_item);
 mysqli_stmt_execute($actualizar);
  

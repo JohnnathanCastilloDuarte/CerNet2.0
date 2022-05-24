@@ -96,8 +96,6 @@
 
  	$explode_producto = explode(", ", $producto);
  	$explode_climatizacion = explode(", ",$climatizacion);
- 	$explode_muro = explode(", ",$tipo_muro);
- 	$explode_cielo = explode(", ",$tipo_cielo);
  	$explode_planos = explode(", ",$planos);
 
  	$smarty->assign("explode_plano",$explode_planos);
@@ -115,8 +113,7 @@
  	$smarty->assign("cielo_hormigon","");
  	$smarty->assign("cielo_isopol","");
  	$smarty->assign("cielo_plachas_metalicas","");
- 	$smarty->assign("otro_cielo","");
- 	$smarty->assign("otro_cielo_e","");
+ 	$smarty->assign("otro_cielo_e",$tipo_cielo);
  	$smarty->assign("alimentos","");
  	$smarty->assign("cosmeticos","");
  	$smarty->assign("farmaceutico","");	
@@ -129,8 +126,7 @@
  	$smarty->assign("isopol","");
  	$smarty->assign("ladrillo","");
  	$smarty->assign("madera","");
- 	$smarty->assign("otro_muro","");
- 	$smarty->assign("otro_muro_e","");
+ 	$smarty->assign("otro_muro_e",$tipo_muro);
  	$smarty->assign("monitore_1","");
  	$smarty->assign("monitore_2","");
  	$smarty->assign("alarma_1","");

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-23 23:00:45
+/* Smarty version 3.1.34-dev-7, created on 2022-05-24 16:12:08
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_628bf5fd8bdc37_25963409',
+  'unifunc' => 'content_628ce7b810ff53_64412395',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10cd508aa62a2b747cc0b00d78a3d76fc3305eb7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_bodega.tpl',
-      1 => 1653339641,
+      1 => 1653400635,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628bf5fd8bdc37_25963409 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628ce7b810ff53_64412395 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -337,62 +337,15 @@ for ($__section_f_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_f']-
                 <div class="col-sm-6">
                   <div class="position-relative form-group">
                     <label>Tipo de muro:</label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_1" id="tipo_muro" value="Muro de hormigón" <?php echo $_smarty_tpl->tpl_vars['hormigon']->value;?>
->
-                    <label> Muro de hormigón </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_2" id="tipo_muro" value="Muro de isopol" <?php echo $_smarty_tpl->tpl_vars['isopol']->value;?>
->
-                    <label> Muro de isopol </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_3" id="tipo_muro" value="Muro de ladrillo" <?php echo $_smarty_tpl->tpl_vars['ladrillo']->value;?>
->
-                    <label> Muro de ladrillo </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_4" id="tipo_muro" value="Muro de madera" <?php echo $_smarty_tpl->tpl_vars['madera']->value;?>
->
-                    <label> Muro de madera </label>
-                    <br>
-                    <input type="checkbox" name="tipo_muro_bodega_5" id="tipo_muro" value="otro_muro" <?php echo $_smarty_tpl->tpl_vars['otro_muro']->value;?>
->
-                    <label> Otro tipo de muro </label>
                     <textarea class="form-control" id="otro_tipo_muro_bodega" placeholder="Especifica el tipo de muro"><?php echo $_smarty_tpl->tpl_vars['otro_muro_e']->value;?>
 </textarea>
                   </div>
                 </div>
-                <?php
-$__section_i_2_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_cielo']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_i_2_total = $__section_i_2_loop;
-$_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
-if ($__section_i_2_total !== 0) {
-for ($__section_i_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_2_iteration <= $__section_i_2_total; $__section_i_2_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
-?> <?php if ($_smarty_tpl->tpl_vars['explode_cielo']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Cielo de hormigón") {?> <?php $_smarty_tpl->_assignInScope('cielo_hormigon', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_cielo']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Cielo de isopol") {?> <?php $_smarty_tpl->_assignInScope('cielo_isopol', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_cielo']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Cielo de plachas metalicas") {?> <?php $_smarty_tpl->_assignInScope('cielo_plachas_metalicas', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_cielo']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "otro cielo") {?> <?php $_smarty_tpl->_assignInScope('otro_cielo', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_cielo']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "- ") {?> <?php $_smarty_tpl->_assignInScope('otro_cielo_e', $_smarty_tpl->tpl_vars['explode_cielo']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]);?> <?php }?> <?php
-}
-}
-?>
-
-
+      
 
                 <div class="col-sm-6">
                   <div class="position-relative form-group">
                     <label>Tipo de cielo</label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_1" id="tipo_cielo" value="Cielo de hormigón" <?php echo $_smarty_tpl->tpl_vars['cielo_hormigon']->value;?>
->
-                    <label> Cielo de hormigón </label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_2" id="tipo_cielo" value="Cielo de isopol" <?php echo $_smarty_tpl->tpl_vars['cielo_isopol']->value;?>
->
-                    <label> Cielo de isopol </label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_3" id="tipo_cielo" value="Cielo de plachas metalicas" <?php echo $_smarty_tpl->tpl_vars['cielo_plachas_metalicas']->value;?>
->
-                    <label> Cielo de planchas metálicas </label>
-                    <br>
-                    <input type="checkbox" name="tipo_cielo_bodega_4" id="tipo_cielo" value="otro_cielo" <?php echo $_smarty_tpl->tpl_vars['otro_cielo']->value;?>
->
-                    <label> Otro tipo de cielo </label>
                     <textarea class="form-control" id="otro_tipo_cielo_bodega" placeholder="Especifica el tipo de cielo"><?php echo $_smarty_tpl->tpl_vars['otro_cielo_e']->value;?>
 </textarea>
                   </div>
@@ -406,11 +359,11 @@ for ($__section_i_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
             <!--Cierre del step 22-->
 
             <?php
-$__section_i_3_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_climatizacion']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_i_3_total = $__section_i_3_loop;
+$__section_i_2_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_climatizacion']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_2_total = $__section_i_2_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
-if ($__section_i_3_total !== 0) {
-for ($__section_i_3_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_3_iteration <= $__section_i_3_total; $__section_i_3_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+if ($__section_i_2_total !== 0) {
+for ($__section_i_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_2_iteration <= $__section_i_2_total; $__section_i_2_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?> <?php if ($_smarty_tpl->tpl_vars['explode_climatizacion']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Mezclador de aire") {?> <?php $_smarty_tpl->_assignInScope('mezclador_aire', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_climatizacion']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Sistema HVAC") {?> <?php $_smarty_tpl->_assignInScope('sistema_hvac', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_climatizacion']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Split") {?>
             <?php $_smarty_tpl->_assignInScope('split', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_climatizacion']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "No climatizacion") {?> <?php $_smarty_tpl->_assignInScope('no_climatizacion', "checked");?> <?php }?> <?php
 }
@@ -463,11 +416,11 @@ for ($__section_i_3_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 >
                 </div>
                 <?php
-$__section_i_4_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_plano']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_i_4_total = $__section_i_4_loop;
+$__section_i_3_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['explode_plano']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_3_total = $__section_i_3_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
-if ($__section_i_4_total !== 0) {
-for ($__section_i_4_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_4_iteration <= $__section_i_4_total; $__section_i_4_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+if ($__section_i_3_total !== 0) {
+for ($__section_i_3_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_3_iteration <= $__section_i_3_total; $__section_i_3_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?> <?php if ($_smarty_tpl->tpl_vars['explode_plano']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Arquitectura") {?> <?php $_smarty_tpl->_assignInScope('arquitectura', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_plano']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Flujo de procesos") {?> <?php $_smarty_tpl->_assignInScope('flujo_procesos', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_plano']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "Sensores de monitoreo") {?> <?php $_smarty_tpl->_assignInScope('sensores_monitoreo', "checked");?> <?php } elseif ($_smarty_tpl->tpl_vars['explode_plano']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)] == "No cuenta con planos") {?> <?php $_smarty_tpl->_assignInScope('no_planos', "checked");?> <?php }?> <?php
 }
 }
