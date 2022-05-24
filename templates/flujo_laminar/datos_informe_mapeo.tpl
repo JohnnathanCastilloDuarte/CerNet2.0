@@ -22,7 +22,11 @@
                 </div>
                 <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
-                    <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea>
+                    <select class="form-control" id="conclusion">
+                        <option>Informe</option>
+                        <option>Pre-Informe</option>
+                    </select>
+                   <!--  <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea> -->
                 </div>
                 <br>
                 <div style="text-align: center;">
@@ -241,6 +245,36 @@
                     </div>
                 </div>
 
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="accordion">
+                                
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" data-target="#collapseOne_8"  aria-controls="collapseOne_8">
+                                        Resultados según norma UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2008
+                                    </a>
+                                </div>
+                                <div class="card-body collapse" id="collapseOne_8">
+                                    <table class="table">
+                                        <thead>
+                                            <th>Tamaños (µm)</th>
+                                            <th>Media de los Promedios</th>
+                                            <th>Desviación Estandar</th>
+                                            <th>Máximo </th>
+                                        </thead>
+                                        <tbody id="aqui_prueba_9">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>    
+
+                        </div>
+                    </div>
+                </div>
 
                 <hr>
 
@@ -303,6 +337,8 @@
                 </div>
 
                 <hr>
+
+                
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -420,7 +456,10 @@
                                           <label>Tipo de evidencia:</label>
                                           <select class="form-control" name="tipo_imagen">
                                             <option value="">Seleccion la categoria</option> 
+                                            <option value="5">Imagen medición de velocidad de aire</option> 
                                             <option value="1">Imagen conteo de particulas</option>
+                                            <option value="6">Imagen prueba temperatura & humedad</option>
+                                            <option value="7">Imagen prueba presión sonora</option>
                                             <option value="2">Imagen frontal</option>
                                             <option value="3">Imagen placa</option>
                                             <option value="4">Imagen area de trabajo</option>    
@@ -440,15 +479,54 @@
                                 </form>
 
                                 <br> 
-
                                 <hr>
                                 
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">medición de velocidad de aire</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c5">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <hr>
                                 <div class="row">
                                   <div class="col-sm-12">
                                     <div class="card">
                                       <div class="card-header">Conteo de particulas</div>
                                       <div class="card-body">
                                         <div class="row" id="Listar_img_c1">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                 <hr>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">Prueba temperatura & humedad</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c6">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                 <hr>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">Prueba presión sonora</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c7">
               
                                         </div>
                                       </div>

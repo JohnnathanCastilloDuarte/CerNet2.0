@@ -248,6 +248,34 @@ else if($movimiento == "opcion_9"){
     echo $convert;
 }
 
+else if($movimiento == "opcion_10"){
+
+    $id_asignado = $_POST['id_asignado'];
+    $array_prueba = array();
+
+    $consultar = mysqli_prepare($connect,"SELECT  id, tipo_um, media_promedios, desviacion_estandar, maximo
+    FROM flujo_laminar_prueba_7 WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
+    mysqli_stmt_execute($consultar);
+     mysqli_stmt_store_result($consultar);
+    mysqli_stmt_bind_result($consultar, $id, $tipo_um, $media_promedios, $desviacion_estandar, $maximo);
+
+
+    while($row = mysqli_stmt_fetch($consultar)){
+        $array_prueba[]=array(
+            'id' => $id, 
+            'tipo_um' => $tipo_um, 
+            'media_promedios' => $media_promedios, 
+            'desviacion_estandar' => $desviacion_estandar,
+            'maximo' => $maximo
+
+        );
+    }
+
+    $convert = json_encode($array_prueba);
+    echo $convert;
+}
+
 /////////// VALIDADOR
 else if($movimiento == "Validador_1"){
 
@@ -488,6 +516,26 @@ else if($movimiento == "Validador_10"){
 
     echo "Listo10";
 
+}
+
+else if ($movimiento == "Validador_11") {
+    
+        $id_asignado = $_POST['id_asignado'];
+        $validar1 = mysqli_prepare($connect,"SELECT id FROM flujo_laminar_prueba_7 WHERE id_asignado = ?");
+        mysqli_stmt_bind_param($validar1, 'i', $id_asignado);
+        mysqli_stmt_execute($validar1);
+        mysqli_stmt_fetch($validar1);
+
+      if (mysqli_stmt_num_rows($validar1) == 0) {
+
+            for ($i=1; $i < 3; $i++) { 
+                 $creando = mysqli_prepare($connect,"INSERT INTO flujo_laminar_prueba_7 (id_asignado,tipo_um) VALUES (?,?)");
+                mysqli_stmt_bind_param($creando, 'is', $id_asignado,$i);
+                mysqli_stmt_execute($creando);
+               
+            }
+        }  
+       echo "Listo11"; 
 }
 
 

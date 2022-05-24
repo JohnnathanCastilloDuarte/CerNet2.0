@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-24 01:49:46
+/* Smarty version 3.1.34-dev-7, created on 2022-05-24 20:28:14
   from 'C:\xampp\htdocs\CerNet2.0\templates\flujo_laminar\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_628c1d9a7aa234_40701928',
+  'unifunc' => 'content_628d23bee20047_29141094',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbd95b35928c4d4fe0f59c22d8d1eadcf582bf48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\flujo_laminar\\datos_informe_mapeo.tpl',
-      1 => 1653349785,
+      1 => 1653416315,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628c1d9a7aa234_40701928 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628d23bee20047_29141094 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
@@ -46,7 +46,11 @@ function content_628c1d9a7aa234_40701928 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
                 <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
-                    <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea>
+                    <select class="form-control" id="conclusion">
+                        <option>Informe</option>
+                        <option>Pre-Informe</option>
+                    </select>
+                   <!--  <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea> -->
                 </div>
                 <br>
                 <div style="text-align: center;">
@@ -265,6 +269,36 @@ function content_628c1d9a7aa234_40701928 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
 
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="accordion">
+                                
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" data-target="#collapseOne_8"  aria-controls="collapseOne_8">
+                                        Resultados según norma UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2008
+                                    </a>
+                                </div>
+                                <div class="card-body collapse" id="collapseOne_8">
+                                    <table class="table">
+                                        <thead>
+                                            <th>Tamaños (µm)</th>
+                                            <th>Media de los Promedios</th>
+                                            <th>Desviación Estandar</th>
+                                            <th>Máximo </th>
+                                        </thead>
+                                        <tbody id="aqui_prueba_9">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>    
+
+                        </div>
+                    </div>
+                </div>
 
                 <hr>
 
@@ -327,6 +361,8 @@ function content_628c1d9a7aa234_40701928 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
 
                 <hr>
+
+                
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -445,7 +481,10 @@ function content_628c1d9a7aa234_40701928 (Smarty_Internal_Template $_smarty_tpl)
                                           <label>Tipo de evidencia:</label>
                                           <select class="form-control" name="tipo_imagen">
                                             <option value="">Seleccion la categoria</option> 
+                                            <option value="5">Imagen medición de velocidad de aire</option> 
                                             <option value="1">Imagen conteo de particulas</option>
+                                            <option value="6">Imagen prueba temperatura & humedad</option>
+                                            <option value="7">Imagen prueba presión sonora</option>
                                             <option value="2">Imagen frontal</option>
                                             <option value="3">Imagen placa</option>
                                             <option value="4">Imagen area de trabajo</option>    
@@ -465,15 +504,54 @@ function content_628c1d9a7aa234_40701928 (Smarty_Internal_Template $_smarty_tpl)
                                 </form>
 
                                 <br> 
-
                                 <hr>
                                 
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">medición de velocidad de aire</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c5">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <hr>
                                 <div class="row">
                                   <div class="col-sm-12">
                                     <div class="card">
                                       <div class="card-header">Conteo de particulas</div>
                                       <div class="card-body">
                                         <div class="row" id="Listar_img_c1">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                 <hr>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">Prueba temperatura & humedad</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c6">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                 <hr>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">Prueba presión sonora</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c7">
               
                                         </div>
                                       </div>

@@ -387,7 +387,7 @@ function listar_inspeccion_visual(numeral){
                                     <td><input type="text" name="resultado_P5[]" class="form-control" value="${valor.resultado}"></td>
                                 </tr>
                                 `;
-                        }else if(contador1 > 1 && contador1< 5){
+                        }else if(contador1 > 1 && contador1< 4){
                             template1 += 
                                 `
                                 <tr>
@@ -549,6 +549,59 @@ function listar_inspeccion_visual(numeral){
             }
         });
     }
+
+    else if (numeral == 10){
+
+        $.ajax({
+            type:'POST',
+            data:{id_asignado, movimiento},
+            url:'templates/flujo_laminar/controlador_pruebas.php',
+            success:function(response){
+               console.log(response);
+                
+                let traer = JSON.parse(response);
+                let template = "";
+                let contador = 1;
+
+                traer.forEach((valor)=>{
+
+                    if (valor.tipo_um == 1){
+
+                        template += 
+                    `
+                              <input type="text" name="id_medicion_p9[]" value="${valor.id}">  
+                       <tr> 
+                            <td> >=0,5 </td>
+                            <td><input type="text" name="medicion1_p9[]" class="form-control" value="${valor.media_promedios}"></td>
+                            <td><input type="text" name="medicion2_p9[]" class="form-control" value="${valor.desviacion_estandar}"></td>
+                            <td><input type="text" name="medicion3_p9[]" class="form-control" value="${valor.maximo}"></td>
+                       </tr>
+                    `;
+
+                    }else if (valor.tipo_um == 2){
+                         template += 
+                    `
+                              <input type="text" name="id_medicion_p9[]" value="${valor.id}">  
+                       <tr> 
+                            <td> >=5,0 </td>
+                            <td><input type="text" name="medicion1_p9[]" class="form-control" value="${valor.media_promedios}"></td>
+                            <td><input type="text" name="medicion2_p9[]" class="form-control" value="${valor.desviacion_estandar}"></td>
+                            <td><input type="text" name="medicion3_p9[]" class="form-control" value="${valor.maximo}"></td>
+                       </tr>
+                    `; 
+
+                    }
+
+                    
+
+
+                    contador++;
+                });
+                $("#aqui_prueba_9").html(template);
+            }
+        });
+    }
+
     
 }
 
@@ -566,7 +619,7 @@ function validador(numeral){
         data:{id_asignado, movimiento, nombre_informe, solicitante, conclusion},
         url:'templates/flujo_laminar/controlador_pruebas.php',
         success:function(response){
-          
+            console.log(response);
             if(response == "Listo1"){
                 listar_inspeccion_visual(1);
                 
@@ -591,6 +644,8 @@ function validador(numeral){
             }else if (response == 'Listo10'){
                 listar_inspeccion_visual(8);
 
+            }else if (response == 'Listo11'){
+                listar_inspeccion_visual(10);
             }
         }
     });
@@ -851,6 +906,36 @@ function listar_imagenes(){
             </div>
           `;
         }
+        else if(valor.tipo == 5){
+
+          template5 += 
+          `
+            <div class="col-sm-4">
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+              <img src="templates/flujo_laminar/${valor.url}${valor.nombre}" style="width: 100%;">
+            </div>
+          `;
+        }
+        else if(valor.tipo == 6){
+
+          template6 += 
+          `
+            <div class="col-sm-4">
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+              <img src="templates/flujo_laminar/${valor.url}${valor.nombre}" style="width: 100%;">
+            </div>
+          `;
+        }
+        else if(valor.tipo == 7){
+
+          template7 += 
+          `
+            <div class="col-sm-4">
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+              <img src="templates/flujo_laminar/${valor.url}${valor.nombre}" style="width: 100%;">
+            </div>
+          `;
+        }
         
       });
 
@@ -858,6 +943,9 @@ function listar_imagenes(){
       $("#Listar_img_c2").html(template2);
       $("#Listar_img_c3").html(template3);
       $("#Listar_img_c4").html(template4);
+      $("#Listar_img_c5").html(template5);
+      $("#Listar_img_c6").html(template6);
+      $("#Listar_img_c7").html(template7);
     }
 
   });
