@@ -3,8 +3,7 @@ var id_item_bodega = $("#id_item_bodega").val();
 var id_valida = $("#id_valida").val();
 
 
-$("#otro_tipo_muro_bodega").hide();
-$("#otro_tipo_cielo_bodega").hide();
+
 $("#si_envia").hide();
 $("#step-42").hide();
 
@@ -14,33 +13,6 @@ climatizacion();
 planos();
 conocer_active_boton();
 
-
-
-
-//FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE MURO
-   
-	$("input:checkbox[name=tipo_muro_bodega_5]").click(function(){
-    
-		let otro = $("input:checkbox[name=tipo_muro_bodega_5]:checked").val();
-	
-		if(otro == "otro_muro"){
-			$("#otro_tipo_muro_bodega").show()
-		}else{
-			$("#otro_tipo_muro_bodega").hide();
-		}
-	});
-
-
-//FUNCIÓN PARA VALIDAR EL TIPO OTRO DE TIPO DE CIELO
-	$("input:checkbox[name=tipo_cielo_bodega_4]").click(function(){
-		
-		let otro = $("input:checkbox[name=tipo_cielo_bodega_4]:checked").val();
-		if(otro == "otro_cielo"){
-			$("#otro_tipo_cielo_bodega").show()
-		}else{
-			$("#otro_tipo_cielo_bodega").hide();
-		}
-	});
 
 
 
@@ -174,29 +146,9 @@ function planos(){
     let valor_seteado_temp = $("#valor_seteado_temp").val();
     let valor_seteado_hum = $("#valor_seteado_hum").val();
 
-		let tipo_muro_especificacion = $("#otro_tipo_muro_bodega").val();
-		let tipo_cielo_especificacion = $("#otro_tipo_cielo_bodega").val();
-		var array_muro = "";
-		var array_cielo = "";
+		let tipo_muro = $("#otro_tipo_muro_bodega").val();
+		let tipo_cielo = $("#otro_tipo_cielo_bodega").val();
 	
-		if(tipo_muro_especificacion.length == 0){
-			var muro = $("input:checkbox[id=tipo_muro]:checked").map(function(){
-				return this.value;
-			}).get();
-			array_muro = muro.join(', ');
-		}else{
-			array_muro = tipo_muro_especificacion;
-		}
-	
-	
-		if(tipo_cielo_especificacion.length == 0){
-			var cielo = $("input:checkbox[id=tipo_cielo]:checked").map(function(){
-				return this.value;
-			}).get();
-			array_cielo = cielo.join(', ');
-		}else{
-			array_cielo = tipo_cielo_especificacion;
-		}
 		//let otro_tipo_cielo_bodega = $("#otro_tipo_cielo_bodega").val();
 		
 		var climatizacion = $("input:checkbox[id=climatizacion]:checked").map(function(){
@@ -235,10 +187,8 @@ function planos(){
 			superficie_bodega,
 			volume_bodega,
 			altura_bodega,
-			array_muro,
-			//otro_tipo_muro_bodega,
-			array_cielo,
-			//otro_tipo_cielo_bodega,
+			tipo_muro,
+			tipo_cielo,
 			array_climatizacion,
 			s_m_t,
 			s_m_t_a,
@@ -331,29 +281,9 @@ $("#btn_nuevo_item_bodega").click(function(){
 	let superficie_bodega = $("#superficie_bodega").val();
 	let volume_bodega = $("#volume_bodega").val();
 	let altura_bodega = $("#altura_bodega").val();
-	let tipo_muro_especificacion = $("#otro_tipo_muro_bodega").val();
-	let tipo_cielo_especificacion = $("#otro_tipo_cielo_bodega").val();
-	var array_muro = "";
-	var array_cielo = "";
+	let tipo_muro = $("#otro_tipo_muro_bodega").val();
+	let tipo_cielo = $("#otro_tipo_cielo_bodega").val();
 
-	if(tipo_muro_especificacion.length == 0){
-		var muro = $("input:checkbox[id=tipo_muro]:checked").map(function(){
-			return this.value;
-		}).get();
-		array_muro = muro.join(', ');
-	}else{
-		array_muro = tipo_muro_especificacion;
-	}
-
-
-	if(tipo_cielo_especificacion.length == 0){
-		var cielo = $("input:checkbox[id=tipo_cielo]:checked").map(function(){
-			return this.value;
-		}).get();
-		array_cielo = cielo.join(', ');
-	}else{
-		array_cielo = tipo_cielo_especificacion;
-	}
 		
 	let climatizacion = $("#climatizacion").val();
 	let s_m_t = $("#s_m_t").val();
@@ -374,8 +304,8 @@ $("#btn_nuevo_item_bodega").click(function(){
 		superficie_bodega,
 		volume_bodega,
 		altura_bodega,
-		array_muro,
-		array_cielo,
+		tipo_muro,
+		tipo_cielo,
 		climatizacion,
 		s_m_t,
 		s_m_t_a,
