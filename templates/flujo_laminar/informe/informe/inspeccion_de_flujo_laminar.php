@@ -720,6 +720,22 @@ mysqli_stmt_store_result($queryPrueba1);
 mysqli_stmt_bind_result($queryPrueba1, $medicion_1, $medicion_2, $medicion_3, $medicion_4, $medicion_5, $medicion_6);
 
 
+$queryMaximoPrueba1 = mysqli_prepare($connect,"SELECT SELECT GREATEST(medicion_1,medicion_2,medicion_3,medicion_4,medicion_5,medicion_6) as m1 FROM flujo_laminar_prueba_3 ORDER BY m1 DESC LIMIT 1 WHERE id_asignado = ? ");
+
+mysqli_stmt_bind_param($queryMaximoPrueba1, 'i', $id_asignado);
+mysqli_stmt_execute($queryMaximoPrueba1);
+mysqli_stmt_store_result($queryMaximoPrueba1);
+mysqli_stmt_bind_result($queryMaximoPrueba1, $valor_maximo);
+
+$queryMinimoPrueba1 = mysqli_prepare($connect,"SELECT LEAST(medicion_1,medicion_2,medicion_3,medicion_4,medicion_5,medicion_6) as m1 FROM flujo_laminar_prueba_3 ORDER BY m1 ASC LIMIT 1
+  WHERE id_asignado = ? ");
+
+mysqli_stmt_bind_param($queryMinimoPrueba1, 'i', $id_asignado);
+mysqli_stmt_execute($queryMinimoPrueba1);
+mysqli_stmt_store_result($queryMinimoPrueba1);
+mysqli_stmt_bind_result($queryMinimoPrueba1, $valor_minimo);
+
+
 $pdf->ln(5);
 $pdf->Cell(25.72,5,'N° de Filtro',1,0,'C',1,'',0);
 $pdf->Cell(25.72,5,'Medición 1(m/s)',1,0,'C',1,'',0);
