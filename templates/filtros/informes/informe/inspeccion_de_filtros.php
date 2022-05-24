@@ -92,7 +92,7 @@ $pdf->SetDrawColor(202,202,202);
    $pdf->ln(7);  
 
    $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
-   $pdf->Cell(155,5,$direccion,1,0,'C',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
 
    $pdf->ln(10);  
 
@@ -324,7 +324,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->ln(7);  
 
    $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
-   $pdf->Cell(155,5,$direccion,1,0,'C',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
 
    $pdf->ln(10);  
 
@@ -496,7 +496,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->ln(7);  
 
    $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
-   $pdf->Cell(155,5,$direccion,1,0,'C',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
 
    $pdf->ln(10);  
 

@@ -219,60 +219,28 @@ function listar_inspeccion_visual(numeral){
                         Filtro N° ${numero}
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_a[]" id="select_filtro">
-                          <option value="${f.zonaA}">${f.zonaA}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_a[]" value="${f.zonaA}">
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_aa[]" id="select_filtro">
-                          <option value="${f.zonaAA}">${f.zonaAA}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_aa[]" value="${f.zonaAA}">
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_b[]" id="select_filtro">
-                          <option value="${f.zonaB}">${f.zonaB}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_b[]" value="${f.zonaB}">
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_bb[]" id="select_filtro">
-                          <option value="${f.zonaBB}">${f.zonaBB}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_bb[]" value="${f.zonaBB}">
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_c[]" id="select_filtro">
-                          <option value="${f.zonaC}">${f.zonaC}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_c[]" value="${f.zonaC}">
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_cc[]" id="select_filtro">
-                          <option value="${f.zonaCC}">${f.zonaCC}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_cc[]" value="${f.zonaCC}">
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_d[]" id="select_filtro">
-                          <option value="${f.zonaD}">${f.zonaD}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_d[]" value="${f.zonaD}">
                       </td>
                       <td>
-                        <select class="form-control" name="cumplimiento_filtro_dd[]" id="select_filtro">
-                          <option value="${f.zonaDD}">${f.zonaDD}</option>
-                          <option value="si">Si</option>
-                          <option value="no">No</option>
-                        </select>
+                        <input type="text" class="form-control" name="cumplimiento_filtro_dd[]" value="${f.zonaDD}">
                       </td>
                     </tr>
                     
@@ -410,56 +378,76 @@ function listar_inspeccion_visual(numeral){
 
                     if(valor.categoria == 1){
 
-                        if(contador1 != 4){
+                        if(contador1 < 2){
                             template1 += 
                                 `
                                 <tr>
                                     <td>${array_nombres1[contador1]}</td>
                                     <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
                                     <td><input type="text" name="resultado_P5[]" class="form-control" value="${valor.resultado}"></td>
-                                    <td><input type="text" name="cumple_P5[]" class="form-control" value="${valor.cumple}"></td>
                                 </tr>
                                 `;
-                        }else{
+                        }else if(contador1 > 1 && contador1< 5){
                             template1 += 
                                 `
                                 <tr>
                                     <td>${array_nombres1[contador1]}</td>
-                                    <input type="hidden" name="id_prueba_P5[]" value="${valor.id_prueba}">
-                                    <td colspan="2"><input type="text" name="cumple_P5a[]" class="form-control" value="${valor.cumple}"></td> 
+                                    <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
+                                    <td><select name="resultado_P5[]" class="form-control">
+                                      <option>${valor.resultado}</option>
+                                      <option>Si</option>
+                                      <option>No</option>
+                                    </select></td>
+                                    <!-- <td colspan="2"><input type="text" name="cumple_P5a[]" class="form-control" value="${valor.resultado}"></td>  -->
                                 </tr>
                                 `;
                         }
                         
-
-
                         contador1++;
                     }
                     else{
-                        if(contador2 < 5){
-                            template2 += 
+                        if(contador2 < 1){
+
+                              template2 += 
                             `
                                 <tr>
                                     <td>${array_nombres2[contador2]}</td>
                                     <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
-                                    <td><input type="text" name="resultado_P5[]" class="form-control" value="${valor.resultado}"></td>
-                                    <td><input type="text" name="cumple_P5[]" class="form-control" value="${valor.cumple}"></td>
+                                    <td>
+                                          <input class="form-control" name="resultado_P5[]" value="${valor.resultado}">
+                                      </td>
                                 </tr>
 
                             `;
+
+                        }else if(contador2 >= 1 && contador2 < 5){
+
+                               template2 += 
+                              `
+                                  <tr>
+                                      <td>${array_nombres2[contador2]}</td>
+                                      <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
+                                      <td>
+                                        <select class="form-control" name="resultado_P5[]">
+                                            <option value="${valor.resultado}">${valor.resultado}</option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select></td>
+                                     
+                                  </tr>
+
+                              `;
 
                         }else{
-
-                            template2 += 
+                             template2 += 
                             `
-                                <tr>
+                               <!-- <tr>
                                     <td>${array_nombres2[contador2]}</td>
-                                    <input type="hidden" name="id_prueba_P5[]" value="${valor.id_prueba}">
-                                    <td colspan="2"><input type="text" name="cumple_P5a[]" class="form-control" value="${valor.cumple}"></td> 
-                                </tr>
+                                    <input type="text" name="id_prueba_5[]" value="${valor.id_prueba}">
+                                    <td colspan="2"><input type="text" name="resultado_P5[]" class="form-control" value="${valor.cumple}"></td> 
+                                </tr>-->
 
                             `;
-
                         }    
                         contador2++;
                     }
@@ -771,7 +759,7 @@ $("#formulario_flujo_laminar").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        //console.log(response);
+        console.log(response);
 
         if (response == ''){
             Swal.fire({
