@@ -338,19 +338,23 @@ else if($orden == 200){
         }
 
     if(mysqli_stmt_num_rows($validador1) == 0 || isset($_POST['accion']) AND $_POST['accion'] =='agregar'){
-
+            
+        
             $creando = mysqli_prepare($connect,"INSERT INTO salas_limpias_prueba_3 (id_asignado) VALUES (?)");
             mysqli_stmt_bind_param($creando, 'i', $id_asignado);
             mysqli_stmt_execute($creando);
-
             $id_item = mysqli_stmt_insert_id($creando);
       
-            for($i = 0; $i <6; $i++){
-              $creando2 = mysqli_prepare($connect,"INSERT INTO datos_de_prueba_3 (id_prueba_3) VALUES (?)");
-              mysqli_stmt_bind_param($creando2, 'i', $id_item);
-              mysqli_stmt_execute($creando2);
-            }
 
+            
+            
+            for($i = 0; $i<3; $i++){
+                $creando2 = mysqli_prepare($connect,"INSERT INTO salas_limpias_datos_de_prueba_3 (id_prueba_3) VALUES (?)");
+                mysqli_stmt_bind_param($creando2, 'i', $id_item);
+                mysqli_stmt_execute($creando2);
+            }
+ 
+       
             
 
     }else if (isset($_POST['accion']) && $_POST['accion'] == 'borrar'){

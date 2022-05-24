@@ -100,7 +100,7 @@ function listar_resultados_prueba(orden){
 
     else if(orden == 2){
 
-        let array_nombres = ['Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación'];
+        let array_nombres = ['Medición Realizada en', 'Resultado (Pa)', 'Tipo de Presión'];
 
 
         $.ajax({
@@ -108,15 +108,44 @@ function listar_resultados_prueba(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
-
+                      
                       //alert(n_prueba);
                       console.log(response);
                       let traer = JSON.parse(response);
                       let template1 = "";
                       let contador = 0;
-
+      
                       traer.forEach((valor)=>{
-
+                        
+                        
+                          if(contador == 2){
+                            template1+= 
+                             `
+                               <div class="col-sm-4">
+                                  <label>${array_nombres[contador]}</label>
+                                  <select class="form-control col-sm-12" name="campo_5[]">
+                                        <option></option>
+                                        <option value"Positiva">Positiva</option>
+                                        <option value"Negativa">Negativa</option>
+                                        <option value="Informativa">Informativa</option>
+                                  </select>
+                               </div>
+                              `;
+                              contador=0;
+                           }else{
+                             template1+= 
+                               `
+                                 <div class="col-sm-4">
+                                    <label>${array_nombres[contador]}</label>
+                                    <input type="text" name="" id="" class="form-control">
+                                 </div>
+                                `;
+                           }
+                        
+                        
+                        
+                          
+                        /*
                           template1 +=
                           `     
                           <table class="table"> 
@@ -135,11 +164,11 @@ function listar_resultados_prueba(orden){
                           </tr>
                           </table> 
                           <button class="btn btn-danger" style="margin-bottom: 20px;" id="eliminar_prueba" data-id="${valor.id}">Eliminar</button> 
-                          `;
+                          `;*/
 
-                                //  contador++
-
-
+                                //  
+                          
+                            contador= contador + 1;
                             });
 
                       $("#tabla").html(template1);

@@ -98,7 +98,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <a data-toggle="collapse" data-target="#collapseOne3"  aria-controls="collapseOne3">
-                                            Prueba de Difencial de Presión
+                                            Prueba de Diferencial de Presión
                                         </a> 
                                     </div>
                                 </div>
