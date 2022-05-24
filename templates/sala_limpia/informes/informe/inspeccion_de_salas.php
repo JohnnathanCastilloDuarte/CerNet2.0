@@ -145,7 +145,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->ln(6);
 
      $pdf->Cell(30,5,'Dirección:',0,0,'J',0,'',0);
-     $pdf->Cell(150,5,$direccion_item,1,0,'J',0,'',0);
+     $pdf->Cell(150,5,$direccion_item,1,0,'C',0,'',0);
 
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
    $pdf->writeHTMLCell(25, 5, 15, '', '' ,0,1, 0, true, 'J', true);
@@ -367,6 +367,21 @@ mysqli_stmt_execute($query4);
 mysqli_stmt_store_result($query4);
 mysqli_stmt_bind_result($query4, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
 
+$cantidad_de_registros = mysqli_stmt_num_rows($query4);
+$array = array($campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
+$g = 1;
+for($i = 0; $i <6; $i++){
+      $pdf->Cell(23,5,'Encabezados',1,0,'C',0,'',1);
+             
+} 
+
+  
+
+
+
+
+
+/*
 $array_resultado = array();
    while($row = mysqli_stmt_fetch($query4)){
 
@@ -422,6 +437,8 @@ $array_resultado = array();
           //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true); 
           $pdf->Cell(23,5,$array_resultado[$i]['campo_6'],1,0,'C',0,'',0);  
       }
+*/
+
 
 $pdf->ln(5);
 

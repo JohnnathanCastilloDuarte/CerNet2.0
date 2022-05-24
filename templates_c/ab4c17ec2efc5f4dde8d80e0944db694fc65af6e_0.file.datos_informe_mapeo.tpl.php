@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-03-23 13:41:32
+/* Smarty version 3.1.34-dev-7, created on 2022-05-19 21:02:58
   from '/home/god/public_html/CerNet2.0/templates/filtros/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_623b238cb18d89_85054810',
+  'unifunc' => 'content_6286b082a7bac1_69558064',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab4c17ec2efc5f4dde8d80e0944db694fc65af6e' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/filtros/datos_informe_mapeo.tpl',
-      1 => 1648042885,
+      1 => 1652480209,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_623b238cb18d89_85054810 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6286b082a7bac1_69558064 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -317,6 +317,7 @@ function content_623b238cb18d89_85054810 (Smarty_Internal_Template $_smarty_tpl)
             <table class="table" style="text-align:center;">
               <thead>
                 <th>Medicion</th>
+                <th>Filtro</th>
                 <th>Valor obtenido</th>
               </thead>
               <tbody id="medicion_del_norma_une_en_iso">

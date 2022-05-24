@@ -202,7 +202,7 @@ $cantidad_sensores = mysqli_stmt_num_rows($consulta_1);
   echo "<table style='text-align:center;' width='30%' border='1'>
 		<tr>
 			<td rowspan='2'>Fecha/Hora</td>
-			<td colspan='$cantidad_sensores'>DATOS CRUDOS SENSORES TEMPERATURA</td>
+			<td colspan='$cantidad_sensores'>DATOS CRUDOS SENSORES HUMEDAD RELATIVA</td>
 		</tr>
 		<tr>";
 	while($row = mysqli_stmt_fetch($consulta_1)){

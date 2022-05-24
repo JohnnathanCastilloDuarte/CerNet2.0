@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-04 21:55:41
+/* Smarty version 3.1.34-dev-7, created on 2022-05-19 16:55:26
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6272f65d2e9928_45697403',
+  'unifunc' => 'content_6286767e465696_46176265',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '809d3cc91e35b6340d4481f2c60b17de004c56dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl',
-      1 => 1651701254,
+      1 => 1652979324,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6272f65d2e9928_45697403 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6286767e465696_46176265 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -270,6 +270,11 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                   <div class="col-sm-6">
                     <label for="">Intervalo:</label>
                     <input type="text" placeholder="Intervalo en seg" class="form-control" id="intervalo_mapeo">
+                  </div>
+                  
+                  <div class="col-sm-6">
+                    <label for="">% de carga:</label>
+                    <input type="text" placeholder="% de carga" class="form-control" id="porcentaje_carga">
                   </div>
                 </div>
 

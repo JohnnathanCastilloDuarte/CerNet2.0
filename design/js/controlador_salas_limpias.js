@@ -127,7 +127,7 @@ function listar_resultados_prueba(orden){
                           <th >${array_nombres[4]}</th>
                           </tr>
                           <tr>
-                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_1[]" required placeholder="Lugar de medición" value="${valor.campo_1}">&nbsp;</td>
+                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_1[]" required placeholder="Lugar de medición" value="${valor.dato}">&nbsp;</td>
                           <td><input required="" type="text" class="form-control col-sm-12" name="campo_3[]" required value="${valor.campo_3}">&nbsp;</td>
                           <td><input required="" type="text" class="form-control col-sm-12" name="campo_4[]" required value="${presion_sala_pa}">&nbsp;</td>
                           <td><select class="form-control col-sm-12" name="campo_5[]"><option>${valor.campo_5}</option><option value"Positiva">Positiva</option><option value"Negativa">Negativa</option><option value="Informativa">Informativa</option></select>&nbsp;</td>

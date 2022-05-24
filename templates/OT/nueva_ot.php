@@ -36,6 +36,7 @@
 	$array_empresa = array();
 	
 	while($row = mysqli_stmt_fetch($empresas)){
+    
 		$array_empresa[] = array(
 			'id_empresa'=>$id_empresa,
 			'empresa'=>$nombre

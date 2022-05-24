@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-03-25 14:34:24
+/* Smarty version 3.1.34-dev-7, created on 2022-05-19 21:16:22
   from '/home/god/public_html/CerNet2.0/templates/item/update_flujo_laminar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_623dd2f0c68bc7_72465388',
+  'unifunc' => 'content_6286b3a6c2d582_86503867',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8dda1dc32591c6de2d03b79da834a85d2a4058a4' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_flujo_laminar.tpl',
-      1 => 1647611800,
+      1 => 1652989796,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_623dd2f0c68bc7_72465388 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6286b3a6c2d582_86503867 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -90,11 +90,23 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
 " placeholder="Área interna">
             </div>
           </div>
+          <br>
           <div class="form-row">
             <div class="col-sm-4">
               <label>Tipo cabina:</label>
-              <input type="text" id="tipo_cabina" class="form-control" placeholder="Tipo cabina" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_cabina'];?>
-">
+              <select class="form-control" id="tipo_cabina">
+                <?php if ($_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_cabina'] == '') {?>
+                <option value="">Seleccione...</option>
+                <option>Vertical</option>
+                <option>Horizontal</option>
+                <?php } else { ?>
+                <option value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_cabina'];?>
+"><?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_cabina'];?>
+</option>
+                <option>Vertical</option>
+                <option>Horizontal</option>
+                <?php }?>
+              </select>
             </div>
             <div class="col-sm-4">
               <label>Marca:</label>
@@ -132,9 +144,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
 " placeholder="Limite penetracion">
             </div>
             <div class="col-sm-4">
-              <label>Eficiencia:</label>
+              <label>Requisito de velocidad de aire:</label>
               <input class="form-control" type="text" name="" id="eficiencia" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['eficiencia'];?>
-" placeholder="Eficiencia">
+" placeholder="Requisito de velocidad de aire">
             </div>
           </div>
 
