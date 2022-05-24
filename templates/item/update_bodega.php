@@ -116,7 +116,7 @@
  	$smarty->assign("cielo_isopol","");
  	$smarty->assign("cielo_plachas_metalicas","");
  	$smarty->assign("otro_cielo","");
- 	$smarty->assign("otro_cielo_e","");
+ 	$smarty->assign("otro_cielo_e",$explode_cielo);
  	$smarty->assign("alimentos","");
  	$smarty->assign("cosmeticos","");
  	$smarty->assign("farmaceutico","");	
@@ -130,7 +130,7 @@
  	$smarty->assign("ladrillo","");
  	$smarty->assign("madera","");
  	$smarty->assign("otro_muro","");
- 	$smarty->assign("otro_muro_e","");
+ 	$smarty->assign("otro_muro_e",$explode_muro);
  	$smarty->assign("monitore_1","");
  	$smarty->assign("monitore_2","");
  	$smarty->assign("alarma_1","");
