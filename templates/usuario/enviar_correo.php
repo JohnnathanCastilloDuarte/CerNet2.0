@@ -6,19 +6,43 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/Exception.php';
 require 'PHPMailer/SMTP.php';
 require("../../config.ini.php");
-  
+
 $variable_url = $_SERVER['HTTP_HOST'];
 $url = "";
 $mail = new PHPMailer(true);
-	
-
-
-
-
-
 $correo = $_POST['email'];
 
-$consultar = mysqli_prepare($connect,"SELECT nombre, apellido, id_usuario FROM persona WHERE email = ?");
+
+
+///////////// REALIZO UNA VALIDACIÓN PARA EVITAR QUE LOS CODIGOS QUEDEN ABIERTOS
+
+$validar_codigos_abiertos = mysqli_prepare($connect,"SELECT id, TIMESTAMPDIFF(SECOND, fecha_registro, NOW()) as diferencia FROM update_password_control 
+WHERE usuario = ?");
+mysqli_stmt_bind_param($validar_codigos_abiertos, 's', $correo);
+mysqli_stmt_execute($validar_codigos_abiertos);
+mysqli_stmt_store_result($validar_codigos_abiertos);
+mysqli_stmt_bind_result($validar_codigos_abiertos, $id_codigo_examinado, $diferencia_tiempo);
+
+while($filita = mysqli_stmt_fetch($validar_codigos_abiertos)){
+
+  if($diferencia_tiempo > 0){
+    $destruir_codigo = mysqli_prepare($connect,"UPDATE update_password_control SET estado = 0 WHERE id = ?");
+    mysqli_stmt_bind_param($destruir_codigo, 'i', $id_codigo_examinado);
+    mysqli_stmt_execute($destruir_codigo);
+  }
+}
+
+
+$array_combinaciones = array('A','B','C','D','E','F','G','H','I','J','K','L','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+                             'a','b','c','d','e','f','g','h','i','j','k','l','n','o','p','q','r','s','t','u','v','w','x','y','z',
+                             0,1,2,3,4,5,6,7,8,9);
+
+$combinacion_final = "";
+$salir = 1;
+$contador = 1;
+
+
+$consultar = mysqli_prepare($connect,"SELECT nombre, apellido, id_usuario FROM persona WHERE email = ? LIMIT 1");
 mysqli_stmt_bind_param($consultar, 's', $correo);
 mysqli_stmt_execute($consultar);
 mysqli_stmt_store_result($consultar);
@@ -28,14 +52,40 @@ mysqli_stmt_bind_result($consultar, $nombre, $apellido, $id_usuario);
 if(mysqli_stmt_num_rows($consultar)> 0){
   while($fila = mysqli_stmt_fetch($consultar)){
 
+    /// REALIZO CREACIÓN DEL CODIGO DE SEGURIDAD
+    do{
+      for($i = 0; $i<11; $i++){
+        $d=rand(1,68);
+        $combinacion_final .= $array_combinaciones[$d];
+      }
     
-    $id_protegido = md5($id_usuario);
+      // consulto en la tabla para validar que el codigo no exista
+    
+      $consultar_codigo = mysqli_prepare($connect,"SELECT id FROM update_password_control WHERE usuario = ? AND codigo = ?");
+      mysqli_stmt_bind_param($consultar_codigo, 'ss', $correo, $combinacion_final);
+      mysqli_stmt_execute($consultar_codigo);
+      mysqli_stmt_store_result($consultar_codigo);
+      mysqli_stmt_bind_result($consultar_codigo, $id_codigo);
+      mysqli_stmt_fetch($consultar_codigo);
+    
+      if(mysqli_stmt_num_rows($consultar_codigo) == 0){
+        $salir = 0;
+        
+        $creando_codigo = mysqli_prepare($connect,"INSERT INTO update_password_control (usuario, codigo) VALUES (?,?)");
+        mysqli_stmt_bind_param($creando_codigo, 'ss', $correo, $combinacion_final);
+        mysqli_stmt_execute($creando_codigo);
+      }
+    
+    }while($salir>0); 
+
+  
+    $id_protegido = "DSLIJFSLDKÑDGOPSDIJG6DF84H86FD1G23DS1GV5D3S1V05DS3B156DF1HF5G63D4G1DV2DS12".$id_usuario;
     if($variable_url == "cercal.net"){
   
       $host = "mail.cercal.net";
       $Username = "cernet_informa@cercal.net";
       $password = "+AayJrvqUdJk";
-      $url = "https://cercal.net/CerNet2.0/restablecer_pass.php?key=".$id_protegido;
+      $url = "https://cercal.net/CerNet2.0/restablecer_pass.php?key=".$id_protegido."&security=".$combinacion_final;
       $url_cernet = "https://cercal.net/CerNet2.0";
       
     }else{
@@ -43,7 +93,7 @@ if(mysqli_stmt_num_rows($consultar)> 0){
       $host = "smtp.gmail.com";
       $Username = "soportecernet@gmail.com";
       $password = "Cercal2021.";
-      $url = "http://localhost/CerNet2.0/restablecer_pass.php?key=".$id_protegido;
+      $url = "https://localhost/CerNet2.0/restablecer_pass.php?key=".$id_protegido."&security=".$combinacion_final;
       $url_cernet = "https://localhost/CerNet2.0";
     }
 
@@ -63,7 +113,7 @@ if(mysqli_stmt_num_rows($consultar)> 0){
           <td></td>
           <td style='text-align: justify;font-size: 12px; color: #4545fb;font-family: arial;'>
               <p style='font-size: 16px;text-align: center;'>
-                  Tu solicitud de cambio de clave, lo podras realizar en el siguiente boton:<br><br>
+                  Tú solicitud de cambio de clave, lo podras realizar en el siguiente boton:<br><br>
                   <a href='".$url."'><input type='button' value='Cambiar clave' style='background: #0d0d82;color: #eef4f4;font-family: quincy;border-radius: 9px;'></a>
                   <br>
               </p>
@@ -135,4 +185,5 @@ if(mysqli_stmt_num_rows($consultar)> 0){
 else{	
   echo "no existe";
 }
+
 ?>

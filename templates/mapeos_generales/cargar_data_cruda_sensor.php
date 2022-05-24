@@ -5,13 +5,14 @@ include('../../config.ini.php');
 $id_mapeo_sensor = $_POST['id_mapeo_sensor'];
 $archivo_sensor = $_POST['archivo_sensor'];
 
-$consultando = mysqli_prepare($connect,"SELECT a.fecha_inicio, a.fecha_fin, a.intervalo FROM mapeo_general AS a,  mapeo_general_sensor AS b WHERE a.id_mapeo = b.id_mapeo AND b.id_sensor_mapeo = ?");
+$consultando = mysqli_prepare($connect,"SELECT a.fecha_inicio, a.fecha_fin, a.intervalo, 
+((DATEDIFF(a.fecha_fin,a.fecha_inicio) * 1440) / (a.intervalo / 60)) as cantidad_mediciones  
+FROM mapeo_general AS a,  mapeo_general_sensor AS b WHERE a.id_mapeo = b.id_mapeo AND b.id_sensor_mapeo = ?");
 mysqli_stmt_bind_param($consultando, 'i', $id_mapeo_sensor);
 mysqli_stmt_execute($consultando);
 mysqli_stmt_store_result($consultando);
-mysqli_stmt_bind_result($consultando, $fecha_inicio, $fecha_fin, $intervalo);
+mysqli_stmt_bind_result($consultando, $fecha_inicio, $fecha_fin, $intervalo, $diferencia);
 mysqli_stmt_fetch($consultando);
-
 
 $directorio_carga="datos_crudos/mapeo_termico_#_".$id_mapeo_sensor."/";
 $nombre_archivo_n = "data_cruda.csv";
@@ -94,7 +95,7 @@ else
       }
       
    
-
+      $contador_sub = 1;
       while(($column=fgetcsv($abrir_archivo,10000,";","\t"))!==false){
         
           
@@ -107,7 +108,7 @@ else
          $validador_fecha = strpos($column[1], '/');
           
          if($validador_fecha){
-           echo "fecha";
+            str_replace("/","-",$column[1]);
            break;
          }else{
            
@@ -120,18 +121,25 @@ else
                 $fecha_suma=$fecha_suma;
             } 
             
-          
+       
             
             
             $fecha_sql=date("Y-m-d H:i:s",strtotime($column[1]));
-            
-            if($fecha_sql>=$fecha_inicio && $fecha_sql<=$fecha_fin){
+          
+            if($fecha_sql>=$fecha_inicio && $contador_sub  <= $diferencia){
+              
+              $temp = str_replace(',','.', $column[2]);
+              $hum = str_replace(',','.', $column[3]);
                 
+                  
                 $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
-                mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $column[2], $column[3]);
+                mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $temp, $hum);
                 mysqli_stmt_execute($insertando);
                 $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));
-                $z_1=2; 
+                $z_1=2;
+               
+              
+              $contador_sub++;
             } 
                             
         }

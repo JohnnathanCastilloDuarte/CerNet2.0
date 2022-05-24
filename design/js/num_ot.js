@@ -125,48 +125,55 @@ var id_gestionar = "";
 
 
 //crear ot
-(function(){
 	
 	$("#btn_nueva_ot").click(function(){
 	
 			let num_ot =$("#num_ot").val().toUpperCase();
-	
+      let id_empresa = $("#id_empresa").val(); 
+	    
+      if(id_empresa.length == 0){
+        Swal.fire({
+          title:'Mensaje',
+          text:'No puedes Generar una ot sin una Empresa',
+          icon:'warning',
+          timer:1800
+        })  
+      }else{
+        const recojo = {
+          num_ot : $("#num_ot").val(),
+          empresa : $("#empresa_ot_n").val(),
+          c_informes : $("#cantidad_informes_ot_n").val(),
+          u_asignado : $("#id_usuario").val(),
+          f_creacion : $("#fecha_creacion_ot_n").val(),
+          f_asignacion : $("#fecha_asignacion_ot_n").val(),
+          u_creador : $("#id_valida").val(),
+          id_valida : $("#id_valida").val(),
+          id_empresa
+        }
+
 		
-		const recojo = {
-			num_ot : $("#num_ot").val(),
-			empresa : $("#empresa_ot_n").val(),
-			c_informes : $("#cantidad_informes_ot_n").val(),
-			u_asignado : $("#id_usuario").val(),
-			f_creacion : $("#fecha_creacion_ot_n").val(),
-			f_asignacion : $("#fecha_asignacion_ot_n").val(),
-			u_creador : $("#id_valida").val(),
-			id_valida : $("#id_valida").val(),
-      id_empresa: $("#id_empresa").val()
-		}
-		
-		$.post('templates/OT/nuevo_ot.php',recojo, function(e){
-      console.log(e);
+		  $.post('templates/OT/nuevo_ot.php',recojo, function(e){
+      
 			let ultimo_id = JSON.parse(e);
 			let  final = ultimo_id.id_ultimo;	
 			$("#id_ot_oculto").val(final);
 				
-			if(ultimo_id.id_ultimo != ""){
-				Swal.fire({
-					position :'center',
-					title: 'Registro creado correctamente',
-					icon: 'success',
-					timer: 1500,
-				});
-				
-				$("#btn_gestionar_ot_1").show();
-				$("#btn_nueva_ot").hide();
-			}	
-			
-		});
-	});
-	
-}());
+			  if(ultimo_id.id_ultimo != ""){
+          Swal.fire({
+            position :'center',
+            title: 'Registro creado correctamente',
+            icon: 'success',
+            timer: 1500,
+          });
 
+          $("#btn_gestionar_ot_1").show();
+          $("#btn_nueva_ot").hide();
+			   }	
+			
+		    });
+	    }
+
+  });
 
 
 function validar(){

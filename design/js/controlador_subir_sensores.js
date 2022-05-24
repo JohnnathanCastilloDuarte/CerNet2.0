@@ -15,7 +15,6 @@ $("#subir_sensores").submit(function(e){
       contentType: false,
       processData: false,
       success:function(response) {
-        console.log(response);
         $("#mostrar_resultados").html(response)
       } 
     });  

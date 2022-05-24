@@ -37,26 +37,21 @@ else if($orden == 2){
     $id_asignado = $_POST['id_asignado'];
     $array_resultado = array();
     $n_prueba = $_POST['n_prueba'];
-
-    $consultar = mysqli_prepare($connect,"SELECT b.id_prueba, a.campo_1, a.campo_2, a.campo_3, a.campo_4, a.campo_5, a.campo_6 
-        FROM datos_de_prueba_3 a, salas_limpias_prueba_3 b
+  
+  
+    $consultar = mysqli_prepare($connect,"SELECT b.id_prueba, a.dato 
+        FROM salas_limpias_datos_de_prueba_3 a, salas_limpias_prueba_3 b
         WHERE a.id_prueba_3=b.id_prueba AND  b.id_asignado = ? ");
     mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
     mysqli_stmt_execute($consultar);
     mysqli_stmt_store_result($consultar);
-    mysqli_stmt_bind_result($consultar, $id, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
+    mysqli_stmt_bind_result($consultar, $id, $dato);
     
     while($row = mysqli_stmt_fetch($consultar)){
 
         $array_resultado[] = array(
             'id'=>$id,
-            'campo_1'=>$campo_1,
-            'campo_2'=>$campo_2,
-            'campo_3'=>$campo_3,
-            'campo_4'=>$campo_4,
-            'campo_5'=>$campo_5,
-            'campo_6'=>$campo_6,
-             
+            'campo_1'=>$dato,             
         );
     }
 
@@ -349,10 +344,14 @@ else if($orden == 200){
             mysqli_stmt_execute($creando);
 
             $id_item = mysqli_stmt_insert_id($creando);
+      
+            for($i = 0; $i <6; $i++){
+              $creando2 = mysqli_prepare($connect,"INSERT INTO datos_de_prueba_3 (id_prueba_3) VALUES (?)");
+              mysqli_stmt_bind_param($creando2, 'i', $id_item);
+              mysqli_stmt_execute($creando2);
+            }
 
-            $creando2 = mysqli_prepare($connect,"INSERT INTO datos_de_prueba_3 (id_prueba_3) VALUES (?)");
-            mysqli_stmt_bind_param($creando2, 'i', $id_item);
-            mysqli_stmt_execute($creando2);
+            
 
     }else if (isset($_POST['accion']) && $_POST['accion'] == 'borrar'){
 

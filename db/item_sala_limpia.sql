@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2022 a las 21:26:21
+-- Tiempo de generación: 10-05-2022 a las 17:37:29
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.22
 
@@ -52,8 +52,18 @@ CREATE TABLE `item_sala_limpia` (
   `puntos_muestreo` varchar(50) NOT NULL,
   `temp_informativa` varchar(50) NOT NULL,
   `hum_informativa` varchar(50) NOT NULL,
+  `cantidad_extracciones` varchar(50) NOT NULL,
+  `cantidad_inyecciones` varchar(50) NOT NULL,
   `fecha_registro` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `item_sala_limpia`
+--
+
+INSERT INTO `item_sala_limpia` (`id`, `id_item`, `Area_sala_limpia`, `Codigo`, `direccion`, `area_interna`, `Area_m2`, `volumen_m3`, `Estado_sala`, `especificacion_1_temp`, `especificacion_2_temp`, `especificacion_1_hum`, `especificacion_2_hum`, `clasificacion_oms`, `clasificacion_iso`, `ren_hr`, `lux`, `ruido_dba`, `presion_sala`, `presion_versus`, `tipo_presion`, `puntos_muestreo`, `temp_informativa`, `hum_informativa`, `cantidad_extracciones`, `cantidad_inyecciones`, `fecha_registro`) VALUES
+(1, 13, 'asf', 'as', 'as', 'asf', 'as', 'as', 'as', '12', '12', '12', '12', 'D', '2', '12', '12', '12', '12', '12', '12', '12', '12', '12', '', '', '2022-05-05 20:20:42'),
+(2, 14, NULL, 'c12', 'Av. los leones, 382', 'area', '12', '12', 'Operacion', '16', '15', '15', '15', 'A', 'A', '12', '12', '12', '12', '12', '12', '12', 'No', 'No', '16', '16', '2022-05-10 15:22:43');
 
 --
 -- Índices para tablas volcadas
@@ -73,7 +83,7 @@ ALTER TABLE `item_sala_limpia`
 -- AUTO_INCREMENT de la tabla `item_sala_limpia`
 --
 ALTER TABLE `item_sala_limpia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id primaria';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id primaria', AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

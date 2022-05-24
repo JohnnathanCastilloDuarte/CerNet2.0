@@ -3,7 +3,7 @@
 include('../../config.ini.php');
 
 $directorio_carga="archivos/";
-$nombre_archivo_n = "sensor".$incrementador.".csv";
+$nombre_archivo_n = "sensor.csv";
 $personalizado = $directorio_carga.$nombre_archivo_n;
 
 if(is_dir($directorio_carga)===false)
@@ -55,8 +55,10 @@ else
       while(($column=fgetcsv($abrir_archivo,10000,";","\t"))!==false){
         
         if($contador > 0){
-           
-            if($colum[0] != ""){    
+                
+        
+            if(strpos($column[0], "V") == 0){  
+               
               $validador_supra = mysqli_prepare($connect,"SELECT id_certificado FROM sensores_certificados WHERE certificado = ?");
 
               //$validador_supra = mysqli_prepare($connect,"SELECT a.id_certificado 
@@ -70,8 +72,7 @@ else
 
               if(mysqli_stmt_num_rows($validador_supra) == 0){
 
-
-
+              
                 $validar1 = mysqli_prepare($connect,"SELECT id_sensor FROM sensores WHERE nombre = ?");
                 mysqli_stmt_bind_param($validar1, 's', $column[0]);
                 mysqli_stmt_execute($validar1);
@@ -110,8 +111,9 @@ else
 
           }
 
-          $contador++;
+          
         }///////////// CIERRE IF CATALIZADOR  
+        $contador++;
       }
      
       echo "<span class='text-success'>Se ha insertado $aciertos sensores de $contador encontrados </span>";
