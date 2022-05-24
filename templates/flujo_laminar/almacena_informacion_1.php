@@ -162,6 +162,28 @@ for($i = 0; $i < count($id_prueba_5); $i++){
 
    
 }
+//
+$id_medicion_p9 = $_POST['id_medicion_p9'];
+$medicion1_p9 = $_POST['medicion1_p9'];
+$medicion2_p9 = $_POST['medicion2_p9'];
+$medicion3_p9 = $_POST['medicion3_p9'];
+
+
+for($i = 0; $i < count($id_medicion_p9); $i++){
+
+    $actualizar8 = mysqli_prepare($connect,"UPDATE flujo_laminar_prueba_7 SET media_promedios= ?,desviacion_estandar= ?,maximo= ? WHERE id = ?");
+    mysqli_stmt_bind_param($actualizar8, 'sssi', $medicion1_p9[$i], $medicion2_p9[$i], $medicion3_p9[$i],$id_medicion_p9[$i]);
+    mysqli_stmt_execute($actualizar8);
+
+    if(!$actualizar4){
+        echo "Error al actualizar prueba 4 ".mysqli_stmt_error($actualizar4);
+    }
+
+}
+
+
+
+
 
 
 $id_prueba_p6 = $_POST['id_prueba_p6'];
