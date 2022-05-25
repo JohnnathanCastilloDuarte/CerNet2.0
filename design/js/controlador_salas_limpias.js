@@ -13,6 +13,8 @@ var especificacion_1_temp = $("#especificacion_1_temp").val();
 var especificacion_2_temp = $("#especificacion_2_temp").val();
 var especificacion_1_hum = $("#especificacion_1_hum").val();
 var especificacion_2_hum = $("#especificacion_2_hum").val();
+var n_rejillas = $("#ensayo_p52").val();
+var n_extractores = $("#ensayo_p53").val();
 var lux = Number($("#lux").val());
 var ruido_dba = Number($("#ruido_dba").val());
 var ren_hr = Number($("#ren_hr").val());
@@ -392,25 +394,71 @@ else if(orden == 4){
 
                     if (contador < 3){
 
+
+                       
+                        let bl1 = "readonly";
+                        let bl2 = "readonly";
+                        let bl3 = "readonly";
+                        let bl4 = "readonly";
+                        let bl5 = "readonly";
+                        let bl6 = "readonly";
+                        let bl7 = "readonly";
+                        let bl8 = "readonly";
+                        let bl9 = "readonly";
+                        let bl10 = "readonly";
+                        let bl11 = "readonly";
+                        let bl12 = "readonly";
+                        let bl13 = "readonly";
+                        let bl14 = "readonly";
+                        let bl15 = "readonly";
+
+                        bloquedo = [
+
+                          bl1,
+                          bl2,
+                          bl3,
+                          bl4,
+                          bl5,
+                          bl6,
+                          bl7,
+                          bl8,
+                          bl9,
+                          bl10,
+                          bl11,
+                          bl12,
+                          bl13,
+                          bl14,
+                          bl15
+                        ]
+
+                         
+
+                        for(i = 0; i < n_rejillas; i++){
+
+                           bloquedo[i] = ""
+
+                        }
+
+
                         template+= 
                         `
                         <tr>
                         <td>${enunciados[contador]}<input type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
-                        <td><input type="number" name="n1[]" id="n1${contador}" class="form-control" value="${valor.n1}"></td>
-                        <td><input type="number" name="n2[]" class="form-control" value="${valor.n2}"></td>
-                        <td><input type="number" name="n3[]" class="form-control" value="${valor.n3}"></td>
-                        <td><input type="number" name="n4[]" class="form-control" value="${valor.n4}"></td>
-                        <td><input type="number" name="n5[]" class="form-control" value="${valor.n5}"></td>
-                        <td><input type="number" name="n6[]" class="form-control" value="${valor.n6}"></td>
-                        <td><input type="number" name="n7[]" class="form-control" value="${valor.n7}"></td>
-                        <td><input type="number" name="n8[]" class="form-control" value="${valor.n8}"></td>
-                        <td><input type="number" name="n9[]" class="form-control" value="${valor.n9}"></td>
-                        <td><input type="number" name="n10[]" class="form-control" value="${valor.n10}"></td>
-                        <td><input type="number" name="n11[]" class="form-control" value="${valor.n11}"></td>
-                        <td><input type="number" name="n12[]" class="form-control" value="${valor.n12}"></td>
-                        <td><input type="number" name="n13[]" class="form-control" value="${valor.n13}"></td>
-                        <td><input type="number" name="n14[]" class="form-control" value="${valor.n14}"></td>
-                        <td><input type="number" name="n15[]" class="form-control" value="${valor.n15}"></td>
+                        <td><input type="text" name="n1[]" id="n1${contador}" class="form-control" value="${valor.n1}" ${bloquedo[0]}></td>
+                        <td><input type="text" name="n2[]" class="form-control" value="${valor.n2}" ${bloquedo[1]}></td>
+                        <td><input type="text" name="n3[]" class="form-control" value="${valor.n3}" ${bloquedo[2]}></td>
+                        <td><input type="text" name="n4[]" class="form-control" value="${valor.n4}" ${bloquedo[3]}></td>
+                        <td><input type="text" name="n5[]" class="form-control" value="${valor.n5}" ${bloquedo[4]}></td>
+                        <td><input type="text" name="n6[]" class="form-control" value="${valor.n6}" ${bloquedo[5]}></td>
+                        <td><input type="text" name="n7[]" class="form-control" value="${valor.n7}" ${bloquedo[6]}></td>
+                        <td><input type="text" name="n8[]" class="form-control" value="${valor.n8}" ${bloquedo[7]}></td>
+                        <td><input type="text" name="n9[]" class="form-control" value="${valor.n9}" ${bloquedo[8]}></td>
+                        <td><input type="text" name="n10[]" class="form-control" value="${valor.n10}" ${bloquedo[9]}></td>
+                        <td><input type="text" name="n11[]" class="form-control" value="${valor.n11}" ${bloquedo[10]}></td>
+                        <td><input type="text" name="n12[]" class="form-control" value="${valor.n12}" ${bloquedo[11]}></td>
+                        <td><input type="text" name="n13[]" class="form-control" value="${valor.n13}" ${bloquedo[12]}></td>
+                        <td><input type="text" name="n14[]" class="form-control" value="${valor.n14}" ${bloquedo[13]}></td>
+                        <td><input type="text" name="n15[]" class="form-control" value="${valor.n15}" ${bloquedo[14]}></td>
                         </tr>
                         `;
                     }else if (contador == 3){
@@ -444,25 +492,69 @@ else if(orden == 4){
                 else{
 
                     if (contador1 < 3){
+
+                        let bl1 = "readonly";
+                        let bl2 = "readonly";
+                        let bl3 = "readonly";
+                        let bl4 = "readonly";
+                        let bl5 = "readonly";
+                        let bl6 = "readonly";
+                        let bl7 = "readonly";
+                        let bl8 = "readonly";
+                        let bl9 = "readonly";
+                        let bl10 = "readonly";
+                        let bl11 = "readonly";
+                        let bl12 = "readonly";
+                        let bl13 = "readonly";
+                        let bl14 = "readonly";
+                        let bl15 = "readonly";
+
+                        bloquedo = [
+
+                          bl1,
+                          bl2,
+                          bl3,
+                          bl4,
+                          bl5,
+                          bl6,
+                          bl7,
+                          bl8,
+                          bl9,
+                          bl10,
+                          bl11,
+                          bl12,
+                          bl13,
+                          bl14,
+                          bl15
+                        ]
+
+                         
+
+                        for(i = 0; i < n_extractores; i++){
+
+                           bloquedo[i] = ""
+
+                        }
+
                     template2+= 
                     `
                     <tr>
                     <td>${enunciados[contador1]}<input type="hidden" name="id_prueba_8[]" value="${valor.id_prueba}"></td>
-                    <td><input type="number" name="n1[]" class="form-control" value="${valor.n1}"></td>
-                    <td><input type="number" name="n2[]" class="form-control" value="${valor.n2}"></td>
-                    <td><input type="number" name="n3[]" class="form-control" value="${valor.n3}"></td>
-                    <td><input type="number" name="n4[]" class="form-control" value="${valor.n4}"></td>
-                    <td><input type="number" name="n5[]" class="form-control" value="${valor.n5}"></td>
-                    <td><input type="number" name="n6[]" class="form-control" value="${valor.n6}"></td>
-                    <td><input type="number" name="n7[]" class="form-control" value="${valor.n7}"></td>
-                    <td><input type="number" name="n8[]" class="form-control" value="${valor.n8}"></td>
-                    <td><input type="number" name="n9[]" class="form-control" value="${valor.n9}"></td>
-                    <td><input type="number" name="n10[]" class="form-control" value="${valor.n10}"></td>
-                    <td><input type="number" name="n11[]" class="form-control" value="${valor.n11}"></td>
-                    <td><input type="number" name="n12[]" class="form-control" value="${valor.n12}"></td>
-                    <td><input type="number" name="n13[]" class="form-control" value="${valor.n13}"></td>
-                    <td><input type="number" name="n14[]" class="form-control" value="${valor.n14}"></td>
-                    <td><input type="number" name="n15[]" class="form-control" value="${valor.n15}"></td>
+                    <td><input type="text" name="n1[]" class="form-control" value="${valor.n1}" ${bloquedo[0]}></td>
+                    <td><input type="text" name="n2[]" class="form-control" value="${valor.n2}" ${bloquedo[1]}></td>
+                    <td><input type="text" name="n3[]" class="form-control" value="${valor.n3}" ${bloquedo[2]}></td>
+                    <td><input type="text" name="n4[]" class="form-control" value="${valor.n4}" ${bloquedo[3]}></td>
+                    <td><input type="text" name="n5[]" class="form-control" value="${valor.n5}" ${bloquedo[4]}></td>
+                    <td><input type="text" name="n6[]" class="form-control" value="${valor.n6}" ${bloquedo[5]}></td>
+                    <td><input type="text" name="n7[]" class="form-control" value="${valor.n7}" ${bloquedo[6]}></td>
+                    <td><input type="text" name="n8[]" class="form-control" value="${valor.n8}" ${bloquedo[7]}></td>
+                    <td><input type="text" name="n9[]" class="form-control" value="${valor.n9}" ${bloquedo[8]}></td>
+                    <td><input type="text" name="n10[]" class="form-control" value="${valor.n10}" ${bloquedo[9]}></td>
+                    <td><input type="text" name="n11[]" class="form-control" value="${valor.n11}" ${bloquedo[10]}></td>
+                    <td><input type="text" name="n12[]" class="form-control" value="${valor.n12}" ${bloquedo[11]}></td>
+                    <td><input type="text" name="n13[]" class="form-control" value="${valor.n13}" ${bloquedo[12]}></td>
+                    <td><input type="text" name="n14[]" class="form-control" value="${valor.n14}" ${bloquedo[13]}></td>
+                    <td><input type="text" name="n15[]" class="form-control" value="${valor.n15}" ${bloquedo[14]}></td>
                     </tr>
                     `;
                     }else if (contador1 == 3){
