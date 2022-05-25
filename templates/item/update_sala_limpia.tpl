@@ -88,6 +88,7 @@
                   <option value="7">ISO 7</option>
                   <option value="8">ISO 8</option>
                   <option value="9">ISO 9</option>
+                  <option value="No Aplica">No Aplica</option>
                 {else if $sala_limpia.clasificacion_oms != ''}
                    <option value="{$sala_limpia.clasificacion_iso}">ISO {$sala_limpia.clasificacion_iso}</option>
                    <option value="5">ISO 5</option>
@@ -95,6 +96,7 @@
                    <option value="7">ISO 7</option>
                    <option value="8">ISO 8</option>
                    <option value="9">ISO 9</option>
+                  <option value="No Aplica">No Aplica</option>
                 {/if}   
                 <select>
               </div>

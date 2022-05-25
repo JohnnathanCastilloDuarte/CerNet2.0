@@ -31,11 +31,6 @@ mysqli_stmt_store_result($consulta_empresa);
 mysqli_stmt_bind_result($consulta_empresa,$logo_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $direccion_empresa, $insp1, $insp2, $insp3, $insp4,  $insp5, $insp6, $id_informe, $solicitante, $conclusion, $usuario_responsable, $fecha_medicion);
 mysqli_stmt_fetch($consulta_empresa);
 
-/*echo "SELECT d.logo, e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, d.direccion, e.insp1, e.insp2, e.insp3, e.insp4, e.insp5, e.insp6, e.id_informe , e.solicitante, e.conclusion 
-FROM item_asignado as a, servicio as b, numot as c, empresa as d, informe_filtro as e  
-   WHERE a.id_asignado = $id_asignado AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado";*/
-
-
   
   $consultar_responsable = mysqli_prepare($connect,"SELECT b.nombre, b.apellido, c.nombre 
   FROM usuario a, persona b, cargo c WHERE a.id_usuario = b.id_usuario AND c.id_cargo = b.id_cargo AND a.usuario = ?");
@@ -408,7 +403,7 @@ mysqli_stmt_fetch($buscar_imagen_1);
 if ($url_imagen1 == '') {
   $url_img = '';
 }else{
-$url_img = $url_imagen1;    
+$url_img = '../../'.$url_imagen1;    
 }
 
 $linea = <<<EOD
@@ -446,7 +441,7 @@ $linea = <<<EOD
          <td><h2>Imagen de la Medición</h2></td>
       </tr>
       <tr>
-         <td style= "height: 150px;"><img src="../../$url_img" style="width: 200px;"></td>
+         <td style= "height: 150px;"><img src="$url_img" style="width: 200px;"></td>
       </tr>
 </table>
 

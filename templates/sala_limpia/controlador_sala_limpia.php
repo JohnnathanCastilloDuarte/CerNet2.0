@@ -39,19 +39,21 @@ else if($orden == 2){
     $n_prueba = $_POST['n_prueba'];
   
   
-    $consultar = mysqli_prepare($connect,"SELECT b.id_prueba, a.dato 
+    $consultar = mysqli_prepare($connect,"SELECT b.id_prueba, a.dato, a.id_prueba_3, a.id  
         FROM salas_limpias_datos_de_prueba_3 a, salas_limpias_prueba_3 b
         WHERE a.id_prueba_3=b.id_prueba AND  b.id_asignado = ? ");
     mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
     mysqli_stmt_execute($consultar);
     mysqli_stmt_store_result($consultar);
-    mysqli_stmt_bind_result($consultar, $id, $dato);
+    mysqli_stmt_bind_result($consultar, $id, $dato, $id_prueba_3, $id_prueba_3_individual);
     
     while($row = mysqli_stmt_fetch($consultar)){
 
         $array_resultado[] = array(
             'id'=>$id,
-            'campo_1'=>$dato,             
+            'campo_1'=>$dato,
+            'id_prueba_3'=>$id_prueba_3,
+            'id_prueba_3_individual'=>$id_prueba_3_individual
         );
     }
 
@@ -348,7 +350,7 @@ else if($orden == 200){
 
             
             
-            for($i = 0; $i<3; $i++){
+            for($i = 0; $i<4; $i++){
                 $creando2 = mysqli_prepare($connect,"INSERT INTO salas_limpias_datos_de_prueba_3 (id_prueba_3) VALUES (?)");
                 mysqli_stmt_bind_param($creando2, 'i', $id_item);
                 mysqli_stmt_execute($creando2);
@@ -360,22 +362,36 @@ else if($orden == 200){
     }else if (isset($_POST['accion']) && $_POST['accion'] == 'borrar'){
 
          $id_prueba_3 = $_POST['id_prueba_3']; 
-
-         $query = "DELETE FROM datos_de_prueba_3 WHERE id_prueba_3 = ? ";
-         $execute_query_1 = mysqli_prepare($connect,$query);
-         mysqli_stmt_bind_param($execute_query_1, 'i', $id_prueba_3);
-         mysqli_stmt_execute($execute_query_1);
-
-         $query2 = "DELETE FROM salas_limpias_prueba_3 WHERE id_prueba = ? ";
-         $execute_query_2 = mysqli_prepare($connect,$query);
-         mysqli_stmt_bind_param($execute_query_2, 'i', $id_prueba_3);
-         mysqli_stmt_execute($execute_query_2);
-
-         if ($query && $query2) {
-             echo "Si";
-         }else{
-            echo "No";
-         }
+         $id_prueba_padre = $_POST['id_prueba_padre'];
+         $contador_eliminaciones = 1;
+      
+        $consultar_salas = mysqli_prepare($connect, "SELECT id FROM salas_limpias_datos_de_prueba_3 WHERE id_prueba_3 = ?");
+        mysqli_stmt_bind_param($consultar_salas, 'i', $id_prueba_padre);
+        mysqli_stmt_execute($consultar_salas);
+        mysqli_stmt_store_result($consultar_salas);
+        mysqli_stmt_bind_result($consultar_salas, $id_eliminar);
+        
+        while(mysqli_stmt_fetch($consultar_salas)){
+          
+          $eliminar_masivos_prueba = mysqli_prepare($connect,"DELETE FROM salas_limpias_datos_de_prueba_3 WHERE id = ?");
+          mysqli_stmt_bind_param($eliminar_masivos_prueba, 'i', $id_eliminar);
+          mysqli_stmt_execute($eliminar_masivos_prueba);
+          if($eliminar_masivos_prueba){
+            $contador_eliminaciones++;
+          }
+        }
+      
+        if($eliminar_masivos_prueba == mysqli_stmt_num_rows($consultar_salas)){
+            $query2 = "DELETE FROM salas_limpias_prueba_3 WHERE id_prueba = ? ";
+             $execute_query_2 = mysqli_prepare($connect,$query);
+             mysqli_stmt_bind_param($execute_query_2, 'i', $id_prueba_3);
+             mysqli_stmt_execute($execute_query_2);
+          
+            if($execute_query_2){
+              echo "Listo";
+            }
+        }
+      
     }  
 
 }

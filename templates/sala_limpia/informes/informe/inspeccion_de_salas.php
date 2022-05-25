@@ -11,7 +11,7 @@ $id_asignado = substr($clave, 97);
 /////// CONSULTA TRAE INFORMACIÓN DEL EQUIPO
 $consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.nombre, b.area_interna, b.codigo, 
    b.area_m2, b.volumen_m3, b.estado_sala, b.direccion, b.especificacion_1_temp, 
-   b.especificacion_1_hum, b.ruido_dba, b.lux, b.clasificacion_oms, b.clasificacion_iso, b.ren_hr, b.especificacion_2_temp, b.especificacion_2_hum, b.cantidad_extracciones, b.cantidad_inyecciones 
+   b.especificacion_1_hum, b.ruido_dba, b.lux, b.clasificacion_oms, b.clasificacion_iso, b.ren_hr, b.especificacion_2_temp, b.especificacion_2_hum, b.cantidad_extracciones, b.cantidad_inyecciones, b.presion_sala
    FROM item as a, item_sala_limpia as b, item_asignado as c 
    WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item");
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
@@ -19,7 +19,7 @@ mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
 mysqli_stmt_bind_result($consulta_informacion_informe, $nombre_sala, $area_sala, $codigo_sala, 
    $area_m2, $volumen_m3, $estado_sala, $direccion_item, $especificacion_1_temp, 
-   $especificacion_1_hum, $ruido_dba_item, $lux_item,$clasificacion_oms, $clasificacion_iso, $ren_hr, $especificacion_2_temp, $especificacion_2_hum, $cantidad_extracciones, $numero_rejillas);
+   $especificacion_1_hum, $ruido_dba_item, $lux_item,$clasificacion_oms, $clasificacion_iso, $ren_hr, $especificacion_2_temp, $especificacion_2_hum, $cantidad_extracciones, $numero_rejillas, $presion_sala);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
 
@@ -479,17 +479,15 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
       }else{
          $estado_temperatura = 'NO CUMPLE';
       }
-      //$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,°C: ' ,0,0, 0, true, 'C', true);
-      //$pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
+
        $pdf->Cell(30,5,'Resultado,°C: ',1,0,'L',0,'',0); 
        $pdf->Cell(30,5,$promedio,1,0,'C',0,'',0); 
 
-      //$pdf->writeHTMLCell(45, 5, 75, '', 'Especificación Temperatura:' ,1,0, 0, true, 'J', true);
-      //$pdf->writeHTMLCell(40, 5, 120, '', 'Entre '.$especificacion_2_temp.'°C y '.$especificacion_1_temp.'°C' ,1,0, 0, true, 'C', true);
+     
        $pdf->Cell(45,5,'Especificación Temperatura:',1,0,'L',0,'',0); 
        $pdf->Cell(40,5,'Entre '.$especificacion_2_temp.'°C y '.$especificacion_1_temp.'°C' ,1,0,'C',0,'',0); 
 
-       //$pdf->writeHTMLCell(35, 5, 160, '', $estado_temperatura ,1,1, 0, true, 'C', true);
+   
        $pdf->Cell(35,5,$estado_temperatura,1,0,'C',0,'',0); 
        $pdf->ln(5);
    }elseif ($categoria == 2) {
@@ -557,7 +555,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
 
 
       $pdf->Cell(45,5,'Especificación, Lux:',1,0,'L',0,'',0);
-      $pdf->Cell(40,5,'> ='.$lux_item,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,' >= '.$lux_item,1,0,'C',0,'',0);
 
       $pdf->Cell(35,5,$estado_lux,1,0,'C',0,'',0);
       $pdf->ln(5); 
@@ -573,7 +571,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
 
 
       $pdf->Cell(45,5,'Especificación, dbA:',1,0,'L',0,'',0);
-      $pdf->Cell(40,5,' < ='.$ruido_dba_item,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,' <= '.$ruido_dba_item,1,0,'C',0,'',0);
 
       $pdf->Cell(35,5,$estado_dba,1,0,'C',0,'',0);
       $pdf->ln(5); 
@@ -1008,7 +1006,7 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-
+/*
 $nombres = array('Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación');
 $contador = 0;
 
@@ -1019,6 +1017,7 @@ mysqli_stmt_bind_param($query4, 'i', $id_asignado);
 mysqli_stmt_execute($query4);
 mysqli_stmt_store_result($query4);
 mysqli_stmt_bind_result($query4, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
+
 
 $array_resultado = array();
    while($row = mysqli_stmt_fetch($query4)){
@@ -1075,6 +1074,72 @@ $array_resultado = array();
           //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true); 
           $pdf->Cell(23,5,$array_resultado[$i]['campo_6'],1,0,'C',0,'',0);  
       }
+*/
+ $contadorcito = 1;
+ $pdf->Cell(30,5,'Lugar Medición',1,0,'C',1,'',1);
+ $pdf->Cell(30,5,'Medición realizada en',1,0,'C',1,'',0);
+ $pdf->Cell(30,5,'Resultado (Pa)',1,0,'C',1,'',0);
+ $pdf->Cell(30,5,'Presión especificada (Pa)',1,0,'C',1,'',0);
+ $pdf->Cell(30,5,'Tipo presión',1,0,'C',1,'',0);
+ $pdf->Cell(30,5,'Cumple especificación',1,1,'C',1,'',0);
+
+  $query_extrae_prueba = mysqli_prepare($connect,"SELECT A.dato FROM salas_limpias_datos_de_prueba_3 as A, 
+  salas_limpias_prueba_3 as B WHERE A.id_prueba_3 = B.id_prueba AND B.id_asignado = ?");
+  mysqli_stmt_bind_param($query_extrae_prueba, 'i', $id_asignado);
+  mysqli_stmt_execute($query_extrae_prueba);
+  mysqli_stmt_store_result($query_extrae_prueba);
+  mysqli_stmt_bind_result($query_extrae_prueba, $dato);
+  $cumple_presion = "";
+
+  for($i = 0; $i < mysqli_stmt_num_rows($query_extrae_prueba); $i++){
+      mysqli_stmt_fetch($query_extrae_prueba);
+    
+        
+      if($contadorcito == 1){
+        $pdf->Cell(30,5,'V/S PASILLO',1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
+      }else if($contadorcito == 2){
+        $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
+        if($dato < $presion_sala){
+          $cumple_presion = "NO CUMPLE";
+        }else{
+          $cumple_presion = "CUMPLE";
+        } 
+      }else if($contadorcito == 3){
+        
+        $pdf->Cell(30,5,$presion_sala,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
+        
+      }else{
+        $pdf->Cell(30,5,$cumple_presion,1,0,'C',0,'',0);
+         $contadorcito = 0;
+        $pdf->ln(5);
+      }
+        /*
+    else if($contadorcito == 2){
+        
+      }else if($contadorcito == 3){
+      
+        if($dato < $presion_sala){
+          $cumple_presion = "NO CUMPLE";
+        }else{
+          $cumple_presion = "CUMPLE";
+        } 
+        $pdf->Cell(30,5,$presion_sala,1,0,'C',0,'',0);
+      }else if($contadorcito == 4){
+          $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
+      }else if($contadorcito == 5){
+        $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
+      }*/
+      
+      $contadorcito++;
+  }
+  
+/*
+ $pdf->Cell(31,5,'Medición realizada en',1,0,'C',1,'',0);
+
+*/
+
 
 $pdf->ln(5);
 $linea = <<<EOD
