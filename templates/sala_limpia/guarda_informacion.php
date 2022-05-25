@@ -32,25 +32,17 @@ for($i = 0; $i < count($id_prueba_1); $i++){
 
 ///////// SEGUNDA PRUEBA
 $id_prueba_3 = $_POST['id_prueba_3'];
-$medicion_1_p3= $_POST['campo_1'];
-$medicion_2_p3= $_POST['campo_2'];
-$medicion_3_p3= $_POST['campo_3'];
-$medicion_4_p3= $_POST['campo_4'];
-$medicion_5_p3= $_POST['campo_5'];
-$medicion_6_p3= $_POST['campo_6'];
+$campo_id = $_POST['campo_id'];
+$campo_1= $_POST['campo_1'];
 
 
-for($i=0; $i < count($id_prueba_3); $i++){
+for($i=0; $i < count($campo_id); $i++){
 
-    if ($medicion_3_p3[$i] >= $medicion_4_p3[$i]) {
-        $medicion_3_4 = 'CUMPLE';
-    }else{
-        $medicion_3_4 = 'NO CUMPLE';
-    }
-
-    $actualizando2 = mysqli_prepare($connect,"UPDATE datos_de_prueba_3 SET campo_1= ? ,campo_2= ? ,campo_3= ? ,campo_4= ?, campo_5= ?, campo_6= ? WHERE id = ?");
-    mysqli_stmt_bind_param($actualizando2, 'ssssssi', $medicion_1_p3[$i], $medicion_2_p3[$i], $medicion_3_p3[$i], $medicion_4_p3[$i], $medicion_5_p3[$i], $medicion_3_4, $id_prueba_3[$i]);
+    $actualizando2 = mysqli_prepare($connect,"UPDATE salas_limpias_datos_de_prueba_3 SET dato =  ? WHERE id = ?");
+    mysqli_stmt_bind_param($actualizando2, 'si', $campo_1[$i], $campo_id[$i]);
     mysqli_stmt_execute($actualizando2);
+  echo mysqli_stmt_error($actualizando2);
+  
 }
 
 ///////// TERCERA PRUEBA
@@ -82,7 +74,7 @@ for($i=0;$i<count($array_ids);$i++){
     $actualizando3 = mysqli_prepare($connect, "UPDATE salas_limpias_prueba_4 SET n1=?, n2=?, n3=?, n4=?, n5=?,promedio=?, cumple=? WHERE id_prueba = ?");
     mysqli_stmt_bind_param($actualizando3,'sssssssi', $array_n1[$i], $array_n2[$i], $array_n3[$i], $array_n4[$i], $array_n5[$i], $array_promedio[$i], $array_cumple[$i], $array_ids[$i]);
     mysqli_stmt_execute($actualizando3);
-    echo mysqli_stmt_error($actualizando3);
+   
 }
 
 
@@ -147,8 +139,6 @@ $gg151 = round((($n15[0] + $n15[1] + $n15[2])/3),1);
 $gg152 = round((($n15[4] + $n15[5] + $n15[6])/3),1);
 
 
-print_r($id_prueba_8);
-echo $gg1;
 
 for($i=0;$i<count($id_prueba_8);$i++){
     $actualizando4 = mysqli_prepare($connect,"UPDATE salas_limpias_prueba_5 SET n1=?,n2=?,n3=?,n4=?,n5=?,n6=?,n7=?,n8=?,n9=?,n10=?,n11=?,n12=?,n13=?,n14=?,n15=? WHERE id_prueba = ?");

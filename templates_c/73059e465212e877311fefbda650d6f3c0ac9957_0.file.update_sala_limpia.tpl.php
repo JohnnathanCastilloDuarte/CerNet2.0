@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-24 15:37:35
+/* Smarty version 3.1.34-dev-7, created on 2022-05-24 19:45:01
   from '/home/god/public_html/CerNet2.0/templates/item/update_sala_limpia.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_628cfbbfd0e5b9_12021021',
+  'unifunc' => 'content_628d35bd130250_39597558',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '73059e465212e877311fefbda650d6f3c0ac9957' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_sala_limpia.tpl',
-      1 => 1653402957,
+      1 => 1653421477,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628cfbbfd0e5b9_12021021 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628d35bd130250_39597558 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <?php
@@ -123,6 +123,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                   <option value="7">ISO 7</option>
                   <option value="8">ISO 8</option>
                   <option value="9">ISO 9</option>
+                  <option value="No Aplica">No Aplica</option>
                 <?php } elseif ($_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_oms'] != '') {?>
                    <option value="<?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_iso'];?>
 ">ISO <?php echo $_smarty_tpl->tpl_vars['sala_limpia']->value['clasificacion_iso'];?>
@@ -132,6 +133,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['sala_limpia']->value) {
                    <option value="7">ISO 7</option>
                    <option value="8">ISO 8</option>
                    <option value="9">ISO 9</option>
+                  <option value="No Aplica">No Aplica</option>
                 <?php }?>   
                 <select>
               </div>

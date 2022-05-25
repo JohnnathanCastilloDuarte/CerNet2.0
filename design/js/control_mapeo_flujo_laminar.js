@@ -569,7 +569,7 @@ function listar_inspeccion_visual(numeral){
 
                         template += 
                     `
-                              <input type="text" name="id_medicion_p9[]" value="${valor.id}">  
+                              <input type="hidden" name="id_medicion_p9[]" value="${valor.id}">  
                        <tr> 
                             <td> >=0,5 </td>
                             <td><input type="text" name="medicion1_p9[]" class="form-control" value="${valor.media_promedios}"></td>
@@ -581,7 +581,7 @@ function listar_inspeccion_visual(numeral){
                     }else if (valor.tipo_um == 2){
                          template += 
                     `
-                              <input type="text" name="id_medicion_p9[]" value="${valor.id}">  
+                              <input type="hidden" name="id_medicion_p9[]" value="${valor.id}">  
                        <tr> 
                             <td> >=5,0 </td>
                             <td><input type="text" name="medicion1_p9[]" class="form-control" value="${valor.media_promedios}"></td>

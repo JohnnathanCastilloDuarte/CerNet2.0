@@ -121,7 +121,7 @@
                                 </div> 
                                 <hr> -->
                                 <div class="col-sm-12">
-                                    <div class="row" id="tabla"></div>
+                                    <div class="row" id="tabla" style="text-align: center;"></div>
                                 </div>
                                     <hr>
                                 <div style="text-align: right;">

@@ -102,7 +102,7 @@ function listar_resultados_prueba(orden){
 
     else if(orden == 2){
 
-        let array_nombres = ['Medición Realizada en', 'Resultado (Pa)', 'Tipo de Presión'];
+        let array_nombres = ['Lugar Medicion','Medición Realizada en', 'Resultado (Pa)', 'Tipo de Presión'];
 
 
         $.ajax({
@@ -110,8 +110,6 @@ function listar_resultados_prueba(orden){
             data:{id_asignado, orden},
             url:'templates/sala_limpia/controlador_sala_limpia.php',
             success:function(response){
-                      
-                      //alert(n_prueba);
                       console.log(response);
                       let traer = JSON.parse(response);
                       let template1 = "";
@@ -119,58 +117,48 @@ function listar_resultados_prueba(orden){
       
                       traer.forEach((valor)=>{
                         
+                         if(valor.campo_1 == null || valor.campo_1 == ""){
+                            valor.campo_1 = "Sin Registro";
+                          }
                         
-                          if(contador == 2){
+                          if(contador == 3){
+                                                        
                             template1+= 
                              `
-                               <div class="col-sm-4">
+                               <input type="hidden" value="${valor.id_prueba_3_individual}" name="campo_id[]">
+                               <div class="col-sm-3">
                                   <label>${array_nombres[contador]}</label>
-                                  <select class="form-control col-sm-12" name="campo_5[]">
-                                        <option></option>
+                                  <select class="form-control col-sm-12" name="campo_1[]" >
+                                        <option>${valor.campo_1}</option>
                                         <option value"Positiva">Positiva</option>
                                         <option value"Negativa">Negativa</option>
                                         <option value="Informativa">Informativa</option>
                                   </select>
                                </div>
+                             
+                                 <div class="col-sm-12" style="text-align: center;">
+                                        <br>
+                                       <button class="btn btn-danger" style="margin-bottom: 20px;" id="eliminar_prueba" data-id="${valor.id}" data-reel = "${valor.id_prueba_3}">Eliminar</button> 
+                                  </div>
+                                
                               `;
                               contador=0;
                            }else{
                              template1+= 
                                `
-                                 <div class="col-sm-4">
+                                <input type="hidden" value="${valor.id_prueba_3_individual}" name="campo_id[]">
+                                 <div class="col-sm-3">
                                     <label>${array_nombres[contador]}</label>
-                                    <input type="text" name="" id="" class="form-control">
+                                    <input type="text" name="campo_1[]" id="" class="form-control" value="${valor.campo_1}">
                                  </div>
                                 `;
+                             contador=contador + 1;   
                            }
                         
                         
                         
-                          
-                        /*
-                          template1 +=
-                          `     
-                          <table class="table"> 
-                          <tr>
-                          <th >${array_nombres[0]}</th>
-                          <th >${array_nombres[2]}</th>
-                          <th >${array_nombres[3]}</th>
-                          <th >${array_nombres[4]}</th>
-                          </tr>
-                          <tr>
-                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_1[]" required placeholder="Lugar de medición" value="${valor.dato}">&nbsp;</td>
-                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_3[]" required value="${valor.campo_3}">&nbsp;</td>
-                          <td><input required="" type="text" class="form-control col-sm-12" name="campo_4[]" required value="${presion_sala_pa}">&nbsp;</td>
-                          <td><select class="form-control col-sm-12" name="campo_5[]"><option>${valor.campo_5}</option><option value"Positiva">Positiva</option><option value"Negativa">Negativa</option><option value="Informativa">Informativa</option></select>&nbsp;</td>
-                          <td><input id="" type="hidden" name="id_prueba_3[]" value="${valor.id}"></td>
-                          </tr>
-                          </table> 
-                          <button class="btn btn-danger" style="margin-bottom: 20px;" id="eliminar_prueba" data-id="${valor.id}">Eliminar</button> 
-                          `;*/
-
-                                //  
-                          
-                            contador= contador + 1;
+             
+                            
                             });
 
                       $("#tabla").html(template1);
@@ -1112,11 +1100,12 @@ $(document).on('click','#eliminar_prueba',function(e){
    e.preventDefault();
    let orden = 200;
    let accion = 'borrar';
-   let id_prueba_3 = $(this).attr('data-id'  );
+   let id_prueba_3 = $(this).attr('data-id');
+   let  id_prueba_padre = $(this).attr('data-reel');
 
    $.ajax({
     type:'POST',
-    data:{orden, accion, id_asignado, id_prueba_3},
+    data:{orden, accion, id_asignado, id_prueba_3,id_prueba_padre},
     url:'templates/sala_limpia/controlador_sala_limpia.php',
     success:function(response){
         console.log(response);

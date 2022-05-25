@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-03-17 22:04:07
+/* Smarty version 3.1.34-dev-7, created on 2022-05-24 19:38:50
   from '/home/god/public_html/CerNet2.0/templates/flujo_laminar/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6233b057df42e0_49937103',
+  'unifunc' => 'content_628d344a3cf781_09044197',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ad4306d32b82e272e78e4f68e4182ba01b9da23b' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/flujo_laminar/datos_informe_mapeo.tpl',
-      1 => 1647554645,
+      1 => 1653421035,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628d344a3cf781_09044197 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
@@ -46,7 +46,11 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
                 <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
-                    <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea>
+                    <select class="form-control" id="conclusion">
+                        <option>Informe</option>
+                        <option>Pre-Informe</option>
+                    </select>
+                   <!--  <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea> -->
                 </div>
                 <br>
                 <div style="text-align: center;">
@@ -103,9 +107,9 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
                 
-                <hr>
+              <!--  <hr>
 
-                <div class="row">
+                 <div class="row">
                     <div class="col-sm-12">
                         <div id="accordion">
                                 
@@ -129,7 +133,7 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                             </div>        
                         </div>
                     </div>
-                    </div>   
+                    </div>    -->
 
                 <hr>
 
@@ -210,7 +214,7 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="card">
                                 <div class="card-header">
                                     <a data-toggle="collapse" data-target="#collapseOne5"  aria-controls="collapseOne5">
-                                        Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2005
+                                        Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2015
                                     </a>
                                 </div>
                                 <div class="card-body collapse" id="collapseOne5">
@@ -242,7 +246,7 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="card">
                                 <div class="card-header">
                                     <a data-toggle="collapse" data-target="#collapseOne6"  aria-controls="collapseOne6">
-                                        Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2005
+                                        Prueba de Ruido
                                     </a>
                                 </div>
                                 <div class="card-body collapse" id="collapseOne6">
@@ -265,6 +269,36 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
 
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="accordion">
+                                
+                            <div class="card">
+                                <div class="card-header">
+                                    <a data-toggle="collapse" data-target="#collapseOne_8"  aria-controls="collapseOne_8">
+                                        Resultados según norma UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2008
+                                    </a>
+                                </div>
+                                <div class="card-body collapse" id="collapseOne_8">
+                                    <table class="table">
+                                        <thead>
+                                            <th>Tamaños (µm)</th>
+                                            <th>Media de los Promedios</th>
+                                            <th>Desviación Estandar</th>
+                                            <th>Máximo </th>
+                                        </thead>
+                                        <tbody id="aqui_prueba_9">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>    
+
+                        </div>
+                    </div>
+                </div>
 
                 <hr>
 
@@ -283,7 +317,7 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                                         <thead>
                                             <th>Condiciones</th>
                                             <th>Resultado</th>
-                                            <th>Cumple</th>
+                                          <!--   <th>Cumple</th> -->
                                         </thead>
                                         <tbody id="aqui_prueba_6">
 
@@ -313,7 +347,7 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                                         <thead>
                                             <th>Condiciones</th>
                                             <th>Resultado</th>
-                                            <th>Cumple</th>
+                                           <!--  <th>Cumple</th> -->
                                         </thead>
                                         <tbody id="aqui_prueba_7">
 
@@ -327,6 +361,8 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
 
                 <hr>
+
+                
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -445,7 +481,10 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                                           <label>Tipo de evidencia:</label>
                                           <select class="form-control" name="tipo_imagen">
                                             <option value="">Seleccion la categoria</option> 
+                                            <option value="5">Imagen medición de velocidad de aire</option> 
                                             <option value="1">Imagen conteo de particulas</option>
+                                            <option value="6">Imagen prueba temperatura & humedad</option>
+                                            <option value="7">Imagen prueba presión sonora</option>
                                             <option value="2">Imagen frontal</option>
                                             <option value="3">Imagen placa</option>
                                             <option value="4">Imagen area de trabajo</option>    
@@ -465,15 +504,54 @@ function content_6233b057df42e0_49937103 (Smarty_Internal_Template $_smarty_tpl)
                                 </form>
 
                                 <br> 
-
                                 <hr>
                                 
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">medición de velocidad de aire</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c5">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <hr>
                                 <div class="row">
                                   <div class="col-sm-12">
                                     <div class="card">
                                       <div class="card-header">Conteo de particulas</div>
                                       <div class="card-body">
                                         <div class="row" id="Listar_img_c1">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                 <hr>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">Prueba temperatura & humedad</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c6">
+              
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                 <hr>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card">
+                                      <div class="card-header">Prueba presión sonora</div>
+                                      <div class="card-body">
+                                        <div class="row" id="Listar_img_c7">
               
                                         </div>
                                       </div>

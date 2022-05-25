@@ -403,7 +403,7 @@ mysqli_stmt_fetch($buscar_imagen_1);
 if ($url_imagen1 == '') {
   $url_img = '';
 }else{
-$url_img = $url_imagen1;    
+$url_img = '../../'.$url_imagen1;    
 }
 
 $linea = <<<EOD
@@ -441,7 +441,7 @@ $linea = <<<EOD
          <td><h2>Imagen de la Medición</h2></td>
       </tr>
       <tr>
-         <td style= "height: 150px;"><img src="../../$url_img" style="width: 200px;"></td>
+         <td style= "height: 150px;"><img src="$url_img" style="width: 200px;"></td>
       </tr>
 </table>
 
