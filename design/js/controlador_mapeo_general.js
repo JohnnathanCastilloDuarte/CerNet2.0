@@ -723,14 +723,29 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                                 <option value="20">20</option>
                                 <option value="21">21</option>
                                 <option value="22">22</option>
-                                <option value="23">23</option>
-                                <option value="24">24</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27">27</option>
-                                <option value="28">28</option>
-                                <option value="29">29</option>
-                                <option value="30">30</option>
+                                <option value="23">22</option>
+                                <option value="24">23</option>
+                                <option value="25">24</option>
+                                <option value="26">25</option>
+                                <option value="27">26</option>
+                                <option value="28">27</option>
+                                <option value="29">28</option>
+                                <option value="30">29</option>
+                                <option value="31">30</option>
+                                <option value="32">31</option>
+                                <option value="33">32</option>
+                                <option value="34">33</option>
+                                <option value="35">34</option>
+                                <option value="36">35</option>
+                                <option value="37">36</option>
+                                <option value="38">37</option>
+                                <option value="39">38</option>
+                                <option value="40">39</option>
+                                <option value="41">40</option>
+                                <option value="42">41</option>
+                                <option value="43">42</option>
+                                <option value="44">43</option>
+                                <option value="45">44</option>
                             </select></td>
                         <td><button class="btn btn-danger" id="remover_sensor" data-id="${valor.id_sensor_mapeo}">X</button></td>    
                     </tr>
@@ -766,13 +781,28 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                                 <option value="21">21</option>
                                 <option value="22">22</option>
                                 <option value="23">23</option>
-                                <option value="24">24</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27">27</option>
-                                <option value="28">28</option>
-                                <option value="29">29</option>
-                                <option value="30">30</option>
+                                <option value="24">23</option>
+                                <option value="25">24</option>
+                                <option value="26">25</option>
+                                <option value="27">26</option>
+                                <option value="28">27</option>
+                                <option value="29">28</option>
+                                <option value="30">29</option>
+                                <option value="31">30</option>
+                                <option value="32">31</option>
+                                <option value="33">32</option>
+                                <option value="34">33</option>
+                                <option value="35">34</option>
+                                <option value="36">35</option>
+                                <option value="37">36</option>
+                                <option value="38">37</option>
+                                <option value="39">38</option>
+                                <option value="40">39</option>
+                                <option value="41">40</option>
+                                <option value="42">41</option>
+                                <option value="43">42</option>
+                                <option value="44">43</option>
+                                <option value="45">44</option>
                             </select></td>     
                        
                         <td>Registros: ${valor.registros}</td> 
@@ -813,6 +843,30 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                             <option value="19">18</option>
                             <option value="20">19</option>
                             <option value="21">20</option>
+                            <option value="22">21</option>
+                            <option value="23">22</option>
+                            <option value="24">23</option>
+                            <option value="25">24</option>
+                            <option value="26">25</option>
+                            <option value="27">26</option>
+                            <option value="28">27</option>
+                            <option value="29">28</option>
+                            <option value="30">29</option>
+                            <option value="31">30</option>
+                            <option value="32">31</option>
+                            <option value="33">32</option>
+                            <option value="34">33</option>
+                            <option value="35">34</option>
+                            <option value="36">35</option>
+                            <option value="37">36</option>
+                            <option value="38">37</option>
+                            <option value="39">38</option>
+                            <option value="40">39</option>
+                            <option value="41">40</option>
+                            <option value="42">41</option>
+                            <option value="43">42</option>
+                            <option value="44">43</option>
+                            <option value="45">44</option>
                         </select></td>
                         <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion_hum" name="cambiar_posicion_hum[]">
                             <option value="${val_hum}">${hum}</option>
