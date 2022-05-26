@@ -27,11 +27,11 @@ mysqli_stmt_fetch($consulta_informacion_informe);
 
 /// CONSULTA TRAE INFORMACIÓN DE LA EMPRESA
 
-$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion, e.conclusion, e.usuario_responsable FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
+$consulta_empresa = mysqli_prepare($connect,"SELECT e.nombre_informe, c.numot, DATE_FORMAT(e.fecha_registro, '%m/%d/%Y'), d.nombre, e.solicita, d.direccion, e.conclusion, e.usuario_responsable,e.fecha_medicion FROM item_asignado as a, servicio as b, numot as c, empresa as d, salas_limpias_informe as e WHERE a.id_asignado = ? AND a.id_servicio = b.id_servicio AND b.id_numot = c.id_numot AND c.id_empresa = d.id_empresa AND a.id_asignado = e.id_asignado");
 mysqli_stmt_bind_param($consulta_empresa, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_empresa);
 mysqli_stmt_store_result($consulta_empresa);
-mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion, $conclusion, $usuario_responsable);
+mysqli_stmt_bind_result($consulta_empresa, $nombre_informe, $numot, $fecha_registro, $empresa, $solicita, $direccion, $conclusion, $usuario_responsable, $fecha_medicion);
 mysqli_stmt_fetch($consulta_empresa);
 
 $num_ot = substr($numot, 2);
@@ -679,7 +679,7 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 $pdf->Cell(90,5,'Ing. '.$nombre_responsable.' '. $apellido_responsable,0,0,'C',0,'',0);
-$pdf->Cell(90,5,$fecha_registro,0,0,'C',0,'',0);
+$pdf->Cell(90,5,$fecha_medicion,0,0,'C',0,'',0);
 $pdf->ln(3);
 $pdf->Cell(90,5,$nombre_cargo,0,0,'C',0,'',0);
 
