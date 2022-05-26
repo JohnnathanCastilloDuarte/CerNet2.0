@@ -70,29 +70,29 @@ $("#btn_crear_item_filtro").click(function(){
     id_tipo_filtro,
     id_valida_filtro
   }
-  
-  $.ajax({
-    type:'POST',
-    url:'templates/item/nuevo_filtro.php',
-    data:datos,
-    success:function(response){
-      if(response == "Si"){
-        
-        Swal.fire({
-          title:'Mensaje',
-          text:'Se ha creado el filtro, correctamente!',
-          icon:'success',
-          showConfirmButton: false,
-          timer:1500
-        });
-        
-        limpiar_campos_filtro();
-      }else{
-        console.log("no")
+  if (campos_vacios(datos) == true){
+    $.ajax({
+      type:'POST',
+      url:'templates/item/nuevo_filtro.php',
+      data:datos,
+      success:function(response){
+        if(response == "Si"){
+          
+          Swal.fire({
+            title:'Mensaje',
+            text:'Se ha creado el filtro, correctamente!',
+            icon:'success',
+            showConfirmButton: false,
+            timer:1500
+          });
+          
+          limpiar_campos_filtro();
+        }else{
+          console.log("no")
+        }
       }
-    }
-  })
-  
+    })
+  }
 });
 
 
@@ -135,28 +135,28 @@ $("#btn_editar_item_filtro").click(function(){
     id_filtro
   }
   
-  
-  $.ajax({
-    type:'POST',
-    url:'templates/item/editar_filtro.php',
-    data:datos,
-    success:function(response){
-      console.log(response);
-      if(response == "Si"){   
-        Swal.fire({
-          title:'Mensaje',
-          text:'¡Se ha Actualizado el filtro, correctamente!',
-          icon:'success',
-          showConfirmButton: false,
-          timer:1000,
-          
-        });
-      }else{
-        console.log("No");
+  if (campos_vacios(datos) == true){
+    $.ajax({
+      type:'POST',
+      url:'templates/item/editar_filtro.php',
+      data:datos,
+      success:function(response){
+        console.log(response);
+        if(response == "Si"){   
+          Swal.fire({
+            title:'Mensaje',
+            text:'¡Se ha Actualizado el filtro, correctamente!',
+            icon:'success',
+            showConfirmButton: false,
+            timer:1000,
+            
+          });
+        }else{
+          console.log("No");
+        }
       }
-    }
-  })
-  
+    })
+  }
 });
 
 //////// LISTAR EMPRESAS 

@@ -152,3 +152,4 @@
   </div><!--CIERRE DEL CARDBODY--> 
  </div><!--CIERRE DEL CARD--> 
 <script src="design/js/filtros.js"></script>
+<script type="text/javascript" src="design/js/validar_campos_vacios.js"></script>
