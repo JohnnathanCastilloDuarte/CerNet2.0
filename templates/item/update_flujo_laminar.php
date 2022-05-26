@@ -23,12 +23,13 @@ if (isset($_GET['item'])) {
 	$id_item = $_GET['item'];
   //CONSULTO LA INFORMACIÓN DEL EQUIPO
 
-	$flujo_laminar = mysqli_prepare($connect,"SELECT a.id, a.id_item,a.cantidad_filtro, b.nombre,b.id_empresa, c.nombre,d.nombre, a.direccion, a.ubicacion_interna, a.area_interna,a.fecha_registro, a.tipo_cabina, a.marca, a.modelo, a.serie, a.codigo, a.tipo_dimenciones, a.limite_penetracion, a.eficiencia
+	$flujo_laminar = mysqli_prepare($connect,"SELECT a.id, a.id_item,a.cantidad_filtro, b.nombre,b.id_empresa, c.nombre,d.nombre, a.direccion, a.ubicacion_interna, a.area_interna,a.fecha_registro, a.tipo_cabina, a.marca, a.modelo, a.serie, a.codigo, a.tipo_dimenciones, a.limite_penetracion, a.eficiencia, a.clasificacion_oms, a.clasificacion_iso
+
 		FROM item_flujo_laminar as a, item as b, empresa as c, tipo_item d
 		WHERE b.id_item = a.id_item AND c.id_empresa = b.id_empresa AND a.id_item = $id_item AND d.id_item = b.id_tipo");
 	mysqli_stmt_execute($flujo_laminar);
 	mysqli_stmt_store_result($flujo_laminar);
-	mysqli_stmt_bind_result($flujo_laminar, $id_flujo_laminar, $id_item, $cantidad_filtro, $nombre_item,$id_empresa_flujo, $nombre_empresa_flujo,$nombre_tipo_item, $direccion,$ubicacion_interna,$area_interna,$fecha_registro, $tipo_cabina, $marca, $modelo, $serie, $codigo, $tipo_dimenciones, $limite_penetracion, $eficiencia);	
+	mysqli_stmt_bind_result($flujo_laminar, $id_flujo_laminar, $id_item, $cantidad_filtro, $nombre_item,$id_empresa_flujo, $nombre_empresa_flujo,$nombre_tipo_item, $direccion,$ubicacion_interna,$area_interna,$fecha_registro, $tipo_cabina, $marca, $modelo, $serie, $codigo, $tipo_dimenciones, $limite_penetracion, $eficiencia, $clasificacion_oms, $clasificacion_iso);	
 
 	while($row = mysqli_stmt_fetch($flujo_laminar)){
 		$array_flujo_laminar[] = array(
@@ -50,7 +51,9 @@ if (isset($_GET['item'])) {
 			'codigo' => $codigo,
 			'tipo_dimenciones' => $tipo_dimenciones,
 			'limite_penetracion' => $limite_penetracion,
-			'eficiencia' => $eficiencia
+			'eficiencia' => $eficiencia,
+			'clasificacion_oms' => $clasificacion_oms,
+			'clasificacion_iso' => $clasificacion_iso
 		);	
 
 	}
@@ -75,7 +78,9 @@ if (isset($_GET['item'])) {
 			'codigo' => '',
 			'tipo_dimenciones' => '',
 			'limite_penetracion' => '',
-			'eficiencia' => ''
+			'eficiencia' => '',
+			'clasificacion_oms' => '',
+			'clasificacion_iso' => ''
 	);	
 
 	$smarty->assign("array_flujo_laminar",$array_flujo_laminar);

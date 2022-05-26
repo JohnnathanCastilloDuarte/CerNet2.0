@@ -57,6 +57,51 @@
           </div>
           <br>
           <div class="form-row">
+              <div class="col-sm-6">
+                <label>Clasificación OMS :</label>
+                <select class="form-control" id="clasificacion_oms">
+                  {if $flujo_laminar.clasificacion_oms == ''}
+                  <option value="">Seleccione...</option>
+                  <option value="A">Clase A</option>
+                  <option value="B">Clase B</option>
+                  <option value="C">Clase C</option>
+                  <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
+                  {else if $flujo_laminar.clasificacion_oms != ''}
+                  <option value="{$flujo_laminar.clasificacion_oms}">Clase {$flujo_laminar.clasificacion_oms}</option>
+                  <option value="A">Clase A</option>
+                  <option value="B">Clase B</option>
+                  <option value="C">Clase C</option>
+                  <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
+                  {/if}
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label>Clasificación ISO:</label>
+                <select class="form-control" id="clasificacion_iso">
+                 {if $flujo_laminar.clasificacion_oms == ''}
+                  <option value="">Seleccione...</option>
+                  <option value="5">ISO 5</option>
+                  <option value="6">ISO 6</option>
+                  <option value="7">ISO 7</option>
+                  <option value="8">ISO 8</option>
+                  <option value="9">ISO 9</option>
+                  <option value="No Aplica">No Aplica</option>
+                {else if $flujo_laminar.clasificacion_oms != ''}
+                   <option value="{$flujo_laminar.clasificacion_iso}">ISO {$flujo_laminar.clasificacion_iso}</option>
+                   <option value="5">ISO 5</option>
+                   <option value="6">ISO 6</option>
+                   <option value="7">ISO 7</option>
+                   <option value="8">ISO 8</option>
+                   <option value="9">ISO 9</option>
+                   <option value="No Aplica">No Aplica</option>
+                {/if}   
+                <select>
+              </div>
+            </div>
+          <br>
+          <div class="form-row">
             <div class="col-sm-4">
               <label>Tipo cabina:</label>
               <select class="form-control" id="tipo_cabina">
@@ -125,3 +170,4 @@
     </div>
   </div>
   <script type="text/javascript" src="design/js/update_flujo_laminar.js"></script>
+  <script type="text/javascript" src="design/js/validar_campos_vacios.js"></script>

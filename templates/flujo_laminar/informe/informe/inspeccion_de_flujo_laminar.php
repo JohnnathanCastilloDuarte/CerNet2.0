@@ -12,17 +12,16 @@ $id_asignado = substr($clave, 97);
 
 
 //informacion del item
-$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.descripcion, a.nombre, b.cantidad_filtro, b.direccion, b.ubicacion_interna, b.area_interna, b.tipo_cabina, b.marca, b.modelo, b.serie, b.codigo, b.tipo_dimenciones, b.limite_penetracion, b.eficiencia, b.fecha_registro
+$consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.descripcion, a.nombre, b.cantidad_filtro, b.direccion, b.ubicacion_interna, b.area_interna, b.tipo_cabina, b.marca, b.modelo, b.serie, b.codigo, b.tipo_dimenciones, b.limite_penetracion, b.eficiencia, b.fecha_registro, b.clasificacion_oms, b.clasificacion_iso
   FROM item as a, item_flujo_laminar as b, item_asignado as c 
-  WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item AND a.id_tipo = 13");
+  WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item AND a.id_tipo = 13");
 
 
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
-mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $cantidad_filtro, $direccion, $ubicacion_interna, $area_interna, $tipo_cabina, $marca, $modelo, $serie, $codigo, $tipo_dimenciones, $limite_penetracion, $eficiencia, $fecha_registro);
+mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $cantidad_filtro, $direccion, $ubicacion_interna, $area_interna, $tipo_cabina, $marca, $modelo, $serie, $codigo, $tipo_dimenciones, $limite_penetracion, $eficiencia, $fecha_registro, $clasificacion_oms, $clasificacion_iso);
 mysqli_stmt_fetch($consulta_informacion_informe);
-
 
 
 
@@ -86,6 +85,23 @@ mysqli_stmt_fetch($infor_numot);
 
 $num_ot = substr($ot,2);
 
+///INFORMACION DE LAS ISO Y OMS 
+if ($clasificacion_iso == 5) {
+   $particulas05 = 3520;
+   $particulas50 = 29;
+}elseif($clasificacion_iso == 6) {
+   $particulas05 = 35200;
+   $particulas50 = 293;
+}elseif ($clasificacion_iso == 7) {
+   $particulas05 = 352000;
+   $particulas50 = 2930;
+}elseif ($clasificacion_iso == 8) {
+   $particulas05 = 3520000;
+   $particulas50 = 29300;
+}elseif ($clasificacion_iso == 9) {
+   $particulas05 = 35200000;
+   $particulas50 = 293000;
+}
 
 
 
@@ -324,19 +340,23 @@ mysqli_stmt_bind_result($queryPrueba1, $requisito, $valor_obtenido, $veredicto);
 $array_titulos = array('Prueba de Integridad de Filtro', 'Velocidad de Aire (m/s)','Partículas por m3; >0.5 µm','Partículas por m3; >5.0 µm','Partículas por m3; >0.5 µm','Partículas por m3; >5.0 µm');
 
 
-$pdf->writeHTMLCell(60, 5, 15, '', 'Medición', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 75, '', 'Requisito', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 115, '', 'Valor obtenido', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 155, '', 'Veredicto', 1, 1, 0, true, 'C', true);
+
+$pdf->Cell(60,5,'Medición',1,0,'C',1,'',0);
+$pdf->Cell(40,5,'Requisito',1,0,'C',1,'',0);
+$pdf->Cell(40,5,'Valor obtenido',1,0,'C',1,'',0);
+$pdf->Cell(40,5,'Veredicto',1,0,'C',1,'',0);
+$pdf->ln(5);
 
 
 $i=0;
   while ($row = mysqli_stmt_fetch($queryPrueba1)) {
 
-$pdf->writeHTMLCell(60, 5, 15, '', $array_titulos[$i], 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 75, '', $requisito, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 115, '', $valor_obtenido, 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(40, 5, 155, '', $veredicto, 1, 1, 0, true, 'C', true);
+
+$pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
+$pdf->Cell(40,5,$requisito,1,0,'C',0,'',0);
+$pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+$pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+$pdf->ln(5);
 
   $i++;
 
@@ -984,13 +1004,20 @@ mysqli_stmt_bind_result($query_um, $tipo_um, $media_promedios, $desviacion_estan
 
 $i = 0;
 
+$estadoparticulas = '';
 while ($row = mysqli_stmt_fetch($query_um)) {
+
+  if ($media_promedios >= $particulas05) {
+    $estadoparticulas = 'CUMPLE';
+  }else{
+    $estadoparticulas = 'NO CUMPLE';
+  }
 
  $pdf->Cell(36,5,$arraynombrbes[$i],1,0,'C',0,'',0); 
  $pdf->Cell(36,5,$media_promedios,1,0,'C',0,'',0);
  $pdf->Cell(36,5,$desviacion_estandar,1,0,'C',0,'',0);
  $pdf->Cell(36,5,$maximo,1,0,'C',0,'',0);
- $pdf->Cell(36,5,'-',1,0,'C',0,'',0);
+ $pdf->Cell(36,5,$estadoparticulas,1,0,'C',0,'',0);
  $pdf->ln(5);
 
  $i++;
@@ -1037,9 +1064,16 @@ $pdf->ln();
 
 while ($row = mysqli_stmt_fetch($query_um)) {
 
+
+  if ($media_promedios >= $particulas05) {
+    $estadoparticulas_2 = 'CUMPLE';
+  }else{
+    $estadoparticulas_2 = 'NO CUMPLE';
+  }
+
   $pdf->Cell(60,5,$arraynombrbes[$i],1,0,'C',0,'',0);
  $pdf->Cell(60,5,$media_promedios,1,0,'C',0,'',0);
- $pdf->Cell(60,5,'-',1,0,'C',0,'',0); 
+ $pdf->Cell(60,5,$estadoparticulas_2,1,0,'C',0,'',0); 
  $pdf->ln(5);
 
  $i++;

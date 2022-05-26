@@ -24,6 +24,8 @@ $("#btn_crear_flujo_laminar").click(function(){
 		nombre_flujo     : $("#nombre_flujo_laminar").val(),
 		id_empresa_flujo : $("#id_empresa").val(),
 		cantidad_filtros : $("#cantidad_filtros").val(),
+		clasificacion_oms       : $("#clasificacion_oms").val(),
+        clasificacion_iso       : $("#clasificacion_iso").val(),
 		direccion_flujo  :  $("#direccion_flujo").val(),
 		ubicacion_interna : $("#ubicacion_interna").val(),
 		area_interna 	  : $("#area_interna").val(),
@@ -38,7 +40,9 @@ $("#btn_crear_flujo_laminar").click(function(){
 		id_valida,
 	}
 
-	$.ajax({
+	if (campos_vacios(datos) == true){
+        console.log("si");
+          $.ajax({
 			type:'POST',
 			data:datos,
 			url:'templates/item/nuevo_flujo_laminar.php',
@@ -61,6 +65,11 @@ $("#btn_crear_flujo_laminar").click(function(){
 				}
 			}
 		});
+      }else{
+        console.log("no");
+      }
+
+	
 });
 
 $("#btn_actualizar_flujo_laminar").click(function(){
@@ -68,6 +77,8 @@ $("#btn_actualizar_flujo_laminar").click(function(){
 		nombre_flujo     : $("#nombre_flujo_laminar").val(),
 		id_empresa_flujo : $("#id_empresa").val(),
 		cantidad_filtros : $("#cantidad_filtros").val(),
+		clasificacion_oms       : $("#clasificacion_oms").val(),
+        clasificacion_iso       : $("#clasificacion_iso").val(),
 		id_item_flujo_laminar : id_item_flujo_laminar,
 		tipo_cabina 	  : $("#tipo_cabina").val(),
 		marca 			  : $("#marca").val(),

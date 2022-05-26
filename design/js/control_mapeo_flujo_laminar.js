@@ -674,62 +674,62 @@ $(document).on('change','#select_filtro', function(){
 
   ///////////////// EVENTOS PARA PROMEDIOS
   
-  $(document).on('keydown','#punto_1_p40',function(){
+  $(document).on('keyup','#punto_1_p40',function(){
     calcular_promedio_1();
   });
-  $(document).on('keydown','#punto_1_p41',function(){
+  $(document).on('keyup','#punto_1_p41',function(){
     calcular_promedio_2();
   });
-  $(document).on('keydown','#punto_2_p40',function(){
+  $(document).on('keyup','#punto_2_p40',function(){
     calcular_promedio_1();
   });
-  $(document).on('keydown','#punto_2_p41',function(){
+  $(document).on('keyup','#punto_2_p41',function(){
     calcular_promedio_2();
   });
-  $(document).on('keydown','#punto_3_p40',function(){
+  $(document).on('keyup','#punto_3_p40',function(){
     calcular_promedio_1();
   });
-  $(document).on('keydown','#punto_3_p41',function(){
+  $(document).on('keyup','#punto_3_p41',function(){
     calcular_promedio_2();
   });
 
 
-  $(document).on('keydown','#punto_1_p420',function(){
+  $(document).on('keyup','#punto_1_p420',function(){
     calcular_promedio_3();
   });
-  $(document).on('keydown','#punto_1_p421',function(){
+  $(document).on('keyup','#punto_1_p421',function(){
     calcular_promedio_4();
   });
-  $(document).on('keydown','#punto_2_p420',function(){
+  $(document).on('keyup','#punto_2_p420',function(){
     calcular_promedio_3();
   });
-  $(document).on('keydown','#punto_2_p421',function(){
+  $(document).on('keyup','#punto_2_p421',function(){
     calcular_promedio_4();
   });
-  $(document).on('keydown','#punto_3_p420',function(){
+  $(document).on('keyup','#punto_3_p420',function(){
     calcular_promedio_3();
   });
-  $(document).on('keydown','#punto_3_p421',function(){
+  $(document).on('keyup','#punto_3_p421',function(){
     calcular_promedio_4();
   });
 
 
-  $(document).on('keydown','#punto_1_p6',function(){
+  $(document).on('keyup','#punto_1_p6',function(){
     calcular_promedio_5();
   });
-  $(document).on('keydown','#punto_2_p6',function(){
+  $(document).on('keyup','#punto_2_p6',function(){
     calcular_promedio_5();
   });
-  $(document).on('keydown','#punto_3_p6',function(){
+  $(document).on('keyup','#punto_3_p6',function(){
     calcular_promedio_5();
   });
-  $(document).on('keydown','#punto_4_p6',function(){
+  $(document).on('keyup','#punto_4_p6',function(){
     calcular_promedio_5();
   });
-  $(document).on('keydown','#punto_4_p6',function(){
+  $(document).on('keyup','#punto_4_p6',function(){
     calcular_promedio_5();
   });
-  $(document).on('keydown','#punto_5_p6',function(){
+  $(document).on('keyup','#punto_5_p6',function(){
     calcular_promedio_5();
   });
 
