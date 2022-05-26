@@ -128,13 +128,14 @@ var id_gestionar = "";
 	
 	$("#btn_nueva_ot").click(function(){
 	
-			let num_ot =$("#num_ot").val().toUpperCase();
+	  let num_ot =$("#num_ot").val().toUpperCase();
       let id_empresa = $("#id_empresa").val(); 
+	  let  u_asignado = $("#id_usuario").val();
 	    
-      if(id_empresa.length == 0){
+      if(id_empresa.length == 0 || u_asignado.length == 0){
         Swal.fire({
           title:'Mensaje',
-          text:'No puedes Generar una ot sin una Empresa',
+          text:'No puedes Generar una ot sin una Empresa o sin un usuario responsable',
           icon:'warning',
           timer:1800
         })  
@@ -143,7 +144,7 @@ var id_gestionar = "";
           num_ot : $("#num_ot").val(),
           empresa : $("#empresa_ot_n").val(),
           c_informes : $("#cantidad_informes_ot_n").val(),
-          u_asignado : $("#id_usuario").val(),
+		  u_asignado,
           f_creacion : $("#fecha_creacion_ot_n").val(),
           f_asignacion : $("#fecha_asignacion_ot_n").val(),
           u_creador : $("#id_valida").val(),
