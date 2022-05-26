@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-02-15 17:03:43
+/* Smarty version 3.1.34-dev-7, created on 2022-05-26 18:34:32
   from 'C:\xampp\htdocs\CerNet2.0\templates\mapeos_generales\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_620bcedf035721_93464758',
+  'unifunc' => 'content_628fac189780b4_06065679',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0fb157695bcbf2926c2970945ac5309203d270ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\mapeos_generales\\datos_informe_mapeo.tpl',
-      1 => 1644940766,
+      1 => 1653402147,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_620bcedf035721_93464758 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628fac189780b4_06065679 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -271,6 +271,11 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
                     <label for="">Intervalo:</label>
                     <input type="text" placeholder="Intervalo en seg" class="form-control" id="intervalo_mapeo">
                   </div>
+                  
+                  <div class="col-sm-6">
+                    <label for="">% de carga:</label>
+                    <input type="text" placeholder="% de carga" class="form-control" id="porcentaje_carga">
+                  </div>
                 </div>
 
                 <br>
@@ -398,6 +403,7 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
       <div class="col-sm-12">
         <div class="card-header">Sensores asignados</div>
         <div class="card body" id="from_termocupla">
+      
           <table class="table" style="text-align:center;">
             <thead>
               <th>Sensor</th>
@@ -414,6 +420,8 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
 
         </div>
         <div class="card body" id="from_sensores">
+          
+              
           <table class="table" style="text-align:center;">
             <thead>
               <th>Sensor</th>
@@ -582,7 +590,6 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
         <div class="card" id="edicion_informe">
           <div class="card-header">Edición de informe <button id="close_edicion" class="btn btn-danger" style="margin-left: 80%;">X</button></div>
           <div class="card-body" id="editar_informe_row">
-
 
           </div>
           <hr>
