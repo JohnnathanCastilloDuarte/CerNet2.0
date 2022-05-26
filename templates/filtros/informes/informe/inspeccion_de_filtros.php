@@ -51,7 +51,8 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
@@ -123,7 +124,8 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 {
@@ -158,7 +160,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr>
-        <td class="linea"><h3>Resultado de Mediciones - Norma: UNE-EN ISO 14.644-3:2015</h3></td>
+        <td class="linea" align="center"><h3>Resultado de Mediciones - Norma: UNE-EN ISO 14.644-3:2015</h3></td>
    </tr>
 </table>
 <br><br>
@@ -181,21 +183,32 @@ mysqli_stmt_bind_result($busca_filtros1, $valor_obtenido, $valor_filtro, $nombre
    $pdf->Cell(45,5,'Valor Obtenido',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Veredicto',1,0,'C',1,'',0);
    $pdf->ln(5);
-
+$contador_cumples = 0;
    while($row = mysqli_stmt_fetch($busca_filtros1)){
     if ($valor_obtenido <= 0.001) {
         $cumple_filtro = 'CUMPLE';
     }else{
         $cumple_filtro = 'NO CUMPLE';
     }
+    if ($cumple_filtro == 'NO CUMPLE') {
+       $contador_cumples++;
+    }
       
-   $pdf->Cell(45,5,'Prueba de Integridad de Filtro #'.$valor_filtro,1,0,'C',1,'',0);
-   $pdf->Cell(45,5,'<= 0.001 %',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$valor_obtenido,1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$cumple_filtro,1,0,'C',0,'',0);
-   $pdf->ln(5);
+     $pdf->Cell(45,5,'Prueba de Integridad de Filtro #'.$valor_filtro,1,0,'C',1,'',0);
+     $pdf->Cell(45,5,'<= 0.001 %',1,0,'C',0,'',0);
+     $pdf->Cell(45,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(45,5,$cumple_filtro,1,0,'C',0,'',0);
+     $pdf->ln(5);
  
     }
+
+    if ($contador_cumples > 0) {
+        $cumple_conclu = 'NO CUMPLE';
+      }else if ($contador_cumples == 0){
+        $cumple_conclu = 'CUMPLE';
+      }
+
+    //echo $contador_cumples;
 
  $pdf->ln(80);
  
@@ -204,14 +217,15 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2>Conclusión</h2></td>
+        <td class="linea" align="center"><h2>Conclusión</h2></td>
    </tr>
 </table>
 
@@ -219,8 +233,7 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 if ($conclusion == 'Informe') {
-  $conclu = 'para informes con cumplimiento: De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
-CUMPLE con los parámetros establecidos en la normativa vigente.';
+  $conclu = 'para informes con cumplimiento: De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, '.$cumple_conclu.' con los parámetros establecidos en la normativa vigente.';
 }elseif($conclusion == 'Pre-Informe'){
   $conclu = 'Los resultados obtenidos en el presente informe, 
 se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
@@ -233,19 +246,20 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2>Duración de Certificado</h2></td>
-        <td class="linea"><h2>Fecha de Medición</h2></td>
+        <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
+        <td class="linea" align="center"><h2>Fecha de Medición</h2></td>
    </tr>
    <tr>
-        <td>La vigencia de Certificación es de 12 meses.</td>
-        <td>$fecha_medicion</td>
+        <td align="center">La vigencia de Certificación es de 12 meses.</td>
+        <td align="center">$fecha_medicion</td>
    </tr>    
 </table>
 
@@ -257,19 +271,20 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2>Responsable</h2></td>
+        <td class="linea" align="center"><h2>Responsable</h2></td>
         <!--<td class="linea" align="center"><h2>Código QR de Verificación</h2></td>-->
         <!--<td class="linea" align="center"><h2>Firma</h2></td>-->
    </tr>
    <tr>
-       <td >Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
+       <td align="center">Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
    </tr>
 </table>
 EOD;  
@@ -285,14 +300,15 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2><b>Medición de Inspección de Filtro</b></h2></td>
+        <td class="linea" align="center"><h2><b>Medición de Inspección de Filtro</b></h2></td>
    </tr>
 </table>
 
@@ -354,14 +370,15 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br>
 <table>
    <tr border="1">
-        <td class="linea"><h2><b>Inspección Visual</b></h2></td>
+        <td class="linea" align="center"><h2><b>Inspección Visual</b></h2></td>
    </tr>
 </table>
 
@@ -411,14 +428,15 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2><b>Prueba de Integridad de Filtros UNE-EN ISO 14.644-3:2015</b></h2></td>
+        <td class="linea" align="center"><h2><b>Prueba de Integridad de Filtros UNE-EN ISO 14.644-3:2015</b></h2></td>
    </tr>
    <br>
    <tr>
@@ -456,14 +474,15 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2>Medición de Inspección Integridad de Filtro</h2></td>
+        <td class="linea" align="center"><h2>Medición de Inspección Integridad de Filtro</h2></td>
    </tr>
 
 </table>
@@ -527,14 +546,15 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2>Detalle de Mediciones</h2></td>
+        <td class="linea" align="center"><h2>Detalle de Mediciones</h2></td>
    </tr>
 </table>
 
@@ -585,26 +605,30 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2><b>Equipos Utilizados en la Medición</b></h2></td>
+        <td class="linea" align="center"><h2><b>Equipos Utilizados en la Medición</b></h2></td>
    </tr>
 </table>
 
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(30, 7, 15, '', '<b>Marca</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 7, 45, '', '<b>Modelo</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 7, 75, '', '<b>N° Serie</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 7, 105, '', '<b>Certificado de Calibración</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 7, 135, '', '<b>Última Calibración</b>' ,1,0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 7, 165, '', '<b>Trazabilidad</b>' ,1,1, 0, true, 'C', true);
+
+
+   $pdf->Cell(28,5,'Marca',1,0,'C',1,'',0);
+   $pdf->Cell(31,5,'Modelo',1,0,'C',1,'',0);
+   $pdf->Cell(30,5,'N° Serie',1,0,'C',1,'',0);
+   $pdf->Cell(35,5,'Certificado de Calibración',1,0,'C',1,'',0);
+   $pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
+   $pdf->Cell(26,5,'Trazabilidad',1,0,'C',1,'',0);
+    $pdf->ln(5);
 
 //Consulta que busca los filtros usados 
 $consultar_equipo = mysqli_prepare($connect,"SELECT  b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision FROM equipos_mediciones a, equipos_cercal b, certificado_equipo c WHERE a.id_informe = ? AND a.id_equipo = b.id_equipo_cercal AND c.id_equipo_cercal = a.id_equipo");
@@ -616,13 +640,14 @@ mysqli_stmt_bind_result($consultar_equipo, $marca_equipo, $modelo_equipo, $n_ser
 
    //AQUI VAN LOS VALORES
    while($row = mysqli_stmt_fetch($consultar_equipo)){
-      
-   $pdf->writeHTMLCell(30, 5, 15, '', $marca_equipo ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 45, '', $modelo_equipo ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 75, '', $n_serie_equipo ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 105, '', $numero_certificado ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 135, '', $fecha_emision ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 5, 165, '', 'Trazabilidad' ,1,1, 0, true, 'C', true);
+
+   $pdf->Cell(28,5,$marca_equipo,1,0,'C',0,'',0);
+   $pdf->Cell(31,5,$modelo_equipo,1,0,'C',0,'',0);
+   $pdf->Cell(30,5,$n_serie_equipo,1,0,'C',0,'',0);
+   $pdf->Cell(35,5,$numero_certificado,1,0,'C',0,'',0);
+   $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
+   $pdf->Cell(26,5,'-',1,0,'C',0,'',0);
+   $pdf->ln(5);
 
    } 
 
@@ -634,7 +659,8 @@ $pdf->AddPage('A4');
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
    
 }
 </style>
