@@ -9,8 +9,8 @@ $array_mapeo=array();
 
 
 	//CONSULTAR INFORMES DE MAPEO
-$tipo_informe_1 = mysqli_prepare($connect,"SELECT id_servicio_tipo FROM servicio_tipo WHERE servicio in (?,?)");
-mysqli_stmt_bind_param($tipo_informe_1, 'ss',  $tipo_2, $tipo_1);
+$tipo_informe_1 = mysqli_prepare($connect,"SELECT id_servicio_tipo FROM servicio_tipo WHERE servicio in (?)");
+mysqli_stmt_bind_param($tipo_informe_1, 's',  $tipo_1);
 mysqli_stmt_execute($tipo_informe_1);
 mysqli_stmt_store_result($tipo_informe_1);
 mysqli_stmt_bind_result($tipo_informe_1, $id_servicio_mapeo);
