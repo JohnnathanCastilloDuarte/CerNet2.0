@@ -12,6 +12,9 @@ $("#asignacion_sensores").hide();
 $("#lista_de_bandejas").hide();
 $("#datos_crudos_card").hide();
 $("#mostrar_dato_crudo").hide();
+$("#asignacion").hide();
+$("#tipo_configuracion").val("");
+$("#ok_config_datos_crudos").hide();
 
 ///////////// VARIABLES GLOBALES
 var id_asignado = $("#id_asignado").val();
@@ -19,7 +22,7 @@ var id_usuario  = $("#id_valida").val();
 var id_type = $("#id_type").val();
 
 
-if(id_type==12){
+if(id_type==12 || id_type==1){
   $("#from_termocupla").hide();
   $("#from_sensores").show();
   $("#datos_crudos_termocupla").hide();
@@ -275,6 +278,7 @@ $("#btn_nuevo_mapeo_general").click(function(){
         data:datos,
         url:'templates/mapeos_generales/controlador_mapeo.php',
         success:function(response){
+        
             if(response == "Listo"){
                 Swal.fire({
                     title:'Mensaje',
@@ -300,7 +304,14 @@ function listar_mapeos(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_mapeo.php',
         success:function(response){
-       
+      
+            if(response == "[]"){
+                $("#asignacion").hide();
+                $("#informes").hide();               
+            }else{
+                $("#asignacion").show();
+                $("#informes").show(); 
+            }
 
             let traer = JSON.parse(response);
             let template = "";
@@ -679,6 +690,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
 
             traer.forEach((valor)=>{
 
+             
                 if(valor.posicion_tem == "no aplica"){
                     temp = "no aplica";
                     val_temp = "no aplica";
@@ -731,6 +743,21 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                                 <option value="28">28</option>
                                 <option value="29">29</option>
                                 <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
                             </select></td>
                         <td><button class="btn btn-danger" id="remover_sensor" data-id="${valor.id_sensor_mapeo}">X</button></td>    
                     </tr>
@@ -773,6 +800,21 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                                 <option value="28">28</option>
                                 <option value="29">29</option>
                                 <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
                             </select></td>     
                        
                         <td>Registros: ${valor.registros}</td> 
@@ -793,55 +835,107 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
                         <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion_temp" name="cambiar_posicion_temp[]">
                             <option value="${val_temp}">${temp}</option>
                             <option value="no aplica">no aplica</option>
-                            <option value="2">1</option>
-                            <option value="3">2</option>
-                            <option value="4">3</option>
-                            <option value="5">4</option>
-                            <option value="6">5</option>
-                            <option value="7">6</option>
-                            <option value="8">7</option>
-                            <option value="9">8</option>
-                            <option value="10">9</option>
-                            <option value="11">10</option>
-                            <option value="12">11</option>
-                            <option value="13">12</option>
-                            <option value="14">13</option>
-                            <option value="15">14</option>
-                            <option value="16">15</option>
-                            <option value="17">16</option>
-                            <option value="18">17</option>
-                            <option value="19">18</option>
-                            <option value="20">19</option>
-                            <option value="21">20</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
                         </select></td>
                         <td><select class="form-control" data-id="${valor.id_sensor_mapeo}" id="cambiar_posicion_hum" name="cambiar_posicion_hum[]">
                             <option value="${val_hum}">${hum}</option>
                             <option value="no aplica">no aplica</option>
-                            <option value="2">1</option>
-                            <option value="3">2</option>
-                            <option value="4">3</option>
-                            <option value="5">4</option>
-                            <option value="6">5</option>
-                            <option value="7">6</option>
-                            <option value="8">7</option>
-                            <option value="9">8</option>
-                            <option value="10">9</option>
-                            <option value="11">10</option>
-                            <option value="12">11</option>
-                            <option value="13">12</option>
-                            <option value="14">13</option>
-                            <option value="15">14</option>
-                            <option value="16">15</option>
-                            <option value="17">16</option>
-                            <option value="18">17</option>
-                            <option value="19">18</option>
-                            <option value="20">19</option>
-                            <option value="21">20</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
                         </select></td>
                     </tr>    
                 `;
 
             });
+
+
 
             $("#listar_sensores_asignados_termocupla").html(template);
             $("#listar_sensores_asignados_sensores").html(template3);
@@ -1035,7 +1129,7 @@ function validar_datos_crudos(id_mapeo, movimiento){
         data:{id_mapeo,movimiento},
         url:'templates/mapeos_generales/controlador_datos_crudos.php',
         success:function(response){
-            console.log(response);
+            
             if(movimiento == "validar_archivo"){
                 if(response == "Cargado"){
                     $("#cargado_archivo_dc").show();
@@ -1151,10 +1245,29 @@ function traer_correlativo(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_consecutivo.php',
         success:function(response){
+          
+         
           let traer = JSON.parse(response);
+            
             traer.forEach((valor)=>{
+
+                if(valor.correlativo == null || valor.correlativo == "" || 
+                valor.usuario == null || valor.usuario == "" ||
+                valor.solicitante == null || valor.solicitante == "" ||
+                valor.cargo_solicitante == null || valor.cargo_solicitante == ""){
+                    $("#tarjeta_creacion_de_informes_botones").hide();
+                    $("#tarjeta_de_seleccion_de_pruebas").hide();
+                    $("#card_informes").hide();
+                }else{
+                    $("#tarjeta_creacion_de_informes_botones").show();
+                    $("#tarjeta_de_seleccion_de_pruebas").show();
+                    $("#card_informes").show();
+                }
+
                 $("#correlativo").val(valor.correlativo);
                 $("#responsable_informe").val(valor.usuario);
+                $("#solicitante_informe").val(valor.solicitante);
+                $("#cargo_solicitante").val(valor.cargo_solicitante);
             })
             
         }
@@ -1167,11 +1280,15 @@ $("#asignar_correlativo").click(function(){
 
     let correlativo = $("#correlativo").val();
     let responsable = $("#responsable_informe").val();
+    let solicitante = $("#solicitante_informe").val(); 
+    let cargo_solicitante = $("#cargo_solicitante").val();
     let movimiento = "guardar";
     const datos = {
         id_asignado,
         correlativo,
         movimiento,
+        solicitante,
+        cargo_solicitante,
         responsable
     }
 
@@ -1416,7 +1533,7 @@ $("#creacion_ar").click(function(){
             data:datos,
             url:'templates/mapeos_generales/controlador_informes.php',
             success:function(response){
-                console.log(response);
+                
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',
@@ -1468,7 +1585,7 @@ $("#creacion_base").click(function(){
             data:datos,
             url:'templates/mapeos_generales/controlador_informes.php',
             success:function(response){
-                console.log(response);
+              
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',
@@ -1746,10 +1863,7 @@ function listar_info_temp(id_informe, extra){
                 <form id="formulario_informe" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="id_informe_actual" value="${valor.id_informe}">
                     <div class="row">
-                      <div class="col-sm-6">
-                          <label>Solicitante: </label>
-                          <input type="text" class="form-control" placeholder="Solicitante" value="${valor.solicitante}" name="solicitante">  
-                      </div>
+                
   
                     </div>
                     <div class="row">
@@ -1916,7 +2030,7 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-          console.log(response)
+          
             Swal.fire({
               title:'Mensaje',
               text:'Se ha actualizado correctamentes',
@@ -2014,6 +2128,12 @@ $(document).on('click','#eliminar_imagen',function(){
 
 
 $(document).on('click','#configurar_sensor',function(){
+
+
+ $("#tipo_configuracion").val("");
+ $("#sin_config_datos_crudos").show();
+ $("#ok_config_datos_crudos").hide();
+ $("#errores_aqui_dc").hide();   
     
   let id_sensor_mapeo = $(this).attr('data-id');
   let template = "";
@@ -2061,6 +2181,8 @@ $(document).on('click','#envio_ejemplo',function(){
 
 
 $("#form_cargar_archivos").submit(function(e){
+
+    $("#errores_aqui_dc").show();
     e.preventDefault();
     let id_mapeo_actual = $("#id_mapeo_configurar").val();
     let id_bandeja_actual = $("#id_bandeja_configurar").val();
@@ -2074,8 +2196,40 @@ $("#form_cargar_archivos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-         console.log(response)
-         if(response == "fecha"){
+         
+         if(response == "Ok"){
+            
+            $("#tipo_configuracion").val("sin_errores");
+            $("#errores_aqui_dc").html("<tr><td class='text-success'>El archivo no contiene errores, click en Ok para continuar</td></tr>")
+            $("#ok_config_datos_crudos").show();
+            $("#sin_config_datos_crudos").hide();
+         }else if(response == "OkOk"){
+         
+            Swal.fire({
+                title:'Mensaje',
+                icon:'success',
+                text:'Se ha configurado correctamente el sensor.',
+                timer:1700
+              });
+              $("#mostrar_dato_crudo").hide();
+         }
+         else if(response == "fecha"){
+            Swal.fire({
+              title:'Mensaje',
+              text:'Formato de fecha incorrecto, formato de fecha correcto debe ser yyyy-mm-dd HH:mm:ss, valida tu archivo y vuelve a intentarlo',
+              icon:'warning',
+              timer:2200
+            });
+          }         
+         else{
+            $("#tipo_configuracion").val("con_errores");
+             $("#errores_aqui_dc").html(response+"<tr><td class='text-danger'>Corrija los errores y vuelva a cargar el archivo</td></tr>");
+             $("#ok_config_datos_crudos").hide();
+             $("#sin_config_datos_crudos").show();
+         }
+         listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
+         /*
+         else if(response == "fecha"){
            Swal.fire({
              title:'Mensaje',
              text:'Formato de fecha incorrecto, formato de fecha correcto debe ser yyyy-mm-dd HH:mm:ss, valida tu archivo y vuelve a intentarlo',
@@ -2093,7 +2247,7 @@ $("#form_cargar_archivos").submit(function(e){
           });
           $("#mostrar_dato_crudo").hide();
                       
-         }
+         }*/
         }
     });
     

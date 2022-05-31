@@ -6,15 +6,32 @@ $logo = "";
 class MYPDF extends TCPDF 
 {
     //Page header
+    public function saludar(){
+      echo "hshdagshdahsdh";
+    }
     public function Header() 
 	{
+       
       global $logo;
+      
+      
+      
       
       if($logo == ""){
         $logo = "recursos/logo_big.png";
       }
+      
+       /* $bMargin = $pdf->getBreakMargin();
+        $auto_page_break = $pdf->getAutoPageBreak();
+        $pdf->SetAutoPageBreak(false, 0);
+        $img_file = 'marca_de_agua.jpg';
+        $pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+        $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
+        $pdf->setPageMark(); */
 
       /*
+      
+      
 		
 		// Set border style
 		$this->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(120, 120, 120)));
@@ -38,7 +55,20 @@ class MYPDF extends TCPDF
     $this->writeHTMLCell(35, 22, 160, 11, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
-   
+    
+      // get the current page break margin
+        $bMargin = $this->getBreakMargin();
+        // get current auto-page-break mode
+        $auto_page_break = $this->AutoPageBreak;
+        // disable auto-page-break
+        $this->SetAutoPageBreak(false, 0);
+        // set bacground image
+        $img_file = '../../../../recursos/Imagen2.png';
+        $this->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+        // restore auto-page-break status
+        $this->SetAutoPageBreak($auto_page_break, $bMargin);
+        // set the starting point for the page content
+        $this->setPageMark();
     }
 	
     // Page footer
@@ -88,6 +118,7 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 }
 
 // ---------------------------------------------------------
+
 
 // set font
 $pdf->SetFont('helvetica', 'R', 7);

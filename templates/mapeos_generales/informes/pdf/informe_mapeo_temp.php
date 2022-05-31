@@ -1051,6 +1051,7 @@ EOD;
 $pdf->writeHTML($txt, true, false, false, false, '');
 
 
+$otro_contador = 0;
 for($i = 0; $i<mysqli_stmt_num_rows($query_35);$i++){
 mysqli_stmt_fetch($query_35);
 if($url_imagen_3 != ""){
@@ -1059,9 +1060,11 @@ if($url_imagen_3 != ""){
   $img_3 = '<img src="../../../../design/images/no_imagen.png" width="250px">';
 }  
   
-if($i == 1 or $i == 3){
-  $pdf->AddPage();
+if($otro_contador == 1 ){
+  $pdf->AddPage('A4');
+  $otro_contador = -1;
 }  
+$otro_contador++;  
   
 $txt= <<<EOD
 <style>

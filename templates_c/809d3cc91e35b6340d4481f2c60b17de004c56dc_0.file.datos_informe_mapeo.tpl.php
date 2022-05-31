@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-19 16:55:26
+/* Smarty version 3.1.34-dev-7, created on 2022-05-30 02:31:26
   from '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6286767e465696_46176265',
+  'unifunc' => 'content_62942c7e5c52a2_98051813',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '809d3cc91e35b6340d4481f2c60b17de004c56dc' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/mapeos_generales/datos_informe_mapeo.tpl',
-      1 => 1652979324,
+      1 => 1653877885,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6286767e465696_46176265 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62942c7e5c52a2_98051813 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
@@ -506,17 +506,24 @@ $_smarty_tpl->tpl_vars['segundo']->first = $_smarty_tpl->tpl_vars['segundo']->it
     <div class="row" tyle="text-align:center;">
       <div class="col-sm-12">
         <div class="form-row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <input type="text" id="correlativo" class="form-control" placeholder="Ingresar correlativo">
           </div>
-          <div class="col-sm-5">
-            <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar el responsable">
+          <div class="col-sm-3">
+            <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar responsable">
           </div>
           <div class="col-sm-3">
+            <input type="text" id="solicitante_informe" class="form-control" placeholder="Ingresar solicitante">
+          </div>
+          <div class="col-sm-3">
+            <input type="text" id="cargo_solicitante" class="form-control" placeholder="Ingresar Cargo del Solicitante">
+          </div>
+          <br>
+        </div>
+        <div class="" style="text-align:center;">
+          <br>
             <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
           </div>
-
-        </div>
       </div>
     </div>
     <hr>

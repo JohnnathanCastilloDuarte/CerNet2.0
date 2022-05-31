@@ -23,7 +23,8 @@ b.intervalo,
 a.comentario,
 a.acta_inspeccion,
 f.clasificacion_item,
-b.porcentaje_carga
+b.porcentaje_carga,
+a.cargo_solicitante
 FROM informes_general AS a,mapeo_general AS b,item_asignado AS c, servicio AS d, numot AS e,item AS f,empresa AS g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -35,15 +36,16 @@ AND f.id_empresa = g.id_empresa");
 mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
-mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
-$nombre_empresa_g, $direccion_empresa_g, $pais, $solicitante, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item, $porcentaje_carga);
+mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,
+                        $num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
+                        $nombre_empresa_g, $direccion_empresa_g, $pais, $solicitante_1, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item, $porcentaje_carga, $cargo_solicitante);
 
 
 mysqli_stmt_fetch($informes_generales);
 
 $nombre_informe = $nombre_informe_g;
 $numot = $num_ot_g;
-$a = mb_strtoupper("PRUEBA DE MAPEO TÉRMICO A ".$nombre_mapeo_g)."  ".$nombre_empresa_g;
+$a = mb_strtoupper("PRUEBA DE MAPEO TÉRMICO A ".$nombre_mapeo_g."  ".$nombre_empresa_g);
 
 $pre_nombre = strtolower($nombre_empresa_g);
 $nombre_empresa = ucwords($pre_nombre);
@@ -202,7 +204,7 @@ tr:nth-child(even)
 <table>
 <tr><td width="15%" align="right">Solicitante:</td><td width="85%" align="left"> $nombre_empresa_g $ajuste</td></tr>
 <tr><td width="15%" align="right">Dirección:</td><td width="85%" align="left">$direccion_empresa_g</td></tr>
-<tr><td width="15%" align="right">Atención:</td><td width="85%" align="left">$solicitante</td></tr>
+<tr><td width="15%" align="right">Atención:</td><td width="85%" align="left">$solicitante_1</td></tr>
 <tr><td width="15%" align="right">Fecha Emisión:</td><td width="85%" align="left">$fecha_inicio_g_sin_hora</td></tr>
 </table><br><br>
 
@@ -218,7 +220,7 @@ tr:nth-child(even)
 <tr><td width="25%" align="right">Descripción:</td><td align="left" width="75%">$descripcion_item</td></tr>
 <tr><td width="25%" align="right">Marca:</td><td align="left" width="75%">$marca</td></tr>
 <tr><td width="25%" align="right">Modelo:</td><td align="left" width="75%">$modelo</td></tr>
-<tr><td width="25%" align="right">Identificacón:</td><td align="left" width="75%">$codigo_interno</td></tr>
+<tr><td width="25%" align="right">Identificación:</td><td align="left" width="75%">$codigo_interno</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>3.0 NORMATIVA</strong></H3></td></tr></table><br><br>
@@ -410,6 +412,18 @@ EOD;
 $pdf->writeHTML($txt, true, false, false, false, '');
 $pdf->AddPage();
 
+if($min_temp == 'No Aplica'){
+   $muestra_01 = '00.00';
+}else{
+  $muestra_01 = $min_temp;
+}
+
+if($max_temp == 'No Aplica'){
+  $muestra_02 = '00.00';
+}else{
+  $muestra_02 = $max_temp;
+}
+
 $txt = <<<EOD
 
 <style>
@@ -469,7 +483,7 @@ críticas que pueden afectar las temperaturas de los productos almacenados.</LI>
 
 <LI CLASS="biglist">Se realiza análisis de riesgo para determinar áreas críticas.</LI>
 
-<LI CLASS="biglist">La $clasificacion_item se encuentra al momento de la instalación de $cantidad_sensores sensores con $porcentaje_carga% de
+<LI CLASS="biglist">La $clasificacion_item se encuentra al momento de la instalación de sensores con $porcentaje_carga% de
 carga aproximadamente.</LI>
 
 <LI CLASS="biglist">Por altura de la $clasificacion_item y los estantes instalados en ella se consideran $alturas_generales niveles de
@@ -479,7 +493,7 @@ $zona_alt_m3 $zona_alt_m2 $zona_alt_m $zona_alt_b.</LI>
 <LI CLASS="biglist">Se determinan entonces, teniendo en cuenta los puntos más críticos mencionados
 anteriormente la instalación de <strong> $cantidad_sensores sensores</strong> ubicados al interior de la $numero_equipo de
 almacenamiento de $productos_almacena, para evaluar comportamiento bajo criterio de sobrepasar las temperaturas
-límite de $min_temp °C a $max_temp °C definidas por el solicitante.</LI>
+límite de $muestra_01 °C a $muestra_02 °C definidas por el solicitante.</LI>
 
 <LI CLASS="biglist">La posición de los sensores se encuentra registrada en el punto “Descripción de
 distribución de sensores”.</LI>
@@ -505,11 +519,11 @@ estar fuera de los criterios de aceptación especificados para la droguería.</S
 <SPAN STYLE="text-align: justify;">Un punto frío se refiere a las temperaturas más bajas registradas en el área durante el
 período de estudio, pero estas temperaturas más bajas se mantienen dentro de lo
 especificado en el rango de temperatura de la $clasificacion_item, con un rango de temperatura
-especificado por cliente de +$min_temp °C a +$max_temp °C.</SPAN><BR><BR>
+especificado por cliente de + $muestra_01 °C a +$muestra_02.</SPAN><BR><BR>
 
 <SPAN STYLE="text-align: justify;">Un punto caliente se refiere a las temperaturas más altas registradas en el área durante
 el período de estudio, pero estas temperaturas más altas permanecen dentro del rango
-de temperatura especificado en el rango de temperatura por cliente de +$min_temp °C a +$max_temp °C.
+de temperatura especificado en el rango de temperatura por cliente de + $muestra_01 °C a +$muestra_02.
 El propósito de determinar los puntos calientes y fríos es identificar las ubicaciones
 donde los sensores del sistema de monitoreo deben ubicarse preferentemente. Los
 puntos calientes y los puntos fríos deben determinarse estacionalmente, ya que, pueden
@@ -1388,12 +1402,12 @@ fin de determinar el gradiente de temperatura: $nombres_acomulados ubicados en $
 <br><br>
 <table>
 <tr><td width="5%">7.3</td>
-<td width="95%" class="justificado">La propuesta y ubicación de los sensores fue analizada en conjunto con $solicitante.</td></tr>
+<td width="95%" class="justificado">La propuesta y ubicación de los sensores fue analizada en conjunto con $cargo_solicitante.</td></tr>
 </table>
 <br><br>
 <table>
 <tr><td width="5%">7.4</td>
-<td width="95%" class="justificado">El análisis de riesgo que acompaña el presente informe puede ser complementado o actualizado por parte de $nombre_empresa. de acuerdo con los resultados obtenidos.</td></tr>
+<td width="95%" class="justificado">El análisis de riesgo que acompaña el presente informe puede ser complementado o actualizado por parte de $nombre_empresa_g  de acuerdo con los resultados obtenidos.</td></tr>
 </table>
 EOD;
 
@@ -1965,23 +1979,22 @@ mysqli_stmt_bind_result($imagenes_informes, $url1);
       $contadorpage = 1;
       $num_rows = mysqli_stmt_num_rows($imagenes_informes);
     while($row = mysqli_stmt_fetch($imagenes_informes)){
-
+      
+      if ($contadorpage > 4) {
+            $pdf->AddPage('A4');
+            $contadorpage = 0;
+         }
       if ($cont == 2) {
-         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px;" >', 1, 1, 0, true, 'C', true);
+         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px; height:350px;" >', 1, 1, 0, true, 'C', true);
+
          $pdf->ln(2); 
          $contador = 15;
          $cont = 0;
        }else if ($cont == 1) {
          $contador = 15;
-         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px;">', 1, 0, 0, true, 'C', true); 
-       }/*else{
-         $pdf->writeHTMLCell(80, '', $contador, '', '<img src="../../'.$url1.'" style="width: 250px;">', 1, 0, 0, true, 'C', true); 
-       }*/
-        //Condicion que controla el cambio de imagenes a otra hoja en caso de que esta sea mayor a 15 
-         if ($contadorpage > 4) {
-            $pdf->AddPage('A4');
-            $contadorpage = 0;
-         }
+         $pdf->writeHTMLCell(80, '', $contador, '', '<br><br><img src="../../'.$url1.'" style="width: 260px; height:350px;">', 1, 0, 0, true, 'C', true); 
+       }
+         
          if ($contadorpage == $num_rows && $cont == 1){
            $pdf->ln(40);
          }

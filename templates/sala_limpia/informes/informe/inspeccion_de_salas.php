@@ -3,6 +3,17 @@ require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 
 
+
+    $hola .= $bMargin = $pdf->getBreakMargin();
+    $hola .= $auto_page_break = $pdf->getAutoPageBreak();
+    $hola .= $pdf->SetAutoPageBreak(false, 0);
+    $hola .= $img_file = '../../../../recursos/image_demo.jpg';
+    $hola .= $pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+    $hola .= $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
+    $hola .= $pdf->setPageMark();
+
+
+
 $clave = $_GET['clave'];
 
 $id_asignado = substr($clave, 97);
@@ -111,6 +122,7 @@ if ($clasificacion_iso == 5) {
 
 
 $pdf->AddPage('A4');
+
 
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(202, 202, 202)));
 $linea = <<<EOD

@@ -400,14 +400,28 @@
 
                 </div>
                 <br>
+                <input type="hidden" name="tipo_configuracion" id="tipo_configuracion">
                 <div class="row" style="text-align: center;">
                   <div class="col-sm-12">
-                    <button class="btn btn-primary">
-                                  Enviar
-                                </button>
+                    <button class="btn btn-primary" id="sin_config_datos_crudos">
+                      Enviar
+                    </button>
+                    <button class="btn btn-success" id="ok_config_datos_crudos">
+                      Ok
+                    </button>
                   </div>
                 </div>
               </form>
+              <br><hr>
+              <div class="row">
+                <div class="col-sm-12" style="text-align:center;">
+                  <span class="text-danger">Observaciones archivo</span>
+                </div>
+                <table>
+                  <tbody id="errores_aqui_dc"></tbody>
+                </table>
+              </div>
+            
             </div>
           </div>
         </div>
@@ -422,23 +436,30 @@
     <div class="row" tyle="text-align:center;">
       <div class="col-sm-12">
         <div class="form-row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <input type="text" id="correlativo" class="form-control" placeholder="Ingresar correlativo">
           </div>
-          <div class="col-sm-5">
-            <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar el responsable">
+          <div class="col-sm-3">
+            <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar responsable">
           </div>
           <div class="col-sm-3">
+            <input type="text" id="solicitante_informe" class="form-control" placeholder="Ingresar solicitante">
+          </div>
+          <div class="col-sm-3">
+            <input type="text" id="cargo_solicitante" class="form-control" placeholder="Ingresar Cargo del Solicitante">
+          </div>
+          <br>
+        </div>
+        <div class="" style="text-align:center;">
+          <br>
             <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
           </div>
-
-        </div>
       </div>
     </div>
     <hr>
     <div class="row">
       <div class="col-sm-12">
-        <div class="card">
+        <div class="card" id="tarjeta_creacion_de_informes_botones">
           <div class="card-header">Creación de informes para prueba <span class="text-primary" id="nombre_prueba_creacion_informe"></span></div>
           <div class="card-body">
             <div class="row" style="text-align:center;">
@@ -462,7 +483,7 @@
     <br>
     <div class="row">
       <div class="col-sm-12">
-        <div class="card">
+        <div class="card" id="tarjeta_de_seleccion_de_pruebas">
           <div class="card-header">
             Seleccion de pruebas
           </div>

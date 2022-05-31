@@ -316,7 +316,7 @@ $imagen_4 = $_POST['imagen_base_equipo_4'];
   $imagen_1 = $_POST['imagen_tipo_1'];
   $imagen_2 = $_POST['imagen_tipo_2'];
   $imagen_3 = $_POST['imagen_tipo_3'];
-  $solicitante = $_POST['solicitante'];
+  //$solicitante = $_POST['solicitante'];
 
 /*
   if(!isset($imagen_1)){
@@ -486,8 +486,8 @@ $imagen_4 = $_POST['imagen_base_equipo_4'];
   }////////// CIERRE DEL ISSET DE IMAGEN2 
 
 */
-  $actualizando_comentarios = mysqli_prepare($connect,"UPDATE informes_general SET comentario = ? , observacion = ?, solicitante = ? WHERE id_informe = ?");
-  mysqli_stmt_bind_param($actualizando_comentarios, 'sssi', $comentario_informe_temp, $observacion_informe_temp, $solicitante, $id_informe);
+  $actualizando_comentarios = mysqli_prepare($connect,"UPDATE informes_general SET comentario = ? , observacion = ? WHERE id_informe = ?");
+  mysqli_stmt_bind_param($actualizando_comentarios, 'ssi', $comentario_informe_temp, $observacion_informe_temp, $id_informe);
   mysqli_stmt_execute($actualizando_comentarios);
 
   if($actualizando_comentarios){
@@ -495,6 +495,7 @@ $imagen_4 = $_POST['imagen_base_equipo_4'];
                           'valor'=>'TEMP');
       $convert = json_encode($array_frio);
       echo $convert;
+     
     
   }else{
       echo "Error";
