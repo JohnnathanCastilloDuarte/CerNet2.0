@@ -5,7 +5,7 @@ $id_informe = $_GET['informe'];
 
 
 $informes_generales = mysqli_prepare($connect,"SELECT a.tipo_protocolo, a.nombre, b.id_mapeo,b.nombre, b.id_asignado,b.fecha_inicio,b.fecha_fin, c.id_servicio as servicio, e.numot, f.id_item, f.nombre, f.descripcion, f.id_tipo, g.nombre, 
-g.direccion, a.solicitante, f.clasificacion_item, g.logo
+g.direccion, c.solicitante, c.cargo_solicitante, f.clasificacion_item, g.logo
 FROM informes_general a,mapeo_general b,item_asignado c, servicio d, numot e,item f,empresa g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -14,11 +14,12 @@ AND c.id_servicio = d.id_servicio
 AND d.id_numot = e.id_numot
 AND c.id_item = f.id_item
 AND f.id_empresa = g.id_empresa");
+
 mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
 mysqli_stmt_bind_result($informes_generales, $tipo_protocolo, $nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,$num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
-$nombre_empresa_g, $direccion_empresa_g, $solicitante, $clasificacion_item, $logo_empresa);
+$nombre_empresa_g, $direccion_empresa_g, $solicitante, $cargo_solicitante, $clasificacion_item, $logo_empresa);
 
 mysqli_stmt_fetch($informes_generales);
 
@@ -27,227 +28,9 @@ $nombre_informe = $nombre_informe_g;
 $numot = $num_ot_g;
 $a = "INFORME DE ANÁLISIS DE RIESGO DE ".$nombre_item_g." ".$nombre_empresa_g;
 $a_portada = "INFORME DE ANÁLISIS DE RIESGO <br> ".$nombre_item_g."<br>". $nombre_empresa_g;
-/*
 
-//CONSULTAS PARA PUNTO 1
-$obten_datos_empresa=mysqli_query($connect,"SELECT A.id_empresa, B.nombre_empresa, B.nombre_contacto, B.cargo_contacto, B.direccion, B.ciudad,
-                  B.url_logo, B.pais 
-								  FROM ordenes_de_trabajo as A, empresas as B 
-								  WHERE num_ot='$num_ot' AND A.id_empresa=B.id_empresa");
-$a=mysqli_fetch_array($obten_datos_empresa);
-$id_empresa=$a['id_empresa'];
-$empresa=$a['nombre_empresa'];
-$contacto=$a['nombre_contacto'];
-$cargo=$a['cargo_contacto'];
-$direccion=$a['direccion'];
-$ciudad=$a['ciudad'];
-$pais=$a['pais'];
-$url_logo = "../".$a['url_logo'];
-
-$obten_codigo_informe=mysqli_query($connect,"SELECT  no_reporte, hora_inicio_sensado, hora_fin_sensado, fecha_creacion 
-								   FROM reportes WHERE num_ot='$num_ot' 
-								   AND id_empresa='$id_empresa' AND equipo_bodega='$no_equipo' AND no_reporte like '%-AR%' AND id_servicio='$servicio'");
-$b=mysqli_fetch_array($obten_codigo_informe);
-$codigo_informe=$b['no_reporte'];
-$creacion=$b['fecha_creacion'];
-$emision=substr($creacion,8,2)."-".substr($creacion,5,2)."-".substr($creacion,0,4);
-$meses=array("0","enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
-if(substr($creacion,5,2)>=10){$el_mes=substr($creacion,5,2);}else{$el_mes=substr($creacion,6,1);}
-$emision_traducida=substr($creacion,8,2)." de ".$meses[$el_mes]." del ".substr($creacion,0,4);
-$start=$b['hora_inicio_sensado'];
-$end=$b['hora_fin_sensado'];
-$start_corto=substr($start,8,2)."-".substr($start,5,2)."-".substr($start,0,4);
-$end_corto=substr($end,8,2)."-".substr($end,5,2)."-".substr($end,0,4);
-
-//CONSULTAS PARA PUNTO 2
-$obten_datos_equipo=mysqli_query($connect,"SELECT A.id_equipo_bodega, A.total_horas_sensado, A.intervalo_sensado, B.id_equipo_bodega, B.no_equipo_bodega, 
-B.tipo_equipo, B.ubicacion_equipo, B.marca, B.modelo, B.serie_num_interno, B.valor_seteado, B.limite_superior, B.limite_inferior, B.valor_set_hr, 
-B.limite_sup_hr, B.limite_inf_hr, B.descrip_producto, A.no_acta
-FROM equipos_asignados as A, equipos_bodegas as B 
-WHERE A.num_ot='$num_ot' AND A.id_equipo_bodega=B.id_equipo_bodega AND A.id_equipo_bodega='$no_equipo' AND A.id_servicio='$servicio'");
-$c=mysqli_fetch_array($obten_datos_equipo);
-$numero_equipo=$c['no_equipo_bodega'];
-$tipo_equipo=$c['tipo_equipo'];
-$ubicacion_equipo=$c['ubicacion_equipo'];
-$marca=$c['marca'];
-$modelo=$c['modelo'];
-$serie=$c['serie_num_interno'];
-$set_temp=number_format($c['valor_seteado'],2);
-$max_temp=$c['limite_superior'];
-$max_temp_num=number_format($c['limite_superior'],2);
-$min_temp=$c['limite_inferior'];
-$min_temp_num=number_format($c['limite_inferior'],2);
-$set_hr=$c['valor_set_hr'];
-$max_hr=$c['limite_sup_hr'];
-$min_hr=$c['limite_inf_hr'];
-$descripcion=$c['descrip_producto'];
-$horas=$c['total_horas_sensado'];
-$dias=$horas/24;
-$intervalo=$c['intervalo_sensado'];
-$acta=$c['no_acta'];
-$tolerancia_max=$max_temp-2;
-$tolerancia_min=$min_temp+2;
-
-//CONSULTAS PARA PUNTO 4
-
-$secciona=explode(";",$descripcion);
-$cuenta_materiales=count($secciona);
-
-switch($cuenta_materiales)
-{
-	CASE 1:
-	$descrip_material=$secciona[0];
-	break;
-	
-	CASE 2:
-	$descrip_material=$secciona[0]." y ".$secciona[1];
-	break;
-	
-    CASE 3:
-	$descrip_material=$secciona[0].", ".$secciona[1]." y ".$secciona[2];
-	break;
-
-    CASE 4:
-	$descrip_material=$secciona[0].", ".$secciona[1].", ".$secciona[2]." y ".$secciona[3];
-	break;
-
-    CASE 5:
-	$descrip_material=$secciona[0].", ".$secciona[1].", ".$secciona[2].", ".$secciona[3]." y ".$secciona[4];
-	break;
-
-    CASE 6:
-	$descrip_material=$secciona[0].", ".$secciona[1].", ".$secciona[2].", ".$secciona[3].", ".$secciona[4]." y ".$secciona[5];
-	break;
-
-    CASE 7:
-	$descrip_material=$secciona[0].", ".$secciona[1].", ".$secciona[2].", ".$secciona[3].", ".$secciona[4].", ".$secciona[5]." y ".$secciona[6];
-	break;
-
-    CASE 8:
-	$descrip_material=$secciona[0].", ".$secciona[1].", ".$secciona[2].", ".$secciona[3].", ".$secciona[4].", ".$secciona[5].", ".$secciona[6]." y ".$secciona[7];
-	break;
-}
-
-$llama_documentos1=mysqli_query($connect,"SELECT no_reporte FROM reportes WHERE num_ot='$num_ot' AND equipo_bodega='$no_equipo' AND 
-								no_reporte LIKE '%-TEM-%' AND id_servicio='$servicio' ORDER BY no_reporte ASC limit 1");
-$process1=mysqli_fetch_array($llama_documentos1);
-$primer_temp=$process1['no_reporte'];
-
-$llama_documentos2=mysqli_query($connect,"SELECT no_reporte FROM reportes WHERE num_ot='$num_ot' AND equipo_bodega='$no_equipo' AND 
-								no_reporte LIKE '%-TEM-%' AND id_servicio='$servicio' ORDER BY no_reporte DESC limit 1");
-$process2=mysqli_fetch_array($llama_documentos2);
-$ultima_temp=$process2['no_reporte'];
-
-$conclusiones=mysqli_query($connect,"SELECT observacion, conclusion FROM reportes 
-WHERE num_ot='$num_ot' AND equipo_bodega='$no_equipo' AND no_reporte like '%A1-PS%' AND id_servicio='$servicio'");	
-$z=mysqli_fetch_array($conclusiones);
-$observacion=$z['observacion'];
-$conclusion=$z['conclusion'];
-
-//CABECERAS PERSONALIZADAS
-class MYPDF extends TCPDF 
-{
-    //Page header
-    public function Header() 
-	{
-		global $tipo_equipo, $numero_equipo, $empresa, $codigo_informe, $num_ot;
-		// Set border style
-		$this->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(120, 120, 120)));
-        // Logo
-		//$this->writeHTMLCell(35, 22, 17, 11, '<img src="../images/cercal2.jpg" width="150">', 0, 0, 0, true, 'C', true);
-        // Set font
-        $this->SetFont('helvetica', 'B', 8);
-        // Title
-		//$this->writeHTMLCell(185, 20, 15, '', '', 0, 1, 0, true, 'C', true);	
-		//$this->writeHTMLCell(40, 20, 15, '', '', 0, 1, 0, true, 'C', true);		
-    $this->MultiCell(120, 12, 'INFORME DE ANÁLISIS DE RIESGO MAPEO TÉRMICO '.$numero_equipo.' - '.$empresa.$txt2, 1, 'C', 0, 0, 15, 30, true, 0, false, true, 12, 'M');
-		$this->writeHTMLCell(60, 8, 135, 30, 'Informe: '.$codigo_informe.' <br>'.$num_ot.' // REVISION: 0.0.0', 1, 0, 0, true, 'R', true);
-		$this->writeHTMLCell(60, 4, 135, 38, '<table><tr><td width="120%">Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);		
-    }
-
-    // Page footer
-  public function Footer() 
-	{
-	global $pais_emp;
-
-	}
-}
-
-
-// create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-// set document information
-$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Cercal Group');
-$pdf->SetTitle($codigo_informe);
-$pdf->SetSubject('Informe');
-$pdf->SetKeywords('');
-
-// set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-//$pdf->setFooterData(array(0,64,0), array(0,64,128));
-
-// set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-//$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-// set default monospaced font
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-// set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, 45, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(35);
-//$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-// set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-// set image scale factor
-$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-// set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-    require_once(dirname(__FILE__).'/lang/eng.php');
-    $pdf->setLanguageArray($l);
-}
-
-// ---------------------------------------------------------
-$imagen = "<img src='$url_logo'>";
-
-// set font
-$pdf->SetFont('freesans', 'R', 8.3);
-
-
-// add a page
-$pdf->AddPage();
-$html1 = <<<EOD
-<br><br><br><br><br><br><br><br><br><br><br>
-<table width="100%"><tr>
-  <td  width="21%">
-  
-  </td>
-  <td  width="63%">
-  <table border="1" width="100%" style="text-align:center;">
-    <tr>
-      <td><strong><h1>INFORME DE ANÁLISIS DE RIESGO</strong></h1>
-          <h2>MAPEO TÉRMICO DE $numero_equipo  $empresa</h2><br>
-          <img src="$url_logo" width="300px">
-      </td>
-    </tr>
-  </table>
-  </td>
-  
-</tr></table>
-EOD;
-$pdf->writeHTML($html1, true, false, false, false, '');
-/*
-
-$pdf->SetLineStyle(array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'double', 'color' => array(0, 0, 0)));
-$pdf->writeHTMLCell(110, 60, 55, 80, '<strong><h1>INFORME DE ANÁLISIS DE RIESGO</strong></h1>
-<h2>MAPEO TÉRMICO de '.$numero_equipo .' - '.$empresa.'</h2><br>'.$imagen, 1, 1, 0, true, 'C', true);
-*/
-if($logo_empresa == 'NO' || $logo_empresa == 'design/images/no_imagen.png'){
-   $logo_a = '../../../../'.$logo_empresa;
+if($logo_empresa == 'NO' || $logo_empresa == 'design/images/no_imagen.png' || $logo_empresa == ""){
+   $logo_a = '../../../../design/images/no_imagen.png';
 }else{
    $logo_a = '../../../cliente/'.$logo_empresa;
 }
