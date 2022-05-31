@@ -8,7 +8,7 @@ b.id_mapeo,
 b.nombre,
 b.id_asignado,
 b.fecha_inicio,
-b.fecha_fin, 
+b.fecha_fin,  
 c.id_servicio as servicio,
 e.numot,
 f.id_item,
@@ -18,13 +18,11 @@ f.id_tipo,
 g.nombre, 
 g.direccion,
 g.pais,
-a.solicitante,
 b.intervalo,
 a.comentario,
 a.acta_inspeccion,
 f.clasificacion_item,
-b.porcentaje_carga,
-a.cargo_solicitante
+b.porcentaje_carga
 FROM informes_general AS a,mapeo_general AS b,item_asignado AS c, servicio AS d, numot AS e,item AS f,empresa AS g
 WHERE id_informe = ?
 AND a.id_mapeo = b.id_mapeo 
@@ -33,12 +31,13 @@ AND c.id_servicio = d.id_servicio
 AND d.id_numot = e.id_numot
 AND c.id_item = f.id_item
 AND f.id_empresa = g.id_empresa");
+
 mysqli_stmt_bind_param($informes_generales, 'i', $id_informe);
 mysqli_stmt_execute($informes_generales);
 mysqli_stmt_store_result($informes_generales);
 mysqli_stmt_bind_result($informes_generales,$nombre_informe_g,$id_mapeo_g,$nombre_mapeo_g,$id_asignado,$fecha_inicio_g,$fecha_fin_g,$c,
                         $num_ot_g,$id_item_g, $nombre_item_g,$descripcion_item,$id_tipo_item_g,
-                        $nombre_empresa_g, $direccion_empresa_g, $pais, $solicitante_1, $intervalo, $comentario, $acta_inspeccion, $clasificacion_item, $porcentaje_carga, $cargo_solicitante);
+                        $nombre_empresa_g, $direccion_empresa_g, $pais,$intervalo, $comentario, $acta_inspeccion, $clasificacion_item, $porcentaje_carga);
 
 
 mysqli_stmt_fetch($informes_generales);
@@ -50,11 +49,11 @@ $a = mb_strtoupper("PRUEBA DE MAPEO TÉRMICO A ".$nombre_mapeo_g."  ".$nombre_em
 $pre_nombre = strtolower($nombre_empresa_g);
 $nombre_empresa = ucwords($pre_nombre);
 
-$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
+$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre, a.solicitante, a.cargo_solicitante  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
 mysqli_stmt_bind_param($query_2, 'i', $id_asignado);
 mysqli_stmt_execute($query_2);
 mysqli_stmt_store_result($query_2);
-mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo);
+mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo, $solicitante, $cargo_solicitante);
 mysqli_stmt_fetch($query_2);
 
  ////CONTAR CANTIDAD DE SENSORES:
@@ -204,7 +203,7 @@ tr:nth-child(even)
 <table>
 <tr><td width="15%" align="right">Solicitante:</td><td width="85%" align="left"> $nombre_empresa_g $ajuste</td></tr>
 <tr><td width="15%" align="right">Dirección:</td><td width="85%" align="left">$direccion_empresa_g</td></tr>
-<tr><td width="15%" align="right">Atención:</td><td width="85%" align="left">$solicitante_1</td></tr>
+<tr><td width="15%" align="right">Atención:</td><td width="85%" align="left">$solicitante - $cargo_solicitante</td></tr>
 <tr><td width="15%" align="right">Fecha Emisión:</td><td width="85%" align="left">$fecha_inicio_g_sin_hora</td></tr>
 </table><br><br>
 

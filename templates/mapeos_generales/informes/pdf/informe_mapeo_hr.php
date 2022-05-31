@@ -11,21 +11,21 @@
 
 		// 1-CONSULTAR LA INFORMACIóN LA CUAL SE IMPRIMIRA EN LAS CABECERAS Y EL NOMBRE DEL INFORME
 
-		$query_1 = mysqli_prepare($connect,"SELECT nombre, id_asignado, id_mapeo, observacion, comentario, corresponde_a, solicitante, fecha_registro FROM informes_general WHERE id_informe = ? ");
+		$query_1 = mysqli_prepare($connect,"SELECT nombre, id_asignado, id_mapeo, observacion, comentario, corresponde_a,  fecha_registro FROM informes_general WHERE id_informe = ? ");
 		mysqli_stmt_bind_param($query_1, 'i', $id_informe);
 		mysqli_stmt_execute($query_1);
 		mysqli_stmt_store_result($query_1);
-		mysqli_stmt_bind_result($query_1, $dato_1, $id_asignado, $id_mapeo, $observacion, $comentarios, $concepto, $solicitante, $fecha_registro);
+		mysqli_stmt_bind_result($query_1, $dato_1, $id_asignado, $id_mapeo, $observacion, $comentarios, $concepto,  $fecha_registro);
 		mysqli_stmt_fetch($query_1);
    
 		$nombre_informe = $dato_1;
-    $fecha_emicion = substr($fecha_registro,0, -8);
+    	$fecha_emicion = substr($fecha_registro,0, -8);
 
-		$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
+		$query_2 = mysqli_prepare($connect,"SELECT a.id_servicio, a.id_item, b.nombre, b.apellido, c.nombre, a.solicitante, a.cargo_solicitante  FROM item_asignado  as a, persona as b, cargo as c WHERE a.id_asignado = ? AND a.usuario_responsable = b.id_usuario AND b.id_cargo = c.id_cargo");
 		mysqli_stmt_bind_param($query_2, 'i', $id_asignado);
 		mysqli_stmt_execute($query_2);
 		mysqli_stmt_store_result($query_2);
-		mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo);
+		mysqli_stmt_bind_result($query_2, $id_servicio, $id_item, $nombres, $apellidos, $cargo, $solicitante, $cargo_solicitante);
 		mysqli_stmt_fetch($query_2);
 	
 
@@ -44,7 +44,7 @@
 		mysqli_stmt_fetch($query_4);
 		
 		$numot = $dato_2;
-    $num_nummot = substr($numot, 2);
+    	$num_nummot = substr($numot, 2);
 
 		$query_5 = mysqli_prepare($connect,"SELECT nombre, direccion FROM empresa WHERE id_empresa = ?");
 		mysqli_stmt_bind_param($query_5, 'i', $id_empresa);
@@ -533,7 +533,7 @@ text-align:left;
 <tr><td width="15%"><strong>Solicitante:</strong></td><td>$nombre_empresa</td>
 		<td>Dirección:</td><td>$direccion_empresa</td></tr>
 
-		<tr><td width="15%"><strong>Atención:</strong></td><td>$solicitante</td>
+		<tr><td width="15%"><strong>Atención:</strong></td><td>$solicitante - $cargo_solicitante</td>
 		<td>Fecha de emisión:</td><td>$fecha_emicion</td></tr>
 		</table><br><br>
 
