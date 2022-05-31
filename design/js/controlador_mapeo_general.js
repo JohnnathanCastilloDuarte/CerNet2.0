@@ -12,6 +12,9 @@ $("#asignacion_sensores").hide();
 $("#lista_de_bandejas").hide();
 $("#datos_crudos_card").hide();
 $("#mostrar_dato_crudo").hide();
+$("#asignacion").hide();
+$("#tipo_configuracion").val("");
+$("#ok_config_datos_crudos").hide();
 
 ///////////// VARIABLES GLOBALES
 var id_asignado = $("#id_asignado").val();
@@ -275,6 +278,7 @@ $("#btn_nuevo_mapeo_general").click(function(){
         data:datos,
         url:'templates/mapeos_generales/controlador_mapeo.php',
         success:function(response){
+        
             if(response == "Listo"){
                 Swal.fire({
                     title:'Mensaje',
@@ -300,7 +304,14 @@ function listar_mapeos(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_mapeo.php',
         success:function(response){
-       
+      
+            if(response == "[]"){
+                $("#asignacion").hide();
+                $("#informes").hide();               
+            }else{
+                $("#asignacion").show();
+                $("#informes").show(); 
+            }
 
             let traer = JSON.parse(response);
             let template = "";
@@ -679,6 +690,7 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
 
             traer.forEach((valor)=>{
 
+             
                 if(valor.posicion_tem == "no aplica"){
                     temp = "no aplica";
                     val_temp = "no aplica";
@@ -923,6 +935,8 @@ function listar_sensor_asignados(id_mapeo, id_bandeja){
 
             });
 
+
+
             $("#listar_sensores_asignados_termocupla").html(template);
             $("#listar_sensores_asignados_sensores").html(template3);
             $("#sensores_asignado_dc").html(template2);
@@ -1115,7 +1129,7 @@ function validar_datos_crudos(id_mapeo, movimiento){
         data:{id_mapeo,movimiento},
         url:'templates/mapeos_generales/controlador_datos_crudos.php',
         success:function(response){
-            console.log(response);
+            
             if(movimiento == "validar_archivo"){
                 if(response == "Cargado"){
                     $("#cargado_archivo_dc").show();
@@ -1231,9 +1245,25 @@ function traer_correlativo(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_consecutivo.php',
         success:function(response){
-          console.log(response);
+          
+         
           let traer = JSON.parse(response);
+            
             traer.forEach((valor)=>{
+
+                if(valor.correlativo == null || valor.correlativo == "" || 
+                valor.usuario == null || valor.usuario == "" ||
+                valor.solicitante == null || valor.solicitante == "" ||
+                valor.cargo_solicitante == null || valor.cargo_solicitante == ""){
+                    $("#tarjeta_creacion_de_informes_botones").hide();
+                    $("#tarjeta_de_seleccion_de_pruebas").hide();
+                    $("#card_informes").hide();
+                }else{
+                    $("#tarjeta_creacion_de_informes_botones").show();
+                    $("#tarjeta_de_seleccion_de_pruebas").show();
+                    $("#card_informes").show();
+                }
+
                 $("#correlativo").val(valor.correlativo);
                 $("#responsable_informe").val(valor.usuario);
                 $("#solicitante_informe").val(valor.solicitante);
@@ -1503,7 +1533,7 @@ $("#creacion_ar").click(function(){
             data:datos,
             url:'templates/mapeos_generales/controlador_informes.php',
             success:function(response){
-                console.log(response);
+                
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',
@@ -1555,7 +1585,7 @@ $("#creacion_base").click(function(){
             data:datos,
             url:'templates/mapeos_generales/controlador_informes.php',
             success:function(response){
-                console.log(response);
+              
                 if(response == "Existe"){
                     Swal.fire({
                         title:'Mensaje',
@@ -2000,7 +2030,7 @@ $(document).on('submit','#formulario_informe',function(e){
         contentType: false,
         processData: false,
         success:function(response){
-          console.log(response)
+          
             Swal.fire({
               title:'Mensaje',
               text:'Se ha actualizado correctamentes',
@@ -2098,6 +2128,12 @@ $(document).on('click','#eliminar_imagen',function(){
 
 
 $(document).on('click','#configurar_sensor',function(){
+
+
+ $("#tipo_configuracion").val("");
+ $("#sin_config_datos_crudos").show();
+ $("#ok_config_datos_crudos").hide();
+ $("#errores_aqui_dc").hide();   
     
   let id_sensor_mapeo = $(this).attr('data-id');
   let template = "";
@@ -2145,6 +2181,8 @@ $(document).on('click','#envio_ejemplo',function(){
 
 
 $("#form_cargar_archivos").submit(function(e){
+
+    $("#errores_aqui_dc").show();
     e.preventDefault();
     let id_mapeo_actual = $("#id_mapeo_configurar").val();
     let id_bandeja_actual = $("#id_bandeja_configurar").val();
@@ -2158,8 +2196,40 @@ $("#form_cargar_archivos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-         console.log(response)
-         if(response == "fecha"){
+         
+         if(response == "Ok"){
+            
+            $("#tipo_configuracion").val("sin_errores");
+            $("#errores_aqui_dc").html("<tr><td class='text-success'>El archivo no contiene errores, click en Ok para continuar</td></tr>")
+            $("#ok_config_datos_crudos").show();
+            $("#sin_config_datos_crudos").hide();
+         }else if(response == "OkOk"){
+         
+            Swal.fire({
+                title:'Mensaje',
+                icon:'success',
+                text:'Se ha configurado correctamente el sensor.',
+                timer:1700
+              });
+              $("#mostrar_dato_crudo").hide();
+         }
+         else if(response == "fecha"){
+            Swal.fire({
+              title:'Mensaje',
+              text:'Formato de fecha incorrecto, formato de fecha correcto debe ser yyyy-mm-dd HH:mm:ss, valida tu archivo y vuelve a intentarlo',
+              icon:'warning',
+              timer:2200
+            });
+          }         
+         else{
+            $("#tipo_configuracion").val("con_errores");
+             $("#errores_aqui_dc").html(response+"<tr><td class='text-danger'>Corrija los errores y vuelva a cargar el archivo</td></tr>");
+             $("#ok_config_datos_crudos").hide();
+             $("#sin_config_datos_crudos").show();
+         }
+         listar_sensor_asignados(id_mapeo_actual, id_bandeja_actual);
+         /*
+         else if(response == "fecha"){
            Swal.fire({
              title:'Mensaje',
              text:'Formato de fecha incorrecto, formato de fecha correcto debe ser yyyy-mm-dd HH:mm:ss, valida tu archivo y vuelve a intentarlo',
@@ -2177,7 +2247,7 @@ $("#form_cargar_archivos").submit(function(e){
           });
           $("#mostrar_dato_crudo").hide();
                       
-         }
+         }*/
         }
     });
     

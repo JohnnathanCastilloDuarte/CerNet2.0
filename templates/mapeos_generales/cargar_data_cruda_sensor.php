@@ -4,6 +4,7 @@ include('../../config.ini.php');
 
 $id_mapeo_sensor = $_POST['id_mapeo_sensor'];
 $archivo_sensor = $_POST['archivo_sensor'];
+$tipo_configuracion = $_POST['tipo_configuracion'];
 
 $consultando = mysqli_prepare($connect,"SELECT a.fecha_inicio, a.fecha_fin, a.intervalo, 
 ((DATEDIFF(a.fecha_fin,a.fecha_inicio) * 1440) / (a.intervalo / 60)) as cantidad_mediciones  
@@ -42,6 +43,7 @@ $archivo=$directorio_carga.basename($_FILES["archivo_sensor"]["name"]);
 $cargaok=1;
 $escsv=strtolower(pathinfo($archivo,PATHINFO_EXTENSION));
 $formato_valido=array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
+
 $nombre_archivo=basename($_FILES["archivo_sensor"]["name"]);
 
 if(isset($_POST["archivo_sensor"]))
@@ -74,6 +76,8 @@ else
       $contador = 0;
       $aciertos = 1;
       $z_1 = 1;
+      $sin_error_temp = 0;
+      $sin_error_hum = 0;
       rename("$archivo","$personalizado");
       
       $abrir_archivo = fopen($personalizado,'r');
@@ -98,18 +102,14 @@ else
       $contador_sub = 1;
       while(($column=fgetcsv($abrir_archivo,10000,";","\t"))!==false){
         
+               
+        if($column[0] >= 1){
           
-        
-       
-        
-        if($contador > 28){
-          
-   
-         $validador_fecha = strpos($column[1], '/');
+        $validador_fecha = strpos($column[1], '/');
           
          if($validador_fecha){
             str_replace("/","-",$column[1]);
-           break;
+            break;
          }else{
            
 
@@ -123,18 +123,37 @@ else
             
        
             
-            
+      
             $fecha_sql=date("Y-m-d H:i:s",strtotime($column[1]));
+            
           
             if($fecha_sql>=$fecha_inicio && $contador_sub  <= $diferencia){
               
-              $temp = str_replace(',','.', $column[2]);
-              $hum = str_replace(',','.', $column[3]);
-                
-                  
-                $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
-                mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $temp, $hum);
-                mysqli_stmt_execute($insertando);
+             
+              $temp =$column[2];
+              $hum = $column[3];
+               
+                if($temp == "" || $temp == "#N/A" || $temp == "#¡VALOR!0" || $temp == "#¡REF!0" || $temp == "#¡DIV/0!" || $temp == "#¡NUM!"
+                || $temp == "#¿NOMBRE?" || $temp == "#¡NULO!"){
+                  echo "<tr><td>Se registra error en la temperatura en la columna: ".$column[0]." el error es: ".$column[2]."</td></tr>";
+                }else{
+                  $sin_error_temp++;
+                }
+
+                if($hum == "" || $hum == "#N/A" || $hum == "#¡VALOR!0" || $hum == "#¡REF!0" || $hum == "#¡DIV/0!" || $hum == "#¡NUM!"
+                || $hum == "#¿NOMBRE?" || $hum == "#¡NULO!"){
+                  echo "<tr><td>Se registra error en la humedad en la columna: ".$column[0]." el error es: ".$column[3]."</td></tr>";
+                }else{
+                  $sin_error_hum++;
+                }
+
+                if($tipo_configuracion == "sin_errores"){
+                  $temp = str_replace(',','.', $column[2]);
+                  $hum = str_replace(',','.', $column[3]);
+                  $insertando = mysqli_prepare($connect,"INSERT INTO datos_crudos_general (id_sensor_mapeo, time, temp, hum) VALUES (?,?,?,?)");
+                  mysqli_stmt_bind_param($insertando, 'isss', $id_mapeo_sensor, $fecha_suma, $temp, $hum);
+                  mysqli_stmt_execute($insertando);
+                }
                 $fecha_suma=date('Y-m-d H:i:s',strtotime("+$intervalo seconds",strtotime($fecha_suma)));
                 $z_1=2;
                
@@ -146,6 +165,17 @@ else
        }                                     
          $contador++;
        
+      }
+
+      if($sin_error_hum == $diferencia && $sin_error_temp == $diferencia){
+        if($tipo_configuracion == "sin_errores"){
+          echo "OkOk";
+        }else{
+          echo "Ok";
+        }
+        
+      }else{
+        echo "<tr><td>La cantidad de registros no concuerda con la cantidad de mediciones del la prueba</td></tr>";
       }
     }
 }

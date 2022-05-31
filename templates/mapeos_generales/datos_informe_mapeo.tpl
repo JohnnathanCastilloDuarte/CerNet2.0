@@ -400,14 +400,28 @@
 
                 </div>
                 <br>
+                <input type="hidden" name="tipo_configuracion" id="tipo_configuracion">
                 <div class="row" style="text-align: center;">
                   <div class="col-sm-12">
-                    <button class="btn btn-primary">
-                                  Enviar
-                                </button>
+                    <button class="btn btn-primary" id="sin_config_datos_crudos">
+                      Enviar
+                    </button>
+                    <button class="btn btn-success" id="ok_config_datos_crudos">
+                      Ok
+                    </button>
                   </div>
                 </div>
               </form>
+              <br><hr>
+              <div class="row">
+                <div class="col-sm-12" style="text-align:center;">
+                  <span class="text-danger">Observaciones archivo</span>
+                </div>
+                <table>
+                  <tbody id="errores_aqui_dc"></tbody>
+                </table>
+              </div>
+            
             </div>
           </div>
         </div>
@@ -445,7 +459,7 @@
     <hr>
     <div class="row">
       <div class="col-sm-12">
-        <div class="card">
+        <div class="card" id="tarjeta_creacion_de_informes_botones">
           <div class="card-header">Creación de informes para prueba <span class="text-primary" id="nombre_prueba_creacion_informe"></span></div>
           <div class="card-body">
             <div class="row" style="text-align:center;">
@@ -469,7 +483,7 @@
     <br>
     <div class="row">
       <div class="col-sm-12">
-        <div class="card">
+        <div class="card" id="tarjeta_de_seleccion_de_pruebas">
           <div class="card-header">
             Seleccion de pruebas
           </div>
