@@ -15,9 +15,16 @@ if($movimiento == "Traer"){
     mysqli_stmt_store_result($consultar);
     mysqli_stmt_bind_result($consultar, $correlativo, $usuario);
     mysqli_stmt_fetch($consultar);
+  
+   $consultar1 = mysqli_prepare($connect,"SELECT solicitante, cargo_solicitante FROM informes_general WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($consultar1, 'i', $id_asignado);
+    mysqli_stmt_execute($consultar1);
+    mysqli_stmt_store_result($consultar1);
+    mysqli_stmt_bind_result($consultar1, $solicitante, $cargo_solicitante);
+    mysqli_stmt_fetch($consultar1);
     
   
-    $array_informarcion[]=array('correlativo'=>$correlativo, 'usuario'=>$usuario);
+    $array_informarcion[]=array('correlativo'=>$correlativo, 'usuario'=>$usuario, 'solicitante'=>$solicitante, 'cargo_solicitante'=>$cargo_solicitante);
     $convert = json_encode($array_informarcion);
     echo $convert;
 
@@ -26,6 +33,13 @@ if($movimiento == "Traer"){
     $id_asignado = $_POST['id_asignado'];
     $correlativo = $_POST['correlativo'];
     $responsable = $_POST['responsable'];
+    $solicitante = $_POST['solicitante'];
+    $cargo_solicitante = $_POST['cargo_solicitante'];
+  
+   $actualizar1 = mysqli_prepare($connect,"UPDATE informes_general SET solicitante = ?, cargo_solicitante = ? WHERE id_asignado = ?");
+    mysqli_stmt_bind_param($actualizar1, 'ssi',$solicitante, $cargo_solicitante, $id_asignado);
+    mysqli_stmt_execute($actualizar1);
+    
   
     $buscar_usuario = mysqli_prepare($connect,"SELECT id_usuario FROM usuario WHERE usuario = ?");
     mysqli_stmt_bind_param($buscar_usuario, 's', $responsable);

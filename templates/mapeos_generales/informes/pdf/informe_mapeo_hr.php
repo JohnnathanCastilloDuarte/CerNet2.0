@@ -133,6 +133,11 @@
       }else{
         $valor_seteado_hum = $valor_seteado_hum;
       }
+      
+    if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+      
+      $max_percent = '0.00';
+    }
 
        //$valor_seteado_hum = number_format($valor_seteado_hum, 2);
     
@@ -169,6 +174,10 @@
 
 		$registros_over=number_format((mysqli_stmt_num_rows($limite_maximo)*$intervalo)/3600,2);
 		$max_percent=number_format(($registros_over/$c_hora)*100,2);
+
+ if($max_hr == 'No Aplica' AND  $min_hr == 'No Aplica'){
+    $registros_over == '0.00';
+ }
   
 
 		//CALCULO DE TIEMPO ACUMULADO AL LIMITE MINIMO 
@@ -472,6 +481,14 @@ $c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		$pdf->AddPage('A4');
+
+if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+  
+    $registros_over = '0.00';
+    $max_percent = '0.00';
+  
+}
+
 
 
 $html = <<<EOD
@@ -877,6 +894,11 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
 
     $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
   }  
+    
+    if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+      $info_percent_over ='0.00';
+      $info_over = '0.00';
+    }
 
 
 

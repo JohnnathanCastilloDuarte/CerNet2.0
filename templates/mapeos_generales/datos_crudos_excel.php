@@ -53,7 +53,7 @@ mysqli_stmt_execute($traer_fechas);
 mysqli_stmt_store_result($traer_fechas);
 mysqli_stmt_bind_result($traer_fechas, $time);
 $filas = mysqli_stmt_num_rows($traer_fechas);
-  
+ 
  
 for($g = 0; $g < $filas; $g++){
   mysqli_stmt_fetch($traer_fechas);
@@ -65,7 +65,7 @@ for($g = 0; $g < $filas; $g++){
   echo "</tr>";
 }
  echo "</table>";
-   
+  
 }
 
 else if($tipo == "TEMPPROM"){
@@ -85,11 +85,12 @@ mysqli_stmt_store_result($consulta_1);
 mysqli_stmt_bind_result($consulta_1, $nombre_sensor, $id_sensor_mapeo, $altura);
 
 $cantidad_sensores = mysqli_stmt_num_rows($consulta_1);
+  
 
   echo "<table style='text-align:center;' width='30%' border='1'>
 		<tr>
 			<td rowspan='2'>Fecha/Hora</td>
-			<td colspan='$cantidad_sensores'>DATOS CRUDOS SENSORES TEMPERATURA</td>
+			<td colspan='3'>DATOS CRUDOS SENSORES TEMPERATURA</td>
 		</tr>
 		<tr>";
 
@@ -105,15 +106,21 @@ mysqli_stmt_execute($consulta_2);
 mysqli_stmt_store_result($consulta_2);
 mysqli_stmt_bind_result($consulta_2,  $id_sensor_mapeo, $id_mapeo);
   
+
+  
+  
 while($row2 = mysqli_stmt_fetch($consulta_2)){
   
     
-    $query_31 = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");
+    $query_31 = mysqli_prepare($connect,"SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo 
+    FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = ? GROUP BY a.time ORDER BY a.time ASC");
     mysqli_stmt_bind_param($query_31, 'i', $id_mapeo);
     mysqli_stmt_execute($query_31);
     mysqli_stmt_store_result($query_31);
     mysqli_stmt_bind_result($query_31,  $tiempo, $promedio, $min, $max);
     $colum = mysqli_stmt_num_rows($query_31);  
+    //echo $id_mapeo;
+   //echo "SELECT a.time,  round(AVG(a.temp),2) AS promedio, MIN(a.temp) as minimo, MAX(a.temp) as maximo FROM datos_crudos_general  as a, mapeo_general_sensor as b WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND  b.id_mapeo = $id_mapeo GROUP BY a.time ORDER BY a.time ASC";
 }
  
   for($j=1;$j<=$colum;$j++){

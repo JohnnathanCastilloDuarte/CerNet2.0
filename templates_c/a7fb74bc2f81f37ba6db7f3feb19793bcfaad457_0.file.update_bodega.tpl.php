@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-24 14:47:19
+/* Smarty version 3.1.34-dev-7, created on 2022-05-27 22:21:22
   from '/home/god/public_html/CerNet2.0/templates/item/update_bodega.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_628ceff75e4df6_41025085',
+  'unifunc' => 'content_62914ee2128ef8_69194832',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a7fb74bc2f81f37ba6db7f3feb19793bcfaad457' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_bodega.tpl',
-      1 => 1653403634,
+      1 => 1653690063,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628ceff75e4df6_41025085 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62914ee2128ef8_69194832 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -386,7 +386,7 @@ for ($__section_i_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 >
                   <label>Split</label>
                   <br>
-                  <input type="checkbox" name="otro_climatizacion_4" id="climatizacion" value="No climatizacion" <?php echo $_smarty_tpl->tpl_vars['no_climatizacion']->value;?>
+                  <input type="checkbox" name="otro_climatizacion_4" id="climatizacion" value="No" <?php echo $_smarty_tpl->tpl_vars['no_climatizacion']->value;?>
 >
                   <label>No cuenta</label>
                   <br>

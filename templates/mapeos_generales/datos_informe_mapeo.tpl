@@ -422,17 +422,24 @@
     <div class="row" tyle="text-align:center;">
       <div class="col-sm-12">
         <div class="form-row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <input type="text" id="correlativo" class="form-control" placeholder="Ingresar correlativo">
           </div>
-          <div class="col-sm-5">
-            <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar el responsable">
+          <div class="col-sm-3">
+            <input type="text" id="responsable_informe" class="form-control" placeholder="Ingresar responsable">
           </div>
           <div class="col-sm-3">
+            <input type="text" id="solicitante_informe" class="form-control" placeholder="Ingresar solicitante">
+          </div>
+          <div class="col-sm-3">
+            <input type="text" id="cargo_solicitante" class="form-control" placeholder="Ingresar Cargo del Solicitante">
+          </div>
+          <br>
+        </div>
+        <div class="" style="text-align:center;">
+          <br>
             <button class="btn btn-success" id="asignar_correlativo"><i class="pe-7s-check"></i></button>
           </div>
-
-        </div>
       </div>
     </div>
     <hr>

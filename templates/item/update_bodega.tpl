@@ -294,7 +294,7 @@
                   <input type="checkbox" name="sistema_climatizacion_3" id="climatizacion" value="Split" {$split}>
                   <label>Split</label>
                   <br>
-                  <input type="checkbox" name="otro_climatizacion_4" id="climatizacion" value="No climatizacion" {$no_climatizacion}>
+                  <input type="checkbox" name="otro_climatizacion_4" id="climatizacion" value="No" {$no_climatizacion}>
                   <label>No cuenta</label>
                   <br>
                 </div>

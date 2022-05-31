@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-19 21:16:22
+/* Smarty version 3.1.34-dev-7, created on 2022-05-26 16:47:48
   from '/home/god/public_html/CerNet2.0/templates/item/update_flujo_laminar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6286b3a6c2d582_86503867',
+  'unifunc' => 'content_628faf349a2e86_11045833',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8dda1dc32591c6de2d03b79da834a85d2a4058a4' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/item/update_flujo_laminar.tpl',
-      1 => 1652989796,
+      1 => 1653574827,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6286b3a6c2d582_86503867 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628faf349a2e86_11045833 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -90,6 +90,55 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
 " placeholder="Área interna">
             </div>
           </div>
+          <br>
+          <div class="form-row">
+              <div class="col-sm-6">
+                <label>Clasificación OMS :</label>
+                <select class="form-control" id="clasificacion_oms">
+                  <?php if ($_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'] == '') {?>
+                  <option value="">Seleccione...</option>
+                  <option value="A">Clase A</option>
+                  <option value="B">Clase B</option>
+                  <option value="C">Clase C</option>
+                  <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
+                  <?php } elseif ($_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'] != '') {?>
+                  <option value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'];?>
+">Clase <?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'];?>
+</option>
+                  <option value="A">Clase A</option>
+                  <option value="B">Clase B</option>
+                  <option value="C">Clase C</option>
+                  <option value="D">Clase D</option>
+                  <option value="No Aplica">No Aplica</option>
+                  <?php }?>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label>Clasificación ISO:</label>
+                <select class="form-control" id="clasificacion_iso">
+                 <?php if ($_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'] == '') {?>
+                  <option value="">Seleccione...</option>
+                  <option value="5">ISO 5</option>
+                  <option value="6">ISO 6</option>
+                  <option value="7">ISO 7</option>
+                  <option value="8">ISO 8</option>
+                  <option value="9">ISO 9</option>
+                  <option value="No Aplica">No Aplica</option>
+                <?php } elseif ($_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'] != '') {?>
+                   <option value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_iso'];?>
+">ISO <?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_iso'];?>
+</option>
+                   <option value="5">ISO 5</option>
+                   <option value="6">ISO 6</option>
+                   <option value="7">ISO 7</option>
+                   <option value="8">ISO 8</option>
+                   <option value="9">ISO 9</option>
+                   <option value="No Aplica">No Aplica</option>
+                <?php }?>   
+                <select>
+              </div>
+            </div>
           <br>
           <div class="form-row">
             <div class="col-sm-4">
@@ -173,5 +222,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   </div>
   <?php echo '<script'; ?>
  type="text/javascript" src="design/js/update_flujo_laminar.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="design/js/validar_campos_vacios.js"><?php echo '</script'; ?>
 ><?php }
 }

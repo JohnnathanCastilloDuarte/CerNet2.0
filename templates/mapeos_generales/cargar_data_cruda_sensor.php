@@ -102,7 +102,7 @@ else
         
        
         
-        if($contador > 20){
+        if($contador > 28){
           
    
          $validador_fecha = strpos($column[1], '/');

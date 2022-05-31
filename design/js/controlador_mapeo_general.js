@@ -19,7 +19,7 @@ var id_usuario  = $("#id_valida").val();
 var id_type = $("#id_type").val();
 
 
-if(id_type==12){
+if(id_type==12 || id_type==1){
   $("#from_termocupla").hide();
   $("#from_sensores").show();
   $("#datos_crudos_termocupla").hide();
@@ -1231,10 +1231,13 @@ function traer_correlativo(){
         data:{id_asignado, movimiento},
         url:'templates/mapeos_generales/controlador_consecutivo.php',
         success:function(response){
+          console.log(response);
           let traer = JSON.parse(response);
             traer.forEach((valor)=>{
                 $("#correlativo").val(valor.correlativo);
                 $("#responsable_informe").val(valor.usuario);
+                $("#solicitante_informe").val(valor.solicitante);
+                $("#cargo_solicitante").val(valor.cargo_solicitante);
             })
             
         }
@@ -1247,11 +1250,15 @@ $("#asignar_correlativo").click(function(){
 
     let correlativo = $("#correlativo").val();
     let responsable = $("#responsable_informe").val();
+    let solicitante = $("#solicitante_informe").val(); 
+    let cargo_solicitante = $("#cargo_solicitante").val();
     let movimiento = "guardar";
     const datos = {
         id_asignado,
         correlativo,
         movimiento,
+        solicitante,
+        cargo_solicitante,
         responsable
     }
 
@@ -1826,10 +1833,7 @@ function listar_info_temp(id_informe, extra){
                 <form id="formulario_informe" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="id_informe_actual" value="${valor.id_informe}">
                     <div class="row">
-                      <div class="col-sm-6">
-                          <label>Solicitante: </label>
-                          <input type="text" class="form-control" placeholder="Solicitante" value="${valor.solicitante}" name="solicitante">  
-                      </div>
+                
   
                     </div>
                     <div class="row">
