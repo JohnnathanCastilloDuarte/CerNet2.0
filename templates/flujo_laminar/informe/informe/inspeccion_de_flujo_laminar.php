@@ -351,12 +351,37 @@ $pdf->ln(5);
 $i=0;
   while ($row = mysqli_stmt_fetch($queryPrueba1)) {
 
-
-$pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
-$pdf->Cell(40,5,$requisito,1,0,'C',0,'',0);
-$pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
-$pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
-$pdf->ln(5);
+    if ($i < 2) {
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
+      $pdf->Cell(40,5,'2',1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }else if ($i == 2){
+     $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
+     $pdf->Cell(40,5,' <= '.$particulas05.' (ISO'.$clasificacion_iso.')',1,0,'L',0,'',0);
+     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+     $pdf->ln(5);
+    }else if ($i == 3){
+     $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
+     $pdf->Cell(40,5,' <= '.$particulas50.' (ISO'.$clasificacion_iso.')',1,0,'L',0,'',0);
+     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+     $pdf->ln(5);
+    }else if ($i == 4){
+     $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
+     $pdf->Cell(40,5,' <= '.$particulas50.' (OMS '.$clasificacion_oms.')',1,0,'L',0,'',0);
+     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+     $pdf->ln(5);
+    }else if ($i == 5){
+     $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
+     $pdf->Cell(40,5,' <= '.$particulas05.' (OMS '.$clasificacion_oms.')',1,0,'L',0,'',0);
+     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+     $pdf->ln(5);
+    }
 
   $i++;
 

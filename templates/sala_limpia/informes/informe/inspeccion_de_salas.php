@@ -107,6 +107,9 @@ if ($clasificacion_iso == 5) {
    $particulas50 = 293000;
 }
 
+
+
+
 $pdf->AddPage('A4');
 
 $pdf->SetLineStyle(array('width' => 0.1, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(202, 202, 202)));
@@ -243,42 +246,97 @@ se aplican solo a los elementos ensayados y corresponde a las condiciones encont
 }
 
 
+if ($clasificacion_oms == 'No Aplica') {
 
 
-$pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
-$pdf->Cell(14,5,'',0,0,'J',0,'',0);
-$pdf->Cell(68,5,'ISO 14644-1:2015 (Promedio)',1,0,'C',0,'',0);
-$pdf->Cell(67,5,'OMS 45 (Promedio)',1,0,'C',0,'',0);
-
-$pdf->ln(5);
+  $clasificacion_oms = 'D';
+  $pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
+  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(68,5,'ISO 14644-1:2015 (Promedio)',1,0,'C',0,'',0);
 
 
-$pdf->Cell(34,5,'Tamaño de Partículas:',0,0,'L',0,'',0);
-$pdf->Cell(11,5,'',0,0,'J',0,'',0);
-$pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
-$pdf->Cell(34,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
-$pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
-$pdf->Cell(33,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
-
-$pdf->ln(5);
+  $pdf->ln(5);
 
 
+  $pdf->Cell(34,5,'Tamaño de Partículas:',0,0,'L',0,'',0);
+  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
+  $pdf->Cell(34,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
 
-$pdf->Cell(34,5,'Resultado:',0,0,'L',0,'',0);
-$pdf->Cell(11,5,'',0,0,'J',0,'',0);
-$pdf->Cell(34,5,$medida_promedio05,1,0,'C',0,'',0);
-$pdf->Cell(34,5,$medida_promedio50,1,0,'C',0,'',0);
-$pdf->Cell(34,5,$resultadooms,1,0,'C',0,'',0);
-$pdf->Cell(33,5,$medida_promedio50,1,0,'C',0,'',0);
 
-$pdf->ln(5);
+  $pdf->ln(5);
 
 
 
-$pdf->Cell(31,5,'Requisito:',0,0,'L',0,'',0);
-$pdf->Cell(14,5,'',0,0,'J',0,'',0);
-$pdf->Cell(68,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
-$pdf->Cell(67,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+  $pdf->Cell(34,5,'Resultado:',0,0,'L',0,'',0);
+  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(34,5,$medida_promedio05,1,0,'C',0,'',0);
+  $pdf->Cell(34,5,$medida_promedio50,1,0,'C',0,'',0);
+
+  $pdf->ln(5);
+
+  $pdf->Cell(31,5,'Requisito:',0,0,'L',0,'',0);
+  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(68,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+
+    if ($medida_promedio05 <= $particulas05) {
+      $veredicto_1 = 'CUMPLE';
+    }else{
+      $veredicto_1 = 'NO CUMPLE';
+    }
+
+    if ($medida_promedio50 <= $particulas50) {
+      $veredicto_2 = 'CUMPLE';
+    }else{
+      $veredicto_2 = 'NO CUMPLE';
+    }
+
+  $pdf->ln(5);
+  $pdf->Cell(34,5,'veredicto',0,0,'L',0,'',0); 
+  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(34,5,$veredicto_1,1,0,'C',0,'',0);
+  $pdf->Cell(34,5,$veredicto_2,1,0,'C',0,'',0);
+ 
+}elseif ($clasificacion_iso == 'No Aplica') {
+  
+}else{
+  $pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
+  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(68,5,'ISO 14644-1:2015 (Promedio)',1,0,'C',0,'',0);
+  $pdf->Cell(67,5,'OMS 45 (Promedio)',1,0,'C',0,'',0);
+
+  $pdf->ln(5);
+
+
+  $pdf->Cell(34,5,'Tamaño de Partículas:',0,0,'L',0,'',0);
+  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
+  $pdf->Cell(34,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
+  $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
+  $pdf->Cell(33,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
+
+  $pdf->ln(5);
+
+
+
+  $pdf->Cell(34,5,'Resultado:',0,0,'L',0,'',0);
+  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(34,5,$medida_promedio05,1,0,'C',0,'',0);
+  $pdf->Cell(34,5,$medida_promedio50,1,0,'C',0,'',0);
+  $pdf->Cell(34,5,$resultadooms,1,0,'C',0,'',0);
+  $pdf->Cell(33,5,$medida_promedio50,1,0,'C',0,'',0);
+
+  $pdf->ln(5);
+
+
+
+  $pdf->Cell(31,5,'Requisito:',0,0,'L',0,'',0);
+  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(68,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+  $pdf->Cell(67,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+
+}
+
 
 $pdf->ln(5);
 
@@ -702,6 +760,16 @@ $linea = <<<EOD
 </table>
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
+     $pdf->Cell(30,5,'Informe referencia:',0,0,'L',0,'',0);
+     $pdf->Cell(55,5,$nombre_informe,1,0,'L',0,'',0);
+
+     $pdf->Cell(18,5,'OT N°:',0,0,'C',0,'',0);
+     $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
+
+     $pdf->Cell(32,5,'Fecha de Emisión:',0,0,'L',0,'',0);
+     $pdf->Cell(30,5,$fecha_registro,1,0,'C',0,'',0);
+
+     $pdf->ln(7);
 
 
 $metodo_1 = mysqli_prepare($connect,"SELECT metodo_ensayo, puntos_x_medicion, muestra_x_punto, volumen_muestra, altura_muestra FROM salas_limpias_metodo_1 WHERE id_asignado = ?");
@@ -759,16 +827,13 @@ mysqli_stmt_bind_result($buscarimagen1, $url_imagen, $nombre_imagen);
         if ($cont == 1) {
           $pdf->writeHTMLCell(90, 50, 15, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 700px; height: 400px;">', 0, 0, 0, true, 'C', true);
         }else if ($cont == 2){
-          $pdf->writeHTMLCell(90, 120, 105, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 300px; width: 140px;">', 0, 1, 0, true, 'C', true);
+          $pdf->writeHTMLCell(90, 75, 105, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 300px; width: 75px;">', 0, 1, 0, true, 'C', true);
         }
 
         $cont++;
 
     }
 
-  
-
-$pdf->AddPage('A4');
 
 
 $linea = <<<EOD
@@ -894,6 +959,42 @@ while($row = mysqli_stmt_fetch($query3)){
 
 $pdf->AddPage('A4');
 
+$linea = <<<EOD
+<style>
+.linea{
+   height: 14px;
+   color:white;
+   background-color: rgb(0,79,135);
+}
+</style>
+<br><br>
+<table>
+   <tr border="1">
+        <td class="linea" align="center"><h2>MEDICÓN DE PRESIÓN DIFERENCIAL</h2></td>
+   </tr>
+</table>
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+
+ $pdf->Cell(24,5,'Informe referencia:',0,0,'L',0,'',0);
+ $pdf->Cell(45,5,$nombre_informe,1,0,'L',0,'',0);
+
+ $pdf->Cell(15,5,'OT N°:',0,0,'C',0,'',0);
+ $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
+
+ $pdf->Cell(32,5,'Fecha de Emisión:',0,0,'L',0,'',0);
+ $pdf->Cell(49,5,$fecha_registro,1,0,'C',0,'',0);
+
+ $pdf->ln(7);
+
+ $pdf->Cell(24,5,'Método de ensayo:',0,0,'L',0,'',0);
+ $pdf->Cell(75,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.3',1,0,'C',0,'',0);
+
+ $pdf->Cell(32,5,'Especificación de la sala:',0,0,'L',0,'',0);
+ $pdf->Cell(49,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso,1,0,'C',0,'',0);
+ $pdf->ln(5);   
+
 
 $buscarimagen2 = mysqli_prepare($connect,"SELECT url, nombre 
 FROM image_sala_limpia
@@ -919,17 +1020,12 @@ $linea = <<<EOD
    </tr>
 </table>
 EOD;  
-
-
-
-$pdf->Cell(30,5,'Método de ensayo:',0,0,'C',0,'',0);
-$pdf->Cell(60,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.3',1,0,'C',0,'',0);
-
-$pdf->Cell(45,5,'Especificación de la sala:',0,0,'C',0,'',0);
-$pdf->Cell(45,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso,1,0,'C',0,'',0);
-$pdf->ln(5);
-
 $pdf->writeHTML($linea, true, false, false, false, '');
+
+
+
+
+
 
 $cont = 1;
     $total_rows = mysqli_stmt_num_rows($buscarimagen2);
@@ -944,37 +1040,6 @@ $cont = 1;
         $cont++;
 
     }
-
-
-
-
-/*
-$linea = <<<EOD
-<style>
-.linea{
-   height: 14px;
-   color:white;
-   background-color: rgb(0,79,135);
-}
-</style>
-<br><br>
-<table>
-   <tr border="1">
-        <td class="linea" align="center"><h2>Imagen de la Medición</h2></td>
-   </tr>
-</table>
-<br>
-<br>
-<table border="0">
-   <tr>
-       <td></td>
-       <td><img src="../../$url_imagen2$nombre_imagen2"  style="width: 700px; height: 500px;" ></td>
-       <td></td>
-   </tr>
-</table>
-EOD;  
-$pdf->writeHTML($linea, true, false, false, false, '');
-*/
 
 
 $linea = <<<EOD
@@ -994,75 +1059,6 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-
-/*$nombres = array('Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación');
-$contador = 0;
-
-$query4 = mysqli_prepare($connect,"SELECT campo_1, campo_2, campo_3, campo_4, campo_5, campo_6 
-   FROM datos_de_prueba_3 a, salas_limpias_prueba_3 b 
-   WHERE a.id_prueba_3 = b.id_prueba AND  b.id_asignado = ?");
-mysqli_stmt_bind_param($query4, 'i', $id_asignado);
-mysqli_stmt_execute($query4);
-mysqli_stmt_store_result($query4);
-mysqli_stmt_bind_result($query4, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
-
-$array_resultado = array();
-   while($row = mysqli_stmt_fetch($query4)){
-
-        $array_resultado[] = array(
-            'campo_1'=>$campo_1,
-            'campo_2'=>$campo_2,
-            'campo_3'=>$campo_3,
-            'campo_4'=>$campo_4,
-            'campo_5'=>$campo_5,
-            'campo_6'=>$campo_6
-        );
-    }
-      $espaciado = 48;
-
-          //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[0] ,1,0, 0, true, 'J', true);
-            $pdf->Cell(33,5,$nombres[0],1,0,'L',1,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', 'VS-'.$array_resultado[$i]['campo_1'],1,0, 0, true, 'C', true); 
-           $pdf->Cell(23,5,'VS-'.$array_resultado[$i]['campo_1'],1,0,'C',1,'',0); 
-      }
-      $pdf->ln(5);
-     // $pdf->writeHTMLCell(40, 5, 15, '', $nombres[1] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[1],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', 'Bajo la puerta',1,0, 0, true, 'C', true); 
-          $pdf->Cell(23,5,'Bajo la puerta',1,0,'C',0,'',0); 
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[2] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[2],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_3'],1,0, 0, true, 'C', true);  
-          $pdf->Cell(23,5,$array_resultado[$i]['campo_3'],1,0,'C',0,'',0); 
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[3] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[3],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
-          $pdf->Cell(23,5,$array_resultado[$i]['campo_4'],1,0,'C',0,'',0);
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[4] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[4],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-         //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_5'],1,0, 0, true, 'C', true); 
-         $pdf->Cell(23,5,$array_resultado[$i]['campo_5'],1,0,'C',0,'',0); 
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[5] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[5],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true); 
-          $pdf->Cell(23,5,$array_resultado[$i]['campo_6'],1,0,'C',0,'',0);  
-      }
-
-$pdf->ln(5);*/
 
 $contadorcito = 1;
  $pdf->Cell(30,5,'Lugar Medición',1,0,'C',1,'',1);
@@ -1105,30 +1101,10 @@ $contadorcito = 1;
          $contadorcito = 0;
         $pdf->ln(5);
       }
-        /*
-    else if($contadorcito == 2){
-        
-      }else if($contadorcito == 3){
-      
-        if($dato < $presion_sala){
-          $cumple_presion = "NO CUMPLE";
-        }else{
-          $cumple_presion = "CUMPLE";
-        } 
-        $pdf->Cell(30,5,$presion_sala,1,0,'C',0,'',0);
-      }else if($contadorcito == 4){
-          $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
-      }else if($contadorcito == 5){
-        $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
-      }*/
-      
+
       $contadorcito++;
   }
-  
-/*
- $pdf->Cell(31,5,'Medición realizada en',1,0,'C',1,'',0);
 
-*/
 $linea = <<<EOD
 <style>
 .linea{
@@ -1204,13 +1180,22 @@ mysqli_stmt_store_result($metodo_3);
 mysqli_stmt_bind_result($metodo_3, $metodo_ensayo, $n_muestras, $altura_muestra);
 mysqli_stmt_fetch($metodo_3);
 
+ $pdf->Cell(24,5,'Informe referencia:',0,0,'L',0,'',0);
+ $pdf->Cell(45,5,$nombre_informe,1,0,'L',0,'',0);
 
-$pdf->Cell(28,5,'Método de ensayo:',0,0,'C',0,'',0);
-$pdf->Cell(56,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.6',1,0,'C',0,'',0);
-$pdf->Cell(27,5,'N° de muestras:',0,0,'C',0,'',0);
-$pdf->Cell(15,5,$n_muestras,1,0,'C',0,'',0);
-$pdf->Cell(40,5,'Altura toma de Muestras:',0,0,'C',0,'',0);
-$pdf->Cell(14,5,'0.85',1,0,'C',0,'',0);
+ $pdf->Cell(15,5,'OT N°:',0,0,'C',0,'',0);
+ $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
+
+ $pdf->Cell(32,5,'Fecha de Emisión:',0,0,'C',0,'',0);
+ $pdf->Cell(49,5,$fecha_registro,1,0,'C',0,'',0);
+
+ $pdf->ln(7);
+$pdf->Cell(24,5,'Método de ensayo:',0,0,'L',0,'',0);
+$pdf->Cell(75,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.6',1,0,'C',0,'',0);
+$pdf->Cell(32,5,'N° de muestras:',0,0,'C',0,'',0);
+$pdf->Cell(8,5,$n_muestras,1,0,'C',0,'',0);
+$pdf->Cell(33,5,'Altura toma de Muestras:',0,0,'R',0,'',0);
+$pdf->Cell(8,5,'0.85',1,0,'C',0,'',0);
 $pdf->ln(5);
 
 $buscarimagen3 = mysqli_prepare($connect,"SELECT url, nombre 
@@ -1266,11 +1251,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 
 //Validar si cumple o no cu´mple
- if ($promedio >= $especificacion_2_temp && $promedio <= $especificacion_1_temp) {
-      $cumple_temp = 'CUMPLE';
-   }else{
-      $cumple_temp = 'NO CUMPLE';
-   }
+
 
 $pdf->Cell(30,5,'Muestras',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'N°1',1,0,'C',1,'',0);
@@ -1288,6 +1269,12 @@ mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio, $cumple, $c
 
 
 while($row = mysqli_stmt_fetch($query6)){
+
+   if ($promedio >= $especificacion_2_temp && $promedio <= $especificacion_1_temp) {
+      $cumple_temp = 'CUMPLE';
+   }else{
+      $cumple_temp = 'NO CUMPLE';
+   }
 
    $pdf->Cell(30,5,'Resultado, °C',1,0,'C',0,'',0);
    $pdf->Cell(30,5,$n1,1,0,'C',0,'',0);
@@ -1328,11 +1315,7 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 
-if ($promedio >= $especificacion_2_hum && $promedio <= $especificacion_1_hum) {
-      $cumple_hr = 'CUMPLE';
-   }else{
-      $cumple_hr = 'NO CUMPLE';
-   }
+
 
    $pdf->Cell(30, 5, 'Muestras:', 1, 0, 'C', 1, '', 0);
    $pdf->Cell(30, 5, 'N°1', 1, 0, 'C', 1, '', 0);
@@ -1351,6 +1334,12 @@ mysqli_stmt_store_result($query6);
 mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio, $cumple, $categoria);
 
 while($row = mysqli_stmt_fetch($query6)){
+
+  if ($promedio >= $especificacion_2_hum && $promedio <= $especificacion_1_hum) {
+      $cumple_hr = 'CUMPLE';
+   }else{
+      $cumple_hr = 'NO CUMPLE';
+   }
 
   // $pdf->writeHTMLCell(28, 5, 15, '', 'Resultado, HR%' ,1,0, 0, true, 'J', true);
 
@@ -1417,14 +1406,6 @@ mysqli_stmt_bind_result($query7, $marca, $modelo, $n_serie, $certificado, $fecha
 
 while($row = mysqli_stmt_fetch($query7)){
 
-   /*$pdf->writeHTMLCell(30, 7.2, 15, '', $marca ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 7.2, 45, '', $modelo ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 7.2, 75, '', $n_serie ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 7.2, 105, '', $certificado ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 7.2, 135, '', $fecha_emision ,1,0, 0, true, 'C', true);
-   $pdf->writeHTMLCell(30, 7.2, 165, '', 'Trazabilidad' ,1,1, 0, true, 'C', true);*/
-
-
    $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
    $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
    $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
@@ -1464,13 +1445,22 @@ mysqli_stmt_store_result($metodo_4);
 mysqli_stmt_bind_result($metodo_4, $metodo_ensayo, $n_muestras, $altura_muestra);
 mysqli_stmt_fetch($metodo_4);
 
+ $pdf->Cell(24,5,'Informe referencia:',0,0,'L',0,'',0);
+ $pdf->Cell(45,5,$nombre_informe,1,0,'L',0,'',0);
 
-$pdf->Cell(28,5,'Método de ensayo:',0,0,'C',0,'',0);
-$pdf->Cell(56,5,'DS N° 594/1999 MINSAL ',1,0,'C',0,'',0);
-$pdf->Cell(27,5,'N° de muestras:',0,0,'C',0,'',0);
-$pdf->Cell(15,5,'5',1,0,'C',0,'',0);
-$pdf->Cell(40,5,'Altura toma de Muestras:',0,0,'C',0,'',0);
-$pdf->Cell(14,5,'0.85',1,0,'C',0,'',0);
+ $pdf->Cell(15,5,'OT N°:',0,0,'C',0,'',0);
+ $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
+
+ $pdf->Cell(32,5,'Fecha de Emisión:',0,0,'C',0,'',0);
+ $pdf->Cell(49,5,$fecha_registro,1,0,'C',0,'',0);
+
+ $pdf->ln(7);
+$pdf->Cell(24,5,'Método de ensayo:',0,0,'L',0,'',0);
+$pdf->Cell(75,5,'DS N° 594/1999 MINSAL ',1,0,'C',0,'',0);
+$pdf->Cell(32,5,'N° de muestras:',0,0,'C',0,'',0);
+$pdf->Cell(8,5,'5',1,0,'C',0,'',0);
+$pdf->Cell(33,5,'Altura toma de Muestras:',0,0,'R',0,'',0);
+$pdf->Cell(8,5,'0.85',1,0,'C',0,'',0);
 $pdf->ln(5);
 
 $buscarimagen4 = mysqli_prepare($connect,"SELECT url, nombre 
@@ -1542,14 +1532,14 @@ mysqli_stmt_execute($query6);
 mysqli_stmt_store_result($query6);
 mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio_lux, $cumple, $categoria);
 
+
+while($row = mysqli_stmt_fetch($query6)){
+
 if ($promedio_lux >= $lux_item) {
    $cumple_lux = 'CUMPLE';
 }else{
    $cumple_lux = 'NO CUMPLE';
 }
-
-while($row = mysqli_stmt_fetch($query6)){
-
 
    $pdf->Cell(30,5,'Resultado, Lux',1,0,'C',0,'',0);
    $pdf->Cell(30,5,$n1,1,0,'C',0,'',0);
@@ -1604,14 +1594,14 @@ mysqli_stmt_execute($query6);
 mysqli_stmt_store_result($query6);
 mysqli_stmt_bind_result($query6, $n1, $n2, $n3, $n4, $n5, $promedio_dba, $cumple, $categoria);
 
+
+while($row = mysqli_stmt_fetch($query6)){
+
 if ($promedio_dba <= $ruido_dba_item) {
    $cumple_dba = 'CUMPLE';
 }else{
    $cumple_dba = 'NO CUMPLE';
 }
-
-while($row = mysqli_stmt_fetch($query6)){
-
 
    $pdf->Cell(30, 5, 'Resultado, dBA', 1, 0, 'C', 0, '', 0);
    $pdf->Cell(30, 5, $n1, 1, 0, 'C', 0, '', 0);
@@ -1625,7 +1615,7 @@ while($row = mysqli_stmt_fetch($query6)){
    $pdf->Cell(20,5,$promedio_dba,1,0,'C',0,'',0);
 
    $pdf->Cell(40,5,'Especificación Cliente, Lux',0,0,'C',0,'',0);
-   $pdf->Cell(30,5,'>=  '.$ruido_dba_item,1,0,'C',0,'',0);
+   $pdf->Cell(30,5,' <=  '.$ruido_dba_item,1,0,'C',0,'',0);
 
    $pdf->Cell(30, 5, 'Cumple:', 0, 0, 'C', 0, '', 0);
    $pdf->Cell(30, 5, $cumple_dba, 1, 1, 'C', 0, '', 0);
@@ -1711,12 +1701,23 @@ mysqli_stmt_store_result($metodo_5);
 mysqli_stmt_bind_result($metodo_5, $metodo_ensayo, $n_rejillas, $n_extractores);
 mysqli_stmt_fetch($metodo_5);
 
-$pdf->Cell(28,5,'Método de ensayo:',0,0,'C',0,'',0);
-$pdf->Cell(54,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.2',1,0,'C',0,'',0);
-$pdf->Cell(37,5,'N° de Rejillas de Inyección:',0,0,'C',0,'',0);
-$pdf->Cell(15,5,$n_rejillas,1,0,'C',0,'',0);
-$pdf->Cell(32,5,'N° de Extractores:',0,0,'C',0,'',0);
-$pdf->Cell(14,5,$cantidad_extracciones,1,0,'C',0,'',0);
+ $pdf->Cell(24,5,'Informe referencia:',0,0,'L',0,'',0);
+ $pdf->Cell(45,5,$nombre_informe,1,0,'L',0,'',0);
+
+ $pdf->Cell(15,5,'OT N°:',0,0,'C',0,'',0);
+ $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
+
+ $pdf->Cell(32,5,'Fecha de Emisión:',0,0,'L',0,'',0);
+ $pdf->Cell(49,5,$fecha_registro,1,0,'C',0,'',0);
+
+ $pdf->ln(7);
+
+$pdf->Cell(24,5,'Método de ensayo:',0,0,'L',0,'',0);
+$pdf->Cell(75,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.2',1,0,'C',0,'',0);
+$pdf->Cell(32,5,'N° de Rejillas de Inyección:',0,0,'L',0,'',0);
+$pdf->Cell(8,5,$n_rejillas,1,0,'C',0,'',0);
+$pdf->Cell(33,5,'N° de Extractores:',0,0,'C',0,'',0);
+$pdf->Cell(8,5,$cantidad_extracciones,1,0,'C',0,'',0);
 $pdf->ln(5);
 
 $buscarimagen5 = mysqli_prepare($connect,"SELECT url, nombre 
@@ -2070,7 +2071,6 @@ if ($resultado_prom_caudal > $ren_hr) {
    $estado_caudal = 'NO CUMPLE';
 }
 
-while($row = mysqli_stmt_fetch($query9)){
 
    $pdf->Cell(50.66,5,$promedio_caudal,1,0,'C',0,'',0);
    $pdf->Cell(50.66,5,$resultado_prom_caudal,1,0,'C',0,'',0);
@@ -2078,7 +2078,7 @@ while($row = mysqli_stmt_fetch($query9)){
    $pdf->Cell(30.66,5,$estado_caudal,1,0,'C',0,'',0);
    $pdf->ln(5);
 
-}
+
 
 
 $linea = <<<EOD
