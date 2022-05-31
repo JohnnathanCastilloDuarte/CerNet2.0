@@ -74,7 +74,22 @@ if(!isset($imagen_2)){
   }
 
   $personalizado=$target_dir."promedio_minimo_maximo.jpg";
-  if(!file_exists($personalizado)){
+  $i = 0;
+  $contador_imagen = 1;
+ 
+      do{
+        
+        if(file_exists($personalizado)){
+           $nombre_documento = "promedio_minimo_maximo".$contador_imagen.".jpg";
+            $personalizado = $target_dir.$nombre_documento;
+            $contador_imagen++;
+            
+        }else{
+            $i=1;  
+        }
+      }while($i == 0);
+
+
    
     $target_file = $target_dir . basename($_FILES["imagen_tipo_2"]["name"]);
     $uploadOk = 1;
@@ -109,16 +124,16 @@ if(!isset($imagen_2)){
       // if everything is ok, try to upload file
       }else{
           if (move_uploaded_file($_FILES["imagen_tipo_2"]["tmp_name"], $target_file)) {
-          rename("$target_file","$personalizado");
-
+          rename("$target_file","$personalizado");  
           $creando = mysqli_prepare($connect,"INSERT INTO imagenes_general_informe (id_informe, tipo, url) VALUES (?,?,?)");
           mysqli_stmt_bind_param($creando, 'iis', $id_informe, $tipo, $personalizado);
           mysqli_stmt_execute($creando);
+          echo mysqli_stmt_error($creando);
           }else{
-              //echo " Hubo un error al intentar cargar el archivo.";
+              echo " Hubo un error al intentar cargar el archivo.";
           } 	
       }
-  }////////// CIERRE DEL IF DE EXISTENCIA DEL ARCHIVO
+  ////////// CIERRE DEL IF DE EXISTENCIA DEL ARCHIVO
 }////////// CIERRE DEL ISSET DE IMAGEN2 
 
 if(!isset($imagen_3)){
