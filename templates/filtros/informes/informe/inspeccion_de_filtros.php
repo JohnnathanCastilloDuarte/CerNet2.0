@@ -43,7 +43,11 @@ mysqli_stmt_fetch($consultar_responsable);
 
 
 $num_numot = substr($numot,2);
-$logo = $logo_empresa; 
+$logo = $logo_empresa;
+
+if($conclusion == 'Pre-Informe'){
+  $tipo_info = 'Pre-Informe';
+} 
 $pdf->AddPage('A4');
 
 $linea = <<<EOD
@@ -233,7 +237,8 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 if ($conclusion == 'Informe') {
-  $conclu = 'para informes con cumplimiento: De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, '.$cumple_conclu.' con los parámetros establecidos en la normativa vigente.';
+  $conclu = 'De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
+CUMPLE con los parámetros establecidos en la normativa vigente.';
 }elseif($conclusion == 'Pre-Informe'){
   $conclu = 'Los resultados obtenidos en el presente informe, 
 se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
@@ -242,56 +247,47 @@ se aplican solo a los elementos ensayados y corresponde a las condiciones encont
 $pdf->writeHTMLCell(165, 5, 15, '', $conclu ,0,1, 0, true, 'J', true);
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
    color:white;
    background-color: rgb(0,79,135);
-   
 }
 </style>
-<br><br>
 <table>
    <tr border="1">
         <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
-        <td class="linea" align="center"><h2>Fecha de Medición</h2></td>
    </tr>
-   <tr>
-        <td align="center">La vigencia de Certificación es de 12 meses.</td>
-        <td align="center">$fecha_medicion</td>
-   </tr>    
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$linea = <<<EOD
+$pdf->writeHTMLCell(0, 5, 15, '', 'De acuerdo con la UNE-EN ISO 14644-1 Anexo B, el intervalo de tiempo máximo entre verificaciones es de 12 meses. ' ,0,1, 0, true, 'J', true);
 
+
+$linea = <<<EOD
 <style>
 .linea{
    height: 14px;
    color:white;
    background-color: rgb(0,79,135);
-   
 }
 </style>
-<br><br>
 <table>
    <tr border="1">
         <td class="linea" align="center"><h2>Responsable</h2></td>
-        <!--<td class="linea" align="center"><h2>Código QR de Verificación</h2></td>-->
-        <!--<td class="linea" align="center"><h2>Firma</h2></td>-->
-   </tr>
-   <tr>
-       <td align="center">Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
+  
+        <td class="linea" align="center"><h2>Fecha Medición</h2></td>
    </tr>
 </table>
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(165, 5, 15, '', '' ,0,1, 0, true, 'C', true);
-   
+$pdf->Cell(90,5,'Ing. '.$nombre_responsable.' '. $apellido_responsable,0,0,'C',0,'',0);
+$pdf->Cell(90,5,$fecha_medicion,0,0,'C',0,'',0);
+$pdf->ln(3);
+$pdf->Cell(90,5,$nombre_cargo,0,0,'C',0,'',0);
+
 
 $pdf->AddPage('A4');
 

@@ -58,6 +58,9 @@ elseif($conclusion == 'Pre-Informe'){
 se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
 }
 
+$tipo_info = $conclusion;
+
+
 //consultar informacion del responsable
 
 $consultar_responsable = mysqli_prepare($connect,"SELECT b.nombre, b.apellido, c.nombre 
@@ -767,7 +770,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Medición de Particulas en Suspeción</h2></td>
+        <td class="linea" align="center"><h2>MEDICIÓN DE PAETICULAS EN SUSPENCIÓN</h2></td>
    </tr>
 </table>
 EOD;  

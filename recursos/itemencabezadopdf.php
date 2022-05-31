@@ -2,6 +2,7 @@
 require_once('../../../../pdf/tcpdf.php');
 
 $logo = "";
+$tipo_info = "";
 //CABECERAS PERSONALIZADAS
 class MYPDF extends TCPDF 
 {
@@ -12,7 +13,7 @@ class MYPDF extends TCPDF
     public function Header() 
 	{
        
-      global $logo;
+      global $logo, $tipo_info;
       
       
       
@@ -51,12 +52,13 @@ class MYPDF extends TCPDF
      */
     // Logo
    
-	$this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
-    $this->writeHTMLCell(35, 22, 160, 11, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
+	//$this->writeHTMLCell(35, 22, 17, 11, '<img src="../../../../recursos/logo_big.png" width="500">', 0, 0, 0, true, 'C', true);
+   // $this->writeHTMLCell(35, 22, 160, 11, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
     
-      // get the current page break margin
+    if ($tipo_info == 'Pre-Informe') {
+            // get the current page break margin
         $bMargin = $this->getBreakMargin();
         // get current auto-page-break mode
         $auto_page_break = $this->AutoPageBreak;
@@ -70,6 +72,9 @@ class MYPDF extends TCPDF
         // set the starting point for the page content
         $this->setPageMark();
     }
+
+
+    }
 	
     // Page footer
    public function Footer() 
@@ -80,42 +85,42 @@ class MYPDF extends TCPDF
 }
 
 
-// create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-// set document information
-$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Cercal');
-$pdf->SetTitle("");
-$pdf->SetSubject('INFORME CERCAL');
-$pdf->SetKeywords('-');
+    // create new PDF document
+    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+    // set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('Cercal');
+    $pdf->SetTitle("");
+    $pdf->SetSubject('INFORME CERCAL');
+    $pdf->SetKeywords('-');
 
-// set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-$pdf->setFooterData(array(0,64,0), array(0,64,128));
+    // set default header data
+    $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+    $pdf->setFooterData(array(0,64,0), array(0,64,128));
 
-// set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+    // set header and footer fonts
+    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
-// set default monospaced font
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+    // set default monospaced font
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
-// set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, 25, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(15);
-$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+    // set margins
+    $pdf->SetMargins(PDF_MARGIN_LEFT, 25, PDF_MARGIN_RIGHT);
+    $pdf->SetHeaderMargin(15);
+    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
-// set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+    // set auto page breaks
+    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
-// set image scale factor
-$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+    // set image scale factor
+    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
-// set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-    require_once(dirname(__FILE__).'/lang/eng.php');
-    $pdf->setLanguageArray($l);
-}
+    // set some language-dependent strings (optional)
+    if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+        require_once(dirname(__FILE__).'/lang/eng.php');
+        $pdf->setLanguageArray($l);
+    }
 
 // ---------------------------------------------------------
 
