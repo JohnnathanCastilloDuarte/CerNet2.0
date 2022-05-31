@@ -368,136 +368,16 @@
 	$min_desv = number_format($d_7,2);
 
 
-  $query_8 = mysqli_prepare($connect,"SELECT COUNT(a.temp) / COUNT(DISTINCT b.id_sensor) as x  FROM datos_crudos_general as a , mapeo_general_sensor as b 
-                                      WHERE a.id_sensor_mapeo = b.id_sensor_mapeo  AND b.id_mapeo = ?");
+  $query_8 = mysqli_prepare($connect,"SELECT  
+  ((DATEDIFF(a.fecha_fin,a.fecha_inicio) * 1440) / (a.intervalo / 60)) as cantidad_mediciones  
+  FROM mapeo_general AS a,  mapeo_general_sensor AS b WHERE a.id_mapeo = b.id_mapeo AND b.id_sensor_mapeo = ?");
   mysqli_stmt_bind_param($query_8, 'i', $id_mapeo);
   mysqli_stmt_execute($query_8);
   mysqli_stmt_store_result($query_8);
   mysqli_stmt_bind_result($query_8, $d_1);
   mysqli_stmt_fetch($query_8);
- 
-$total_mediciones_ = number_format($d_1,0);
-$total_mediciones = str_replace(',','',$total_mediciones_);
 
-		/*
-
-
-		//3-CONSULTAR INFORMACIÓN DE MAPEO DEL EQUIPO
-		$query_7 = mysqli_prepare($connect,"SELECT valor_seteado_temperatura, temperatura_minima, temperatura_maxima, fecha_inicio, hora_inicio,
-																				fecha_final, hora_final,intervalo	FROM refrigerador_mapeo WHERE id_asignado = ? AND id_mapeo = ?");
-		mysqli_stmt_bind_param($query_7, 'ii', $id_asignado, $id_mapeo);
-		mysqli_stmt_execute($query_7);
-		mysqli_stmt_store_result($query_7);
-		mysqli_stmt_bind_result($query_7, $valor_seteado, $temperatura_min, $temperatura_max, $fecha_inicio, $hora_inicio, $fecha_final, $hora_final, $intervalo);
-		mysqli_stmt_fetch($query_7);
-		
-			$fecha_incial = $fecha_inicio.' '.$hora_inicio;
-			$fecha_fin = $fecha_final.' '.$hora_final;
-
-			$c_dias = number_format(((strtotime($fecha_fin)-strtotime($fecha_incial))/3600)/24,2);
-			//$c_hora = $c_dias * 24;
-			
-			
-
-			
-	 
-
-		
-
-		
-		
-
-		$query_10 = mysqli_prepare($connect,"SELECT DISTINCT MAX(CAST(a.temperatura AS DECIMAL(6,2))) as maximo, a.time FROM refrigerador_datos_crudos as a, refrigerador_sensor as b 
-																				WHERE b.id_asignado = ? AND a.id_refrigerador_sensor = b.id_refrigerador_sensor 
-																				GROUP BY a.time");
-		mysqli_stmt_bind_param($query_10, 'i', $id_asignado);
-		mysqli_stmt_execute($query_10);
-		mysqli_stmt_store_result($query_10);
-		mysqli_stmt_bind_result($query_10, $x);
-		mysqli_stmt_fetch($query_10);
-
-		
-		
-
-		
-		
-	
-
-
-		////////////VALIDO EL NOMBRE DEL MAPEO
-		$query_12 = mysqli_prepare($connect,"SELECT nombre FROM refrigerador_mapeo WHERE id_mapeo = ?");
-		mysqli_stmt_bind_param($query_12, 'i', $id_mapeo);
-		mysqli_stmt_execute($query_12);
-		mysqli_stmt_store_result($query_12);
-		mysqli_stmt_bind_result($query_12, $nombre_mapeo);
-		mysqli_stmt_fetch($query_12);
-		
-
-		//valido la existencia de un concepto ingresado en el informe
-		if( $concepto == "concepto"){
-			$resultado_corresponde = $nombre_mapeo." de Temperatura de ".$nombre_item." modelo: ".$modelo_item." por un periodo de ".$c_hora ."hora(s).";	
-		}else{
-			$resultado_corresponde = $concepto;
-		}
-
-
-	
-		
-
-
-			
-	
-		
-
-		
-		
-		
-
-
-
-	
-
-
-	//CALCULO DE LA DIFERENCIA MAXIMA 
-	$query_18 = mysqli_prepare($connect,"SELECT MAX(CAST(temperatura AS DECIMAL(6,2))) AS maximo, MIN(CAST(temperatura AS DECIMAL(6,2))) as minimo, MAX(CAST(temperatura AS DECIMAL(6,2))) - MIN(CAST(temperatura AS DECIMAL(6,2))) AS resta,
-																				a.time FROM refrigerador_datos_crudos as a,
-																					refrigerador_sensor as b, bandeja as c, sensores as d WHERE a.id_refrigerador_sensor = b.id_refrigerador_sensor AND b.id_mapeo = ?
-																					AND b.id_asignado = ?
-																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor GROUP BY a.time  ORDER BY resta DESC LIMIT 1  ");
-	mysqli_stmt_bind_param($query_18, 'ii', $id_mapeo, $id_asignado);
-	mysqli_stmt_execute($query_18);
-	mysqli_stmt_store_result($query_18);
-	mysqli_stmt_bind_result($query_18, $dif_maxi, $dif_min, $dif_max_resta, $dif_max_time);
-	mysqli_stmt_fetch($query_18);
-
-	$query_19 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
-	mysqli_stmt_bind_param($query_19, 'isii', $dif_maxi, $dif_max_time, $id_asignado, $id_mapeo);
-	mysqli_stmt_execute($query_19);
-	mysqli_stmt_store_result($query_19);
-	mysqli_stmt_bind_result($query_19, $dif_max_sensor);
-	mysqli_stmt_fetch($query_19);
-
-
-
-
-
-
-	
-
-
-
-	$query_23 = mysqli_prepare($connect,"SELECT a.nombre FROM sensores as a, refrigerador_sensor as b, refrigerador_datos_crudos as c WHERE a.id_sensor = b.id_sensor AND b.id_refrigerador_sensor = c.id_refrigerador_sensor 
-																			 AND c.temperatura = ? AND c.time = ? AND b.id_asignado = ? AND b.id_mapeo = ? ");
-	mysqli_stmt_bind_param($query_23, 'isii', $dif_min, $dif_max_time, $id_asignado, $id_mapeo);
-	mysqli_stmt_execute($query_23);
-	mysqli_stmt_store_result($query_23);
-	mysqli_stmt_bind_result($query_23, $dif_min_sensor);
-	mysqli_stmt_fetch($query_23);
-
-
-
-	*/
+  $total_mediciones = $d_1;
 
   //OBTENER UBICACIÓN DE SENSORES Y SUS IMAGENES 
   $tipo_imagen_1 = 1;

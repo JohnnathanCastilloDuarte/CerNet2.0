@@ -383,15 +383,15 @@
 	$min_desv = number_format($d_7,2);
 
 
-  $query_8 = mysqli_prepare($connect,"SELECT COUNT(a.hum) / COUNT(DISTINCT b.id_sensor) as x  FROM datos_crudos_general as a , mapeo_general_sensor as b 
-                                      WHERE a.id_sensor_mapeo = b.id_sensor_mapeo  AND b.id_mapeo = ?");
-  mysqli_stmt_bind_param($query_8, 'i', $id_mapeo);
-  mysqli_stmt_execute($query_8);
-  mysqli_stmt_store_result($query_8);
-  mysqli_stmt_bind_result($query_8, $d_1);
-  mysqli_stmt_fetch($query_8);
- 
-  $total_mediciones = number_format($d_1,2);
+	$query_8 = mysqli_prepare($connect,"SELECT  
+	((DATEDIFF(a.fecha_fin,a.fecha_inicio) * 1440) / (a.intervalo / 60)) as cantidad_mediciones  
+	FROM mapeo_general AS a,  mapeo_general_sensor AS b WHERE a.id_mapeo = b.id_mapeo AND b.id_sensor_mapeo = ?");
+	mysqli_stmt_bind_param($query_8, 'i', $id_mapeo);
+	mysqli_stmt_execute($query_8);
+	mysqli_stmt_store_result($query_8);
+	mysqli_stmt_bind_result($query_8, $d_1);
+	mysqli_stmt_fetch($query_8);
+  $total_mediciones = $d_1;
 
 
   //OBTENER UBICACIóN DE SENSORES Y SUS IMAGENES 
