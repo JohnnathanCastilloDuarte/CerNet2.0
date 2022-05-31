@@ -2197,7 +2197,7 @@ $("#form_cargar_archivos").submit(function(e){
         contentType: false,
         processData: false,
         success:function(response){
-         
+            console.log(response);
          if(response == "Ok"){
             
             $("#tipo_configuracion").val("sin_errores");
