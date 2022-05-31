@@ -109,13 +109,14 @@ if(!isset($imagen_2)){
       // if everything is ok, try to upload file
       }else{
           if (move_uploaded_file($_FILES["imagen_tipo_2"]["tmp_name"], $target_file)) {
-          rename("$target_file","$personalizado");
-
+          rename("$target_file","$personalizado");  
+   
           $creando = mysqli_prepare($connect,"INSERT INTO imagenes_general_informe (id_informe, tipo, url) VALUES (?,?,?)");
           mysqli_stmt_bind_param($creando, 'iis', $id_informe, $tipo, $personalizado);
           mysqli_stmt_execute($creando);
+          echo mysqli_stmt_error($creando);
           }else{
-              //echo " Hubo un error al intentar cargar el archivo.";
+              echo " Hubo un error al intentar cargar el archivo.";
           } 	
       }
   }////////// CIERRE DEL IF DE EXISTENCIA DEL ARCHIVO

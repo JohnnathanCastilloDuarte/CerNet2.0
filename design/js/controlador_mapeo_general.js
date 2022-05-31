@@ -2062,6 +2062,7 @@ $("#formulario_para_imagenes").submit(function(evt){
         contentType: false,
         processData: false,
         success:function(response){
+            console.log(response);
           mostrar_imagenes(response);
           $("#imagen_tipo_1").val('');
            $("#imagen_tipo_2").val('');
