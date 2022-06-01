@@ -80,7 +80,7 @@ class MYPDF extends TCPDF
    public function Footer() 
 	{
 		$this->SetFont('helvetica', '', 7);		
-		$this->writeHTMLCell(45, 15, 150, 280, 'Página '.$this->getAliasNumPage(), 0, 1, 0, true, 'C', true);
+		$this->writeHTMLCell(45, 15, 150, 280, 'Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages(), 0, 1, 0, true, 'C', true);
 	}
 }
 
