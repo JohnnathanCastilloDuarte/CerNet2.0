@@ -871,7 +871,7 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
 
   $mkt=number_format(-1*(83.144/0.0083144)/(log($valor_mkt))-273.15,2);	
 
-  if($contador_for_table == 35){
+  if($contador_for_table == 31 || $contador_for_table == 40){
     $pdf->AddPage('A4');
 
     $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
