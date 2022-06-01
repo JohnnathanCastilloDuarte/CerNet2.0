@@ -2,10 +2,6 @@ $("#alerta_1").hide();
 
 
 
-/*calcular_promedio_3();
-calcular_promedio_4();*/
-
-
 //INFORMACION DE DATOS DEL ITEM 
 var id_asignado = $("#id_asignado_sala_limpia").val();
 var presion_sala_pa = $("#presion_sala_pa").val();
@@ -372,14 +368,14 @@ function listar_resultados_prueba(orden){
                 contador++;
             });
 
-$("#medicion_temp").html(template1);
-$("#medicion_hr").html(template2);
-$("#medicion_lux").html(template3);
-$("#medicion_dba").html(template4);
-calcular_promedio_1();
-calcular_promedio_2();
-calcular_promedio_3();
-calcular_promedio_4();
+          $("#medicion_temp").html(template1);
+          $("#medicion_hr").html(template2);
+          $("#medicion_lux").html(template3);
+          $("#medicion_dba").html(template4);
+          calcular_promedio_1();
+          calcular_promedio_2();
+          calcular_promedio_3();
+          calcular_promedio_4();
 
 }
 })

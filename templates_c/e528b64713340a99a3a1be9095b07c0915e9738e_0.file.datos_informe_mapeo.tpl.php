@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-26 16:23:19
+/* Smarty version 3.1.34-dev-7, created on 2022-06-01 18:40:22
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_628f8d571b23e2_97084058',
+  'unifunc' => 'content_6297967690edc3_47155821',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1653574888,
+      1 => 1654101620,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628f8d571b23e2_97084058 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6297967690edc3_47155821 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <input type="hidden" name="" id="presion_sala_pa" value="<?php echo $_smarty_tpl->tpl_vars['presion_sala']->value;?>
@@ -371,7 +371,7 @@ function content_628f8d571b23e2_97084058 (Smarty_Internal_Template $_smarty_tpl)
                                  
                                 <div class="col-sm-6">
                                       <label for="">Nombre informe:</label>
-                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
+                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" readonly >
                                       <br>
                                   </div> 
                                   <div class="col-sm-6">

@@ -337,7 +337,7 @@
                                  
                                 <div class="col-sm-6">
                                       <label for="">Nombre informe:</label>
-                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control">
+                                      <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" readonly >
                                       <br>
                                   </div> 
                                   <div class="col-sm-6">
