@@ -267,7 +267,7 @@ se aplican solo a los elementos ensayados y corresponde a las condiciones encont
 
 if ($clasificacion_oms == 'No Aplica') {
 
-  $clasificacion_oms = 'D';
+  //$clasificacion_oms = ' D';
 
   $pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
   $pdf->Cell(25,5,'',0,0,'J',0,'',0);
@@ -1005,8 +1005,14 @@ $pdf->writeHTML($linea, true, false, false, false, '');
  $pdf->Cell(24,5,'Método de ensayo:',0,0,'L',0,'',0);
  $pdf->Cell(75,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.3',1,0,'C',0,'',0);
 
+ if ($clasificacion_oms == 'No Aplica' && $clasificacion_iso == 9) {
+    $clasificacion_oms = '';
+ }else{
+   $clasificacion_oms = 'Clase '.$clasificacion_oms.' (OMS) / ';
+ }
+
  $pdf->Cell(32,5,'Especificación de la sala:',0,0,'L',0,'',0);
- $pdf->Cell(49,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso,1,0,'C',0,'',0);
+ $pdf->Cell(49,5,$clasificacion_oms.'ISO '.$clasificacion_iso,1,0,'C',0,'',0);
  $pdf->ln(5);   
 
 
