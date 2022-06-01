@@ -2,7 +2,7 @@
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
 			<span>Creación</span>
-		</a>
+	</a>
   </li>
   <li class="nav-item" id="asignacion_mapeo_general">
     <a role="tab" class="nav-link" id="asignacion" data-toggle="tab" href="#asignacion_general">
