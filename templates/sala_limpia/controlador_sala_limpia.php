@@ -624,7 +624,7 @@ else if($orden == 1000){
     }
 
     $nuevo_consecutivo = $num_consecutivo + 1;
-    $nombre_informe = 'SCL'.$numot.'-DOC'.$nuevo_consecutivo.'-CLI'.$id_empresa.'-SLA';
+    $nombre_informe = 'SCL'.$num_ot.'-DOC'.$nuevo_consecutivo.'-CLI'.$id_empresa.'-SLA';
 
     if(mysqli_stmt_num_rows($validador1) == 0){
 
