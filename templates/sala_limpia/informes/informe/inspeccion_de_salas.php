@@ -107,20 +107,24 @@ $resultado_prom_caudal = round(($promedio_caudal / $volumen_m3),2);
 if ($clasificacion_iso == 5) {
    $particulas05 = 3520;
    $particulas50 = 29;
+   $clasifica = "Clase A (OMS) /";
 }elseif($clasificacion_iso == 6) {
    $particulas05 = 35200;
    $particulas50 = 293;
+   $clasifica = "Clase B (OMS) /";
 }elseif ($clasificacion_iso == 7) {
    $particulas05 = 352000;
    $particulas50 = 2930;
+   $clasifica = "Clase C (OMS) /";
 }elseif ($clasificacion_iso == 8) {
    $particulas05 = 3520000;
    $particulas50 = 29300;
+   $clasifica = "Clase D (OMS) /";
 }elseif ($clasificacion_iso == 9) {
    $particulas05 = 35200000;
    $particulas50 = 293000;
+   $clasifica = "";
 }
-
 
 
 
@@ -263,36 +267,31 @@ se aplican solo a los elementos ensayados y corresponde a las condiciones encont
 
 if ($clasificacion_oms == 'No Aplica') {
 
-
   $clasificacion_oms = 'D';
-  $pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
-  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
-  $pdf->Cell(68,5,'ISO 14644-1:2015 (Promedio)',1,0,'C',0,'',0);
 
+  $pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
+  $pdf->Cell(25,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(68,5,'ISO 14644-1:2015 (Promedio)',1,0,'C',0,'',0);
 
   $pdf->ln(5);
 
-
   $pdf->Cell(34,5,'Tamaño de Partículas:',0,0,'L',0,'',0);
-  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(22,5,'',0,0,'J',0,'',0);
   $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
   $pdf->Cell(34,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
 
-
   $pdf->ln(5);
 
-
-
   $pdf->Cell(34,5,'Resultado:',0,0,'L',0,'',0);
-  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(22,5,'',0,0,'J',0,'',0);
   $pdf->Cell(34,5,$medida_promedio05,1,0,'C',0,'',0);
   $pdf->Cell(34,5,$medida_promedio50,1,0,'C',0,'',0);
 
   $pdf->ln(5);
 
   $pdf->Cell(31,5,'Requisito:',0,0,'L',0,'',0);
-  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
-  $pdf->Cell(68,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+  $pdf->Cell(25,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(68,5,$clasifica.'ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
 
     if ($medida_promedio05 <= $particulas05) {
       $veredicto_1 = 'CUMPLE';
@@ -308,47 +307,47 @@ if ($clasificacion_oms == 'No Aplica') {
 
   $pdf->ln(5);
   $pdf->Cell(34,5,'veredicto',0,0,'L',0,'',0); 
-  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(22,5,'',0,0,'J',0,'',0);
   $pdf->Cell(34,5,$veredicto_1,1,0,'C',0,'',0);
   $pdf->Cell(34,5,$veredicto_2,1,0,'C',0,'',0);
  
 }elseif ($clasificacion_iso == 'No Aplica') {
   
 }else{
-  $pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
-  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
-  $pdf->Cell(68,5,'ISO 14644-1:2015 (Promedio)',1,0,'C',0,'',0);
-  $pdf->Cell(67,5,'OMS 45 (Promedio)',1,0,'C',0,'',0);
+    $pdf->Cell(31,5,'Norma de Referencia:',0,0,'L',0,'',0);
+    $pdf->Cell(14,5,'',0,0,'J',0,'',0);
+    $pdf->Cell(68,5,'ISO 14644-1:2015 (Promedio)',1,0,'C',0,'',0);
+    $pdf->Cell(67,5,'OMS 45 (Promedio)',1,0,'C',0,'',0);
 
-  $pdf->ln(5);
-
-
-  $pdf->Cell(34,5,'Tamaño de Partículas:',0,0,'L',0,'',0);
-  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
-  $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
-  $pdf->Cell(34,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
-  $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
-  $pdf->Cell(33,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
-
-  $pdf->ln(5);
+    $pdf->ln(5);
 
 
+    $pdf->Cell(34,5,'Tamaño de Partículas:',0,0,'L',0,'',0);
+    $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+    $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
+    $pdf->Cell(34,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
+    $pdf->Cell(34,5,'Partículas >= 0,5 µm',1,0,'C',0,'',0);
+    $pdf->Cell(33,5,'Partículas >= 5,0 µm',1,0,'C',0,'',0);
 
-  $pdf->Cell(34,5,'Resultado:',0,0,'L',0,'',0);
-  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
-  $pdf->Cell(34,5,$medida_promedio05,1,0,'C',0,'',0);
-  $pdf->Cell(34,5,$medida_promedio50,1,0,'C',0,'',0);
-  $pdf->Cell(34,5,$resultadooms,1,0,'C',0,'',0);
-  $pdf->Cell(33,5,$medida_promedio50,1,0,'C',0,'',0);
-
-  $pdf->ln(5);
+    $pdf->ln(5);
 
 
 
-  $pdf->Cell(31,5,'Requisito:',0,0,'L',0,'',0);
-  $pdf->Cell(14,5,'',0,0,'J',0,'',0);
-  $pdf->Cell(68,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
-  $pdf->Cell(67,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+    $pdf->Cell(34,5,'Resultado:',0,0,'L',0,'',0);
+    $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+    $pdf->Cell(34,5,$medida_promedio05,1,0,'C',0,'',0);
+    $pdf->Cell(34,5,$medida_promedio50,1,0,'C',0,'',0);
+    $pdf->Cell(34,5,$resultadooms,1,0,'C',0,'',0);
+    $pdf->Cell(33,5,$medida_promedio50,1,0,'C',0,'',0);
+
+    $pdf->ln(5);
+
+
+
+    $pdf->Cell(31,5,'Requisito:',0,0,'L',0,'',0);
+    $pdf->Cell(14,5,'',0,0,'J',0,'',0);
+    $pdf->Cell(68,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+    $pdf->Cell(67,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
 
 }
 
@@ -770,7 +769,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>MEDICIÓN DE PAETICULAS EN SUSPENCIÓN</h2></td>
+        <td class="linea" align="center"><h2>MEDICIÓN DE PARTICULAS EN SUSPENCIÓN</h2></td>
    </tr>
 </table>
 EOD;  

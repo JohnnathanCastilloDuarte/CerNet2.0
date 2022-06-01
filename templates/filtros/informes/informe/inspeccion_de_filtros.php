@@ -672,20 +672,42 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 
 //Consulta que busca las imagenes
-$consultar_imagenes = mysqli_prepare($connect,"SELECT url, enunciado FROM images_informe_filtro WHERE id_informe = ? AND tipo_imagen = 2");
+$consultar_imagenes = mysqli_prepare($connect,"SELECT url, enunciado FROM images_informe_filtro 
+  WHERE id_informe = ? AND tipo_imagen = 2");
 
 mysqli_stmt_bind_param($consultar_imagenes, 'i', $id_informe);
 mysqli_stmt_execute($consultar_imagenes);
 mysqli_stmt_store_result($consultar_imagenes);
 mysqli_stmt_bind_result($consultar_imagenes, $url, $enunciado);
-   
+
+
+$cont = 1;
+$contador_2 = 1;
 while($row = mysqli_stmt_fetch($consultar_imagenes)){
+
+        if ($cont == 1) {
+          $pdf->writeHTMLCell(90, 50, 15, '','<h3>'.$enunciado.'</h3><br><img src="../../'.$url.'" style="width: 300px; height: 200px;">', 0, 0, 0, true, 'C', true);
+        }else if ($cont == 2){
+          $pdf->writeHTMLCell(90, 50, 105, '', '<h3>'.$enunciado.'</h3><br><img src="../../'.$url.'" style="width: 300px; height: 200px;">', 0, 1, 0, true, 'C', true);
+          $cont = 0;
+        }
+
+        $cont++;
+        $contador_2++;
+
+        if ($contador_2 == 6) {
+          $pdf->AddPage('A4');
+        }
+
+}
+   
+/*while($row = mysqli_stmt_fetch($consultar_imagenes)){
       
        $imagenes = <<<EOD
        
-         <table witdh="100%">
+         <table witdh="100%" border="1">
             <tr>
-               <td></td>
+               <td>$enunciado</td>
                <td width="200px">
                   <img src="../../$url">
                </td>
@@ -699,7 +721,7 @@ while($row = mysqli_stmt_fetch($consultar_imagenes)){
       $pdf->writeHTML($imagenes, true, false, false, false, '');  
    
 
-   }     
+   }     */
 
 
 $pdf->Output($nombre_informe, 'I');
