@@ -3,7 +3,6 @@ require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 
 
-$pdf->AddPage('A4');
 
 
 $clave = $_GET['clave'];
@@ -17,10 +16,11 @@ $consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.descripcion, a
   WHERE c.id_asignado = ? AND c.id_item = a.id_item AND b.id_item = c.id_item AND a.id_tipo = 13");
 
 
+
 mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
-mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $cantidad_filtro, $direccion, $ubicacion_interna, $area_interna, $tipo_cabina, $marca, $modelo, $serie, $codigo, $tipo_dimenciones, $limite_penetracion, $eficiencia, $fecha_registro, $clasificacion_oms, $clasificacion_iso);
+mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $cantidad_filtro, $direccion, $ubicacion_interna, $area_interna, $tipo_cabina, $marca, $modelo, $serie, $codigo, $tipo_dimenciones, $limite_penetracion, $req_velocidad_aire, $fecha_registro, $clasificacion_oms, $clasificacion_iso);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
 
@@ -38,15 +38,19 @@ mysqli_stmt_fetch($inspeccion_visual);
 
 //info_ informes
 
-$info_query = mysqli_prepare($connect,"SELECT conclusion, solicitante, nombre_informe, usuario_responsable,DATE_FORMAT(fecha_registro, '%m/%d/%Y')
+$info_query = mysqli_prepare($connect,"SELECT conclusion, solicitante, nombre_informe, usuario_responsable,DATE_FORMAT(fecha_registro, '%m/%d/%Y'), fecha_medicion
   FROM informe_flujo_laminar
   WHERE id_asignado = ? ");
 
 mysqli_stmt_bind_param($info_query, 'i', $id_asignado);
 mysqli_stmt_execute($info_query);
 mysqli_stmt_store_result($info_query);
-mysqli_stmt_bind_result($info_query, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_registro_informe);
+mysqli_stmt_bind_result($info_query, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_registro_informe, $fecha_medicion);
 mysqli_stmt_fetch($info_query);
+
+//echo $conclusion;
+
+
 
 
 if ($conclusion == 'Informe') {
@@ -56,8 +60,14 @@ CUMPLE con los parámetros establecidos en la normativa vigente.';
 
 }
 elseif($conclusion == 'Pre-Informe'){
+
   $muestra_conclusion = 'Los resultados obtenidos en el presente informe, 
 se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
+}
+
+if ($conclusion == 'Pre-Informe') {
+  $tipo_info = 'Pre-Informe';
+ // echo "--";
 }
 
 
@@ -103,8 +113,73 @@ if ($clasificacion_iso == 5) {
    $particulas50 = 293000;
 }
 
+if ($clasificacion_oms == "A") {
+  $particulas05_oms = 3520 ;
+  $particulas50_oms = 20;
+}elseif($clasificacion_oms == "B"){
+  $particulas05_oms = 3520;
+  $particulas50_oms = 29;
+
+}elseif($clasificacion_oms == "C"){
+  $particulas05_oms = 352000;
+  $particulas50_oms = 2900;
+  
+}elseif($clasificacion_oms == "D"){
+  $particulas05_oms = 3520000;
+  $particulas50_oms = 29000;
+  
+}
 
 
+$queryPrueba2_0 = mysqli_prepare($connect,"SELECT (zonaA + zonaAA + zonaB + zonaBB + zonaC + zonaCC + zonaD + zonaDD) / 8 as PROMEDIO
+FROM flujo_laminar_prueba_2 WHERE id_asignado = ?");
+
+
+mysqli_stmt_bind_param($queryPrueba2_0, 'i', $id_asignado);
+mysqli_stmt_execute($queryPrueba2_0);
+mysqli_stmt_store_result($queryPrueba2_0);
+mysqli_stmt_bind_result($queryPrueba2_0, $contador);
+
+$cantidad_zonas = mysqli_stmt_num_rows($queryPrueba2_0);
+
+$var_promedio = '';
+$vari = 1;
+while ($row = mysqli_stmt_fetch($queryPrueba2_0)) {
+
+      if ($vari == 1) {
+         $var_promedio = $contador;
+         $vari = 0;
+      }else{
+
+         $var_promedio = $contador.';'.$var_promedio;    
+      }
+      
+}
+
+$valores = explode(';', $var_promedio);
+
+$promedio_final = array_sum($valores)/count($valores);
+
+
+$query_um_1 = mysqli_prepare($connect,"SELECT tipo_um, media_promedios, desviacion_estandar, maximo 
+FROM flujo_laminar_prueba_7
+WHERE id_asignado = ? ");
+
+mysqli_stmt_bind_param($query_um_1, 'i', $id_asignado);
+mysqli_stmt_execute($query_um_1);
+mysqli_stmt_store_result($query_um_1);
+mysqli_stmt_bind_result($query_um_1, $tipo_um, $media_promedios, $desviacion_estandar, $maximo);
+//mysqli_stmt_fetch($query_um_1);
+
+$array_um = array();
+while ($row = mysqli_stmt_fetch($query_um_1)) {
+    
+    $array_um[]=array(
+    'media_promedios'=>$media_promedios
+  );  
+
+}
+$pdf->AddPage('A4');
 
 
 $linea = <<<EOD
@@ -112,13 +187,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br><br><br>
 <table >
    <tr border="1">
-        <td class="linea" align="center"><h2>CERTIFICADO DE INSPECCIÓN DE FLUJO LAMINAR</h2></td>
+        <td class="linea" align="center" ><h2>CERTIFICADO DE INSPECCIÓN DE FLUJO LAMINAR</h2></td>
    </tr>
 </table>
 
@@ -136,7 +212,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
      $pdf->Cell(20,5,'',0,0,'C',0,'',0);
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
-     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
 
    $pdf->ln(7);   
 
@@ -175,96 +251,12 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$eficiencia,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
 
 
   $pdf->ln(7);
 
-//información del equipo
-/*$info_equipo = <<<EOD
-   <style> 
-   {
-   border-collapse: collapse;
-   width: 90%;
-   text-align: center;
-   vertical-align: middle;
-   }
 
-   th 
-   {
-   background-color: #3138AA;
-   color: #FFFFFF;
-   vertical-align: middle;
-   }
-
-   th, td 
-   {
-   border: 1px solid #BBBBBB;
-   padding: 3px;
-   vertical-align: middle;
-   text-align: center;
-   height:15px;
-   font-size:11px;
-   padding:auto auto auto auto;
-   }
-
-   tr:nth-child(even) 
-   {
-      background-color: #f2f2f2;
-   }
-
-
-   </style>
-
-   <table>
-      <tr>
-         <table>
-            <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Tipo de Cabina</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Marca</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Modelo</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Serie</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Código</strong></h5></td>
-            </tr>
-            <tr>
-               <td>$tipo_cabina</td>
-               <td>$marca</td>
-               <td>$modelo</td>
-               <td>$serie</td>
-               <td>$codigo</td>
-            </tr>
-         </table>
-         <table>
-           <tr>
-             <td  bgcolor="#DDDDDD"><h5><strong>Ubicado en </strong></h5></td>
-           </tr>
-           <tr>
-             <td>$ubicacion_interna</td>
-           </tr>
-         </table>
-         <table>
-            <tr>
-               <td bgcolor="#DDDDDD"><h5><strong>Cantidad de Filtros HEPA</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Tipo y Dimensiones de Filtros Interiores</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Límite de Penetración</strong></h5></td>
-               <td bgcolor="#DDDDDD"><h5><strong>Eficiencia</strong></h5></td>       
-            </tr>
-            <tr>
-               <td>$cantidad_filtro</td>
-               <td>$tipo_dimenciones</td>
-               <td>$limite_penetracion</td>
-               <td>$eficiencia</td>
-            </tr>
-         </table>    
-      </tr>
-      <br>
-   </table>
-   
-EOD;  
-$pdf->writeHTML($info_equipo, true, false, false, false, '');*/
-
-
-///// crea una nueva pagina
 //$pdf->AddPage('A4');
 
 $linea = <<<EOD
@@ -272,13 +264,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Inspección Visual</h2></td>
+        <td class="linea" align="center"><h2>Inspección Visual</h2></td>
    </tr>
 </table>
 
@@ -310,14 +303,15 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea"><h3>Resultados - Norma: UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2015</h3></td>
+        <td class="linea" align="center"><h3>Resultados - Norma: UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2015</h3></td>
    </tr>
 </table>
 
@@ -351,34 +345,75 @@ $pdf->ln(5);
 $i=0;
   while ($row = mysqli_stmt_fetch($queryPrueba1)) {
 
-    if ($i < 2) {
+    if ($i == 0) {
+      if ($promedio_final <= 0.01) {
+         $veredicto = 'CUMPLE';
+      }else{
+        $veredicto = 'NO CUMPLE';
+      }
       $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
-      $pdf->Cell(40,5,'2',1,0,'C',0,'',0);
-      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,' <= 0.01 % ',1,0,'L',0,'',0);
+      $pdf->Cell(40,5,' < '.$promedio_final.' % ',1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }elseif ($i == 1) {
+      if ($req_velocidad_aire >= 0.36 && $req_velocidad_aire <= 0.54) {
+        $veredicto = 'CUMPLE';
+      }else{
+        $veredicto = 'NO CUMPLE';
+      }
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
+      $pdf->Cell(40,5,' = 0.45 m/s +-20% ',1,0,'L',0,'',0);
+      $pdf->Cell(40,5,$req_velocidad_aire,1,0,'C',0,'',0);
       $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
       $pdf->ln(5);
     }else if ($i == 2){
+      if ($array_um[0]['media_promedios'] <= $particulas05) {
+        $veredicto = 'CUMPLE';
+      }else{
+        $veredicto = 'NO CUMPLE';
+      }
+
      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
      $pdf->Cell(40,5,' <= '.$particulas05.' (ISO'.$clasificacion_iso.')',1,0,'L',0,'',0);
-     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,$array_um[0]['media_promedios'],1,0,'C',0,'',0);
      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
      $pdf->ln(5);
     }else if ($i == 3){
+
+      if ($array_um[1]['media_promedios'] <= $particulas50) {
+        $veredicto = 'CUMPLE';
+      }else{
+        $veredicto = 'NO CUMPLE';
+      }
+
+
      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
      $pdf->Cell(40,5,' <= '.$particulas50.' (ISO'.$clasificacion_iso.')',1,0,'L',0,'',0);
-     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,$array_um[1]['media_promedios'],1,0,'C',0,'',0);
      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
      $pdf->ln(5);
     }else if ($i == 4){
+      if ($array_um[0]['media_promedios'] <= $particulas50) {
+        $veredicto = 'CUMPLE';
+      }else{
+        $veredicto = 'NO CUMPLE';
+      }
+
      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
-     $pdf->Cell(40,5,' <= '.$particulas50.' (OMS '.$clasificacion_oms.')',1,0,'L',0,'',0);
-     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,' <= '.$particulas05_oms.' (OMS '.$clasificacion_oms.')',1,0,'L',0,'',0);
+     $pdf->Cell(40,5,$array_um[0]['media_promedios'],1,0,'C',0,'',0);
      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
      $pdf->ln(5);
     }else if ($i == 5){
+      if ($array_um[1]['media_promedios'] <= $particulas50) {
+        $veredicto = 'CUMPLE';
+      }else{
+        $veredicto = 'NO CUMPLE';
+      }
      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
-     $pdf->Cell(40,5,' <= '.$particulas05.' (OMS '.$clasificacion_oms.')',1,0,'L',0,'',0);
-     $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+     $pdf->Cell(40,5,' <= '.$particulas50_oms.' (OMS '.$clasificacion_oms.')',1,0,'L',0,'',0);
+     $pdf->Cell(40,5,$array_um[1]['media_promedios'],1,0,'C',0,'',0);
      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
      $pdf->ln(5);
     }
@@ -391,13 +426,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Conclusión</h2></td>
+        <td class="linea" align="center"><h2>Conclusión</h2></td>
    </tr>
 </table>
 <br><br>
@@ -409,51 +445,47 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 $pdf->writeHTMLCell(180, 5, 15, '', $muestra_conclusion, 0, 1, 0, true, 'J', true);
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
-<br><br>
 <table>
    <tr border="1">
-        <td class="linea"><h2><b>Duración de Certificado</b></h2></td>
-        <td class="linea"><h2><b>Fecha de Medición</b></h2></td>
+        <td class="linea" align="center"><h2>Duración de Certificado</h2></td>
    </tr>
-   <br>
-   <tr>
-        <td>La vigencia de Certificación es de 12 meses.</td>
-        <td>$fecha_registro</td>
-   </tr>    
 </table>
-
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
+
+$pdf->writeHTMLCell(0, 5, 15, '', 'De acuerdo con la UNE-EN ISO 14644-1 Anexo B, el intervalo de tiempo máximo entre verificaciones es de 12 meses. ' ,0,1, 0, true, 'J', true);
+
 
 $linea = <<<EOD
-
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
-<br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><b>Responsable</b></td>
-   </tr>
-   <br>
-   <tr>
-       <td align="center">Ing. $nombre_responsable $apellido_responsable<br>$nombre_cargo</td>
-       <td align="center"></td>
-       <td align="center"></td>
+        <td class="linea" align="center"><h2>Responsable</h2></td>
+  
+        <td class="linea" align="center"><h2>Fecha Medición</h2></td>
    </tr>
 </table>
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
+
+$pdf->Cell(90,5,'Ing. '.$nombre_responsable.' '. $apellido_responsable,0,0,'C',0,'',0);
+$pdf->Cell(90,5,$fecha_medicion,0,0,'C',0,'',0);
+$pdf->ln(3);
+$pdf->Cell(90,5,$nombre_cargo,0,0,'C',0,'',0);
+
 
 $pdf->AddPage('A4');
 
@@ -464,13 +496,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br><br><br>
 <table >
    <tr border="1">
-        <td class="linea"><h2> Prueba de Integridad de Filtros</h2></td>
+        <td class="linea" align="center"><h2> Prueba de Integridad de Filtros</h2></td>
    </tr>
 </table>
 
@@ -486,7 +519,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
      $pdf->Cell(20,5,'',0,0,'C',0,'',0);
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
-     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
 
    $pdf->ln(7);   
 
@@ -525,7 +558,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$eficiencia,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
 
 
   $pdf->ln(7);
@@ -536,13 +569,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Prueba de Integridad de Filtros UNE-EN ISO 14.644-3:2015</h2></td>
+        <td class="linea" align="center"><h2>Prueba de Integridad de Filtros UNE-EN ISO 14.644-3:2015</h2></td>
    </tr>
 </table>
 <p>Con este procedimiento se buscan eventuales fugas de aire no filtrado que pueda ingresar al área de trabajo, hermeticidad y estanqueidad en marcos y junturas.
@@ -629,13 +663,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Equipo Utilizado en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
    </tr>
 </table>
 <br>
@@ -681,13 +716,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Prueba de Medición de Velocidad de Aire</h2></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de Velocidad de Aire</h2></td>
    </tr>
 </table>
 
@@ -700,7 +736,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
      $pdf->Cell(20,5,'',0,0,'C',0,'',0);
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
-     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
 
    $pdf->ln(7);   
 
@@ -739,7 +775,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$eficiencia,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
 
 
   $pdf->ln(7);
@@ -750,19 +786,20 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea" align="center"><h2>Prueba de Medición de Entrada de Aire - NSF/ANSI 49:2008</h2></td>
+        <td class="linea" align="center" ><h2>Prueba de Medición de Entrada de Aire - NSF/ANSI 49:2008</h2></td>
    </tr>
 </table>
 <br><br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Velocidad de Aire (m/s)
+        <td class="linea" align="center"><h2>Velocidad de Aire (m/s)
 </h2></td>
    </tr>
 </table>
@@ -788,12 +825,58 @@ mysqli_stmt_store_result($queryMaximoPrueba1);
 mysqli_stmt_bind_result($queryMaximoPrueba1, $valor_maximo);
 mysqli_stmt_fetch($queryMaximoPrueba1);
 
-$queryMinimoPrueba1 = mysqli_prepare($connect,"SELECT LEAST(medicion_1,medicion_2,medicion_3,medicion_4,medicion_5,medicion_6) as m1 FROM flujo_laminar_prueba_3 WHERE id_asignado = ?  ORDER BY m1 ASC LIMIT 1 ");
-mysqli_stmt_bind_param($queryMinimoPrueba1, 'i', $id_asignado);
-mysqli_stmt_execute($queryMinimoPrueba1);
-mysqli_stmt_store_result($queryMinimoPrueba1);
-mysqli_stmt_bind_result($queryMinimoPrueba1, $valor_minimo);
-mysqli_stmt_fetch($queryMinimoPrueba1);
+$queryMinimoPrueba2 = mysqli_prepare($connect,"SELECT LEAST(medicion_1,medicion_2,medicion_3,medicion_4,medicion_5,medicion_6) as m1 FROM flujo_laminar_prueba_3 WHERE id_asignado = ?  ORDER BY m1 ASC LIMIT 1 ");
+mysqli_stmt_bind_param($queryMinimoPrueba2, 'i', $id_asignado);
+mysqli_stmt_execute($queryMinimoPrueba2);
+mysqli_stmt_store_result($queryMinimoPrueba2);
+mysqli_stmt_bind_result($queryMinimoPrueba2, $valor_minimo);
+mysqli_stmt_fetch($queryMinimoPrueba2);
+
+
+
+$queryMinimoPrueba3 = mysqli_prepare($connect,"SELECT (medicion_1 + medicion_2 + medicion_3 + medicion_4 + medicion_5 + medicion_6)  FROM flujo_laminar_prueba_3 WHERE id_asignado = ?   ");
+mysqli_stmt_bind_param($queryMinimoPrueba3, 'i', $id_asignado);
+mysqli_stmt_execute($queryMinimoPrueba3);
+mysqli_stmt_store_result($queryMinimoPrueba3);
+mysqli_stmt_bind_result($queryMinimoPrueba3, $promedio_medis);
+//mysqli_stmt_fetch($queryMinimoPrueba3);
+
+//Buscar minima aceptada
+
+$minimo_resta = ($req_velocidad_aire * 20)/100;
+
+$muestra_min = $req_velocidad_aire - $minimo_resta;
+
+$muestra = number_format($muestra_min,2);
+
+//echo $req_velocidad_aire;
+
+$var_promedio_1 = '';
+$vari = 1;
+$contador = 0;
+while ($row = mysqli_stmt_fetch($queryMinimoPrueba3)) {
+
+      if ($vari == 1) {
+         $var_promedio_1 = $promedio_medis;
+         $vari = 0;
+      }else{
+
+         $var_promedio_1 = $promedio_medis+$var_promedio_1;    
+      }
+
+    $contador = $contador + 6;  
+
+}
+
+$prom_final = ($var_promedio_1) / ($contador);
+
+//echo $prom_final."-";
+
+$valores = explode(';', $var_promedio_1);
+
+$promedio_final_2 = array_sum($valores);
+
+//echo $var_promedio_1;
 
 $pdf->Cell(25.72,5,'N° de Filtro',1,0,'C',1,'',0);
 $pdf->Cell(25.72,5,'Medición 1(m/s)',1,0,'C',1,'',0);
@@ -833,10 +916,10 @@ $pdf->ln(5);
  $pdf->Cell(33,5,'Mínima velocidad aceptada',1,0,'C',1,'',0);
  $pdf->ln(5);
  $pdf->Cell(26,5,'Resumen',1,0,'C',1,'',0);
- $pdf->Cell(55,5,'dato',1,0,'C',0,'',0);
+ $pdf->Cell(55,5,$prom_final,1,0,'C',0,'',0);
  $pdf->Cell(33,5,$valor_maximo,1,0,'C',0,'',0);
  $pdf->Cell(33,5,$valor_minimo,1,0,'C',0,'',0);
- $pdf->Cell(33,5,'a',1,0,'C',0,'',0);
+ $pdf->Cell(33,5,$muestra,1,0,'C',0,'',0);
  $pdf->ln(5);
 
 
@@ -849,6 +932,13 @@ mysqli_stmt_store_result($busca_imagen_1);
 mysqli_stmt_bind_result($busca_imagen_1, $url, $nombre);
 mysqli_stmt_fetch($busca_imagen_1);
 
+
+if ($url3 == '') {
+  $img1 = '';
+}else{
+  $img1 = '../../'.$url.$nombre;
+}
+
 $imagen1 = <<<EOD
 <style>
 .linea{
@@ -860,7 +950,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center"><img src="../../$url$nombre" width="300px;"></td>  
+        <td class="linea" align="center" ><img src="$img1" width="300px;"></td>  
    </tr>
 </table>
 
@@ -872,13 +962,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Equipos Utilizados en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipos Utilizados en la Medición</h2></td>
    </tr>
 </table>
 
@@ -924,13 +1015,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Prueba de Medición de Conteo de Particulas UNE-EN ISO 14.644-3:2015</h2></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de Conteo de Particulas UNE-EN ISO 14.644-3:2015</h2></td>
    </tr>
 </table>
 
@@ -943,7 +1035,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
      $pdf->Cell(20,5,'',0,0,'C',0,'',0);
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
-     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
 
    $pdf->ln(7);   
 
@@ -982,7 +1074,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$eficiencia,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
 
 
   $pdf->ln(7);
@@ -992,12 +1084,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Resultados según norma UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2015</h2></td>
+        <td class="linea" align="center"><h2>Resultados según norma UNE-EN ISO 14.644-1:2015 y NSF/ANSI 49:2015</h2></td>
    </tr>
 </table>
 
@@ -1055,13 +1148,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Resultados según informe Técnico N°45 de la OMS</h2></td>
+        <td class="linea" align="center"><h2>Resultados según informe Técnico N°45 de la OMS</h2></td>
    </tr>
 </table>
 
@@ -1110,12 +1204,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Imagen de la Medición y Registro de Conteo de Partículas</h2></td>
+        <td class="linea" align="center"><h2>Imagen de la Medición y Registro de Conteo de Partículas</h2></td>
    </tr>
 </table>
 
@@ -1127,8 +1222,14 @@ FROM image_flujo_laminar WHERE id_asignado = ? AND tipo = 5");
 mysqli_stmt_bind_param($busca_imagen_1, 'i', $id_asignado);
 mysqli_stmt_execute($busca_imagen_1);
 mysqli_stmt_store_result($busca_imagen_1);
-mysqli_stmt_bind_result($busca_imagen_1, $url, $nombre);
+mysqli_stmt_bind_result($busca_imagen_1, $url_2, $nombre_2);
 mysqli_stmt_fetch($busca_imagen_1);
+
+if ($url3 == '') {
+  $img2 = '';
+}else{
+  $img2 = '../../'.$url_2.$nombre_2;
+}
 
 $imagen1 = <<<EOD
 <style>
@@ -1141,7 +1242,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center"><img src="../../$url$nombre" style="width: 300px;"></td>  
+        <td class="linea" align="center" ><img src="$img2" style="width: 300px;"></td>  
    </tr>
 </table>
 
@@ -1153,12 +1254,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Equipos Utilizados en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipos Utilizados en la Medición</h2></td>
    </tr>
 </table>
 
@@ -1202,12 +1304,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Prueba de Temperatura / Humedad Relativa Y Presión Sonora
+        <td class="linea" align="center"><h2>Prueba de Temperatura / Humedad Relativa Y Presión Sonora
 </h2></td>
    </tr>
 </table>
@@ -1221,7 +1324,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
      $pdf->Cell(20,5,'',0,0,'C',0,'',0);
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
-     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
 
    $pdf->ln(7);   
 
@@ -1260,7 +1363,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$eficiencia,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
 
 
   $pdf->ln(7);
@@ -1271,12 +1374,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2015</h2></td>
+        <td class="linea" align="center"><h2>Prueba de Temperatura y Humedad Relativa - UNE-EN ISO 14.644-3:2015</h2></td>
    </tr>
 </table>
 
@@ -1337,7 +1441,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center"><img src="$img3" style="width: 300px;"></td>  
+        <td class="linea" align="center" ><img src="$img3" style="width: 300px;"></td>  
    </tr>
 </table>
 
@@ -1349,12 +1453,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Prueba de Medición de Presión Sonora - DS N°594</h2></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de Presión Sonora - DS N°594</h2></td>
    </tr>
 </table>
 
@@ -1419,7 +1524,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center"><img src="$img4" style="width: 300px;"></td>  
+        <td class="linea" align="center" ><img src="$img4" style="width: 300px;"></td>  
    </tr>
 </table>
 
@@ -1431,12 +1536,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Equipos Utilizados en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipos Utilizados en la Medición</h2></td>
    </tr>
 </table>
 
@@ -1480,12 +1586,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Pruebas de Humo y Nivel de Iluminación</h2></td>
+        <td class="linea" align="center"><h2>Pruebas de Humo y Nivel de Iluminación</h2></td>
    </tr>
 </table>
 
@@ -1498,7 +1605,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
      $pdf->Cell(20,5,'',0,0,'C',0,'',0);
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
-     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
 
    $pdf->ln(7);   
 
@@ -1537,7 +1644,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$eficiencia,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
 
 
   $pdf->ln(7);
@@ -1547,12 +1654,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h3>Prueba de Humo - ANSI/ASHRAE 110-1995 Method of Testing Performance of Laboratory Fume Hoods</h3></td>
+        <td class="linea" align="center"><h3>Prueba de Humo - ANSI/ASHRAE 110-1995 Method of Testing Performance of Laboratory Fume Hoods</h3></td>
    </tr>
 </table>
 
@@ -1563,12 +1671,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h3>Prueba N°1: Contención de Aire Externo</h3></td>
+        <td class="linea" align="center"><h3>Prueba N°1: Contención de Aire Externo</h3></td>
    </tr>
 </table>
 
@@ -1641,12 +1750,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h3>Prueba N°2: Unidireccionalidad</h3></td>
+        <td class="linea" align="center"><h3>Prueba N°2: Unidireccionalidad</h3></td>
    </tr>
 </table>
 
@@ -1719,12 +1829,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Prueba de Medición de Nivel de Iluminación - DS N°594</h2></td>
+        <td class="linea" align="center"><h2>Prueba de Medición de Nivel de Iluminación - DS N°594</h2></td>
    </tr>
 </table>
 
@@ -1775,7 +1886,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center"><img src="../../imagenes/definidas/luz.jpg" style="width: 150px;"></td>  
+        <td class="linea" align="center" ><img src="../../imagenes/definidas/luz.jpg" style="width: 150px;"></td>  
    </tr>
 </table>
 
@@ -1787,13 +1898,14 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <br><br>
 <table >
    <tr border="1">
-        <td class="linea"><h2>Equipos Utilizado en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipos Utilizado en la Medición</h2></td>
    </tr>
 </table>
 <br>
@@ -1837,12 +1949,13 @@ $linea = <<<EOD
 <style>
 .linea{
    height: 14px;
-   color:black;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
 <table >
    <tr border="1">
-        <td class="linea"><h2>FOTOGRAFIAS DEL EQUIPO</h2></td>
+        <td class="linea" align="center"><h2>FOTOGRAFIAS DEL EQUIPO</h2></td>
    </tr>
 </table>
 
@@ -1855,7 +1968,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
      $pdf->Cell(20,5,'',0,0,'C',0,'',0);
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
-     $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
 
    $pdf->ln(7);   
 
@@ -1894,7 +2007,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,$eficiencia,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
 
 
   $pdf->ln(7);
@@ -1962,8 +2075,8 @@ $linea13 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center"><h2><b>Imagen Frontal</b></h2></td>  
-        <td class="linea" align="center"><h2><b>Imagen de Placa</b></h2></td>  
+        <td class="linea" align="center" ><h2><b>Imagen Frontal</b></h2></td>  
+        <td class="linea" align="center" ><h2><b>Imagen de Placa</b></h2></td>  
    </tr>
    <br>
    <tr>
@@ -1987,7 +2100,7 @@ $linea13 = <<<EOD
 <br>
 <table border="0">
     <tr>
-        <td class="linea" align="center"><h2><b>Imagen Área de Trabajo</b></h2></td> 
+        <td class="linea" align="center" ><h2><b>Imagen Área de Trabajo</b></h2></td> 
     </tr>  
     <br>  
     <tr>

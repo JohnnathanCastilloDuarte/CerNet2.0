@@ -45,10 +45,11 @@ $("#actualizar_mapeo").click(function(){
   let solicitante =  $("#solicitante").val();
   let responsable = $("#responsable").val();
   let conclusion =  $("#conclusion").val();
+  let fecha_medicion = $("#fecha_medicion").val();
   let accion = ("actualizar_informe");
    $.ajax({
      type:'POST',
-     data:{nombre_informe, solicitante, responsable, conclusion, id_informe, accion},
+     data:{nombre_informe, solicitante, responsable, conclusion, id_informe, fecha_medicion, accion},
      url:'templates/flujo_laminar/almacena_informacion_1.php',
 
      success:function(response){
@@ -520,6 +521,7 @@ function listar_inspeccion_visual(numeral){
                     $("#solicitante").val(`${valor.solicitante}`);
                     $("#conclusion").val(`${valor.conclusion}`);
                     $("#responsable").val(`${valor.usuario_responsable}`);
+                    $("#fecha_medicion").val(valor.fecha_medicion);
                 
                   
                 });
@@ -541,7 +543,7 @@ function listar_inspeccion_visual(numeral){
                 
                 traer.forEach((valor)=>{
 
-                    $("#nombre_informe").val(`${valor.sigla_pais}-${valor.numero_ot}-${valor.sigla_empresa}-2022-TEMP-00`);
+                   // $("#nombre_informe").val(`${valor.sigla_pais}-${valor.numero_ot}-${valor.sigla_empresa}-2022-TEMP-00`);
                            
                 
                 });

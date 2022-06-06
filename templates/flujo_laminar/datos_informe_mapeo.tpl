@@ -21,12 +21,16 @@
                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
                 </div>
                 <div class="col-sm-12">
+                   <label>Fecha medición<span class="text-danger"> *</span></label>
+                   <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                </div>
+                <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
                     <select class="form-control" id="conclusion">
                         <option>Informe</option>
                         <option>Pre-Informe</option>
                     </select>
-                   <!--  <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea> -->
+                   
                 </div>
                 <br>
                 <div style="text-align: center;">
