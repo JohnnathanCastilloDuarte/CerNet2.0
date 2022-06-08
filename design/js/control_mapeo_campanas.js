@@ -90,7 +90,7 @@ function listar_datos_full(numeral){
               <input type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}">
               <td><input type="text" name="requisito[]" class="form-control" value="${valor.requisito}"></td>
               <td><input type="text" name="valor_obtenido[]" class="form-control" value="${valor.valor_obtenido}"></td>
-              <td><input type="text" name="veredicto[]" class="form-control" value="${valor.veredicto}"></td>
+              <!--<td><input type="text" name="veredicto[]" class="form-control" value="${valor.veredicto}"></td>-->
             </tr>
             `;
             increment++;
@@ -196,37 +196,73 @@ function listar_datos_full(numeral){
           let validador2 = 0;
           let validador3 = 0;
 
+          let = contador_1 = 0;
 
           traer.forEach((valor)=>{
 
             if(valor.categoria == 1){
-              template1+=
-              `
-              <tr>
-                <td>${array_nombres_1[validador1]}</td>
-                <input type="hidden" value="${valor.id_prueba}" name="prueba_51_id[]">
-                <td><input type="text" class="form-control" name="prueba_51_medicion_1[]" value="${valor.punto_1}"></td>
-                <td><input type="text" class="form-control" name="prueba_51_medicion_2[]" value="${valor.punto_2}"></td>
-                <td><input type="text" class="form-control" name="prueba_51_medicion_3[]" value="${valor.punto_3}"></td>
-                <td><input type="text" class="form-control" name="prueba_51_medicion_4[]" value="${valor.punto_promedio}"></td>
-              </tr>
-              `;
-              validador1++;
+
+              if (validador1 == 0){
+                  template1+=
+                `
+                <tr>
+                  <td>${array_nombres_1[validador1]}</td>
+                  <input type="hidden" value="${valor.id_prueba}" name="prueba_51_id[]">
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_1[]" id="prueba_51_medicion_1" value="${valor.punto_1}"></td>
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_2[]" id="prueba_51_medicion_2" value="${valor.punto_2}"></td>
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_3[]" id="prueba_51_medicion_3" value="${valor.punto_3}"></td>
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_4[]" id="prueba_51_medicion_4" value="${valor.punto_promedio}" readonly></td>
+                </tr>
+                `;
+                validador1++;
+
+              }else{
+                template1+=
+                `
+                <tr>
+                  <td>${array_nombres_1[validador1]}</td>
+                  <input type="hidden" value="${valor.id_prueba}" name="prueba_51_id[]">
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_1[]" id="prueba_51_medicion_1_2" value="${valor.punto_1}"></td>
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_2[]" id="prueba_51_medicion_2_2" value="${valor.punto_2}"></td>
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_3[]" id="prueba_51_medicion_3_2" value="${valor.punto_3}"></td>
+                  <td><input type="text" class="form-control" name="prueba_51_medicion_4[]" id="prueba_51_medicion_4_2" value="${valor.punto_promedio}" readonly></td>
+                </tr>
+                `;
+                validador1++;
+
+              }
             }
 
             if(valor.categoria == 2){
-              template2+=
-              `
-              <tr>
-                <td>${array_nombres_2[validador2]}</td>
-                <input type="hidden" value="${valor.id_prueba}" name="prueba_52_id[]">
-                <td><input type="text" class="form-control" name="prueba_52_medicion_1[]" value="${valor.punto_1}"></td>
-                <td><input type="text" class="form-control" name="prueba_52_medicion_2[]" value="${valor.punto_2}"></td>
-                <td><input type="text" class="form-control" name="prueba_52_medicion_3[]" value="${valor.punto_3}"></td>
-                <td><input type="text" class="form-control" name="prueba_52_medicion_4[]" value="${valor.punto_promedio}"></td>
-              </tr>
-              `;
-              validador2++;
+
+                if(validador2 == 0){
+
+                  template2+=
+                  `
+                  <tr>
+                    <td>${array_nombres_2[validador2]}</td>
+                    <input type="hidden" value="${valor.id_prueba}" name="prueba_52_id[]">
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_1[]" id="prueba_52_medicion_1" value="${valor.punto_1}"></td>
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_2[]" id="prueba_52_medicion_2" value="${valor.punto_2}"></td>
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_3[]" id="prueba_52_medicion_3" value="${valor.punto_3}"></td>
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_4[]" id="prueba_52_medicion_4" value="${valor.punto_promedio}" readonly></td>
+                  </tr>
+                  `;
+                  validador2++;
+                }else{
+                  template2+=
+                  `
+                  <tr>
+                    <td>${array_nombres_2[validador2]}</td>
+                    <input type="hidden" value="${valor.id_prueba}" name="prueba_52_id[]">
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_1[]" id="prueba_52_medicion_1_2" value="${valor.punto_1}"></td>
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_2[]" id="prueba_52_medicion_2_2" value="${valor.punto_2}"></td>
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_3[]" id="prueba_52_medicion_3_2" value="${valor.punto_3}"></td>
+                    <td><input type="text" class="form-control" name="prueba_52_medicion_4[]" id="prueba_52_medicion_4_2" value="${valor.punto_promedio}" readonly></td>
+                  </tr>
+                  `;
+                  validador2++;
+                }
             }
 
             if(valor.categoria == 3){
@@ -235,12 +271,12 @@ function listar_datos_full(numeral){
               <tr>
                 <td>${array_nombres_3[validador3]}</td>
                 <input type="hidden" value="${valor.id_prueba}" name="prueba_53_id[]">
-                <td><input type="text" class="form-control" name="prueba_53_medicion_1[]" value="${valor.punto_1}"></td>
-                <td><input type="text" class="form-control" name="prueba_53_medicion_2[]" value="${valor.punto_2}"></td>
-                <td><input type="text" class="form-control" name="prueba_53_medicion_3[]" value="${valor.punto_3}"></td>
-                <td><input type="text" class="form-control" name="prueba_53_medicion_4[]" value="${valor.punto_4}"></td>
-                <td><input type="text" class="form-control" name="prueba_53_medicion_5[]" value="${valor.punto_5}"></td>
-                <td><input type="text" class="form-control" name="prueba_53_medicion_6[]" value="${valor.punto_promedio}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_1[]" id="prueba_53_medicion_1" value="${valor.punto_1}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_2[]" id="prueba_53_medicion_2" value="${valor.punto_2}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_3[]" id="prueba_53_medicion_3" value="${valor.punto_3}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_4[]" id="prueba_53_medicion_4" value="${valor.punto_4}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_5[]" id="prueba_53_medicion_5" value="${valor.punto_5}"></td>
+                <td><input type="text" class="form-control" name="prueba_53_medicion_6[]" id="prueba_53_medicion_6" readonly value="${valor.punto_promedio}"></td>
               </tr>
               `;
               validador3++;
@@ -276,40 +312,87 @@ function listar_datos_full(numeral){
 
           traer.forEach((valor)=>{
 
+
             if(valor.categoria == 1){
 
-              template1 += 
-              `
-              <tr>
-                <td>${primer_prueba[contador_1]}</td>
-                <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
-                <td><input type="text" name="resultado_prueba_5[]" class="form-control " placeholder="-" value="${valor.resultado}"></td>
-                <td><select name="cumple_prueba_5[]" class="form-control">
-                  <option value="${valor.cumple}">${valor.cumple}</option>
-                  <option value="NA">NA</option>
-                  <option>CUMPLE</option>
-                </select></td>
-              </tr>
-              `;
-              contador_1++;
+                if (contador_1 == 0) {
+                    template1 += 
+                    `
+                    <tr>
+                      <td>${primer_prueba[contador_1]}</td>
+                      <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
+                      <td>
+                         <input type="text" name="resultado_prueba_5[]" class="form-control " placeholder="-" value="${valor.resultado}">
+                      </td>
+                    </tr>
+                    `;
+                    contador_1++;
+                }else{
+                    template1 += 
+                    `
+                    <tr>
+                      <td>${primer_prueba[contador_1]}</td>
+                      <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
+                      <td>
+                        <!--<input type="text" name="resultado_prueba_5[]" class="form-control " placeholder="-" value="${valor.resultado}">-->
+                        <select name="resultado_prueba_5[]" class="form-control ">
+                            <option>${valor.resultado}</option>
+                            <option>Si</option>
+                            <option>No</option>
+                        </select>
+                      </td>
+                     <!-- <td><select name="cumple_prueba_5[]" class="form-control">
+                        <option value="${valor.cumple}">${valor.cumple}</option>
+                        <option value="NA">NA</option>
+                        <option>CUMPLE</option>
+                      </select></td>-->
+                    </tr>
+                    `;
+                    contador_1++;
+                  
+                }
             }
 
             else if(valor.categoria == 2){
 
-              template2 += 
-              `
-              <tr>
-                <td>${segundo_prueba[contador_2]}</td>
-                <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
-                <td><input type="text" name="resultado_prueba_5[]" class="form-control " placeholder="-" value="${valor.resultado}"></td>
-                <td><select name="cumple_prueba_5[]" class="form-control">
-                <option value="${valor.cumple}">${valor.cumple}</option>
-                  <option>NA</option>
-                  <option>CUMPLE</option>
-                </select></td>
-              </tr>
-              `;
-              contador_2++;
+              if (contador_2 == 0){
+
+                   template2 += 
+                `
+                <tr>
+                  <td>${segundo_prueba[contador_2]}</td>
+                  <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
+                  <td><input type="text" name="resultado_prueba_5[]" class="form-control " placeholder="-" value="${valor.resultado}"></td>
+
+                </tr>
+                `;
+                contador_2++;
+              }else{
+
+                template2 += 
+                `
+                <tr>
+                  <td>${segundo_prueba[contador_2]}</td>
+                  <input type="hidden" name="id_prueba_5[]" value="${valor.id_prueba}">
+                  <td>
+                  <!--<input type="text" name="resultado_prueba_5[]" class="form-control " placeholder="-" value="${valor.resultado}">-->
+                  <select name="resultado_prueba_5[]" class="form-control ">
+                      <option>${valor.resultado}</option>
+                      <option>Si</option>
+                      <option>No</option>
+                  </select>
+                  </td>
+                  <td>
+                  <!--<select name="cumple_prueba_5[]" class="form-control">
+                  <option value="${valor.cumple}">${valor.cumple}</option>
+                    <option>NA</option>
+                    <option>CUMPLE</option>
+                  </select></td>-->
+                </tr>
+                `;
+                contador_2++;
+              }
+
             }
 
 
@@ -594,6 +677,128 @@ function listar_imagenes(){
 
   });
 }
+
+
+//Funcion para calcular promedios
+  $(document).on('keyup','#prueba_51_medicion_1',function(){
+    calcular_promedio_1();
+  });
+  $(document).on('keyup','#prueba_51_medicion_2',function(){
+    calcular_promedio_1();
+  });
+  $(document).on('keyup','#prueba_51_medicion_3',function(){
+    calcular_promedio_1();
+  });
+
+
+  $(document).on('keyup','#prueba_51_medicion_1_2',function(){
+    calcular_promedio_1_2();
+  });
+  $(document).on('keyup','#prueba_51_medicion_2_2',function(){
+    calcular_promedio_1_2();
+  });
+  $(document).on('keyup','#prueba_51_medicion_3_2',function(){
+    calcular_promedio_1_2();
+  });
+
+
+
+  $(document).on('keyup','#prueba_52_medicion_1',function(){
+    calcular_promedio_2();
+  });
+  $(document).on('keyup','#prueba_52_medicion_2',function(){
+    calcular_promedio_2();
+  });
+  $(document).on('keyup','#prueba_52_medicion_3',function(){
+    calcular_promedio_2();
+  });
+
+
+   $(document).on('keyup','#prueba_52_medicion_1_2',function(){
+    calcular_promedio_2_2();
+  });
+  $(document).on('keyup','#prueba_52_medicion_2_2',function(){
+    calcular_promedio_2_2();
+  });
+  $(document).on('keyup','#prueba_52_medicion_3_2',function(){
+    calcular_promedio_2_2();
+  });
+
+
+  $(document).on('keyup','#prueba_53_medicion_1',function(){
+    calcular_promedio_3();
+  });
+  $(document).on('keyup','#prueba_53_medicion_2',function(){
+    calcular_promedio_3();
+  });
+  $(document).on('keyup','#prueba_53_medicion_3',function(){
+    calcular_promedio_3();
+  });
+  $(document).on('keyup','#prueba_53_medicion_4',function(){
+    calcular_promedio_3();
+  });
+  $(document).on('keyup','#prueba_53_medicion_5',function(){
+    calcular_promedio_3();
+  });
+
+function calcular_promedio_1(){
+    let punto_1 = $("#prueba_51_medicion_1").val();
+    let punto_2= $("#prueba_51_medicion_2").val();
+    let punto_3 = $("#prueba_51_medicion_3").val();
+       
+    let calculo = (parseFloat(punto_1) + parseFloat(punto_2) + parseFloat(punto_3))/3;
+   
+    $("#prueba_51_medicion_4").val(calculo.toFixed(2)); 
+}
+
+function calcular_promedio_1_2(){
+    let punto_1 = $("#prueba_51_medicion_1_2").val();
+    let punto_2= $("#prueba_51_medicion_2_2").val();
+    let punto_3 = $("#prueba_51_medicion_3_2").val();
+       
+    let calculo = (parseFloat(punto_1) + parseFloat(punto_2) + parseFloat(punto_3))/3;
+   
+    $("#prueba_51_medicion_4_2").val(calculo.toFixed(2)); 
+}
+
+function calcular_promedio_2(){
+    let punto_1 = $("#prueba_52_medicion_1").val();
+    let punto_2= $("#prueba_52_medicion_2").val();
+    let punto_3 = $("#prueba_52_medicion_3").val();
+       
+    let calculo = (parseFloat(punto_1) + parseFloat(punto_2) + parseFloat(punto_3))/3;
+   
+    $("#prueba_52_medicion_4").val(calculo.toFixed(2)); 
+}
+
+function calcular_promedio_2_2(){
+    let punto_1 = $("#prueba_52_medicion_1_2").val();
+    let punto_2= $("#prueba_52_medicion_2_2").val();
+    let punto_3 = $("#prueba_52_medicion_3_2").val();
+       
+    let calculo = (parseFloat(punto_1) + parseFloat(punto_2) + parseFloat(punto_3))/3;
+   
+    $("#prueba_52_medicion_4_2").val(calculo.toFixed(2)); 
+}
+
+function calcular_promedio_3(){
+    let punto_1 = $("#prueba_53_medicion_1").val();
+    let punto_2= $("#prueba_53_medicion_2").val();
+    let punto_3 = $("#prueba_53_medicion_3").val();
+    let punto_4 = $("#prueba_53_medicion_4").val();
+    let punto_5 = $("#prueba_53_medicion_5").val();
+       
+    let calculo = (parseFloat(punto_1) + parseFloat(punto_2) + parseFloat(punto_3) + parseFloat(punto_4) + parseFloat(punto_5))/5;
+   
+    $("#prueba_53_medicion_6").val(calculo.toFixed(2)); 
+}
+
+
+
+
+
+
+
 
 
 

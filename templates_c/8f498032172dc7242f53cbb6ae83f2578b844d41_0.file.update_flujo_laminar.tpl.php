@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-26 00:30:35
+/* Smarty version 3.1.34-dev-7, created on 2022-06-07 20:57:21
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_flujo_laminar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_628eae0b1beab4_10137185',
+  'unifunc' => 'content_629f9f911c8050_88010862',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f498032172dc7242f53cbb6ae83f2578b844d41' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_flujo_laminar.tpl',
-      1 => 1653517822,
+      1 => 1654628239,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628eae0b1beab4_10137185 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629f9f911c8050_88010862 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -78,21 +78,23 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
 " placeholder="Dirección">
             </div>
           </div>
-          <div class="form-row">
-            <div class="col-sm-6">
-              <label>Ubicación interna:</label>
-              <input type="text" id="ubicacion_interna" class="form-control" placeholder="Ubicación interna" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['ubicacion_interna'];?>
-">
-            </div>
+          <br>
+           <!--  <div class="form-row">
+          
             <div class="col-sm-6">
               <label>Área interna:</label>
               <input class="form-control" type="text" name="" id="area_interna" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['area_interna'];?>
 " placeholder="Área interna">
             </div>
-          </div>
-          <br>
+          </div> 
+          <br>-->
           <div class="form-row">
-              <div class="col-sm-6">
+            <div class="col-sm-4">
+              <label>Ubicación interna:</label>
+              <input type="text" id="ubicacion_interna" class="form-control" placeholder="Ubicación interna" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['ubicacion_interna'];?>
+">
+            </div>
+              <div class="col-sm-4">
                 <label>Clasificación OMS :</label>
                 <select class="form-control" id="clasificacion_oms">
                   <?php if ($_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'] == '') {?>
@@ -114,7 +116,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
                   <?php }?>
                 </select>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <label>Clasificación ISO:</label>
                 <select class="form-control" id="clasificacion_iso">
                  <?php if ($_smarty_tpl->tpl_vars['flujo_laminar']->value['clasificacion_oms'] == '') {?>
@@ -180,8 +182,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['flujo_laminar']->value) {
 " placeholder="Código">
             </div>
              <div class="col-sm-4">
-              <label>Tipo dimenciones:</label>
-              <input type="text" id="tipo_dimeciones" class="form-control" placeholder="Tipo dimenciones" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_dimenciones'];?>
+              <label>Tipo dimensiones:</label>
+              <input type="text" id="tipo_dimeciones" class="form-control" placeholder="Tipo dimensiones" value="<?php echo $_smarty_tpl->tpl_vars['flujo_laminar']->value['tipo_dimenciones'];?>
 ">
             </div>
           </div> 

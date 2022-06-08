@@ -32,12 +32,12 @@ $smarty->assign("array_empresa",$array_empresa);
 
 if (isset($_GET['item'])) {
   //CONSULTO LA INFORMACIÓN DEL EQUIPO
-	$campana = mysqli_prepare($connect,"SELECT a.id_campana, a.id_item, a.tipo, a.modelo, a.serie, a.codigo, a.ubicacion_interna,a.area_interna, a.direccion, a.requisito_velocidad,b.id_empresa,b.id_tipo,b.nombre,b.descripcion,b.estado,b.id_usuario,b.fecha_registro,c.nombre,a.marca,a.fecha_fabricacion, d.nombre
+	$campana = mysqli_prepare($connect,"SELECT a.id_campana, a.id_item, a.tipo, a.modelo, a.serie, a.codigo, a.ubicacion_interna,a.area_interna, a.direccion, a.requisito_velocidad,b.id_empresa,b.id_tipo,b.nombre,b.descripcion,b.estado,b.id_usuario,b.fecha_registro,c.nombre,a.marca,a.fecha_fabricacion, d.nombre, a.temp_min, a.temp_max, a.hum_min, a.hum_max, a.presion_sonora_equipo, a.presion_sonora_sala, a.nivel_iluminacion, a.prueba_humo,
 		FROM item_campana as a, item as b, empresa as c, tipo_item as d
 		WHERE b.id_empresa = c.id_empresa AND a.id_item = b.id_item AND d.id_item = b.id_tipo  AND a.id_item = $id_item");
 	mysqli_stmt_execute($campana);
 	mysqli_stmt_store_result($campana);
-	mysqli_stmt_bind_result($campana, $id_campana, $id_item_campana, $tipo_campana, $modelo, $n_serie, $codigo,$ubicacion_interna,$area_interna, $direccion, $requisito_velocidad, $id_empresa,$id_tipo_item, $nombre_campana, $descripcion, $estado, $id_usuario, $fecha_registro, $nombre_empresa,$marca,$fecha_fabricacion,$nombre_tipo_item,);	
+	mysqli_stmt_bind_result($campana, $id_campana, $id_item_campana, $tipo_campana, $modelo, $n_serie, $codigo,$ubicacion_interna,$area_interna, $direccion, $requisito_velocidad, $id_empresa,$id_tipo_item, $nombre_campana, $descripcion, $estado, $id_usuario, $fecha_registro, $nombre_empresa,$marca,$fecha_fabricacion,$nombre_tipo_item,$temp_min, $temp_max, $hum_min, $hum_max, $presion_sonora_equipo, $presion_sonora_sala, $nivel_iluminacion, $prueba_humo);	
 
 	while($row = mysqli_stmt_fetch($campana)){
 		$array_campana[] = array(
@@ -61,7 +61,15 @@ if (isset($_GET['item'])) {
 			'nombre_empresa'=>$nombre_empresa,
 			'marca'=>$marca,
 			'fecha_fabricacion'=>$fecha_fabricacion,
-			'nombre_tipo_item'=>$nombre_tipo_item
+			'nombre_tipo_item'=>$nombre_tipo_item,
+			'temp_min'=> $temp_min,
+			'temp_max'=> $temp_max,
+			'hum_min'=> $hum_min,
+			'hum_max'=> $hum_max,
+			'presion_sonora_equipo'=> $presion_sonora_equipo,
+			'presion_sonora_sala'=> $presion_sonora_sala,
+			'nivel_iluminacion'=> $nivel_iluminacion,
+			'prueba_humo'=> $prueba_humo
 		);	
 
 	}

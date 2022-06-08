@@ -73,11 +73,22 @@
                     <label>Solicitante</label>
                     <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Quien solicita" value="{$solicitante}">
                   </div>
-              </div>
-              <div class="row">
+                  <div class="col-sm-6">
+                    <label>Fecha de medición<span class="text-danger"> *</span></label>
+                    <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Responsable<span class="text-danger"> *</span></label>
+                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
+                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                  </div>
                   <div class="col-sm-12">
-                  <label>Conclusión</label>
-                  <textarea class="form-control" name="conclusion" id="conclusion" value="{$conclusion}"></textarea>
+                  <label>Conclusión<span class="text-danger"> *</span></label>
+                    <select class="form-control" id="conclusion" name="conclusion">
+                      <option>Informe</option>
+                      <option>Pre-Informe</option>
+                    </select>
+                 <!--   <textarea name="conclusion" id="conclusion" class="form-control" placeholder="Conclusión"></textarea> -->
                 </div>
               </div>
                 
@@ -192,7 +203,6 @@
                           <th>Medición</th>
                           <th>Requisito</th>
                           <th>Valor Obtenidos</th>
-                          <th>Veredicto</th>
                         </thead>
                         <tbody id="resultados_prueba_1">
                                   
@@ -350,11 +360,11 @@
                     <br>
                   <div class="col-sm-12">
                     <label><b>Prueba N°1: Contención de Aire Externo</b></label>
-                    <table class="table" style="text-align:center">
+                    <table class="table left" style="text-align:center">
                       <thead>
                         <th>Condiciones</th>
                         <th>resultado</th>
-                        <th>Cumple</th>
+                        <!-- <th>Cumple</th> -->
                       </thead>
                       <tbody id="Contencion_de_Aire_Externo">
                       
@@ -370,7 +380,7 @@
                     <thead>
                         <th>Condiciones</th>
                         <th>resultado</th>
-                        <th>Cumple</th>
+                        <!-- <th>Cumple</th> -->
                    </thead>
                    <tbody id="Pb_unidireccional">
                     </tbody>

@@ -1354,7 +1354,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(27.6,5,$serie,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$codigo,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$ubicacion_interna,1,0,'C',0,'',0);
-   $pdf->ln(7);  
+   /*$pdf->ln(7);  
    $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Tipo y Dimensiones de Filtros Interiores',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Límite de Penetración',1,0,'C',1,'',0);
@@ -1364,7 +1364,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
    $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
-
+*/
 
   $pdf->ln(7);
 
@@ -1441,7 +1441,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center" ><img src="$img3" style="width: 300px;"></td>  
+        <td class="linea" align="center" ><img src="$img3" style="width: 220px;"></td>  
    </tr>
 </table>
 
@@ -1524,7 +1524,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center" ><img src="$img4" style="width: 300px;"></td>  
+        <td class="linea" align="center" ><img src="$img4" style="width: 220px;"></td>  
    </tr>
 </table>
 
@@ -1551,7 +1551,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 $equipos_flujo4 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision 
 FROM equipos_mediciones a, equipos_cercal b , certificado_equipo c 
-WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND a.tipo_prueba = 'Prueba sonora'");
+WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND (a.tipo_prueba = 'Prueba sonora' OR a.tipo_prueba = 'Prueba de temperatura y humedad relativa')");
 
 mysqli_stmt_bind_param($equipos_flujo4, 'i', $id_asignado);
 mysqli_stmt_execute($equipos_flujo4);

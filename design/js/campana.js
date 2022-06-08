@@ -52,6 +52,14 @@ $("#btn_nuevo_item_campana").click(function(){
    let serie_campana = $("#serie_campana").val();
    let fecha_fabricacion_campana = $("#fecha_fabricacion_campana").val();
    let velocidad_aire_campana = $("#velocidad_aire_campana").val();
+   let tem_min = $("#tem_min").val();
+   let tem_max = $("#tem_max").val();
+   let hum_min = $("#hum_min").val();
+   let hum_max = $("#hum_max").val();
+   let presion_sonora_equipo = $("#presion_sonora_equipo").val();
+   let presion_sonora_sala = $("#presion_sonora_sala").val();
+   let nivel_iluminacion = $("#nivel_iluminacion").val();
+   let prueba_humo = $("#prueba_humo").val();
    let tipo_controlador = "Crear";
 
    const datos = {
@@ -69,6 +77,14 @@ $("#btn_nuevo_item_campana").click(function(){
     velocidad_aire_campana,
     tipo_controlador,
     id_type_campana,
+    tem_min,
+    tem_max,
+    hum_min,
+    hum_max,
+    presion_sonora_equipo,
+    presion_sonora_sala,
+    nivel_iluminacion,
+    prueba_humo,
     id_usuario
    }
    $.ajax({
@@ -113,6 +129,14 @@ $("#btn_editar_item_campana").click(function(){
    let fecha_fabricacion_campana = $("#fecha_fabricacion_campana").val();
    let velocidad_aire_campana = $("#velocidad_aire_campana").val();
    let area_interna  = $("#area_interna").val();
+   let tem_min = $("#tem_min").val();
+   let tem_max = $("#tem_max").val();
+   let hum_min = $("#hum_min").val();
+   let hum_max = $("#hum_max").val();
+   let presion_sonora_equipo = $("#presion_sonora_equipo").val();
+   let presion_sonora_sala = $("#presion_sonora_sala").val();
+   let nivel_iluminacion = $("#nivel_iluminacion").val();
+   let prueba_humo = $("#prueba_humo").val();
    //let tipo_controlador = "Actualizar";
    
    const datos = {
@@ -128,6 +152,14 @@ $("#btn_editar_item_campana").click(function(){
     serie_campana,
     fecha_fabricacion_campana,
     velocidad_aire_campana,
+    tem_min,
+    tem_max,
+    hum_min,
+    hum_max,
+    presion_sonora_equipo,
+    presion_sonora_sala,
+    nivel_iluminacion,
+    prueba_humo,
     id_item_campana
    }
 
@@ -180,6 +212,14 @@ function traer_datos_campana(id_item_campana){
             $("#serie_campana").val(traer.serie);
             $("#fecha_fabricacion_campana").val();
             $("#velocidad_aire_campana").val(traer.requisito_velocidad);
+            $("#tem_min").val(trear.tem_min);
+            $("#tem_max").val(traer.tem_max);
+            $("#hum_min").val(traer.hum_min);
+            $("#hum_max").val(traer.hum_max);
+            $("#presion_sonora_equipo").val(traer.presion_sonora_equipo);
+            $("#presion_sonora_sala").val(traer.presion_sonora_sala);
+            $("#nivel_iluminacion").val(traer.nivel_iluminacion);
+            $("#prueba_humo").val(traer.prueba_humo);
            
         }
 

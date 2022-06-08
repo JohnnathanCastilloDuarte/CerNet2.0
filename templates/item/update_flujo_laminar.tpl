@@ -45,19 +45,21 @@
               <input class="form-control" type="text" name="" id="direccion_flujo" value="{$flujo_laminar.direccion}" placeholder="Dirección">
             </div>
           </div>
-          <div class="form-row">
-            <div class="col-sm-6">
-              <label>Ubicación interna:</label>
-              <input type="text" id="ubicacion_interna" class="form-control" placeholder="Ubicación interna" value="{$flujo_laminar.ubicacion_interna}">
-            </div>
+          <br>
+           <!--  <div class="form-row">
+          
             <div class="col-sm-6">
               <label>Área interna:</label>
               <input class="form-control" type="text" name="" id="area_interna" value="{$flujo_laminar.area_interna}" placeholder="Área interna">
             </div>
-          </div>
-          <br>
+          </div> 
+          <br>-->
           <div class="form-row">
-              <div class="col-sm-6">
+            <div class="col-sm-4">
+              <label>Ubicación interna:</label>
+              <input type="text" id="ubicacion_interna" class="form-control" placeholder="Ubicación interna" value="{$flujo_laminar.ubicacion_interna}">
+            </div>
+              <div class="col-sm-4">
                 <label>Clasificación OMS :</label>
                 <select class="form-control" id="clasificacion_oms">
                   {if $flujo_laminar.clasificacion_oms == ''}
@@ -77,7 +79,7 @@
                   {/if}
                 </select>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <label>Clasificación ISO:</label>
                 <select class="form-control" id="clasificacion_iso">
                  {if $flujo_laminar.clasificacion_oms == ''}
@@ -135,8 +137,8 @@
               <input class="form-control" type="text" name="" id="codigo" value="{$flujo_laminar.codigo}" placeholder="Código">
             </div>
              <div class="col-sm-4">
-              <label>Tipo dimenciones:</label>
-              <input type="text" id="tipo_dimeciones" class="form-control" placeholder="Tipo dimenciones" value="{$flujo_laminar.tipo_dimenciones}">
+              <label>Tipo dimensiones:</label>
+              <input type="text" id="tipo_dimeciones" class="form-control" placeholder="Tipo dimensiones" value="{$flujo_laminar.tipo_dimenciones}">
             </div>
           </div> 
           <div class="form-row">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-02 23:13:33
+/* Smarty version 3.1.34-dev-7, created on 2022-06-07 18:53:00
   from 'C:\xampp\htdocs\CerNet2.0\templates\flujo_laminar\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_629927fd820ca0_90683948',
+  'unifunc' => 'content_629f826c0d8a51_22482317',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbd95b35928c4d4fe0f59c22d8d1eadcf582bf48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\flujo_laminar\\datos_informe_mapeo.tpl',
-      1 => 1654204411,
+      1 => 1654620778,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629927fd820ca0_90683948 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629f826c0d8a51_22482317 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
@@ -33,21 +33,25 @@ function content_629927fd820ca0_90683948 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-sm-12">
                     <input type="hidden" name="" id="id_informe">
                     <label>Nombre informe <span class="text-danger"> *</span></label>
-                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe">
+                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe" readonly="">
                 </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Solicitante <span class="text-danger"> *</span></label>
                     <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
                 </div>
+                <br>
                 <div class="col-sm-12">
                    <label>Responsable<span class="text-danger"> *</span></label>
                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
                 </div>
+                <br>
                 <div class="col-sm-12">
                    <label>Fecha medición<span class="text-danger"> *</span></label>
                    <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
                 </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
                     <select class="form-control" id="conclusion">

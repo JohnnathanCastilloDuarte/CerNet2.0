@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-03 22:10:17
+/* Smarty version 3.1.34-dev-7, created on 2022-06-07 15:39:44
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_629a6aa96c8724_21617746',
+  'unifunc' => 'content_629f552009dd41_06608632',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1646667482,
+      1 => 1654607494,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629a6aa96c8724_21617746 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629f552009dd41_06608632 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-3" style="text-align:center;">
@@ -97,12 +97,22 @@ function content_629a6aa96c8724_21617746 (Smarty_Internal_Template $_smarty_tpl)
                     <input type="text" name="solicitante" id="solicitante" class="form-control" placeholder="Quien solicita" value="<?php echo $_smarty_tpl->tpl_vars['solicitante']->value;?>
 ">
                   </div>
-              </div>
-              <div class="row">
+                  <div class="col-sm-6">
+                    <label>Fecha de medición<span class="text-danger"> *</span></label>
+                    <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Responsable<span class="text-danger"> *</span></label>
+                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
+                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                  </div>
                   <div class="col-sm-12">
-                  <label>Conclusión</label>
-                  <textarea class="form-control" name="conclusion" id="conclusion" value="<?php echo $_smarty_tpl->tpl_vars['conclusion']->value;?>
-"></textarea>
+                  <label>Conclusión<span class="text-danger"> *</span></label>
+                    <select class="form-control" id="conclusion" name="conclusion">
+                      <option>Informe</option>
+                      <option>Pre-Informe</option>
+                    </select>
+                 <!--   <textarea name="conclusion" id="conclusion" class="form-control" placeholder="Conclusión"></textarea> -->
                 </div>
               </div>
                 
@@ -218,7 +228,6 @@ function content_629a6aa96c8724_21617746 (Smarty_Internal_Template $_smarty_tpl)
                           <th>Medición</th>
                           <th>Requisito</th>
                           <th>Valor Obtenidos</th>
-                          <th>Veredicto</th>
                         </thead>
                         <tbody id="resultados_prueba_1">
                                   
@@ -376,11 +385,11 @@ function content_629a6aa96c8724_21617746 (Smarty_Internal_Template $_smarty_tpl)
                     <br>
                   <div class="col-sm-12">
                     <label><b>Prueba N°1: Contención de Aire Externo</b></label>
-                    <table class="table" style="text-align:center">
+                    <table class="table left" style="text-align:center">
                       <thead>
                         <th>Condiciones</th>
                         <th>resultado</th>
-                        <th>Cumple</th>
+                        <!-- <th>Cumple</th> -->
                       </thead>
                       <tbody id="Contencion_de_Aire_Externo">
                       
@@ -396,7 +405,7 @@ function content_629a6aa96c8724_21617746 (Smarty_Internal_Template $_smarty_tpl)
                     <thead>
                         <th>Condiciones</th>
                         <th>resultado</th>
-                        <th>Cumple</th>
+                        <!-- <th>Cumple</th> -->
                    </thead>
                    <tbody id="Pb_unidireccional">
                     </tbody>

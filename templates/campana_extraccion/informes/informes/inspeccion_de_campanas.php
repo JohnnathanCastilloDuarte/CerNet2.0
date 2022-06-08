@@ -227,12 +227,19 @@ $pdf->ln(5);
 
 $i=0;
   while ($row = mysqli_stmt_fetch($inspeccion_visual)) {
-
-$pdf->Cell(60,5,$array_titulos[$i],1,0,'C',1,'',0);
-$pdf->Cell(40,5,$requisito,1,0,'C',0,'',0);
-$pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
-$pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
-$pdf->ln(5);
+    if ($i < 4) {
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
+      $pdf->Cell(40,5,'>='.$requisito.' m/s',1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }else{
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
+      $pdf->Cell(40,5,$requisito,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }
 
   $i++;
 
@@ -396,24 +403,24 @@ mysqli_stmt_bind_result($campana_extraccion_prueba_2, $medicion_1, $medicion_2, 
 
 $array_titulos2 = array('25%', '50%','75%','100%');
 $pdf->Cell(27,5,'Apertura en porcentaje',1,0,'C',1,'',0);
-$pdf->Cell(26.65,5,'Medición 1 (m/s)',1,0,'C',1,'',0);
-$pdf->Cell(26.65,5,'Medición 2 (m/s)',1,0,'C',1,'',0);
-$pdf->Cell(26.65,5,'Medición 3 (m/s)',1,0,'C',1,'',0);
-$pdf->Cell(26.65,5,'Medición 4 (m/s)',1,0,'C',1,'',0);
-$pdf->Cell(26.65,5,'Medición 5 (m/s)',1,0,'C',1,'',0);
-$pdf->Cell(26.65,5,'Medición 6 (m/s)',1,0,'C',1,'',0);
+$pdf->Cell(25.50,5,'Medición 1 (m/s)',1,0,'C',1,'',0);
+$pdf->Cell(25.50,5,'Medición 2 (m/s)',1,0,'C',1,'',0);
+$pdf->Cell(25.50,5,'Medición 3 (m/s)',1,0,'C',1,'',0);
+$pdf->Cell(25.50,5,'Medición 4 (m/s)',1,0,'C',1,'',0);
+$pdf->Cell(25.50,5,'Medición 5 (m/s)',1,0,'C',1,'',0);
+$pdf->Cell(25.50,5,'Medición 6 (m/s)',1,0,'C',1,'',0);
 $pdf->ln(5);
 
 $i2= 0;
 while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_2)) {
 
 $pdf->Cell(27,5,$array_titulos2[$i2],1,0,'C',1,'',0);
-$pdf->Cell(26.65,5,$medicion_1,1,0,'C',0,'',0);
-$pdf->Cell(26.65,5,$medicion_2,1,0,'C',0,'',0);
-$pdf->Cell(26.65,5,$medicion_3,1,0,'C',0,'',0);
-$pdf->Cell(26.65,5,$medicion_4,1,0,'C',0,'',0);
-$pdf->Cell(26.65,5,$medicion_5,1,0,'C',0,'',0);
-$pdf->Cell(26.65,5,$medicion_6,1,0,'C',0,'',0);
+$pdf->Cell(25.50,5,$medicion_1,1,0,'C',0,'',0);
+$pdf->Cell(25.50,5,$medicion_2,1,0,'C',0,'',0);
+$pdf->Cell(25.50,5,$medicion_3,1,0,'C',0,'',0);
+$pdf->Cell(25.50,5,$medicion_4,1,0,'C',0,'',0);
+$pdf->Cell(25.50,5,$medicion_5,1,0,'C',0,'',0);
+$pdf->Cell(25.50,5,$medicion_6,1,0,'C',0,'',0);
 $pdf->ln(5);
 
 $i2++;
@@ -430,22 +437,22 @@ mysqli_stmt_execute($campana_extraccion_prueba_3);
 mysqli_stmt_store_result($campana_extraccion_prueba_3);
 mysqli_stmt_bind_result($campana_extraccion_prueba_3, $medicion_1_3, $medicion_2_3, $medicion_3_3, $medicion_4_3);
 
-$pdf->Cell(27,5,'Resumen',1,0,'C',1,'',0);
+$pdf->Cell(22,5,'Resumen',1,0,'C',1,'',0);
 $pdf->Cell(55,5,'Medida de los Promedios de Velocidad de aire',1,0,'C',1,'',0);
-$pdf->Cell(35,5,'Máxima velocidad medida',1,0,'C',1,'',0);
-$pdf->Cell(35,5,'Mínima velocidad medida',1,0,'C',1,'',0);
-$pdf->Cell(35,5,'Mínima velocidad aceptada',1,0,'C',1,'',0);
+$pdf->Cell(34.37,5,'Máxima velocidad medida',1,0,'C',1,'',0);
+$pdf->Cell(34.37,5,'Mínima velocidad medida',1,0,'C',1,'',0);
+$pdf->Cell(34.37,5,'Mínima velocidad aceptada',1,0,'C',1,'',0);
 $pdf->ln(5);
 
 
 $i3 = 0;
 while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_3)) {
 
-$pdf->Cell(27,5,$array_titulos2[$i3],1,0,'C',1,'',0);
-$pdf->Cell(53,5,$medicion_1_3,1,0,'C',0,'',0);
-$pdf->Cell(33,5,$medicion_2_3,1,0,'C',0,'',0);
-$pdf->Cell(33,5,$medicion_3_3,1,0,'C',0,'',0);
-$pdf->Cell(33,5,$medicion_4_3,1,0,'C',0,'',0);
+$pdf->Cell(22,5,$array_titulos2[$i3],1,0,'C',1,'',0);
+$pdf->Cell(55,5,$medicion_1_3,1,0,'C',0,'',0);
+$pdf->Cell(34.37,5,$medicion_2_3,1,0,'C',0,'',0);
+$pdf->Cell(34.37,5,$medicion_3_3,1,0,'C',0,'',0);
+$pdf->Cell(34.37,5,$medicion_4_3,1,0,'C',0,'',0);
 
 $pdf->ln(5);
   

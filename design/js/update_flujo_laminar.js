@@ -79,6 +79,7 @@ $("#btn_actualizar_flujo_laminar").click(function(){
 		cantidad_filtros : $("#cantidad_filtros").val(),
 		clasificacion_oms       : $("#clasificacion_oms").val(),
         clasificacion_iso       : $("#clasificacion_iso").val(),
+        ubicacion_interna : $("#ubicacion_interna").val(),
 		id_item_flujo_laminar : id_item_flujo_laminar,
 		tipo_cabina 	  : $("#tipo_cabina").val(),
 		marca 			  : $("#marca").val(),

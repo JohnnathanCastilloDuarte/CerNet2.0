@@ -325,7 +325,7 @@ function listar_inspeccion_visual(numeral){
                                 <td><input type="text" name="punto_1_p4[]" id="punto_1_p4${contador1}" class="form-control" value="${valor.punto_1}"></td>
                                 <td><input type="text" name="punto_2_p4[]"  id="punto_2_p4${contador1}" class="form-control" value="${valor.punto_2}"></td>
                                 <td><input type="text" name="punto_3_p4[]"  id="punto_3_p4${contador1}" class="form-control" value="${valor.punto_3}"></td>
-                                <td><input type="text" name="promedio_p4[]" id="punto_4_p4${contador1}" class="form-control" value="${valor.promedio}"></td>
+                                <td><input type="text" name="promedio_p4[]" readonly id="punto_4_p4${contador1}" class="form-control" value="${valor.promedio}"></td>
                                
                         </tr>
                         `;
@@ -342,7 +342,7 @@ function listar_inspeccion_visual(numeral){
                                 <td><input type="text" name="punto_1_p4[]" id="punto_1_p42${contador2}" class="form-control" value="${valor.punto_1}"></td>
                                 <td><input type="text" name="punto_2_p4[]" id="punto_2_p42${contador2}" class="form-control" value="${valor.punto_2}"></td>
                                 <td><input type="text" name="punto_3_p4[]" id="punto_3_p42${contador2}" class="form-control" value="${valor.punto_3}"></td>
-                                <td><input type="text" name="promedio_p4[]" id="punto_4_p42${contador2}" class="form-control" value="${valor.promedio}"></td>
+                                <td><input type="text" name="promedio_p4[]" readonly id="punto_4_p42${contador2}" class="form-control" value="${valor.promedio}"></td>
                                
                         </tr>
                         `;

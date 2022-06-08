@@ -9,21 +9,25 @@
                 <div class="col-sm-12">
                     <input type="hidden" name="" id="id_informe">
                     <label>Nombre informe <span class="text-danger"> *</span></label>
-                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe">
+                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe" readonly="">
                 </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Solicitante <span class="text-danger"> *</span></label>
                     <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
                 </div>
+                <br>
                 <div class="col-sm-12">
                    <label>Responsable<span class="text-danger"> *</span></label>
                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
                 </div>
+                <br>
                 <div class="col-sm-12">
                    <label>Fecha medición<span class="text-danger"> *</span></label>
                    <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
                 </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
                     <select class="form-control" id="conclusion">
