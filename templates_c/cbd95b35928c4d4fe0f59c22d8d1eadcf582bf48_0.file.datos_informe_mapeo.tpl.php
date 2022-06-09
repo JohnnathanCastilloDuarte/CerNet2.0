@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-07 18:53:00
+/* Smarty version 3.1.34-dev-7, created on 2022-06-08 23:24:56
   from 'C:\xampp\htdocs\CerNet2.0\templates\flujo_laminar\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_629f826c0d8a51_22482317',
+  'unifunc' => 'content_62a113a84d1160_02723421',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbd95b35928c4d4fe0f59c22d8d1eadcf582bf48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\flujo_laminar\\datos_informe_mapeo.tpl',
-      1 => 1654620778,
+      1 => 1654723493,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629f826c0d8a51_22482317 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a113a84d1160_02723421 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
@@ -495,7 +495,8 @@ function content_629f826c0d8a51_22482317 (Smarty_Internal_Template $_smarty_tpl)
                                             <option value="7">Imagen prueba presión sonora</option>
                                             <option value="2">Imagen frontal</option>
                                             <option value="3">Imagen placa</option>
-                                            <option value="4">Imagen area de trabajo</option>    
+                                            <option value="4">Imagen area de trabajo</option>   
+                                            <option value="8">Anexos boucher</option>    
                                           </select>
                                         </div>
                                         <div class="col-sm-6">
@@ -599,6 +600,19 @@ function content_629f826c0d8a51_22482317 (Smarty_Internal_Template $_smarty_tpl)
                                         <div class="card-header">Imagen area trabajo</div>
                                         <div class="card-body">
                                             <div class="row" id="Listar_img_c4">
+                
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="card">
+                                        <div class="card-header">Anexos boucher</div>
+                                        <div class="card-body">
+                                            <div class="row" id="Listar_img_c8">
                 
                                             </div>
                                         </div>

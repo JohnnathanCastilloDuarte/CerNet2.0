@@ -865,6 +865,7 @@ function listar_imagenes(){
       let template5 = "";
       let template6 = "";
       let template7 = "";
+      let template8 = "";
 
       traer.forEach((valor)=>{
 
@@ -937,6 +938,15 @@ function listar_imagenes(){
               <img src="templates/flujo_laminar/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
+        }else if(valor.tipo == 8){
+
+          template8 += 
+          `
+            <div class="col-sm-4">
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+              <img src="templates/flujo_laminar/${valor.url}${valor.nombre}" style="width: 100%;">
+            </div>
+          `;
         }
         
       });
@@ -948,6 +958,7 @@ function listar_imagenes(){
       $("#Listar_img_c5").html(template5);
       $("#Listar_img_c6").html(template6);
       $("#Listar_img_c7").html(template7);
+      $("#Listar_img_c8").html(template8);
     }
 
   });

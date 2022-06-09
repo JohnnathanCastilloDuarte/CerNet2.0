@@ -21,6 +21,7 @@ include('../../config.ini.php');
     $requisito = $_POST['requisito'];
     $valor_obtenido = $_POST['valor_obtenido'];
     $veredicto = $_POST['veredicto'];
+    $fecha_medicion = $_POST['fecha_medicion'];
     $si = 0;
 
 
@@ -49,8 +50,8 @@ include('../../config.ini.php');
     mysqli_stmt_execute($insert_inspeccion);
 
 
-     $insert_inspeccion = mysqli_prepare($connect,"UPDATE informe_campana SET conclusion = ?, solicitante = ?, nombre_informe = ?, usuario_responsable = ? WHERE id_informe = ?");
-    mysqli_stmt_bind_param($insert_inspeccion, 'ssssi', $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $id_informe);
+     $insert_inspeccion = mysqli_prepare($connect,"UPDATE informe_campana SET conclusion = ?, solicitante = ?, nombre_informe = ?, usuario_responsable = ?, fecha_medicion = ? WHERE id_informe = ?");
+    mysqli_stmt_bind_param($insert_inspeccion, 'sssssi', $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_medicion, $id_informe);
     mysqli_stmt_execute($insert_inspeccion);
         
     }

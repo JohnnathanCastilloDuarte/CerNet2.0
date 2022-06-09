@@ -22,7 +22,7 @@
     $presion_sonora_equipo = $_POST['presion_sonora_equipo'];
     $presion_sonora_sala = $_POST['presion_sonora_sala'];
     $nivel_iluminacion = $_POST['nivel_iluminacion'];
-    $prueba_humo = $_POST['#prueba_humo'];
+    $prueba_humo = $_POST['prueba_humo'];
 
      if ($fecha_fabricacion_campana == "" || $fecha_fabricacion_campana == NULL) {
         

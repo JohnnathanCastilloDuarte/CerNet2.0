@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-08 00:12:04
+/* Smarty version 3.1.34-dev-7, created on 2022-06-09 01:06:23
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\update_campana_extraccion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_629fcd34bddd83_91414812',
+  'unifunc' => 'content_62a12b6f7bbb97_67509798',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a2460fc03c75e8363fd9c4ee083f5e44948f91e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\update_campana_extraccion.tpl',
-      1 => 1654639922,
+      1 => 1654729537,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629fcd34bddd83_91414812 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a12b6f7bbb97_67509798 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">

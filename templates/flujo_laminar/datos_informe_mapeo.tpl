@@ -470,7 +470,8 @@
                                             <option value="7">Imagen prueba presión sonora</option>
                                             <option value="2">Imagen frontal</option>
                                             <option value="3">Imagen placa</option>
-                                            <option value="4">Imagen area de trabajo</option>    
+                                            <option value="4">Imagen area de trabajo</option>   
+                                            <option value="8">Anexos boucher</option>    
                                           </select>
                                         </div>
                                         <div class="col-sm-6">
@@ -574,6 +575,19 @@
                                         <div class="card-header">Imagen area trabajo</div>
                                         <div class="card-body">
                                             <div class="row" id="Listar_img_c4">
+                
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="card">
+                                        <div class="card-header">Anexos boucher</div>
+                                        <div class="card-body">
+                                            <div class="row" id="Listar_img_c8">
                 
                                             </div>
                                         </div>

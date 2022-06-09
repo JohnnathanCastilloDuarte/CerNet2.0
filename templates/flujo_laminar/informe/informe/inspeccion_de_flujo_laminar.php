@@ -38,7 +38,7 @@ mysqli_stmt_fetch($inspeccion_visual);
 
 //info_ informes
 
-$info_query = mysqli_prepare($connect,"SELECT conclusion, solicitante, nombre_informe, usuario_responsable,DATE_FORMAT(fecha_registro, '%m/%d/%Y'), fecha_medicion
+$info_query = mysqli_prepare($connect,"SELECT conclusion, solicitante, nombre_informe, usuario_responsable,DATE_FORMAT(fecha_registro, '%d/%m/%Y'), DATE_FORMAT(fecha_medicion, '%d/%m/%Y')
   FROM informe_flujo_laminar
   WHERE id_asignado = ? ");
 
@@ -53,17 +53,7 @@ mysqli_stmt_fetch($info_query);
 
 
 
-if ($conclusion == 'Informe') {
-   
-   $muestra_conclusion = 'De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
-CUMPLE con los parámetros establecidos en la normativa vigente.';
 
-}
-elseif($conclusion == 'Pre-Informe'){
-
-  $muestra_conclusion = 'Los resultados obtenidos en el presente informe, 
-se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
-}
 
 if ($conclusion == 'Pre-Informe') {
   $tipo_info = 'Pre-Informe';
@@ -343,6 +333,7 @@ $pdf->ln(5);
 
 
 $i=0;
+$contador = 0;
   while ($row = mysqli_stmt_fetch($queryPrueba1)) {
 
     if ($i == 0) {
@@ -350,6 +341,7 @@ $i=0;
          $veredicto = 'CUMPLE';
       }else{
         $veredicto = 'NO CUMPLE';
+        $contador++;
       }
       $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
       $pdf->Cell(40,5,' <= 0.01 % ',1,0,'L',0,'',0);
@@ -361,6 +353,7 @@ $i=0;
         $veredicto = 'CUMPLE';
       }else{
         $veredicto = 'NO CUMPLE';
+        $contador++;
       }
       $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
       $pdf->Cell(40,5,' = 0.45 m/s +-20% ',1,0,'L',0,'',0);
@@ -372,6 +365,7 @@ $i=0;
         $veredicto = 'CUMPLE';
       }else{
         $veredicto = 'NO CUMPLE';
+        $contador++;
       }
 
      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
@@ -385,6 +379,7 @@ $i=0;
         $veredicto = 'CUMPLE';
       }else{
         $veredicto = 'NO CUMPLE';
+        $contador++;
       }
 
 
@@ -398,6 +393,7 @@ $i=0;
         $veredicto = 'CUMPLE';
       }else{
         $veredicto = 'NO CUMPLE';
+        $contador++;
       }
 
      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
@@ -410,6 +406,7 @@ $i=0;
         $veredicto = 'CUMPLE';
       }else{
         $veredicto = 'NO CUMPLE';
+        $contador++;
       }
      $pdf->Cell(60,5,$array_titulos[$i],1,0,'C',0,'',0);
      $pdf->Cell(40,5,' <= '.$particulas50_oms.' (OMS '.$clasificacion_oms.')',1,0,'L',0,'',0);
@@ -421,6 +418,26 @@ $i=0;
   $i++;
 
 }
+if ($contador > 0) {
+  $resultado_conclusion = 'NO CUMPLE'; 
+}else{
+  $resultado_conclusion = 'CUMPLE';
+}
+
+
+if ($conclusion == 'Informe') {
+   
+   $muestra_conclusion = 'De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
+'.$resultado_conclusion.' con los parámetros establecidos en la normativa vigente.';
+
+}
+elseif($conclusion == 'Pre-Informe'){
+
+  $muestra_conclusion = 'Los resultados obtenidos en el presente informe, 
+se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
+}
+
+//echo $contador;
 $linea = <<<EOD
 <br><br>
 <style>
@@ -549,7 +566,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(27.6,5,$serie,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$codigo,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$ubicacion_interna,1,0,'C',0,'',0);
-   $pdf->ln(7);  
+   /*$pdf->ln(7);  
    $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Tipo y Dimensiones de Filtros Interiores',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Límite de Penetración',1,0,'C',1,'',0);
@@ -558,7 +575,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);*/
 
 
   $pdf->ln(7);
@@ -766,7 +783,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(27.6,5,$serie,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$codigo,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$ubicacion_interna,1,0,'C',0,'',0);
-   $pdf->ln(7);  
+   /*$pdf->ln(7);  
    $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Tipo y Dimensiones de Filtros Interiores',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Límite de Penetración',1,0,'C',1,'',0);
@@ -775,7 +792,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);*/
 
 
   $pdf->ln(7);
@@ -843,7 +860,7 @@ mysqli_stmt_bind_result($queryMinimoPrueba3, $promedio_medis);
 
 //Buscar minima aceptada
 
-$minimo_resta = ($req_velocidad_aire * 20)/100;
+$minimo_resta = ($req_velocidad_aire * 0.20);
 
 $muestra_min = $req_velocidad_aire - $minimo_resta;
 
@@ -926,17 +943,17 @@ $pdf->ln(5);
 
 $busca_imagen_1 = mysqli_prepare($connect,"SELECT url, nombre 
 FROM image_flujo_laminar WHERE id_asignado = ? AND tipo = 5");
+
 mysqli_stmt_bind_param($busca_imagen_1, 'i', $id_asignado);
 mysqli_stmt_execute($busca_imagen_1);
 mysqli_stmt_store_result($busca_imagen_1);
-mysqli_stmt_bind_result($busca_imagen_1, $url, $nombre);
+mysqli_stmt_bind_result($busca_imagen_1, $url_2, $nombre_2);
 mysqli_stmt_fetch($busca_imagen_1);
 
-
-if ($url3 == '') {
-  $img1 = '';
+if ($url_2 == '') {
+  $img2 = '';
 }else{
-  $img1 = '../../'.$url.$nombre;
+  $img2 = '../../'.$url_2.$nombre_2;
 }
 
 $imagen1 = <<<EOD
@@ -950,12 +967,13 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center" ><img src="$img1" width="300px;"></td>  
+        <td class="linea" align="center" ><img src="$img2" style="width: 300px;"></td>  
    </tr>
 </table>
 
 EOD;
 $pdf->writeHTML($imagen1, true, false, false, false, '');
+
 
 $linea = <<<EOD
 
@@ -1065,7 +1083,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(27.6,5,$serie,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$codigo,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$ubicacion_interna,1,0,'C',0,'',0);
-   $pdf->ln(7);  
+   /*$pdf->ln(7);  
    $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Tipo y Dimensiones de Filtros Interiores',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Límite de Penetración',1,0,'C',1,'',0);
@@ -1074,7 +1092,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);*/
 
 
   $pdf->ln(7);
@@ -1218,17 +1236,18 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
 $busca_imagen_1 = mysqli_prepare($connect,"SELECT url, nombre 
-FROM image_flujo_laminar WHERE id_asignado = ? AND tipo = 5");
+FROM image_flujo_laminar WHERE id_asignado = ? AND tipo = 1");
+
 mysqli_stmt_bind_param($busca_imagen_1, 'i', $id_asignado);
 mysqli_stmt_execute($busca_imagen_1);
 mysqli_stmt_store_result($busca_imagen_1);
-mysqli_stmt_bind_result($busca_imagen_1, $url_2, $nombre_2);
+mysqli_stmt_bind_result($busca_imagen_1, $url_22, $nombre_22);
 mysqli_stmt_fetch($busca_imagen_1);
 
-if ($url3 == '') {
-  $img2 = '';
+if ($url_22 == '') {
+  $img22 = '';
 }else{
-  $img2 = '../../'.$url_2.$nombre_2;
+  $img22 = '../../'.$url_22.$nombre_22;
 }
 
 $imagen1 = <<<EOD
@@ -1242,7 +1261,7 @@ $imagen1 = <<<EOD
 <br><br>
 <table border="0">
    <tr >
-        <td class="linea" align="center" ><img src="$img2" style="width: 300px;"></td>  
+        <td class="linea" align="center" ><img src="$img22" style="width: 300px;"></td>  
    </tr>
 </table>
 
@@ -1635,7 +1654,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(27.6,5,$serie,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$codigo,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$ubicacion_interna,1,0,'C',0,'',0);
-   $pdf->ln(7);  
+  /* $pdf->ln(7);  
    $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Tipo y Dimensiones de Filtros Interiores',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Límite de Penetración',1,0,'C',1,'',0);
@@ -1644,7 +1663,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
-   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);*/
 
 
   $pdf->ln(7);
@@ -1788,10 +1807,21 @@ while ($row = mysqli_stmt_fetch($queryPrueba5_1)) {
     if ($i7 < 5) {
 
                 if ($i7 < 1) {
-              $pdf->Cell(60,5, $array_titulos6[$i6],1,0,'L',1,'',0);
-              $pdf->Cell(60,5, $resultado_2,1,0,'C',0,'',0);
-              $pdf->Cell(60,5, 'NA',1,0,'C',0,'',0);
-              $pdf->ln(5);
+                $pdf->Cell(60,5, $array_titulos6[$i6],1,0,'L',1,'',0);
+                $pdf->Cell(60,5, $resultado_2,1,0,'C',0,'',0);
+                $pdf->Cell(60,5, 'NA',1,0,'C',0,'',0);
+                $pdf->ln(5);
+              }elseif ($i7 == 1) {
+                 if ($resultado_2 == 'Si') {
+                     $muestre2 = 'Cumple';
+                  }else{
+                     $muestre2 = 'No Cumple';
+                     $cont++;
+                  }
+                  $pdf->Cell(60,5, $array_titulos6[$i7],1,0,'L',1,'',0);
+                  $pdf->Cell(60,5, $resultado_2,1,0,'C',0,'',0);
+                  $pdf->Cell(60,5, $muestre2,1,0,'C',0,'',0);
+                  $pdf->ln(5);
               }else{
                   if ($resultado_2 == 'No') {
                      $muestre2 = 'Cumple';
@@ -1803,7 +1833,6 @@ while ($row = mysqli_stmt_fetch($queryPrueba5_1)) {
               $pdf->Cell(60,5, $resultado_2,1,0,'C',0,'',0);
               $pdf->Cell(60,5, $muestre2,1,0,'C',0,'',0);
               $pdf->ln(5);
-
             }
         
       }elseif($i7 > 2){
@@ -1999,7 +2028,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(27.6,5,$codigo,1,0,'C',0,'',0);
    $pdf->Cell(27.6,5,$ubicacion_interna,1,0,'C',0,'',0);
    $pdf->ln(7);  
-   $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
+  /* $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Tipo y Dimensiones de Filtros Interiores',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Límite de Penetración',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Eficiencia',1,0,'C',1,'',0);
@@ -2008,7 +2037,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
    $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
    $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
-
+*/
 
   $pdf->ln(7);
 $imagenFrontal = mysqli_prepare($connect,"SELECT url, nombre 
@@ -2057,66 +2086,116 @@ if ($url3 == '' || $url3 == NULL) {
   $imagenAreatrabajo = '../../'.$url3.$nombre_imagen3;
 }
 
+$pdf->writeHTMLCell(90, 5, 15, '', '<h2>Imagen Frontal</h2>', 0, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(90, 5, 105, '', '<h2>Imagen de Placa</h2>', 0, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(90, 50, 15, '', '<img src="'.$image_frontal.'" style="width: 290px; height: 200px;">', 0, 0, 0, true, 'C', true);
+$pdf->writeHTMLCell(90, 50, 105, '', '<img src="'.$imagenPlaca.'"  style="width: 290px; height: 200px;">', 0, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(0, 5, 15, '', '<h2>Imagen Area de Trabajo</h2>', 0, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(0, 50, 15, '', '<img src="'.$imagenAreatrabajo.'"  style="width: 290px; height: 200px;">', 0, 1, 0, true, 'C', true);
 
-
-
-$linea13 = <<<EOD
-
+$pdf->AddPage('A4');
+$linea = <<<EOD
+<br><br>
 <style>
 .linea{
-   height: 14 px;
-   color:black;
-
-}
-.imagen{
-    height:200px
+   height: 14px;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 </style>
-<br><br>
-<table border="0">
-   <tr >
-        <td class="linea" align="center" ><h2><b>Imagen Frontal</b></h2></td>  
-        <td class="linea" align="center" ><h2><b>Imagen de Placa</b></h2></td>  
-   </tr>
-   <br>
-   <tr>
-        <td class="imagen" border="0">
-          <table border="0" style="width:310px;">
-            <tr>
-              <td> <img src="$image_frontal" style="width:250px;"></td>
-            </tr>
-          </table>
-        </td>
-        <td class="imagen" border="0">
-          <table border="0" style="width:310px;">
-            <tr>
-              <td> <img src="$imagenPlaca" style="width:250px;"></td>
-            </tr>
-          </table>
-        </td>
+<table >
+   <tr border="1">
+        <td class="linea" align="center"><h2>Anexos de Boucher</h2></td>
    </tr>
 </table>
-<br>
-<br>
-<table border="0">
-    <tr>
-        <td class="linea" align="center" ><h2><b>Imagen Área de Trabajo</b></h2></td> 
-    </tr>  
-    <br>  
-    <tr>
-        <td style="width: 170px;"></td>
-        <td class="imagen" style="width: 298px;" border="0">
-          <img src="$imagenPlaca" style="width:250px;">
-        </td>
-        <td style="width: 170px;"></td>
-    </tr>
-</table>
-<img src='descarga.png'>
-EOD;
+
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+  $pdf->Cell(25,5,'Informe referencia:',0,0,'L',0,'',0);
+     $pdf->Cell(50,5,$nombre_informe,1,0,'J',0,'',0);
+     $pdf->Cell(15,5,'OT N°',0,0,'C',0,'',0);
+     $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
+     $pdf->Cell(20,5,'',0,0,'C',0,'',0);
+     $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
+     $pdf->Cell(25,5,$fecha_registro_informe,1,0,'C',0,'',0);
+
+   $pdf->ln(7);   
+
+   $pdf->Cell(25,5,'Empresa:',0,0,'L',0,'',0);
+   $pdf->Cell(80,5,$nombre_empresa,1,0,'C',0,'',0);
+   $pdf->Cell(20,5,'',0,0,'C',0,'',0);
+   $pdf->Cell(20,5,'Solicita:',0,0,'L',0,'',0);
+   $pdf->Cell(35,5,$solicitante,1,0,'C',0,'',0);
+
+   $pdf->ln(7);  
+
+   $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
+
+   $pdf->ln(10);  
+
+   $pdf->Cell(42,5,'Tipo Cabina',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Marca',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Modelo',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Serie',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Código',1,0,'C',1,'',0);
+   $pdf->Cell(27.6,5,'Ubicado en',1,0,'C',1,'',0);
+   $pdf->ln(5); 
+   $pdf->Cell(42,5,$tipo_cabina,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$marca,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$modelo,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$serie,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$codigo,1,0,'C',0,'',0);
+   $pdf->Cell(27.6,5,$ubicacion_interna,1,0,'C',0,'',0);
+   $pdf->ln(7);  
+  /* $pdf->Cell(45,5,'Cantidad de Filtros HEPA',1,0,'C',1,'',0);
+   $pdf->Cell(45,5,'Tipo y Dimensiones de Filtros Interiores',1,0,'C',1,'',0);
+   $pdf->Cell(45,5,'Límite de Penetración',1,0,'C',1,'',0);
+   $pdf->Cell(45,5,'Eficiencia',1,0,'C',1,'',0);
+   $pdf->ln(5);
+   $pdf->Cell(45,5,$cantidad_filtro,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,$tipo_dimenciones,1,0,'C',0,'',0);
+   $pdf->Cell(45,5,$limite_penetracion.'%',1,0,'C',0,'',0);
+   $pdf->Cell(45,5,'99,99 % (0,3µm)',1,0,'C',0,'',0);
+*/
+  $pdf->ln(7);
 
 
+   $buscarimagen1 = mysqli_prepare($connect,"SELECT url, nombre 
+    FROM image_flujo_laminar
+    WHERE id_asignado = ? AND tipo = 8");
+    mysqli_stmt_bind_param($buscarimagen1, 'i', $id_asignado);
+    mysqli_stmt_execute($buscarimagen1);
+    mysqli_stmt_store_result($buscarimagen1);
+    mysqli_stmt_bind_result($buscarimagen1, $url_imagen, $nombre_imagen);
 
-$pdf->writeHTML($linea13, true, false, false, false, '');
+    $cont = 1;
+    $cont2 = 0;
+    $total_rows = mysqli_stmt_num_rows($buscarimagen1);
+    while($row = mysqli_stmt_fetch($buscarimagen1)){
+          $cont2++;
+          if ($cont2 == 3) {
+           $pdf->AddPage('A4');
+           $cont2 == 0;
+          }
+
+        if ($cont == 1) {
+          $pdf->writeHTMLCell(90, 100, 15, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 180px; height: 500px;">', 1, 0, 0, true, 'C', true);
+        }else if ($cont == 2){
+          $pdf->writeHTMLCell(90, 100, 105, '', '<img src="../../'.$url_imagen.$nombre_imagen.'" style="width: 180px; height: 500px;">', 1, 1, 0, true, 'C', true);
+          $cont = 0;
+        }
+
+        if ($cont2 == 2) {
+          # code...
+        }
+
+        $cont++;
+
+
+    }
+
 
 
 $pdf->Output($nombre_informe, 'I');

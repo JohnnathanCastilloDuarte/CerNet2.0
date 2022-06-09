@@ -14,7 +14,7 @@ $(document).ready(function(){
         $("#text_enunciado_campana").html('Editar campana');
      //   $("#empresa_campana").hide();
         $("#empresa_label").hide();
-        traer_datos_campana(id_item_campana);
+        //traer_datos_campana(id_item_campana);
     }
   
    
@@ -138,7 +138,6 @@ $("#btn_editar_item_campana").click(function(){
    let nivel_iluminacion = $("#nivel_iluminacion").val();
    let prueba_humo = $("#prueba_humo").val();
    //let tipo_controlador = "Actualizar";
-   
    const datos = {
     nombre_campana,
     empresa_campana,

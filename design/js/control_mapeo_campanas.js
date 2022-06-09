@@ -83,17 +83,34 @@ function listar_datos_full(numeral){
           let increment = 0;
 
           traer.forEach((valor)=>{
-            template+=
-            `
-            <tr>
-              <td>${array_pruebas[increment]}</td>
-              <input type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}">
-              <td><input type="text" name="requisito[]" class="form-control" value="${valor.requisito}"></td>
-              <td><input type="text" name="valor_obtenido[]" class="form-control" value="${valor.valor_obtenido}"></td>
-              <!--<td><input type="text" name="veredicto[]" class="form-control" value="${valor.veredicto}"></td>-->
-            </tr>
-            `;
-            increment++;
+
+            if (increment > 3){
+                template+=
+                `
+                <tr>
+                  <td>${array_pruebas[increment]}</td>
+                  <input type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}">
+                  <!--<td><input type="text" name="requisito[]" class="form-control" value="${valor.requisito}"></td>-->
+                  <td colspan="2"><input type="text" name="valor_obtenido[]" class="form-control" value="${valor.valor_obtenido}"></td>
+                  <!--<td><input type="text" name="veredicto[]" class="form-control" value="${valor.veredicto}"></td>-->
+                </tr>
+                `;
+                increment++;
+
+
+            }else{
+                template+=
+                `
+                <tr>
+                  <td>${array_pruebas[increment]}</td>
+                  <input type="hidden" name="id_prueba_1[]" value="${valor.id_prueba}">
+                  <td><input type="text" name="requisito[]" class="form-control" value="${valor.requisito}"></td>
+                  <td><input type="text" name="valor_obtenido[]" class="form-control" value="${valor.valor_obtenido}"></td>
+                  <!--<td><input type="text" name="veredicto[]" class="form-control" value="${valor.veredicto}"></td>-->
+                </tr>
+                `;
+                increment++;
+            }
           });
 
           $("#resultados_prueba_1").html(template);
@@ -315,7 +332,7 @@ function listar_datos_full(numeral){
 
             if(valor.categoria == 1){
 
-                if (contador_1 == 0) {
+                if (contador_1 < 2) {
                     template1 += 
                     `
                     <tr>
@@ -599,7 +616,7 @@ function listar_imagenes(){
           `
             <div class="col-sm-4">
               <a class="btn btn-danger" id="eliminar_imagen" value="${valor.id_imagen}" style="color: white;margin-left: 106%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
-              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}">
+              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}" style="width: 350px;">
             </div>
           `;
         }
@@ -609,7 +626,7 @@ function listar_imagenes(){
           `
             <div class="col-sm-4">
             <a class="btn btn-danger" id="eliminar_imagen" value="${valor.id_imagen}" style="color: white;margin-left: 106%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
-              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}">
+              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}" style="width: 350px;">
             </div>
           `;
         }
@@ -619,7 +636,7 @@ function listar_imagenes(){
           `
             <div class="col-sm-4">
             <a class="btn btn-danger" id="eliminar_imagen" value="${valor.id_imagen}" style="color: white;margin-left: 106%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
-              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}">
+              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}" style="width: 350px;">
             </div>
           `;
         }
@@ -629,7 +646,7 @@ function listar_imagenes(){
           `
             <div class="col-sm-4">
             <a class="btn btn-danger" id="eliminar_imagen" value="${valor.id_imagen}" style="color: white;margin-left: 106%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
-              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}">
+              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}" style="width: 350px;">
             </div>
           `;
         }
@@ -639,7 +656,7 @@ function listar_imagenes(){
           `
             <div class="col-sm-4">
             <a class="btn btn-danger" id="eliminar_imagen" value="${valor.id_imagen}" style="color: white;margin-left: 106%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
-              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}">
+              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}" style="width: 350px;">
             </div>
           `;
         }
@@ -649,7 +666,7 @@ function listar_imagenes(){
           `
             <div class="col-sm-4">
             <a class="btn btn-danger" id="eliminar_imagen" value="${valor.id_imagen}" style="color: white;margin-left: 106%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
-              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}">
+              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}" style="width: 350px;">
             </div>
           `;
         }
@@ -659,7 +676,7 @@ function listar_imagenes(){
           `
             <div class="col-sm-4">
             <a class="btn btn-danger" id="eliminar_imagen" value="${valor.id_imagen}" style="color: white;margin-left: 106%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
-              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}">
+              <img src="templates/campana_extraccion/${valor.url}${valor.nombre}" style="width: 350px;">
             </div>
           `;
         }

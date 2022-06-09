@@ -13,7 +13,7 @@ $id_asignado = substr($clave, 97);
 
 /*echo "SELECT a.descripcion, a.nombre, b.tipo, b.marca, b.modelo, b.serie, b.codigo, b.ubicacion_interna,b.direccion, b.requisito_velocidad FROM item as a, item_campana as b, item_asignado as c WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item AND a.id_tipo = 12;";*/
 $consulta_informacion_informe = mysqli_prepare($connect,"SELECT a.descripcion, a.nombre, b.tipo, b.marca, b.modelo,
- b.serie, b.codigo, b.ubicacion_interna,b.direccion, b.requisito_velocidad, b.fecha_registro 
+ b.serie, b.codigo, b.ubicacion_interna,b.direccion, b.requisito_velocidad, b.fecha_registro, b.tem_min, b.tem_max, b.hum_min, b.hum_max, b.presion_sonora_equipo, b.presion_sonora_sala, b.nivel_iluminacion, b.prueba_humo 
   FROM item as a, item_campana as b, item_asignado as c 
   WHERE c.id_asignado = ? AND c.id_item = b.id_item AND b.id_item = c.id_item AND a.id_tipo = 12");
 
@@ -21,7 +21,7 @@ mysqli_stmt_bind_param($consulta_informacion_informe, 'i', $id_asignado);
 mysqli_stmt_execute($consulta_informacion_informe);
 mysqli_stmt_store_result($consulta_informacion_informe);
 mysqli_stmt_bind_result($consulta_informacion_informe, $descripcion, $nombre_item, $tipo_campana, $marca, $modelo, 
-   $serie, $codigo, $ubicacion_interna, $direccion, $requisito_velocidad, $fecha_registro_item);
+   $serie, $codigo, $ubicacion_interna, $direccion, $requisito_velocidad, $fecha_registro_item,$tem_min,$tem_max,$hum_min,$hum_max,$presion_sonora_equipo,$presion_sonora_sala,$nivel_iluminacion,$prueba_humo);
 mysqli_stmt_fetch($consulta_informacion_informe);
 
 
@@ -37,15 +37,17 @@ mysqli_stmt_fetch($inspeccion_visual);
 
 //info_ informes
 
-$inspeccion_visual = mysqli_prepare($connect,"SELECT conclusion, solicitante, nombre_informe, usuario_responsable,DATE_FORMAT(fecha_registro, '%m/%d/%Y')
+$inspeccion_visual = mysqli_prepare($connect,"SELECT conclusion, solicitante, nombre_informe, usuario_responsable,DATE_FORMAT(fecha_registro, '%m/%d/%Y'),fecha_medicion
   FROM informe_campana
   WHERE id_asignado = ? ");
 
 mysqli_stmt_bind_param($inspeccion_visual, 'i', $id_asignado);
 mysqli_stmt_execute($inspeccion_visual);
 mysqli_stmt_store_result($inspeccion_visual);
-mysqli_stmt_bind_result($inspeccion_visual, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_registro_informe);
+mysqli_stmt_bind_result($inspeccion_visual, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_registro_informe,$fecha_medicion);
 mysqli_stmt_fetch($inspeccion_visual);
+
+$fecha_medicion = date("d-m-Y", strtotime($fecha_medicion));
 
 //Información de responsable
 
@@ -71,8 +73,35 @@ mysqli_stmt_fetch($infor_numot);
 
 $num_ot = substr($ot,2);
 
+//condicionales resultados de norma
 
+if ($tem_min == 'No Aplica' || $tem_max == 'No Aplica') {
+    $muestra_temp = '-';
+}else{
+  $muestra_temp = 'Entre '.$tem_min.' y '.$tem_max;
+}
+if ($hum_min == 'No Aplica' || $hum_max == 'No Aplica') {
+    $muestra_hum = '-';
+}else{
+  $muestra_hum = 'Entre '.$hum_min.' y '.$hum_max;
+}
+if ($presion_sonora_equipo == 'No Aplica') {
+    $muestra_sonora_equipo = '-';
+}else{
+  $muestra_sonora_equipo = '<= '.$presion_sonora_equipo;
+}
+if ($presion_sonora_sala == 'No Aplica') {
+    $muestra_sonora_sala = '-';
+}else{
+  $muestra_sonora_sala = '<= '.$presion_sonora_sala;
+}
+if ($nivel_iluminacion == 'No Aplica') {
+    $muestra_iluminacion = '-';
+}else{
+  $muestra_iluminacion = '>= '.$nivel_iluminacion;
+}
 
+$variable1 = "";
 /*echo "SELECT id_inspeccion, insp_1, insp_2, insp_3, insp_4, insp_5
   FROM campana_extraccion_inspeccion
   WHERE c.id_asignado = $id_asignado";
@@ -140,9 +169,6 @@ $pdf->SetFillColor(221,221,221);
    $pdf->Cell(27.6,5,$requisito_velocidad,1,0,'C',0,'',0);
 
   $pdf->ln(7);
-
-//información del equipo
-
 
 
 ///// crea una nueva pagina
@@ -213,6 +239,38 @@ mysqli_stmt_execute($inspeccion_visual);
 mysqli_stmt_store_result($inspeccion_visual);
 mysqli_stmt_bind_result($inspeccion_visual, $requisito, $valor_obtenido, $veredicto);
 
+$campana_extraccion_prueba_5_0 = mysqli_prepare($connect,"SELECT resultado, cumple  FROM campana_extraccion_prueba_5
+  WHERE id_asignado = ? AND categoria = 1");
+
+mysqli_stmt_bind_param($campana_extraccion_prueba_5_0, 'i', $id_asignado);
+mysqli_stmt_execute($campana_extraccion_prueba_5_0);
+mysqli_stmt_store_result($campana_extraccion_prueba_5_0);
+mysqli_stmt_bind_result($campana_extraccion_prueba_5_0, $resultado_1, $cumple_1);
+$i6 = 0;
+$contadorno = 0;
+while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_5_0)) { 
+      if($i6 < 4 && $i6 > 1) {
+            if ($resultado_1 == 'No') {
+               $cumple_1 = 'CUMPLE';
+            }else{
+               $cumple_1 = 'NO CUMPLE';
+               $contadorno++;
+            }
+  
+    }elseif($i6 > 1) {
+       if ($contadorno > 0) {
+         $cumple_1 = 'NO CUMPLE';
+       }else{
+        $cumple_1 = 'CUMPLE';
+       }
+       //$pdf->Cell(120,5,$cumple_1,1,0,'C',0,'',0);
+   }
+   $i6++;
+}
+
+
+
+
 
 
 $array_titulos = array('Velocidad de Aire, 25% Apertura (m/s)', 'Velocidad de Aire, 50% Apertura (m/s)','Velocidad de Aire, 75% Apertura (m/s)','Velocidad de Aire, 100% Apertura (m/s)','Medición de Temperatura','Medición de Humedad Relativa','Presión Sonora Equipo','Presión Sonora Sala','Nivel de Iluminación','Prueba de Humo');
@@ -226,24 +284,136 @@ $pdf->Cell(40,5,'Veredicto',1,0,'C',1,'',0);
 $pdf->ln(5);
 
 $i=0;
+$contador = 0;
   while ($row = mysqli_stmt_fetch($inspeccion_visual)) {
     if ($i < 4) {
+      if ($valor_obtenido >= $requisito) {
+          $veredicto = 'CUMPLE';
+        }else{
+          $veredicto = 'NO CUMPLE';
+        }  
       $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
       $pdf->Cell(40,5,'>='.$requisito.' m/s',1,0,'C',0,'',0);
       $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
       $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
       $pdf->ln(5);
-    }else{
+    }elseif($i == 4){
+        if ($muestra_temp == "-") {
+          $veredicto = "NA";
+        }else{
+            if ($valor_obtenido >= $tem_min && $valor_obtenido <= $tem_max) {
+                 $veredicto = 'CUMPLE';
+               }else{
+                $veredicto = 'NO CUMPLE';
+                $contador++;
+               }   
+        }
       $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
-      $pdf->Cell(40,5,$requisito,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$muestra_temp,1,0,'C',0,'',0);
       $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
       $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }elseif($i == 5){
+      if ($muestra_hum == "-") {
+          $veredicto = "NA";
+        }else{
+            if ($valor_obtenido >= $hum_min && $valor_obtenido <= $hum_max) {
+                 $veredicto = 'CUMPLE';
+               }else{
+                $veredicto = 'NO CUMPLE';
+                $contador++;
+               }   
+        }
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
+      $pdf->Cell(40,5,$muestra_hum,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }elseif($i == 6){
+      if ($muestra_sonora_equipo == "-") {
+          $veredicto = "NA";
+        }else{
+            if ($valor_obtenido <= $presion_sonora_equipo) {
+                 $veredicto = 'CUMPLE';
+               }else{
+                $veredicto = 'NO CUMPLE';
+                $contador++;
+               }   
+        }
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
+      $pdf->Cell(40,5,$muestra_sonora_equipo,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }elseif($i == 7){
+      if ($muestra_sonora_sala == "-") {
+          $veredicto = "NA";
+        }else{
+            if ($valor_obtenido <= $presion_sonora_sala) {
+                 $veredicto = 'CUMPLE';
+               }else{
+                $veredicto = 'NO CUMPLE';
+                $contador++;
+               }   
+        }
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
+      $pdf->Cell(40,5,$muestra_sonora_sala,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }elseif($i == 8){
+        if ($muestra_iluminacion == "-") {
+          $veredicto = "NA";
+        }else{
+            if ($valor_obtenido >= $nivel_iluminacion) {
+                 $veredicto = 'CUMPLE';
+               }else{
+                $veredicto = 'NO CUMPLE';
+                $contador++;
+               }   
+        }
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
+      $pdf->Cell(40,5,$muestra_iluminacion,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$valor_obtenido,1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$veredicto,1,0,'C',0,'',0);
+      $pdf->ln(5);
+    }elseif($i == 9){
+        if ($muestra_iluminacion == "-") {
+          $veredicto = "NA";
+        }else{
+            if ($valor_obtenido >= $nivel_iluminacion) {
+                 $veredicto = 'CUMPLE';
+               }else{
+                $veredicto = 'NO CUMPLE';
+                $contador++;
+               }   
+        }
+      $pdf->Cell(60,5,$array_titulos[$i],1,0,'L',1,'',0);
+      $pdf->Cell(40,5,'-',1,0,'C',0,'',0);
+      $pdf->Cell(40,5,'-',1,0,'C',0,'',0);
+      $pdf->Cell(40,5,$cumple_1,1,0,'C',0,'',0);
       $pdf->ln(5);
     }
 
   $i++;
 
 }
+
+if ($contador > 0 || $cumple_1 == 'NO CUMPLE') {
+  $muestra_conclu = 'NO CUMPLE';
+}else{
+  $muestra_conclu = 'CUMPLE';
+}
+
+if ($conclusion == 'Informe') {
+    $muestra_conclusion='De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, '.$muestra_conclu.' con los
+parámetros establecidos en la normativa vigente.';
+}elseif($conclusion == 'Pre-Informe'){
+    $muestra_conclusion='
+Los resultados obtenidos en el presente informe, se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al
+momento de la inspección';
+}
+
 $linea = <<<EOD
 <br><br>
 <style>
@@ -455,11 +625,25 @@ $pdf->Cell(34.37,5,$medicion_3_3,1,0,'C',0,'',0);
 $pdf->Cell(34.37,5,$medicion_4_3,1,0,'C',0,'',0);
 
 $pdf->ln(5);
-  
-
-
  $i3++;
 }
+
+$imagenes_campana = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
+  WHERE id_asignado = ? AND tipo = 1");
+
+mysqli_stmt_bind_param($imagenes_campana, 'i', $id_asignado);
+mysqli_stmt_execute($imagenes_campana);
+mysqli_stmt_store_result($imagenes_campana);
+mysqli_stmt_bind_result($imagenes_campana, $tipo, $url, $nombre);
+mysqli_stmt_fetch($imagenes_campana);
+
+
+if ($url == '') {
+    $urlimg_1 = '';    
+}else{
+     $urlimg_1 = '../../'.$url.$nombre; 
+}
+//echo $urlimg_1;
 
 $imagen1 = <<<EOD
 <style>
@@ -469,15 +653,12 @@ $imagen1 = <<<EOD
 }
 </style>
 
-<br><br>
-<table border="0">
-   <tr >
-        <td class="linea" align="center"><img src="../../imagenes/img_definidas/caudales-2.jpg"></td>  
-   </tr>
-</table>
+<br>
 
 EOD;
 $pdf->writeHTML($imagen1, true, false, false, false, '');
+
+$pdf->writeHTMLCell(0, 5, 15, '', '<img src="'.$urlimg_1.'" width="400px;">', 0, 1, 0, true, 'C', true);
 
 $linea = <<<EOD
 
@@ -488,7 +669,6 @@ $linea = <<<EOD
    background-color: rgb(0,79,135);
 }
 </style>
-<br>
 <table >
    <tr border="1">
         <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
@@ -509,12 +689,12 @@ mysqli_stmt_store_result($campana_extraccion_equipo1);
 mysqli_stmt_bind_result($campana_extraccion_equipo1, $marca1, $modelo1, $n_serie1, $numero_certificado, $fecha_emision);
 
 
-$pdf->writeHTMLCell(30, 8, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
+$pdf->Cell(30,5,'Marca',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Modelo',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'No° Serie',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Certificado de Calibración',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Trazabilidad',1,0,'C',1,'',0);
   
  $contador1 = 0; 
 while ($row = mysqli_stmt_fetch($campana_extraccion_equipo1)) {
@@ -522,12 +702,13 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_equipo1)) {
   if ($contador1 > 2) {
     $pdf->AddPage('A4');
   }
-  $pdf->writeHTMLCell(30, 5, 15, '', $marca1, 1, 0, 0, true, 'C', true);
-  $pdf->writeHTMLCell(30, 5, 45, '', $modelo1, 1, 0, 0, true, 'C', true);
-  $pdf->writeHTMLCell(30, 5, 75, '', $n_serie1, 1, 0, 0, true, 'C', true);
-  $pdf->writeHTMLCell(30, 5, 105, '', $numero_certificado, 1, 0, 0, true, 'C', true);
-  $pdf->writeHTMLCell(30, 5, 135, '', $fecha_emision, 1, 0, 0, true, 'C', true);
-  $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true);
+  $pdf->Cell(30,5,$marca1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$modelo1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$n_serie1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$numero_certificado,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,'-',1,0,'C',1,'',0);
+
   $contador1++;
 }
 
@@ -643,23 +824,24 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_4)) {
 
  $i4++;   
 }
-$imagen1 = <<<EOD
-<style>
-.linea{
-  
 
+$imagenes_campana_2 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
+  WHERE id_asignado = ? AND tipo = 2");
+
+mysqli_stmt_bind_param($imagenes_campana_2, 'i', $id_asignado);
+mysqli_stmt_execute($imagenes_campana_2);
+mysqli_stmt_store_result($imagenes_campana_2);
+mysqli_stmt_bind_result($imagenes_campana_2, $tipo_2, $url_2_2, $nombre_2);
+mysqli_stmt_fetch($imagenes_campana_2);
+
+
+if ($url_2_2 == '') {
+    $urlimg_2 = '';    
+}else{
+     $urlimg_2 = '../../'.$url_2_2.$nombre_2; 
 }
-</style>
 
-<br><br>
-<table border="0">
-   <tr >
-        <td class="linea" align="center"><img src="../../imagenes/img_definidas/temp_y_hum.jpg"></td>  
-   </tr>
-</table>
-
-EOD;
-$pdf->writeHTML($imagen1, true, false, false, false, '');
+$pdf->writeHTMLCell(0, 5, 15, '', '<img src="'.$urlimg_2.'" width="250px;">', 0, 1, 0, true, 'C', true);
 
 $linea = <<<EOD
 
@@ -713,23 +895,24 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_4_1)) {
     $i5++;
 }
 
-$imagen1 = <<<EOD
-<style>
-.linea{
-  
 
+$imagenes_campana_3 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
+  WHERE id_asignado = ? AND tipo = 3");
+
+mysqli_stmt_bind_param($imagenes_campana_3, 'i', $id_asignado);
+mysqli_stmt_execute($imagenes_campana_3);
+mysqli_stmt_store_result($imagenes_campana_3);
+mysqli_stmt_bind_result($imagenes_campana_3, $tipo_3, $url_3_3, $nombre_3);
+mysqli_stmt_fetch($imagenes_campana_3);
+
+
+if ($url_3_3 == '') {
+    $urlimg_3 = '';    
+}else{
+     $urlimg_3 = '../../'.$url_3_3.$nombre_3; 
 }
-</style>
 
-<br><br>
-<table border="0">
-   <tr >
-        <td class="linea" align="center"><img src="../../imagenes/img_definidas/ruido.jpg"></td>  
-   </tr>
-</table>
-
-EOD;
-$pdf->writeHTML($imagen1, true, false, false, false, '');
+$pdf->writeHTMLCell(0, 5, 15, '', '<img src="'.$urlimg_3.'" width="250px;">', 0, 1, 0, true, 'C', true);
 
 $linea = <<<EOD
 
@@ -759,29 +942,28 @@ mysqli_stmt_execute($campana_extraccion_equipo2);
 mysqli_stmt_store_result($campana_extraccion_equipo2);
 mysqli_stmt_bind_result($campana_extraccion_equipo2, $marca2, $modelo2, $n_serie2,$numero_certificado2, $fecha_emision2);
 
-$pdf->writeHTMLCell(30, 8, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
-
-$e= 2;
-$contador2 = 0;
+$pdf->Cell(30,5,'Marca',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Modelo',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'No° Serie',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Certificado de Calibración',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Trazabilidad',1,0,'C',1,'',0);
+  
+ $contador1 = 0; 
 while ($row = mysqli_stmt_fetch($campana_extraccion_equipo2)) {
 
-  if ($contador2 > 15) {
+  if ($contador1 > 2) {
     $pdf->AddPage('A4');
   }
-    $pdf->writeHTMLCell(30, 5, 15, '', $marca2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 45, '', $modelo2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 75, '', $n_serie2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 105, '', $numero_certificado2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 135, '', $fecha_emision2, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true); 
-    $contador2++;
-}
+  $pdf->Cell(30,5,$marca1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$modelo1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$n_serie1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$numero_certificado,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,'-',1,0,'C',1,'',0);
 
+  $contador1++;
+}
 
 $pdf->AddPage('A4');
 /// pagina 4
@@ -900,16 +1082,30 @@ $pdf->Cell(60,5,'Cumple',1,0,'C',1,'',0);
 
 $pdf->ln(5);
 $i6 = 0;
-
+$contadorno = 0;
 while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_5)) { 
-
-    if ($i6 < 4) {
-
+    if ($i6 < 2) {
+      $pdf->Cell(60,5,$array_titulos5[$i6],1,0,'C',1,'',0);
+       $pdf->Cell(60,5,$resultado_1,1,0,'C',0,'',0);
+       $pdf->Cell(60,5,'NA',1,0,'C',0,'',0);
+       $pdf->ln(5);
+    }elseif($i6 < 4 && $i6 > 1) {
+        if ($resultado_1 == 'No') {
+           $cumple_1 = 'CUMPLE';
+        }else{
+           $cumple_1 = 'NO CUMPLE';
+           $contadorno++;
+        }
        $pdf->Cell(60,5,$array_titulos5[$i6],1,0,'C',1,'',0);
        $pdf->Cell(60,5,$resultado_1,1,0,'C',0,'',0);
        $pdf->Cell(60,5,$cumple_1,1,0,'C',0,'',0);
        $pdf->ln(5);
-    }elseif ($i6 > 1) {
+    }elseif($i6 > 1) {
+       if ($contadorno > 0) {
+         $cumple_1 = 'NO CUMPLE';
+       }else{
+        $cumple_1 = 'CUMPLE';
+       }
        $pdf->Cell(60,5,$array_titulos5[$i6],1,0,'C',1,'',0);
        $pdf->Cell(120,5,$cumple_1,1,0,'C',0,'',0);
        $pdf->ln(5);
@@ -944,10 +1140,6 @@ mysqli_stmt_execute($campana_extraccion_prueba_5_1);
 mysqli_stmt_store_result($campana_extraccion_prueba_5_1);
 mysqli_stmt_bind_result($campana_extraccion_prueba_5_1, $resultado_2, $cumple_2);
 
-/*$pdf->writeHTMLCell(60, 5, 15, '', 'Condiciones', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(60, 5, 75, '', 'Resultado', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(60, 5, 135, '', 'Cumple', 1, 1, 0, true, 'C', true);*/
-
 $pdf->Cell(60,5,'Condiciones',1,0,'C',1,'',0);
 $pdf->Cell(60,5,'Resultado',1,0,'C',1,'',0);
 $pdf->Cell(60,5,'Cumple',1,0,'C',1,'',0);
@@ -957,23 +1149,46 @@ $array_titulos6 = array('Ubicación de Prueba', 'Visualización de Flujo Reverso
 
 
 $i7 = 0;
+$contador2 = 0;
 while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_5_1)) {
 
-    if ($i7 < 3) {
+    if($i7 == 0){
+        $pdf->Cell(60,5,$array_titulos5[$i7],1,0,'C',1,'',0);
+        $pdf->Cell(60,5,$resultado_2,1,0,'C',0,'',0);
+        $pdf->Cell(60,5,'NA',1,0,'C',0,'',0);
+        $pdf->ln(5);
+    }elseif($i7 < 3 && $i7 >0) {
+        if ($resultado_2 == 'No') {
+          $cumple_2 = 'CUMPLE';
+        }else{
+          $cumple_2 = 'NO CUMPLE';
+          $contador2++;
+        }
         $pdf->Cell(60,5,$array_titulos5[$i7],1,0,'C',1,'',0);
         $pdf->Cell(60,5,$resultado_2,1,0,'C',0,'',0);
         $pdf->Cell(60,5,$cumple_2,1,0,'C',0,'',0);
         $pdf->ln(5);
         
-    }elseif($i7 > 2){
-
+    }elseif($i7 == 3){
+        if ($contador2 > 0) {
+          $cumple_2 = 'NO CUMPLE';
+        }else{
+          $cumple_2 = 'CUMPLE';
+        }
         $pdf->Cell(60,5,$array_titulos6[$i7],1,0,'C',1,'',0);
         $pdf->Cell(120,5,$cumple_2,1,0,'C',0,'',0);
         $pdf->ln(5);
 
-        }
+    }elseif($i7 == 4){
+        $pdf->Cell(60,5,$array_titulos6[$i7],1,0,'C',1,'',0);
+        $pdf->Cell(120,5,$cumple_1,1,0,'C',0,'',0);
+        $pdf->ln(5);
+
+    }
         $i7++;
 }
+
+//echo $resultado_2;
 
 $linea = <<<EOD
 <br><br>
@@ -1023,24 +1238,23 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_4_2)) {
 
 }
 
+$imagenes_campana_4 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
+  WHERE id_asignado = ? AND tipo = 4");
 
-$imagen1 = <<<EOD
-<style>
-.linea{
-  
+mysqli_stmt_bind_param($imagenes_campana_4, 'i', $id_asignado);
+mysqli_stmt_execute($imagenes_campana_4);
+mysqli_stmt_store_result($imagenes_campana_4);
+mysqli_stmt_bind_result($imagenes_campana_4, $tipo_3, $url_4_4, $nombre_4);
+mysqli_stmt_fetch($imagenes_campana_4);
 
+
+if ($url_4_4 == '') {
+    $urlimg_4 = '';    
+}else{
+     $urlimg_4 = '../../'.$url_4_4.$nombre_4; 
 }
-</style>
 
-<br><br>
-<table border="0">
-   <tr >
-        <td class="linea" align="center"><img src="../../imagenes/img_definidas/luz.jpg"></td>  
-   </tr>
-</table>
-
-EOD;
-$pdf->writeHTML($imagen1, true, false, false, false, '');
+$pdf->writeHTMLCell(0, 5, 15, '', '<img src="'.$urlimg_4.'" width="200px;">', 0, 1, 0, true, 'C', true);
 
 $linea = <<<EOD
 <br><br>
@@ -1070,27 +1284,27 @@ mysqli_stmt_store_result($campana_extraccion_equipo3);
 mysqli_stmt_bind_result($campana_extraccion_equipo3, $marca3, $modelo3, $n_serie3, $numero_certificado3, $fecha_emision3);
 
 
-$pdf->writeHTMLCell(30, 8, 15, '', 'Marca', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 45, '', 'Modelo', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 75, '', 'No° Serie', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 105, '', 'Certificado de Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 135, '', 'Última Calibración', 1, 0, 0, true, 'C', true);
-$pdf->writeHTMLCell(30, 8, 165, '', 'Trazabilidad', 1, 1, 0, true, 'C', true);
-
-$e= 1;
-$contador3 = 0;
+$pdf->Cell(30,5,'Marca',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Modelo',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'No° Serie',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Certificado de Calibración',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
+$pdf->Cell(30,5,'Trazabilidad',1,0,'C',1,'',0);
+  
+ $contador1 = 0; 
 while ($row = mysqli_stmt_fetch($campana_extraccion_equipo3)) {
 
-    if ($contador3 >7) {
-      $pdf->AddPage('A4');
-    }
-    $pdf->writeHTMLCell(30, 5, 15, '', $marca3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 45, '', $modelo3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 75, '', $n_serie3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 105, '', $numero_certificado3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 135, '', $fecha_emision3, 1, 0, 0, true, 'C', true);
-    $pdf->writeHTMLCell(30, 5, 165, '', '-', 1, 1, 0, true, 'C', true); 
-    $contador3++;
+  if ($contador1 > 2) {
+    $pdf->AddPage('A4');
+  }
+  $pdf->Cell(30,5,$marca1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$modelo1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$n_serie1,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$numero_certificado,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',1,'',0);
+  $pdf->Cell(30,5,'-',1,0,'C',1,'',0);
+
+  $contador1++;
 }
 
 
@@ -1099,52 +1313,54 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_equipo3)) {
 $pdf->AddPage('A4');
 /// pagina 5
 
-$imagenes_campana = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
+$imagenes_campana_5 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
   WHERE id_asignado = ? AND tipo = 5");
 
-mysqli_stmt_bind_param($imagenes_campana, 'i', $id_asignado);
-mysqli_stmt_execute($imagenes_campana);
-mysqli_stmt_store_result($imagenes_campana);
-mysqli_stmt_bind_result($imagenes_campana, $tipo, $url, $nombre);
-mysqli_stmt_fetch($imagenes_campana);
+mysqli_stmt_bind_param($imagenes_campana_5, 'i', $id_asignado);
+mysqli_stmt_execute($imagenes_campana_5);
+mysqli_stmt_store_result($imagenes_campana_5);
+mysqli_stmt_bind_result($imagenes_campana_5, $tipo, $url_5, $nombre_5);
+mysqli_stmt_fetch($imagenes_campana_5);
 
-$imagenes_campana2 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
+$imagenes_campana_6 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
   WHERE id_asignado = ? AND tipo = 6");
 
-mysqli_stmt_bind_param($imagenes_campana2, 'i', $id_asignado);
-mysqli_stmt_execute($imagenes_campana2);
-mysqli_stmt_store_result($imagenes_campana2);
-mysqli_stmt_bind_result($imagenes_campana2, $tipo2, $url2, $nombre2);
-mysqli_stmt_fetch($imagenes_campana2);
+mysqli_stmt_bind_param($imagenes_campana_6, 'i', $id_asignado);
+mysqli_stmt_execute($imagenes_campana_6);
+mysqli_stmt_store_result($imagenes_campana_6);
+mysqli_stmt_bind_result($imagenes_campana_6, $tipo2, $url6, $nombre6);
+mysqli_stmt_fetch($imagenes_campana_6);
 
-$imagenes_campana3 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
+$imagenes_campana_7 = mysqli_prepare($connect,"SELECT tipo, url, nombre FROM image_camara_extraccion
   WHERE id_asignado = ? AND tipo = 7");
 
-mysqli_stmt_bind_param($imagenes_campana3, 'i', $id_asignado);
-mysqli_stmt_execute($imagenes_campana3);
-mysqli_stmt_store_result($imagenes_campana3);
-mysqli_stmt_bind_result($imagenes_campana3, $tipo3, $url3, $nombre3);
-mysqli_stmt_fetch($imagenes_campana3);
+mysqli_stmt_bind_param($imagenes_campana_7, 'i', $id_asignado);
+mysqli_stmt_execute($imagenes_campana_7);
+mysqli_stmt_store_result($imagenes_campana_7);
+mysqli_stmt_bind_result($imagenes_campana_7, $tipo3, $url7, $nombre7);
+mysqli_stmt_fetch($imagenes_campana_7);
+
+//declaración
 
 
 
 
-if ($url == '') {
-    $url_1 = '../../../../images/no_imagen.png';    
+if ($url_5 == '') {
+    $url_1 = '';    
 }else{
-     $url_1 = '../../'.$url.'/'.$nombre; 
+     $url_1 = '../../'.$url_5.$nombre_5; 
 }
 
-if ($url2 == '') {
-    $url_2 = '../../../../images/no_imagen.png';    
+if ($url6 == '') {
+    $url_2 = '';    
 }else{
-     $url_2 = '../../'.$url2.'/'.$nombre; 
+     $url_2 = '../../'.$url6.'/'.$nombre6; 
 }
 
-if ($url3 == '') {
-    $url_3 = '../../../../images/no_imagen.png';    
+if ($url7 == '') {
+    $url_3 = '';    
 }else{
-     $url_3 = '../../'.$url3.'/'.$nombre; 
+     $url_3 = '../../'.$url7.'/'.$nombre7; 
 }
 
 $linea13 = <<<EOD
@@ -1152,8 +1368,8 @@ $linea13 = <<<EOD
 <style>
 .linea{
    height: 14 px;
-   color:#fff;
-   background-color: #1a53ff;
+   color:white;
+   background-color: rgb(0,79,135);
 }
 .imagen{
     height:200px
@@ -1165,6 +1381,7 @@ $linea13 = <<<EOD
         <td class="linea" align="center"><h2><b>Imagen Frontal</b></h2></td>  
         <td class="linea" align="center"><h2><b>Imagen de Placa</b></h2></td>  
    </tr>
+   <br>
    <tr>
         <td class="imagen" border="0"><img src="$url_1"></td>
         <td class="imagen" border="0"><img src="$url_2"></td>
@@ -1174,57 +1391,14 @@ $linea13 = <<<EOD
 <br>
 <table border="0">
     <tr>
-        <td class="linea" align="center"><b>Imagen Área de Trabajo</b></td> 
+        <td class="linea" align="center"><h2>Imagen Área de Trabajo</h2></td> 
     </tr>    
-    <tr>
-        <td style="width: 70px;"></td>
-        <td class="imagen" style="width: 498px;" border="0"><img src="$url_3"></td>
-        <td style="width: 70px;"></td>
-    </tr>
 </table>
 EOD;
 
-
-
 $pdf->writeHTML($linea13, true, false, false, false, '');
 
-
-
-
-
-
-
-
-
-
-
-//for($i = 0; $i <= 50; $i++){
-// Largo o Ancho // Alto   //  posición
-//    $pdf->writeHTMLCell(20, 5, 15, '', 'Descripción', 1, 0, 0, true, 'C', true);
-  //  $pdf->writeHTMLCell(20, 5, 35, '', 'Marca', 1, 0, 0, true, 'C', true);
-    //$pdf->writeHTMLCell(20, 5, 55, '', 'Modelo', 1, 0, 0, true, 'C', true);
-    //$pdf->writeHTMLCell(60, 5, 75, '', $array_titulos[$i], 1, 1, 0, true, 'C', true);
-
-    //if($i == 41){
-        //$pdf->AddPage('A4');
-      //  $pdf->writeHTMLCell(20, 5, 15, '', 'Descripción', 1, 0, 0, true, 'C', true);
-        //$pdf->writeHTMLCell(20, 5, 35, '', 'Marca', 1, 0, 0, true, 'C', true);
-        //$pdf->writeHTMLCell(20, 5, 55, '', 'Modelo', 1, 0, 0, true, 'C', true);
-        //$pdf->writeHTMLCell(60, 5, 75, '', 'dato', 1, 1, 0, true, 'C', true);
-    //}
-//}
-/*
-
-$pdf->writeHTMLCell(35, 5, 30, '', 'N° de identificación', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(55, 5, 65, '', 'Ubicación', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(75, 5, 120, '', 'N° de serie', 1, 0, 0, true, 'C', true);
-
-$pdf->writeHTMLCell(66, 5, 215, '', 'N° Certificado de Calibración', 1, 1, 0, true, 'C', true);*/
-
-
-
+$pdf->writeHTMLCell(0, 5, 15, '', '<img src="'.$url_3.'" width="300px;">', 0, 1, 0, true, 'C', true);
 
 $pdf->Output($nombre_informe.'.pdf', 'I');
 

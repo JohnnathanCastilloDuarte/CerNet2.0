@@ -24,7 +24,7 @@ include('../../config.ini.php');
     $presion_sonora_equipo = $_POST['presion_sonora_equipo'];
     $presion_sonora_sala = $_POST['presion_sonora_sala'];
     $nivel_iluminacion = $_POST['nivel_iluminacion'];
-    $prueba_humo = $_POST['#prueba_humo'];
+    $prueba_humo = $_POST['prueba_humo'];
 
 
     if ($fecha_fabricacion_campana == "" || $fecha_fabricacion_campana == NULL) {
@@ -45,8 +45,8 @@ include('../../config.ini.php');
 
     if($insertando_item){
 
-         $insertando_campana = mysqli_prepare($connect,"INSERT INTO item_campana(id_item, tipo, marca, modelo, serie, codigo, ubicacion_interna,area_interna, direccion, requisito_velocidad, fecha_fabricacion, tem_min, tem_max, hum_min, hum_max, presion_sonora_equipo, presion_sonora_sala, nivel_iluminacion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        mysqli_stmt_bind_param($insertando_campana, 'isssssssssssssssss', $id_item, $tipo_campana, $marca_campana, $modelo_campana, $serie_campana, $codigo_interno_campana, $ubicacion_campana, $area_interna, $direccion_campana, $velocidad_aire_campana, $fecha_fabricacion,$tem_min,$tem_max,$hum_min,$hum_max,$presion_sonora_equipo,$presion_sonora_sala,$nivel_iluminacion);
+         $insertando_campana = mysqli_prepare($connect,"INSERT INTO item_campana(id_item, tipo, marca, modelo, serie, codigo, ubicacion_interna,area_interna, direccion, requisito_velocidad, fecha_fabricacion, tem_min, tem_max, hum_min, hum_max, presion_sonora_equipo, presion_sonora_sala, nivel_iluminacion, prueba_humo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        mysqli_stmt_bind_param($insertando_campana, 'issssssssssssssssss', $id_item, $tipo_campana, $marca_campana, $modelo_campana, $serie_campana, $codigo_interno_campana, $ubicacion_campana, $area_interna, $direccion_campana, $velocidad_aire_campana, $fecha_fabricacion,$tem_min,$tem_max,$hum_min,$hum_max,$presion_sonora_equipo,$presion_sonora_sala,$nivel_iluminacion,$prueba_humo);
         mysqli_stmt_execute($insertando_campana);
         
        // echo "INSERT INTO item_campana(id_item, tipo, marca, modelo, serie, codigo, ubicacion_interna,area_interna, direccion, requisito_velocidad, fecha_fabricacion) VALUES ($id_item, $tipo_campana, $marca_campana, $modelo_campana, $serie_campana, $codigo_interno_campana, $ubicacion_campana, $area_interna, $direccion_campana, $velocidad_aire_campana, $fecha_fabricacion)";
