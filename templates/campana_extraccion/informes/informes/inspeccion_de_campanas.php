@@ -3,7 +3,7 @@ require('../../../../recursos/itemencabezadopdf.php');
 require('../../../../config.ini.php');
 
 
-$pdf->AddPage('A4');
+
 
 
 $clave = $_GET['clave'];
@@ -46,6 +46,10 @@ mysqli_stmt_execute($inspeccion_visual);
 mysqli_stmt_store_result($inspeccion_visual);
 mysqli_stmt_bind_result($inspeccion_visual, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_registro_informe,$fecha_medicion);
 mysqli_stmt_fetch($inspeccion_visual);
+
+if($conclusion == 'Pre-Informe'){
+  $tipo_info = 'Pre-Informe';
+} 
 
 $fecha_medicion = date("d-m-Y", strtotime($fecha_medicion));
 
@@ -106,6 +110,7 @@ $variable1 = "";
   FROM campana_extraccion_inspeccion
   WHERE c.id_asignado = $id_asignado";
 */
+  $pdf->AddPage('A4');
 $linea = <<<EOD
 
 <style>
@@ -695,6 +700,7 @@ $pdf->Cell(30,5,'No° Serie',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Certificado de Calibración',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Trazabilidad',1,0,'C',1,'',0);
+$pdf->ln(5);
   
  $contador1 = 0; 
 while ($row = mysqli_stmt_fetch($campana_extraccion_equipo1)) {
@@ -702,13 +708,13 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_equipo1)) {
   if ($contador1 > 2) {
     $pdf->AddPage('A4');
   }
-  $pdf->Cell(30,5,$marca1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$modelo1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$n_serie1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$numero_certificado,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,'-',1,0,'C',1,'',0);
-
+  $pdf->Cell(30,5,$marca1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$modelo1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$n_serie1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$numero_certificado,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,'-',1,0,'C',0,'',0);
+  $pdf->ln(5);
   $contador1++;
 }
 
@@ -816,10 +822,10 @@ $i4 = 0;
 while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_4)) {
 
     $pdf->Cell(36,5,$array_titulos3[$i4],1,0,'C',1,'',0);
-    $pdf->Cell(36,5,$punto_1,1,0,'C',0,'',0);
-    $pdf->Cell(36,5,$punto_2,1,0,'C',0,'',0);
-    $pdf->Cell(36,5,$punto_3,1,0,'C',0,'',0);
-    $pdf->Cell(36,5,$punto_promedio,1,0,'C',0,'',0);  
+    $pdf->Cell(36,5,number_format($punto_1,2),1,0,'C',0,'',0);
+    $pdf->Cell(36,5,number_format($punto_2,2),1,0,'C',0,'',0);
+    $pdf->Cell(36,5,number_format($punto_3,2),1,0,'C',0,'',0);
+    $pdf->Cell(36,5,number_format($punto_promedio,2),1,0,'C',0,'',0);  
     $pdf->ln(5); 
 
  $i4++;   
@@ -885,10 +891,10 @@ $i5 = 0;
 while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_4_1)) {
 
     $pdf->Cell(36,5,$array_titulos4[$i5],1,0,'C',1,'',0);
-    $pdf->Cell(36,5,$punto_1,1,0,'C',0,'',0);
-    $pdf->Cell(36,5,$punto_2,1,0,'C',0,'',0);
-    $pdf->Cell(36,5,$punto_3,1,0,'C',0,'',0);
-    $pdf->Cell(36,5,$punto_promedio,1,0,'C',0,'',0);
+    $pdf->Cell(36,5,number_format($punto_1,2),1,0,'C',0,'',0);
+    $pdf->Cell(36,5,number_format($punto_2,2),1,0,'C',0,'',0);
+    $pdf->Cell(36,5,number_format($punto_3,2),1,0,'C',0,'',0);
+    $pdf->Cell(36,5,number_format($punto_promedio,2),1,0,'C',0,'',0);
     $pdf->ln(5);
 
 
@@ -948,6 +954,7 @@ $pdf->Cell(30,5,'No° Serie',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Certificado de Calibración',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Trazabilidad',1,0,'C',1,'',0);
+$pdf->ln(5);
   
  $contador1 = 0; 
 while ($row = mysqli_stmt_fetch($campana_extraccion_equipo2)) {
@@ -955,13 +962,13 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_equipo2)) {
   if ($contador1 > 2) {
     $pdf->AddPage('A4');
   }
-  $pdf->Cell(30,5,$marca1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$modelo1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$n_serie1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$numero_certificado,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,'-',1,0,'C',1,'',0);
-
+  $pdf->Cell(30,5,$marca1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$modelo1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$n_serie1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$numero_certificado,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,'-',1,0,'C',0,'',0);
+  $pdf->ln(5);
   $contador1++;
 }
 
@@ -1228,12 +1235,12 @@ mysqli_stmt_bind_result($campana_extraccion_prueba_4_2, $punto_1_2, $punto_2_2, 
 
 while ($row = mysqli_stmt_fetch($campana_extraccion_prueba_4_2)) {
  
- $pdf->Cell(25,5,$punto_1_2,1,0,'C',0,'',0);
- $pdf->Cell(25,5,$punto_2_2,1,0,'C',0,'',0);
- $pdf->Cell(25,5,$punto_3_2,1,0,'C',0,'',0);
- $pdf->Cell(25,5,$punto_4_2,1,0,'C',0,'',0);
- $pdf->Cell(25,5,$punto_5_2,1,0,'C',0,'',0);
- $pdf->Cell(28,5,$punto_promedio_2,1,0,'C',0,'',0);
+ $pdf->Cell(25,5,number_format($punto_1_2,2),1,0,'C',0,'',0);
+ $pdf->Cell(25,5,number_format($punto_2_2,2),1,0,'C',0,'',0);
+ $pdf->Cell(25,5,number_format($punto_3_2,2),1,0,'C',0,'',0);
+ $pdf->Cell(25,5,number_format($punto_4_2,2),1,0,'C',0,'',0);
+ $pdf->Cell(25,5,number_format($punto_5_2,2),1,0,'C',0,'',0);
+ $pdf->Cell(28,5,number_format($punto_promedio_2,2),1,0,'C',0,'',0);
  $pdf->ln(5);
 
 }
@@ -1290,6 +1297,7 @@ $pdf->Cell(30,5,'No° Serie',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Certificado de Calibración',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
 $pdf->Cell(30,5,'Trazabilidad',1,0,'C',1,'',0);
+$pdf->ln(5);
   
  $contador1 = 0; 
 while ($row = mysqli_stmt_fetch($campana_extraccion_equipo3)) {
@@ -1297,13 +1305,13 @@ while ($row = mysqli_stmt_fetch($campana_extraccion_equipo3)) {
   if ($contador1 > 2) {
     $pdf->AddPage('A4');
   }
-  $pdf->Cell(30,5,$marca1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$modelo1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$n_serie1,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$numero_certificado,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',1,'',0);
-  $pdf->Cell(30,5,'-',1,0,'C',1,'',0);
-
+  $pdf->Cell(30,5,$marca1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$modelo1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$n_serie1,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$numero_certificado,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,$fecha_medicion,1,0,'C',0,'',0);
+  $pdf->Cell(30,5,'-',1,0,'C',0,'',0);
+  $pdf->ln(5);
   $contador1++;
 }
 
