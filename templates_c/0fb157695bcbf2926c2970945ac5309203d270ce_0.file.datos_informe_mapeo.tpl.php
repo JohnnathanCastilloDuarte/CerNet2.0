@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-31 06:44:01
+/* Smarty version 3.1.34-dev-7, created on 2022-06-02 17:20:01
   from 'C:\xampp\htdocs\CerNet2.0\templates\mapeos_generales\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62959d11bb4338_55269060',
+  'unifunc' => 'content_6298d52101d9c1_87743707',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0fb157695bcbf2926c2970945ac5309203d270ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\mapeos_generales\\datos_informe_mapeo.tpl',
-      1 => 1653972189,
+      1 => 1654101962,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62959d11bb4338_55269060 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6298d52101d9c1_87743707 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
   <li class="nav-item">
     <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#creacion">
 			<span>Creación</span>
-		</a>
+	</a>
   </li>
   <li class="nav-item" id="asignacion_mapeo_general">
     <a role="tab" class="nav-link" id="asignacion" data-toggle="tab" href="#asignacion_general">

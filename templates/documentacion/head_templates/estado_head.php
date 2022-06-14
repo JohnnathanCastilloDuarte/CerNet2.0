@@ -16,6 +16,7 @@ $filename = "";
 $fecha = $_POST['fecha'];
 $hora = $_POST['hora_oficial'];
 $fecha_firma = $fecha." ".$hora;
+$data_img_firma = $_POST['dataURL'];
 
 
 
@@ -80,8 +81,8 @@ if($valor == 'Revisado'){
 }
 
 
-$update = mysqli_prepare($connect,"UPDATE participante_documentacion SET tipo = ?, qr = ?, fecha_firma = ? WHERE id = ?");
-mysqli_stmt_bind_param($update, 'issi', $valor_insertar, $filename, $fecha_firma, $id_participante);
+$update = mysqli_prepare($connect,"UPDATE participante_documentacion SET tipo = ?, qr = ?, fecha_firma = ?, base_64_firma = ? WHERE id = ?");
+mysqli_stmt_bind_param($update, 'isssi', $valor_insertar, $filename, $fecha_firma, $data_img_firma, $id_participante);
 mysqli_stmt_execute($update);
 
 if($update){

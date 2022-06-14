@@ -13,6 +13,7 @@
   <meta name="msapplication-tap-highlight" content="no">
   <link href="design/main.css" rel="stylesheet">
 	<link href="design/assets/wow/animate.min.css" rel="stylesheet">
+  <link href="design/fonts.css" rel="stylesheet">
 	<script type="text/javascript" src="design/Datatables/jquery.min.js"></script>
    <script type="text/javascript" src="design/js/pdf.js"></script>
   <script type="text/javascript" src="design/js/pdf.worker.js"></script>

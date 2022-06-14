@@ -69,7 +69,7 @@ $modulo = array();
 		);
 	}
 $smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
-$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12,13,14));
+$smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15));
 
 
 $aprobaciones = array();
@@ -331,6 +331,8 @@ else
               include("templates/URS/gestionar_informe.php");
             }else if ($_GET['page'] == 14) {
               include("templates/aire_comprimido/gestionar_informe.php");
+            }else if ($_GET['page'] == 15) {
+              include("templates/biblioteca_informes/inicio_biblioteca.php");
             }
           }
        break;

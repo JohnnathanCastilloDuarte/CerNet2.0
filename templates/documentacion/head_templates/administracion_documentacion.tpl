@@ -36,6 +36,57 @@
 </div>
 <br>
 
+
+<div class="row" id="card_para_firmar">
+  <div class="col-sm-4">
+    <label>Nombre para firma</label>
+    <input type="text" name="" id="nombre_firma_usuario" class="form-control" placeholder="Ingrese su nombre">
+  </div>
+  <div class="col-sm-4">
+    <label>Tipo letra</label>
+    <select name="" id="change_letra" class="form-control">
+      <option>Seleccione...</option>
+      <option value="roman">Roman</option>
+      <option value="monospace">monospace</option>
+      <option value="arial">arial</option>
+      <option value="arial narrow">arial narrow</option>
+      <option value="serif">serif</option>
+      <option value="tahoma">tahoma</option>
+      <option value="verdana">verdana</option>
+      <option value="cursive">cursive</option>
+      <option value="Austria">Austria</option>
+    </select>
+  </div>
+  <div class="col-sm-4" style="text-align: center;">
+    <label for="">Resultado</label>
+    <div id="createImg" style="background: white;text-align: center; border: none; font-size: 30px;width: auto;height: auto;" class="form-control">
+    </div>
+
+    <!--Campos para realizar la aprobación del documento-->
+    <input type="hidden" id="base_64_img_firma">
+    <input type="hidden" id="campo_1">
+    <input type="hidden" id="campo_2">
+    <input type="hidden" id="campo_3">
+    <input type="hidden" id="campo_4">
+    <input type="hidden" id="campo_5">
+    <input type="hidden" id="campo_6">
+    <br>
+    <button class="btn btn-success" id="btn_seleccionar_firma">Seleccionar</button>
+    <button class="btn btn-danger" id="btn_remover_firma">X</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div id="img" style="display:none;">
+      <img src="" id="newimg" class="top" />
+    </div>
+  </div>
+</div>
+
+
+<br>
 <div class="row" id="historial_aprobacion">
   <div class="col-sm-12">
     <div class="card">
@@ -103,4 +154,5 @@
     </div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">    </script>
 <script type="text/javascript" src="design/js/funcion_documentacion_head.js"></script>

@@ -894,8 +894,8 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
 
     $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
   }  
-    
-    if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+    	
+    if($humeratura_max == 'No Aplica' && $humeratura_min == 'No Aplica'){
       $info_percent_over ='0.00';
       $info_over = '0.00';
     }

@@ -280,6 +280,15 @@
                 <a href="index.php?module={$modulo[6]}&page={$page[12]}"><i class="metismenu-icon pe-7s-news-paper"></i>Calificaciones</a>
             </li>
 
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Biblioteca informes</strong>
+                <hr>
+            </li>
+            <li>
+                <a href="index.php?module={$modulo[6]}&page={$page[14]}"><i class="metismenu-icon pe-7s-news-paper"></i>Biblioteca</a>
+            </li>
+
 
         </ul>
     </li>

@@ -11,7 +11,7 @@ $data = substr($data, 70, 100);
 
 // consultar especificaciones del item + especificaciones.
 $consultando_informacion_item = mysqli_prepare($connect,"SELECT B.id_item, B.nombre, B.descripcion, B.codigo_interno, B.direccion, B.estado, 
- C.nombre, d.nombre, B.ubicacion_interna FROM archivos_documentacion as A, item as B, empresa as C, tipo_item as D WHERE A.nombre_archivo = B.id_item 
+C.nombre, d.nombre, B.ubicacion_interna FROM archivos_documentacion as A, item as B, empresa as C, tipo_item as D WHERE A.nombre_archivo = B.id_item 
 AND B.id_empresa = C.id_empresa  AND B.id_tipo = D.id_item AND A.id_documentacion = ?");
 mysqli_stmt_bind_param($consultando_informacion_item, 'i', $data);
 mysqli_stmt_execute($consultando_informacion_item);
@@ -256,6 +256,64 @@ switch ($tipo_item) {
    default:
       # code...
       break;
+}
+
+
+$pdf->AddPage('A4');
+
+$linea = <<<EOD
+   <style>
+   .linea{
+      height: 14px;
+      color:white;
+      background-color: #1a53ff;
+   }
+   </style>
+   <br><br><br><br>
+   <table >
+      <tr border="1">
+         <td class="linea" align="center"><h2><b>Historico de aprobación</b></h2></td>
+      </tr>
+   </table>
+EOD;  
+$pdf->writeHTML($linea, true, false, false, false, '');
+
+
+$pdf->writeHTMLCell(60, 4, 17, '', '<strong>PARTICIPANTE</strong>' ,0,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(60, 4, 77, '', '<strong>EMPRESA</strong>' ,0,0, 0, true, 'C', true);
+$pdf->writeHTMLCell(58, 4, 137, '', '<strong>FECHA</strong>' ,0,1, 0, true, 'C', true);
+
+
+$consultar_participantes = mysqli_prepare($connect,"SELECT a.nombre, a.apellido, b.nombre, c.fecha_firma, d.nombre, c.base_64_firma FROM
+ persona as a, empresa as b, participante_documentacion as c, cargo as d WHERE a.id_usuario = c.id_persona AND c.id_documentacion = ?
+  AND a.id_empresa = b.id_empresa AND a.id_cargo = d.id_cargo");
+
+
+mysqli_stmt_bind_param($consultar_participantes, 'i', $data);
+mysqli_stmt_execute($consultar_participantes);
+mysqli_stmt_store_result($consultar_participantes);
+mysqli_stmt_bind_result($consultar_participantes, $nombres, $apellidos, $empresa_firmantes, $fecha_firma, $cargo, $base_64_firma);
+
+while($row = mysqli_stmt_fetch($consultar_participantes)){
+   
+  
+
+   $imageContent = file_get_contents($base_64_firma);
+   $path = tempnam(sys_get_temp_dir(), 'prefix');
+   file_put_contents ($path, $imageContent);
+   
+   if($path!=""){
+      $img '<h2>Si firma</h2>';
+   }
+
+   $img = '<img src="' . $path . '" >';
+
+
+   $pdf->writeHTMLCell(60, 11, 17, '', '<br>'.$nombres.' '.$apellidos.' - '.$cargo ,0,0, 0, true, 'C', true);
+   $pdf->writeHTMLCell(60,11, 77, '', $empresa_firmantes ,0,0,0, true, 'C', true);
+   $pdf->writeHTMLCell(58,11, 137, '', $fecha_firma ,0,1,0, true, 'C', true);
+   $pdf->writeHTMLCell(180, 6, 17, '', '<br><img src="'.$path.'" border="3" height="50px" width="auto" align="top">',0,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(180, 6, 17, '', '<hr>',0,1, 0, true, 'C', true);
 }
 
 $pdf->Output($nombre.'.pdf', 'I');

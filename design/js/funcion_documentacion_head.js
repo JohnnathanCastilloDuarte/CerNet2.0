@@ -1,6 +1,7 @@
 var id_valida = $("#id_valida").val();
 $("#row_rechazos").hide();
 $("#historial_aprobacion").hide();
+$("#card_para_firmar").hide();
 
 //////////////////////// FUNCIONES CREADAS PARA APROBACIONES HEAD/////////////////////////
 listar_documentacion_head(0);
@@ -350,7 +351,17 @@ $(document).on('change','#aprobacion_head',function(){
 
     let hora_oficial = hora+":"+minuto+":"+segundo;
 
-  
+
+    $("#campo_1").val(id);
+    $("#campo_2").val(valor);
+    $("#campo_3").val(id_participante);
+    $("#campo_4").val(informa_documentacion);
+    $("#campo_5").val(fecha);
+    $("#campo_6").val(hora_oficial);
+
+    $("#card_para_firmar").show();
+
+    /*
     const datos = {
       id,
       valor,
@@ -444,7 +455,7 @@ $(document).on('change','#aprobacion_head',function(){
     }else{
       $("#row_rechazos").show();
       traer_rechazos();
-    }
+    }*/
  
 });
 
@@ -744,4 +755,145 @@ $(document).on('click', '#descarga_datos_informe', function(){
     }
   })
  
+})
+
+
+
+//////// manipular el contenido de la firma
+$("#nombre_firma_usuario").keyup(function(){
+
+  let valor = $(this).val();
+
+  $("#createImg").html(valor);
+});
+
+
+$("#change_letra").change(function(){
+
+  let valor = $(this).val();
+  $("#createImg").css("font-family",valor);
+});
+
+
+$("#btn_seleccionar_firma").click(function() {
+  
+  html2canvas($("#createImg"), {
+      onrendered: function(canvas) {
+          var imgsrc = canvas.toDataURL("image/png");
+          $("#newimg").attr('src', imgsrc);
+          $("#img").show();
+          var dataURL = canvas.toDataURL();
+          $("#base_64_img_firma").val(dataURL);
+
+          
+          let id = $("#campo_1").val();
+          let valor = $("#campo_2").val();
+          let id_participante = $("#campo_3").val();
+          let informa_documentacion = $("#campo_4").val();
+          let fecha = $("#campo_5").val();
+          let hora_oficial = $("#campo_6").val();
+          let id_documentacion_d = id;
+
+          const datos = {
+            id,
+            valor,
+            id_valida,
+            id_participante,
+            fecha,
+            hora_oficial,
+            dataURL
+          }
+
+          const datos_apro = {
+            informa_documentacion,
+            id_documentacion_d,
+            id_valida
+      
+          }
+
+          if(valor != "error" && valor != 0){
+            $("#row_rechazos").hide();
+            Swal.fire({
+              title:'Mensaje',
+              text:'Estas seguro que configurar como '+valor+' ?',
+              icon:'question',
+              showConfirmButton: true,
+              showCancelButton: true,
+              confirmButtonText: 'Si!',
+              cancelButtonText: 'No!'
+            }).then((x)=>{
+              if(x.value){
+                $.ajax({
+                  type:'POST',
+                  url:'templates/documentacion/head_templates/estado_head.php',
+                  data:datos,
+                  success:function(response){
+                    console.log(response);
+                    
+                    if(response == "Si"){
+                      Swal.fire({
+                        title:'Mensaje',
+                        text:'Se ha modificado correctamente el estado de la documentación',
+                        icon:'success',
+                        timer:1500
+                      });
+                    }else if(response == "Si correo"){
+                      Swal.fire({
+                        title:'Mensaje',
+                        text:`Se ha modificado correctamente el estado de la documentación,
+                        se ha enviado un correo para firmar la aprobación del documento`,
+                        icon:'success',
+                        timer:2100
+                      });
+                      $.ajax({
+                        type:'POST',
+                        url:'templates/documentacion/enviar_correo.php',
+                        data:datos_apro,
+                        success:function(response){
+                          console.log(response);
+                        }
+                      });
+                    }else if(response == "Si documentador"){
+                     let tipo = "documentador";
+                     const datos = {
+                       id,
+                       valor,
+                       id_valida,
+                       tipo
+                     }
+                     $.ajax({
+                       type:'POST',
+                       url:'templates/documentacion/enviar_correo.php',
+                       data:datos,
+                       success:function(response){
+                        
+                       }
+                     });
+                   }else if(response == "Si documentacion"){
+                    Swal.fire({
+                      title:'Mensaje',
+                      text:`Se ha modificado correctamente el estado de la documentación,
+                      Se debe cargar la documentación generada por el departamento documental`,
+                      icon:'success',
+                      timer:2100
+                    });
+                   }
+                    listar_documentacion_head(0);
+                  }
+                })
+              }
+            });
+          }else{
+            $("#row_rechazos").show();
+            traer_rechazos();
+          }
+
+
+          
+      }
+  });
+});
+
+$("#btn_remover_firma").click(function(){
+  $("#img").hide();
 })
