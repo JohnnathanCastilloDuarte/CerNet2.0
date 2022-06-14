@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-sm-12">
    
-    <div class="card">
+    <div class="card" id="listado">
       <div class="card-header">
         <h5>
           Listado de equipos
@@ -32,22 +32,23 @@
             <td>{$equipo.nombre_equipo}</td>
             <td>{$equipo.tipo_medicion}</td>
             <td>
-              {$equipo.fecha_vencimiento}
-              <input type="date" name="" id="fecha_vencimiento_gestor{$equipo.id_equipo_cercal}" class="form-control" value="{$equipo.fecha_vencimiento}">
+              <span id="fecha_vencimiento{$equipo.id_equipo_cercal}">{$equipo.fecha_vencimiento}</span>
+              <input type="date" name="" id="fecha_vencimiento_gestor{$equipo.id_equipo_cercal}" class="form-control" value="{$equipo.fecha_vencimiento}" style="display: none">
             </td>
             <td>{$equipo.pais}</td>
             <td><span class="text-{$equipo.color}">{$equipo.diferencia}</span></td>
-            <td>{$equipo.numero_certificado}
-              <input type="text" name="" id="numero_certificado_gestor{$equipo.id_equipo_cercal}" class="form-control" value="{$equipo.numero_certificado}"></td>
+            <td>
+              <span id="numero_certificado{$equipo.id_equipo_cercal}">{$equipo.numero_certificado}</span>
+              <input type="text" name="" id="numero_certificado_gestor{$equipo.id_equipo_cercal}" class="form-control" value="{$equipo.numero_certificado}" style="display: none"></td>
             <td>
               <a id="btn_editar_item" href="index.php?module={$modulo[10]}&page={$page[0]}&equipo={$equipo.id_equipo_cercal}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info btn-sm"><i class="lnr-pencil btn-icon-wrapper"></i></a>
            </td>
            <td>
-               <a data-id="{$equipo.id_item}" data-tipoitem="{$equipo.id_tipo}" id="btn_eliminar_item" data-nombre="{$equipo.nombre_item}"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning btn-sm" ><i class="lnr-cross btn-icon-wrapper pe-7s-news-paper"></i></a>
+               <a data-id="{$equipo.id_equipo_cercal}" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning btn-sm" id="btn_agregar_certificado"><i class="lnr-cross btn-icon-wrapper pe-7s-news-paper"></i></a>
 
-               <a data-id="{$equipo.id_equipo_cercal}" id="btn_nuevo_certificado" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm" ><i class="lnr-cross btn-icon-wrapper pe-7s-check"></i></a>
+               <!-- <a data-id="{$equipo.id_equipo_cercal}" style="display: none;" id="btn_nuevo_certificado" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm" ><i class="lnr-cross btn-icon-wrapper pe-7s-check"></i></a>
 
-                <a data-id="{$equipo.id_equipo_cercal}" id="btn_cancelar_update_certificado"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger btn-sm" ><i class="lnr-cross btn-icon-wrapper"></i></a> 
+                <a data-id="{$equipo.id_equipo_cercal}" style="display: none;" id="btn_cancelar_update_certificado"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger btn-sm" ><i class="lnr-cross btn-icon-wrapper"></i></a>  -->
            </td>
            <td>    
               <a data-id="{$equipo.id_item}" data-tipoitem="{$equipo.id_tipo}" id="btn_eliminar_item" data-nombre="{$equipo.nombre_item}"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger btn-sm" ><i class="lnr-cross btn-icon-wrapper"></i></a>
@@ -58,6 +59,34 @@
         
     </div>
 
+   </div>
+
+   <!-- ARREGLAR -->
+   <div class="card" id="addcertificado">
+      <div class="card-header">
+        <div class="row">
+            <h4>Agregar Certificado</h4>
+            <span><button>X</button></span>
+        </div>
+      </div>
+      <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+                <label>Fecha vencimiento</label>
+                <input type="" name="" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <label>Numero certificado</label>
+                <input type="" name="" class="form-control">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-12" style="text-align: center;">
+                <button class="btn btn-success">Agregar Certificado</button>
+            </div>
+          </div>
+      </div>
    </div>
  </div>
 </div> 

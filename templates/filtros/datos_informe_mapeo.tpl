@@ -116,7 +116,7 @@
           <div class="row col-sm-12">
             <div class="col-sm-6">
               <label>Nombre informe <span class="text-danger"> *</span></label>
-              <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre del informe">
+              <input type="text" name="nombre_informe" id="nombre_informe" class="form-control" placeholder="Nombre del informe" readonly="">
             </div>
             <div class="col-sm-6">
               <label>Fecha de medición<span class="text-danger"> *</span></label>

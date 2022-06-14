@@ -1,9 +1,20 @@
+$("#addcertificado").hide();
+ 
 
- $(document).on('click','#btn_cancelar_update_certificado',function(){
+$(document).on('click','#btn_agregar_certificado',function(){
 
-    let id_equipo = $(this).attr('data-id'  );
+    let id_equipo = $(this).attr('data-id');
 
-    $("#fecha_vencimiento_gestor"+id_equipo).hide();
+    $("#addcertificado").show();
+    $("#listado").hide();
+    /*$("#fecha_vencimiento_gestor"+id_equipo).show();
+    $("#numero_certificado_gestor"+id_equipo).show();
+    $("#fecha_vencimiento"+id_equipo).hide();
+    $("#numero_certificado"+id_equipo).hide(); 
+
+    $("#btn_cancelar_update_certificado").show();  
+    $("#btn_nuevo_certificado").show();    
+*/
     /*$.ajax({
         type:'POST',
         data:{id_equipo, movimiento},
@@ -22,14 +33,16 @@
         }
     })*/
     
-
   });
 
-  $(document).on('click','#btn_nuevo_certificado',function(){
+  $(document).on('click','#btn_cancelar_update_certificado',function(){
 
     let id_equipo = $(this).attr('data-id'  );
 
-    $("#fecha_vencimiento_gestor"+id_equipo).show();
+    $("#fecha_vencimiento_gestor"+id_equipo).hide();
+    $("#numero_certificado_gestor"+id_equipo).hide();
+    $("#fecha_vencimiento"+id_equipo).show();
+    $("#numero_certificado"+id_equipo).show();  
     /*$.ajax({
         type:'POST',
         data:{id_equipo, movimiento},

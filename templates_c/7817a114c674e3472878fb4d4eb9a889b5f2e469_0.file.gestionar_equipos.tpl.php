@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-14 18:56:13
+/* Smarty version 3.1.34-dev-7, created on 2022-06-14 20:45:27
   from 'C:\xampp\htdocs\CerNet2.0\templates\equipos_cercal\gestionar_equipos.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62a8bdad53d4a1_75815293',
+  'unifunc' => 'content_62a8d747e37d90_35023846',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7817a114c674e3472878fb4d4eb9a889b5f2e469' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\equipos_cercal\\gestionar_equipos.tpl',
-      1 => 1655225760,
+      1 => 1655232326,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62a8bdad53d4a1_75815293 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a8d747e37d90_35023846 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
    
-    <div class="card">
+    <div class="card" id="listado">
       <div class="card-header">
         <h5>
           Listado de equipos
@@ -63,22 +63,25 @@ foreach ($_from as $_smarty_tpl->tpl_vars['equipo']->value) {
             <td><?php echo $_smarty_tpl->tpl_vars['equipo']->value['tipo_medicion'];?>
 </td>
             <td>
-              <?php echo $_smarty_tpl->tpl_vars['equipo']->value['fecha_vencimiento'];?>
-
+              <span id="fecha_vencimiento<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_equipo_cercal'];?>
+"><?php echo $_smarty_tpl->tpl_vars['equipo']->value['fecha_vencimiento'];?>
+</span>
               <input type="date" name="" id="fecha_vencimiento_gestor<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_equipo_cercal'];?>
 " class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['fecha_vencimiento'];?>
-">
+" style="display: none">
             </td>
             <td><?php echo $_smarty_tpl->tpl_vars['equipo']->value['pais'];?>
 </td>
             <td><span class="text-<?php echo $_smarty_tpl->tpl_vars['equipo']->value['color'];?>
 "><?php echo $_smarty_tpl->tpl_vars['equipo']->value['diferencia'];?>
 </span></td>
-            <td><?php echo $_smarty_tpl->tpl_vars['equipo']->value['numero_certificado'];?>
-
+            <td>
+              <span id="numero_certificado<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_equipo_cercal'];?>
+"><?php echo $_smarty_tpl->tpl_vars['equipo']->value['numero_certificado'];?>
+</span>
               <input type="text" name="" id="numero_certificado_gestor<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_equipo_cercal'];?>
 " class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['numero_certificado'];?>
-"></td>
+" style="display: none"></td>
             <td>
               <a id="btn_editar_item" href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[10];?>
 &page=<?php echo $_smarty_tpl->tpl_vars['page']->value[0];?>
@@ -86,16 +89,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['equipo']->value) {
 " class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-info btn-sm"><i class="lnr-pencil btn-icon-wrapper"></i></a>
            </td>
            <td>
-               <a data-id="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_item'];?>
-" data-tipoitem="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_tipo'];?>
-" id="btn_eliminar_item" data-nombre="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['nombre_item'];?>
-"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning btn-sm" ><i class="lnr-cross btn-icon-wrapper pe-7s-news-paper"></i></a>
-
                <a data-id="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_equipo_cercal'];?>
-" id="btn_nuevo_certificado" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm" ><i class="lnr-cross btn-icon-wrapper pe-7s-check"></i></a>
+" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-warning btn-sm" id="btn_agregar_certificado"><i class="lnr-cross btn-icon-wrapper pe-7s-news-paper"></i></a>
+
+               <!-- <a data-id="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_equipo_cercal'];?>
+" style="display: none;" id="btn_nuevo_certificado" class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-success btn-sm" ><i class="lnr-cross btn-icon-wrapper pe-7s-check"></i></a>
 
                 <a data-id="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_equipo_cercal'];?>
-" id="btn_cancelar_update_certificado"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger btn-sm" ><i class="lnr-cross btn-icon-wrapper"></i></a> 
+" style="display: none;" id="btn_cancelar_update_certificado"  class="mb-2 mr-2 btn-icon btn-icon-only btn-shadow btn-outline-2x btn btn-outline-danger btn-sm" ><i class="lnr-cross btn-icon-wrapper"></i></a>  -->
            </td>
            <td>    
               <a data-id="<?php echo $_smarty_tpl->tpl_vars['equipo']->value['id_item'];?>
@@ -112,6 +113,34 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         
     </div>
 
+   </div>
+
+   <!-- ARREGLAR -->
+   <div class="card" id="addcertificado">
+      <div class="card-header">
+        <div class="row">
+            <h4>Agregar Certificado</h4>
+            <span><button>X</button></span>
+        </div>
+      </div>
+      <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+                <label>Fecha vencimiento</label>
+                <input type="" name="" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <label>Numero certificado</label>
+                <input type="" name="" class="form-control">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-12" style="text-align: center;">
+                <button class="btn btn-success">Agregar Certificado</button>
+            </div>
+          </div>
+      </div>
    </div>
  </div>
 </div> 

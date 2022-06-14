@@ -16,7 +16,7 @@ switch ($tipo) {
         mysqli_stmt_bind_result($consultar_nombre, $id_informe);
         mysqli_stmt_fetch($consultar_nombre);
         
-        $query1 = mysqli_prepare($connect,"SELECT c.numot, d.sigla_pais, d.sigla_empresa, e.servicio
+        $query1 = mysqli_prepare($connect,"SELECT c.numot, d.sigla_pais, d.sigla_empresa, e.servicio, d.id_empresa
                     FROM item_asignado as a, servicio as b, numot as c, empresa as d, servicio_tipo e 
                     WHERE a.id_asignado = ?
                     AND a.id_servicio = b.id_servicio 
@@ -27,11 +27,22 @@ switch ($tipo) {
         mysqli_stmt_bind_param($query1, 'i', $id_asignado_filtro);
         mysqli_stmt_execute($query1);
         mysqli_stmt_store_result($query1);
-        mysqli_stmt_bind_result($query1, $ot, $sigla_pais, $sigla_empresa, $servicio);
+        mysqli_stmt_bind_result($query1, $ot, $sigla_pais, $sigla_empresa, $servicio, $id_empresa);
         mysqli_stmt_fetch($query1);
 
         $num_ot = substr($ot, 2);
-        $nombre_info = $sigla_pais."-".$num_ot."-".$sigla_empresa."-INF";                         
+
+        $validador3 = mysqli_prepare($connect,"SELECT num_consecutivo FROM filtros_informe_consecutivo ORDER BY id DESC LIMIT 1;");
+        mysqli_stmt_execute($validador3);
+        mysqli_stmt_store_result($validador3);
+        mysqli_stmt_bind_result($validador3, $num_consecutivo);
+        mysqli_stmt_fetch($validador3);
+
+         if ($num_consecutivo == 0 || $num_consecutivo == '') {
+             $num_consecutivo = 1000;
+            }
+         $nuevo_consecutivo = $num_consecutivo + 1;   
+        $nombre_info = $sigla_pais."-C".$num_ot."-DOC".$num_consecutivo."-CLI".$id_empresa."-INF";                         
     
         echo $id_informe."-";
         if($id_informe != 0){
@@ -43,6 +54,10 @@ switch ($tipo) {
                                                 VALUES (?,?,?,?,?,?,?,?,?,?,?) ");
           mysqli_stmt_bind_param($insertar,'ssssssssssi',$nombre_info,$null,$null,$null,$null,$null,$null,$null,$null,$null,$id_asignado_filtro);
           mysqli_stmt_execute($insertar);
+
+          $creando1 = mysqli_prepare($connect,"INSERT INTO filtros_informe_consecutivo (num_consecutivo, id_asignado) VALUES (?,?)");
+        mysqli_stmt_bind_param($creando1, 'ii', $nuevo_consecutivo, $id_asignado);
+        mysqli_stmt_execute($creando1);
           
           $id_informe = mysqli_stmt_insert_id($insertar);
           
