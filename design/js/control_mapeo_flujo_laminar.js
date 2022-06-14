@@ -45,10 +45,11 @@ $("#actualizar_mapeo").click(function(){
   let solicitante =  $("#solicitante").val();
   let responsable = $("#responsable").val();
   let conclusion =  $("#conclusion").val();
+  let fecha_medicion = $("#fecha_medicion").val();
   let accion = ("actualizar_informe");
    $.ajax({
      type:'POST',
-     data:{nombre_informe, solicitante, responsable, conclusion, id_informe, accion},
+     data:{nombre_informe, solicitante, responsable, conclusion, id_informe, fecha_medicion, accion},
      url:'templates/flujo_laminar/almacena_informacion_1.php',
 
      success:function(response){
@@ -324,7 +325,7 @@ function listar_inspeccion_visual(numeral){
                                 <td><input type="text" name="punto_1_p4[]" id="punto_1_p4${contador1}" class="form-control" value="${valor.punto_1}"></td>
                                 <td><input type="text" name="punto_2_p4[]"  id="punto_2_p4${contador1}" class="form-control" value="${valor.punto_2}"></td>
                                 <td><input type="text" name="punto_3_p4[]"  id="punto_3_p4${contador1}" class="form-control" value="${valor.punto_3}"></td>
-                                <td><input type="text" name="promedio_p4[]" id="punto_4_p4${contador1}" class="form-control" value="${valor.promedio}"></td>
+                                <td><input type="text" name="promedio_p4[]" readonly id="punto_4_p4${contador1}" class="form-control" value="${valor.promedio}"></td>
                                
                         </tr>
                         `;
@@ -341,7 +342,7 @@ function listar_inspeccion_visual(numeral){
                                 <td><input type="text" name="punto_1_p4[]" id="punto_1_p42${contador2}" class="form-control" value="${valor.punto_1}"></td>
                                 <td><input type="text" name="punto_2_p4[]" id="punto_2_p42${contador2}" class="form-control" value="${valor.punto_2}"></td>
                                 <td><input type="text" name="punto_3_p4[]" id="punto_3_p42${contador2}" class="form-control" value="${valor.punto_3}"></td>
-                                <td><input type="text" name="promedio_p4[]" id="punto_4_p42${contador2}" class="form-control" value="${valor.promedio}"></td>
+                                <td><input type="text" name="promedio_p4[]" readonly id="punto_4_p42${contador2}" class="form-control" value="${valor.promedio}"></td>
                                
                         </tr>
                         `;
@@ -520,6 +521,7 @@ function listar_inspeccion_visual(numeral){
                     $("#solicitante").val(`${valor.solicitante}`);
                     $("#conclusion").val(`${valor.conclusion}`);
                     $("#responsable").val(`${valor.usuario_responsable}`);
+                    $("#fecha_medicion").val(valor.fecha_medicion);
                 
                   
                 });
@@ -541,7 +543,7 @@ function listar_inspeccion_visual(numeral){
                 
                 traer.forEach((valor)=>{
 
-                    $("#nombre_informe").val(`${valor.sigla_pais}-${valor.numero_ot}-${valor.sigla_empresa}-2022-TEMP-00`);
+                   // $("#nombre_informe").val(`${valor.sigla_pais}-${valor.numero_ot}-${valor.sigla_empresa}-2022-TEMP-00`);
                            
                 
                 });
@@ -863,6 +865,7 @@ function listar_imagenes(){
       let template5 = "";
       let template6 = "";
       let template7 = "";
+      let template8 = "";
 
       traer.forEach((valor)=>{
 
@@ -935,6 +938,15 @@ function listar_imagenes(){
               <img src="templates/flujo_laminar/${valor.url}${valor.nombre}" style="width: 100%;">
             </div>
           `;
+        }else if(valor.tipo == 8){
+
+          template8 += 
+          `
+            <div class="col-sm-4">
+            <a class="btn btn-danger" id="eliminar_imagen" data-id="${valor.id_imagen}" style="color: white;margin-left: 56%;border-radius: 25px;margin-top: 5%;position: absolute;">X</a>
+              <img src="templates/flujo_laminar/${valor.url}${valor.nombre}" style="width: 100%;">
+            </div>
+          `;
         }
         
       });
@@ -946,6 +958,7 @@ function listar_imagenes(){
       $("#Listar_img_c5").html(template5);
       $("#Listar_img_c6").html(template6);
       $("#Listar_img_c7").html(template7);
+      $("#Listar_img_c8").html(template8);
     }
 
   });

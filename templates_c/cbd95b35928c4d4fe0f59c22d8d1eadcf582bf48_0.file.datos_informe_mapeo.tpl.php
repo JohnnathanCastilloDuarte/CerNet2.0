@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-24 20:28:14
+/* Smarty version 3.1.34-dev-7, created on 2022-06-08 23:24:56
   from 'C:\xampp\htdocs\CerNet2.0\templates\flujo_laminar\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_628d23bee20047_29141094',
+  'unifunc' => 'content_62a113a84d1160_02723421',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbd95b35928c4d4fe0f59c22d8d1eadcf582bf48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\flujo_laminar\\datos_informe_mapeo.tpl',
-      1 => 1653416315,
+      1 => 1654723493,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628d23bee20047_29141094 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a113a84d1160_02723421 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
@@ -33,24 +33,32 @@ function content_628d23bee20047_29141094 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-sm-12">
                     <input type="hidden" name="" id="id_informe">
                     <label>Nombre informe <span class="text-danger"> *</span></label>
-                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe">
+                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe" readonly="">
                 </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Solicitante <span class="text-danger"> *</span></label>
                     <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
                 </div>
+                <br>
                 <div class="col-sm-12">
                    <label>Responsable<span class="text-danger"> *</span></label>
                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
                 </div>
+                <br>
+                <div class="col-sm-12">
+                   <label>Fecha medición<span class="text-danger"> *</span></label>
+                   <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
                     <select class="form-control" id="conclusion">
                         <option>Informe</option>
                         <option>Pre-Informe</option>
                     </select>
-                   <!--  <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea> -->
+                   
                 </div>
                 <br>
                 <div style="text-align: center;">
@@ -487,7 +495,8 @@ function content_628d23bee20047_29141094 (Smarty_Internal_Template $_smarty_tpl)
                                             <option value="7">Imagen prueba presión sonora</option>
                                             <option value="2">Imagen frontal</option>
                                             <option value="3">Imagen placa</option>
-                                            <option value="4">Imagen area de trabajo</option>    
+                                            <option value="4">Imagen area de trabajo</option>   
+                                            <option value="8">Anexos boucher</option>    
                                           </select>
                                         </div>
                                         <div class="col-sm-6">
@@ -591,6 +600,19 @@ function content_628d23bee20047_29141094 (Smarty_Internal_Template $_smarty_tpl)
                                         <div class="card-header">Imagen area trabajo</div>
                                         <div class="card-body">
                                             <div class="row" id="Listar_img_c4">
+                
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="card">
+                                        <div class="card-header">Anexos boucher</div>
+                                        <div class="card-body">
+                                            <div class="row" id="Listar_img_c8">
                 
                                             </div>
                                         </div>

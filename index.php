@@ -68,7 +68,7 @@ $modulo = array();
 		$nombre => $id_modulo
 		);
 	}
-$smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11));
+$smarty->assign('modulo',array(1,3,9,10,4,6,8,5,7,11,12));
 $smarty->assign("page",array(1,2,3,4,5,6,7,8,9,10,11,12,13,14));
 
 
@@ -363,6 +363,16 @@ else
        if (isset($_GET['id_user'])) {
         include("templates/perfil/perfil_usuario.php");
        }
+        break;
+
+//////GESTIONAR EQUIPOS//////////////////
+        case 12:
+        if (isset($_GET['page']) && $_GET['page'] == 1) {
+          include("templates/equipos_cercal/update_equipo.php");   
+        }else{
+          include("templates/equipos_cercal/gestionar_equipos.php");
+        }
+        
         break;
 
 /////////////// CASE PARA LA MANIPULACIÓN DE LAS CALIFICACIONES        

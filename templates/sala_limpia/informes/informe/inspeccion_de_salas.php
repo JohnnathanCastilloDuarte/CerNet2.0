@@ -47,16 +47,7 @@ mysqli_stmt_fetch($consulta_empresa);
 
 $num_ot = substr($numot, 2);
 
-if ($conclusion == 'Informe') {
-   
-   $muestra_conclusion = 'De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
-CUMPLE con los parámetros establecidos en la normativa vigente.';
 
-}
-elseif($conclusion == 'Pre-Informe'){
-  $muestra_conclusion = 'Los resultados obtenidos en el presente informe, 
-se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
-}
 
 $tipo_info = $conclusion;
 
@@ -256,14 +247,14 @@ if ($resultadooms < $particulas05) {
 }
 
 //conclusión 
-if ($conclusion == 'Informe') {
+/*if ($conclusion == 'Informe') {
   $conclu = 'para informes con cumplimiento: De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
 CUMPLE con los parámetros establecidos en la normativa vigente.';
 }elseif($conclusion == 'Pre-Informe'){
   $conclu = 'Los resultados obtenidos en el presente informe, 
 se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
 }
-
+*/
 
 if ($clasificacion_oms == 'No Aplica') {
 
@@ -375,11 +366,12 @@ EOD;
 
 //$pdf->SetFillColor(255,255,0);
 //$pdf->SetTextColor(0,0,255);
-
+$pardo = 0;
 if ($resultado_prom_caudal > $ren_hr) {
    $cumple_aire = 'CUMPLE';
 }else{
    $cumple_aire = 'NO CUMPLE';
+   $pardo = $pardo + 1;
 }
 
 $pdf->writeHTML($linea, true, false, false, false, '');
@@ -423,75 +415,7 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-/////// Consulta información  de presion 
-/*$nombres = array('Lugar de Medición', 'Medición Realizada en', 'Resultado (Pa)', 'Presión especificada (Pa)', 'Tipo de Presión', 'Cumple Especificación');
-$contador = 0;
 
-$query4 = mysqli_prepare($connect,"SELECT campo_1, campo_2, campo_3, campo_4, campo_5, campo_6 
-   FROM datos_de_prueba_3 a, salas_limpias_prueba_3 b 
-   WHERE a.id_prueba_3 = b.id_prueba AND  b.id_asignado = ?");
-mysqli_stmt_bind_param($query4, 'i', $id_asignado);
-mysqli_stmt_execute($query4);
-mysqli_stmt_store_result($query4);
-mysqli_stmt_bind_result($query4, $campo_1, $campo_2, $campo_3, $campo_4, $campo_5, $campo_6);
-
-$array_resultado = array();
-   while($row = mysqli_stmt_fetch($query4)){
-
-        $array_resultado[] = array(
-            'campo_1'=>$campo_1,
-            'campo_2'=>$campo_2,
-            'campo_3'=>$campo_3,
-            'campo_4'=>$campo_4,
-            'campo_5'=>$campo_5,
-            'campo_6'=>$campo_6
-        );
-    }
-      $espaciado = 48;
-
-          //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[0] ,1,0, 0, true, 'J', true);
-            $pdf->Cell(33,5,$nombres[0],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', 'VS-'.$array_resultado[$i]['campo_1'],1,0, 0, true, 'C', true); 
-           $pdf->Cell(23,5,'VS-'.$array_resultado[$i]['campo_1'],1,0,'C',0,'',0); 
-      }
-      $pdf->ln(5);
-     // $pdf->writeHTMLCell(40, 5, 15, '', $nombres[1] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[1],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', 'Bajo la puerta',1,0, 0, true, 'C', true); 
-          $pdf->Cell(23,5,'Bajo la puerta',1,0,'C',0,'',0); 
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[2] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[2],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_3'],1,0, 0, true, 'C', true);  
-          $pdf->Cell(23,5,$array_resultado[$i]['campo_3'],1,0,'C',0,'',0); 
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[3] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[3],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_4'],1,0, 0, true, 'C', true);  
-          $pdf->Cell(23,5,$array_resultado[$i]['campo_4'],1,0,'C',0,'',0);
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[4] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[4],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-         //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_5'],1,0, 0, true, 'C', true); 
-         $pdf->Cell(23,5,$array_resultado[$i]['campo_5'],1,0,'C',0,'',0); 
-      }
-      $pdf->ln(5);
-      //$pdf->writeHTMLCell(40, 5, 15, '', $nombres[5] ,1,0, 0, true, 'J', true);
-       $pdf->Cell(33,5,$nombres[5],1,0,'L',0,'',0);
-      for ($i=0; $i < mysqli_stmt_num_rows($query4); $i++) { 
-          //$pdf->writeHTMLCell(23, 5, $espaciado+$i*23, '', $array_resultado[$i]['campo_6'],1,0, 0, true, 'C', true); 
-          $pdf->Cell(23,5,$array_resultado[$i]['campo_6'],1,0,'C',0,'',0);  
-      }
-
-$pdf->ln(5);*/
 
 $contadorcito = 1;
  $pdf->Cell(30,5,'Lugar Medición',1,0,'C',1,'',1);
@@ -523,6 +447,7 @@ $contadorcito = 1;
          $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
            if($dato < $presion_sala){
           $cumple_presion = "NO CUMPLE";
+          $pardo++;
         }else{
           $cumple_presion = "CUMPLE";
         } 
@@ -534,23 +459,7 @@ $contadorcito = 1;
          $contadorcito = 0;
         $pdf->ln(5);
       }
-        /*
-    else if($contadorcito == 2){
-        
-      }else if($contadorcito == 3){
-      
-        if($dato < $presion_sala){
-          $cumple_presion = "NO CUMPLE";
-        }else{
-          $cumple_presion = "CUMPLE";
-        } 
-        $pdf->Cell(30,5,$presion_sala,1,0,'C',0,'',0);
-      }else if($contadorcito == 4){
-          $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
-      }else if($contadorcito == 5){
-        $pdf->Cell(30,5,$dato,1,0,'C',0,'',0);
-      }*/
-      
+   
       $contadorcito++;
   }
   
@@ -595,6 +504,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
          $estado_temperatura = 'CUMPLE';
       }else{
          $estado_temperatura = 'NO CUMPLE';
+         $pardo++;
       }
       //$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado,°C: ' ,0,0, 0, true, 'C', true);
       //$pdf->writeHTMLCell(30, 5, 45, '', $promedio ,1,0, 0, true, 'C', true);
@@ -615,6 +525,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
          $estado_humedad = 'CUMPLE';
       }else{
          $estado_humedad = 'NO CUMPLE';
+         $pardo++;
       }
 
       //$pdf->writeHTMLCell(30, 5, 15, '', 'Resultado, HR%: ' ,0,0, 0, true, 'C', true);
@@ -632,7 +543,6 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
        $pdf->ln(5); 
    }
 }
-
 
 
 
@@ -667,6 +577,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
          $estado_lux = 'CUMPLE';
       }else{
          $estado_lux = 'NO CUMPLE';
+         $pardo++;
       }
       $pdf->Cell(30,5,'Resultado,Lux: ',1,0,'L',0,'',0);
       $pdf->Cell(30,5,$promedio,1,0,'C',0,'',0);
@@ -681,6 +592,7 @@ while ($row = mysqli_stmt_fetch($consultar_info_pruebas)) {
          $estado_dba = 'CUMPLE';
       }else{
          $estado_dba = 'NO CUMPLE';
+         $pardo++;
       }
 
       $pdf->Cell(30,5,'Resultado, dbA:',1,0,'L',0,'',0);
@@ -711,7 +623,24 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-$pdf->writeHTMLCell(0, 10, 15, '', $conclu,0,1, 0, true, 'J', true);
+if ($pardo > 0) {
+  $final = 'NO CUMPLE';
+}else{
+  $final = 'CUMPLE';
+}
+
+if ($conclusion == 'Informe') {
+   
+   $muestra_conclusion = 'De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
+'.$final.' con los parámetros establecidos en la normativa vigente.';
+
+}
+elseif($conclusion == 'Pre-Informe'){
+  $muestra_conclusion = 'Los resultados obtenidos en el presente informe, 
+se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
+}
+
+$pdf->writeHTMLCell(0, 10, 15, '', $muestra_conclusion,0,1, 0, true, 'J', true);
 
 $linea = <<<EOD
 <style>
@@ -1052,7 +981,7 @@ $cont = 1;
     while($row = mysqli_stmt_fetch($buscarimagen2)){
 
        /* if ($cont == 1) {*/
-          $pdf->writeHTMLCell(90, 50, 60, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 600px; height: 350px;">', 0, 1, 0, true, 'C', true);
+          $pdf->writeHTMLCell(90, 50, 60, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 600px; height: 350px;">', 1, 1, 0, true, 'C', true);
         /*}else if ($cont == 2){*/
           /*$pdf->writeHTMLCell(90, 120, 105, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 700px; height: 450px;">', 0, 1, 0, true, 'C', true);*/
        /* }*/

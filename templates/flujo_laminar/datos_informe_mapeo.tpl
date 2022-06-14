@@ -9,24 +9,32 @@
                 <div class="col-sm-12">
                     <input type="hidden" name="" id="id_informe">
                     <label>Nombre informe <span class="text-danger"> *</span></label>
-                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe">
+                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe" readonly="">
                 </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Solicitante <span class="text-danger"> *</span></label>
                     <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
                 </div>
+                <br>
                 <div class="col-sm-12">
                    <label>Responsable<span class="text-danger"> *</span></label>
                    <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
                    <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
                 </div>
+                <br>
+                <div class="col-sm-12">
+                   <label>Fecha medición<span class="text-danger"> *</span></label>
+                   <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                </div>
+                <br>
                 <div class="col-sm-12">
                     <label>Conclusión <span class="text-danger"> *</span></label>
                     <select class="form-control" id="conclusion">
                         <option>Informe</option>
                         <option>Pre-Informe</option>
                     </select>
-                   <!--  <textarea class="form-control" placeholder="Conclusión" id="conclusion" style="height: 190px;"></textarea> -->
+                   
                 </div>
                 <br>
                 <div style="text-align: center;">
@@ -462,7 +470,8 @@
                                             <option value="7">Imagen prueba presión sonora</option>
                                             <option value="2">Imagen frontal</option>
                                             <option value="3">Imagen placa</option>
-                                            <option value="4">Imagen area de trabajo</option>    
+                                            <option value="4">Imagen area de trabajo</option>   
+                                            <option value="8">Anexos boucher</option>    
                                           </select>
                                         </div>
                                         <div class="col-sm-6">
@@ -566,6 +575,19 @@
                                         <div class="card-header">Imagen area trabajo</div>
                                         <div class="card-body">
                                             <div class="row" id="Listar_img_c4">
+                
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="card">
+                                        <div class="card-header">Anexos boucher</div>
+                                        <div class="card-body">
+                                            <div class="row" id="Listar_img_c8">
                 
                                             </div>
                                         </div>

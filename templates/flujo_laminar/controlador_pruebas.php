@@ -196,11 +196,11 @@ else if($movimiento == "opcion_8"){
     $id_asignado = $_POST['id_asignado'];
     $array_prueba = array();
 
-    $consultar = mysqli_prepare($connect,"SELECT id_informe, conclusion, solicitante, nombre_informe, usuario_responsable FROM informe_flujo_laminar WHERE id_asignado = ?");
+    $consultar = mysqli_prepare($connect,"SELECT id_informe, conclusion, solicitante, nombre_informe, usuario_responsable, fecha_medicion FROM informe_flujo_laminar WHERE id_asignado = ?");
     mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
     mysqli_stmt_execute($consultar);
     mysqli_stmt_store_result($consultar);
-    mysqli_stmt_bind_result($consultar, $id_informe, $conclusion, $solicitante, $nombre_informe, $usuario_responsable);
+    mysqli_stmt_bind_result($consultar, $id_informe, $conclusion, $solicitante, $nombre_informe, $usuario_responsable, $fecha_medicion);
 
     while($row = mysqli_stmt_fetch($consultar)){
         $array_prueba[]=array(
@@ -208,7 +208,8 @@ else if($movimiento == "opcion_8"){
             'conclusion'=>$conclusion,
             'solicitante'=>$solicitante,
             'nombre_informe'=>$nombre_informe,
-            'usuario_responsable'=>$usuario_responsable
+            'usuario_responsable'=>$usuario_responsable,
+            'fecha_medicion' => $fecha_medicion
 
         );
     }
@@ -503,13 +504,42 @@ else if($movimiento == "Validador_10"){
     mysqli_stmt_execute($validar1);
     mysqli_stmt_fetch($validar1);
 
+     $validador2 = mysqli_prepare($connect,"SELECT REPLACE(c.numot, 'OT','') as ot, e.id_empresa FROM servicio a, item_asignado b, numot c, empresa e  
+                                            WHERE a.id_servicio = b.id_servicio 
+                                            AND  a.id_numot = c.id_numot 
+                                            AND  c.id_empresa = e.id_empresa 
+                                            AND b.id_asignado = ?");
+    mysqli_stmt_bind_param($validador2, 'i', $id_asignado);
+    mysqli_stmt_execute($validador2);
+    mysqli_stmt_store_result($validador2);
+    mysqli_stmt_bind_result($validador2, $num_ot, $id_empresa);
+    mysqli_stmt_fetch($validador2);
+
+
+    $validador3 = mysqli_prepare($connect,"SELECT num_consecutivo FROM flujo_laminar_informe_consecutivo ORDER BY id DESC LIMIT 1;");
+    mysqli_stmt_execute($validador3);
+    mysqli_stmt_store_result($validador3);
+    mysqli_stmt_bind_result($validador3, $num_consecutivo);
+    mysqli_stmt_fetch($validador3);
+
+    if ($num_consecutivo == 0 || $num_consecutivo == '') {
+        $num_consecutivo = 01;
+    }
+
+    $nuevo_consecutivo = $num_consecutivo + 1;
+    $nombre_informe = 'SCL'.$num_ot.'-DOC'.$nuevo_consecutivo.'-CLI'.$id_empresa.'-FLJ ';
+
     if(mysqli_stmt_num_rows($validar1) == 0){
         for($i = 0; $i<1; $i++){
            
             $creando = mysqli_prepare($connect,"INSERT INTO informe_flujo_laminar (id_asignado, conclusion, solicitante, nombre_informe) VALUES (?,?,?,?)");
-            mysqli_stmt_bind_param($creando, 'isss', $id_asignado, $conclusion, $solicitante, $nombre_informe/*, $usuario_responsable*/);
+            mysqli_stmt_bind_param($creando, 'isss', $id_asignado, $conclusion, $solicitante, $nombre_informe);
             mysqli_stmt_execute($creando);
 
+            $creando1 = mysqli_prepare($connect,"INSERT INTO flujo_laminar_informe_consecutivo (num_consecutivo, id_asignado) VALUES (?,?)");
+            mysqli_stmt_bind_param($creando1, 'ii', $nuevo_consecutivo, $id_asignado);
+            mysqli_stmt_execute($creando1);
+        
             
         }
     }

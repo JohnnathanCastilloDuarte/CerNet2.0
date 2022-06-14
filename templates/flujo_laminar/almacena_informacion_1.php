@@ -9,10 +9,12 @@ if (isset($_POST['accion'])) {
     $conclusion = $_POST['conclusion'];
     $solicitante = $_POST['solicitante'];
     $nombre_informe = $_POST['nombre_informe'];
+    $fecha_medicion = $_POST['fecha_medicion'];
     $responsable = $_POST['responsable'];
+    
 
-    $actualizar0 = mysqli_prepare($connect,"UPDATE informe_flujo_laminar SET conclusion= ?, solicitante= ?, nombre_informe = ?, usuario_responsable = ? WHERE  id_informe = ?");
-    mysqli_stmt_bind_param($actualizar0, 'ssssi', $conclusion, $solicitante, $nombre_informe, $responsable, $id_informe);
+    $actualizar0 = mysqli_prepare($connect,"UPDATE informe_flujo_laminar SET conclusion= ?, solicitante= ?, nombre_informe = ?, usuario_responsable = ?, fecha_medicion = ? WHERE  id_informe = ?");
+    mysqli_stmt_bind_param($actualizar0, 'sssssi', $conclusion, $solicitante, $nombre_informe, $responsable, $fecha_medicion, $id_informe);
     mysqli_stmt_execute($actualizar0);
 
 

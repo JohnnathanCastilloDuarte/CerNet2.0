@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-08 16:48:33
+/* Smarty version 3.1.34-dev-7, created on 2022-06-13 18:45:50
   from 'C:\xampp\htdocs\CerNet2.0\templates\item\gestionar_item.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62504b41904058_44747999',
+  'unifunc' => 'content_62a769becbca42_05880286',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '21b539e74cb37b666475e7a0a278285a815a105a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\item\\gestionar_item.tpl',
-      1 => 1649429150,
+      1 => 1655138740,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62504b41904058_44747999 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a769becbca42_05880286 (Smarty_Internal_Template $_smarty_tpl) {
 ?><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="app-main__inner">
 	<div class="container-fluid">
