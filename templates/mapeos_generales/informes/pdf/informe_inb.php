@@ -112,6 +112,7 @@ switch ($id_tipo_item_g) {
 //quitarle la hora  a la fecha 
 $fecha_inicio_g_sin_hora = date("d-m-Y", strtotime($fecha_inicio_g));
 $fecha_fin_g_sin_hora = date("d-m-Y", strtotime($fecha_fin_g));
+$fecha_registro_sin_hora = date("Y-m-d", strtotime($fecha_registro));
                                   
 //Validar si es chile
 // echo $ciudad_g;
@@ -146,7 +147,7 @@ registro sanitario, según corresponda según lo señalado a continuación:
 	<br><SPAN STYLE="text-align: justify;"><STRONG>Condiciones normales de almacenamiento:</STRONG></SPAN>
 	
 	<LI CLASS="smallist">Los locales de almacenamiento deben estar secos y bien ventilados, a temperatura
-	ambiente de 15-25°C, o, dependiendo de las condiciones climáticas, hasta 30°C en
+	ambiente de +15 a +25°C, o, dependiendo de las condiciones climáticas, hasta 30°C en
 	periodos breves.</LI>
 	<LI CLASS="smallist">Se debe evitar los olores extraños, indicios de contaminación y luz intensa.</LI>
 
@@ -204,7 +205,7 @@ tr:nth-child(even)
 <tr><td width="15%" align="right">Solicitante:</td><td width="85%" align="left"> $nombre_empresa_g $ajuste</td></tr>
 <tr><td width="15%" align="right">Dirección:</td><td width="85%" align="left">$direccion_empresa_g</td></tr>
 <tr><td width="15%" align="right">Atención:</td><td width="85%" align="left">$solicitante - $cargo_solicitante</td></tr>
-<tr><td width="15%" align="right">Fecha Emisión:</td><td width="85%" align="left">$fecha_inicio_g_sin_hora</td></tr>
+<tr><td width="15%" align="right">Fecha Emisión:</td><td width="85%" align="left">$fecha_registro_sin_hora</td></tr>
 </table><br><br>
 
 <table><tr><td bgcolor="#DDDDDD"><H3><strong>1.0 ANTECEDENTES DE LA INSPECCION</strong></H3></td></tr></table><br><br>
