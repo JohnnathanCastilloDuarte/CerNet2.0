@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-07 15:39:44
+/* Smarty version 3.1.34-dev-7, created on 2022-06-13 23:52:25
   from 'C:\xampp\htdocs\CerNet2.0\templates\campana_extraccion\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_629f552009dd41_06608632',
+  'unifunc' => 'content_62a7b199b829d6_65656116',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f97fcb5fd4c206be7d1cce4c565a62f52d58122d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\campana_extraccion\\datos_informe_mapeo.tpl',
-      1 => 1654607494,
+      1 => 1655157142,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_629f552009dd41_06608632 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a7b199b829d6_65656116 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-3" style="text-align:center;">
@@ -90,7 +90,7 @@ function content_629f552009dd41_06608632 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Nombre informe</label>
-                    <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
+                    <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" readonly="">  
                   </div>
                   <div class="col-sm-6">
                     <label>Solicitante</label>

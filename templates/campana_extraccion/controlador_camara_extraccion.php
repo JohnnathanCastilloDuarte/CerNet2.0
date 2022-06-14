@@ -408,6 +408,62 @@
             }
 
         }
+
+        else if($validator == 9){
+
+            $consultar = mysqli_prepare($connect,"SELECT id_informe  FROM informe_campana WHERE id_asignado = ? ");
+            mysqli_stmt_bind_param($consultar, 'i', $id_asignado);
+            mysqli_stmt_execute($consultar);
+            mysqli_stmt_store_result($consultar);
+            mysqli_stmt_bind_result($consultar, $id_prueba);
+            mysqli_stmt_fetch($consultar);
+
+
+            $validador2 = mysqli_prepare($connect,"SELECT REPLACE(c.numot, 'OT','') as ot, e.id_empresa FROM servicio a, item_asignado b, numot c, empresa e  
+                                            WHERE a.id_servicio = b.id_servicio 
+                                            AND  a.id_numot = c.id_numot 
+                                            AND  c.id_empresa = e.id_empresa 
+                                            AND b.id_asignado = ?");
+            mysqli_stmt_bind_param($validador2, 'i', $id_asignado);
+            mysqli_stmt_execute($validador2);
+            mysqli_stmt_store_result($validador2);
+            mysqli_stmt_bind_result($validador2, $num_ot, $id_empresa);
+            mysqli_stmt_fetch($validador2);
+
+
+            $validador3 = mysqli_prepare($connect,"SELECT num_consecutivo FROM campana_extracción_informe_consecutivo ORDER BY id DESC LIMIT 1;");
+            mysqli_stmt_execute($validador3);
+            mysqli_stmt_store_result($validador3);
+            mysqli_stmt_bind_result($validador3, $num_consecutivo);
+            mysqli_stmt_fetch($validador3);
+
+                if ($num_consecutivo == 0 || $num_consecutivo == '') {
+                    $num_consecutivo = 3210;
+                }
+
+                $nuevo_consecutivo = $num_consecutivo + 1;
+                $nombre_informe = 'SCL'.$num_ot.'-DOC'.$nuevo_consecutivo.'-CLI'.$id_empresa.'-CE';
+
+    
+    
+                
+            if(mysqli_stmt_num_rows($consultar) > 0){
+                echo "Ok";
+            }else{
+                if(mysqli_stmt_num_rows($validador1) == 0){
+
+                    $creando1 = mysqli_prepare($connect,"INSERT INTO campana_extracción_informe_consecutivo (num_consecutivo, id_asignado) VALUES (?,?)");
+                    mysqli_stmt_bind_param($creando1, 'ii', $nuevo_consecutivo, $id_asignado);
+                    mysqli_stmt_execute($creando1);
+
+                    $creando = mysqli_prepare($connect,"INSERT INTO informe_campana (id_asignado, nombre_informe) VALUES (?,?)");
+                    mysqli_stmt_bind_param($creando, 'is', $id_asignado, $nombre_informe);
+                    mysqli_stmt_execute($creando);
+                    
+                }
+            }
+
+        }
        
             
     }

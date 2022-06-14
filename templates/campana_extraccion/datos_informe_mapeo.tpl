@@ -67,7 +67,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Nombre informe</label>
-                    <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" >  
+                    <input type="text" class="form-control" name="nombre_informe" id="nombre_informe" readonly="">  
                   </div>
                   <div class="col-sm-6">
                     <label>Solicitante</label>

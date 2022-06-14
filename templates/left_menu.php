@@ -308,12 +308,18 @@
 </ul>  
 </li> 
 </div>
-<!--
 <div id="modulo_11">
-     <li><a href="index.php?module={$modulo[0]}&page={$page[1]}"><i class="metismenu-icon pe-7s-copy-file"></i>Informes
-     </a>                 
+  <li><a href="#"><i class="metismenu-icon pe-7s-angle-up-circle"></i>Equipos<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+    <ul>
+      <li>
+        <a href="index.php?module={$modulo[10]}">Gestionar Equipos cercal</a>
+     </li>
+     <li>
+        <a href="index.php?module={$modulo[10]}&page={$modulo[0]}">Crear equipo cercal</a>
+     </li>
+</ul>  
+</li> 
 </div>
--->
 
 
 

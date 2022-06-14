@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-28 06:23:17
+/* Smarty version 3.1.34-dev-7, created on 2022-06-13 22:38:59
   from 'C:\xampp\htdocs\CerNet2.0\templates\left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_626a16b539ee39_28581863',
+  'unifunc' => 'content_62a7a063f225f7_27608643',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '958d413d8e34f2c9c8fc26cde2b59eb42bc81bc2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\left_menu.php',
-      1 => 1651119795,
+      1 => 1655152738,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a16b539ee39_28581863 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a7a063f225f7_27608643 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -414,14 +414,21 @@ function content_626a16b539ee39_28581863 (Smarty_Internal_Template $_smarty_tpl)
 </ul>  
 </li> 
 </div>
-<!--
 <div id="modulo_11">
-     <li><a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
-"><i class="metismenu-icon pe-7s-copy-file"></i>Informes
-     </a>                 
+  <li><a href="#"><i class="metismenu-icon pe-7s-angle-up-circle"></i>Equipos<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+    <ul>
+      <li>
+        <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[10];?>
+">Gestionar Equipos cercal</a>
+     </li>
+     <li>
+        <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[10];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
+">Crear equipo cercal</a>
+     </li>
+</ul>  
+</li> 
 </div>
--->
 
 
 

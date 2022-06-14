@@ -1052,7 +1052,7 @@ $cont = 1;
     while($row = mysqli_stmt_fetch($buscarimagen2)){
 
        /* if ($cont == 1) {*/
-          $pdf->writeHTMLCell(90, 50, 60, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 600px; height: 350px;">', 0, 1, 0, true, 'C', true);
+          $pdf->writeHTMLCell(90, 50, 60, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 600px; height: 350px;">', 1, 1, 0, true, 'C', true);
         /*}else if ($cont == 2){*/
           /*$pdf->writeHTMLCell(90, 120, 105, '', '<img src="../../'.$url_imagen2.$nombre_imagen2.'" style="width: 700px; height: 450px;">', 0, 1, 0, true, 'C', true);*/
        /* }*/

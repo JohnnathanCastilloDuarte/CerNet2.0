@@ -35,6 +35,8 @@ validador_de_pruebas(5);
 validador_de_pruebas(6);
 validador_de_pruebas(7);
 validador_de_pruebas(8);
+validador_de_pruebas(9);
+
 
 
  
@@ -84,7 +86,7 @@ function listar_datos_full(numeral){
 
           traer.forEach((valor)=>{
 
-            if (increment > 3){
+            if (increment > 3 && increment < 9){
                 template+=
                 `
                 <tr>
@@ -98,7 +100,7 @@ function listar_datos_full(numeral){
                 increment++;
 
 
-            }else{
+            }else if(increment < 4){
                 template+=
                 `
                 <tr>
