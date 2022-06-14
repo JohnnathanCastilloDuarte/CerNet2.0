@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2021-11-11 18:53:58
+/* Smarty version 3.1.34-dev-7, created on 2022-06-14 13:05:37
   from 'C:\xampp\htdocs\CerNet2.0\templates\main_header.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_618d58b6d36356_83922059',
+  'unifunc' => 'content_62a86b81136292_29734688',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f336f373a70591e20d7880d19c3ae8c56f90cb74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\main_header.php',
-      1 => 1636653237,
+      1 => 1655204655,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_618d58b6d36356_83922059 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a86b81136292_29734688 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="es">
 <head>
@@ -36,6 +36,7 @@ function content_618d58b6d36356_83922059 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="msapplication-tap-highlight" content="no">
   <link href="design/main.css" rel="stylesheet">
 	<link href="design/assets/wow/animate.min.css" rel="stylesheet">
+  <link href="design/fonts.css" rel="stylesheet">
 	<?php echo '<script'; ?>
  type="text/javascript" src="design/Datatables/jquery.min.js"><?php echo '</script'; ?>
 >
