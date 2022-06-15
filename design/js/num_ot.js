@@ -33,17 +33,18 @@ var id_gestionar = "";
 						data: { ot },
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
-              console.log(r);
-							if(r=="null"){
-									Swal.fire({
-										position:'center',
-										icon:'success',
-										toast: true,
-										title:'La OT se encuentra disponible',
-										timer:2000
-									});
+							
+							if(r.length != 0){
 
-                $("#sin_ot").show();
+								Swal.fire({
+									position:'center',
+									icon:'success',
+									toast: true,
+									title:'La OT se encuentra disponible',
+									timer:2000
+								});
+
+                				$("#sin_ot").show();
 								$("#btn_nueva_ot").show();
 								$("#btn_gestionar_ot_2").hide();
 								$("#btn_gestionar_ot_1").hide();
