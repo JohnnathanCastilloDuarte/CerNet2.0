@@ -33,8 +33,7 @@ var id_gestionar = "";
 						data: { ot },
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
-							
-							if(r.length == 0){
+							if(r == "Sin resultado"){
 
 								Swal.fire({
 									position:'center',
