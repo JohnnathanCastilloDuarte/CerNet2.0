@@ -34,7 +34,7 @@ var id_gestionar = "";
 						url: 'templates/OT/buscar_ot.php',
 						success:function(r){
 							
-							if(r.length != 0){
+							if(r.length == 0){
 
 								Swal.fire({
 									position:'center',
@@ -178,14 +178,6 @@ var id_gestionar = "";
   });
 
 
-function validar(){
-	if( $("#id_ot_oculto").val() == ""){
-		$("form").onSubmit();
-		
-	}
-	
-	
-}
 
 
 (function(){
