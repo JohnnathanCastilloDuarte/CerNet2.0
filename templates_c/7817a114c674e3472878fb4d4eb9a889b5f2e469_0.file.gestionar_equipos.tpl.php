@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-14 20:45:27
+/* Smarty version 3.1.34-dev-7, created on 2022-06-15 17:05:31
   from 'C:\xampp\htdocs\CerNet2.0\templates\equipos_cercal\gestionar_equipos.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62a8d747e37d90_35023846',
+  'unifunc' => 'content_62a9f53b822531_75761380',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7817a114c674e3472878fb4d4eb9a889b5f2e469' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\equipos_cercal\\gestionar_equipos.tpl',
-      1 => 1655232326,
+      1 => 1655305376,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62a8d747e37d90_35023846 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62a9f53b822531_75761380 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
@@ -119,25 +119,36 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
    <div class="card" id="addcertificado">
       <div class="card-header">
         <div class="row">
-            <h4>Agregar Certificado</h4>
-            <span><button>X</button></span>
+            <div>
+               <h4>Agregar Certificado</h4>
+            </div>
         </div>
       </div>
       <div class="card-body">
+            <input type="text" id="id_equipo_certificado">
           <div class="row">
-            <div class="col-sm-6">
-                <label>Fecha vencimiento</label>
-                <input type="" name="" class="form-control">
+            <div class="col-sm-4">
+                <label>Fecha de emisión</label>
+                <input type="date" name="" class="form-control" id="fecha_emision_update">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label>Numero certificado</label>
-                <input type="" name="" class="form-control">
+                <input type="text" placeholder="Numero Certificado" name="" class="form-control" id="numero_certificado_update">
+            </div>
+            <div class="col-sm-4">
+                <label>País</label>
+                <select class="form-control" id="pais_update">
+                    <option value="">Seleccione...</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Chile">Chile</option>
+                </select>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-12" style="text-align: center;">
-                <button class="btn btn-success">Agregar Certificado</button>
+                <button class="btn btn-success" id="btn_guardar_certificado">Agregar Certificado</button>
+                <button class="btn btn-danger" id="btn_cancelar_update_certificado">Cancelar</button>
             </div>
           </div>
       </div>
