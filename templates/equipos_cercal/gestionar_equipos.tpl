@@ -65,25 +65,36 @@
    <div class="card" id="addcertificado">
       <div class="card-header">
         <div class="row">
-            <h4>Agregar Certificado</h4>
-            <span><button>X</button></span>
+            <div>
+               <h4>Agregar Certificado</h4>
+            </div>
         </div>
       </div>
       <div class="card-body">
+            <input type="text" id="id_equipo_certificado">
           <div class="row">
-            <div class="col-sm-6">
-                <label>Fecha vencimiento</label>
-                <input type="" name="" class="form-control">
+            <div class="col-sm-4">
+                <label>Fecha de emisión</label>
+                <input type="date" name="" class="form-control" id="fecha_emision_update">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label>Numero certificado</label>
-                <input type="" name="" class="form-control">
+                <input type="text" placeholder="Numero Certificado" name="" class="form-control" id="numero_certificado_update">
+            </div>
+            <div class="col-sm-4">
+                <label>País</label>
+                <select class="form-control" id="pais_update">
+                    <option value="">Seleccione...</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Chile">Chile</option>
+                </select>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-12" style="text-align: center;">
-                <button class="btn btn-success">Agregar Certificado</button>
+                <button class="btn btn-success" id="btn_guardar_certificado">Agregar Certificado</button>
+                <button class="btn btn-danger" id="btn_cancelar_update_certificado">Cancelar</button>
             </div>
           </div>
       </div>
