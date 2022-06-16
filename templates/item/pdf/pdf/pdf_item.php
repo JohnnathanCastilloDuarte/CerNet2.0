@@ -284,35 +284,55 @@ $pdf->writeHTMLCell(60, 4, 77, '', '<strong>EMPRESA</strong>' ,0,0, 0, true, 'C'
 $pdf->writeHTMLCell(58, 4, 137, '', '<strong>FECHA</strong>' ,0,1, 0, true, 'C', true);
 
 
-$consultar_participantes = mysqli_prepare($connect,"SELECT a.nombre, a.apellido, b.nombre, c.fecha_firma, d.nombre, c.base_64_firma FROM
+$consultar_participantes = mysqli_prepare($connect,"SELECT c.id_persona, a.nombre, a.apellido, b.nombre, c.fecha_firma, d.nombre, c.base_64_firma, c.tipo FROM
  persona as a, empresa as b, participante_documentacion as c, cargo as d WHERE a.id_usuario = c.id_persona AND c.id_documentacion = ?
   AND a.id_empresa = b.id_empresa AND a.id_cargo = d.id_cargo");
-
 
 mysqli_stmt_bind_param($consultar_participantes, 'i', $data);
 mysqli_stmt_execute($consultar_participantes);
 mysqli_stmt_store_result($consultar_participantes);
-mysqli_stmt_bind_result($consultar_participantes, $nombres, $apellidos, $empresa_firmantes, $fecha_firma, $cargo, $base_64_firma);
+mysqli_stmt_bind_result($consultar_participantes, $id_persona, $nombres, $apellidos, $empresa_firmantes, $fecha_firma, $cargo, $base_64_firma, $tipo_aprobacion);
 
 while($row = mysqli_stmt_fetch($consultar_participantes)){
    
-  
-
-   $imageContent = file_get_contents($base_64_firma);
-   $path = tempnam(sys_get_temp_dir(), 'prefix');
-   file_put_contents ($path, $imageContent);
    
-   if($path!=""){
-      $img '<h2>Si firma</h2>';
+   if($base_64_firma!=""){
+      $imageContent = file_get_contents($base_64_firma);
+      $path = tempnam(sys_get_temp_dir(), 'prefix');
+      file_put_contents ($path, $imageContent);
+         $img = '<img src="' . $path . '" border="3" height="50px" width="auto" align="top">';
+   
+   }else{
+         $img = '';
+      
    }
 
-   $img = '<img src="' . $path . '" >';
+   if($tipo_aprobacion == 1){
+      $aprobacion = '<span style="color:rgb(60, 179, 113);">Aprobado</span>';
+   }else if($tipo_aprobacion == 0){
+      $aprobacion = '<span style="color:rgb(255, 165, 0);">En espera</span>';
+   }else{
+
+      $consultar_persona_rechazo = mysqli_prepare($connect,"SELECT rechazo FROM rechazos_documentacion WHERE id_documentacion = ? AND id_usuario = ?");
+      mysqli_stmt_bind_param($consultar_persona_rechazo, 'ii', $data, $id_persona);
+      mysqli_stmt_execute($consultar_persona_rechazo);
+      mysqli_stmt_store_result($consultar_persona_rechazo);
+      mysqli_stmt_bind_result($consultar_persona_rechazo, $rechazo);
+      mysqli_stmt_fetch($consultar_persona_rechazo);
+
+      $aprobacion = '<span style="color:rgb(255, 0, 0);">Rechazado</span><br><strong>Motivo:</strong><br>'.$rechazo;
+      
+   }
+
+
+
+  
 
 
    $pdf->writeHTMLCell(60, 11, 17, '', '<br>'.$nombres.' '.$apellidos.' - '.$cargo ,0,0, 0, true, 'C', true);
    $pdf->writeHTMLCell(60,11, 77, '', $empresa_firmantes ,0,0,0, true, 'C', true);
    $pdf->writeHTMLCell(58,11, 137, '', $fecha_firma ,0,1,0, true, 'C', true);
-   $pdf->writeHTMLCell(180, 6, 17, '', '<br><img src="'.$path.'" border="3" height="50px" width="auto" align="top">',0,1, 0, true, 'C', true);
+   $pdf->writeHTMLCell(180, 6, 17, '', 'Firma de '. $aprobacion.'<br>'.$img,0,1, 0, true, 'C', true);
    $pdf->writeHTMLCell(180, 6, 17, '', '<hr>',0,1, 0, true, 'C', true);
 }
 

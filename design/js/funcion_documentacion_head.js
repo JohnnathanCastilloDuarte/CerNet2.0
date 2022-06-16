@@ -352,15 +352,21 @@ $(document).on('change','#aprobacion_head',function(){
     let hora_oficial = hora+":"+minuto+":"+segundo;
 
 
-    $("#campo_1").val(id);
-    $("#campo_2").val(valor);
-    $("#campo_3").val(id_participante);
-    $("#campo_4").val(informa_documentacion);
-    $("#campo_5").val(fecha);
-    $("#campo_6").val(hora_oficial);
+    if(valor != "error" && valor != 0){
+      $("#campo_1").val(id);
+      $("#campo_2").val(valor);
+      $("#campo_3").val(id_participante);
+      $("#campo_4").val(informa_documentacion);
+      $("#campo_5").val(fecha);
+      $("#campo_6").val(hora_oficial);
+      $("#card_para_firmar").show();
+      $("#row_rechazos").hide();
 
-    $("#card_para_firmar").show();
-
+    }else{
+      $("#card_para_firmar").hide();
+      $("#row_rechazos").show();
+      traer_rechazos();
+    }    
     /*
     const datos = {
       id,
