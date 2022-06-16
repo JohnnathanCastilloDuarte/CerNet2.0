@@ -70,7 +70,7 @@ mysqli_stmt_fetch($consultar_responsable);
 $contador = 0;
 
 
-$query8 = mysqli_prepare($connect,"SELECT replace(n1,0,''),replace(n2,0,''),replace(n3,0,''), replace(n4,0,''),replace(n5,0,''),replace(n6,0,''),replace(n7,0,''),replace(n8,0,''),replace(n9,0,''),replace(n10,0,''),replace(n11,0,''),replace(n12,0,''),replace(n13,0,''),replace(n14,0,''),replace(n15,0,'') FROM salas_limpias_prueba_5 WHERE id_asignado = ? AND categoria = 1");
+$query8 = mysqli_prepare($connect,"SELECT n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15 FROM salas_limpias_prueba_5 WHERE id_asignado = ? AND categoria = 1");
 mysqli_stmt_bind_param($query8, 'i', $id_asignado);
 mysqli_stmt_execute($query8);
 mysqli_stmt_store_result($query8);
