@@ -12,7 +12,7 @@
         </h6>
       </div>
 
-      <input type="text" value="{$equipos.id_equipo_cercal}" id="id_equipo_cercal">
+      <input type="hidden" value="{$equipos.id_equipo_cercal}" id="id_equipo_cercal">
       <div class="card-body">
         <div class="col-sm-12">
           <div class="row">

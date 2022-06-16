@@ -8,31 +8,7 @@ $(document).on('click','#btn_agregar_certificado',function(){
     $("#addcertificado").show();
     $("#listado").hide();
     $("#id_equipo_certificado").val(id_equipo);
-    /*$("#fecha_vencimiento_gestor"+id_equipo).show();
-    $("#numero_certificado_gestor"+id_equipo).show();
-    $("#fecha_vencimiento"+id_equipo).hide();
-    $("#numero_certificado"+id_equipo).hide(); 
 
-    $("#btn_cancelar_update_certificado").show();  
-    $("#btn_nuevo_certificado").show();    
-*/
-    /*$.ajax({
-        type:'POST',
-        data:{id_equipo, movimiento},
-        url:'templates/flujo_laminar/controlador_imagenes.php',
-        success:function(response){
-            ///console.log(response);
-            if(response == "listo"){
-                Swal.fire({
-                    title:'Mensaje',
-                    text:'Se ha eliminado correctamente la imagen',
-                    icon:'success',
-                    timer:1700
-                });
-                listar_imagenes();
-            }
-        }
-    })*/
     
   });
 
@@ -67,9 +43,9 @@ $(document).on('click','#btn_agregar_certificado',function(){
                         title:'Mensaje',
                         text:'Se ha actualizado el cetificado del equipo',
                         icon:'success',
-                        timer:1700
+                        timer:1500
                     });
-                   
+                   window.setTimeout(function(){location.reload()},1500)
                 }
             }
         })

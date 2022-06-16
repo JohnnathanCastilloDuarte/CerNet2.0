@@ -36,26 +36,38 @@ if($proceso == 1){
 
 }else if($proceso == 2){
 
+    $tipo_medicion = $_POST['prueba'];
+
     $array_equipos = array();
    
-    $buscando_item = mysqli_prepare($connect,"SELECT a.id_equipo_cercal, a.nombre_equipo, b.numero_certificado, b.fecha_emision, b.fecha_vencimiento FROM equipos_cercal as a, certificado_equipo as b WHERE a.id_equipo_cercal = b.id_equipo_cercal AND b.estado = 'Vigente'");
-    mysqli_stmt_execute($buscando_item);
-    mysqli_stmt_store_result($buscando_item);
-    mysqli_stmt_bind_result($buscando_item, $id_equipo, $nombre_equipo, $numero_certificado, $fecha_emision, $fecha_vencimiento);
+   $mostrar_equipos = mysqli_prepare($connect,"SELECT id_equipo_cercal, nombre_equipo, marca_equipo, n_serie_equipo, modelo_equipo, tipo_medicion 
+    FROM equipos_cercal WHERE tipo_medicion = '$tipo_medicion'");
+    mysqli_stmt_execute($mostrar_equipos);
+    mysqli_stmt_store_result($mostrar_equipos);
+    mysqli_stmt_bind_result($mostrar_equipos, $id_equipo, $nombre_equipo, $marca, $n_serie_equipo, $modelo_equipo, $tipo_medicion);
     
-    while($row = mysqli_stmt_fetch($buscando_item)){
+    while($row = mysqli_stmt_fetch($mostrar_equipos)){
 
-        $array_equipos[] = array(
-            'id_equipo'=>$id_equipo,
-            'nombre'=>$nombre_equipo,
-            'certificado'=>$numero_certificado,
-            'fecha_emision'=>$fecha_emision,
-            'fecha_vencimiento'=>$fecha_vencimiento
-        );
+        $mostrar_certificado = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
+                FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo ORDER BY fecha_vencimiento DESC LIMIT 1");
+                mysqli_stmt_execute($mostrar_certificado);
+                mysqli_stmt_store_result($mostrar_certificado);
+                mysqli_stmt_bind_result($mostrar_certificado, $numero_certificado, $fecha_emision, $fecha_vencimiento, $pais, $estado);
+
+             while($row = mysqli_stmt_fetch($mostrar_certificado)){
+             
+                    $array_equipos[] = array(
+                        'id_equipo'=>$id_equipo,
+                        'nombre'=>$nombre_equipo,
+                        'certificado'=>$numero_certificado,
+                        'fecha_emision'=>$fecha_emision,
+                        'fecha_vencimiento'=>$fecha_vencimiento
+                    );
+             }   
+
     }
 
     $convert = json_encode($array_equipos);
-
     echo $convert;
 }else if($proceso == 3){
 

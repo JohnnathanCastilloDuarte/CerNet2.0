@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="card-body">
-            <input type="text" id="id_equipo_certificado">
+            <input type="hidden" id="id_equipo_certificado">
           <div class="row">
             <div class="col-sm-4">
                 <label>Fecha de emisión</label>
