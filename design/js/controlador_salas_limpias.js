@@ -1,5 +1,5 @@
 $("#alerta_1").hide();
-
+$("#equipo_ingresa").hide();
 
 
 //INFORMACION DE DATOS DEL ITEM 
@@ -1299,6 +1299,16 @@ function calcular_promedio_1(){
 
    //  alert(punto_5);
   }
+//mostrar modal 
+$("#crear_nuevoequipo").click(function(){
+
+  $("#equipo_ingresa").show();
+});
+//cancelar modal
+$("#btn_cancelar").click(function(){
+
+  $("#equipo_ingresa").hide();
+})
 
 
 

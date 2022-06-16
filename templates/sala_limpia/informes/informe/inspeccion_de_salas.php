@@ -98,23 +98,28 @@ $resultado_prom_caudal = round(($promedio_caudal / $volumen_m3),2);
 if ($clasificacion_iso == 5) {
    $particulas05 = 3520;
    $particulas50 = 29;
-   $clasifica = "Clase A (OMS) /";
+  // $clasifica = "Clase A (OMS) /";
 }elseif($clasificacion_iso == 6) {
    $particulas05 = 35200;
    $particulas50 = 293;
-   $clasifica = "Clase B (OMS) /";
+   //$clasifica = "Clase B (OMS) /";
 }elseif ($clasificacion_iso == 7) {
    $particulas05 = 352000;
    $particulas50 = 2930;
-   $clasifica = "Clase C (OMS) /";
+   //$clasifica = "Clase C (OMS) /";
 }elseif ($clasificacion_iso == 8) {
    $particulas05 = 3520000;
    $particulas50 = 29300;
-   $clasifica = "Clase D (OMS) /";
+   //$clasifica = "Clase D (OMS) /";
 }elseif ($clasificacion_iso == 9) {
    $particulas05 = 35200000;
    $particulas50 = 293000;
-   $clasifica = "";
+   //$clasifica = "";
+}
+if ($clasificacion_oms == "No Aplica") {
+   $clasifica == "";
+}else{
+  $clasifica = "Clase $clasificacion_oms (OMS)";
 }
 
 
@@ -140,7 +145,7 @@ EOD;
 $pdf->writeHTML($linea, true, false, false, false, '');
 
      $pdf->Cell(30,5,'Informe referencia:',0,0,'L',0,'',0);
-     $pdf->Cell(55,5,$nombre_informe,1,0,'L',0,'',0);
+     $pdf->Cell(55,5,$nombre_informe,1,0,'C',0,'',0);
 
      $pdf->Cell(18,5,'OT N°:',0,0,'C',0,'',0);
      $pdf->Cell(15,5,$num_ot,1,0,'C',0,'',0);
@@ -246,15 +251,6 @@ if ($resultadooms < $particulas05) {
     $estado_particula3 = 'NO CUMPLE';
 }
 
-//conclusión 
-/*if ($conclusion == 'Informe') {
-  $conclu = 'para informes con cumplimiento: De acuerdo a los resultados obtenidos a las muestras inspeccionadas, la sala indicada en la ubicación del encabezado, 
-CUMPLE con los parámetros establecidos en la normativa vigente.';
-}elseif($conclusion == 'Pre-Informe'){
-  $conclu = 'Los resultados obtenidos en el presente informe, 
-se aplican solo a los elementos ensayados y corresponde a las condiciones encontradas al momento de la inspección';
-}
-*/
 
 if ($clasificacion_oms == 'No Aplica') {
 
@@ -729,7 +725,12 @@ $pdf->Cell(36,5,'N° Muestras por Punto',1,0,'C',1,'',0);
 $pdf->Cell(36,5,'Volumen por Muestras (L)',1,0,'C',1,'',0);
 $pdf->Cell(36,5,'Altura toma de Muestras (m)',1,0,'C',1,'',0);
 $pdf->ln(5);
-$pdf->Cell(36,5,'OMS',1,0,'C',0,'',0);
+if ($clasificacion_oms == "No Aplica") {
+  $clasifica = "ISO";
+}else{
+  $clasifica = "OMS";
+}
+$pdf->Cell(36,5,$clasifica,1,0,'C',0,'',0);
 $pdf->Cell(36,5,$puntos_x_medicion,1,0,'C',0,'',0);
 $pdf->Cell(36,5,$muestra_x_punto,1,0,'C',0,'',0);
 $pdf->Cell(36,5,'28.3',1,0,'C',0,'',0);
@@ -934,7 +935,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
  $pdf->Cell(24,5,'Método de ensayo:',0,0,'L',0,'',0);
  $pdf->Cell(75,5,'UNE-EN ISO 14.644-3:2006,Punto 4.2.3',1,0,'C',0,'',0);
 
- if ($clasificacion_oms == 'No Aplica' && $clasificacion_iso == 9) {
+ if ($clasificacion_oms == 'No Aplica') {
     $clasificacion_oms = '';
  }else{
    $clasificacion_oms = 'Clase '.$clasificacion_oms.' (OMS) / ';

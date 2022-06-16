@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-01 18:40:22
+/* Smarty version 3.1.34-dev-7, created on 2022-06-16 21:56:13
   from 'C:\xampp\htdocs\CerNet2.0\templates\sala_limpia\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6297967690edc3_47155821',
+  'unifunc' => 'content_62ab8adda177d9_36398245',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e528b64713340a99a3a1be9095b07c0915e9738e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\sala_limpia\\datos_informe_mapeo.tpl',
-      1 => 1654101620,
+      1 => 1655409370,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6297967690edc3_47155821 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62ab8adda177d9_36398245 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_sala_limpia']->value;?>
 " id="id_asignado_sala_limpia">
 <input type="hidden" name="" id="presion_sala_pa" value="<?php echo $_smarty_tpl->tpl_vars['presion_sala']->value;?>
@@ -453,7 +453,7 @@ function content_6297967690edc3_47155821 (Smarty_Internal_Template $_smarty_tpl)
                                         <option value="Prueba nivel de iluminación">Prueba nivel de iluminación</option>
                                         <option value="Prueba de medición de caudal">Prueba de medición de caudal</option>
                                         </select>
-                                        <table class="table">
+                                        <table class="table" id="">
                                             <thead>
                                             <th>ID</th>
                                             <th>Nombre</th>
@@ -470,7 +470,7 @@ function content_6297967690edc3_47155821 (Smarty_Internal_Template $_smarty_tpl)
                                     </div>
                                     <div class="col-sm-4" style="text-align:center">
                                         <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
-                                       <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
+                                       <button class="btn btn-info" id="crear_nuevoequipo" >Crear equipo</button>
                                       </div>
                                 </div>
                                 <br>
@@ -488,6 +488,106 @@ function content_6297967690edc3_47155821 (Smarty_Internal_Template $_smarty_tpl)
                                   </div>
                                 </div>
                                 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="position: fixed;margin-left: 13%;padding: auto;border-left: 440px;margin-top: 1%;" id="equipo_ingresa">
+                         <div class="card">
+                            <div class="card-header">
+                                Ingresar nuevo equipo
+                            </div>
+                            <div class="card-body">
+                                  <div class="col-sm-12">
+                                      <div class="row">
+                                        <input type="hidden" id="id_equipo_cercal">
+                                         <div class="col-sm-6">
+                                            <label>Nombre Equipo</label>
+                                            <input type="text" name="" class="form-control" placeholder="Nombre equipo" value="<?php echo $_smarty_tpl->tpl_vars['equipos']->value['nombre_equipo'];?>
+" id="nombre_equipo">
+                                         </div> 
+                                         <div class="col-sm-6">
+                                            <label>Marca Equipo</label>
+                                            <input type="text" name="" class="form-control" placeholder="Marca equipo" value="<?php echo $_smarty_tpl->tpl_vars['equipos']->value['marca_equipo'];?>
+" id="marca_equipo">
+                                         </div> 
+                                      </div>
+                                      <br>
+                                      <div class="row">
+                                         <div class="col-sm-6">
+                                            <label>N° Serie equipo</label>
+                                            <input type="text" name="" class="form-control" placeholder="Numero de Serie" value="<?php echo $_smarty_tpl->tpl_vars['equipos']->value['n_serie_equipo'];?>
+" id="n_serie_equipo">
+                                         </div> 
+                                         <div class="col-sm-6">
+                                            <label>Modelo equipo</label>
+                                            <input type="text" name="" class="form-control" placeholder="Modelo equipo" value="<?php echo $_smarty_tpl->tpl_vars['equipos']->value['modelo_equipo'];?>
+" id="modelo_equipo">
+                                         </div> 
+                                      </div>
+                                      <br>
+                                      <div class="row">
+                                         <div class="col-sm-6">
+                                            <label>Tipo de medición</label>
+
+                                            <select class="form-control" id="tipo_medicion">
+                                                  <?php if ($_smarty_tpl->tpl_vars['equipos']->value['tipo_medicion'] == '') {?>
+                                                  <option value="">Seleccione...</option>
+                                                  <?php } else { ?>
+                                                  <option value="<?php echo $_smarty_tpl->tpl_vars['equipos']->value['tipo_medicion'];?>
+"><?php echo $_smarty_tpl->tpl_vars['equipos']->value['tipo_medicion'];?>
+</option>
+                                                  <?php }?>
+                                                  <option value="Prueba de conteo de particulas">Prueba de conteo de particulas</option>
+                                                  <option value="Prueba de Presión Diferencial">Prueba de Presión Diferencial</option>
+                                                  <option value="Prueba de temperatura y humedad relativa">Prueba de temperatura y humedad relativa</option>
+                                                  <option value="Prueba Medición de ruido">Prueba Medición de ruido</option>
+                                                  <option value="Prueba nivel de iluminación">Prueba nivel de iluminación</option>
+                                                  <option value="Prueba de medición de caudal">Prueba de medición de caudal</option>
+                                            </select>
+                                           <!--  <input type="text" name="" class="form-control" placeholder="Tipo equipo" value="<?php echo $_smarty_tpl->tpl_vars['equipos']->value['tipo_equipo'];?>
+" id="tipo_medicion"> -->
+                                         </div> 
+                                     
+                                      <?php if ($_smarty_tpl->tpl_vars['equipos']->value['id_equipo_cercal'] == '') {?>
+                                         <div class="col-sm-6">
+                                            <label>Numero de certificado</label>
+                                            <input type="text" name="" class="form-control" placeholder="Numero del certificado" id="n_certificado">
+                                         </div> 
+                                        </div>
+                                        <br> 
+
+                                        <div class="row">
+                                         <div class="col-sm-4">
+                                            <label>País</label>
+                                            <select class="form-control" id="pais">
+                                              <option value="">Seleccione...</option>
+                                              <option value="Colombia">Colombia</option>
+                                              <option value="Chile">Chile</option>
+                                            </select>
+                                         </div> 
+                                         <div class="col-sm-4">
+                                            <label>Fecha emisión</label>
+                                            <input type="date" name="" class="form-control" id="fecha_emision">
+                                         </div> 
+                                         <div class="col-sm-4">
+                                            <label>Fecha vencimiento</label>
+                                            <input type="date" name="" class="form-control" id="fecha_vencimiento">
+                                         </div> 
+                                      </div>
+                                      <br>
+                                      <?php } else { ?>
+                                      </div>
+                                      <br> 
+                                      <?php }?>
+
+                                      <div class="row">
+                                        <div class="col-sm-12" style="text-align:center;">
+                                            <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-danger" id="btn_cancelar">Cancelar</button>
+                                            <button class="mb-2 mr-2  btn-shadow btn-outline-2x btn btn-outline-success" id="btn_nuevo_equipo">Crear</button>
+                                        </div>
+                                      </div>
+
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -579,7 +679,13 @@ function content_6297967690edc3_47155821 (Smarty_Internal_Template $_smarty_tpl)
  src="design/js/controlador_salas_limpias.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
+ type="text/javascript" src="design/js/validar_campos_vacios.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
  type="text/javascript" src="design/js/nuevo_equipo_cercal.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/update_equipos_cercal.js"><?php echo '</script'; ?>
 >
 
 <?php echo '<script'; ?>

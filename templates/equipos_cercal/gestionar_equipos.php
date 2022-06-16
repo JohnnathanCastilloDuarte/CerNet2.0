@@ -12,10 +12,6 @@ $ahora = date('Y-m-d', time());
 
 while($row = mysqli_stmt_fetch($mostrar_equipos)){
 
-
-
-
-
 	$mostrar_certificado = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
 	FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo_cercal ORDER BY fecha_vencimiento DESC LIMIT 1");
     mysqli_stmt_execute($mostrar_certificado);
