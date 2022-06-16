@@ -29,7 +29,7 @@ switch ($tipo_item) {
       mysqli_stmt_execute($consultando_item);
       mysqli_stmt_store_result($consultando_item);
       mysqli_stmt_bind_result($consultando_item, $productos_almacena, $largo, $ancho, $superficie, $volumen, $altura, $tipo_muro, $tipo_cielo, $s_climatizacion, $s_monitoreo, $s_alarma, $planos, $analisis_riesgo, $ficha_estabilidad, $id_usuario, $marca_bodega, $modelo_bodega, $orientacion_principal, $orientacion_recepcion, $orientacion_despacho, $num_puertas, $salida_emergencia, $cantidad_rack, $num_estantes, $altura_max_rack, $sistema_extraccion, $cielo_lus, $temp_max, $temp_min, $cantidad_iluminarias, $hr_max, $hr_min, $valor_seteado_temp, $valor_seteado_hum, $cantidad_ventana, $fecha_registro);
-      mysqli_stmt_fetch($consultando_item);
+      mysqli_stmt_fetch($consultando_item); 
 
       break;
    
