@@ -11,7 +11,7 @@ $data = substr($data, 70, 100);
 
 // consultar especificaciones del item + especificaciones.
 $consultando_informacion_item = mysqli_prepare($connect,"SELECT B.id_item, B.nombre, B.descripcion, B.codigo_interno, B.direccion, B.estado, 
-C.nombre, d.nombre, B.ubicacion_interna FROM archivos_documentacion as A, item as B, empresa as C, tipo_item as D WHERE A.nombre_archivo = B.id_item 
+C.nombre, D.nombre, B.ubicacion_interna FROM archivos_documentacion as A, item as B, empresa as C, tipo_item as D WHERE A.nombre_archivo = B.id_item 
 AND B.id_empresa = C.id_empresa  AND B.id_tipo = D.id_item AND A.id_documentacion = ?");
 mysqli_stmt_bind_param($consultando_informacion_item, 'i', $data);
 mysqli_stmt_execute($consultando_informacion_item);
