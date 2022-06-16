@@ -32,4 +32,9 @@ include("../../config.ini.php");
 		echo "No";
 	}
 
+
+	if (isset($_POST['buscarcer'])) {
+		# code...
+	}
+
 ?>
