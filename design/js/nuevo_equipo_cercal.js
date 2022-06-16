@@ -50,23 +50,32 @@ $("#btn_crear_equipo_cercal").click(function(){
 
 $("#recargar_equipos").click(function(){
 
-    trayendo_equipo()
+    let tipo_prueba = $("#tipo_prueba").val();
+    trayendo_equipo(tipo_prueba);
 
 });
 
+//FUNCION PARA BUSCAR EÑ EQUIPO 
+
+$("#tipo_prueba").change(function(){
+
+    let tipo_prueba = $("#tipo_prueba").val();
+    trayendo_equipo(tipo_prueba);
+})
 
 
-trayendo_equipo();
+//trayendo_equipo();
 
-function trayendo_equipo(){
+function trayendo_equipo(prueba){
   
     let proceso = 2;
-
+    //alert(prueba);
     $.ajax({
         type:'POST',
-        data:{proceso},
+        data:{proceso, prueba},
         url:'templates/equipos_cercal/controlador_equipos.php',
         success:function(response){
+            console.log(response);
             let traer = JSON.parse(response);
             let template = '';
 

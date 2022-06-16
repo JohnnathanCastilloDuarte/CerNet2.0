@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-15 17:05:31
+/* Smarty version 3.1.34-dev-7, created on 2022-06-16 17:21:57
   from 'C:\xampp\htdocs\CerNet2.0\templates\equipos_cercal\gestionar_equipos.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62a9f53b822531_75761380',
+  'unifunc' => 'content_62ab4a95597008_54351245',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7817a114c674e3472878fb4d4eb9a889b5f2e469' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\equipos_cercal\\gestionar_equipos.tpl',
-      1 => 1655305376,
+      1 => 1655392916,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62a9f53b822531_75761380 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62ab4a95597008_54351245 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-sm-12">
@@ -125,7 +125,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
       </div>
       <div class="card-body">
-            <input type="text" id="id_equipo_certificado">
+            <input type="hidden" id="id_equipo_certificado">
           <div class="row">
             <div class="col-sm-4">
                 <label>Fecha de emisión</label>

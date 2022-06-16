@@ -21,7 +21,7 @@ include("../../config.ini.php");
 
 	if ($insertar_equipo) {
 
-		$insertar_calibracion = mysqli_prepare($connect,'INSERT INTO certificado_equipo (numero_certificado, pais, fecha_emision, fecha_vencimiento, id_equipo_cercal, estado) VALUES (?,?,?,?,?)');
+		$insertar_calibracion = mysqli_prepare($connect,'INSERT INTO certificado_equipo (numero_certificado, pais, fecha_emision, fecha_vencimiento, id_equipo_cercal, estado) VALUES (?,?,?,?,?,?)');
 		mysqli_stmt_bind_param($insertar_calibracion, 'ssssss', $n_certificado, $pais, $fecha_emision, $fecha_vencimiento, $id_equipo, $estado);
 		mysqli_stmt_execute($insertar_calibracion);
 

@@ -13,7 +13,7 @@ function setearCampos(){
 		 	 $("#marca_equipo").val('');
 		 	 $("#n_serie_equipo").val('');
 		 	 $("#modelo_equipo").val('');
-		     $("#tipo_medicion").val('');
+		   $("#tipo_medicion").val('');
 			 $("#modelo_estufa").val('');
 			 $("#id_equipo_cercal").val('');
 			 $("#n_certificado").val('');
@@ -50,6 +50,8 @@ $("#btn_editar_equipo").click(function(){
                  showConfirmButton: false,
                  timer:1500
                });
+
+              window.setTimeout(function(){window.location.href = "index.php?module=12"},1400);
              }else{
               console.log("No se pudo"+response)
             }
