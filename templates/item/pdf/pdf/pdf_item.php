@@ -298,7 +298,7 @@ while($row = mysqli_stmt_fetch($consultar_participantes)){
    
    if($base_64_firma!=""){
       $imageContent = file_get_contents($base_64_firma);
-      $path = tempnam(sys_get_temp_dir(), 'prefix');
+      $path = tempnam('firmas/', 'prefix');
       file_put_contents ($path, $imageContent);
          $img = '<img src="' . $path . '" border="3" height="50px" width="auto" align="top">';
    
@@ -306,6 +306,7 @@ while($row = mysqli_stmt_fetch($consultar_participantes)){
          $img = '';
       
    }
+
 
    if($tipo_aprobacion == 1){
       $aprobacion = '<span style="color:rgb(60, 179, 113);">Aprobado</span>';
