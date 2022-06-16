@@ -84,7 +84,7 @@ $("#btn_nuevo_equipo").click(function(){
 	if (campos_vacios(datos) == true){
       let buscarcer = 'Buscar_certificado';
       //consultar si el certificado y numero de serie existe
-      $.ajax({
+      /*$.ajax({
            type:'POST',
            url:'templates/equipos_cercal/nuevo_equipo.php',
            data:{numero_certifica,numero_serie, numero_serie },
@@ -99,7 +99,7 @@ $("#btn_nuevo_equipo").click(function(){
                  timer:1500
                });
                setearCampos();
-             }else{
+             }else{*/
                  $.ajax({
                      type:'POST',
                      url:'templates/equipos_cercal/nuevo_equipo.php',
@@ -120,10 +120,10 @@ $("#btn_nuevo_equipo").click(function(){
                       }
                     }
                   });
-            }
+           /* }*/
 
-          }
-        });
+       /*   }*/
+   /*     });*/
 
       }else{
         console.log("no");
