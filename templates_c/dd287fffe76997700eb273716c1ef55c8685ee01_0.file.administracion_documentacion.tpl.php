@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-27 21:01:15
+/* Smarty version 3.1.34-dev-7, created on 2022-06-16 22:27:56
   from '/home/god/public_html/CerNet2.0/templates/documentacion/head_templates/administracion_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61f3081b213b74_18082346',
+  'unifunc' => 'content_62abae6ccd4163_83896009',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dd287fffe76997700eb273716c1ef55c8685ee01' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/documentacion/head_templates/administracion_documentacion.tpl',
-      1 => 1643317213,
+      1 => 1655418451,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f3081b213b74_18082346 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62abae6ccd4163_83896009 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="row">
   <div class="col-sm-12">
     <div class="card">
@@ -59,6 +59,57 @@ function content_61f3081b213b74_18082346 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 <br>
 
+
+<div class="row" id="card_para_firmar">
+  <div class="col-sm-4">
+    <label>Nombre para firma</label>
+    <input type="text" name="" id="nombre_firma_usuario" class="form-control" placeholder="Ingrese su nombre">
+  </div>
+  <div class="col-sm-4">
+    <label>Tipo letra</label>
+    <select name="" id="change_letra" class="form-control">
+      <option>Seleccione...</option>
+      <option value="roman">Roman</option>
+      <option value="monospace">monospace</option>
+      <option value="arial">arial</option>
+      <option value="arial narrow">arial narrow</option>
+      <option value="serif">serif</option>
+      <option value="tahoma">tahoma</option>
+      <option value="verdana">verdana</option>
+      <option value="cursive">cursive</option>
+      <option value="Austria">Austria</option>
+    </select>
+  </div>
+  <div class="col-sm-4" style="text-align: center;">
+    <label for="">Resultado</label>
+    <div id="createImg" style="background: white;text-align: center; border: none; font-size: 30px;width: auto;height: auto;" class="form-control">
+    </div>
+
+    <!--Campos para realizar la aprobación del documento-->
+    <input type="hidden" id="base_64_img_firma">
+    <input type="hidden" id="campo_1">
+    <input type="hidden" id="campo_2">
+    <input type="hidden" id="campo_3">
+    <input type="hidden" id="campo_4">
+    <input type="hidden" id="campo_5">
+    <input type="hidden" id="campo_6">
+    <br>
+    <button class="btn btn-success" id="btn_seleccionar_firma">Seleccionar</button>
+    <button class="btn btn-danger" id="btn_remover_firma">X</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div id="img" style="display:none;">
+      <img src="" id="newimg" class="top" />
+    </div>
+  </div>
+</div>
+
+
+<br>
 <div class="row" id="historial_aprobacion">
   <div class="col-sm-12">
     <div class="card">
@@ -126,6 +177,9 @@ function content_61f3081b213b74_18082346 (Smarty_Internal_Template $_smarty_tpl)
     </div>
   </div>
 </div>
+<?php echo '<script'; ?>
+ src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">    <?php echo '</script'; ?>
+>
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/funcion_documentacion_head.js"><?php echo '</script'; ?>
 ><?php }

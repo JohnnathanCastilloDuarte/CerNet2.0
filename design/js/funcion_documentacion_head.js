@@ -1,3 +1,4 @@
+
 var id_valida = $("#id_valida").val();
 $("#row_rechazos").hide();
 $("#historial_aprobacion").hide();
