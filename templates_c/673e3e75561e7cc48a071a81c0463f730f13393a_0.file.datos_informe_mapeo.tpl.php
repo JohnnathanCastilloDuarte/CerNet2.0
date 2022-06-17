@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-15 00:17:43
+/* Smarty version 3.1.34-dev-7, created on 2022-06-17 23:29:06
   from 'C:\xampp\htdocs\CerNet2.0\templates\filtros\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62a90907317698_12712401',
+  'unifunc' => 'content_62acf222e31158_92921734',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '673e3e75561e7cc48a071a81c0463f730f13393a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\filtros\\datos_informe_mapeo.tpl',
-      1 => 1655245061,
+      1 => 1655501345,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62a90907317698_12712401 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62acf222e31158_92921734 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_filtro']->value;?>
 " id="id_asignado_filtro">
 
@@ -378,7 +378,7 @@ function content_62a90907317698_12712401 (Smarty_Internal_Template $_smarty_tpl)
                </div>
                <div class="card-body collapse" id="collapseOne77">
                  <div class="row">
-                   <div class="col-sm-8" style="text-align:center;">
+                   <div class="col-sm-12" style="text-align:center;">
                      <label>Seleccione equipo</label>
                      <table class="table">
                         <thead>
@@ -395,11 +395,12 @@ function content_62a90907317698_12712401 (Smarty_Internal_Template $_smarty_tpl)
                      </table>
                      <button class="btn btn-info" id="recargar_equipos">Recargar</button>
                    </div>
-                   <div class="col-sm-4" style="text-align:center">
+                 <!--   <div class="col-sm-4" style="text-align:center">
                      <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
-                    <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
-                   </div>
-                 </div>
+                    <button class="btn btn-info" id="crear_nuevoequipo" >Crear equipo</button>
+                   </div> -->
+                  </div>
+
                  <br>
 
                  <div class="row">
@@ -407,13 +408,16 @@ function content_62a90907317698_12712401 (Smarty_Internal_Template $_smarty_tpl)
                      <table class="table" style="text-align:center;">
                         <thead>
                           <th>Nombre equipo</th>
+                          <th>Filtros</th>
                           <th>Eliminar</th>
                         </thead>
                         <tbody id="equipos_agregados_medicion_filtros"></tbody>
                      </table>
                    </div>
                  </div>
+
                </div>
+
              </div>
            </div>
           </div>
@@ -436,7 +440,7 @@ function content_62a90907317698_12712401 (Smarty_Internal_Template $_smarty_tpl)
 " name="id_asignado_filtro">
                         <div class="row">
                           <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
+                            <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen" required="">
                           </div>
                           <div class="col-sm-6">
                             <select class="form-control" name="tipo_imagen">
@@ -488,6 +492,9 @@ function content_62a90907317698_12712401 (Smarty_Internal_Template $_smarty_tpl)
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="design/js/controla_imagenes.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/control_equipos.js"><?php echo '</script'; ?>
 >
 
 <?php }

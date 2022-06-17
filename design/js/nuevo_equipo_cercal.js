@@ -63,8 +63,11 @@ $("#tipo_prueba").change(function(){
     trayendo_equipo(tipo_prueba);
 })
 
-
 //trayendo_equipo();
+if ($("#id_asignado_filtro").val() != ''){
+    let envia = 'Prueba de medición de caudal';
+    trayendo_equipo(envia);
+}
 
 function trayendo_equipo(prueba){
   

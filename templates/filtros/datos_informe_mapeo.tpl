@@ -354,7 +354,7 @@
                </div>
                <div class="card-body collapse" id="collapseOne77">
                  <div class="row">
-                   <div class="col-sm-8" style="text-align:center;">
+                   <div class="col-sm-12" style="text-align:center;">
                      <label>Seleccione equipo</label>
                      <table class="table">
                         <thead>
@@ -371,11 +371,12 @@
                      </table>
                      <button class="btn btn-info" id="recargar_equipos">Recargar</button>
                    </div>
-                   <div class="col-sm-4" style="text-align:center">
+                 <!--   <div class="col-sm-4" style="text-align:center">
                      <label for="">Puedes crear nuevos equipos desde esta opción</label><br>
-                    <button class="btn btn-info" id="crear_nuevo_equipo" >Crear equipo</button>
-                   </div>
-                 </div>
+                    <button class="btn btn-info" id="crear_nuevoequipo" >Crear equipo</button>
+                   </div> -->
+                  </div>
+
                  <br>
 
                  <div class="row">
@@ -383,13 +384,16 @@
                      <table class="table" style="text-align:center;">
                         <thead>
                           <th>Nombre equipo</th>
+                          <th>Filtros</th>
                           <th>Eliminar</th>
                         </thead>
                         <tbody id="equipos_agregados_medicion_filtros"></tbody>
                      </table>
                    </div>
                  </div>
+
                </div>
+
              </div>
            </div>
           </div>
@@ -411,7 +415,7 @@
                         <input type="hidden" value="{$id_asignado_filtro}" name="id_asignado_filtro">
                         <div class="row">
                           <div class="col-sm-6">
-                            <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen">
+                            <input type="text" class="form-control" placeholder="Enunciado de la imagen" name="enunciado_imagen" required="">
                           </div>
                           <div class="col-sm-6">
                             <select class="form-control" name="tipo_imagen">
@@ -458,4 +462,5 @@
 <script type="text/javascript" src="design/js/control_mapeo_filtros.js"></script>
 <script type="text/javascript" src="design/js/nuevo_equipo_cercal.js"></script>
 <script type="text/javascript" src="design/js/controla_imagenes.js"></script>
+<script type="text/javascript" src="design/js/control_equipos.js"></script>
 
