@@ -116,12 +116,32 @@ if ($clasificacion_iso == 5) {
    $particulas50 = 293000;
    //$clasifica = "";
 }
-if ($clasificacion_oms == "No Aplica") {
-   $clasifica == "";
+
+if ($clasificacion_oms ==  'A') {
+   $clasifica = "Clase A (OMS) /";
+   $particulas05_oms = 3520;
+   $particulas50_oms = 20;
+}elseif ($clasificacion_oms ==  'B') {
+   $clasifica = "Clase B (OMS) /";
+   $particulas05_oms = 3520;
+   $particulas50_oms = 29;
+}elseif ($clasificacion_oms ==  'C') {
+   $clasifica = "Clase C (OMS) /";
+   $particulas05_oms = 352000;
+   $particulas50_oms = 2900;
+}elseif ($clasificacion_oms ==  'D') {
+   $clasifica = "Clase D (OMS) /";
+   $particulas05_oms = 3520000;
+   $particulas50_oms = 29000;
+}elseif ($clasificacion_oms ==  'No Aplica') {
+   $clasifica = "";
+}
+/*if ($clasificacion_oms == "No Aplica") {
+   $clasifica = "";
 }else{
   $clasifica = "Clase $clasificacion_oms (OMS)";
 }
-
+*/
 
 
 $pdf->AddPage('A4');
@@ -331,6 +351,32 @@ if ($clasificacion_oms == 'No Aplica') {
     $pdf->Cell(14,5,'',0,0,'J',0,'',0);
     $pdf->Cell(68,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
     $pdf->Cell(67,5,'Clase '.$clasificacion_oms.' (OMS) / ISO '.$clasificacion_iso.' -> 0,5 µm: '.$particulas05.' / 5,0 µm: '.$particulas50,1,0,'C',0,'',0);
+
+    if ($medida_promedio05 <= $particulas05) {
+      $veredicto_1 = 'CUMPLE';
+    }else{
+      $veredicto_1 = 'NO CUMPLE';
+    }
+
+    if ($medida_promedio50 <= $particulas50) {
+      $veredicto_2 = 'CUMPLE';
+    }else{
+      $veredicto_2 = 'NO CUMPLE';
+    }
+
+    if ($resultadooms >= $particulas50) {
+      $veredicto_4 = 'CUMPLE';
+    }else{
+      $veredicto_4 = 'NO CUMPLE';
+    }
+
+  $pdf->ln(5);
+  $pdf->Cell(34,5,'veredicto',0,0,'L',0,'',0); 
+  $pdf->Cell(11,5,'',0,0,'J',0,'',0);
+  $pdf->Cell(34,5,$veredicto_1,1,0,'C',0,'',0);
+  $pdf->Cell(34,5,$veredicto_2,1,0,'C',0,'',0);
+  $pdf->Cell(34,5,$veredicto_1,1,0,'C',0,'',0);
+  $pdf->Cell(33,5,$veredicto_4,1,0,'C',0,'',0);
 
 }
 
@@ -830,6 +876,18 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
+if ($clasificacion_oms == 'No Aplica' || $clasificacion_iso == 9) {
+  $muestra_medida_promedio05 = 'NA';
+  $muestra_medida_promedio50 = 'NA';
+  $muestra_estado_particula1 = 'NA';
+  $muestra_estado_particula2 = 'NA'; 
+}else{
+  $muestra_medida_promedio05 = $medida_promedio05;
+  $muestra_medida_promedio50 = $medida_promedio50;
+  $muestra_estado_particula1 = $estado_particula1;
+  $muestra_estado_particula2 = $estado_particula2; 
+}
+
 
   $pdf->Cell(63,5,'Tamaños (µm)',1,0,'C',1,'',0);
   $pdf->Cell(63,5,'Promedios',1,0,'C',1,'',0);
@@ -837,13 +895,13 @@ $pdf->writeHTML($linea, true, false, false, false, '');
   $pdf->ln(5);
 
   $pdf->Cell(63,5,'>=0,5',1,0,'C',0,'',0);
-  $pdf->Cell(63,5,$medida_promedio05,1,0,'C',0,'',0);
-  $pdf->Cell(53,5,$estado_particula1,1,0,'C',0,'',0);
+  $pdf->Cell(63,5,$muestra_medida_promedio05,1,0,'C',0,'',0);
+  $pdf->Cell(53,5,$muestra_estado_particula1,1,0,'C',0,'',0);
   $pdf->ln(5);
 
   $pdf->Cell(63,5,'>=5,0',1,0,'C',0,'',0);
-  $pdf->Cell(63,5,$medida_promedio50,1,0,'C',0,'',0);
-  $pdf->Cell(53,5,$estado_particula2,1,0,'C',0,'',0);
+  $pdf->Cell(63,5,$muestra_medida_promedio50,1,0,'C',0,'',0);
+  $pdf->Cell(53,5,$muestra_estado_particula2,1,0,'C',0,'',0);
   $pdf->ln(5);
 
 $linea = <<<EOD
