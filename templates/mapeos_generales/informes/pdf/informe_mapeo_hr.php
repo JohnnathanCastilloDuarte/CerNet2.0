@@ -205,8 +205,6 @@
 		$prom_general = number_format($d_2,2);
 
 
-
-
 		$query_14 = mysqli_prepare($connect,"SELECT MAX(CAST(a.hum AS DECIMAL(6,1))) as maximo, a.time, c.nombre, d.nombre FROM datos_crudos_general as a,
 																					mapeo_general_sensor as b, bandeja as c, sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? 
 																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor GROUP BY a.time, c.nombre, d.nombre ORDER BY maximo DESC LIMIT 1  ");
@@ -482,12 +480,13 @@ $c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
 
 		$pdf->AddPage('A4');
 
-if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+if($max_hr == 'No Aplica' || $min_hr == 'No Aplica'){
   
     $registros_over = '0.00';
     $max_percent = '0.00';
   
 }
+
 
 
 
@@ -568,7 +567,7 @@ text-align:left;
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medición Obtenida</strong></H3></td></tr>
 
 		<tr><td width="30%" class="enunciado">Promedio General (% HR)</td><td width="70%" colspan="5">$prom_general</td></tr>
-
+        
 		<tr><td width="30%" class="enunciado">Máximo General (% HR)</td><td width="10%">$max_general</td>
 		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posición $posicion_max_general: $bandeja_max_general</td></tr>
 
@@ -894,8 +893,9 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
 
     $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
   }  
-    
-    if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+       
+    if($max_hr == 'No Aplica' || $min_hr == 'No Aplica'){
+        
       $info_percent_over ='0.00';
       $info_over = '0.00';
     }
