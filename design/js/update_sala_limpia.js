@@ -1,4 +1,6 @@
+
 $(document).ready(function(){
+
 
   let id_item = $("#id_item_sala_limpia").val();
   if(id_item.length == 0){

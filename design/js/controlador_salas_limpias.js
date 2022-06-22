@@ -15,6 +15,10 @@ var lux = Number($("#lux").val());
 var ruido_dba = Number($("#ruido_dba").val());
 var ren_hr = Number($("#ren_hr").val());
 
+var puntos_muestreo = $("#puntos_muestreo").val()
+
+$("#ensayo_p12").val(puntos_muestreo);
+
 //Validar usuario responsable 
 
 $("#responsable").blur(function(){
@@ -659,7 +663,7 @@ else if(orden == 6){
                 traer.forEach((valor)=>{
                     $("#id_ensayo_p11").val(valor.id_ensayo);
                     //$("#ensayo_p11").val(valor.metodo_ensayo);
-                    $("#ensayo_p12").val(valor.puntos_x_medicion);
+                    //$("#ensayo_p12").val(valor.puntos_x_medicion);
                     $("#ensayo_p13").val(valor.muestra_x_punto);
                     $("#ensayo_p14").val(valor.volumen_muestra);
                     $("#ensayo_p15").val(valor.altura_muestras);

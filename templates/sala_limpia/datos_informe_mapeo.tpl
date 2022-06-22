@@ -7,6 +7,7 @@
 <input type="hidden" name="" id="lux" value="{$lux}">
 <input type="hidden" name="" id="lux" value="{$ren_hr}">
 <input type="hidden" name="" id="ruido_dba" value="{$ruido_dba}">
+<input type="hidden" name="" id="puntos_muestreo" value="{$puntos_muestreo}">
 <div class="row">
     
     <div class="col-sm-12">
@@ -49,7 +50,7 @@
                                         </div> -->
                                         <div class="col-sm-6">
                                             <label>N° Puntos por Medición</label>
-                                            <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control" placeholder="Puntos por mediciòn">
+                                            <input type="text" id="ensayo_p12" name="ensayo_p12" class="form-control" placeholder="Puntos por medición" readonly="">
                                         </div>
                                         <div class="col-sm-6">
                                             <label>N° Muestras por Punto</label>
