@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-28 13:03:34
+/* Smarty version 3.1.34-dev-7, created on 2022-06-16 22:13:53
   from '/home/god/public_html/CerNet2.0/templates/left_menu.php' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_626a90a6319c56_48096263',
+  'unifunc' => 'content_62abab2161aff9_57473648',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '820443aa1ce5f2a123775b639273f42433eaf5f3' => 
     array (
       0 => '/home/god/public_html/CerNet2.0/templates/left_menu.php',
-      1 => 1651151008,
+      1 => 1655417627,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_626a90a6319c56_48096263 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62abab2161aff9_57473648 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-----------------------------------------------------MENÚ IZQUIERDO--------------------------------------------------------->     
 
 
@@ -380,6 +380,17 @@ function content_626a90a6319c56_48096263 (Smarty_Internal_Template $_smarty_tpl)
 "><i class="metismenu-icon pe-7s-news-paper"></i>Calificaciones</a>
             </li>
 
+            <li style="text-align: center;">
+                <hr>
+                    <strong>Biblioteca informes</strong>
+                <hr>
+            </li>
+            <li>
+                <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[6];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[14];?>
+"><i class="metismenu-icon pe-7s-news-paper"></i>Biblioteca</a>
+            </li>
+
 
         </ul>
     </li>
@@ -414,14 +425,21 @@ function content_626a90a6319c56_48096263 (Smarty_Internal_Template $_smarty_tpl)
 </ul>  
 </li> 
 </div>
-<!--
 <div id="modulo_11">
-     <li><a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
-&page=<?php echo $_smarty_tpl->tpl_vars['page']->value[1];?>
-"><i class="metismenu-icon pe-7s-copy-file"></i>Informes
-     </a>                 
+  <li><a href="#"><i class="metismenu-icon pe-7s-angle-up-circle"></i>Equipos <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+    <ul>
+      <li>
+        <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[10];?>
+">Gestionar Equipos cercal</a>
+     </li>
+     <li>
+        <a href="index.php?module=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[10];?>
+&page=<?php echo $_smarty_tpl->tpl_vars['modulo']->value[0];?>
+">Crear equipo cercal</a>
+     </li>
+</ul>  
+</li> 
 </div>
--->
 
 
 

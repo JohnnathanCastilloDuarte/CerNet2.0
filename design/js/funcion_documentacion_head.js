@@ -1,3 +1,4 @@
+
 var id_valida = $("#id_valida").val();
 $("#row_rechazos").hide();
 $("#historial_aprobacion").hide();
@@ -352,15 +353,21 @@ $(document).on('change','#aprobacion_head',function(){
     let hora_oficial = hora+":"+minuto+":"+segundo;
 
 
-    $("#campo_1").val(id);
-    $("#campo_2").val(valor);
-    $("#campo_3").val(id_participante);
-    $("#campo_4").val(informa_documentacion);
-    $("#campo_5").val(fecha);
-    $("#campo_6").val(hora_oficial);
+    if(valor != "error" && valor != 0){
+      $("#campo_1").val(id);
+      $("#campo_2").val(valor);
+      $("#campo_3").val(id_participante);
+      $("#campo_4").val(informa_documentacion);
+      $("#campo_5").val(fecha);
+      $("#campo_6").val(hora_oficial);
+      $("#card_para_firmar").show();
+      $("#row_rechazos").hide();
 
-    $("#card_para_firmar").show();
-
+    }else{
+      $("#card_para_firmar").hide();
+      $("#row_rechazos").show();
+      traer_rechazos();
+    }    
     /*
     const datos = {
       id,
@@ -722,7 +729,7 @@ function ya_firmo(id_documentacion, id_valida) {
         });
         
         $("#m").html(msj);
-        $("#aqui_pdf_bton").html(`<br><button class="btn btn-danger" data-id="${id_documentacion}" id="descarga_datos_informe">Generar PDF <i class="fas fa-file-pdf"></i></button>`);
+        //$("#aqui_pdf_bton").html(`<br><button class="btn btn-danger" data-id="${id_documentacion}" id="descarga_datos_informe">Generar PDF <i class="fas fa-file-pdf"></i></button>`);
 
     }
   });

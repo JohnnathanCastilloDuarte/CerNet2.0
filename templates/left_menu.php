@@ -318,7 +318,7 @@
 </li> 
 </div>
 <div id="modulo_11">
-  <li><a href="#"><i class="metismenu-icon pe-7s-angle-up-circle"></i>Equipos<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+  <li><a href="#"><i class="metismenu-icon pe-7s-angle-up-circle"></i>Equipos <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
     <ul>
       <li>
         <a href="index.php?module={$modulo[10]}">Gestionar Equipos cercal</a>

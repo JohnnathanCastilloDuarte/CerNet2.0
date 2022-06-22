@@ -185,6 +185,7 @@
 		mysqli_stmt_fetch($query_13);
 		
 		$prom_general = number_format($d_2,2);
+		
 
 		$query_14 = mysqli_prepare($connect,"SELECT MAX(CAST(a.temp AS DECIMAL(6,2))) as maximo, a.time, c.nombre, d.nombre, b.posicion FROM datos_crudos_general as a,
 																					mapeo_general_sensor as b, bandeja as c, sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? 
@@ -493,7 +494,7 @@ text-align:left;
 		<tr><td width="30%" class="enunciado">Marca:</td><td width="70%">$marca</td></tr>
 		<tr><td width="30%" class="enunciado">Modelo:</td><td width="70%">$modelo</td></tr>
 		<tr><td width="30%" class="enunciado">N° de serie / Código interno</td><td width="70%">$codigo_interno</td></tr>
-		<tr><td width="30%" class="enunciado">Ubicación</td><td width="70%">$direccion_empresa</td></tr>
+		<tr><td width="30%" class="enunciado">Ubicación</td><td width="70%">$ubicacion</td></tr>
 		<tr><td width="30%" class="enunciado">Valor seteado (°C)</td><td width="70%">$valor_seteado_temp</td></tr>
 		<tr><td width="30%" rowspan="2" class="enunciado">Límites (°C)</td>
 

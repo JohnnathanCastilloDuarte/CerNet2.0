@@ -799,17 +799,17 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
   
 
   //TITULOS
-  $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(35, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 50, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 65, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 10, 80, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(25, 10, 100, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
+  //$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
@@ -874,45 +874,43 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
   if($contador_for_table == 31 || $contador_for_table == 40){
     $pdf->AddPage('A4');
 
-    $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
+	$pdf->writeHTMLCell(35, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-    $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(10, 10, 150, '', '%', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
-
-    $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
+	$pdf->writeHTMLCell(15, 10, 50, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
+  
+	$pdf->writeHTMLCell(15, 10, 65, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
+  
+	$pdf->writeHTMLCell(20, 10, 80, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
+  
+	$pdf->writeHTMLCell(25, 10, 100, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
+  
+	//$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
+  
+	$pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
+  
+	$pdf->writeHTMLCell(10, 10, 150, '', '%', 1, 0, 0, true, 'C', true);
+  
+	$pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
+  
+	$pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
   }  
     	
-    if($humeratura_max == 'No Aplica' && $humeratura_min == 'No Aplica'){
+    if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
       $info_percent_over ='0.00';
       $info_over = '0.00';
     }
 
 
 
-  $pdf->writeHTMLCell(25, 6, 15, '', $posicion.'-'.$nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(35, 6, 15, '', $posicion.'-'.$nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 6, 40, '', $info_min, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 6, 50, '', $info_min, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 6, 55, '', $info_max, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 6, 65, '', $info_max, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(20, 6, 70, '', $info_prom, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 6, 80, '', $info_prom, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(20, 6, 90, '', $info_desv, 1, 0, 0, true, 'C', true);
-
-  $pdf->writeHTMLCell(15, 6, 110, '','N/A', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(25, 6, 100, '', $info_desv, 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(25, 6, 125, '', $info_over, 1, 0, 0, true, 'C', true);
 

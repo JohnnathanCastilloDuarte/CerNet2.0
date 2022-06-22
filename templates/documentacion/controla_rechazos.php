@@ -16,6 +16,24 @@ if($tipo == 3){
     mysqli_stmt_bind_param($cambiar_estado, 'ii', $estado_rechazo, $id_documentacion);
     mysqli_stmt_execute($cambiar_estado);
     if($cambiar_estado){
+
+        $consultar_aprobador = mysqli_prepare($connect,"SELECT id FROM participante_documentacion WHERE id_persona = ? AND id_documentacion = ?");
+        mysqli_stmt_bind_param($consultar_aprobador, 'ii', $id_valida, $id_documentacion);
+        mysqli_stmt_execute($consultar_aprobador);
+        mysqli_stmt_store_result($consultar_aprobador);
+        mysqli_stmt_bind_result($consultar_aprobador, $id_participante);
+        mysqli_stmt_fetch($consultar_aprobador);
+
+        $Fecha_hora_actual = date('Y-m-d h:i:s', time()); 
+
+        $tipo_no = 3;
+
+        
+        $update_participante = mysqli_prepare($connect,"UPDATE participante_documentacion SET tipo = ?, fecha_firma = ? WHERE id = ?");
+        mysqli_stmt_bind_param($update_participante, 'isi',  $tipo_no, $Fecha_hora_actual,$id_participante,);
+        mysqli_stmt_execute($update_participante);
+
+
         $validando = mysqli_prepare($connect,"SELECT id FROM rechazos_documentacion WHERE id_documentacion = ? AND id_usuario = ? ");
         mysqli_stmt_bind_param($validando, 'ii', $id_documentacion, $id_valida);
         mysqli_stmt_execute($validando);

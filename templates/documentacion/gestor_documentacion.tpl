@@ -181,19 +181,24 @@ p{
 			<span>Config</span>
 		</a>
 	</li>
-  <li class="nav-item">
-		<a role="tab" class="nav-link active subir1" id="tab_subir_archivo" data-toggle="tab" href="#subir_pdf_archivo">
+  <li class="nav-item" id="tab_subir_archivo">
+		<a role="tab" class="nav-link active subir1"  data-toggle="tab" href="#subir_pdf_archivo">
 			<span>Subir</span>
 		</a>
 	</li>
-   <li class="nav-item">
-		<a role="tab" class="nav-link active" id="tab_hoja_de_firmas" data-toggle="tab" href="#Hoja_firmas">
+   <li class="nav-item" id="tab_hoja_de_firmas">
+		<a role="tab" class="nav-link active"  data-toggle="tab" href="#Hoja_firmas">
 			<span>Hoja firmas</span>
 		</a>
 	</li>
-  	<li class="nav-item">
+  <li class="nav-item">
 		<a role="tab" class="nav-link active" id="tab_aprobar_item" data-toggle="tab" href="#Revision_item">
 			<span>Revisión de ITEM</span>
+		</a>
+	</li>
+   <li class="nav-item">
+		<a role="tab" class="nav-link active" id="tab_aprobar_informes" data-toggle="tab" href="#Revision_informe">
+			<span>Revisión de Informes</span>
 		</a>
 	</li>
   <!--
@@ -227,6 +232,7 @@ p{
                   <option value="0">Seleccione</option>
                   <option value="1">Aprobación item</option>
                   <option value="2">Subir pdf</option>
+                  <option value="3">Aprobación de informes</option>
                 </select>
               </div>
               <div class="col-sm-6">
@@ -493,6 +499,36 @@ p{
   </div>
   <!--CIERRE DE LA GESTIÓN DE ITEM PARA SU APROBACIÓN-->
 
+
+  <!--AQUI COMIENZA LA GESTIÓN PARA APROBACIÓN DE INFORMES-->
+  <div class="tab-pane tabs-animation fade show" id="Revision_informe" role="tabpanel">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">Informes Terminados</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table">
+                  <thead>
+                    <th>#</th>
+                    <th>Nombre informe</th>
+                    <th>Fecha de registro</th>
+                    <th>Acciones</th>
+                  </thead>
+                  <tbody id="resultados_aprobacion_informes">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+
+
+  <!----CIERRE DE LA GESTIÓN PARA APROBACIÓN DE INFORMES--->
 
 
 
