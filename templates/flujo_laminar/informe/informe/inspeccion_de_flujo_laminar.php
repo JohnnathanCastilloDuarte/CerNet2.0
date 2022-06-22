@@ -1570,7 +1570,9 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 $equipos_flujo4 = mysqli_prepare($connect,"SELECT b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision 
 FROM equipos_mediciones a, equipos_cercal b , certificado_equipo c 
-WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND (a.tipo_prueba = 'Prueba sonora' OR a.tipo_prueba = 'Prueba de temperatura y humedad relativa')");
+WHERE a.id_equipo = b.id_equipo_cercal AND a.id_asignado = ? AND c.id_equipo_cercal = b.id_equipo_cercal AND (a.tipo_prueba = 'Prueba Medición de ruido' OR a.tipo_prueba = 'Prueba de temperatura y humedad relativa')");
+
+
 
 mysqli_stmt_bind_param($equipos_flujo4, 'i', $id_asignado);
 mysqli_stmt_execute($equipos_flujo4);

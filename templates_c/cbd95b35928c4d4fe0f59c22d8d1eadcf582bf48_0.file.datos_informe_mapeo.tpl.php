@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-08 23:24:56
+/* Smarty version 3.1.34-dev-7, created on 2022-06-22 00:52:36
   from 'C:\xampp\htdocs\CerNet2.0\templates\flujo_laminar\datos_informe_mapeo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62a113a84d1160_02723421',
+  'unifunc' => 'content_62b24bb4a33808_54864419',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cbd95b35928c4d4fe0f59c22d8d1eadcf582bf48' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\flujo_laminar\\datos_informe_mapeo.tpl',
-      1 => 1654723493,
+      1 => 1655851952,
       2 => 'file',
     ),
   ),
@@ -20,54 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62a113a84d1160_02723421 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62b24bb4a33808_54864419 (Smarty_Internal_Template $_smarty_tpl) {
 ?><input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['id_asignado_flujo_laminar']->value;?>
 " id="id_asignado_flujo_laminar">
 <div class="row">
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-header">
-                <h6>Información del mapeo</h6>
-            </div>
-            <div class="card-body">
-                <div class="col-sm-12">
-                    <input type="hidden" name="" id="id_informe">
-                    <label>Nombre informe <span class="text-danger"> *</span></label>
-                    <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe" readonly="">
-                </div>
-                <br>
-                <div class="col-sm-12">
-                    <label>Solicitante <span class="text-danger"> *</span></label>
-                    <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
-                </div>
-                <br>
-                <div class="col-sm-12">
-                   <label>Responsable<span class="text-danger"> *</span></label>
-                   <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
-                   <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
-                </div>
-                <br>
-                <div class="col-sm-12">
-                   <label>Fecha medición<span class="text-danger"> *</span></label>
-                   <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
-                </div>
-                <br>
-                <div class="col-sm-12">
-                    <label>Conclusión <span class="text-danger"> *</span></label>
-                    <select class="form-control" id="conclusion">
-                        <option>Informe</option>
-                        <option>Pre-Informe</option>
-                    </select>
-                   
-                </div>
-                <br>
-                <div style="text-align: center;">
-                  <button class="btn btn-sm btn-info float-center" id="actualizar_mapeo">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-8">
+    <div class="col-sm-12">
         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link  active" id="tab-0" data-toggle="tab" href="#pruebas">
@@ -85,7 +42,53 @@ function content_62a113a84d1160_02723421 (Smarty_Internal_Template $_smarty_tpl)
                 </a>
             </li>
         </ul> 
-
+  </div>
+  <div class="col-sm-12">
+     <div id="informe_1">
+        <div class="card">
+            <div class="card-header">
+                <h6>Información del mapeo</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="hidden" name="" id="id_informe">
+                        <label>Nombre informe <span class="text-danger"> *</span></label>
+                        <input type="text" name="" class="form-control" placeholder="Nombre informe" id="nombre_informe" readonly="">
+                    </div>
+                    <br>
+                    <div class="col-sm-6">
+                        <label>Solicitante <span class="text-danger"> *</span></label>
+                        <input type="text" name="" class="form-control" placeholder="solicitante" id="solicitante">
+                    </div>
+                    <br>
+                    <div class="col-sm-6">
+                       <label>Responsable<span class="text-danger"> *</span></label>
+                       <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Usuario responsable">
+                       <div class="alert alert-danger alert-sm" id="alerta_1">El usuario no se encuentra registrado</div>
+                    </div>
+                    <br>
+                    <div class="col-sm-6">
+                       <label>Fecha medición<span class="text-danger"> *</span></label>
+                       <input type="date" name="fecha_medicion" id="fecha_medicion" class="form-control">
+                    </div>
+                    <br>
+                    <div class="col-sm-6">
+                        <label>Conclusión <span class="text-danger"> *</span></label>
+                        <select class="form-control" id="conclusion">
+                            <option>Informe</option>
+                            <option>Pre-Informe</option>
+                        </select>
+                    </div>
+                </div>    
+                    <div style="text-align: center;" class="col-sm-12">
+                        <br>
+                      <button class="btn btn-sm btn-info float-center" id="actualizar_mapeo">Actualizar</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br>
         <div class="tab-content">
             <div class="tab-pane tabs-animation fade show active" id="pruebas" role="tabpanel">
                 <form method="POST" id="formulario_flujo_laminar">
@@ -431,7 +434,7 @@ function content_62a113a84d1160_02723421 (Smarty_Internal_Template $_smarty_tpl)
                                         <option value="Prueba de velocidad de aire">Prueba de velocidad de aire</option>
                                         <option value="Prueba de conteo de particulas">Prueba de conteo de particulas</option>
                                         <option value="Prueba de temperatura y humedad relativa">Prueba de temperatura y humedad relativa</option>
-                                        <option value="Prueba sonora">Prueba sonora</option>
+                                        <option value="Prueba Medición de ruido">Prueba sonora</option>
                                         <option value="Prueba nivel de iluminación">Prueba nivel de iluminación</option>
                                         </select>
                                         <table class="table">
@@ -632,6 +635,12 @@ function content_62a113a84d1160_02723421 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript" src="design/js/control_mapeo_flujo_laminar.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
+ type="text/javascript" src="design/js/validar_campos_vacios.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
  type="text/javascript" src="design/js/nuevo_equipo_cercal.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="design/js/update_equipos_cercal.js"><?php echo '</script'; ?>
 ><?php }
 }

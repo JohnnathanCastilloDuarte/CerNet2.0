@@ -1,4 +1,15 @@
  $("#alerta_1").hide();
+
+ $("#tab-1").click(function(){
+    $("#informe_1").hide();
+ });
+  $("#tab-0").click(function(){
+    $("#informe_1").show();
+ });
+   $("#tab-2").click(function(){
+    $("#informe_1").show();
+ });
+
 var id_asignado = $("#id_asignado_flujo_laminar").val();
 
 //Validar usuario responsable 

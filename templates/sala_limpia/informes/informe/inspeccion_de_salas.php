@@ -318,8 +318,6 @@ if ($clasificacion_oms == 'No Aplica') {
 
     $pdf->ln(5);
 
-
-
     $pdf->Cell(34,5,'Resultado:',0,0,'L',0,'',0);
     $pdf->Cell(11,5,'',0,0,'J',0,'',0);
     $pdf->Cell(34,5,$medida_promedio05,1,0,'C',0,'',0);
@@ -328,8 +326,6 @@ if ($clasificacion_oms == 'No Aplica') {
     $pdf->Cell(33,5,$medida_promedio50,1,0,'C',0,'',0);
 
     $pdf->ln(5);
-
-
 
     $pdf->Cell(31,5,'Requisito:',0,0,'L',0,'',0);
     $pdf->Cell(14,5,'',0,0,'J',0,'',0);
@@ -861,7 +857,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipos Utilizados en la Medición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -879,8 +875,41 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 $equipo_prueba_1 = "Prueba de conteo de particulas";
 
+$mostrar_equipos_1 = mysqli_prepare($connect,"SELECT a.id_equipo_cercal, a.marca_equipo, a.modelo_equipo, a.n_serie_equipo 
+FROM equipos_cercal as a, equipos_mediciones as b 
+WHERE b.id_equipo = a.id_equipo_cercal AND b.id_asignado = ? AND b.tipo_prueba = ? ");
 
-$query3 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  
+
+    mysqli_stmt_bind_param($mostrar_equipos_1, 'is', $id_asignado, $equipo_prueba_1);
+    mysqli_stmt_execute($mostrar_equipos_1);
+    mysqli_stmt_store_result($mostrar_equipos_1);
+    mysqli_stmt_bind_result($mostrar_equipos_1, $id_equipo_cercal, $marca, $modelo, $n_serie);
+
+while($row = mysqli_stmt_fetch($mostrar_equipos_1)){
+
+  $mostrar_certificado_1 = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
+  FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo_cercal ORDER BY fecha_vencimiento DESC LIMIT 1");
+    mysqli_stmt_execute($mostrar_certificado_1);
+    mysqli_stmt_store_result($mostrar_certificado_1);
+    mysqli_stmt_bind_result($mostrar_certificado_1, $certificado, $fecha_emision, $fecha_vencimiento, $pais, $estado);
+
+      while($row = mysqli_stmt_fetch($mostrar_certificado_1)){
+
+        $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
+        $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
+        $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
+        $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
+        $pdf->ln(5);
+
+
+      }
+
+}
+
+
+/*$query3 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  
 FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c 
 WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ? ");
 
@@ -899,7 +928,7 @@ while($row = mysqli_stmt_fetch($query3)){
    $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
     $pdf->ln(5);
 
-}
+}*/
 
 $pdf->AddPage('A4');
 
@@ -1082,25 +1111,38 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 $equipo_prueba_2 = "Prueba de Presión Diferencial";
 
+$mostrar_equipos_2 = mysqli_prepare($connect,"SELECT a.id_equipo_cercal, a.marca_equipo, a.modelo_equipo, a.n_serie_equipo 
+FROM equipos_cercal as a, equipos_mediciones as b 
+WHERE b.id_equipo = a.id_equipo_cercal AND b.id_asignado = ? AND b.tipo_prueba = ? ");
 
-$query5 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ? ");
-mysqli_stmt_bind_param($query5, 'is', $id_asignado, $equipo_prueba_2);
-mysqli_stmt_execute($query5);
-mysqli_stmt_store_result($query5);
-mysqli_stmt_bind_result($query5, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
 
-while($row = mysqli_stmt_fetch($query5)){
+    mysqli_stmt_bind_param($mostrar_equipos_2, 'is', $id_asignado, $equipo_prueba_2);
+    mysqli_stmt_execute($mostrar_equipos_2);
+    mysqli_stmt_store_result($mostrar_equipos_2);
+    mysqli_stmt_bind_result($mostrar_equipos_2, $id_equipo_cercal, $marca, $modelo, $n_serie);
 
-   $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
-   $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
-   $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
-   $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
-   $pdf->ln(5);
+while($row = mysqli_stmt_fetch($mostrar_equipos_2)){
+
+  $mostrar_certificado = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
+  FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo_cercal ORDER BY fecha_vencimiento DESC LIMIT 1");
+    mysqli_stmt_execute($mostrar_certificado);
+    mysqli_stmt_store_result($mostrar_certificado);
+    mysqli_stmt_bind_result($mostrar_certificado, $certificado, $fecha_emision, $fecha_vencimiento, $pais, $estado);
+
+      while($row = mysqli_stmt_fetch($mostrar_certificado)){
+
+        $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
+        $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
+        $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
+        $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
+        $pdf->ln(5);
+
+
+      }
 
 }
-
 
 
 $pdf->AddPage('A4');
@@ -1343,26 +1385,38 @@ $pdf->Cell(28,5,'Marca',1,0,'C',1,'',0);
  $pdf->ln(5);
 
 
+$equipo_prueba_3 = "Prueba de temperatura y humedad relativa";
+
+$mostrar_equipos_3 = mysqli_prepare($connect,"SELECT a.id_equipo_cercal, a.marca_equipo, a.modelo_equipo, a.n_serie_equipo 
+FROM equipos_cercal as a, equipos_mediciones as b 
+WHERE b.id_equipo = a.id_equipo_cercal AND b.id_asignado = ? AND b.tipo_prueba = ? ");
 
 
-$equipo_prueba_4 = "Prueba de temperatura y humedad relativa";
+    mysqli_stmt_bind_param($mostrar_equipos_3, 'is', $id_asignado, $equipo_prueba_3);
+    mysqli_stmt_execute($mostrar_equipos_3);
+    mysqli_stmt_store_result($mostrar_equipos_3);
+    mysqli_stmt_bind_result($mostrar_equipos_3, $id_equipo_cercal, $marca, $modelo, $n_serie);
+
+while($row = mysqli_stmt_fetch($mostrar_equipos_3)){
+
+  $mostrar_certificado = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
+  FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo_cercal ORDER BY fecha_vencimiento DESC LIMIT 1");
+    mysqli_stmt_execute($mostrar_certificado);
+    mysqli_stmt_store_result($mostrar_certificado);
+    mysqli_stmt_bind_result($mostrar_certificado, $certificado, $fecha_emision, $fecha_vencimiento, $pais, $estado);
+
+      while($row = mysqli_stmt_fetch($mostrar_certificado)){
+
+        $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
+        $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
+        $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
+        $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
+        $pdf->ln(5);
 
 
-$query7 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ? ");
-mysqli_stmt_bind_param($query7, 'is', $id_asignado, $equipo_prueba_4);
-mysqli_stmt_execute($query7);
-mysqli_stmt_store_result($query7);
-mysqli_stmt_bind_result($query7, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
-
-while($row = mysqli_stmt_fetch($query7)){
-
-   $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
-   $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
-   $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
-   $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
-   $pdf->ln(5);
+      }
 
 }
 
@@ -1564,7 +1618,7 @@ if ($promedio_dba <= $ruido_dba_item) {
    $pdf->Cell(30,5,'Promedio, dBA:',0,0,'C',0,'',0);
    $pdf->Cell(20,5,$promedio_dba,1,0,'C',0,'',0);
 
-   $pdf->Cell(40,5,'Especificación Cliente, Lux',0,0,'C',0,'',0);
+   $pdf->Cell(40,5,'Especificación Cliente, dBA',0,0,'C',0,'',0);
    $pdf->Cell(30,5,' <=  '.$ruido_dba_item,1,0,'C',0,'',0);
 
    $pdf->Cell(30, 5, 'Cumple:', 0, 0, 'C', 0, '', 0);
@@ -1587,7 +1641,7 @@ $linea = <<<EOD
 <br><br>
 <table>
    <tr border="1">
-        <td class="linea" align="center"><h2>Equipo Utilizado en la Medición</h2></td>
+        <td class="linea" align="center"><h2>Equipos Utilizados en la Medición</h2></td>
    </tr>
 </table>
 EOD;  
@@ -1601,28 +1655,41 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->Cell(26,5,'Trazabilidad',1,0,'C',1,'',0);
     $pdf->ln(5);
 
-$equipo_prueba_5 = "Prueba Medición de ruido";
-$equipo_prueba_6 = "Prueba nivel de iluminación";
+$equipo_prueba_4 = "Prueba Medición de ruido";
+$equipo_prueba_5 = "Prueba nivel de iluminación";
+
+$mostrar_equipos = mysqli_prepare($connect,"SELECT a.id_equipo_cercal, a.marca_equipo, a.modelo_equipo, a.n_serie_equipo 
+FROM equipos_cercal as a, equipos_mediciones as b 
+WHERE b.id_equipo = a.id_equipo_cercal AND b.id_asignado = ? AND b.tipo_prueba in (?,?)");
 
 
-$query_71 = mysqli_prepare($connect,"SELECT distinct a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision FROM equipos_cercal as a, certificado_equipo as b, equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_asignado = ? AND a.id_equipo_cercal = c.id_equipo and C.tipo_prueba in( ?, ?)");
-mysqli_stmt_bind_param($query_71, 'iss', $id_asignado, $equipo_prueba_5, $equipo_prueba_6);
-mysqli_stmt_execute($query_71);
-mysqli_stmt_store_result($query_71);
-mysqli_stmt_bind_result($query_71, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
+    mysqli_stmt_bind_param($mostrar_equipos, 'iss', $id_asignado, $equipo_prueba_4, $equipo_prueba_5);
+    mysqli_stmt_execute($mostrar_equipos);
+    mysqli_stmt_store_result($mostrar_equipos);
+    mysqli_stmt_bind_result($mostrar_equipos, $id_equipo_cercal, $marca, $modelo, $n_serie);
 
-while($row = mysqli_stmt_fetch($query_71)){
+while($row = mysqli_stmt_fetch($mostrar_equipos)){
 
-   $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
-   $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
-   $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
-   $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
-    $pdf->ln(5);
+  $mostrar_certificado = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
+  FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo_cercal ORDER BY fecha_vencimiento DESC LIMIT 1");
+    mysqli_stmt_execute($mostrar_certificado);
+    mysqli_stmt_store_result($mostrar_certificado);
+    mysqli_stmt_bind_result($mostrar_certificado, $certificado, $fecha_emision, $fecha_vencimiento, $pais, $estado);
+
+      while($row = mysqli_stmt_fetch($mostrar_certificado)){
+
+        $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
+        $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
+        $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
+        $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
+        $pdf->ln(5);
+
+
+      }
+
 }
-
-
 
 
 $pdf->AddPage('A4');
@@ -2056,25 +2123,41 @@ $pdf->writeHTML($linea, true, false, false, false, '');
  $pdf->Cell(26,5,'Trazabilidad',1,0,'C',1,'',0);
  $pdf->ln(5);
 
-$equipo_prueba_7 = "Prueba de medición de caudal";
+$equipo_prueba_6 = "Prueba de medición de caudal";
 
-$query72 = mysqli_prepare($connect,"SELECT a.marca_equipo, a.modelo_equipo, a.n_serie_equipo, b.numero_certificado, b.fecha_emision  FROM equipos_cercal as a,  certificado_equipo as b,  equipos_mediciones as c WHERE a.id_equipo_cercal = b.id_equipo_cercal AND c.id_equipo = a.id_equipo_cercal AND c.id_asignado = ? AND c.tipo_prueba = ?");
-mysqli_stmt_bind_param($query72, 'is', $id_asignado, $equipo_prueba_7);
-mysqli_stmt_execute($query72);
-mysqli_stmt_store_result($query72);
-mysqli_stmt_bind_result($query72, $marca, $modelo, $n_serie, $certificado, $fecha_emision);
+$mostrar_equipos = mysqli_prepare($connect,"SELECT a.id_equipo_cercal, a.marca_equipo, a.modelo_equipo, a.n_serie_equipo 
+FROM equipos_cercal as a, equipos_mediciones as b 
+WHERE b.id_equipo = a.id_equipo_cercal AND b.id_asignado = ? AND b.tipo_prueba = ?");
 
-while($row = mysqli_stmt_fetch($query72)){
 
-       $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
-       $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
-       $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
-       $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
-       $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
-       $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
-       $pdf->ln(5);
+    mysqli_stmt_bind_param($mostrar_equipos, 'is', $id_asignado, $equipo_prueba_6);
+    mysqli_stmt_execute($mostrar_equipos);
+    mysqli_stmt_store_result($mostrar_equipos);
+    mysqli_stmt_bind_result($mostrar_equipos, $id_equipo_cercal, $marca, $modelo, $n_serie);
+
+while($row = mysqli_stmt_fetch($mostrar_equipos)){
+
+  $mostrar_certificado = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
+  FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo_cercal ORDER BY fecha_vencimiento DESC LIMIT 1");
+    mysqli_stmt_execute($mostrar_certificado);
+    mysqli_stmt_store_result($mostrar_certificado);
+    mysqli_stmt_bind_result($mostrar_certificado, $certificado, $fecha_emision, $fecha_vencimiento, $pais, $estado);
+
+      while($row = mysqli_stmt_fetch($mostrar_certificado)){
+
+        $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
+        $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
+        $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
+        $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
+        $pdf->ln(5);
+
+
+      }
 
 }
+
 $pdf->Output($nombre_informe, 'I');
 
 ?>

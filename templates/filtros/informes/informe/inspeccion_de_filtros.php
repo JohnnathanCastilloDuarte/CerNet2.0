@@ -179,14 +179,13 @@ mysqli_stmt_store_result($busca_filtros1);
 mysqli_stmt_bind_result($busca_filtros1, $valor_obtenido, $valor_filtro, $nombre_filtro );
 //mysqli_stmt_fetch($busca_filtros1);
 
-
-  
-
    $pdf->Cell(45,5,'Medición',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Requisito',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Valor Obtenido',1,0,'C',1,'',0);
    $pdf->Cell(45,5,'Veredicto',1,0,'C',1,'',0);
    $pdf->ln(5);
+
+
 $contador_cumples = 0;
    while($row = mysqli_stmt_fetch($busca_filtros1)){
     if ($valor_obtenido <= 0.001) {
@@ -245,6 +244,7 @@ se aplican solo a los elementos ensayados y corresponde a las condiciones encont
 }
 
 $pdf->writeHTMLCell(165, 5, 15, '', $conclu ,0,1, 0, true, 'J', true);
+$pdf->ln(3);
 
 $linea = <<<EOD
 <style>
@@ -320,7 +320,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
      $pdf->Cell(30,5,'Fecha de Emisión:',0,0,'L',0,'',0);
      $pdf->Cell(25,5,$fecha_registro,1,0,'C',0,'',0);
 
-   $pdf->ln(7);   
+/*   $pdf->ln(7);   
 
    $pdf->Cell(25,5,'Empresa:',0,0,'L',0,'',0);
    $pdf->Cell(80,5,$empresa,1,0,'C',0,'',0);
@@ -331,7 +331,7 @@ $pdf->writeHTML($linea, true, false, false, false, '');
    $pdf->ln(7);  
 
    $pdf->Cell(25,5,'Dirección:',0,0,'L',0,'',0);
-   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);
+   $pdf->Cell(155,5,$direccion,1,0,'L',0,'',0);*/
 
    $pdf->ln(10);  
 
@@ -441,21 +441,18 @@ $linea = <<<EOD
          con una concentración de 22.9 mg/litro.</p></td>
    </tr>
 </table>
-<br>
-<br>
 <table border="0" style="text-align: center;">
       <tr>
          <td><h2>Filtro a Examinar</h2></td>
       </tr>
-      <br><br>
       <tr>
-         <td style= "height: 250px;"><img src="../../imagenes/definidas/imagen1.png" style="width: 300px;"></td>
+         <td><img src="../../imagenes/definidas/imagen1.png" style="width: 290px;"></td>
       </tr>
       <tr>
          <td><h2>Imagen de la Medición</h2></td>
       </tr>
       <tr>
-         <td style= "height: 150px;"><img src="$url_img" style="width: 200px;"></td>
+         <td><img src="$url_img" style="width: 290px;"></td>
       </tr>
 </table>
 
@@ -616,36 +613,45 @@ $linea = <<<EOD
 EOD;  
 $pdf->writeHTML($linea, true, false, false, false, '');
 
-
-
    $pdf->Cell(28,5,'Marca',1,0,'C',1,'',0);
    $pdf->Cell(31,5,'Modelo',1,0,'C',1,'',0);
    $pdf->Cell(30,5,'N° Serie',1,0,'C',1,'',0);
    $pdf->Cell(35,5,'Certificado de Calibración',1,0,'C',1,'',0);
    $pdf->Cell(30,5,'Última Calibración',1,0,'C',1,'',0);
    $pdf->Cell(26,5,'Trazabilidad',1,0,'C',1,'',0);
-    $pdf->ln(5);
-
-//Consulta que busca los filtros usados 
-$consultar_equipo = mysqli_prepare($connect,"SELECT  b.marca_equipo, b.modelo_equipo, b.n_serie_equipo, c.numero_certificado, c.fecha_emision FROM equipos_mediciones a, equipos_cercal b, certificado_equipo c WHERE a.id_informe = ? AND a.id_equipo = b.id_equipo_cercal AND c.id_equipo_cercal = a.id_equipo");
-
-mysqli_stmt_bind_param($consultar_equipo, 'i', $id_informe);
-mysqli_stmt_execute($consultar_equipo);
-mysqli_stmt_store_result($consultar_equipo);
-mysqli_stmt_bind_result($consultar_equipo, $marca_equipo, $modelo_equipo, $n_serie_equipo, $numero_certificado, $fecha_emision);
-
-   //AQUI VAN LOS VALORES
-   while($row = mysqli_stmt_fetch($consultar_equipo)){
-
-   $pdf->Cell(28,5,$marca_equipo,1,0,'C',0,'',0);
-   $pdf->Cell(31,5,$modelo_equipo,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$n_serie_equipo,1,0,'C',0,'',0);
-   $pdf->Cell(35,5,$numero_certificado,1,0,'C',0,'',0);
-   $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
-   $pdf->Cell(26,5,'-',1,0,'C',0,'',0);
    $pdf->ln(5);
 
-   } 
+//Consulta que busca los filtros usados 
+
+$mostrar_equipos = mysqli_prepare($connect,"SELECT a.id_equipo_cercal, a.marca_equipo, a.modelo_equipo, a.n_serie_equipo 
+FROM equipos_cercal as a, equipos_mediciones as b 
+WHERE b.id_equipo = a.id_equipo_cercal AND b.id_informe = ?");
+
+    mysqli_stmt_bind_param($mostrar_equipos, 'i', $id_informe);
+    mysqli_stmt_execute($mostrar_equipos);
+    mysqli_stmt_store_result($mostrar_equipos);
+    mysqli_stmt_bind_result($mostrar_equipos, $id_equipo_cercal, $marca, $modelo, $n_serie);
+
+while($row = mysqli_stmt_fetch($mostrar_equipos)){
+
+  $mostrar_certificado = mysqli_prepare($connect,"SELECT numero_certificado, fecha_emision, fecha_vencimiento, pais, estado 
+  FROM certificado_equipo WHERE id_equipo_cercal = $id_equipo_cercal ORDER BY fecha_vencimiento DESC LIMIT 1");
+    mysqli_stmt_execute($mostrar_certificado);
+    mysqli_stmt_store_result($mostrar_certificado);
+    mysqli_stmt_bind_result($mostrar_certificado, $certificado, $fecha_emision, $fecha_vencimiento, $pais, $estado);
+
+      while($row = mysqli_stmt_fetch($mostrar_certificado)){
+
+        $pdf->Cell(28,5,$marca,1,0,'C',0,'',0);
+        $pdf->Cell(31,5,$modelo,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$n_serie,1,0,'C',0,'',0);
+        $pdf->Cell(35,5,$certificado,1,0,'C',0,'',0);
+        $pdf->Cell(30,5,$fecha_emision,1,0,'C',0,'',0);
+        $pdf->Cell(26,5,'Trazabilidad',1,0,'C',0,'',0);
+        $pdf->ln(5);
+
+      }
+}
 
 $pdf->AddPage('A4');
 
@@ -701,28 +707,5 @@ while($row = mysqli_stmt_fetch($consultar_imagenes)){
 
 }
    
-/*while($row = mysqli_stmt_fetch($consultar_imagenes)){
-      
-       $imagenes = <<<EOD
-       
-         <table witdh="100%" border="1">
-            <tr>
-               <td>$enunciado</td>
-               <td width="200px">
-                  <img src="../../$url">
-               </td>
-                <td></td>
-            </tr>
-         </table>
-         <br>
-      
-
-      EOD;  
-      $pdf->writeHTML($imagenes, true, false, false, false, '');  
-   
-
-   }     */
-
-
 $pdf->Output($nombre_informe, 'I');
 ?>
