@@ -11,6 +11,10 @@ $("#pdf_grande").hide();
 $("#gif_loading").hide();
 
 
+$(".subir1").hide();
+$("#tab_hoja_de_firmas").hide();
+
+
 
 ////VARIABLES CONSTANTES
 var id_valida_usuario = $("#id_valida").val();
@@ -1786,15 +1790,29 @@ function listar_config_documentacion(){
       traer.forEach((x)=>{
        
           if(x.tipo == 1){
+          
             tpo = "Aprobación de item";
             $("#tab_subir_archivo").hide();
             $("#tab_hoja_de_firmas").hide();
+            $("#tab_aprobar_informes").hide();
             $("#tab_aprobar_item").show();
-          }else{
+          }else if(x.tipo == 2){
             tpo = "Pdf";
             $("#tab_subir_archivo").show();
             $("#tab_hoja_de_firmas").show();
             $("#tab_aprobar_item").hide();
+            $("#tab_aprobar_informes").hide();
+          }else if (x.tipo == 3){
+            tpo = "Aprobación de Informes";
+            $("#tab_subir_archivo").hide();
+            $("#tab_hoja_de_firmas").hide();
+            $("#tab_aprobar_item").hide();
+            $("#tab_aprobar_informes").show();
+          }else{
+            $("#tab_subir_archivo").hide();
+            $("#tab_hoja_de_firmas").hide();
+            $("#tab_aprobar_item").hide();
+            $("#tab_aprobar_informes").hide();
           }
         
           $("#nombre_config").html(x.nombre);

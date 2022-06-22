@@ -5,6 +5,8 @@ require('../../../../config.ini.php');
 //$resultado_corresponde = "";
 //$posicion_sensores_indicativo = 1;
  
+$tipo_info = "especificaciones del item";
+
 $data = $_GET['data'];
 
 $data = substr($data, 70, 100);
@@ -47,7 +49,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: #767676;
 }
 </style>
 <br><br><br><br>
@@ -86,7 +88,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: #767676;
 }
 </style>
 <br><br><br><br>
@@ -124,7 +126,7 @@ $linea = <<<EOD
 .linea{
    height: 14px;
    color:white;
-   background-color: #1a53ff;
+   background-color: #767676;
 }
 </style>
 
@@ -141,7 +143,6 @@ $pdf->writeHTML($linea, true, false, false, false, '');
 
 switch ($tipo_item) {
    case 'Bodega':
-
 
 
       $pdf->writeHTMLCell(35, 5, 20, '', '<strong>LARGO:</strong>' ,0,0, 0, true, 'J', true);
@@ -218,7 +219,7 @@ switch ($tipo_item) {
             .linea{
                height: 14px;
                color:white;
-               background-color: #1a53ff;
+               background-color: #767676;
             }
             </style>
             <br><br><br><br>
@@ -266,13 +267,13 @@ $linea = <<<EOD
    .linea{
       height: 14px;
       color:white;
-      background-color: #1a53ff;
+      background-color: #767676;
    }
    </style>
    <br><br><br><br>
    <table >
       <tr border="1">
-         <td class="linea" align="center"><h2><b>Historico de aprobación</b></h2></td>
+         <td class="linea" align="center"><h2><b>HISTORICO</b></h2></td>
       </tr>
    </table>
 EOD;  

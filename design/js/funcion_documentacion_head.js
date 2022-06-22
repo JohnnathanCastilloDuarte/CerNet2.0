@@ -729,7 +729,7 @@ function ya_firmo(id_documentacion, id_valida) {
         });
         
         $("#m").html(msj);
-        $("#aqui_pdf_bton").html(`<br><button class="btn btn-danger" data-id="${id_documentacion}" id="descarga_datos_informe">Generar PDF <i class="fas fa-file-pdf"></i></button>`);
+        //$("#aqui_pdf_bton").html(`<br><button class="btn btn-danger" data-id="${id_documentacion}" id="descarga_datos_informe">Generar PDF <i class="fas fa-file-pdf"></i></button>`);
 
     }
   });

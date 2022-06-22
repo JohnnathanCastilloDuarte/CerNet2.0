@@ -7,9 +7,7 @@ $tipo_info = "";
 class MYPDF extends TCPDF 
 {
     //Page header
-    public function saludar(){
-      echo "hshdagshdahsdh";
-    }
+
     public function Header() 
 	{
        
@@ -56,7 +54,6 @@ class MYPDF extends TCPDF
    // $this->writeHTMLCell(35, 22, 160, 11, '<img src="../../../../'.$logo.'" width="250">', 0, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 12, 135, 30, 'Informe: Item PDF <br>'.$numot.' // REVISION: 0.0.0', 1, 0, 0, true, 'C', true);
 	//$this->writeHTMLCell(60, 4, 135, 42, '<table><tr><td width="120%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página '.$this->getAliasNumPage().' de '.$this->getAliasNbPages().'</td></tr></table>', 1, 1, 0, true, 'C', true);
-    
     if ($tipo_info == 'Pre-Informe') {
             // get the current page break margin
         $bMargin = $this->getBreakMargin();
@@ -67,6 +64,19 @@ class MYPDF extends TCPDF
         // set bacground image
         $img_file = '../../../../recursos/Imagen2.png';
         $this->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+        // restore auto-page-break status
+        $this->SetAutoPageBreak($auto_page_break, $bMargin);
+        // set the starting point for the page content
+        $this->setPageMark();
+    }else if($tipo_info == "especificaciones del item"){
+        $bMargin = $this->getBreakMargin();
+        // get current auto-page-break mode
+        $auto_page_break = $this->AutoPageBreak;
+        // disable auto-page-break
+        $this->SetAutoPageBreak(false, 0);
+        // set bacground image
+        $img_file = '../../../../recursos/logo_big.png';
+        $this->Image($img_file, 13, 8, 30, 20, '', '', '', false, 200, '', false, false, 0);
         // restore auto-page-break status
         $this->SetAutoPageBreak($auto_page_break, $bMargin);
         // set the starting point for the page content
