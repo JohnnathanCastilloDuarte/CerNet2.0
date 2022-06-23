@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-06-22 22:33:52
+/* Smarty version 3.1.34-dev-7, created on 2022-06-22 22:55:13
   from 'C:\xampp\htdocs\CerNet2.0\templates\documentacion\gestor_documentacion.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62b37cb0d5b8d8_56721449',
+  'unifunc' => 'content_62b381b1c66095_57114347',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0340fc563f7887f68f8befb02125b5ae27d13864' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CerNet2.0\\templates\\documentacion\\gestor_documentacion.tpl',
-      1 => 1655930030,
+      1 => 1655931310,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62b37cb0d5b8d8_56721449 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62b381b1c66095_57114347 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <style>
    
@@ -537,7 +537,7 @@ p{
           <div class="card-body">
             <div class="row">
               <div class="col-sm-12">
-                <table class="table">
+                <table class="table" style="text-align:center;">
                   <thead>
                     <th>#</th>
                     <th>Nombre informe</th>

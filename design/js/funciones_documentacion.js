@@ -1808,6 +1808,7 @@ function listar_config_documentacion(){
             $("#tab_hoja_de_firmas").hide();
             $("#tab_aprobar_item").hide();
             $("#tab_aprobar_informes").show();
+            listar_informes_generados();
           }else{
             $("#tab_subir_archivo").hide();
             $("#tab_hoja_de_firmas").hide();
@@ -1821,6 +1822,22 @@ function listar_config_documentacion(){
     }
   })
 }
+
+
+
+
+function listar_informes_generados(){
+ 
+  $.ajax({
+    type:'POST',
+    data:{id_documentacion_d},
+    url:'templates/documentacion/controlador_gestion_informes.php',
+    success:function(respuesta){
+      console.log(respuesta);
+    }
+  })
+}
+
 
 
 ///////// LISTAR HOJA FIRMAS

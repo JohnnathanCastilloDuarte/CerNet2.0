@@ -509,7 +509,7 @@ p{
           <div class="card-body">
             <div class="row">
               <div class="col-sm-12">
-                <table class="table">
+                <table class="table" style="text-align:center;">
                   <thead>
                     <th>#</th>
                     <th>Nombre informe</th>
