@@ -205,8 +205,6 @@
 		$prom_general = number_format($d_2,2);
 
 
-
-
 		$query_14 = mysqli_prepare($connect,"SELECT MAX(CAST(a.hum AS DECIMAL(6,1))) as maximo, a.time, c.nombre, d.nombre FROM datos_crudos_general as a,
 																					mapeo_general_sensor as b, bandeja as c, sensores as d WHERE a.id_sensor_mapeo = b.id_sensor_mapeo AND b.id_mapeo = ? 
 																					AND b.id_bandeja = c.id_bandeja AND b.id_sensor = d.id_sensor GROUP BY a.time, c.nombre, d.nombre ORDER BY maximo DESC LIMIT 1  ");
@@ -482,12 +480,13 @@ $c_total_medicion = substr(str_replace(',','', $total_mediciones),0,-3);
 
 		$pdf->AddPage('A4');
 
-if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+if($max_hr == 'No Aplica' || $min_hr == 'No Aplica'){
   
     $registros_over = '0.00';
     $max_percent = '0.00';
   
 }
+
 
 
 
@@ -568,7 +567,7 @@ text-align:left;
 		<table><tr><td colspan="2" bgcolor="#DDDDDD"><H3><strong>3. Resultados de la Medición Obtenida</strong></H3></td></tr>
 
 		<tr><td width="30%" class="enunciado">Promedio General (% HR)</td><td width="70%" colspan="5">$prom_general</td></tr>
-
+        
 		<tr><td width="30%" class="enunciado">Máximo General (% HR)</td><td width="10%">$max_general</td>
 		<td width="10%">a las:</td><td width="20%">$max_time_general</td><td width="10%">En:</td><td width="20%">$sensor_max_general, Ubicado en posición $posicion_max_general: $bandeja_max_general</td></tr>
 
@@ -799,17 +798,17 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
   
 
   //TITULOS
-  $pdf->writeHTMLCell(35, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 50, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 10, 65, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(20, 10, 80, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(25, 10, 100, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
 
-  //$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
 
@@ -874,43 +873,46 @@ for($i = 0; $i< mysqli_stmt_num_rows($consultar_1); $i++){
   if($contador_for_table == 31 || $contador_for_table == 40){
     $pdf->AddPage('A4');
 
-	$pdf->writeHTMLCell(35, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
+    $pdf->writeHTMLCell(25, 10, 15, '', 'Posición -  N° de ident.', 1, 0, 0, true, 'C', true);
 
-	$pdf->writeHTMLCell(15, 10, 50, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
-  
-	$pdf->writeHTMLCell(15, 10, 65, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
-  
-	$pdf->writeHTMLCell(20, 10, 80, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
-  
-	$pdf->writeHTMLCell(25, 10, 100, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
-  
-	//$pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
-  
-	$pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
-  
-	$pdf->writeHTMLCell(10, 10, 150, '', '%', 1, 0, 0, true, 'C', true);
-  
-	$pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
-  
-	$pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
+    $pdf->writeHTMLCell(15, 10, 40, '', 'Mínimo (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(15, 10, 55, '', 'Máximo (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(20, 10, 70, '', 'Promedio (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(20, 10, 90, '', 'Desv. Estándar', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(15, 10, 110, '', 'MKT (% HR)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(25, 10, 125, '', 'Tiempo sup. al límite (hrs.)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(10, 10, 150, '', '%', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(25, 10, 160, '', 'Tiempo inf. al límite (hrs.)', 1, 0, 0, true, 'C', true);
+
+    $pdf->writeHTMLCell(10, 10, 185, '', '%', 1, 1, 0, true, 'C', true);
   }  
-    	
-    if($max_hr == 'No Aplica' && $min_hr == 'No Aplica'){
+       
+    if($max_hr == 'No Aplica' || $min_hr == 'No Aplica'){
+        
       $info_percent_over ='0.00';
       $info_over = '0.00';
     }
 
 
 
-  $pdf->writeHTMLCell(35, 6, 15, '', $posicion.'-'.$nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(25, 6, 15, '', $posicion.'-'.$nombre_sensor_t_2, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 6, 50, '', $info_min, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 6, 40, '', $info_min, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(15, 6, 65, '', $info_max, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(15, 6, 55, '', $info_max, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(20, 6, 80, '', $info_prom, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 6, 70, '', $info_prom, 1, 0, 0, true, 'C', true);
 
-  $pdf->writeHTMLCell(25, 6, 100, '', $info_desv, 1, 0, 0, true, 'C', true);
+  $pdf->writeHTMLCell(20, 6, 90, '', $info_desv, 1, 0, 0, true, 'C', true);
+
+  $pdf->writeHTMLCell(15, 6, 110, '','N/A', 1, 0, 0, true, 'C', true);
 
   $pdf->writeHTMLCell(25, 6, 125, '', $info_over, 1, 0, 0, true, 'C', true);
 
