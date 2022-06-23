@@ -13,7 +13,6 @@ $( document ).ready(function() {
 	$("#sin_ot").hide();
 	$("#btn_gestionar_ot_2").hide();
 	$("#cuando_si_selecciona_ot").hide();
-	validar();
 	
 
 
@@ -183,7 +182,7 @@ var id_gestionar = "";
 	
 	$("#btn_gestionar_ot_1").click(function(){
 		let id_gestionar = $("#id_ot_oculto").val();
-		validar()
+
 		let URLactual = document.location.origin
 		if(URLactual == "https://localhost" || URLactual =="http://localhost"){
 
